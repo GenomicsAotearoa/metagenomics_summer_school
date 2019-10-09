@@ -67,7 +67,7 @@ A draft timetable for the day is provided below, but please keep in mind that th
 |10:30 am – 10:50 am|**Morning tea break**<br>Fill in form on hypothesis for own wor|
 |10:50 am – 12:00 pm|**Present and discuss findings**<br>Each group to give a casual discussion of their data<br>What they were looking for, what did they find?<br>Which databases were most helpful?|
 |1:00 pm – 1:45 pm|**Break for lunch**|
-|1:45 pm – 3:00 pm|**Presentation of data***<br>How do visualise findings - Metabolism maps, heatmaps, gene trees*<br>Gene synteny alignments (*R*)|
+|1:45 pm – 3:00 pm|**Presentation of data**<br>How do visualise findings - Metabolism maps, heatmaps, gene trees*<br>Gene synteny alignments (*R*)|
 |3:00 pm – 3:20 pm|**Afternoon tea break**|
 |3:20 pm – 4:00 pm|**End of day wrap up**<br>Final discussion|
 
