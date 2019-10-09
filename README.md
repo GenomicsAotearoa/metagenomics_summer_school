@@ -9,7 +9,7 @@ A draft timetable for the day is provided below, but please keep in mind that th
 ### Day 1 - 10<sup>th</sup> December 2019
 
 |Time|Event|
-|:---:|:---|
+|:---|:---|
 |9:00 am – 9:30 am|**Introduction**<br>Welcome<br>Logging into *NeSI*|
 |9:30 am – 10:30 am|**Bash scripting**|
 |10:30 am – 10:50 am|**Morning tea break**|
@@ -27,7 +27,7 @@ A draft timetable for the day is provided below, but please keep in mind that th
 ### Day 2 - 11<sup>th</sup> December 2019
 
 |Time|Event|
-|:---:|:---|
+|:---|:---|
 |9:00 am – 9:30 am|**Introduction**<br>Overview of yesterday, questions<br>Overview of today|
 |9:30 am – 10:30 am|**Evaluating the overnight assembly**<br>Future considerations – co-assembly vs single assemblies<br>Run evaluation tool/script|
 |10:30 am – 10:50 am|**Morning tea break**|
@@ -44,7 +44,7 @@ A draft timetable for the day is provided below, but please keep in mind that th
 ### Day 3 - 12<sup>th</sup> December 2019
 
 |Time|Event|
-|:---:|:---|
+|:---|:---|
 |9:00 am – 9:30 am|**Introduction**<br>Overview of yesterday, questions<br>Overview of today|
 |9:30 am – 11:30 am|**Bin refinement**<br>Working with *VizBin* (hands on)<br>Other strategies (*ESOMana*)|
 |10:30 am – 10:50 am|**Morning tea break**|
@@ -61,12 +61,12 @@ A draft timetable for the day is provided below, but please keep in mind that th
 ### Day 4 - 13<sup>th</sup> December 2019
 
 |Time|Event|
-|:---:|:---|
+|:---|:---|
 |9:00 am – 9:30 am|**Introduction**<br>Overview of yesterday, questions<br>Overview of today|
 |9:30 am – 10:30 am|**Gene annotation** (refresher)<br>Tie findings to your initial hypothesis|
 |10:30 am – 10:50 am|**Morning tea break**<br>Fill in form on hypothesis for own wor|
 |10:50 am – 12:00 pm|**Present and discuss findings**<br>Each group to give a casual discussion of their data<br>What they were looking for, what did they find?<br>Which databases were most helpful?|
-|1:00 pm – 1:45 pm|*Break for lunch**|
+|1:00 pm – 1:45 pm|**Break for lunch**|
 |1:45 pm – 3:00 pm|**Presentation of data***<br>How do visualise findings - Metabolism maps, heatmaps, gene trees*<br>Gene synteny alignments (*R*)|
 |3:00 pm – 3:20 pm|**Afternoon tea break**|
 |3:20 pm – 4:00 pm|**End of day wrap up**<br>Final discussion|
