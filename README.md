@@ -10,16 +10,16 @@ A draft timetable for the day is provided below, but please keep in mind that th
 
 |Time|Event|
 |:---:|:---|
-|9:00 am – 9:30 am|**Introduction**\nWelcome\nLogging into *NeSI*|
+|9:00 am – 9:30 am|<p>**Introduction**<br>Welcome<br>Logging into *NeSI*</p>|
 |9:30 am – 10:30 am|**Bash scripting**|
 |10:30 am – 10:50 am|**Morning tea break**|
 |10:50 am – 11:30 am|**Bash scripting** (continued)|
-|11:30 am – 12:00 pm|**The metagenomics decision tree**\nProposing a hypothesis for your project\nDividing into working groups|
-|12:00 pm – 1:00 pm|**Quality filtering raw reads**\nVisualisation with *FastQC*\nRead trimming and adapter removal\nDiagnosing poor libraries\nCommon issues and best practice|
+|11:30 am – 12:00 pm|**The metagenomics decision tree**<br>Proposing a hypothesis for your project<br>Dividing into working groups|
+|12:00 pm – 1:00 pm|**Quality filtering raw reads**<br>Visualisation with *FastQC*<br>Read trimming and adapter removal<br>Diagnosing poor libraries<br>Common issues and best practice|
 |1:00 pm – 1:45 pm|**Break for lunch**|
-|1:45 pm – 4:00 pm|**Assembly**\nChoice of assemblers\nConsiderations for parameters, and when to stop!|
+|1:45 pm – 4:00 pm|**Assembly**<br>Choice of assemblers<br>Considerations for parameters, and when to stop!|
 |3:30 pm – 3:50 pm|**Afternoon tea break**|
-|3:50 pm – 4:15 pm|**Assembly** (continued)\nSubmitting jobs to *NeSI* via *slurm*|
+|3:50 pm – 4:15 pm|**Assembly** (continued)<br>Submitting jobs to *NeSI* via *slurm*|
 |4:15 pm – 4:30 pm|**End of day wrap up**|
 
 ----
