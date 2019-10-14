@@ -15,12 +15,12 @@ A draft timetable for the day is provided below, but please keep in mind that th
 |10:30 am – 10:50 am|**Morning tea break**|
 |10:50 am – 11:30 am|**Bash scripting** (continued)|
 |11:30 am – 12:00 pm|**The metagenomics decision tree**<br>Proposing a hypothesis for your project<br>Dividing into working groups|
-|12:00 pm – 1:00 pm|**Quality filtering raw reads**<br>Visualisation with *FastQC*<br>Read trimming and adapter removal<br>Diagnosing poor libraries<br>Common issues and best practice|
-|1:00 pm – 1:45 pm|**Break for lunch**|
-|1:45 pm – 4:00 pm|**Assembly**<br>Choice of assemblers<br>Considerations for parameters, and when to stop!|
-|3:30 pm – 3:50 pm|**Afternoon tea break**|
-|3:50 pm – 4:15 pm|**Assembly** (continued)<br>Submitting jobs to *NeSI* via *slurm*|
-|4:15 pm – 4:30 pm|**End of day wrap up**|
+|12:00 pm – 12:45 pm|**Break for lunch**|
+|12:45 pm – 1:45 pm|**Quality filtering raw reads**<br>Visualisation with *FastQC*<br>Read trimming and adapter removal<br>Diagnosing poor libraries<br>Common issues and best practice|
+|1:45 pm – 3:00 pm|**Assembly**<br>Choice of assemblers<br>Considerations for parameters, and when to stop!|
+|3:00 pm – 3:20 pm|**Afternoon tea break**|
+|3:20 pm – 3:45 pm|**Assembly** (continued)<br>Submitting jobs to *NeSI* via *slurm*|
+|4:00 pm – 5:00 pm|**End of day wrap up**<br>Attendees can work with their own data, if available|
 
 ----
 
@@ -32,12 +32,12 @@ A draft timetable for the day is provided below, but please keep in mind that th
 |9:30 am – 10:30 am|**Evaluating the overnight assembly**<br>Future considerations – co-assembly vs single assemblies<br>Run evaluation tool/script|
 |10:30 am – 10:50 am|**Morning tea break**|
 |10:50 am – 12:00 pm|**Overview of binning history**<br>ESOM, differetial coverage, tetranucleotide frequencies<br>Strategies for binning|
-|12:00 pm – 1:00 pm|**Binning**<br>Short contig removal<br>Read mapping<br>Multi-binning strategy (*Metabat* and *Maxbin*)|
-|1:00 pm – 1:45 pm|**Break for lunch**|
+|12:00 pm – 12:45 pm|**Break for lunch**|
+|12:45 pm – 1:45 pm|**Binning**<br>Short contig removal<br>Read mapping<br>Multi-binning strategy (*Metabat* and *Maxbin*)|
 |1:45 pm – 3:00 pm|**Binning** (continued)<br>Bin dereplication via *DAS_Tool*<br>Evaluating bins using *CheckM*|
 |3:00 pm – 3:20 pm|**Afternoon tea break**|
-|3:20 pm – 4:15 pm|**Binning** (continued)<br>Discuss additional dereplication strategies, such as *dRep*<br>How to workw ith viral and eukaryotic bins<br>Dealing with organisms which possess minimal genomes|
-|4:15 pm – 4:30 pm|**End of day wrap up**|
+|3:20 pm – 4:00 pm|**Binning** (continued)<br>Discuss additional dereplication strategies, such as *dRep*<br>How to workw ith viral and eukaryotic bins<br>Dealing with organisms which possess minimal genomes|
+|4:00 pm – 5:00 pm|**End of day wrap up**<br>Attendees can work with their own data, if available|
 
 ----
 
@@ -49,12 +49,12 @@ A draft timetable for the day is provided below, but please keep in mind that th
 |9:30 am – 11:30 am|**Bin refinement**<br>Working with *VizBin* (hands on)<br>Other strategies (*ESOMana*)|
 |10:30 am – 10:50 am|**Morning tea break**|
 |10:50 am – 11:30 am|**Gene prediction**<br>Introduce *prodigal*, discuss single vs meta mode<br>Discuss what *prodigal* can't find, discuss other tools (*RNAmer*, *Aragorn*, etc)|
-|11:30 am – 1:00 pm|**Gene annotation**<br>BLAST-like gene annotation using *usearch* or *diamond*<br>Introduce the different databases, highlight our reasons for *KEGG*<br>Evaluating the quality of gene assignment<br>Differences in taxonomies (*GTDB*, *NCBI* etc)|
-|1:00 pm – 1:45 pm|**Break for lunch**|
-|1:45 pm – 3:00 pm|**Gene annotation** (continued)<br>Looking at gene networks in *MEGAN* (unassembled and assembled reads)<br>Tie findings to your initial hypothesis|
+|11:30 am – 12:00 pm|**Gene annotation**<br>BLAST-like gene annotation using *usearch* or *diamond*<br>Introduce the different databases, highlight our reasons for *KEGG*<br>Evaluating the quality of gene assignment<br>Differences in taxonomies (*GTDB*, *NCBI* etc)|
+|12:00 pm – 12:45 pm|**Break for lunch**|
+|12:45 pm – 3:00 pm|**Gene annotation** (continued)<br>Looking at gene networks in *MEGAN* (unassembled and assembled reads)<br>Tie findings to your initial hypothesis|
 |3:00 pm – 3:20 pm|**Afternoon tea break**|
-|3:20 pm – 4:15 pm|**Gene annotation** (continued)<br>Using online resources - *KEGG*, *BioCyc*, *MetaCyc*, *HydDB*, *PSORT*)<br>Tie findings to your initial hypothesis|
-|4:15 pm – 4:30 pm|**End of day wrap up**|
+|3:20 pm – 4:00 pm|**Gene annotation** (continued)<br>Using online resources - *KEGG*, *BioCyc*, *MetaCyc*, *HydDB*, *PSORT*)<br>Tie findings to your initial hypothesis|
+|4:00 pm – 5:00 pm|**End of day wrap up**<br>Attendees can work with their own data, if available|
 
 ----
 
@@ -64,10 +64,10 @@ A draft timetable for the day is provided below, but please keep in mind that th
 |:---|:---|
 |9:00 am – 9:30 am|**Introduction**<br>Overview of yesterday, questions<br>Overview of today|
 |9:30 am – 10:30 am|**Gene annotation** (refresher)<br>Tie findings to your initial hypothesis|
-|10:30 am – 10:50 am|**Morning tea break**<br>Fill in form on hypothesis for own wor|
+|10:30 am – 10:50 am|**Morning tea break**<br>Fill in form on hypothesis for own work|
 |10:50 am – 12:00 pm|**Present and discuss findings**<br>Each group to give a casual discussion of their data<br>What they were looking for, what did they find?<br>Which databases were most helpful?|
-|1:00 pm – 1:45 pm|**Break for lunch**|
-|1:45 pm – 3:00 pm|**Presentation of data**<br>How do visualise findings - Metabolism maps, heatmaps, gene trees*<br>Gene synteny alignments (*R*)|
+|12:00 pm – 12:45 pm|**Break for lunch**|
+|12:45 pm – 3:00 pm|**Presentation of data**<br>How do visualise findings - Metabolism maps, heatmaps, gene trees*<br>Gene synteny alignments (*R*)|
 |3:00 pm – 3:20 pm|**Afternoon tea break**|
 |3:20 pm – 4:00 pm|**End of day wrap up**<br>Final discussion|
 
