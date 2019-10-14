@@ -36,7 +36,7 @@ A draft timetable for the day is provided below, but please keep in mind that th
 |12:45 pm – 1:45 pm|**Binning**<br>Short contig removal<br>Read mapping<br>Multi-binning strategy (*Metabat* and *Maxbin*)|
 |1:45 pm – 3:00 pm|**Binning** (continued)<br>Bin dereplication via *DAS_Tool*<br>Evaluating bins using *CheckM*|
 |3:00 pm – 3:20 pm|**Afternoon tea break**|
-|3:20 pm – 4:00 pm|**Binning** (continued)<br>Discuss additional dereplication strategies, such as *dRep*<br>How to workw ith viral and eukaryotic bins<br>Dealing with organisms which possess minimal genomes|
+|3:20 pm – 4:00 pm|**Binning** (continued)<br>Discuss additional dereplication strategies, such as *dRep*<br>How to work with viral and eukaryotic bins<br>Dealing with organisms which possess minimal genomes|
 |4:00 pm – 5:00 pm|**End of day wrap up**<br>Attendees can work with their own data, if available|
 
 ----
