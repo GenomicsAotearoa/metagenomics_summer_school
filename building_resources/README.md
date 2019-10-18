@@ -8,7 +8,7 @@ This is a little behind-the-scenes of how the materials were created for this wo
 
 |Section|Description|
 |:---|:---|
-|[Introduction](https://github.com/GenomicsAotearoa/metagenomics_summer_school/building_resources/0.introduction.md)|Selecting the initial genomes|
-|[Building mock metagenomes](https://github.com/GenomicsAotearoa/metagenomics_summer_school/building_resources/1.building_mock_metagenomes.md)|Obtaining genomes<br>Preparing genomes for metagenome creation<br>Creating mock metagenomes|
+|[Introduction](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/building_resources/0.introduction.md)|Selecting the initial genomes|
+|[Building mock metagenomes](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/building_resources/1.building_mock_metagenomes.md)|Obtaining genomes<br>Preparing genomes for metagenome creation<br>Creating mock metagenomes|
 
 ----
