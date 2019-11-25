@@ -107,13 +107,10 @@ There is a lot going on in this command, so here is a breakdown of the parameter
 |-phred33|*keyword*|Specifies the fastq encoding used|
 |mock_R1.adapter_decay.fastq / mock_R2.adapter_decay.fastq|*positional*|The paired forward and reverse reads to trim|
 |mock_R1.qc.fastq|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner also passed|
-|mock_s1.qc.fastq|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner failed (orphan
-reads)|
+|mock_s1.qc.fastq|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner failed (orphan reads)|
 |mock_R2.qc.fastq / mock_s2.qc.fastq|*positional*|The reverse-sequence equivalent of above|
-|ILLUMINACLIP:iua.fna:1:25:7|*positional*|Adapter trimming command. Search each sequence for the sequences specified in the
-*iua.fna*<br>file and cut matching regions|
-|SLIDINGWINDOW:4:30|*positional*|Quality filtering command, analyses each sequence in a 4 base pair sliding window,<br>truncating
-if the average quality drops below Q30|
+|ILLUMINACLIP:iua.fna:1:25:7|*positional*|Adapter trimming command. Search each sequence for the sequences specified in the *iua.fna* file and cut matching regions|
+|SLIDINGWINDOW:4:30|*positional*|Quality filtering command. Analyses each sequence in a 4 base pair sliding window, truncating if the average quality drops below Q30|
 |MINLEN:80|*positional*|Length filtering command, discard sequences that are shorter than 80 base pairs after trimming|
 
 There are a few considerations to make when using **trimmomatic**:
