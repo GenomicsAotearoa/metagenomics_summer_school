@@ -38,7 +38,7 @@ fastqc mock_R1.fastq.gz mock_R2.fastq.gz
 Note that **FastQC** does not load the forward and reverse pairs of a library in the same window, so you need to be mindful
 of how your samples relate to each other. Lets load the file *mock_R1.good.fastq* into **FastQC** and see what the display looks like.
 
-![]()
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig1_overview.PNG)
 
 At a first glance, we can see the follow statistics:
 
@@ -51,19 +51,19 @@ Have a quick look through the left hand columns. As you can see, the data has pa
 
 **Per-base sequence quality**
 
-![]()
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig2_quality.PNG)
 
 **Per base sequence content**
 
-![]()
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig3_content.PNG)
 
 **Adapter Content**
 
-![]()
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig4_adapter.PNG)
 
 **Per sequence GC content**
 
-![]()
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig5_gc.PNG)
 
 The only aspect of the data that **FastQC** is flagging as potentially problematic is the GC% content of the data set. This is a
 common observation, as we are dealing with a mixed community and organisms and it is therefore unlikely that there will be a
@@ -79,7 +79,7 @@ which should be flagged which are not?
 
 **Per-base sequence quality**
 
-![]()
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig6_taildecay.PNG)
 
 ### Read trimming and adapter removal with *trimmomatic*
 
