@@ -173,7 +173,7 @@ trimmomatic PE -threads 10 -phred33 \
 ```
 
 Will give a similar effect as the *ILLUMINACLIP* parameter, by truncating the first 65 positions from the read. An equivalent parameter
-(CROP:###) can be specified to remove from the end of the read.
+(CROP:###) can be specified to remove sequence past the ###-th base in each sequence (i.e. trim to length ###).
 
 ---
 
