@@ -237,6 +237,8 @@ Once you are happy with your slurm script, execute the job by navigating to the 
 sbatch assembly_spades.sl
 ```
 
+You will receive a message telling you the job identifier for your assembly. Record this number, as we will use it tomorrow.
+
 #### Monitoring job progress
 
 You can view the status of your current jobs using the command
@@ -245,14 +247,14 @@ You can view the status of your current jobs using the command
 squeue -u <login name>
 
   JOBID     USER ACCOUNT            NAME  ST REASON    START_TIME                TIME TIME_LEFT NODES CPUS
-9271918  dwai012 ga02676 spades_assembly  PD Priority  2019-11-29T16:37:43       0:00 00:30:00      1   16
+8744675  dwai012 ga02676 spades_assembly  PD Priority  2019-11-29T16:37:43       0:00 00:30:00      1   16
 ```
 
 We can see here that the job has not yet begun, as NeSI is waiting for resources to come available. At the stage the *START_TIME* is an estimation of when the resources are expected to become available. When they do, the output will change to
 
 ```bash
   JOBID     USER ACCOUNT            NAME  ST REASON    START_TIME                TIME TIME_LEFT NODES CPUS
-9271918  dwai012 ga02676 spades_assembly   R None      2019-11-29T16:40:00       1:20 00:28:40      1   16
+8744675  dwai012 ga02676 spades_assembly   R None      2019-11-29T16:40:00       1:20 00:28:40      1   16
 ```
 
 Which allows us to track how far into our run we are, and see the remaining time for the job. The *START_TIME* column now reports the time the job actually began.
@@ -287,5 +289,7 @@ srun idba_ud --num_threads 16 --mink 21 --maxk 99 --step 22 -r for_idba.fna -o i
 ```bash
 sbatch idbaud_assembly.sl
 ```
+
+Remember to record your job identification number.
 
 ---
