@@ -61,19 +61,85 @@ Here we see some of the same information, but we also get some information regar
 
 ### Evaluate the assemblies
 
-Evaluating the quality of a raw metagenomic assembly is quite a tricky process. Since, by definition, our community is amixture of different organisms, the genomes from some of these organisms assemble better than those of others. Is is possible to have an assembly that looks 'bad' by tranditional metrics that still yields high-quality genomes from individual species, and the converse is also true. A few quick checks I recommend are to see how many contigs or scaffolds your data were assembled into, and then see how many contigs or scaffolds you have above a certain minimum length threshold. I usually use **seqmagick** for performing the length filtering, and then just count sequence numbers using **grep**.
+Evaluating the quality of a raw metagenomic assembly is quite a tricky process. Since, by definition, our community is amixture of different organisms, the genomes from some of these organisms assemble better than those of others. Is is possible to have an assembly that looks 'bad' by tranditional metrics that still yields high-quality genomes from individual species, and the converse is also true. A few quick checks I recommend are to see how many contigs or scaffolds your data were assembled into, and then see how many contigs or scaffolds you have above a certain minimum length threshold. We will use **seqmagick** for performing the length filtering, and then just count sequence numbers using **grep**.
 
 ```bash
 module load seqmagick/0.7.0-gimkl-2018b-Python-3.7.3
 
-seqmagick convert 
+seqmagick convert --min-length 1000 spades_assembly/spades_assembly.fna spades_assembly/spades_assembly.m1000.fna
+grep -c '>' spades_assembly/spades_assembly.fna spades_assembly/spades_assembly.m1000.fna
+# spades_assembly/spades_assembly.fna:1913
+# spades_assembly/spades_assembly.m1000.fna:1047
 
-# TO COMPLETE
-/nesi/nobackup/ga02676/Metagenomics_summerschool
-spades_assembly/scaffolds.fasta
-idbaud_assembly/scaffold.fa
+seqmagick convert --min-length 1000 idbaud_assembly/idbaud_assembly.fna idbaud_assembly/idbaud_assembly.m1000.fna
+grep -c '>' idbaud_assembly/idbaud_assembly.fna idbaud_assembly/idbaud_assembly.m1000.fna
+# idbaud_assembly/idbaud_assembly.fna:4891
+# idbaud_assembly/idbaud_assembly.m1000.fna:1901
 ```
 
+*Note: The tool **seqtk** is also available on NeSI and performs many of the same functions as **seqmagick**. My choice of **seqmagick** is mostly cosmetic as the parameter names more explicit so it's easier to understand what's happening in a command when I look back at my log files. Regardless of which tool you prefer, we strongly recommending gettin familiar with either **seqtk** or **seqmagick** as both perform a lot of common fastA and fastQ file manipulations.*
+
+As we can see here, the **SPAdes** assembly has completed with fewer contigs assembled than the **IDBA-UD**, both in terms of total contigs assembled and contigs above the 1,000 bp size. This doesn't tell us a lot though - has **SPAdes** managed to assemble fewer reads, or has it managed to assemble the sequences  into longer (and hence fewer) contigs? We can check this by looking at the N50/L50 of the assembly with **BBMap**.
+
+```bash
+module load BBMap/38.73-gimkl-2018b
+
+stats.sh in=spades_assembly/spades_assembly.m1000.fna
+```
+
+This gives quite a verbose output:
+
+```bash
+A       C       G       T       N       IUPAC   Other   GC      GC_stdev
+0.2525  0.2468  0.2461  0.2546  0.0019  0.0000  0.0000  0.4929  0.0973
+
+Main genome scaffold total:             1047
+Main genome contig total:               2797
+Main genome scaffold sequence total:    33.635 MB
+Main genome contig sequence total:      33.572 MB       0.189% gap
+Main genome scaffold N/L50:             53/154.193 KB
+Main genome contig N/L50:               104/75.816 KB
+Main genome scaffold N/L90:             336/13.309 KB
+Main genome contig N/L90:               839/4.343 KB
+Max scaffold length:                    871.42 KB
+Max contig length:                      779.486 KB
+Number of scaffolds > 50 KB:            150
+% main genome in scaffolds > 50 KB:     75.48%
+
+
+Minimum         Number          Number          Total           Total           Scaffold
+Scaffold        of              of              Scaffold        Contig          Contig
+Length          Scaffolds       Contigs         Length          Length          Coverage
+--------        --------------  --------------  --------------  --------------  --------
+    All                  1,047           2,797      33,635,467      33,572,059    99.81%
+   1 KB                  1,047           2,797      33,635,467      33,572,059    99.81%
+ 2.5 KB                    801           2,471      33,229,209      33,172,921    99.83%
+   5 KB                    601           2,069      32,495,504      32,450,300    99.86%
+  10 KB                    401           1,489      31,045,953      31,015,553    99.90%
+  25 KB                    230             795      28,346,907      28,334,024    99.95%
+  50 KB                    150             521      25,386,942      25,377,983    99.96%
+ 100 KB                     87             346      20,945,889      20,939,278    99.97%
+ 250 KB                     30             133      12,482,836      12,479,278    99.97%
+ 500 KB                      9              31       5,848,625       5,847,955    99.99%
+```
+
+But what we can highlight here is that the statistics for the **SPAdes** assembly, with short contigs removed, yielded an N50 of 104 kbp at the contig level. We will now compute those same statistics from the other assembly options
+
+```bash
+stats.sh in=spades_assembly/spades_assembly.fna
+
+stats.sh in=idbaud_assembly/idbaud_assembly.m1000.fna
+stats.sh in=idbaud_assembly/idbaud_assembly.fna
+```
+
+|Assembly|N50 (contig)|L50 (contig)|
+|:---|:---:|:---:|
+|**SPAdes** (filtered)|104 kbp|76 kbp|
+|**SPAdes** (unfiltered)|106 kbp|76 kbp|
+|**IDBA-UD** (filtered)|76 kbp|107 kbp|
+|**IDBA-UD** (unfiltered)|83 kbp|101 kbp|
+
+#### *Optional:* Evaluating assemblies using *MetaQUAST*
 
 
 ---
