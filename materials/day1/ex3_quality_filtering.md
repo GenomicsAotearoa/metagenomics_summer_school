@@ -81,6 +81,8 @@ which should be flagged which are not?
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig6_taildecay.PNG)
 
+---
+
 ### Read trimming and adapter removal with *trimmomatic*
 
 There are a multitude of programs which can be used to quality trim sequence data and remove adapter sequence. For this exercise we are
@@ -173,6 +175,8 @@ trimmomatic PE -threads 10 -phred33 \
 Will give a similar effect as the *ILLUMINACLIP* parameter, by truncating the first 65 positions from the read. An equivalent parameter
 (CROP:###) can be specified to remove from the end of the read.
 
+---
+
 ### Diagnosing poor libraries
 
 Whether a library is 'poor' quality or not can be a bit subjective. These are some aspects of the library that you should be looking for
@@ -185,6 +189,8 @@ degradation?
 1. Are adapters and/or barcodes removed? (look at the *Per base sequence content* to diagnose this)
 1. Is there unexpected sequence duplication? (this can occur when low-input library preparations are used)
 1. Are over-represented *k*-mers present? (this can be a sign of adapter and barcode contamination)
+
+---
 
 ### Understand common issues and best practices
 
