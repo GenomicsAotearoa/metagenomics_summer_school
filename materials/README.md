@@ -5,11 +5,11 @@
 1. Bash scripting
 1. The metagenomics decision tree
 1. [Quality filtering raw reads](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex3_quality_filtering.md)
-1. Assembly
+1. [Assembly](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex4_assembly.md)
 
 ### Day 2
 
-1. Evaluating the overnight assembly
+1. [Evaluating the overnight assembly](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex5_evaluating_assemblies.md)
 1. Overview of binning history
 1. Binning
 
