@@ -141,9 +141,53 @@ stats.sh in=idbaud_assembly/idbaud_assembly.fna
 
 #### *Optional:* Evaluating assemblies using *MetaQUAST*
 
+For more genome-informed evaluation of the assembly, we can use the **QUAST** tool to view our assembled metagenome. This is something on an optional step because, like **QUAST**, **MetaQUAST** aligns your assembly against a set of reference genomes. Under normal circumstances we wouldn't know the composition of the metagenome that led to our assembly. In this instance determining the optmial reference genomes for a **MetaQUAST** evaluation is a bit of a problem. For your own work, the following tools could be used to generate taxonomic summaries of your metagenomes to inform your reference selection:
+
+1. [Kraken2](https://ccb.jhu.edu/software/kraken2/) (DNA based, *k*-mer classification)
+1. [CLARK](http://clark.cs.ucr.edu/) (DNA based. *k*-mer classification)
+1. [Kaiju](http://kaiju.binf.ku.dk/) (Protein based, BLAST classification)
+1. [Centrifuge](https://ccb.jhu.edu/software/centrifuge/manual.shtml) (DNA based, sequence alignment classification)
+1. [MeTaxa2](https://microbiology.se/software/metaxa2/) or [SingleM](https://github.com/wwood/singlem) (DNA based, 16S rRNA recovery and classification)
+1. [MetaPhlAn2](http://huttenhower.sph.harvard.edu/metaphlan2) (DNA based, clade-specific marker gene classification)
+
+A good summary and comparison of these tools (and more) was recently published by [Ye *et al.*](https://www.ncbi.nlm.nih.gov/pubmed/31398336).
+
+However, since we **_do_** know the composition of the original communities used to build this mock metagenome, **MetaQUAST** will work very well for us today. In your *4.evaluation/* directory you will find a file called *ref_genomes.txt*. This file contains the names of the 9 genomes used to build these mock metagenomes. We will provide these as the reference input for **MetaQUAST**.
+
+```bash
+module load QUAST/5.0.2-gimkl-2018b
+
+metaquast.py spades_assembly/spades_assembly.fna spades_assembly/spades_assembly.m1000.fna \
+             idbaud_assembly/idbaud_assembly.fna idbaud_assembly/idbaud_assembly.m1000.fna \
+             --references-list ref_genomes.txt --max-ref-number 10 -t 10
+```
+
+By now, you should be getting familiar enough with the console to understand what most of the parameters here refer to. The one parameter that needs explanation is the **--max-ref-number** flag, which we have set to 10. This caps the maximum number of reference genomes to be downloaded from NCBI which we do in the interest of speed. Since there are 10 species names in the file *ref_genomes.txt*, **MetaQUAST** will download one of each. If we increase the number we will start to get multiple references per name provided which is usually desirable.
+
+We will now look at a few interesting assembly comparisons.
+
+#### Brief summary of assemblies
+
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex5_fig1_shortsummary.PNG)
+
+#### Comparison of NGA50 between assemblies
+
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex5_fig2_nga50.PNG)
+
+#### Comparison of aligned contigs
+
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex5_fig3_contigsmatched.PNG)
+
+#### Inspection of unaligned contigs
+
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex5_fig4_contigsunmatched.PNG)
 
 ---
 
 ### Future considerations
 
+---
+
 #### Co-assembly vs single assemblies
+
+---
