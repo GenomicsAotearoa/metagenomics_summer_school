@@ -112,13 +112,13 @@ Both **MetaBAT** and **MaxBin** have the option to output unbinned contigs after
 
 ### Bin dereplication using **DAS_Tool** - Running the tool
 
-We are now ready to run **DAS_Tool**. This can be done from the command line, as it does not take a particularly long time to run for this data set.
+We are now ready to run **DAS_Tool**. This can be done from the command line, as it does not take a particularly long time to run for this data set. With 2 threads, **DAS_Tool** should take 10 - 15 minutes to complete.
 
 ```bash
 module load DAS_Tool/1.1.1-gimkl-2018b-R-3.6.1
 
 DAS_Tool -i metabat_associations.txt,maxbin_associations.txt -l MetaBAT,MaxBin \
-         -t 20 --write_bins 1 --search_engine blast \
+         -t 2 --write_bins 1 --search_engine blast \
          -c spades_assembly/spades_assembly.m1000.fna \
          -o dastool_out/
 ```
@@ -129,7 +129,7 @@ As usual, we will break down the parameters:
 |:---|:---|
 |**-i ...**|A comma-separated list of the contig/bin files we wish to process|
 |**-l ...**|A comma-separated list of the binning tools used|
-|**-t 2**|Number of threads to use|
+|**-t ...**|Number of threads to use|
 |**--write_bins 1**|A 0 or 1 value telling **DAS_Tool** whether or not to write out a new set of bins<br>This is recommended, because **DAS_Tool** can create slices of old bins based on marker composition (see [the paper](https://www.nature.com/articles/s41564-018-0171-1) for details)|
 |**--search_engine blast**|Specify whether to use **usearch**, **diamond**, or **BLAST** as the alignment tool for comparing gene sequences (see note below)|
 |**-c ...**|Path to the assembly used in binning|
