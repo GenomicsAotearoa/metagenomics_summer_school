@@ -12,7 +12,7 @@
 
 Ideally, we do not want to be creating bins from all of the assembled contigs, as there is often a long tail of contigs which are only several *k*-mers long. These have little biological meaning, as they are too short for robust gene annotation, and they can introduct a significant degree of noise in the clustering algorithms used for binning. We therefore identify a suitable threshold for a minimum length of contigs to be considered for binning.
 
-We have already done this in the previous exercise](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex5_evaluating_assemblies.md) so we could either use the existing filtering at 1,000 bp in length, or move to something stricter. Most binning tools have a default cut-off for minimum contig size - **MetaBAT** uses a default minimum of 2,500 bp, and recommends at least 1,500. By contrast, **MaxBin** sets the minimum length at 1,000 bp.
+We have already done this in the [previous exercise](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex5_evaluating_assemblies.md) so we could either use the existing filtering at 1,000 bp in length, or move to something stricter. Most binning tools have a default cut-off for minimum contig size - **MetaBAT** uses a default minimum of 2,500 bp, and recommends at least 1,500. By contrast, **MaxBin** sets the minimum length at 1,000 bp.
 
 ---
 
@@ -129,7 +129,7 @@ Map: --------ECONT--
 Map: -----------NTIG
 ```
 
-Reads will almost certianly be mapped in a random order as they are added to the *sam* file more or less in the order that they are encountered in the original *fastQ* files.
+Reads will almost certianly be mapped in a random order as they are added to the *sam* file in more or less the same order that they are encountered in the original *fastQ* files.
 
 Sorting the mapping information is an important prerequisite for performing certain downstream processes. Not every tool we use requires reads to be sorted, but it can be frustrating having to debug the instances where read sorting matters so we typically just get it done as soon as possible and then we don't have to worry about it again.
 
@@ -164,7 +164,10 @@ jgi_summarize_bam_contig_depths --outputDepth metabat.txt sample*.bam
 Both give the same result. We can then pass the table *metabat.txt* into the **MetaBAT** binning tool.
 
 ```bash
-metabat2 -t 10 -m 1500 -i spades_assembly/spades_assembly.m1000.fna -a metabat.txt -o metabat/metabat
+metabat2 -t 10 -m 1500 \
+         -i spades_assembly/spades_assembly.m1000.fna \
+         -a metabat.txt \
+         -o metabat/metabat
 ```
 
 Note here that we are specifying a minimum contig size of 1,500 bp, which the limit allowed by the authors of **MetaBAT**. This larger than our minimum when filtering the assembly which means there are some assembled contigs which cannot be binned. Consider the choice of this parameter and your initial contig filtering carefully when binning your own data.
@@ -195,7 +198,10 @@ This table is then passed to **MaxBin**. Unlike the case with **MetaBAT**, if we
 module load MaxBin/2.2.6-gimkl-2018b-Perl-5.28.1
 
 mkdir -p maxbin/
-run_MaxBin.pl -thread 10 -min_contig_length 1500 -contig spades_assembly/spades_assembly.m1000.fna -abund maxbin.txt -out maxbin/maxbin
+run_MaxBin.pl -thread 10 -min_contig_length 1500 \
+              -contig spades_assembly/spades_assembly.m1000.fna \
+              -abund maxbin.txt \
+              -out maxbin/maxbin
 ```
 
 This will take a bit longer to complete, as **MaxBin** uses gene prediction tools to identify the ideal contigs to use as the start of each bin.
@@ -226,7 +232,8 @@ srun bowtie2-build spades_assembly/spades_assembly.m1000.fna spades_assembly/bw_
 # Load the sample names into a bash array
 samples=(sample1 sample2 sample3 sample)
 
-# Activate the srun command, using the SLURM_ARRAY_TASK_ID variable to identify which position in the `samples` array to use
+# Activate the srun command, using the SLURM_ARRAY_TASK_ID variable to
+# identify which position in the `samples` array to use
 srun bowtie2 --minins 200 --maxins 800 --threads 10 --sensitive -x spades_assembly/bw_spades \
              -1 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R1.fastq.gz \
              -2 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R2.fastq.gz \
