@@ -192,7 +192,7 @@ cd5.binning/
 
 srun checkm lineage_wf -t 10 --pplacer_threads 10 \
                        -x fa --tab_table -f checkm.txt \
-                       dastool/_DASTool_bins/ checkm_out/
+                       dastool_out/_DASTool_bins/ checkm_out/
 ```
 
 The breakdown of parameters is as follows
