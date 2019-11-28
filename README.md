@@ -19,7 +19,9 @@ A draft timetable for the day is provided below, but please keep in mind that th
 
 1. [Evaluating the overnight assembly](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex5_evaluating_assemblies.md)
 1. Overview of binning history
-1. [Binning](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex7_initial_binning.md)
+1. [Binning (part 1, initial binning)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex7_initial_binning.md)
+1. [Binning (part 2, dereplication)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex8_bin_dereplication.md)
+1. Binning (part 3)
 
 ### Day 3
 
@@ -61,10 +63,10 @@ A draft timetable for the day is provided below, but please keep in mind that th
 |10:30 am – 10:50 am|**Morning tea break**|
 |10:50 am – 12:00 pm|**Overview of binning history**<br>ESOM, differetial coverage, tetranucleotide frequencies<br>Strategies for binning|
 |12:00 pm – 12:45 pm|**Break for lunch**|
-|12:45 pm – 1:45 pm|**Binning**<br>Short contig removal<br>Read mapping<br>Multi-binning strategy (*Metabat* and *Maxbin*)|
-|1:45 pm – 3:00 pm|**Binning** (continued)<br>Bin dereplication via *DAS_Tool*<br>Evaluating bins using *CheckM*|
+|12:45 pm – 1:45 pm|**Binning (part 1)**<br>Short contig removal<br>Read mapping<br>Multi-binning strategy (*Metabat* and *Maxbin*)|
+|1:45 pm – 3:00 pm|**Binning (part 2)**<br>Bin dereplication via *DAS_Tool*<br>Evaluating bins using *CheckM*|
 |3:00 pm – 3:20 pm|**Afternoon tea break**|
-|3:20 pm – 4:00 pm|**Binning** (continued)<br>Discuss additional dereplication strategies, such as *dRep*<br>How to work with viral and eukaryotic bins<br>Dealing with organisms which possess minimal genomes|
+|3:20 pm – 4:00 pm|**Binning (part 3)**<br>Discuss additional dereplication strategies, such as *dRep*<br>How to work with viral and eukaryotic bins<br>Dealing with organisms which possess minimal genomes|
 |4:00 pm – 5:00 pm|**End of day wrap up**<br>Attendees can work with their own data, if available|
 
 ### Day 3 - 12<sup>th</sup> December 2019
