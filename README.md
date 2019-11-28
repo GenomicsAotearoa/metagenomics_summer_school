@@ -19,7 +19,7 @@ A draft timetable for the day is provided below, but please keep in mind that th
 
 1. [Evaluating the overnight assembly](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex5_evaluating_assemblies.md)
 1. Overview of binning history
-1. Binning
+1. [Binning](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex7_initial_binning.md)
 
 ### Day 3
 
