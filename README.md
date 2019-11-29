@@ -25,7 +25,7 @@ A draft timetable for the day is provided below, but please keep in mind that th
 
 ### Day 3
 
-1. Bin refinement
+1. [Bin refinement](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex10_refining_bins.md)
 1. Gene prediction
 1. Gene annotation
 
