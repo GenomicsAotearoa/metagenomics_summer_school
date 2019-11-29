@@ -76,9 +76,15 @@ We can use the interactive GUI to pick the boundaries of new bins, or to identif
 
 How you proceed in this tage is up to you. You can either select bins based on their boundary, and call these the refined bins. Alternatively, you could select outlier contigs and examine these in more detail to determine whether or not they were correctly placed into the bin. For example:
 
+##### Highlight an area with problematic contigs
+
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_to_zoom.PNG)
 
+##### Select the contigs to examine
+
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_outlier.PNG)
+
+##### Export the contigs
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_export.PNG)
 
