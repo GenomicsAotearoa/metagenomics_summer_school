@@ -94,13 +94,13 @@ This is performed using the following parameters
 
 |Parameter|Function|
 |:---|:---|
-|**--minins 200**|Minimum insert size, determines the minimum distance between the start of each read pair|
-|**--maxins 800**|Maximum insert size, determines the maximum distance between the start of each read pair|
-|**--threads 10**|Number of threads to use in read mapping|
+|**--minins ...**|Minimum insert size, determines the minimum distance between the start of each read pair|
+|**--maxins ...**|Maximum insert size, determines the maximum distance between the start of each read pair|
+|**--threads ...**|Number of threads to use in read mapping|
 |**--sensitive**|Specifies where we want to be positioned in the trade-off between speed and sensitivity. See the manual for more information|
-|**-x spades_assembly/bw_spades**|The base name of our assembly index. Should be exactly the same as what was specified when running **bowtie2-build**|
-|**-1** / **-2**|The forward and reverse read pairs to map to the assembly|
-|**-S**|Name of the output file, to be written in *sam* format|
+|**-x ...**|The base name of our assembly index. Should be exactly the same as what was specified when running **bowtie2-build**|
+|**-1 ...** / **-2 ...**|The forward and reverse read pairs to map to the assembly|
+|**-S ...**|Name of the output file, to be written in *sam* format|
 
 #### Step 3 - Sorting and compressing results
 
