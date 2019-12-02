@@ -99,12 +99,12 @@ mkdir -p predictions/
 
 for bin_file in example_data/*.fna;
 do
-  pred_file=$(basename ${bin_file} .fna)
+    pred_file=$(basename ${bin_file} .fna)
 
-  prodigal -i ${bin_file} -p meta \
-           -d predictions/${pred_file}.genes.fna \
-           -a predictions/${pred_file}.genes.faa \
-           -o predictions/${pred_file}.genes.gbk
+    prodigal -i ${bin_file} -p meta \
+             -d predictions/${pred_file}.genes.fna \
+             -a predictions/${pred_file}.genes.faa \
+             -o predictions/${pred_file}.genes.gbk
 done
 ```
 
@@ -151,10 +151,10 @@ While this header information can be very informative, its presence in the *fast
 ```bash
 for pred_file in predictions/*.fna;
 do
-  file_base=$(basename ${pred_file} .fna)
+    file_base=$(basename ${pred_file} .fna)
   
-  cut -f1 -d ' ' predictions/${file_base}.fna > predictions/${file_base}.no_metadata.fna
-  cut -f1 -d ' ' predictions/${file_base}.faa > predictions/${file_base}.no_metadata.faa
+    cut -f1 -d ' ' predictions/${file_base}.fna > predictions/${file_base}.no_metadata.fna
+    cut -f1 -d ' ' predictions/${file_base}.faa > predictions/${file_base}.no_metadata.faa
 done
 ```
 
@@ -198,13 +198,13 @@ mkdir -p predictions_short/
 
 for forward_reads in ../3.assembly/*_R1.fastq.gz;
 do
-  # Decompress the fastq reads and convert to fasta
-  out_file=$(basename ${forward_reads} .fastq.gz)
-  pigz --stdout --decompress ${forward_reads} > ${out_file}.fastq
-  fq2fa ${out_file}.fastq ${out_file}.fna
+    # Decompress the fastq reads and convert to fasta
+    out_file=$(basename ${forward_reads} .fastq.gz)
+    pigz --stdout --decompress ${forward_reads} > ${out_file}.fastq
+    fq2fa ${out_file}.fastq ${out_file}.fna
 
-  # Perform coding sequence prediction
-  FragGeneScan -s ${out_file}.fna -o predictions_short/${out_file} -w 0 -p 10 -t illumina_5
+    # Perform coding sequence prediction
+    srun FragGeneScan -s ${out_file}.fna -o predictions_short/${out_file} -w 0 -p 10 -t illumina_5
 done
 ```
 
@@ -235,10 +235,10 @@ mkdir -p ribosomes/
 
 for bin_file in example_data/*.fna;
 do
-  pred_file=$(basename ${bin_file} .fna)
+    pred_file=$(basename ${bin_file} .fna)
   
-  metaxa2 --cpu 5 -g ssu -i ${bin_file} -o ribosomes/${pred_file}.ssu
-  metaxa2 --cpu 5 -g lsu -i ${bin_file} -o ribosomes/${pred_file}.lsu
+    metaxa2 --cpu 5 -g ssu -i ${bin_file} -o ribosomes/${pred_file}.ssu
+    metaxa2 --cpu 5 -g lsu -i ${bin_file} -o ribosomes/${pred_file}.lsu
 done
 ```
 
