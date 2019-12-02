@@ -28,6 +28,7 @@ A draft timetable for the day is provided below, but please keep in mind that th
 1. [Bin refinement](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex10_refining_bins.md)
 1. [Gene prediction](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex11_gene_prediction.md)
 1. [Gene annotation (part 1)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex12_gene_annotation_part1.md)
+1. [Gene annotation (part 2)]()
 
 ### Day 4
 
@@ -77,11 +78,11 @@ A draft timetable for the day is provided below, but please keep in mind that th
 |9:30 am – 11:30 am|**Bin refinement**<br>Working with *VizBin* (hands on)<br>Other strategies (*ESOMana*)|
 |10:30 am – 10:50 am|**Morning tea break**|
 |10:50 am – 11:30 am|**Gene prediction**<br>Introduce *prodigal*, discuss single vs meta mode<br>Discuss what *prodigal* can't find, discuss other tools (*RNAmer*, *Aragorn*, etc)|
-|11:30 am – 12:00 pm|**Gene annotation**<br>BLAST-like gene annotation using *usearch* or *diamond*<br>Introduce the different databases, highlight our reasons for *KEGG*<br>Evaluating the quality of gene assignment<br>Differences in taxonomies (*GTDB*, *NCBI* etc)|
+|11:30 am – 12:00 pm|**Gene annotation (part 1)**<br>BLAST-like gene annotation using *usearch* or *diamond*<br>Introduce the different databases, highlight our reasons for *KEGG*<br>Evaluating the quality of gene assignment<br>Differences in taxonomies (*GTDB*, *NCBI* etc)|
 |12:00 pm – 12:45 pm|**Break for lunch**|
-|12:45 pm – 3:00 pm|**Gene annotation** (continued)<br>Looking at gene networks in *MEGAN* (unassembled and assembled reads)<br>Tie findings to your initial hypothesis|
+|12:45 pm – 3:00 pm|**Gene annotation (part 2)**)<br>Overview of the *BLAST XML* output<br>Looking at gene networks in *MEGAN*<br>Tie findings to your initial hypothesis|
 |3:00 pm – 3:20 pm|**Afternoon tea break**|
-|3:20 pm – 4:00 pm|**Gene annotation** (continued)<br>Using online resources - *KEGG*, *BioCyc*, *MetaCyc*, *HydDB*, *PSORT*)<br>Tie findings to your initial hypothesis|
+|3:20 pm – 4:00 pm|**Gene annotation** (continued)<br>Using online resources (*KEGG*, *BioCyc*, *MetaCyc*, *HydDB*, *PSORT*)<br>Tie findings to your initial hypothesis|
 |4:00 pm – 5:00 pm|**End of day wrap up**<br>Attendees can work with their own data, if available|
 
 ### Day 4 - 13<sup>th</sup> December 2019
