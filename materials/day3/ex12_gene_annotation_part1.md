@@ -70,6 +70,36 @@ Awkwardly, **diamond** does not provide the headers for what the columns in the 
 
 From here we can view important stastics for each query/target pairing such as the number of identify residues between sequences and the aligned length between query and target.
 
+Before we proceed with this exercise, lets set up a slurm job to annotate each of our MAGs using the *BLAST XML* output format. We will need this for tomorrow.
+
+```bash
+#!/bin/bash -e
+#SBATCH -A xxxxx
+#SBATCH -J annotate_diamond
+#SBATCH --partition zzzzz
+#SBATCH --time 02:00:00
+#SBATCH --mem 20GB
+#SBATCH --ntasks 1
+#SBATCH --cpus-per-task 20
+#SBATCH -e annotate_diamond.err
+#SBATCH -o annotate_diamond.out
+
+module load DIAMOND/0.9.25-gimkl-2018b
+
+cd 8.gene_annotation/
+
+mkdir -p gene_annotations/
+
+for prot_file in example_data/*.genes.no_metadata.faa;
+do
+  out_file=$(basename ${prot_file} .faa)
+
+  srun diamond blastp -p 20 --max-target-seqs 5 --evalue 0.001 \
+                      --db /nesi/project/nesi02659/mg_workshop//NCBI_nr_2016.dmnd \
+                      -q ${prot_file} --outfmt 6 -o gene_annotations/${out_file}.nr.xml
+done
+```
+
 ---
 
 ### Evaluating the quality of gene assignment
