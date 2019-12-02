@@ -90,13 +90,9 @@ You can view how many genes are assigned at least node of the taxonomy tree by c
 
 Depending on the node you click, you will see either one or two numbers reported. The 'Ass' number is the number of genes assigned at this rank specifically. In the screenshot above, this means that there are 64 genes in the MAG that cannot be reliably classified deeper than to the phylum Cyanobacteria. The 'Sum' number refers to all genes assigned to this node, including all subordinate nodes. We can expand this node by right-clicking and selecting the 'Uncollapse' option.
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex13_expand.PNG)
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex13_expand_node.png)
 
-Carry this on as far as you like. The deeper into the tree you go the more branches will appear as it is harder to reliably assign the deeper taxonomic ranks across a diverse set of genes.
-
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex13_expanded.PNG)
-
-If you are interested in seeing which genes were assigned to a particular node, you can export them using the 'Extract Reads...' option.
+Carry this on as far as you like. The deeper into the tree you go the more branches will appear as it is harder to reliably assign the deeper taxonomic ranks across a diverse set of genes. If you are interested in seeing which genes were assigned to a particular node, you can export them using the 'Extract Reads...' option.
 
 ##### Exploring the KEGG view
 
