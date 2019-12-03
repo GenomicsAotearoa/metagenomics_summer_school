@@ -160,7 +160,7 @@ Will give a similar effect as the `ILLUMINACLIP` parameter, by truncating the fi
 
 Whether a library is 'poor' quality or not can be a bit subjective. These are some aspects of the library that you should be looking for when evaluating `FastQC`:
 
-1. Does the sequencing lenth match what you ordered from the facility?
+1. Does the sequencing length match what you ordered from the facility?
 1. If the sequences are shorter than expected, is adapter read-through a concern?
 1. What does the sequence quality look like along the length of the run? Are there any expected/unexpected regions of quality
 degradation?
