@@ -109,7 +109,7 @@ The default output format for most maping tools is the Sequence Alignment/Map (*
 Generally I wouldn't bother with this - there is a lot of information in here and unless you are looking to extract specific information from the alignment directly, this is just an intermediate file in our workflow. In order to save disk space, and prepare the file for downstream analysis we now perform two final steps:
 
 1. Sort the mapping information
-1. Compress the *sam* file into its binary equivalent, *bam
+1. Compress the *sam* file into its binary equivalent, *bam*
 
 Compressing the file to the *bam* format is an important step as when working with real data *sam* files can be massive and our storage capacity on NeSI is limited. It is also helpful to sort the mapping information to that reads mapped to a contig are listed in order of their start position. For example
 
