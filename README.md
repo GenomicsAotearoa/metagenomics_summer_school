@@ -10,7 +10,7 @@ A draft timetable for the day is provided below, but please keep in mind that th
 
 ### Day 1
 
-1. Bash scripting
+1. [Bash scripting](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex1_bash_scripting.md)
 1. The metagenomics decision tree
 1. [Quality filtering raw reads](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex3_quality_filtering.md)
 1. [Assembly](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex4_assembly.md)
