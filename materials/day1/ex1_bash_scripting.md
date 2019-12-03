@@ -44,7 +44,7 @@ mkdir backup/
 
 ### Copying, Moving, Renaming and Removing files
 
-Make a second copy of `Test_1.fastq` and rename it as *`Test_1_backup.fastq`.  Then move that file to `backup/` directory.
+Make a second copy of `Test_1.fastq` and rename it as `Test_1_backup.fastq`.  Then move that file to `backup/` directory.
 
 ```bash
 cp Test_1.fastq Test_1_backup.fastq
@@ -85,16 +85,16 @@ rm -r backup
 
 ### Examining file contents
 
-There are number of ways to examine the content of a file. `cat` and `less` are two commongly used programs for a quick look. Check the content of `Test_1.fastq` by using these commands. Take a note on the differences. 
+There are number of ways to examine the content of a file. `cat` and `less` are two commonly used programs for a quick look. Check the content of `Test_1.fastq` by using these commands. Take a note on the differences. 
 
 ```
 cat Test_1.fastq
 # less Test_1.fastq
 ```
 
-Few shortcuts to navigate in `less`
+A few useful shortcuts for navigating in `less`
 
-![](/home/dinindu/Pictures/MGSS_screenshot/less_navi.jpg) 
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex1_less_shortcuts.jpg) 
 
 There are ways to take a look at part of a file. For an example `head` and `tail` command will scan the beginning and end of a file, respectively. 
 
