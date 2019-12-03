@@ -18,7 +18,7 @@ squeue -u <user name>
 #  JOBID     USER ACCOUNT            NAME  ST REASON    START_TIME                TIME TIME_LEFT NODES CPUS
 ```
 
-Since there are no jobs listed, either everything running has completes or failed. To get a list of all jobs we have run in the last day, we can use the `sacct` command. By default this will report all jobs for the day but we can add a parameter to tell the command to report all jobs run since the date we are specifying.
+Since there are no jobs listed, either everything running has completed or failed. To get a list of all jobs we have run in the last day, we can use the `sacct` command. By default this will report all jobs for the day but we can add a parameter to tell the command to report all jobs run since the date we are specifying.
 
 ```bash
 sacct -S 2019-12-10
@@ -37,7 +37,7 @@ sacct -S 2019-12-10
 
 Each job has been broken up into several lines, but the main ones to keep an eye are the base JobID values, and the values suffixed with *.0*. The first of these references the complete job. The later (and any subsequent suffixes like *.1*, *.2*) are the individual steps in the script that were called with the `srun` command.
 
-We can see here the time ellapsed for each job, and the number of CPU hours used during the run. If we want a more detailed breakdown of the job we can use the `seff` command
+We can see here the time elapsed for each job, and the number of CPU hours used during the run. If we want a more detailed breakdown of the job we can use the `seff` command
 
 ```bash
 seff 8744675
@@ -57,13 +57,13 @@ seff 8744675
 
 Here we see some of the same information, but we also get some information regarding how well our job used the resources we allocated to it. You can see here that my CPU and memory usage was not particularly efficient, in hindsight I could have request a lot less RAM and still had the job run to completion.
 
-CPU efficiency is harder to be certain of as it impacted by the behaviour of the program. For example, mapping tools like `bowtie` and `BBMap` can more or less use all of their threads, all of the time and achieve nearly 100% efficiency. More complicated processes, like those performed in `SPAdes` go through periods of multi-thread processing and periods of single-thread processing, drawing the average efficiency down.
+CPU efficiency is harder to interpret as it can be impacted by the behaviour of the program. For example, mapping tools like `bowtie` and `BBMap` can more or less use all of their threads, all of the time and achieve nearly 100% efficiency. More complicated processes, like those performed in `SPAdes` go through periods of multi-thread processing and periods of single-thread processing, drawing the average efficiency down.
 
 ---
 
 ### Evaluate the assemblies
 
-Evaluating the quality of a raw metagenomic assembly is quite a tricky process. Since, by definition, our community is amixture of different organisms, the genomes from some of these organisms assemble better than those of others. Is is possible to have an assembly that looks 'bad' by tranditional metrics that still yields high-quality genomes from individual species, and the converse is also true.
+Evaluating the quality of a raw metagenomic assembly is quite a tricky process. Since, by definition, our community is a mixture of different organisms, the genomes from some of these organisms assemble better than those of others. It is possible to have an assembly that looks 'bad' by traditional metrics that still yields high-quality genomes from individual species, and the converse is also true.
 
 A few quick checks I recommend are to see how many contigs or scaffolds your data were assembled into, and then see how many contigs or scaffolds you have above a certain minimum length threshold. We will use `seqmagick` for performing the length filtering, and then just count sequence numbers using `grep`.
 
@@ -81,7 +81,7 @@ grep -c '>' idbaud_assembly/idbaud_assembly.fna idbaud_assembly/idbaud_assembly.
 # idbaud_assembly/idbaud_assembly.m1000.fna:1901
 ```
 
-*Note: The tool `seqtk` is also available on NeSI and performs many of the same functions as `seqmagick`. My choice of `seqmagick` is mostly cosmetic as the parameter names are more explicit so it's easier to understand what's happening in a command when I look back at my log files. Regardless of which tool you prefer, we strongly recommending gettin familiar with either `seqtk` or `seqmagick` as both perform a lot of common *fastA* and *fastQ* file manipulations.*
+*Note: The tool `seqtk` is also available on NeSI and performs many of the same functions as `seqmagick`. My choice of `seqmagick` is mostly cosmetic as the parameter names are more explicit so it's easier to understand what's happening in a command when I look back at my log files. Regardless of which tool you prefer, we strongly recommend getting familiar with either `seqtk` or `seqmagick` as both perform a lot of common *fastA* and *fastQ* file manipulations.*
 
 As we can see here, the `SPAdes` assembly has completed with fewer contigs assembled than the `IDBA-UD`, both in terms of total contigs assembled and contigs above the 1,000 bp size. This doesn't tell us a lot though - has `SPAdes` managed to assemble fewer reads, or has it managed to assemble the sequences  into longer (and hence fewer) contigs? We can check this by looking at the N50/L50 of the assembly with `BBMap`.
 
@@ -145,7 +145,7 @@ stats.sh in=idbaud_assembly/idbaud_assembly.fna
 
 #### *Optional:* Evaluating assemblies using *MetaQUAST*
 
-For more genome-informed evaluation of the assembly, we can use the `QUAST` tool to view our assembled metagenome. This is something on an optional step because, like `QUAST`, `MetaQUAST` aligns your assembly against a set of reference genomes. Under normal circumstances we wouldn't know the composition of the metagenome that led to our assembly. In this instance determining the optmial reference genomes for a `MetaQUAST` evaluation is a bit of a problem. For your own work, the following tools could be used to generate taxonomic summaries of your metagenomes to inform your reference selection:
+For more genome-informed evaluation of the assembly, we can use the `MetaQUAST` tool to view our assembled metagenome. This is something of an optional step because, like `QUAST`, `MetaQUAST` aligns your assembly against a set of reference genomes. Under normal circumstances we wouldn't know the composition of the metagenome that led to our assembly. In this instance determining the optimal reference genomes for a `MetaQUAST` evaluation is a bit of a problem. For your own work, the following tools could be used to generate taxonomic summaries of your metagenomes to inform your reference selection:
 
 1. [Kraken2](https://ccb.jhu.edu/software/kraken2/) (DNA based, *k*-mer classification)
 1. [CLARK](http://clark.cs.ucr.edu/) (DNA based. *k*-mer classification)
