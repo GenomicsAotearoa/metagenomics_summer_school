@@ -112,9 +112,9 @@ cat sample1.fna sample2.fna sample3.fna sample4.fna > for_idba.fna
 
 ### Basic assembly parameters
 
-For any assembler, there are a **_lot_** of parameters that can be fine-tuned depending on your data. As no two data sets are the same, it is almost impossiblet o predict which parameter combinations will yield the best outcome for your data set. That said, assembly can be quite a resource-intensive process and it is generally not practical to test every permutation of parameter value with your data. In genomics, the saying goes that the best assembly is the one that answers your question. As long as the data you are receiving is meaningful to the hypothesis you are seeking to address then your assembly is as good as it needs to be.
+For any assembler, there are a **_lot_** of parameters that can be fine-tuned depending on your data. As no two data sets are the same, it is almost impossible to predict which parameter combinations will yield the best outcome for your data set. That said, assembly can be quite a resource-intensive process and it is generally not practical to test every permutation of parameter value with your data. In genomics, the saying goes that the best assembly is the one that answers your question. As long as the data you are receiving is meaningful to the hypothesis you are seeking to address then your assembly is as good as it needs to be.
 
-Generally speaking, assemblers are developed in a way where they run with default parameters that have been emperically showed to produce the best outcome **_on average_** across multiple data sets. For most purposes, there is not a lot of need to change these, but some parameters that we would always want to look at include:
+Generally speaking, assemblers are developed in a way where they run with default parameters that have been empirically demonstrated to produce the best outcome **_on average_** across multiple data sets. For most purposes, there is not a lot of need to change these, but some parameters that we would always want to look at include:
 
 1. *k*-mer sizes to be assembled over, and step size if using a range
 1. Number of threads to use during assembly
@@ -171,6 +171,8 @@ NeSI does not allow users to execute large jobs interactively on the terminal. I
 To begin, we need to open a text file using the `nano` text editor. 
 
 ```bash
+cd 3.assembly/
+
 nano assembly_spades.sl
 ```
 
@@ -200,7 +202,7 @@ To save your file, use `Ctrl + O` to save the file, then `Ctrl + X` to exit `nan
 |Slurm parameter|Function|
 |:---|:---|
 |**#!/bin/bash -e**|Header for the file, letting NeSI know how to interpret the following commands. The `-e` flag means that the slurm run will halt at the first failed command (rather than pushing through and trying to execute subsequent ones)|
-|**#SBATCH -A xxxxx**|The name of the project account to run the run under. you are provided with this when you create a project on NeSI|
+|**#SBATCH -A xxxxx**|The name of the project account to run the run under. You are provided with this when you create a project on NeSI|
 |**#SBATCH -J spades_assembly**|The name of the job, to display when using the `squeue` command|
 |**#SBATCH --partition zzzzz**|Which of the NeSI cluster [partitions](https://support.nesi.org.nz/hc/en-gb/articles/360000204076) you want to use for the job|
 |**#SBATCH --time 00:00:30**|Maximum run time for the job before it is killed|
