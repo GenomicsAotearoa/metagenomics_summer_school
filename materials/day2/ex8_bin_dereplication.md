@@ -14,7 +14,7 @@ As we discussed in the previous exercise, we have now generated two sets of bins
 
 `DAS_Tool` is a program designed to analyse the bins in each of our binning sets and determine where these equivalent pairs (or triplets if we use three binners) exist and return the 'best' one. `DAS_Tool` does not use the actual bins, but a set of text files that link contigs to their corresponding bins in each of the bin sets. We can produce these files using `bash`.
 
-For this exercise, we will continue working in the *5.binning/* directory.
+For this exercise, we will continue working in the `5.binning/` directory.
 
 #### Creating contig/bin tables - *MetaBAT*
 
