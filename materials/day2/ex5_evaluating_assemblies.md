@@ -55,13 +55,17 @@ seff 8744675
 #Memory Efficiency: 29.85% of 20.00 GB
 ```
 
-Here we see some of the same information, but we also get some information regarding how well our job used the resources we allocated to it. You can see here that my CPU and memory usage was not particularly efficient, in hindsight I could have request a lot less RAM and still had the job run to completion. CPU efficiency is harder to be certain of as it impacted by the behaviour of the program. For example, mapping tools like `bowtie` and `BBMap` can more or less use all of their threads, all of the time and achieve nearly 100% efficiency. More complicated processes, like those performed in `SPAdes` go through periods of multi-thread processing and periods of single-thread processing, drawing the average efficiency down.
+Here we see some of the same information, but we also get some information regarding how well our job used the resources we allocated to it. You can see here that my CPU and memory usage was not particularly efficient, in hindsight I could have request a lot less RAM and still had the job run to completion.
+
+CPU efficiency is harder to be certain of as it impacted by the behaviour of the program. For example, mapping tools like `bowtie` and `BBMap` can more or less use all of their threads, all of the time and achieve nearly 100% efficiency. More complicated processes, like those performed in `SPAdes` go through periods of multi-thread processing and periods of single-thread processing, drawing the average efficiency down.
 
 ---
 
 ### Evaluate the assemblies
 
-Evaluating the quality of a raw metagenomic assembly is quite a tricky process. Since, by definition, our community is amixture of different organisms, the genomes from some of these organisms assemble better than those of others. Is is possible to have an assembly that looks 'bad' by tranditional metrics that still yields high-quality genomes from individual species, and the converse is also true. A few quick checks I recommend are to see how many contigs or scaffolds your data were assembled into, and then see how many contigs or scaffolds you have above a certain minimum length threshold. We will use `seqmagick` for performing the length filtering, and then just count sequence numbers using `grep`.
+Evaluating the quality of a raw metagenomic assembly is quite a tricky process. Since, by definition, our community is amixture of different organisms, the genomes from some of these organisms assemble better than those of others. Is is possible to have an assembly that looks 'bad' by tranditional metrics that still yields high-quality genomes from individual species, and the converse is also true.
+
+A few quick checks I recommend are to see how many contigs or scaffolds your data were assembled into, and then see how many contigs or scaffolds you have above a certain minimum length threshold. We will use `seqmagick` for performing the length filtering, and then just count sequence numbers using `grep`.
 
 ```bash
 module load seqmagick/0.7.0-gimkl-2018b-Python-3.7.3
@@ -77,7 +81,7 @@ grep -c '>' idbaud_assembly/idbaud_assembly.fna idbaud_assembly/idbaud_assembly.
 # idbaud_assembly/idbaud_assembly.m1000.fna:1901
 ```
 
-*Note: The tool `seqtk` is also available on NeSI and performs many of the same functions as `seqmagick`. My choice of `seqmagick` is mostly cosmetic as the parameter names more explicit so it's easier to understand what's happening in a command when I look back at my log files. Regardless of which tool you prefer, we strongly recommending gettin familiar with either `seqtk` or `seqmagick` as both perform a lot of common *fastA* and *fastQ* file manipulations.*
+*Note: The tool `seqtk` is also available on NeSI and performs many of the same functions as `seqmagick`. My choice of `seqmagick` is mostly cosmetic as the parameter names are more explicit so it's easier to understand what's happening in a command when I look back at my log files. Regardless of which tool you prefer, we strongly recommending gettin familiar with either `seqtk` or `seqmagick` as both perform a lot of common *fastA* and *fastQ* file manipulations.*
 
 As we can see here, the `SPAdes` assembly has completed with fewer contigs assembled than the `IDBA-UD`, both in terms of total contigs assembled and contigs above the 1,000 bp size. This doesn't tell us a lot though - has `SPAdes` managed to assemble fewer reads, or has it managed to assemble the sequences  into longer (and hence fewer) contigs? We can check this by looking at the N50/L50 of the assembly with `BBMap`.
 
@@ -152,7 +156,7 @@ For more genome-informed evaluation of the assembly, we can use the `QUAST` tool
 
 A good summary and comparison of these tools (and more) was recently published by [Ye *et al.*](https://www.ncbi.nlm.nih.gov/pubmed/31398336).
 
-However, since we **_do_** know the composition of the original communities used to build this mock metagenome, `MetaQUAST` will work very well for us today. In your `4.evaluation/` directory you will find a file called *ref_genomes.txt*. This file contains the names of the 9 genomes used to build these mock metagenomes. We will provide these as the reference input for `MetaQUAST`.
+However, since we **_do_** know the composition of the original communities used to build this mock metagenome, `MetaQUAST` will work very well for us today. In your `4.evaluation/` directory you will find a file called `ref_genomes.txt`. This file contains the names of the 9 genomes used to build these mock metagenomes. We will provide these as the reference input for `MetaQUAST`.
 
 ```bash
 module load QUAST/5.0.2-gimkl-2018b
