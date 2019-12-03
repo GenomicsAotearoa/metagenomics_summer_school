@@ -2,7 +2,7 @@
 
 ### Objectives
 
-* Prepare input files for **VizBin**
+* Prepare input files for `VizBin`
 * Project a *t-SNE* and examine bin clusters
 * Picking refined bins
 
@@ -12,11 +12,11 @@
 
 [**VizBin**](http://claczny.github.io/VizBin/) is a handy, GUI-based tool for creating ordinations of our binning data using the [t-Distributed Stochastic Neighbor Embedding (t-SNE)](https://lvdmaaten.github.io/tsne/) algorithm to project high-dimensional data down into a 2D plot that preserves clustering information. There's a really good video on [YouTube](https://www.youtube.com/watch?v=NEaUSP4YerM) that explains how the algorithm works in high-level terms, but for our purposes you can really consider it as a similar approach to a PCA or NMDS.
 
-On its own, **VizBin** takes a set of contigs and performs the *t-SNE* projection using compositional data. We can optionally provide it files that annotate contigs as belonging to particular bins and a file that adds coverage data to be considered when clustering. Unfortuantely, at this stage **VizBin** only allows a single coverage value per contig which is not ideal for our purposes. There is an optional exercise down below that shows you how to create your own *t-SNE* projection using multiple coverage values.
+On its own, `VizBin` takes a set of contigs and performs the *t-SNE* projection using compositional data. We can optionally provide it files that annotate contigs as belonging to particular bins and a file that adds coverage data to be considered when clustering. Unfortuantely, at this stage `VizBin` only allows a single coverage value per contig which is not ideal for our purposes. There is an optional exercise down below that shows you how to create your own *t-SNE* projection using multiple coverage values.
 
-We will use a small **python** script to create these input files, as colouring contigs by bin is a really effective way to spot areas that might need refinement.
+We will use a small `python` script to create these input files, as colouring contigs by bin is a really effective way to spot areas that might need refinement.
 
-*Note: We are using **python** here for the sake of keeping the workshop easy to follow. It is possible to perform the equivalent steps in **bash** using a loop similar to how we performed the **DAS_Tool** preparation.*
+*Note: We are using `python` here for the sake of keeping the workshop easy to follow. It is possible to perform the equivalent steps in `bash` using a loop similar to how we performed the `DAS_Tool` preparation.*
 
 ```bash
 module load Python/3.7.3-gimkl-2018b
@@ -36,7 +36,7 @@ cut -f1,2 -d ',' vb_sample1.vizbin.ann > vb_sample1.vizbin.no_length.ann
 
 ### Project a *t-SNE* and examine bin clusters
 
-We can not use these files in **VizBin** to curate the contigs in our bins. We will load and view the data in a few different steps.
+We can not use these files in `VizBin` to curate the contigs in our bins. We will load and view the data in a few different steps.
 
 #### Loading the input files
 

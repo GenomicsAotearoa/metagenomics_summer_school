@@ -15,23 +15,23 @@ Broadly speaking, there are two ways we perform gene annotations with protein se
 
 #### BLAST-like annotation
 
-The first of these is the **BLAST** algorithm for sequence alignment. This approach performs pairwise alignment between the gene of interest (query sequence) and the sequences in the database (target sequence). **BLAST** searches each potential target sequence for *k*-mers identified in the query sequence. Where these *k*-mers are found in targets, the ends are extended out to try to create longer regions of highly similar sequence spans. Across this span, the tool identifies the longest span of characters (nucleotide or amino acid) that match within a scoring framework to return the length of the region (coverage) and the sequence identity over the span (identity).
+The first of these is the `BLAST` algorithm for sequence alignment. This approach performs pairwise alignment between the gene of interest (query sequence) and the sequences in the database (target sequence). `BLAST` searches each potential target sequence for *k*-mers identified in the query sequence. Where these *k*-mers are found in targets, the ends are extended out to try to create longer regions of highly similar sequence spans. Across this span, the tool identifies the longest span of characters (nucleotide or amino acid) that match within a scoring framework to return the length of the region (coverage) and the sequence identity over the span (identity).
 
-The original tool for performing this kind of analysis was the **BLAST** tool. While **BLAST** and its variants are still excellent tools for performing this kind of sequence annotation, they suffer from a slow runtime speed due to the need to test each query sequence against every target sequence in the database. For this reason, several tools have been published which take the basic approach of **BLAST**, but augment it with methods to reduce the number of pairwise comparisons needed to identify targets with high sequence similarity to the query. Two popular pieces of software are the tools [**usearch**](http://www.drive5.com/usearch/) and [**diamond**](https://github.com/bbuchfink/diamond).
+The original tool for performing this kind of analysis was the `BLAST` tool. While `BLAST` and its variants are still excellent tools for performing this kind of sequence annotation, they suffer from a slow runtime speed due to the need to test each query sequence against every target sequence in the database. For this reason, several tools have been published which take the basic approach of `BLAST`, but augment it with methods to reduce the number of pairwise comparisons needed to identify targets with high sequence similarity to the query. Two popular pieces of software are the tools `usearch` [here](http://www.drive5.com/usearch/) and `diamond` [here](https://github.com/bbuchfink/diamond).
 
 #### HMM-profiling of domains
 
-An alternate method for attributing function to query sequences it to consider them as a collection of independently functioning protein folding domains. This is the approach used in the [**HMMer**](http://hmmer.org/) software, and the *Pfam*, *TIGRfam*, and *PANTHER* databases. In these analyses, the database consists not of individual sequences, but of Hidden Markov models built from a collection of proteins that share a common domain. These profiles build out a statistical map of the amino acid transitions (from position to position), variations (differences at a position), and insertions/deletions between positions in the domain across the different observations in the training database and apply these maps to the query data.
+An alternate method for attributing function to query sequences it to consider them as a collection of independently functioning protein folding domains. This is the approach used in the `HMMer` (http://hmmer.org/) software, and the *Pfam*, *TIGRfam*, and *PANTHER* databases. In these analyses, the database consists not of individual sequences, but of Hidden Markov models built from a collection of proteins that share a common domain. These profiles build out a statistical map of the amino acid transitions (from position to position), variations (differences at a position), and insertions/deletions between positions in the domain across the different observations in the training database and apply these maps to the query data.
 
 ---
 
 ### Annotating MAGs with against the *NCBI NR* database with *diamond*
 
-For this exercise we are only going to use a single tool for performing our annotation. We have chosen to use **diamond** because it is faster than **BLAST**, and **usearch** comes with licencing restrictions that make it hard to work with in a shared computing environment like NeSI.
+For this exercise we are only going to use a single tool for performing our annotation. We have chosen to use `diamond` because it is faster than `BLAST`, and `usearch` comes with licencing restrictions that make it hard to work with in a shared computing environment like NeSI.
 
-For this exercise we have created a **diamond**-compatible database from a 2016 release of the NCBI non-redundant protein sequence database. The reasons for using this particular database will become apparent in a subsequent exercise.
+For this exercise we have created a `diamond`-compatible database from a 2016 release of the NCBI non-redundant protein sequence database. The reasons for using this particular database will become apparent in a subsequent exercise.
 
-In generaly, **diamond** takes a simple pair of input files - the protein coding sequences we wish to annotate and the database we will use for this purpose. There are a few parameters that need to be tweaked for obtaining a useful output file, however.
+In generaly, `diamond` takes a simple pair of input files - the protein coding sequences we wish to annotate and the database we will use for this purpose. There are a few parameters that need to be tweaked for obtaining a useful output file, however.
 
 ```bash
 module load DIAMOND/0.9.25-gimkl-2018b
@@ -67,7 +67,7 @@ diamond blastp -p 2 --db /nesi/project/nesi02659/mg_workshop//NCBI_nr_2016.dmnd 
                --outfmt 6 -o bin_0.diamond.txt
 ```
 
-Awkwardly, **diamond** does not provide the headers for what the columns in the output table mean. [This table](http://www.metagenomics.wiki/tools/blast/blastn-output-format-6) is a handy reference for how to interpret the output.
+Awkwardly, `diamond` does not provide the headers for what the columns in the output table mean. [This table](http://www.metagenomics.wiki/tools/blast/blastn-output-format-6) is a handy reference for how to interpret the output.
 
 From here we can view important stastics for each query/target pairing such as the number of identify residues between sequences and the aligned length between query and target.
 

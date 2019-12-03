@@ -3,7 +3,7 @@
 ### Objectives
 
 * Overview of the *BLAST XML* output
-* Looking at gene networks in **MEGAN**
+* Looking at gene networks in `MEGAN`
 * Tie findings to your initial hypothesis
 
 ---
@@ -50,31 +50,31 @@ Your job from the previous session should have now completed, so we will start t
 
 This is not necessarily easy to read by eye, especially as the number of entries and categories grow. However, consider the case for the 'previous affiliation' entry in the above. Since tutors in the list can have 0, 1, or multiple previous affiliations this data would be difficult to capture in a standardised table format.
 
-In the case of our annotation data, NCBI's *xml* schema is a good way to store information surrounding the query/target alignment itself, and also additional metadata for the target sequence. This information is used by **MEGAN** in the next exercise.
+In the case of our annotation data, NCBI's *xml* schema is a good way to store information surrounding the query/target alignment itself, and also additional metadata for the target sequence. This information is used by `MEGAN` in the next exercise.
 
 ---
 
 ### Looking at gene networks in *MEGAN*
 
-**MEGAN** is a really powerful GUI-based tool for exploring and contextualising gene annotations. The current version is **MEGAN6** but we are going to work with **MEGAN5** in this exercise. This is because **MEGAN** provides a free and licensed version, and in **MEGAN6** one of the key features we will use today was migrated into the licensed version. If you are considering using **MEGAN** for your own analysis, we do recommend obtaining the latest version.
+`MEGAN` is a really powerful GUI-based tool for exploring and contextualising gene annotations. The current version is **version 6** but we are going to work with **version 5** in this exercise. This is because `MEGAN` provides a free and licensed version, and in **version 6** one of the key features we will use today was migrated into the licensed version. If you are considering using `MEGAN` for your own analysis, we do recommend obtaining the latest version.
 
-##### Executing *MEGAN5* from the command line
+##### Executing *MEGAN* from the command line
 
 <TO DO>
 
 ##### Loading your gene and annotation files
 
-Once **MEGAN** has loaded, we are going to use the 'File' -> 'Import From BLAST...' option.
+Once `MEGAN` has loaded, we are going to use the 'File' -> 'Import From BLAST...' option.
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex13_import_menu.PNG)
 
-Use the file browser icon to select your *xml* file for the first entry, and *fastA* protein sequences for the second. If you have a consistent naming scheme, **MEGAN** might be able to auto-detect the correct *fastA* file, but make sure you check that it is correct.
+Use the file browser icon to select your *xml* file for the first entry, and *fastA* protein sequences for the second. If you have a consistent naming scheme, `MEGAN` might be able to auto-detect the correct *fastA* file, but make sure you check that it is correct.
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex13_browser.PNG)
 
 ##### Parsing hits to KEGG ontology
 
-Navigate to the 'KEGG' tab and turn on the 'Analyse KEGG content' feature. Make sure you also enable 'Use Built-In RefSeq Map'. Also click the 'Load GI Mapping File', and select the file *gi2kegg-Feb2015X.bin* located in the same location as the **MEGAN** executable.
+Navigate to the 'KEGG' tab and turn on the 'Analyse KEGG content' feature. Make sure you also enable 'Use Built-In RefSeq Map'. Also click the 'Load GI Mapping File', and select the file `gi2kegg-Feb2015X.bin` located in the same location as the `MEGAN` executable.
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex13_parse_kegg.PNG)
 
@@ -82,13 +82,13 @@ We will not toggle any extra features for now. Click the 'Apply' button to start
 
 ##### Interpreting the taxonomy view
 
-**MEGAN** will extract taxonomy information from the annotations to build up a taxonomic overview of our MAG. For each protein, taxonomy is assigned using the Lowest Common Ancestor (LCA) method, for which each protein is assigned the consensus taxonomy of its annotations.
+`MEGAN` will extract taxonomy information from the annotations to build up a taxonomic overview of our MAG. For each protein, taxonomy is assigned using the Lowest Common Ancestor (LCA) method, for which each protein is assigned the consensus taxonomy of its annotations.
 
 You can view how many genes are assigned at least node of the taxonomy tree by clicking on them.
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex13_node_assignment.PNG)
 
-Depending on the node you click, you will see either one or two numbers reported. The 'Ass' number is the number of genes assigned at this rank specifically. In the screenshot above, this means that there are 64 genes in the MAG that cannot be reliably classified deeper than to the phylum Cyanobacteria. The 'Sum' number refers to all genes assigned to this node, including all subordinate nodes. We can expand this node by right-clicking and selecting the 'Uncollapse' option.
+Depending on the node you click, you will see either one or two numbers reported. The **Ass** number is the number of genes assigned at this rank specifically. In the screenshot above, this means that there are 64 genes in the MAG that cannot be reliably classified deeper than to the phylum Cyanobacteria. The **Sum** number refers to all genes assigned to this node, including all subordinate nodes. We can expand this node by right-clicking and selecting the 'Uncollapse' option.
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex13_expand_node.png)
 
@@ -96,7 +96,7 @@ Carry this on as far as you like. The deeper into the tree you go the more branc
 
 ##### Exploring the KEGG view
 
-Along the top of the **MEGAN** browser is an icon to open the KEGG view of your annotation.
+Along the top of the `MEGAN` browser is an icon to open the KEGG view of your annotation.
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex13_open_kegg.PNG)
 
