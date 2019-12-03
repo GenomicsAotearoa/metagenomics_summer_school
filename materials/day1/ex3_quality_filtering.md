@@ -114,7 +114,7 @@ The basic format for a `trimmomatic` command is
 trimmomatic PE <keyword flags> <sequence input> <sequence output> <trimming parameters>
 ```
 
-The trimming parameters are processed in the order you specify them. This is a delierate behaviour but can have some unexpected consequences for new users.
+The trimming parameters are processed in the order you specify them. This is a deliberate behaviour but can have some unexpected consequences for new users.
 
 For example, consider these two scenarios:
 
