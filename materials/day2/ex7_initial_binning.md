@@ -77,7 +77,7 @@ do
           -S ${i}.sam
 
   # Step 3
-  samtools sort -o ${i}.bam ${i}.sam
+  samtools sort -@ 10 -o ${i}.bam ${i}.sam
 
 done
 ```
@@ -111,6 +111,14 @@ Generally I wouldn't bother with this - there is a lot of information in here an
 1. Sort the mapping information
 1. Compress the *sam* file into its binary equivalent, *bam*
 
+Which is achieved with the following parameters
+
+|Parameter|Function|
+|:---|:---|
+|**sort**|Subcommand for `samtools` to invoke the `sort` operation|
+|**-@ ...**|Number of threads to use for sorting and compressing|
+|**-o ...**|Output file name. When we specify the *bam* extension `samtools` automatically compresses the output|
+
 Compressing the file to the *bam* format is an important step as when working with real data *sam* files can be massive and our storage capacity on NeSI is limited. It is also helpful to sort the mapping information to that reads mapped to a contig are listed in order of their start position. For example
 
 ```bash
@@ -129,7 +137,7 @@ Map: --------ECONT--
 Map: -----------NTIG
 ```
 
-Reads will almost certianly be mapped in a random order as they are added to the *sam* file in more or less the same order that they are encountered in the original *fastQ* files.
+Reads will initially be mapped in an unsorted order as they are added to the *sam* file in more or less the same order that they are encountered in the original *fastQ* files.
 
 Sorting the mapping information is an important prerequisite for performing certain downstream processes. Not every tool we use requires reads to be sorted, but it can be frustrating having to debug the instances where read sorting matters so we typically just get it done as soon as possible and then we don't have to worry about it again.
 
