@@ -71,13 +71,13 @@ for i in sample1 sample2 sample3 sample4;
 do
 
   # Step 2
-  srun bowtie2 --minins 200 --maxins 800 --threads 10 --sensitive \
-               -x spades_assembly/bw_spades \
-               -1 ../3.assembly/${i}_R1.fastq.gz -2 ../3.assembly/${i}_R2.fastq.gz \
-               -S ${i}.sam
+  bowtie2 --minins 200 --maxins 800 --threads 10 --sensitive \
+          -x spades_assembly/bw_spades \
+          -1 ../3.assembly/${i}_R1.fastq.gz -2 ../3.assembly/${i}_R2.fastq.gz \
+          -S ${i}.sam
 
   # Step 3
-  srun samtools sort -o ${i}.bam ${i}.sam
+  samtools sort -o ${i}.bam ${i}.sam
 
 done
 ```

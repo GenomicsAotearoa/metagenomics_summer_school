@@ -95,9 +95,9 @@ for prot_file in example_data/*.genes.no_metadata.faa;
 do
   out_file=$(basename ${prot_file} .faa)
 
-  srun diamond blastp -p 20 --max-target-seqs 5 --evalue 0.001 \
-                      --db /nesi/project/nesi02659/mg_workshop//NCBI_nr_2016.dmnd \
-                      -q ${prot_file} --outfmt 5 -o gene_annotations/${out_file}.nr.xml
+  diamond blastp -p 20 --max-target-seqs 5 --evalue 0.001 \
+                 --db /nesi/project/nesi02659/mg_workshop//NCBI_nr_2016.dmnd \
+                 -q ${prot_file} --outfmt 5 -o gene_annotations/${out_file}.nr.xml
 done
 ```
 

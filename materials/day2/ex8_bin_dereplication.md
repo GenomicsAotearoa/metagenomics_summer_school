@@ -190,9 +190,9 @@ module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
 
 cd 5.binning/
 
-srun checkm lineage_wf -t 10 --pplacer_threads 10 \
-                       -x fa --tab_table -f checkm.txt \
-                       dastool_out/_DASTool_bins/ checkm_out/
+checkm lineage_wf -t 10 --pplacer_threads 10 \
+                  -x fa --tab_table -f checkm.txt \
+                  dastool_out/_DASTool_bins/ checkm_out/
 ```
 
 The breakdown of parameters is as follows

@@ -204,7 +204,7 @@ do
     fq2fa ${out_file}.fastq ${out_file}.fna
 
     # Perform coding sequence prediction
-    srun FragGeneScan -s ${out_file}.fna -o predictions_short/${out_file} -w 0 -p 10 -t illumina_5
+    FragGeneScan -s ${out_file}.fna -o predictions_short/${out_file} -w 0 -p 10 -t illumina_5
 done
 ```
 
