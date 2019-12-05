@@ -86,7 +86,7 @@ module load Trimmomatic/0.39-Java-1.8.0_144
 trimmomatic PE -threads 10 -phred33 \
                mock_R1.adapter_decay.fastq mock_R2.adapter_decay.fastq \
                mock_R1.qc.fastq mock_s1.qc.fastq mock_R2.qc.fastq mock_s2.qc.fastq \
-               ILLUMINACLIP:iua.fna:1:25:7 SLIDINGWINDOW:4:30 MINLEN:80
+               HEADCROP:10 SLIDINGWINDOW:4:30 MINLEN:80
 ```
 
 There is a lot going on in this command, so here is a breakdown of the parameters in the command above
@@ -100,11 +100,23 @@ There is a lot going on in this command, so here is a breakdown of the parameter
 |mock_R1.qc.fastq|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner also passed|
 |mock_s1.qc.fastq|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner failed (orphan reads)|
 |mock_R2.qc.fastq / mock_s2.qc.fastq|*positional*|The reverse-sequence equivalent of above|
-|ILLUMINACLIP:iua.fna:1:25:7|*positional*|Adapter trimming command. Search each sequence for the sequences specified in the *iua.fna* file and cut matching regions|
+|HEADCROP:10|*positional*|Adapter trimming command. Remove the first 10 positions in the sequence|
 |SLIDINGWINDOW:4:30|*positional*|Quality filtering command. Analyses each sequence in a 4 base pair sliding window, truncating if the average quality drops below Q30|
 |MINLEN:80|*positional*|Length filtering command, discard sequences that are shorter than 80 base pairs after trimming|
 
-There are a few considerations to make when using `trimmomatic`:
+This signifcantly improves the output.
+
+##### Quality of reads
+
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig7_qualtrim.PNG)
+
+##### Nucleotide distribution
+
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig8_headtrim.PNG)
+
+---
+
+### Considerations when working with *trimmomatic*
 
 **Order of operations**
 
@@ -128,10 +140,11 @@ In the first run we would not expect any sequence shorter than 80 base pairs to 
 
 A more subtle consequence of this behaviour is the interplay between adapter removal and quality filtering. In the command above, we try to identify adapters **_before_** quality trimming. Why do you think this is?
 
-#### Working with the ILLUMINACLIP command
+---
 
-The format for the `ILLUMINACLIP` parameter can be quite confusing to work with. According to the `trimmomatic`
-[manual](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf) the arguments specified refer to
+### *Optional:* Working with the ILLUMINACLIP command
+
+`Trimmomatic` also provides the `ILLUMINACLIP` command, which can be used to pass a *fastA* file of adapter and barcode sequences to be found and removed from your data. The format for the `ILLUMINACLIP` parameter can be quite confusing to work with and so we generally favour a `HEADCROP` where possitble. If you wish to work with the `ILLUMINACLIP` command, then you can see its use here in the `trimmomatic` [manual](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf).
 
 ```bash
 ILLUMINACLIP:iua.fna:1:25:7
@@ -143,16 +156,7 @@ ILLUMINACLIP:iua.fna:1:25:7
              File of expected sequences
 ```
 
-There is always some subjectivity in how sensitive you want your adapter (and barcode) searching to be. If the settings are too strict you might end up discarding real sequence data that only partially overlaps with the Illumina adapters. If your settings are not strict enough then you might leave partial adapters in the sequence. A simpler method for removing these regions of sequence can be simple positional trimming. For example, executing `trimmomatic` with the flags
-
-```bash
-trimmomatic PE -threads 10 -phred33 \
-               mock_R1.adapter_decay.fastq mock_R2.adapter_decay.fastq \
-               mock_R1.qc.fastq mock_s1.qc.fastq mock_R2.qc.fastq mock_s2.qc.fastq \
-               HEADCROP:65 SLIDINGWINDOW:4:30 MINLEN:80
-```
-
-Will give a similar effect as the `ILLUMINACLIP` parameter, by truncating the first 65 positions from the read. An equivalent parameter `CROP:###` can be specified to remove sequence past the ###-th base in each sequence (i.e. trim to length ###).
+There is always some subjectivity in how sensitive you want your adapter (and barcode) searching to be. If the settings are too strict you might end up discarding real sequence data that only partially overlaps with the Illumina adapters. If your settings are not strict enough then you might leave partial adapters in the sequence. Where possible, we favour the use of simple positional trimming.
 
 ---
 
