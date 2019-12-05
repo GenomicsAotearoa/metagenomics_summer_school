@@ -70,15 +70,25 @@ A few quick checks I recommend are to see how many contigs or scaffolds your dat
 ```bash
 module load seqmagick/0.7.0-gimkl-2018b-Python-3.7.3
 
-seqmagick convert --min-length 1000 spades_assembly/spades_assembly.fna spades_assembly/spades_assembly.m1000.fna
+seqmagick convert --min-length 1000 spades_assembly/spades_assembly.fna \
+                                    spades_assembly/spades_assembly.m1000.fna
 grep -c '>' spades_assembly/spades_assembly.fna spades_assembly/spades_assembly.m1000.fna
 # spades_assembly/spades_assembly.fna:1913
 # spades_assembly/spades_assembly.m1000.fna:1047
 
-seqmagick convert --min-length 1000 idbaud_assembly/idbaud_assembly.fna idbaud_assembly/idbaud_assembly.m1000.fna
+seqmagick convert --min-length 1000 idbaud_assembly/idbaud_assembly.fna \
+                                    idbaud_assembly/idbaud_assembly.m1000.fna
 grep -c '>' idbaud_assembly/idbaud_assembly.fna idbaud_assembly/idbaud_assembly.m1000.fna
 # idbaud_assembly/idbaud_assembly.fna:4891
 # idbaud_assembly/idbaud_assembly.m1000.fna:1901
+```
+
+If you have your own assemblies and you want to try inspect them in the same way, try that now. Note that the file names will be slightly different to the files provided above. If you followed the exact commands in the previous exercise, you can use the following commands.
+
+```bash
+seqmagick convert --min-length 1000 ../3.assembly/spades_assembly/scaffolds.fasta my_spades_assembly.m1000.fna
+
+seqmagick convert --min-length 1000 ../3.assembly/idbaud_assembly/scaffold.fa my_idbaud_assembly.m1000.fna
 ```
 
 *Note: The tool `seqtk` is also available on NeSI and performs many of the same functions as `seqmagick`. My choice of `seqmagick` is mostly cosmetic as the parameter names are more explicit so it's easier to understand what's happening in a command when I look back at my log files. Regardless of which tool you prefer, we strongly recommend getting familiar with either `seqtk` or `seqmagick` as both perform a lot of common *fastA* and *fastQ* file manipulations.*
