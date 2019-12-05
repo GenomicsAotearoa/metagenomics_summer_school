@@ -67,7 +67,7 @@ idba_ud
 # -l, --long_read arg  fasta long read file (>128)
 ```
 
-'Short' or 'long' reads, and only a single file for each. This means that if we want to assembly our community data using `IDBA-UD` we will need to pool the paired-end data into a single, interleaved *fastA* file. Interleaved means that instead of having a pair of files that contain the separate forward and reverse sequences, the read pairs are in a single file in alternating order. For example
+'Short' or 'long' reads, and only a single file for each. This means that if we want to assemble our community data using `IDBA-UD` we will need to pool the paired-end data into a single, interleaved *fastA* file. Interleaved means that instead of having a pair of files that contain the separate forward and reverse sequences, the read pairs are in a single file in alternating order. For example
 
 ```bash
 # Paired-end file, forward
@@ -112,7 +112,7 @@ cat sample1.fna sample2.fna sample3.fna sample4.fna > for_idba.fna
 
 ### Basic assembly parameters
 
-For any assembler, there are a **_lot_** of parameters that can be fine-tuned depending on your data. As no two data sets are the same, it is almost impossible to predict which parameter combinations will yield the best outcome for your data set. That said, assembly can be quite a resource-intensive process and it is generally not practical to test every permutation of parameter value with your data. In genomics, the saying goes that the best assembly is the one that answers your question. As long as the data you are receiving is meaningful to the hypothesis you are seeking to address then your assembly is as good as it needs to be.
+For any assembler, there are a **_lot_** of parameters that can be fine-tuned depending on your data. As no two data sets are the same, it is almost impossible to predict which parameter combinations will yield the best outcome for your dataset. That said,an assembly can be quite a resource-intensive process and it is generally not practical to test every permutation of parameter value with your data. In genomics, the saying goes that the best assembly is the one that answers your question. As long as the data you are receiving is meaningful to the hypothesis you are seeking to address, then your assembly is as good as it needs to be.
 
 Generally speaking, assemblers are developed in a way where they run with default parameters that have been empirically demonstrated to produce the best outcome **_on average_** across multiple data sets. For most purposes, there is not a lot of need to change these, but some parameters that we would always want to look at include:
 
@@ -122,7 +122,7 @@ Generally speaking, assemblers are developed in a way where they run with defaul
 
 #### Setting the *k*-mer size
 
-Depending on which assembler you are using the commands for chosing the *k*-mer sizes for assembly vary slightly, but they are recognisable between programs. In `SPAdes`, you can set the *k*-mer size using either
+Depending on which assembler you are using, the commands for chosing the *k*-mer sizes for the assembly vary slightly, but they are recognisable between programs. In `SPAdes`, you can set the *k*-mer size using either
 
 ```bash
 spades.py -k 21,33,55,77,99,121 ...
@@ -130,13 +130,13 @@ spades.py -k 21,33,55,77,99,121 ...
 spades.py -k auto ...
 ```
 
-Which amount to either specifying the *k*-mers ourselves, or letting `SPAdes` pick the sizes it thinks are best. For `IDBA-UD`, we select *k*-mer size using
+The first command lets us specify the *k*-mers ourselves, or we are letting `SPAdes` automatically pick the most appropriate size. For `IDBA-UD`, we can select the *k*-mer size using
 
 ```bash
 idba_ud --mink 21 --maxk 121 --step 22
 ```
 
-Unlike `SPAdes`, we do not have fine-scale control over the *k*-mer sizes used in assembly. We instead provide `IDBA-UD` with the first and last *k*-mer sizes to use, then specify the increment to use between these. In either case, it is important that we are always assembling using a *k*-mer of uneven (odd) length in order to avoid the creation of palindromic *k*-mers.
+Unlike `SPAdes`, we do not have fine-scale control over the *k*-mer sizes used in the assembly. We instead provide `IDBA-UD` with the first and last *k*-mer size to use, then specify the increment to use between these. In either case, it is important that we are always assembling using a *k*-mer of uneven (odd) length in order to avoid the creation of palindromic *k*-mers.
 
 #### Specifying the number of threads
 
@@ -148,23 +148,23 @@ spades.py -t 20 ...
 idba_ud --num_threads 20 ...
 ```
 
-The only thing to keep in mind is that these tools have different default behaviour. If no thread count is specified by the user, `SPAdes` will assemble with 16 threads. `IDBA-UD` will use all available threads which is can be problematic if you are using a shared compute environment that does not use a resource management system like slurm.
+The only thing to keep in mind is that these tools have different default behaviour. If no thread count is specified by the user, `SPAdes` will assemble with 16 threads. `IDBA-UD` will use all available threads, which can be problematic if you are using a shared compute environment that does not use a resource management system like slurm.
 
 #### Setting a memory limit
 
-By far, the worst feature of `SPAdes` is the high memory requirements for performing assembly. In the absence of monitoring, `SPAdes` will request more and more memory as it proceeds. If this requires more memory than is available on your computer your system will start to store memory to disk space. This is an extremely slow operation and can make your computer to effectively unusable. In managed environments such as NeSI a memory limit is imposed upon all running jobs, but if you are not using such a system you are advised to set a memory limit when executing `SPAdes`:
+By far, the worst feature of `SPAdes` is the high memory requirement for performing an assembly. In the absence of monitoring, `SPAdes` will request more and more memory as it proceeds. If this requires more memory than is available on your computer, your system will start to store memory to disk space. This is an extremely slow operation and can render your computer effectively unusable. In managed environments such as NeSI a memory limit is imposed upon all running jobs, but if you are not using such a system you are advised to set a memory limit when executing `SPAdes`:
 
 ```bash
 spades.py -m 400GB ...
 ```
 
-No such parameter exists in `IDBA-UD`, although as this tool needs far less RAM than `SPAdes` you are less likely to need it.
+No such parameter exists in `IDBA-UD`, but it requires far less RAM than `SPAdes`, so you are less likely to need it.
 
 ---
 
 ### Preparing an assembly job for slurm
 
-NeSI does not allow users to execute large jobs interactively on the terminal. Instead, the node that we have logged in to (*lander02*) has only a small fraction of the computing resources that NeSI houses. The *lander* node is used to write small command scripts, which are then deployed to the large compute nodes by a system called **slurm**. The ins and outs of working in slurm are well beyond the scope of this workshop (and may not be relevant if your institution uses a different resource allocation system). In this workshop, we will therefore only be showing you how to write minimal slurm scripts sufficient to achieve our goals. By the end of the workshop, you should have built up a small collection of slurm scripts for performing the cnessary stages of our workflow and with experience you will be able to modify these to suit your own needs.
+NeSI does not allow users to execute large jobs interactively on the terminal. Instead, the node that we have logged in to (*lander02*) has only a small fraction of the computing resources that NeSI houses. The *lander* node is used to write small command scripts, which are then deployed to the large compute nodes by a system called **slurm**. The ins and outs of working in slurm are well beyond the scope of this workshop (and may not be relevant if your institution uses a different resource allocation system). In this workshop, we will therefore only be showing you how to write minimal slurm scripts sufficient to achieve our goals. By the end of the workshop, you should have built up a small collection of slurm scripts for performing the necessary stages of our workflow and with experience you will be able to modify these to suit your own needs.
 
 #### Submitting a *SPAdes* job to NeSI using slurm
 
@@ -229,11 +229,11 @@ When executing the `SPAdes` command, there are a few parameters to note here:
 
 Note that we also prefix the command (`spades.py`) with the `srun` command. This is a command specific to slurm and allows NeSI to track the resource usage of the `SPAdes` job.
 
-We don't explicitly set memory or thread counts for this job, simply for the sake of keeping the command uncluttered. The default memory limit of `SPAdes` (250 GB) is much higher than the 20 GB we have allowed our job here. If the memory cap is violated then both slurm and `SPAdes` will terminate the assembly. We have also left the number of threads at the default value of 16, which matches to the number specified in the slurm header.
+We don't explicitly set memory or thread counts for this job, simply for the sake of keeping the command uncluttered. The default memory limit of `SPAdes` (250 GB) is much higher than the 20 GB we have allowed our job here. If the memory cap was violated then both slurm and `SPAdes` will terminate the assembly. We have also left the number of threads at the default value of 16, which matches the number specified in the slurm header.
 
 It is a good idea to match your number of threads request in the slurm script with what you intend to use with `SPAdes` because your project usage is calculated based off what you request in your slurm scripts rather than what you actually use. Requesting many unused threads simply drives your project down the priority queue. By contrast, requesting fewer threads than you attempt to use in the program (i.e. request 10 in slurm, set thread count to 30 in `SPAdes`) will result in reduced performance, as your `SPAdes` job will divide up jobs as though it has 30 threads, but only 10 will be provided. This is discussed [in this blog post](https://www.codeguru.com/cpp/sample_chapter/article.php/c13533/Why-Too-Many-Threads-Hurts-Performance-and-What-to-do-About-It.htm).
 
-Once you are happy with your slurm script, execute the job by navigating to the location of your script and enetering the command
+Once you are happy with your slurm script, execute the job by navigating to the location of your script and entering the command
 
 ```bash
 sbatch assembly_spades.sl
