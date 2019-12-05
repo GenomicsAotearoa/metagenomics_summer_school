@@ -151,7 +151,7 @@ samtools view -bS sample1.sam | samtools sort -o sample1.bam
 
 ### Create initial bins using *MetaBAT* and *MaxBin*
 
-With this mapping information, we can now perform binning. There are a multitude of good binning tools current published, and each have their strengths and weaknesses. As there is no clear best tool for binning, the current strategy for binning is to use a number of different binning tools on your data, then use the tool `DAS_Tool` to evaluate all potential outcomes and define the best set of bins across all tools used.
+With this mapping information, we can now perform binning. There are a multitude of good binning tools currently published, and each have their strengths and weaknesses. As there is no clear best tool for binning, the current strategy for binning is to use a number of different tools on your data, then use the tool `DAS_Tool` to evaluate all potential outcomes and define the best set of bins across all tools used.
 
 In our own workflow, we use the tools `MetaBAT`, `MaxBin`, and `CONCOCT` for binning but there are many alternatives that are equally viable. In the interests of time here, we are only going to demonstrate the first two tools.
 
@@ -171,6 +171,8 @@ jgi_summarize_bam_contig_depths --outputDepth metabat.txt sample*.bam
 
 Both give the same result. We can then pass the table `metabat.txt` into the `MetaBAT` binning tool.
 
+Before we proceed, note that when you run `MetaBAT` on NeSI you will see the text `vGIT-NOTFOUND` appear in your command line. This has no impact on the performance of the tool.
+
 ```bash
 metabat2 -t 10 -m 1500 \
          -i spades_assembly/spades_assembly.m1000.fna \
@@ -178,13 +180,21 @@ metabat2 -t 10 -m 1500 \
          -o metabat/metabat
 ```
 
-Note here that we are specifying a minimum contig size of 1,500 bp, which the limit allowed by the authors of `MetaBAT`. This larger than our minimum when filtering the assembly which means there are some assembled contigs which cannot be binned. Consider the choice of this parameter and your initial contig filtering carefully when binning your own data.
+Note here that we are specifying a minimum contig size of 1,500 bp, which is the lower limit allowed by the authors of `MetaBAT`. This is larger than our minimum threshold when filtering the assembly which means there are some assembled contigs which cannot be binned. Consider the choice of this parameter and your initial contig filtering carefully when binning your own data.
 
 When specifying the output file, notice that we pass both a folder path (*metabat/*) and file name (*metabat*). The reason I do this is that `MetaBAT` writes its output files using the pattern
 
 `[USER VALUE].[BIN NUMBER].fa`
 
-The problem with this is that on Linux systems, prefixing a file or folder name with a '.' character means the the file is hidden. This can lead to a lot of confusion when your binning job compeltes sucessfully but no files are visible!
+If we only provided the path, without a file name prefix, `MetaBAT` would create output like the following:
+
+```bash
+metabat/.1.fa
+metabat/.2.fa
+metabat/.3.fa
+```
+
+The problem with this is that on Linux systems, prefixing a file or folder name with a '.' character means the the file is hidden. This can lead to a lot of confusion when your binning job completes successfully but no files are visible!
 
 #### Binning using *MaxBin*
 
