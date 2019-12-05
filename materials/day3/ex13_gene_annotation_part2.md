@@ -108,7 +108,7 @@ Similar to in the taxonomy view, you can select individual nodes and export the 
 
 ##### Drilling into the KEGG annotation
 
-Open up the 'Energy Metabolism' category in the left-hand menu, then right click on the 'Carbonfixation in photosynthetic organisms' and select the 'Show Pathway' option.
+Open up the 'Energy Metabolism' category in the left-hand menu, then right click on the 'Carbon fixation in photosynthetic organisms' and select the 'Show Pathway' option.
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex13_carbon_fixing_1.PNG)
 
