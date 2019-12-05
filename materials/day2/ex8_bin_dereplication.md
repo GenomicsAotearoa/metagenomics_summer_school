@@ -10,7 +10,7 @@
 
 ### Bin dereplication using `DAS_Tool` - Creating input tables
 
-As we discussed in the previous exercise, we have now generated two sets of bins from the same single assembly. With this mock data set we can see that each tool recovered 10 bins, which is the number of genomes used to create this mock community. Since we **_shouldn't_** see more than 10 bins total, these tools have obviously recovered the same genomes. However, it is not clear which tool has done a better job of recruiting contigs to each bin - we very rarely expect to see the compelte genome recovered from these kinds of data, so while it is probably the case that while an equivalent bin is present in the `MetaBAT` and `MaxBin` outputs, they will probably be of differing quality.
+As we discussed in the previous exercise, we have now generated two sets of bins from the same single assembly. With this mock data set we can see that each tool recovered 10 bins, which is the number of genomes used to create this mock community. Since we **_shouldn't_** see more than 10 bins total, these tools have obviously recovered the same genomes. However, it is not clear which tool has done a better job of recruiting contigs to each bin - we very rarely expect to see the complete genome recovered from these kinds of data, so while it is probably the case that while an equivalent bin is present in the `MetaBAT` and `MaxBin` outputs, they will likely be of differing quality.
 
 `DAS_Tool` is a program designed to analyse the bins in each of our binning sets and determine where these equivalent pairs (or triplets if we use three binners) exist and return the 'best' one. `DAS_Tool` does not use the actual bins, but a set of text files that link contigs to their corresponding bins in each of the bin sets. We can produce these files using `bash`.
 
@@ -84,7 +84,7 @@ The `sed` command replaces the `>` character with the empty character `''`, as w
 
 ###### Command 3
 
-We now use `sed` again, this time to replace the `$` character. In many command line tools and software environments (including `R` and `python`) the characters `^` and `$` are used as shortcuts for the beginning and ending of a line, respectively. By using the character in this way, we are telling `sed` to replace the end-of-line with the text `\t${bin_name}`. `sed` will parse this text to mean the tab character followed by the content of the `bin_name` variable. The nature of `sed` is that it will uatomatically insert a new end-of-line.
+We now use `sed` again, this time to replace the `$` character. In many command line tools and software environments (including `R` and `python`) the characters `^` and `$` are used as shortcuts for the beginning and ending of a line, respectively. By using the character in this way, we are telling `sed` to replace the end-of-line with the text `\t${bin_name}`. `sed` will parse this text to mean the tab character followed by the content of the `bin_name` variable. The nature of `sed` is that it will automatically insert a new end-of-line.
 
 ###### Command 4
 
@@ -112,11 +112,23 @@ Both `MetaBAT` and `MaxBin` have the option to output unbinned contigs after bin
 
 ### Bin dereplication using *DAS_Tool* - Running the tool
 
-We are now ready to run `DAS_Tool`. This can be done from the command line, as it does not take a particularly long time to run for this data set. With 2 threads, `DAS_Tool` should take 10 - 15 minutes to complete.
+We are now ready to run `DAS_Tool`. This can be done from the command line, as it does not take a particularly long time to run for this data set. Start by loading `DAS_Tool`.
 
 ```bash
 module load DAS_Tool/1.1.1-gimkl-2018b-R-3.6.1
+```
 
+Depending on whether or not your session has been continued from previous exercises, you may encounter an error performing this module load. This is because some of the tools we have used in previous exercises have dependencies which conflict with the dependencies in `DAS_Tool`. If this is the case for you, you can unload all previous module loads with the following:
+
+```bash
+module purge
+
+module load DAS_Tool/1.1.1-gimkl-2018b-R-3.6.1
+```
+
+`DAS_Tool` should now load without issue. With 2 threads, `DAS_Tool` should take 10 - 15 minutes to complete.
+
+```bash
 DAS_Tool -i metabat_associations.txt,maxbin_associations.txt -l MetaBAT,MaxBin \
          -t 2 --write_bins 1 --search_engine blast \
          -c spades_assembly/spades_assembly.m1000.fna \
@@ -190,8 +202,8 @@ module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
 
 cd 5.binning/
 
-checkm lineage_wf -t 10 --pplacer_threads 10 \
-                  -x fa --tab_table -f checkm.txt \
+checkm lineage_wf -t 10 --pplacer_threads 10 -x fa \
+                  --tab_table -f checkm.txt \
                   dastool_out/_DASTool_bins/ checkm_out/
 ```
 
