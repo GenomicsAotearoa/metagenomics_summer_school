@@ -183,7 +183,7 @@ Into this file, either write or copy/paste the following commands:
 #SBATCH -A xxxxx
 #SBATCH -J spades_assembly
 #SBATCH --partition zzzzz
-#SBATCH --time 00:00:30
+#SBATCH --time 00:30:00
 #SBATCH --mem 20GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 16
@@ -194,7 +194,7 @@ module load SPAdes/3.13.1-gimkl-2018b
 
 cd 3.assembly/
 
-spades.py --meta -k 33,55,77,99,121 -1 for_spades_R1.fq.gz -2 for_spades_R2.fq.gz -o spades_assembly/
+spades.py --meta -k 33,55,77,99,121 -t 16 -1 for_spades_R1.fq.gz -2 for_spades_R2.fq.gz -o spades_assembly/
 ```
 
 To save your file, use `Ctrl + O` to save the file, then `Ctrl + X` to exit `nano`. Going through those lines one by one;
