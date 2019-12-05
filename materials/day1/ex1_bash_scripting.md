@@ -164,3 +164,38 @@ grep -B1 -A2 NNNNNNNNNN Test_2.fastq | wc -l
 ```
 
 In an instance where we aren't after a particular string, but want  sections from each lines of file(s) to be extracted and written into an output file for further operations, `cut` command is a great utility. It can be used to cut parts of a line by **byte position, character and field**. Basically the cut command slices a line and extracts the text.
+
+
+
+
+### Cut
+Print selected parts of lines from each FILE to standard output
+- When invoking cut, use the -b, -c, or -f option, but only one of them.
+
+```bash
+cut --help
+```
+
+**Create a file called names.txt and add random names** (first and last), numbers e.g. Ngoni Faya 19
+```bash
+cut -d " " -f 1 names.txt
+cut -d " " -f 1-3 names.txt
+cut -d " " -f 1,3 names.txt
+```
+The tab character is the default delimiter that cut uses to determine what constitutes a field. So, if your file's fields are already delimited by tabs, you don't need to specify a different delimiter character.
+
+
+
+### basename
+Basename is a function in UNIX that is helpful for removing a uniform part of a name from a list of files. In this case, we will use basename to remove the .fastq extension from the files that we’ve been working with.
+```bash
+basename Test_1.fastq .fastq
+```
+
+### sed
+sed is a stream editor. A stream editor is used to perform basic text transformations on an input stream (a file, or input from a pipeline)
+
+```bash
+sed --help
+```
+
