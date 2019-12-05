@@ -164,3 +164,74 @@ grep -B1 -A2 NNNNNNNNNN Test_2.fastq | wc -l
 ```
 
 In an instance where we aren't after a particular string, but want  sections from each lines of file(s) to be extracted and written into an output file for further operations, `cut` command is a great utility. It can be used to cut parts of a line by **byte position, character and field**. Basically the cut command slices a line and extracts the text.
+
+
+
+
+### Cut
+Print selected parts of lines from each FILE to standard output
+- When invoking cut, use the -b, -c, or -f option, but only one of them.
+
+```bash
+cut --help
+```
+
+**Create a file called names.txt and add random names** (first and last), numbers e.g. Ngoni Faya 19
+```bash
+cut -d " " -f 1 names.txt
+cut -d " " -f 1-3 names.txt
+cut -d " " -f 1,3 names.txt
+```
+The tab character is the default delimiter that cut uses to determine what constitutes a field. So, if your file's fields are already delimited by tabs, you don't need to specify a different delimiter character.
+
+
+
+### basename
+Basename is a function in UNIX that is helpful for removing a uniform part of a name from a list of files. In this case, we will use basename to remove the .fastq extension from the files that we’ve been working with.
+```bash
+basename Test_1.fastq .fastq
+```
+
+### sed
+sed is a stream editor. A stream editor is used to perform basic text transformations on an input stream (a file, or input from a pipeline)like, searching, find and replace, insertion or deletion.Though most common use of SED command in UNIX is for substitution or for find and replace. By using SED you can edit files even without opening it, which is much quicker way to find and replace something in file, than first opening that file in Editor and then changing it.
+
+```bash
+sed --help
+```
+
+Create a file called animals.txt; add a story with at least one animal name repeated 3 or more times
+I love animals, dogs in particular. The dogs are smart and friendly. Oh dogs have emotions.
+I think I will adopt 3 dogs this year.
+
+```bash
+cat animals.txt
+```
+
+**Sample Commands**
+1. Replacing or substituting string : Sed command is mostly used to replace the text in a file. The below simple sed command replaces the word “dogs” with “cats” in the file.
+
+```bash
+sed 's/dogs/cats/' animals.txt
+```
+Here the “s” specifies the substitution operation. The “/” are delimiters. The “dogs” is the search pattern and the “cats” is the replacement string.
+
+By default, the sed command replaces the first occurrence of the pattern in each line and it won’t replace the second, third… occurrence in the line.
+
+2. Replacing all the occurrence of the pattern in a line : The substitute flag /g (global replacement) specifies the sed command to replace all the occurrences of the string in the line.
+
+```bash
+sed 's/dogs/cats/g' animals.txt
+```
+3. To delete a line
+To Delete a particular line say n in this example
+
+```bash
+Syntax:
+sed 'nd' filename.txt
+
+Example:
+sed '2d' filename.txt (line 2)
+
+sed '$d' filename.txt (last line)
+```
+
