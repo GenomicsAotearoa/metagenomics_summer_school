@@ -27,7 +27,7 @@ cut -f1,2 example_data.txt > sample1.txt
 
 python build_vizbin_inputs.py -o vb_sample1 -c sample1.txt example_data/*
 
-# Make a few differetn versions of the .ann file with various columns removed
+# Make a few different versions of the .ann file with various columns removed
 cut -f2 -d ',' vb_sample1.vizbin.ann > vb_sample1.vizbin.bin_only.ann
 cut -f1,2 -d ',' vb_sample1.vizbin.ann > vb_sample1.vizbin.no_length.ann
 ```
@@ -36,7 +36,7 @@ cut -f1,2 -d ',' vb_sample1.vizbin.ann > vb_sample1.vizbin.no_length.ann
 
 ### Project a *t-SNE* and examine bin clusters
 
-We can not use these files in `VizBin` to curate the contigs in our bins. We will load and view the data in a few different steps.
+We can now use these files in `VizBin` to curate the contigs in our bins. We will load and view the data in a few different steps.
 
 #### Loading the input files
 
@@ -52,11 +52,11 @@ Once this is imported, using the 'Show additional options' button to expose the 
 
 For now leave all other parameters as default. Click the 'Start' button to begin building the ordination. When it completes, you should see an output similar to the following:
 
-##### Contigs colour by bin
+##### Contigs coloured by bin
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_bin_only.PNG)
 
-##### Contigs colour by bin, sized by length, shaded by coverage
+##### Contigs coloured by bin, sized by length, shaded by coverage
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_all_ann.PNG)
 
@@ -74,7 +74,7 @@ We can use the interactive GUI to pick the boundaries of new bins, or to identif
 1. Right-click, 'Selection', 'Export': Save the selected contigs into a new file
 1. Right-click, 'Selection', 'Clear selection': Clear the current selection
 
-How you proceed in this tage is up to you. You can either select bins based on their boundary, and call these the refined bins. Alternatively, you could select outlier contigs and examine these in more detail to determine whether or not they were correctly placed into the bin. For example:
+How you proceed in this stage is up to you. You can either select bins based on their boundary, and call these the refined bins. Alternatively, you could select outlier contigs and examine these in more detail to determine whether or not they were correctly placed into the bin. For example:
 
 ##### Highlight an area with problematic contigs
 
