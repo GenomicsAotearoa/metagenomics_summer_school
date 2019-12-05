@@ -88,6 +88,6 @@ How you proceed in this stage is up to you. You can either select bins based on 
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_export.PNG)
 
-Which way you proceed really depends on how well the ordination resolves for your bins, and it might be that both approaches are needed.
+Which way you proceed really depends on how well the ordination resolves your bins, and it might be that both approaches are needed.
 
 ---
