@@ -3,7 +3,7 @@
 ### Objectives
 
 * Overview/refresher of `prodigal`
-* Predicting protein coding sequences in MAGs
+* Predicting protein coding sequences in metagenome-assembled genomes
 * Predicting protein coding sequences in unassembled reads
 * Predicting RNA features and non-coding regions
 
@@ -11,9 +11,9 @@
 
 ### Overview/refresher of *prodigal*
 
-At this stage we have recovered a numer of high quality genomes or population genomes. While there are interesting biological questions we can ask of the genomes at the DNA/organisational level, it is more likely that we are interested in the genes present in the organism.
+At this stage we have recovered a number of high quality genomes or population genomes. While there are interesting biological questions we can ask of the genomes at the DNA/organisational level, it is more likely that we are interested in the genes present in the organism.
 
-How we predict genes in the metagenomic data varies depending on what features we are trying to detect. Most often, we are interested in putatively protein coding regions and open reading frames. For features that are functional but not not translated, such as ribosomal RNA and tRNA sequences we need to use alternate tools. When considering protein coding sequences, we avoid the use of the term 'open reading frame' (ORF). The nature of a fragmented assembly is that you may encounter a partial gene on the start or end of a contig that is a function gene, but lacks the start or stop codon due to issues with assembly or sequencing depth.
+How we predict genes in the metagenomic data varies depending on what features we are trying to detect. Most often, we are interested in putatively protein coding regions and open reading frames. For features that are functional but not not translated, such as ribosomal RNA and tRNA sequences we need to use alternative tools. When considering protein coding sequences, we avoid the use of the term 'open reading frame' (ORF). The nature of a fragmented assembly is that you may encounter a partial gene on the start or end of a contig that is a function gene, but lacks the start or stop codon due to issues with assembly or sequencing depth.
 
 There are many software tools to predict gene sequences and in this workshop we will start with the tool `prodigal` (PROkaryotic Dynamic Programming Genefinding ALgorithm). `prodigal` has gone on to become one of the most popular microbial gene prediction algorithms as in incorporates modeling algorithms to profile the coding sequences within your genome and better identify the more cryptic (or partial) genes.
 
@@ -88,7 +88,7 @@ As mentioned in the introduction to this exercise, `prodigal` uses the profiles 
 |Anonymous mode|**-p meta**|Apply pre-calculated training files to the provided input sequences.<br>Anonymous mode should be used on metagenomes, low quality draft genomes, small viruses, and small plasmids.|
 |Training mode|**-p train**|Works like normal mode, but `prodigal` saves a training file for future use. |
 
-Annecdotally, when applied to a MAG or genome, metagenomic mode will identify slightly fewer genes than single mode. However, single mode can miss laterally transfered elements. There is not neccesarily a best choice for which version to use and this is at the users discretion.
+Anecdotally, when applied to a MAG or genome, anonymous mode (`-p meta`) will identify slightly fewer genes than normal mode (`-p single`). However, single mode can miss laterally transfered elements. There is not necesarily a best choice for which version to use and this is at the users discretion.
 
 #### Executing *prodigal*
 
@@ -215,7 +215,7 @@ The parameters which we use here are:
 |**-s ..**|Input *fastA* file to analyse|
 |**-o ...**|Output prefix for finished files.<br>`FragGeneScan` will produce correponding nucleotide (*.ffn*), amino acid (*.faa*), and summary (*.out*) files|
 |**-w ...**|Specify whether we are working with complete gene sequences (1) or incomplete sequences (0)|
-|**-p ...**|Number ot threads to use|
+|**-p ...**|Number of threads to use|
 |**-t ...**|Training model for the error rate. Must be preset in the *train/* folder.<br>Corresponds to Illumina with a 0.5% error rate.|
 
 ---
