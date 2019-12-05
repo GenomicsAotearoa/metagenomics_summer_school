@@ -107,13 +107,13 @@ done
 
 ### Evaluating the quality of gene assignment
 
-Determining how trustworth a gene annotation is can be a very tricky process. How similar to do protein sequences need to be to perform the same function? The answer is surprisingly low - a bioinformatic analysis performed in 1999 identified that proteins with as little as 20 - 35% sequence identity can still share the same function ([Rost, 1999](https://doi.org/10.1093/protein/12.2.85)) but this is not a universal occurance. When evaluating your annotations, we consider the following questions:
+Determining how trustworthy a gene annotation is can be a very tricky process. How similar to do protein sequences need to be to perform the same function? The answer is surprisingly low - a bioinformatic analysis performed in 1999 identified that proteins with as little as 20 - 35% sequence identity can still share the same function ([Rost, 1999](https://doi.org/10.1093/protein/12.2.85)) but this is not a universal occurrence. When evaluating your annotations, we consider the following questions:
 
 1. What is the amino acid identity along the aligned region?
 1. What is the amino acid *similarity* between the aligned region?
 1. What is the coverage as a percentage or the query and target genes?
 1. If we infer a phylogeny of this query gene with references from the target family, is a stable tree resolved?
-1. Does the inclusion of this gene function make sense in the context of the organisms taxonomy?
+1. Does the inclusion of this gene function make sense in the context of the organism's taxonomy?
 1. Does the gene sit on a long contig that is core to the MAG, or is it a short contig carrying only a single gene?
 1. If we are uncertain of a particular annotation, does the predicted gene occur in an operon? If so, are the other genes present in the annotation?
 
@@ -123,7 +123,7 @@ We must also remain aware of the potential for incorrectly annotated genes in th
 
 ### Differences in taxonomies
 
-Another way to determine if a annotation 'belongs' in the MAg of interest is to consider the predicted taxonomy of the query gene with that of the MAG itself. For example, if you detect a *dsrA* seuqence in a bin that has been classified as belonging to the genus *Desulfovibrio* then it is probably a safe bet that the annotation is correct.
+Another way to determine if a annotation 'belongs' in the MAG of interest is to consider the predicted taxonomy of the query gene with that of the MAG itself. For example, if you detect a *Desulfovibrio*-like *dsrA* seuqence in a bin that has been classified as belonging to the genus *Desulfovibrio* then it is probably a safe bet that the annotation is correct.
 
 However, when comparing taxonomic assignments, it is important to be aware of the differing taxonomic schemes that are circulating in the microbiological and bioinformatic literature and to know how to reconcile their differences. Similar to how the 16S rRNA gene taxonomies provided by *SILVA*, *Greengenes*, and *RDP* taxonomies all differ in some aspects there are multiple competing taxonomies in protein databases.
 
@@ -131,5 +131,13 @@ However, when comparing taxonomic assignments, it is important to be aware of th
 
 * [NCBI](https://www.ncbi.nlm.nih.gov/taxonomy)
 * [Genome Taxonomy Database](https://gtdb.ecogenomic.org/)
+
+This problem exists because despite the existance of a formal [Code](https://www.microbiologyresearch.org/content/journal/ijsem/10.1099/ijsem.0.000778) for the naming of bacteria and archaea, because 
+
+1. There are no rules governing how we define the grouping of these names together, other than for type species
+1. Defunct synonyms and basonyms are not correctly purged from taxonomy lists (this is quite noticable with the NCBI taxonomy)
+1. Valid names cannot be assigned for uncultivate organisms, meaning there are many informal placeholder names in the literature. For example, clades like WPS-2, SAR324, and SAUL are widely cited in the literature despite having no official standing
+
+It is therefore important to periodically sanity check your taxonomic annotations in order to avoid splitting taxa based on spelling differences or the use of historic names that have since been reclassified.
 
 ---
