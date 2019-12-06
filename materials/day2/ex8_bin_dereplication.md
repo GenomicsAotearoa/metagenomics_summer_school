@@ -124,6 +124,8 @@ Depending on whether or not your session has been continued from previous exerci
 module purge
 
 module load DAS_Tool/1.1.1-gimkl-2018b-R-3.6.1
+module load DIAMOND/0.9.25-gimkl-2018b
+module load USEARCH/11.0.667-i86linux32
 ```
 
 `DAS_Tool` should now load without issue. With 2 threads, `DAS_Tool` should take 10 - 15 minutes to complete.
@@ -190,8 +192,9 @@ We will need to run `CheckM` under a slurm script. This is because the tree plac
 
 ```bash
 #!/bin/bash
-#SBATCH -A xxxxxx
+#SBATCH -A nesi02659
 #SBATCH -J bin_eval_checkm
+#SBATCH --partition ga_bigmem
 #SBATCH --time 2:00:00
 #SBATCH --mem 100GB
 #SBATCH --cpus-per-task 10

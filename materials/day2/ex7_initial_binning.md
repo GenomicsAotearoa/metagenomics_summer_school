@@ -52,9 +52,9 @@ The full script is provided here, and we will discuss it below.
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A xxxxx
+#SBATCH -A nesi02659
 #SBATCH -J spades_mapping
-#SBATCH --partition zzzzz
+#SBATCH --partition ga_bigmem
 #SBATCH --time 00:20:00
 #SBATCH --mem 20GB
 #SBATCH --ntasks 1
@@ -228,9 +228,9 @@ This will take a bit longer to complete, as `MaxBin` uses gene prediction tools 
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A xxxxx
+#SBATCH -A nesi02659
 #SBATCH -J spades_mapping_array
-#SBATCH --partition zzzzz
+#SBATCH --partition ga_bigmem
 #SBATCH --time 00:20:00
 #SBATCH --mem 20GB
 #SBATCH --ntasks 1

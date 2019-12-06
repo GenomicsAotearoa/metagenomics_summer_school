@@ -197,11 +197,3 @@ We will now look at a few interesting assembly comparisons.
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex5_fig4_contigsunmatched.PNG)
 
 ---
-
-### Future considerations
-
----
-
-#### Co-assembly vs single assemblies
-
----

@@ -180,9 +180,9 @@ Into this file, either write or copy/paste the following commands:
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A xxxxx
+#SBATCH -A nesi02659
 #SBATCH -J spades_assembly
-#SBATCH --partition zzzzz
+#SBATCH --partition ga_bigmem
 #SBATCH --time 00:30:00
 #SBATCH --mem 20GB
 #SBATCH --ntasks 1
@@ -271,9 +271,9 @@ nano idbaud_assembly.sl
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A xxxxx
+#SBATCH -A nesi02659
 #SBATCH -J idbaud_assembly
-#SBATCH --partition zzzzz
+#SBATCH --partition ga_bigmem
 #SBATCH --time 00:00:30
 #SBATCH --mem 10GB
 #SBATCH --ntasks 1
