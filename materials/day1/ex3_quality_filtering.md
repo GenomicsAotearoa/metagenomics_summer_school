@@ -27,13 +27,11 @@ module load FastQC/0.11.7
 
 ```bash
 # Load interactively
-fastqc
 
-# Process data from the command line
 fastqc mock_R1.fastq.gz mock_R2.fastq.gz
 ```
 
-Note that `FastQC` does not load the forward and reverse pairs of a library in the same window, so you need to be mindful of how your samples relate to each other. Lets load the file `mock_R1.good.fastq` into `FastQC` and see what the display looks like.
+Now download the resulting files using `scp` and view them on your computer. Note that `FastQC` does not load the forward and reverse pairs of a library in the same window, so you need to be mindful of how your samples relate to each other. 
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig1_overview.PNG)
 
