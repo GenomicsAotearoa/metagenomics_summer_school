@@ -341,7 +341,7 @@ All done! We can see here that compared to bin_4 the following differences are a
 1. There has been a loss of *flgD* and *flgF*
 1. There has been a duplication of *flgG*
 1. *flgE* has been translocated upstream relative to the other genes
-1. *flgF, *flgH*, and *flgI* have been reversed relative to *flgE*
+1. *flgF*, *flgH*, and *flgI* have been reversed relative to *flgE*
 
 However, it is important to note that these do not all constitute independent events. Careful analysis would be needed to determine whether this rearrangement occurred in a single evolutionary event, or multiple successive ones.
 
