@@ -8,6 +8,7 @@
 * Copying, Moving, Renaming and Removing files
 * Examining file contents
 * Redirection, manipulation and extraction
+* Text and file manipulation
 * Loops
 * Shell scripting
 * Moving files between your laptop and NeSI
@@ -167,6 +168,78 @@ grep -B1 -A2 NNNNNNNNNN Test_2.fastq | wc -l
 ```
 
 In an instance where we aren't after a particular string, but want  sections from each lines of file(s) to be extracted and written into an output file for further operations, `cut` command is a great utility. It can be used to cut parts of a line by **byte position, character and field**. Basically the cut command slices a line and extracts the text.
+
+---
+
+### Text and file manipulation
+
+There are a number of handy command line tools for working with text files and performing operations like selecting columns from a table, or modifying text in a file stream. A few examples of these are below.
+
+#### Cut
+
+The `cut` command print selected parts of lines from each FILE to standard output. It is basically a tool for selecting columns of text, delimited by a particular character. The tab character is the default delimiter that `cut` uses to determine what constitutes a field. If the columns in your file are delimited by another character, you can specify this using the `-d` parameter.
+
+See what results you get from the file `names.txt` in the `1.bash/` folder.
+
+```bash
+cut -d " " -f 1 names.txt
+cut -d " " -f 1-3 names.txt
+cut -d " " -f 1,3 names.txt
+```
+
+#### basename
+
+`basename` is a function in UNIX that is helpful for removing a uniform part of a name from a list of files. In this case, we will use `basename` to remove the .fastq extension from the files that we've been working with.
+
+```bash
+basename Test_1.fastq .fastq
+```
+
+#### sed
+
+`sed` is a stream editor. A stream editor is used to perform basic text transformations on an input stream (a file, or input from a pipeline) like, searching, find and replace, insertion or deletion. The most common use of the `sed` command in UNIX is for substitution or for find and replace. By using `sed` you can edit files even without opening it, which is extremely important when working with large files.
+
+View the contents of the `animals.txt` file using `cat`.
+
+```bash
+cat animals.txt
+```
+We will now use `sed` to make some replacements to the text in this file. 
+
+##### Example - Replacing/substituting a string
+
+`sed` is mostly used to replace the text in a file. In the following example, `sed` replaces the word 'dogs' with 'cats' in the file.
+
+```bash
+sed 's/dogs/cats/' animals.txt
+```
+
+Here the `s` specifies the substitution operation. The `/` characters are delimiters. The `dogs` is the search pattern and the `cats` is the replacement string.
+
+By default, the `sed` command replaces the first occurrence of the pattern in each line and it won't replace additional occurrences in the line.
+
+##### Example - Replacing all occurrences
+
+The substitute flag `g` (global replacement) can be added to the command to replace all the occurrences of the string in the line.
+
+```bash
+sed 's/dogs/cats/g' animals.txt
+```
+
+##### Example - Deleting a line
+
+To delete a particular line, we can specify the line number followed by the `d` character. For example
+
+```bash
+sed '1d' animals.txt
+# Delete the first line
+
+sed '2d' animals.txt
+# Delete the second line
+
+sed '$d' animals.txt
+# Delete the last line
+```
 
 ---
 
