@@ -8,6 +8,9 @@
 * Copying, Moving, Renaming and Removing files
 * Examining file contents
 * Redirection, manipulation and extraction
+* Loops
+* Shell scripting
+* Moving files between your laptop and NeSI
 
 ---
 
@@ -164,3 +167,147 @@ grep -B1 -A2 NNNNNNNNNN Test_2.fastq | wc -l
 ```
 
 In an instance where we aren't after a particular string, but want  sections from each lines of file(s) to be extracted and written into an output file for further operations, `cut` command is a great utility. It can be used to cut parts of a line by **byte position, character and field**. Basically the cut command slices a line and extracts the text.
+
+---
+
+### Loops
+
+Loops are a common concept in most programming languages which allow us to execute commands repeatedly with ease. There are three basic loop constructs in `bash` scripting,
+
+* **for** - iterates over a list of items and performs the given set of commands
+```
+for item in [LIST]
+do
+    [COMMANDS]
+done
+```
+
+* **while** - Performs a given set of commands an unknown number of times as long as the given condition evaluates is true
+```
+while [CONDITION]
+do
+    [COMMANDS]
+done
+```
+
+* **until** - Execute a given set of commands as longs as the given condition evaluates to false
+
+For most of our uses, a `for loop` is sufficient for our needs, so that is what we will be focusing on for this exercise.
+
+Shell identifies the `for` command and repeat a command/group of commands once for each item in a list. The for loop will take each item in the list (in order, one after the other), assign that item as the value of the variable `var`, execute the commands between do and done then go back to the top (iteration), take the next item in the list and repeat over. Value of a variable is assigned by using `$` in fron of it. This tell the interpreter to treat the variable as a variable name and substitute its value in it place.i.e. This will prevent shell interpreter treating this as a string or a command . ("expanding" variable).For an example, wrtiting a for loop to print the first two lines of the fastq files, 
+
+```
+for filename in *.fastq
+do
+    head -n 2 ${filename}
+done
+```
+
+Another useful command to be used with `for` loops is `basename` which strips directory information and suffixes from file names (i.e. prints the filename **NAME** with any leading directory components removed).
+
+```
+basename Test_1.fastq .fastq
+```
+
+`basename` is rather a powerful tool when used in a for loop. It enables the user to access just the file prefix which can be use to name things
+
+```
+for filename in *.fastq
+do
+    name=$(basename ${filename} .fastq)
+    echo ${name}
+done
+```
+
+---
+
+### Scripts
+
+Executing operations that contain multiple lines/tasks or steps such as for loops via command line is rather inconvenient. For an example, imagine fixing a simple spelling mistake made somethwhere in the middle of a for loop that was directly executed on the terminal.
+
+The solution for this is the use of shell scripts, which are essentially a set of commands that you write into a text file and then run as a single command. In UNIX-like operating systems, in built text editors such as `nano`, `emacs`, and `vi` provide the platforms to write scripts. For this workshop we will use `nano` to create a file named `ForLoop.sh`.
+
+```
+nano ForLoop.sh
+```
+
+Add the following for loop to the script (note the header `#!/bin/bash`).
+
+```
+#!/bin/bash
+
+for filename in *.fastq
+do
+    head -n 2 ${filename}
+done
+```
+
+Because `nano` is designed to work without a mouse for input, all commands you pass into the editor are done via keyboard shortcuts. You can save your changes by pressing `Ctrl + O`, then exit `nano` using `Ctrl + X`. If you try to exit without saving changes, you will get a prompt confirming whether or not you want to save before exiting, just like you would if you were working in **Notepad** or **Word**.
+
+Now that you have saved your file, see if you can run the file by just typing the name of it (as you would for any command run off the terminal). You will notice the command written in the file will not be executed. The solution for this is to tell the machine what program to use to run the script. 
+
+```
+bash ForLoop.sh
+```
+
+Although the file contains enough information to be considered as a program itself, operating system can not recognise it as a program. This is due to it's lacking "executable" permissions to be executed without the assistance of a third party. Run the `ls -l ForLoop.sh` command and evaluate the first part of the output
+
+```
+ls -l ForLoop.sh 
+# -rw-rw-r-- 1 user user 88 Dec  6 19:52 ForLoop.sh
+```
+
+There are three file permission flags that a file we create on NeSI can possess. Two of these, the read (`r`) and write (`w`) are marked for the `ForLoop.sh` file .The third flag, executable (`x`) is not set. We want to change these permissions so that the file can be executed as a program. This can be done by using `chmod` command. Add the executable permissions (`+x`) to `ForLoop.sh` and run `ls` again to see what has changed.
+
+```
+chmod +x ForLoop.sh
+ls -l ForLoop.sh 
+# -rwxrwxr-x 1 user user 88 Dec  6 19:52 ForLoop.sh
+```
+
+Re-open the file in `nano` and append the output to **TwoLines.txt**, save and exit
+
+```
+#!/bin/bash
+
+for filename in *.fastq
+do
+    head -n 2 ${filename} >> TwoLines.txt
+done
+```
+
+Execute the file `ForLoop.sh`. We'll need to put `./` at the beginning so the computer knows to look here in this directory for the program.
+
+```
+./ForLoop.sh
+```
+
+---
+
+### Moving Files between your laptop and remote cluster/machine
+
+There are multiple commands and tools to move files between your laptop and remote clusters/machines. `scp`, `rsync` are some of the commands and `Globus`, `Cyberduck` are some of these tools. We will be using `scp` command for most of the time as this is a simple to use tool that makes use of the `ssh` configuration we have already established for connecting to NeSI.
+
+In order it use it error free, we need to pay attention to whether the file is moving FROM or TO remote cluster/machine, Absolute paths, Relative paths, Local vs Remote, etc. 
+
+Following templates are written in a way where the commands are to be executed from **local**
+
+#### *FROM* local *TO* remote
+
+```
+scp /path/from/local/ ga-vl01:/path/to/remote/
+```
+
+#### *FROM* remote *TO* local
+
+```
+scp ga-vl01:/path/from/remote/ /path/to/local/
+```
+
+If the `~/.ssh/config` is not setup with aliases you will need to replace the shortcut `ga-vl01` with the full address of the remote:
+
+```
+scp -oProxyCommand="ssh -W %h:%p user@lander.nesi.org.nz" /path/in/local/ user@ga-vl01.mahuika.nesi.org.nz:/path/to/remote/
+```
+
+---
