@@ -41,34 +41,36 @@ A draft timetable for the day is provided below, but please keep in mind that th
 
 ### Day 1 - 10<sup>th</sup> December 2019
 
-|Time|Event|
-|:---|:---|
-|9:00 am – 9:45 am|**Introduction**<br>Welcome<br>Logging into *NeSI*|
-|9:45 am – 10:30 am|**Bash scripting**|
-|10:30 am – 10:50 am|**Morning tea break**|
-|10:50 am – 11:30 am|**Bash scripting** (continued)|
-|11:30 am – 12:00 pm|**The metagenomics decision tree**<br>Proposing a hypothesis for your project<br>Dividing into working groups|
-|12:00 pm – 12:45 pm|**Break for lunch**|
-|12:45 pm – 1:45 pm|**Quality filtering raw reads**<br>Visualisation with *FastQC*<br>Read trimming and adapter removal<br>Diagnosing poor libraries<br>Common issues and best practice|
-|1:45 pm – 3:00 pm|**Assembly**<br>Choice of assemblers<br>Considerations for parameters, and when to stop!|
-|3:00 pm – 3:20 pm|**Afternoon tea break**|
-|3:20 pm – 3:45 pm|**Assembly** (continued)<br>Submitting jobs to *NeSI* via *slurm*|
-|4:00 pm – 5:00 pm|**End of day wrap up**<br>Attendees can work with their own data, if available|
+|Time|Event|Session leader|
+|:---|:---|:---|
+|9:00 am – 9:45 am|**Introduction**<br>Welcome<br>*TASK: Logging into NeSI*|David Waite|
+|9:45 am – 10:30 am|**Bash scripting**|Dinindu Senanayake<br>Ngoni Faya|
+|10:30 am – 10:50 am|**Morning tea break**||
+|10:50 am – 11:30 am|**Bash scripting** (continued)|Dinindu Senanayake<br>Ngoni Faya|
+|11:30 am – 12:00 pm|**The metagenomics decision tree**<br>*TASK: Dividing into working groups*<br>*TASK: Select a goal for your project*|Kim Handley|
+|12:00 pm – 12:45 pm|**Break for lunch**||
+|12:45 pm – 1:45 pm|**Quality filtering raw reads**<br>*TASK: Visualisation with *FastQC**<br>*TASK: Read trimming and adapter removal*<br>**Diagnosing poor libraries**<br>**Common issues and best practice**|Florian Pichlmuller|
+|1:45 pm – 3:00 pm|**Assembly**<br>Choice of assemblers<br>*TASK: Considerations for parameters, and when to stop!*|David Waite|
+|3:00 pm – 3:20 pm|**Afternoon tea break**||
+|3:20 pm – 3:45 pm|**Assembly** (continued)<br>*TASK: Submitting jobs to NeSI via slurm*|David Waite|
+|4:00 pm – 5:00 pm|**End of day wrap up**<br>Attendees can work with their own data, if available|Kim Handley<br>David Waite|
 
 ### Day 2 - 11<sup>th</sup> December 2019
 
-|Time|Event|
-|:---|:---|
-|9:00 am – 9:30 am|**Introduction**<br>Overview of yesterday, questions<br>Overview of today|
-|9:30 am – 10:30 am|**Evaluating the overnight assembly**<br>Future considerations – co-assembly vs single assemblies<br>Run evaluation tool/script|
-|10:30 am – 10:50 am|**Morning tea break**|
-|10:50 am – 12:00 pm|**Overview of binning history**<br>ESOM, differetial coverage, tetranucleotide frequencies<br>Strategies for binning|
-|12:00 pm – 12:45 pm|**Break for lunch**|
-|12:45 pm – 1:45 pm|**Binning (part 1)**<br>Short contig removal<br>Read mapping<br>Multi-binning strategy (*Metabat* and *Maxbin*)|
-|1:45 pm – 3:00 pm|**Binning (part 2)**<br>Bin dereplication via *DAS_Tool*<br>Evaluating bins using *CheckM*|
-|3:00 pm – 3:20 pm|**Afternoon tea break**|
-|3:20 pm – 4:00 pm|**Binning (part 3)**<br>Discuss additional dereplication strategies, such as *dRep*<br>How to work with viral and eukaryotic bins<br>Dealing with organisms which possess minimal genomes|
-|4:00 pm – 5:00 pm|**End of day wrap up**<br>Attendees can work with their own data, if available|
+|Time|Event|Session leader|
+|:---|:---|:---|
+|9:00 am – 9:30 am|**Introduction**<br>Overview of yesterday, questions|Kim Handley|
+|9:30 am – 10:30 am|**Evaluating the overnight assembly**<br>*TASK: Run evaluation tool/script*|David Waite|
+|10:30 am – 10:50 am|**Morning tea break**||
+|10:50 am – 11:20 am|**Overview of binning history**|Kim Handley|
+|11:20 am – 12:00 pm|**Binning (part 1)**<br>*TASK: Short contig removal*<br>*TASK: Read mapping*|David Waite|
+|12:00 pm – 12:45 pm|**Break for lunch**||
+|12:45 pm – 1:15 pm|**Overview of binning history (continued)**<br>Key parameters and strategies for binning|Kim Handley|
+|1:15 pm – 1:45 pm|**Binning (part 1, continued)**<br><br>*TASK: Multi-binning strategy (**Metabat** and **Maxbin**)*|Kim Handley|
+|1:45 pm - 3:00 pm|**Binning (part 2)**<br>*TASK: Bin dereplication via DAS_Tool*<br>*TASK: Evaluating bins using CheckM*|Kim Handley|
+|3:00 pm – 3:20 pm|**Afternoon tea break**||
+|3:20 pm – 4:00 pm|**Binning (part 3)**<br>Discuss additional dereplication strategies, such as **dRep**<br>How to work with viral and eukaryotic bins<br>Dealing with organisms which possess minimal genomes|Kim Handley<br>David Waite|
+|4:00 pm – 5:00 pm|**End of day wrap up**<br>Attendees can work with their own data, if available|Kim Handley<br>David Waite|
 
 ### Day 3 - 12<sup>th</sup> December 2019
 
