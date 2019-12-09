@@ -10,15 +10,15 @@
 
 ### Remove short contigs from the data set
 
-Ideally, we do not want to be creating bins from all of the assembled contigs, as there is often a long tail of contigs which are only several *k*-mers long. These have little biological meaning, as they are too short for robust gene annotation, and they can introduct a significant degree of noise in the clustering algorithms used for binning. We therefore identify a suitable threshold for a minimum length of contigs to be considered for binning.
+Ideally, we do not want to be creating bins from all of the assembled contigs, as there is often a long tail of contigs which are only several *k*-mers long. These have little biological meaning, as they are too short for robust gene annotation, and they can introduce a significant degree of noise in the clustering algorithms used for binning. We therefore identify a suitable threshold for a minimum length of contigs to be considered for binning.
 
-We have already done this in the [previous exercise](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex5_evaluating_assemblies.md) so we could either use the existing filtering at 1,000 bp in length, or move to something stricter. Most binning tools have a default cut-off for minimum contig size - `MetaBAT` uses a default minimum of 2,500 bp, and recommends at least 1,500. By contrast, `MaxBin` sets the minimum length at 1,000 bp.
+We have already done this in the [previous exercise](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex5_evaluating_assemblies.md) so we could either use the existing filtering at 1,000 bp in length, or move to something stricter. Most binning tools have a default cut-off for minimum contig size - `MetaBAT` uses a default minimum of 2,500 bp, and recommends at least 1,500 bp. By contrast, `MaxBin` sets the minimum length at 1,000 bp.
 
 ---
 
 ### Obtain coverage profiles for assembled contigs via read mapping
 
-Binning is done using a combination of information encoded in the *composition* and *coverage* of the assembled contigs. *Composition* refers to *k*-mer (usually tetranucleotide) frequency profiles of the contigs, which are generally conserved within a genome. By constract, *coverage* is a reflection of the abundance of the contigs in the assembly. Organisms which are more abundant will contribute more genomic material to the metagenome, and hence their DNA will be, on average, more abundant in the sample. When binning, we can look for pieces of DNA which are not assembled together, but have similar *composition* and occur at approximately equal abundances in the sample to identify contigs which likely originate in the same genome.
+Binning is done using a combination of information encoded in the *composition* and *coverage* of the assembled contigs. *Composition* refers to *k*-mer (usually tetranucleotide) frequency profiles of the contigs, which are generally conserved within a genome. By constract (??? what do you mean), *coverage* is a reflection of the abundance of the contigs in the assembly. Organisms which are more abundant will contribute more genomic material to the metagenome, and hence their DNA will be, on average, more abundant in the sample. When binning, we can look for pieces of DNA which are not assembled together, but have similar *composition* and occur at approximately equal abundances in the sample to identify contigs which likely originate in the same genome.
 
 The composition of the contigs is calculated by the binning tool at run time, but to obtain coverage information we must map our unassembled reads from each sample against the assembly to generate the differential abundance profiles for each contig. This is acheived using `bowtie2` to map the reads against the assembly, then `samtools` to sort and compress the resulting file.
 
@@ -42,7 +42,7 @@ ls spades_assembly/
 
 These files ending in *.bt2* are the index files for `bowtie2`, and are specific to this tool. If you wish to map using an alternate tool (for example `bowtie` or `BBMap`) you will need to create index/database files using these programs.
 
-Generally speaking, we don't need to know the names of the index files, as they are simply refered to be the output name we specified (*bw_spades*) when running `bowtie2`.
+Generally speaking, we don't need to know the names of the index files, as they are simply referred to be the output name we specified (*bw_spades*) when running `bowtie2`.
 
 #### Mapping the reads
 
@@ -119,7 +119,7 @@ Which is achieved with the following parameters
 |**-@ ...**|Number of threads to use for sorting and compressing|
 |**-o ...**|Output file name. When we specify the *bam* extension `samtools` automatically compresses the output|
 
-Compressing the file to the *bam* format is an important step as when working with real data *sam* files can be massive and our storage capacity on NeSI is limited. It is also helpful to sort the mapping information to that reads mapped to a contig are listed in order of their start position. For example
+Compressing the file to the *bam* format is an important step as when working with real data *sam* files can be massive and our storage capacity on NeSI is limited. It is also helpful to sort the mapping information so that reads mapped to a contig are listed in order of their start position. For example
 
 ```bash
 # Unsorted reads
@@ -137,9 +137,9 @@ Map: --------ECONT--
 Map: -----------NTIG
 ```
 
-Reads will initially be mapped in an unsorted order as they are added to the *sam* file in more or less the same order that they are encountered in the original *fastQ* files.
+Reads will initially be mapped in an unsorted order, as they are added to the *sam* file in more or less the same order as they are encountered in the original *fastQ* files.
 
-Sorting the mapping information is an important prerequisite for performing certain downstream processes. Not every tool we use requires reads to be sorted, but it can be frustrating having to debug the instances where read sorting matters so we typically just get it done as soon as possible and then we don't have to worry about it again.
+Sorting the mapping information is an important prerequisite for performing certain downstream processes. Not every tool we use requires reads to be sorted, but it can be frustrating having to debug the instances where read sorting matters, so we typically just get it done as soon as possible and then we don't have to worry about it again.
 
 In newer versions of `samtools` we can perform the sorting and compressing in a single operation (as shown in the script above). For older versions of `samtools`, you may need to use a command of the following form.
 
@@ -151,9 +151,9 @@ samtools view -bS sample1.sam | samtools sort -o sample1.bam
 
 ### Create initial bins using *MetaBAT* and *MaxBin*
 
-With this mapping information, we can now perform binning. There are a multitude of good binning tools currently published, and each have their strengths and weaknesses. As there is no clear best tool for binning, the current strategy for binning is to use a number of different tools on your data, then use the tool `DAS_Tool` to evaluate all potential outcomes and define the best set of bins across all tools used.
+With this mapping information, we can now perform binning. There are a multitude of good binning tools currently published, and each have their strengths and weaknesses. As there is no best tool for binning, the current strategy for binning is to use a number of different tools on your data, then use the tool `DAS_Tool` to evaluate all potential outcomes and define the best set of bins across all tools used.
 
-In our own workflow, we use the tools `MetaBAT`, `MaxBin`, and `CONCOCT` for binning but there are many alternatives that are equally viable. In the interests of time here, we are only going to demonstrate the first two tools.
+In our own workflow, we use the tools `MetaBAT`, `MaxBin`, and `CONCOCT` for binning, but there are many alternatives that are equally viable. In the interests of time, we are only going to demonstrate the first two tools.
 
 #### Binning using *MetaBAT*
 
@@ -180,7 +180,7 @@ metabat2 -t 10 -m 1500 \
          -o metabat/metabat
 ```
 
-Note here that we are specifying a minimum contig size of 1,500 bp, which is the lower limit allowed by the authors of `MetaBAT`. This is larger than our minimum threshold when filtering the assembly which means there are some assembled contigs which cannot be binned. Consider the choice of this parameter and your initial contig filtering carefully when binning your own data.
+Note here that we are specifying a minimum contig size of 1,500 bp, which is the lower limit allowed by the authors of `MetaBAT`. This is larger than the minimum threshold of 1,000 bp when we filtered the assembly, which means there are some assembled contigs which cannot be binned. Consider the choice of this parameter and your initial contig filtering carefully when binning your own data.
 
 When specifying the output file, notice that we pass both a folder path (*metabat/*) and file name (*metabat*). The reason I do this is that `MetaBAT` writes its output files using the pattern
 
