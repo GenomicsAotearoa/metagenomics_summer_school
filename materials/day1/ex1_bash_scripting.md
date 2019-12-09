@@ -175,12 +175,6 @@ In an instance where we aren't after a particular string, but want sections from
 
 There are a number of handy command line tools for working with text files and performing operations like selecting columns from a table, or modifying text in a file stream. A few examples of these are below.
 
-Before we start, copy the files `names.txt` and `animals.txt` from the location `ssss` to your `MGSS_Intro/` folder.
-
-```bash
-cp 
-```
-
 #### Cut
 
 The `cut` command print selected parts of lines from each FILE to standard output. It is basically a tool for selecting columns of text, delimited by a particular character. The tab character is the default delimiter that `cut` uses to determine what constitutes a field. If the columns in your file are delimited by another character, you can specify this using the `-d` parameter.
