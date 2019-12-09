@@ -64,10 +64,10 @@ A draft timetable for the day is provided below, but please keep in mind that th
 |11:20 am – 12:00 pm|**Binning (part 1)**<br>*TASK: Short contig removal*<br>*TASK: Read mapping*|David Waite|
 |12:00 pm – 12:45 pm|**Break for lunch**||
 |12:45 pm – 1:15 pm|**Overview of binning history (continued)**<br>Key parameters and strategies for binning|Kim Handley|
-|1:15 pm – 1:45 pm|**Binning (part 1, continued)**<br><br>*TASK: Multi-binning strategy (**Metabat** and **Maxbin**)*|Kim Handley|
-|1:45 pm - 3:00 pm|**Binning (part 2)**<br>*TASK: Bin dereplication via DAS_Tool*<br>*TASK: Evaluating bins using CheckM*|Kim Handley|
+|1:15 pm – 1:45 pm|**Binning (part 2)**<br>*TASK: Multi-binning strategy*|Kim Handley|
+|1:45 pm - 3:00 pm|**Binning (part 3)**<br>*TASK: Bin dereplication via DAS_Tool*<br>*TASK: Evaluating bins using CheckM*|Kim Handley|
 |3:00 pm – 3:20 pm|**Afternoon tea break**||
-|3:20 pm – 4:00 pm|**Binning (part 3)**<br>Discuss additional dereplication strategies, such as **dRep**<br>How to work with viral and eukaryotic bins<br>Dealing with organisms which possess minimal genomes|Kim Handley<br>David Waite|
+|3:20 pm – 4:00 pm|**Binning (part 4)**<br>Discuss additional dereplication strategies, such as **dRep**<br>How to work with viral and eukaryotic bins<br>Dealing with organisms which possess minimal genomes|Kim Handley<br>David Waite|
 |4:00 pm – 5:00 pm|**End of day wrap up**<br>Attendees can work with their own data, if available|Kim Handley<br>David Waite|
 
 ### Day 3 - 12<sup>th</sup> December 2019
