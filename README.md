@@ -18,7 +18,6 @@ A draft timetable for the day is provided below, but please keep in mind that th
 ### Day 2
 
 1. [Evaluating the overnight assembly](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex5_evaluating_assemblies.md)
-1. Overview of binning history
 1. [Binning (part 1, read mapping)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex6_initial_binning.md)
 1. [Binning (part 2, initial binning)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex7_initial_binning.md)
 1. [Binning (part 3, dereplication)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex8_bin_dereplication.md)
@@ -49,9 +48,9 @@ A draft timetable for the day is provided below, but please keep in mind that th
 |11:30 am – 12:00 pm|**The metagenomics decision tree**<br>*TASK: Dividing into working groups*<br>*TASK: Select a goal for your project*|Kim Handley|
 |12:00 pm – 12:45 pm|**Break for lunch**||
 |12:45 pm – 1:45 pm|**Quality filtering raw reads**<br>*TASK: Visualisation with *FastQC**<br>*TASK: Read trimming and adapter removal*<br>**Diagnosing poor libraries**<br>**Common issues and best practice**|Florian Pichlmuller|
-|1:45 pm – 3:00 pm|**Assembly**<br>Choice of assemblers<br>*TASK: Considerations for parameters, and when to stop!*|David Waite|
+|1:45 pm – 3:00 pm|**Assembly (part 1)**<br>Choice of assemblers<br>*TASK: Considerations for parameters, and when to stop!*<br>*TASK: Submitting jobs to NeSI via slurm*|David Waite|
 |3:00 pm – 3:20 pm|**Afternoon tea break**||
-|3:20 pm – 3:45 pm|**Assembly** (continued)<br>*TASK: Submitting jobs to NeSI via slurm*|David Waite|
+|3:20 pm – 3:45 pm|**Assembly (part 2)**<br>*TASK: Submitting variant assemblies to NeSI*|David Waite|
 |4:00 pm – 5:00 pm|**End of day wrap up**<br>Attendees can work with their own data, if available|Kim Handley<br>David Waite|
 
 ### Day 2 - 11<sup>th</sup> December 2019
