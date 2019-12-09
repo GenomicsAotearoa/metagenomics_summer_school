@@ -119,7 +119,7 @@ head -n 1 Test_1.fastq
 
 ### Redirection, manipulation and extraction
 
-Although using `cat` and `less` commands will allow us to view the content of the whole file, most of the time we are in search of particular characters (strings) of interest, rather than the full content of the file. One of the most commonly used command-line utilities to search for strings is `grep`. Let's use this command to search for the string NNNNNNNNNN in `Test_2.fastq` file.
+Although using `cat` and `less` commands will allow us to view the content of the whole file, most of the time we are in search of particular characters (strings) of interest, rather than the full content of the file. One of the most commonly used command-line utilities to search for strings is `grep`. Let's use this command to search for the string `NNNNNNNNNN` in `Test_2.fastq` file.
 
 ```bash
 grep NNNNNNNNNN Test_2.fastq
@@ -175,11 +175,17 @@ In an instance where we aren't after a particular string, but want sections from
 
 There are a number of handy command line tools for working with text files and performing operations like selecting columns from a table, or modifying text in a file stream. A few examples of these are below.
 
+Before we start, copy the files `names.txt` and `animals.txt` from the location `ssss` to your `MGSS_Intro/` folder.
+
+```bash
+cp 
+```
+
 #### Cut
 
 The `cut` command print selected parts of lines from each FILE to standard output. It is basically a tool for selecting columns of text, delimited by a particular character. The tab character is the default delimiter that `cut` uses to determine what constitutes a field. If the columns in your file are delimited by another character, you can specify this using the `-d` parameter.
 
-See what results you get from the file `names.txt` in the `1.bash/` folder.
+See what results you get from the file `names.txt`.
 
 ```bash
 cut -d " " -f 1 names.txt
