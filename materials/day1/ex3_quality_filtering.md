@@ -82,8 +82,8 @@ For a first run with `trimmomatic`, type the following commands into your consol
 module load Trimmomatic/0.39-Java-1.8.0_144
 
 trimmomatic PE -threads 10 -phred33 \
-               mock_R1.adapter_decay.fastq mock_R2.adapter_decay.fastq \
-               mock_R1.qc.fastq mock_s1.qc.fastq mock_R2.qc.fastq mock_s2.qc.fastq \
+               mock_R1.adapter_decay.fastq.gz mock_R2.adapter_decay.fastq.gz \
+               mock_R1.qc.fastq.gz mock_s1.qc.fastq.gz mock_R2.qc.fastq.gz mock_s2.qc.fastq.gz \
                HEADCROP:10 SLIDINGWINDOW:4:30 MINLEN:80
 ```
 
@@ -94,10 +94,10 @@ There is a lot going on in this command, so here is a breakdown of the parameter
 |PE|*positional*|Specifies whether we are analysing single- or paired-end reads|
 |-threads 10|*keyword*|Specifies the number of threads to use when processing|
 |-phred33|*keyword*|Specifies the fastq encoding used|
-|mock_R1.adapter_decay.fastq / mock_R2.adapter_decay.fastq|*positional*|The paired forward and reverse reads to trim|
-|mock_R1.qc.fastq|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner also passed|
-|mock_s1.qc.fastq|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner failed (orphan reads)|
-|mock_R2.qc.fastq / mock_s2.qc.fastq|*positional*|The reverse-sequence equivalent of above|
+|mock_R1.adapter_decay.fastq.gz / mock_R2.adapter_decay.fastq.gz|*positional*|The paired forward and reverse reads to trim|
+|mock_R1.qc.fastq.gz|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner also passed|
+|mock_s1.qc.fastq.gz|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner failed (orphan reads)|
+|mock_R2.qc.fastq.gz / mock_s2.qc.fastq.gz|*positional*|The reverse-sequence equivalent of above|
 |HEADCROP:10|*positional*|Adapter trimming command. Remove the first 10 positions in the sequence|
 |SLIDINGWINDOW:4:30|*positional*|Quality filtering command. Analyses each sequence in a 4 base pair sliding window, truncating if the average quality drops below Q30|
 |MINLEN:80|*positional*|Length filtering command, discard sequences that are shorter than 80 base pairs after trimming|
@@ -124,7 +124,7 @@ The basic format for a `trimmomatic` command is
 trimmomatic PE <keyword flags> <sequence input> <sequence output> <trimming parameters>
 ```
 
-The trimming parameters are processed in the order you specify them. This is a deliberate behaviour but can have some unexpected consequences for new users.
+The trimming parameters are processed in the order you specify them. This is a deliberate behaviour, but can have some unexpected consequences for new users.
 
 For example, consider these two scenarios:
 
@@ -164,8 +164,7 @@ Whether a library is 'poor' quality or not can be a bit subjective. These are so
 
 1. Does the sequencing length match what you ordered from the facility?
 1. If the sequences are shorter than expected, is adapter read-through a concern?
-1. What does the sequence quality look like along the length of the run? Are there any expected/unexpected regions of quality
-degradation?
+1. What does the sequence quality look like for the whole length of the run? Are there any expected/unexpected regions of quality degradation?
 1. Are adapters and/or barcodes removed? (look at the *Per base sequence content* to diagnose this)
 1. Is there unexpected sequence duplication? (this can occur when low-input library preparations are used)
 1. Are over-represented *k*-mers present? (this can be a sign of adapter and barcode contamination)
