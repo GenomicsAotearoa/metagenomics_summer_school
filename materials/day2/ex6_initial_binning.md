@@ -4,6 +4,7 @@
 
 * Remove short contigs from the data set
 * Obtain coverage profiles for assembled contigs via read mapping
+* *Optional:* Read mapping using a slurm array
 
 ---
 
@@ -147,3 +148,39 @@ samtools view -bS sample1.sam | samtools sort -o sample1.bam
 ```
 
 ---
+
+### *Optional: Read mapping using an array*
+
+If you have a large number of files to process, it might be worth using a slurm array to distribute you individual mapping jobs across many separate nodes. An example script for how to perform this is given below, although it will not be covered in this workshop.
+
+```bash
+#!/bin/bash -e
+#SBATCH -A nesi02659
+#SBATCH -J spades_mapping_array
+#SBATCH --partition ga_bigmem
+#SBATCH --time 00:20:00
+#SBATCH --mem 20GB
+#SBATCH --ntasks 1
+#SBATCH --array 0-3
+#SBATCH --cpus-per-task 10
+#SBATCH -e spades_mapping_array.%j.err
+#SBATCH -o spades_mapping_array.%j.out
+
+module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
+
+cd 5.binning/
+
+srun bowtie2-build spades_assembly/spades_assembly.m1000.fna spades_assembly/bw_spades
+
+# Load the sample names into a bash array
+samples=(sample1 sample2 sample3 sample)
+
+# Activate the srun command, using the SLURM_ARRAY_TASK_ID variable to
+# identify which position in the `samples` array to use
+srun bowtie2 --minins 200 --maxins 800 --threads 10 --sensitive -x spades_assembly/bw_spades \
+             -1 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R1.fastq.gz \
+             -2 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R2.fastq.gz \
+             -S ${samples[ $SLURM_ARRAY_TASK_ID ]}.sam
+
+srun samtools sort -o ${samples[ $SLURM_ARRAY_TASK_ID ]}.bam ${samples[ $SLURM_ARRAY_TASK_ID ]}.sam
+```
