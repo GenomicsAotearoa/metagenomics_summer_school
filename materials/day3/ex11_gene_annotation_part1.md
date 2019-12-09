@@ -78,6 +78,7 @@ Before we proceed with this exercise, lets set up a slurm job to annotate each o
 #SBATCH -A nesi02659
 #SBATCH -J annotate_diamond
 #SBATCH --partition ga_bigmem
+#SBATCH --res SummerSchool
 #SBATCH --time 02:00:00
 #SBATCH --mem 20GB
 #SBATCH --ntasks 1
@@ -96,7 +97,7 @@ do
   out_file=$(basename ${prot_file} .faa)
 
   diamond blastp -p 20 --max-target-seqs 5 --evalue 0.001 \
-                 --db /nesi/project/nesi02659/mg_workshop//NCBI_nr_2016.dmnd \
+                 --db /nesi/nobackup/nesi02659/MGSS_resources/NCBI_nr_2016.dmnd \
                  -q ${prot_file} --outfmt 5 -o gene_annotations/${out_file}.nr.xml
 done
 ```

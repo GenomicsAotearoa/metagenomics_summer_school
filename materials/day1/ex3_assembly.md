@@ -183,7 +183,8 @@ Into this file, either write or copy/paste the following commands:
 #SBATCH -A nesi02659
 #SBATCH -J spades_assembly
 #SBATCH --partition ga_bigmem
-#SBATCH --time 00:30:00
+#SBATCH --res SummerSchool
+#SBATCH --time 01:00:00
 #SBATCH --mem 20GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 16
@@ -205,6 +206,7 @@ To save your file, use `Ctrl + O` to save the file, then `Ctrl + X` to exit `nan
 |**-A ...**|The name of the project account to run the run under. You are provided with this when you create a project on NeSI|
 |**-J ...**|The name of the job, to display when using the `squeue` command|
 |**--partition ...**|Which of the NeSI cluster [partitions](https://support.nesi.org.nz/hc/en-gb/articles/360000204076) you want to use for the job|
+|**--res ...*|This is a parameter that we need due to a system reservation for this workshop. For your own work, ignore this flag|
 |**--time ...**|Maximum run time for the job before it is killed|
 |**--mem ...**|Amount of server memory to allocate to the job. If this is exceeded, the job will be terminated|
 |**--ntasks ...**|Number of tasks to distribute the job across. For all tools we use today, this will remain as 1|
@@ -274,7 +276,7 @@ nano idbaud_assembly.sl
 #SBATCH -A nesi02659
 #SBATCH -J idbaud_assembly
 #SBATCH --partition ga_bigmem
-#SBATCH --time 00:00:30
+#SBATCH --time 00:30:00
 #SBATCH --mem 10GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 16

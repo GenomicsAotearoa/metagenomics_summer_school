@@ -195,6 +195,7 @@ We will need to run `CheckM` under a slurm script. This is because the tree plac
 #SBATCH -A nesi02659
 #SBATCH -J bin_eval_checkm
 #SBATCH --partition ga_bigmem
+#SBATCH --res SummerSchool
 #SBATCH --time 2:00:00
 #SBATCH --mem 100GB
 #SBATCH --cpus-per-task 10

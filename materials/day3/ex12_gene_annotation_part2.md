@@ -60,7 +60,11 @@ In the case of our annotation data, NCBI's *xml* schema is a good way to store i
 
 ##### Executing *MEGAN* from the command line
 
-<TO DO>
+As `MEGAN` version 5 is no longer supported, we have a special version put aside for this workshop. To launch it, enter the following command into your console:
+
+```bash
+/nesi/nobackup/nesi02659/MGSS_resources/megan/MEGAN
+```
 
 ##### Loading your gene and annotation files
 
@@ -74,7 +78,11 @@ Use the file browser icon to select your *xml* file for the first entry, and *fa
 
 ##### Parsing hits to KEGG ontology
 
-Navigate to the 'KEGG' tab and turn on the 'Analyse KEGG content' feature. Make sure you also enable 'Use Built-In RefSeq Map'. Also click the 'Load GI Mapping File', and select the file `gi2kegg-Feb2015X.bin` located in the same location as the `MEGAN` executable.
+Navigate to the 'KEGG' tab and turn on the 'Analyse KEGG content' feature. Make sure you also enable 'Use Built-In RefSeq Map'. Also click the 'Load GI Mapping File', and select the file `gi2kegg-Feb2015X.bin` located at
+
+```bash
+/nesi/nobackup/nesi02659/MGSS_resources/gi2kegg-Feb2015X.bin
+```
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex13_parse_kegg.PNG)
 

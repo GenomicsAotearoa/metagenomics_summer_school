@@ -183,6 +183,7 @@ If you are working with unassembled metagenomic data and do not wish to go throu
 #SBATCH -A nesi02659
 #SBATCH -J fraggenescan
 #SBATCH --partition ga_bigmem
+#SBATCH --res SummerSchool
 #SBATCH --time 02:00:00
 #SBATCH --mem 2GB
 #SBATCH --ntasks 1
