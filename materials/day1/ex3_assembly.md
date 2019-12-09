@@ -4,7 +4,6 @@
 
 * Become familiar with the standard input files for `SPAdes` and `IDBA-UD`
 * Understand the basic parameters that should be modified when using these assemblers
-* Prepare an assembly job to run under slurm
 
 All work for this exercise will occur in the `3.assembly/` directory.
 
