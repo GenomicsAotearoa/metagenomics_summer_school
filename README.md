@@ -89,15 +89,15 @@ A draft timetable for the day is provided below, but please keep in mind that th
 
 ### Day 4 - 13<sup>th</sup> December 2019
 
-|Time|Event|
-|:---|:---|
-|9:00 am – 9:30 am|**Introduction**<br>Overview of yesterday, questions<br>Overview of today|
-|9:30 am – 10:30 am|**Gene annotation** (refresher)<br>Tie findings to your initial hypothesis|
-|10:30 am – 10:50 am|**Morning tea break**<br>Fill in form on hypothesis for own work|
-|10:50 am – 12:00 pm|**Present and discuss findings**<br>Each group to give a casual discussion of their data<br>What they were looking for, what did they find?<br>Which databases were most helpful?|
-|12:00 pm – 12:45 pm|**Break for lunch**|
-|12:45 pm – 3:00 pm|**Presentation of data**<br>How do visualise findings - Metabolism maps, heatmaps, gene trees*<br>Gene synteny alignments (*R*)|
-|3:00 pm – 3:20 pm|**Afternoon tea break**|
-|3:20 pm – 4:00 pm|**End of day wrap up**<br>Final discussion|
+|Time|Event|Session leader|
+|:---|:---|:---|
+|9:00 am – 9:30 am|**Introduction**<br>Overview of yesterday, questions<br>Overview of today|Kim Handley|
+|9:30 am – 10:30 am|**Gene annotation** (refresher)<br>*TASK: Tie findings to your initial hypothesis*|Kim Handley|
+|10:30 am – 10:50 am|**Morning tea break**||
+|10:50 am – 12:00 pm|**Present and discuss findings**<br>*TASK: Each group to give a casual discussion of their data*<br>*TASK: What they were looking for, what did they find?*|Kim Handley|
+|12:00 pm – 12:45 pm|**Break for lunch**||
+|12:45 pm – 3:00 pm|**Presentation of data**<br>How do visualise findings - Metabolism maps, heatmaps, gene trees*<br>*TASK: Gene synteny alignments and heatmaps*|David Waite|
+|3:00 pm – 3:20 pm|**Afternoon tea break**||
+|3:20 pm – 4:00 pm|**End of day wrap up**<br>Final discussion|Kim Handley<br>David Waite|
 
 ----
