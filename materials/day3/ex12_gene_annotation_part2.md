@@ -4,7 +4,7 @@
 
 * Overview of the *BLAST XML* output
 * Looking at gene networks in `MEGAN`
-* Tie findings to your initial hypothesis
+* Tie findings to your initial goal
 
 ---
 
@@ -118,9 +118,9 @@ This provides a fine-detailed map of the genes in our MAG, and which functionali
 
 ---
 
-### Tie findings to your initial hypothesis
+### Tie findings to your initial goal
 
-It is now time to explore the genomes and try to address your original hypothesis!
+It is now time to explore the genomes and try to address your original goal!
 
 Depending on what you are looking for, you will either be trying to find gene(s) of relevance to a particular functional pathway, or the omission of genes that might be critical in function. In either case, try to use the taxonomy of each MAG to determine whether it is likely to be a worthwhile candidate for exploration, or whether it is unlikely to be involved in the function you are interested in.
 
