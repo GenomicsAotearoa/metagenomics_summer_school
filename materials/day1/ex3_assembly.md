@@ -222,10 +222,10 @@ When executing the `SPAdes` command, there are a few parameters to note here:
 |Parameter|Function|
 |:---|:---|
 |**--meta**|Activate metagenome assembly mode. Default is to assemble your metagenome using single genome assembly assumptions|
-|**-k 21,43,55,77,99,121**|*k*-mer sizes for assembly. These choices will provide the output we will use in the **Binning** session, but feel free to experiment with these to see if you can improve the assembly|
-|**-1 for_spades_R1.fq.gz**|Forward reads, matched to their reverse partners|
-|**-2 for_spades_R2.fq.gz**|Reverse reads, matched to their forward partners|
-|**-o spades_default/**|Output directory for all files|
+|**-k ...**|*k*-mer sizes for assembly. These choices will provide the output we will use in the **Binning** session, but feel free to experiment with these to see if you can improve the assembly|
+|**-1 ..**|Forward reads, matched to their reverse partners|
+|**-2 ...**|Reverse reads, matched to their forward partners|
+|**-o ...**|Output directory for all files|
 
 Note that we also prefix the command (`spades.py`) with the `srun` command. This is a command specific to slurm and allows NeSI to track the resource usage of the `SPAdes` job.
 
