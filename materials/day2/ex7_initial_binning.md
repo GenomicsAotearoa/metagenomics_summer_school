@@ -85,10 +85,22 @@ Generally speaking, this pattern of first, fourth, then [n + 2]<sup>th</sup> sho
 This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we want to direct the output files into a folder, we must create that folder in advance.
 
 ```bash
+#!/bin/bash -e
+#SBATCH -A nesi02659
+#SBATCH -J maxbin_clustering
+#SBATCH --partition ga_bigmem
+#SBATCH --res SummerSchool
+#SBATCH --time 01:00:00
+#SBATCH --mem 10GB
+#SBATCH --ntasks 1
+#SBATCH --cpus-per-task 10
+#SBATCH -e maxbin_clustering.err
+#SBATCH -o maxbin_clustering.out
+
 module load MaxBin/2.2.6-gimkl-2018b-Perl-5.28.1
 
 mkdir -p maxbin/
-run_MaxBin.pl -thread 2 -min_contig_length 1500 \
+run_MaxBin.pl -thread 10 -min_contig_length 1500 \
               -contig spades_assembly/spades_assembly.m1000.fna \
               -abund maxbin.txt \
               -out maxbin/maxbin
