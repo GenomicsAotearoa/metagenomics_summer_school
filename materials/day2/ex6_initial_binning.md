@@ -31,7 +31,7 @@ module load Bowtie2/2.3.5-GCC-7.4.0
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 
-srun bowtie2-build spades_assembly/spades_assembly.m1000.fna spades_assembly/bw_spades
+bowtie2-build spades_assembly/spades_assembly.m1000.fna spades_assembly/bw_spades
 ```
 
 If you look inside the `spades_assembly/` folder you will now see the following:
