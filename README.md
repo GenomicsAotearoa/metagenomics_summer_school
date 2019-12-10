@@ -6,6 +6,14 @@ A draft timetable for the day is provided below, but please keep in mind that th
 
 ---
 
+## Working directories
+
+```bash
+/nesi/nobackup/nesi02659/MGSS_U/YOUR_USERNAME/
+```
+
+---
+
 ## Workshop exercises
 
 ### Day 1
