@@ -193,8 +193,6 @@ Into this file, either write or copy/paste the following commands:
 
 module load SPAdes/3.13.1-gimkl-2018b
 
-cd 3.assembly/
-
 spades.py --meta -k 33,55,77,99,121 -t 16 -1 for_spades_R1.fq.gz -2 for_spades_R2.fq.gz -o spades_assembly/
 ```
 
@@ -285,8 +283,6 @@ nano idbaud_assembly.sl
 #SBATCH -o idbaud_assembly.out
 
 module load IDBA/1.1.3-gimkl-2017a
-
-cd 3.assembly/
 
 idba_ud --num_threads 16 --mink 33 --maxk 99 --step 22 -r for_idba.fna -o idbaud_assembly/
 ```
