@@ -44,7 +44,7 @@ We can then pass the table `metabat.txt` into the `MetaBAT` binning tool.
 Before we proceed, note that when you run `MetaBAT` on NeSI you will see the text `vGIT-NOTFOUND` appear in your command line. This has no impact on the performance of the tool.
 
 ```bash
-metabat2 -t 10 -m 1500 \
+metabat2 -t 2 -m 1500 \
          -i spades_assembly/spades_assembly.m1000.fna \
          -a metabat.txt \
          -o metabat/metabat
@@ -88,7 +88,7 @@ This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we wan
 module load MaxBin/2.2.6-gimkl-2018b-Perl-5.28.1
 
 mkdir -p maxbin/
-run_MaxBin.pl -thread 10 -min_contig_length 1500 \
+run_MaxBin.pl -thread 2 -min_contig_length 1500 \
               -contig spades_assembly/spades_assembly.m1000.fna \
               -abund maxbin.txt \
               -out maxbin/maxbin
