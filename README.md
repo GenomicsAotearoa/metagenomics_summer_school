@@ -6,11 +6,19 @@ A draft timetable for the day is provided below, but please keep in mind that th
 
 ---
 
-## Working directories
+## Useful locations and links
+
+#### Working directories
+
+For all exercises after the `bash` introduction, you will be working from the file path
 
 ```bash
 /nesi/nobackup/nesi02659/MGSS_U/YOUR_USERNAME/
 ```
+
+#### Snapshots of results to download
+
+If you are having trouble downloading files using `scp`, we are providing exemplar output files which you can download through your browser, [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/tree/master/materials/resources).
 
 ---
 
