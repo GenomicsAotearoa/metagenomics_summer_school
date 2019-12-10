@@ -276,6 +276,7 @@ nano idbaud_assembly.sl
 #SBATCH -A nesi02659
 #SBATCH -J idbaud_assembly
 #SBATCH --partition ga_bigmem
+#SBATCH --res SummerSchool
 #SBATCH --time 00:30:00
 #SBATCH --mem 10GB
 #SBATCH --ntasks 1
