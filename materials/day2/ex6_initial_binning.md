@@ -177,7 +177,7 @@ cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 srun bowtie2-build spades_assembly/spades_assembly.m1000.fna spades_assembly/bw_spades
 
 # Load the sample names into a bash array
-samples=(sample1 sample2 sample3 sample)
+samples=(sample1 sample2 sample3 sample4)
 
 # Activate the srun command, using the SLURM_ARRAY_TASK_ID variable to
 # identify which position in the `samples` array to use
