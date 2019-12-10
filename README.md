@@ -20,6 +20,10 @@ For all exercises after the `bash` introduction, you will be working from the fi
 
 If you are having trouble downloading files using `scp`, we are providing exemplar output files which you can download through your browser, [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/tree/master/materials/resources).
 
+#### Slides for workshop
+
+You can find a copy of the slides presented during the workshop, with published figures removed, in the [slides/](https://github.com/GenomicsAotearoa/metagenomics_summer_school/tree/master/slides) folder.
+
 ---
 
 ## Workshop exercises
