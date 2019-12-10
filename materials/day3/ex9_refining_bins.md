@@ -4,7 +4,8 @@
 
 * Prepare input files for `VizBin`
 * Project a *t-SNE* and examine bin clusters
-* Picking refined bins
+* Refining bins by removing incorrectly assigned contigs
+* Assigning taxonomy to the refined bins
 
 ---
 
@@ -89,5 +90,68 @@ How you proceed in this stage is up to you. You can either select bins based on 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_export.PNG)
 
 Which way you proceed really depends on how well the ordination resolves your bins, and it might be that both approaches are needed.
+
+Use a combination of `VizBin` and `seqmagick` to remove contigs from bins when you do not trust the placement of the contig. We are aiming to reduce each bin to a trusted set of contigs.
+
+---
+
+### Assigning taxonomy to the refined bins
+
+It is always valuable to know the taxonomy of our binned MAGs, so that we can link them to the wider scientific literature. In order to do this, there are a few different options available to us:
+
+1. Extract 16S rRNA gene sequences from the MAGs and classify them
+1. Annotate each gene in the MAG and take the consensus taxonomy
+1. Use a profiling tool like `Kraken`, which matches pieces of DNA to a reference database using *k*-mer searches
+1. Identify a core set of genes in the MAG, and use these to compute a species phylogeny
+
+For this exercise, we will use the last option in the list, making use of the `GTDB-TK` software (available on [github](https://github.com/Ecogenomics/GTDBTk)) to automatically identify a set of highly conserved, single copy marker genes which are diagnostic of the bacterial (120 markers) and archaeal (122 markers) lineages. Briefly, `GTDB-TK` will perform the following steps on a set of bins.
+
+1. Attempt to identify a set of 120 bacterial marker genes, and 122 archaeal marker genes in each MAG.
+1. Based on the recovered numbers, identify which domain is a more likely assignment for each MAG
+1. Create a concatenated alignment of the domain-specific marker genes, spanning approximately 41,000 amino acid positions
+1. Filter the alignment down to approximately 5,000 informative sites
+1. Insert each MAG into a reference tree create from type material and published MAGs
+1. Scale the branch lengths of the resulting tree, as described in [Parks et al.](https://www.ncbi.nlm.nih.gov/pubmed/30148503), to identify an appropriate rank to each branch event in the tree
+1. Calculate ANI and AAI statistics between each MAG and its nearest neighbours in the tree
+1. Report the resulting taxonomic assignment, and gene alignment
+
+This can all be achieved in a single command, although it must be performed through a slurm script due to the high memory requirements of the process.
+
+```bash
+#!/bin/bash
+#SBATCH -A nesi02659
+#SBATCH -J gtdbtk_test
+#SBATCH --partition ga_bigmem
+#SBATCH --res SummerSchool
+#SBATCH --time 2:00:00
+#SBATCH --mem 120GB
+#SBATCH --cpus-per-task 10
+#SBATCH -e gtdbtk_test.err
+#SBATCH -o gtdbtk_test.out
+
+module load GTDB-Tk/0.2.2-gimkl-2018b-Python-2.7.16
+
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinment/
+
+gtdbtk classify_wf -x fna --cpus 10 --genome_dir example_data/ --out_dir gtdbtk_out/
+```
+
+As usual, lets look at the parameters here
+
+|Parameter|Function|
+|:---|:---|
+|**classify_wf**|Specifies the sub-workflow from `GTDB-TK` that we wish to use|
+|**-x ...**|Specify the file extension for MAGs within our input directory.<br>Default is *.fna*, but it's always good practice to specify it anyway|
+|**--cpus ...**|Number of CPUs to use when finding marker genes, and performing tree insertion operations|
+|**--genome_dir ...**|Input directory containing MAGs as individual *fastA* files|
+|**--out_dir ...**|Output directory to write the final set of files|
+
+Before submitting your job, think careful about which set of MAGs you want to classify. You could either use the raw `DAS_Tool` outputs in the `dastool_out/_DASTool_bins/` folder, the set of curated bins in the `example_data/` folder, or your own set of refined bins. Whichever set you choose, make sure you select the correct input folder and extension setting as it may differ from the example here.
+
+When the task completes, you will have a number of output files provided. The main ones to look for are `gtdbtk.bac120.summary.tsv` and `gtdbtk.arch122.summary.tsv` which report the taoxnomies for your MAGs, split at the domain level. These file are only written if MAGs that fall into the domain were found in your data set, so for this exercise we do not expect to see the `gtdbtk.arch122.summary.tsv` file.
+
+If you are interested in performing more detailed phylogenetic analysis of the data, the filtered multiple sequence alignment (MSA) for the data are provided in the `gtdbtk.bac120.msa.fasta` and `gtdbtk.arch122.msa.fasta` files.
+
+Have a look at your resulting taxonomy. The classification of your MAGs will be informative when addressing your research goal for this workshop.
 
 ---
