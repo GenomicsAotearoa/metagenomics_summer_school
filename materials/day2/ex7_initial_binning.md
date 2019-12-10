@@ -99,6 +99,8 @@ This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we wan
 
 module load MaxBin/2.2.6-gimkl-2018b-Perl-5.28.1
 
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
+
 mkdir -p maxbin/
 run_MaxBin.pl -thread 10 -min_contig_length 1500 \
               -contig spades_assembly/spades_assembly.m1000.fna \
