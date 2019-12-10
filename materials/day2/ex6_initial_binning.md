@@ -29,6 +29,8 @@ Before we can map reads, we need to create a `bowtie2` index file from the assem
 ```bash
 module load Bowtie2/2.3.5-GCC-7.4.0
 
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
+
 srun bowtie2-build spades_assembly/spades_assembly.m1000.fna spades_assembly/bw_spades
 ```
 
@@ -65,7 +67,7 @@ The full script is provided here, and we will discuss it below.
 
 module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
 
-cd 5.binning/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 
 # Step 1
 for i in sample1 sample2 sample3 sample4;
@@ -170,7 +172,7 @@ If you have a large number of files to process, it might be worth using a slurm 
 
 module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
 
-cd 5.binning/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 
 srun bowtie2-build spades_assembly/spades_assembly.m1000.fna spades_assembly/bw_spades
 

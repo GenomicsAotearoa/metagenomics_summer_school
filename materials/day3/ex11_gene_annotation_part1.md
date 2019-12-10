@@ -59,7 +59,7 @@ diamond help
 There are two output formats we can chose from which are useful for our analysis. We will obtain our output in the *BLAST tabular* format, which provides the annotation information in a simple-to-parse text file that can be viewed in any text or spreadsheet viewing tool. This will allow us to evaluate the quality of our annotations. For now, just annotate a single bin:
 
 ```bash
-cd 8.gene_annotation/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/
 
 diamond blastp -p 2 --db /nesi/project/nesi02659/mg_workshop//NCBI_nr_2016.dmnd \
                --max-target-seqs 5 --evalue 0.001 \
@@ -88,7 +88,7 @@ Before we proceed with this exercise, lets set up a slurm job to annotate each o
 
 module load DIAMOND/0.9.25-gimkl-2018b
 
-cd 8.gene_annotation/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.gene_annotation/
 
 mkdir -p gene_annotations/
 

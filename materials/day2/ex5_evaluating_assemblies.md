@@ -70,6 +70,8 @@ A few quick checks I recommend are to see how many contigs or scaffolds your dat
 ```bash
 module load seqmagick/0.7.0-gimkl-2018b-Python-3.7.3
 
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.evaluation/
+
 seqmagick convert --min-length 1000 spades_assembly/spades_assembly.fna \
                                     spades_assembly/spades_assembly.m1000.fna
 grep -c '>' spades_assembly/spades_assembly.fna spades_assembly/spades_assembly.m1000.fna

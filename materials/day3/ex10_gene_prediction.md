@@ -37,7 +37,11 @@ It is also not advised to use `prodigal` when making predictions through your un
 
 ### Predicting protein coding sequences in MAGs
 
-To get started with `prodigal`, move into the `7.gene_prediction/` directory.
+To get started, move into the exercise directory.
+
+```bash
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_prediction/
+```
 
 #### Examining the *prodigal* parameters
 
@@ -193,7 +197,7 @@ If you are working with unassembled metagenomic data and do not wish to go throu
 
 module load FragGeneScan/1.31-gimkl-2018b pigz/2.4-GCCcore-7.4.0 IDBA-UD/1.1.3-gimkl-2018b
 
-cd 7.gene_prediction/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_prediction/
 
 mkdir -p predictions_short/
 

@@ -27,7 +27,7 @@ Contig[tab]Bin
 This can be done with a bit of `bash` scripting. There's quite a bit going on here, so we'll provide the full command, and then a step-by-step explanation of what's happening.
 
 ```bash
-cd 5.binning/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 
 for bin_path in metabat/*.fa;
 do
@@ -204,7 +204,7 @@ We will need to run `CheckM` under a slurm script. This is because the tree plac
 
 module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
 
-cd 5.binning/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 
 checkm lineage_wf -t 10 --pplacer_threads 10 -x fa \
                   --tab_table -f checkm.txt \

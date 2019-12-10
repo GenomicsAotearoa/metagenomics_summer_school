@@ -28,6 +28,8 @@ The *.bam* files can be passed in in either a user-defined order, or using wildc
 ```bash
 module load MetaBAT/2.13-GCC-7.4.0
 
+cd cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
+
 # Manual specification of files
 jgi_summarize_bam_contig_depths --outputDepth metabat.txt sample1.bam sample2.bam sample3.bam sample4.bam
 

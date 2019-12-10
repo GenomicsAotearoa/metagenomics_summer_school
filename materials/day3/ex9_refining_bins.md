@@ -21,7 +21,7 @@ We will use a small `python` script to create these input files, as colouring co
 ```bash
 module load Python/3.7.3-gimkl-2018b
 
-cd 6.bin_refinment/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinment/
 
 cut -f1,2 example_data.txt > sample1.txt
 
