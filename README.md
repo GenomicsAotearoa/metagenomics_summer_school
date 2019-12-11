@@ -95,7 +95,7 @@ You can find a copy of the slides presented during the workshop, with published 
 |Time|Event|Session leader|
 |:---|:---|:---|
 |9:00 am – 9:30 am|**Introduction**<br>Overview of yesterday, questions<br>Overview of today|David Waite|
-|9:30 am – 11:30 am|**Bin refinement**<br>Refinement strategies - *VizBin* and *ESOMana*<br>**TASK:** Working with *VizBin*<br>**TASK:** Bin taxonomy with *GTDB-TK*|David Waite|
+|9:30 am – 10:30 am|**Bin refinement**<br>Refinement strategies - *VizBin* and *ESOMana*<br>**TASK:** Working with *VizBin*<br>**TASK:** Bin taxonomy with *GTDB-TK*|David Waite|
 |10:30 am – 10:50 am|**Morning tea break**||
 |10:50 am – 11:30 am|**Gene prediction**<br>Introduce *prodigal*, discuss single vs anon mode<br>Discuss what *prodigal* can't find, and where other tools are needed (*RNAmer*, *Aragorn*, etc)**TASK:** Predicting genes with *prodigal* and *FragGeneScan*|Christina Straub|
 |11:30 am – 12:00 pm|**Gene annotation (part 1)**<br>BLAST-like gene annotation using **usearch** or **diamond**<br>Introduce the different databases, highlight our reasons for *KEGG*<br>Evaluating the quality of gene assignment<br>Differences in taxonomies (*GTDB*, *NCBI* etc)|David Waite|
