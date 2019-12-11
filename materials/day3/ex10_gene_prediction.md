@@ -99,6 +99,22 @@ Anecdotally, when applied to a MAG or genome, anonymous mode (`-p meta`) will id
 We will now run `prodigal` over the 10 bins in *anonymous* mode. As usual, we can use a loop to get the predictions for all of our bins.
 
 ```bash
+#!/bin/bash -e
+#SBATCH -A nesi02659
+#SBATCH -J prodigal
+#SBATCH --partition ga_bigmem
+#SBATCH --res SummerSchool
+#SBATCH --time 00:10:00
+#SBATCH --mem 1GB
+#SBATCH --ntasks 1
+#SBATCH --cpus-per-task 1
+#SBATCH -e prodigal.err
+#SBATCH -o prodigal.out
+
+module load prodigal/2.6.3-GCCcore-7.4.0
+
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_prediction/
+
 mkdir -p predictions/
 
 for bin_file in example_data/*.fna;
@@ -111,8 +127,6 @@ do
              -o predictions/${pred_file}.genes.gbk
 done
 ```
-
-For a single genome, `prodigal` runs extremely quickly so we won't worry about creating a slurm file here. For larger data sets, this might be recommended, though.
 
 Once `prodigal` has completed, let's check one of the output files:
 
@@ -234,7 +248,21 @@ While they will not be covered in great detail here, there are a few other predi
 To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits in our data, use the following commands:
 
 ```bash
+#!/bin/bash -e
+#SBATCH -A nesi02659
+#SBATCH -J metaxa2
+#SBATCH --partition ga_bigmem
+#SBATCH --res SummerSchool
+#SBATCH --time 00:30:00
+#SBATCH --mem 1GB
+#SBATCH --ntasks 1
+#SBATCH --cpus-per-task 10
+#SBATCH -e metaxa2.err
+#SBATCH -o metaxa2.out
+
 module load Metaxa2/2.1.3-gimkl-2017a
+
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_prediction/
 
 mkdir -p ribosomes/
 
@@ -242,8 +270,8 @@ for bin_file in example_data/*.fna;
 do
     pred_file=$(basename ${bin_file} .fna)
   
-    metaxa2 --cpu 5 -g ssu -i ${bin_file} -o ribosomes/${pred_file}.ssu
-    metaxa2 --cpu 5 -g lsu -i ${bin_file} -o ribosomes/${pred_file}.lsu
+    metaxa2 --cpu 10 -g ssu -i ${bin_file} -o ribosomes/${pred_file}.ssu
+    metaxa2 --cpu 10 -g lsu -i ${bin_file} -o ribosomes/${pred_file}.lsu
 done
 ```
 
