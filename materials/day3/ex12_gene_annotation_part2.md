@@ -56,7 +56,7 @@ In the case of our annotation data, NCBI's *xml* schema is a good way to store i
 
 ### Looking at gene networks in *MEGAN*
 
-`MEGAN` is a really powerful GUI-based tool for exploring and contextualising gene annotations. The current version is **version 6** but we are going to work with **version 5** in this exercise. This is because `MEGAN` provides a free and licensed version, and in **version 6** one of the key features we will use today was migrated into the licensed version. If you are considering using `MEGAN` for your own analysis, we do recommend obtaining the latest version.
+`MEGAN` is a powerful GUI-based tool for exploring and contextualising gene annotations. The current version is **version 6** but we are going to work with **version 5** in this exercise. This is because `MEGAN` provides a free and licensed version, and in **version 6** one of the key features we will use today was migrated into the licensed version. If you are considering using `MEGAN` for your own analysis, we do recommend obtaining the latest version.
 
 ##### Executing *MEGAN* from the command line
 
@@ -126,10 +126,51 @@ This provides a fine-detailed map of the genes in our MAG, and which functionali
 
 ---
 
+### Using the KEGG website
+
+Unfortunately, as we are using an older version of `MEGAN` there are some gene pathways that are not included in its KEGG schema. It may therefore be worth taking your data to the *KEGG* website and using their [pathway mapping tool](http://www.genome.jp/kegg/tool/map_pathway2.html). To use this visualisation tool, you need to supply a list of KO numbers as text input.
+
+The *KEGG* database is not freely available, so we cannot provide you with access to the database for performing your own annotations, but we have provided the results of a `diamond` search against this database for your to explore. You can find a summary of the KO classifications of exemplar bins in the following folder
+
+```bash
+/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.gene_annotation/example_keggs/
+```
+
+There are 10 annotation files here, corresponding to the 10 bins in our data set. Each file has the following columns:
+
+|Column|Value|
+|:---|:---|
+|Gene_x|The name of the gene in the KEGG annotation schema (for example *flgE*, *dsrA*, *aclA*|
+|KO|The corresponding KO accession for the gene function|
+|Desc|A text description of the gene, this value may be truncated or empty|
+|Gene_Y|The name of the gene, as called by running `prodigal` over the MAG *fastA* file|
+|Annotation|The KEGG accesstion to the reference genome in which the reference gene was found<br>Carries the form `[Species code]:[Gene number]|
+
+You will only need the `KO` column from these files, so you can use `cut` to extract it from the text file. The KO numbers can then be pasted into your browser and the search process run by clicking the `Exec` button.
+
+You will be taken to a list of the functional categories found in your genome. It is important to note that not every KO accession is mapped to one of these pathways, so you may not see every hit matched. Click on the name of the category you are interested in, and look for particular genes that may be informative for your workshop goal.
+
+---
+
 ### Tie findings to your initial goal
 
 It is now time to explore the genomes and try to address your original goal!
 
-Depending on what you are looking for, you will either be trying to find gene(s) of relevance to a particular functional pathway, or the omission of genes that might be critical in function. In either case, try to use the taxonomy of each MAG to determine whether it is likely to be a worthwhile candidate for exploration, or whether it is unlikely to be involved in the function you are interested in.
+You were tasked with identfying one of the following. 
+
+1. Denitrification (Nitrate or nitrite to nitrogen)
+2. Ammonia oxidation (Ammonia to nitrite or nitrate)
+3. Anammox (Ammonia and nitrite to nitrogen)
+4. Sulfur oxidation (SOX pathway, thiosulfate to sulfate)
+5. Sulfur reduction (DSR pathway, sulfate to sulfide)
+6. Photosynthetic carbon fixation
+7. Non-photosynthetic carbon fixation (Reverse TCA or Wood-Ljundahl)
+8. Non-polar flagella expression due to a chromosomal deletion
+9. Plasmid-encoded antibiotic resistance
+10. Aerobic (versus anaerobic) metabolism
+
+Depending on what you are looking for, you will either be trying to find gene(s) of relevance to a particular functional pathway, or the omission of genes that might be critical in function. In either case, make sure to use the taxonomy of each MAG to determine whether it is likely to be a worthwhile candidate for exploration, as some of these traits are quite restricted in terms of which organisms carry them.
+
+If you are the group working on Goal 8 (Non-polar flagella expression due to a chromosomal deletion) then you may find the following review helpful - [Echazarreta & Klose (2019)](https://www.frontiersin.org/articles/10.3389/fcimb.2019.00131/full).
 
 ---
