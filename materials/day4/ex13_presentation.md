@@ -234,7 +234,7 @@ library(dplyr)
 library(genoPlotR)
 ```
 
-##### Part 2.1 - Creating dna_seq tables
+##### Part 2.1 - Creating dna_seg tables
 
 We can now begin importing the data. First, we will import the `.coords` files, and set column names to the files.
 
@@ -258,7 +258,7 @@ bin_5_coords$start = bin_5_coords$start - 1200000
 bin_5_coords$end = bin_5_coords$end - 1200000
 ```
 
-We now parse these data.frames into the *dna_seq* data class, which is defined by the `genoPlotR` library.
+We now parse these data.frames into the *dna_seg* data class, which is defined by the `genoPlotR` library.
 
 ```R
 bin_4_ds = dna_seg(bin_4_coords)
@@ -267,7 +267,7 @@ bin_5_ds = dna_seg(bin_5_coords)
 
 ##### Part 2.2 - Creating a comparison table
 
-In order to plot the data, we must now create a table that links the start and stop positions between the two *dna_seq* objects. To do this, we will import the `.txt` files from before, then use several functions from the `tidyverse` libraries to create a single matched table.
+In order to plot the data, we must now create a table that links the start and stop positions between the two *dna_seg* objects. To do this, we will import the `.txt` files from before, then use several functions from the `tidyverse` libraries to create a single matched table.
 
 Import the data, and append the annotation and coordinate data. This is done using two functions from base `R` - `read.table` and `cbind` (column bind, to merge two data.frames). We then pass the resulting data.frame through the `select` function to extract only the columns we are interested in.
 
