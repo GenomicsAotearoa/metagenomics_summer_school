@@ -26,14 +26,44 @@ module load Python/3.7.3-gimkl-2018b
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinment/
 
+# Step 1
 cut -f1,2 example_data.txt > sample1.txt
 
+# Step 2
 python build_vizbin_inputs.py -o vb_sample1 -c sample1.txt example_data/*
 
+# Step 3
 # Make a few different versions of the .ann file with various columns removed
 cut -f2 -d ',' vb_sample1.vizbin.ann > vb_sample1.vizbin.bin_only.ann
 cut -f1,2 -d ',' vb_sample1.vizbin.ann > vb_sample1.vizbin.no_length.ann
 ```
+
+There are a few things going on in this set of commands.
+
+##### Step 1
+
+Here we are taking the file `example_data.txt`, which contains the per-sample coverage scores for each sub-contig in the data set. Because `VizBin` only uses coverage as a means to modify the visualisation, not the ordination itself, we can only pass the coverage values from a single sample at a time.
+
+##### Step 2
+
+The `build_vizbin_inputs.py` script is what produces our input files for `VizBin`. It the folder of bin files as the input, and optionally a table of sub-contig coverage values, which is defined by the `-c` parameter.
+
+What this script is doing is taking each fasta file and picking out the names of the contigs found in that file (bin). It is then looking for any coverage information which is associated with that contig in the `sample1.txt` file, and adding that as a new column to the file. The resulting information is written to a file that carries the name from the `-o` parameter. This file is a comma-delimited table (*csv file*) that presents the information in the way that `VizBin` expects it.
+
+```bash
+head -n5 vb_sample1.vizbin.ann
+# coverage,label,length
+# 4.14625,bin_0,20000
+# 3.5722400000000003,bin_0,20000
+# 3.8721900000000002,bin_0,20000
+# 3.80796,bin_0,20000
+```
+
+The order of rows in this file corresponds to the order of contigs in the *fastA* file that is produced by the script - `vb_sample1.vizbin.fna`.
+
+##### Step 3
+
+Here we are just producing a few variations of the *.ann* file, with various columns removed.
 
 ---
 
@@ -113,9 +143,11 @@ do
 done
 ```
 
-You can then create an *.ann* file using the same `python` script as above, but we will not be able to add in the coverage information for this run.
+You can then create an *.ann* file using the same `python` script as above, but we will not be able to add in the coverage information for this run. Because the `build_vizbin_inputs.py` script is written in version 3 of `python`, but the `CONCOCT` module loads version 2, we need to reload `python 3.7` before running the script again.
 
 ```bash
+module load Python/3.7.3-gimkl-2018b
+
 python build_vizbin_inputs.py -o vb_sample1 custom_chop/*
 ```
 
