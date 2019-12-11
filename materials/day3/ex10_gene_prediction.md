@@ -211,8 +211,6 @@ If you are working with unassembled metagenomic data and do not wish to go throu
 
 module load FragGeneScan/1.31-gimkl-2018b seqmagick/0.7.0-gimkl-2018b-Python-3.7.3
 
-pigz/2.4-GCCcore-7.4.0 
-
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_prediction/
 
 mkdir -p predictions_short/
