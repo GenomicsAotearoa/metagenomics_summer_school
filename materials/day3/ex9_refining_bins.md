@@ -5,6 +5,7 @@
 * Prepare input files for `VizBin`
 * Project a *t-SNE* and examine bin clusters
 * Refining bins by removing incorrectly assigned contigs
+* *Optional:* Creating new `VizBin` profiles with different fragment lengths
 * Assigning taxonomy to the refined bins
 
 ---
@@ -92,6 +93,30 @@ How you proceed in this stage is up to you. You can either select bins based on 
 Which way you proceed really depends on how well the ordination resolves your bins, and it might be that both approaches are needed.
 
 Use a combination of `VizBin` and `seqmagick` to remove contigs from bins when you do not trust the placement of the contig. We are aiming to reduce each bin to a trusted set of contigs.
+
+---
+
+### *Optional:* Creating new *VizBin* profiles with different fragment lengths
+
+The data you have been working with was created using the `cut_up_fasta.py` script that comes with the binning tool `CONCOCT`. It was run to cut contigs into 20k fragments, to better add density to the cluster. If you would like to visualise the data using different contig fragment sizes, you can create these using the following commands:
+
+```bash
+module load CONCOCT/1.0.0-gimkl-2018b-Python-2.7.16
+
+mkdir custom_chop/
+
+for bin_file in example_data_unchopped/*;
+do
+    bin_name=$(basename ${bin_file} .fna)
+    cut_up_fasta.py -c YOUR_CONTIG_SIZE -o 0 --merge_last ${bin_file} > custom_chop/${bin_name}.chopped.fna
+done
+```
+
+You can then create an *.ann* file using the same `python` script as above, but we will not be able to add in the coverage information for this run.
+
+```bash
+python build_vizbin_inputs.py -o vb_sample1 custom_chop/*
+```
 
 ---
 
