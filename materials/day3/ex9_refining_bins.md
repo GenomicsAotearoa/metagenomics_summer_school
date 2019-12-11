@@ -6,6 +6,7 @@
 * Project a *t-SNE* and examine bin clusters
 * Refining bins by removing incorrectly assigned contigs
 * *Optional:* Creating new `VizBin` profiles with different fragment lengths
+* *Optional:* Scripts for processing data with `ESOMana`
 * Assigning taxonomy to the refined bins
 
 ---
@@ -117,6 +118,14 @@ You can then create an *.ann* file using the same `python` script as above, but 
 ```bash
 python build_vizbin_inputs.py -o vb_sample1 custom_chop/*
 ```
+
+---
+
+### *Optional:* Scripts for processing data with *ESOMana*
+
+A suite of tools for creating input files for `ESOMana` can be found on github [here](https://github.com/tetramerFreqs/Binning).
+
+The tool `ESOMana` can be downloaded from [SourceForge](http://databionic-esom.sourceforge.net/).
 
 ---
 
