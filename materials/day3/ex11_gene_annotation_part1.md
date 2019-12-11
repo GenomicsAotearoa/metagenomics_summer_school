@@ -61,7 +61,7 @@ There are two output formats we can chose from which are useful for our analysis
 ```bash
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/
 
-diamond blastp -p 2 --db /nesi/project/nesi02659/mg_workshop//NCBI_nr_2016.dmnd \
+diamond blastp -p 1 --db /nesi/project/nesi02659/mg_workshop//NCBI_nr_2016.dmnd \
                --max-target-seqs 5 --evalue 0.001 \
                -q example_data/bin_0.genes.no_metadata.faa \
                --outfmt 6 -o bin_0.diamond.txt
