@@ -59,9 +59,9 @@ diamond help
 There are two output formats we can chose from which are useful for our analysis. We will obtain our output in the *BLAST tabular* format, which provides the annotation information in a simple-to-parse text file that can be viewed in any text or spreadsheet viewing tool. This will allow us to evaluate the quality of our annotations. For now, just annotate a single bin:
 
 ```bash
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.gene_annotation/
 
-diamond blastp -p 1 --db /nesi/project/nesi02659/mg_workshop//NCBI_nr_2016.dmnd \
+diamond blastp -p 1 --db /nesi/project/nesi02659/mg_workshop/NCBI_nr_2016.dmnd \
                --max-target-seqs 5 --evalue 0.001 \
                -q example_data/bin_0.genes.no_metadata.faa \
                --outfmt 6 -o bin_0.diamond.txt
