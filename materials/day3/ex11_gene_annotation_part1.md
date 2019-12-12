@@ -1,3 +1,9 @@
+# MEGAN academic license
+
+/nesi/nobackup/nesi02659/MGSS_resources/megan/MEGAN5-academic-license.txt
+
+---
+
 # Gene annotation
 
 ### Objectives
