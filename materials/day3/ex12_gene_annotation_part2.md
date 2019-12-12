@@ -140,13 +140,11 @@ There are 10 annotation files here, corresponding to the 10 bins in our data set
 
 |Column|Value|
 |:---|:---|
-|Gene_x|The name of the gene in the KEGG annotation schema (for example *flgE*, *dsrA*, *aclA*|
+|Gene|The name of the gene, as called by running `prodigal` over the MAG *fastA* file|
+|Annotation|The KEGG accesstion to the reference genome in which the reference gene was found<br>Carries the form `[Species code]:[Gene number]`|
 |KO|The corresponding KO accession for the gene function|
-|Desc|A text description of the gene, this value may be truncated or empty|
-|Gene_Y|The name of the gene, as called by running `prodigal` over the MAG *fastA* file|
-|Annotation|The KEGG accesstion to the reference genome in which the reference gene was found<br>Carries the form `[Species code]:[Gene number]|
 
-You will only need the `KO` column from these files, so you can use `cut` to extract it from the text file. The KO numbers can then be pasted into your browser and the search process run by clicking the `Exec` button.
+You will only need the `KO` column from these files, so you can use `cut` to extract it from the text file. The KO numbers can then be pasted into your browser. Change the `Search mode` from 'Organism-specific' to 'Reference'. Begin the search process by clicking the `Exec` button.
 
 You will be taken to a list of the functional categories found in your genome. It is important to note that not every KO accession is mapped to one of these pathways, so you may not see every hit matched. Click on the name of the category you are interested in, and look for particular genes that may be informative for your workshop goal.
 
