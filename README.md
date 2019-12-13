@@ -24,6 +24,10 @@ If you are having trouble downloading files using `scp`, we are providing exempl
 
 You can find a copy of the slides presented during the workshop, with published figures removed, in the [slides/](https://github.com/GenomicsAotearoa/metagenomics_summer_school/tree/master/slides) folder.
 
+#### Etherpad snapshot
+
+You can find a saved version of the workshop Etherpad notes [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/slides/mgss_etherpad.pdf).
+
 ---
 
 ## Workshop exercises
