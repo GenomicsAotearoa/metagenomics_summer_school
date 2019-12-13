@@ -52,6 +52,7 @@ You can find a copy of the slides presented during the workshop, with published 
 ### Day 4
 
 1. [Presentation of data](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex13_presentation.md)
+1. [Optional: Working with dRep](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex14_drep.md)
 
 ---
 
