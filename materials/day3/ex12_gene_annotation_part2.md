@@ -66,6 +66,14 @@ As `MEGAN` version 5 is no longer supported, we have a special version put aside
 /nesi/nobackup/nesi02659/MGSS_resources/megan/MEGAN
 ```
 
+You may be prompted for a License to use `MEGAN`. This can be found at
+
+```bash
+/nesi/nobackup/nesi02659/MGSS_resources/megan/MEGAN5-academic-license.txt
+```
+
+---
+
 ##### Loading your gene and annotation files
 
 Once `MEGAN` has loaded, we are going to use the 'File' -> 'Import From BLAST...' option.
