@@ -16,6 +16,10 @@ For all exercises after the `bash` introduction, you will be working from the fi
 /nesi/nobackup/nesi02659/MGSS_U/YOUR_USERNAME/
 ```
 
+#### bash/slurm cheatsheet
+
+A few helpful commands and shortcuts for working in `bash` or with `slurm` can be found [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/command_line_shortcuts.md).
+
 #### Snapshots of results to download
 
 If you are having trouble downloading files using `scp`, we are providing exemplar output files which you can download through your browser, [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/tree/master/materials/resources).
