@@ -27,10 +27,10 @@ module load Python/3.7.3-gimkl-2018b
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinment/
 
 # Step 1
-cut -f1,2 example_data.txt > sample1.txt
+cut -f1,4 example_data_20k.txt > sample1.txt
 
 # Step 2
-python build_vizbin_inputs.py -o vb_sample1 -c sample1.txt example_data/*
+python build_vizbin_inputs.py -o vb_sample1 -c sample1.txt example_data_20k/*.fna
 
 # Step 3
 # Make a few different versions of the .ann file with various columns removed
@@ -199,7 +199,7 @@ module load GTDB-Tk/0.2.2-gimkl-2018b-Python-2.7.16
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinment/
 
-gtdbtk classify_wf -x fna --cpus 10 --genome_dir example_data/ --out_dir gtdbtk_out/
+gtdbtk classify_wf -x fna --cpus 10 --genome_dir filtered_bins/ --out_dir gtdbtk_out/
 ```
 
 As usual, lets look at the parameters here
@@ -212,7 +212,7 @@ As usual, lets look at the parameters here
 |**--genome_dir ...**|Input directory containing MAGs as individual *fastA* files|
 |**--out_dir ...**|Output directory to write the final set of files|
 
-Before submitting your job, think careful about which set of MAGs you want to classify. You could either use the raw `DAS_Tool` outputs in the `dastool_out/_DASTool_bins/` folder, the set of curated bins in the `example_data/` folder, or your own set of refined bins. Whichever set you choose, make sure you select the correct input folder and extension setting as it may differ from the example here.
+Before submitting your job, think carefully about which set of MAGs you want to classify. You could either use the raw `DAS_Tool` outputs in the `dastool_out/_DASTool_bins/` folder, the renamed set of bins in the `example_data_unchopped/` folder, the set of curated bins in the `filtered_bins/` folder, or your own set of refined bins. Whichever set you choose, make sure you select the correct input folder and extension setting as it may differ from the example here.
 
 When the task completes, you will have a number of output files provided. The main ones to look for are `gtdbtk.bac120.summary.tsv` and `gtdbtk.arch122.summary.tsv` which report the taoxnomies for your MAGs, split at the domain level. These file are only written if MAGs that fall into the domain were found in your data set, so for this exercise we do not expect to see the `gtdbtk.arch122.summary.tsv` file.
 
