@@ -117,7 +117,7 @@ cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_prediction/
 
 mkdir -p predictions/
 
-for bin_file in example_data/*.fna;
+for bin_file in filtered_bins/*.fna;
 do
     pred_file=$(basename ${bin_file} .fna)
 
@@ -265,7 +265,7 @@ cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_prediction/
 
 mkdir -p ribosomes/
 
-for bin_file in example_data/*.fna;
+for bin_file in filtered_bins/*.fna;
 do
     pred_file=$(basename ${bin_file} .fna)
   
