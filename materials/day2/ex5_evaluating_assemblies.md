@@ -21,7 +21,7 @@ squeue -u <user name>
 Since there are no jobs listed, either everything running has completed or failed. To get a list of all jobs we have run in the last day, we can use the `sacct` command. By default this will report all jobs for the day but we can add a parameter to tell the command to report all jobs run since the date we are specifying.
 
 ```bash
-sacct -S 2019-12-10
+sacct -S 2020-11-16
 
 #         JobID         JobName     Elapsed     TotalCPU Alloc   MaxRSS      State
 #-------------- --------------- ----------- ------------ ----- -------- ----------
@@ -35,7 +35,7 @@ sacct -S 2019-12-10
 #8744677.0      idba_ud            00:11:05     01:27:42    10 2541868K COMPLETED
 ```
 
-Each job has been broken up into several lines, but the main ones to keep an eye are the base JobID values, and the values suffixed with *.0*. The first of these references the complete job. The later (and any subsequent suffixes like *.1*, *.2*) are the individual steps in the script that were called with the `srun` command.
+Each job has been broken up into several lines, but the main ones to keep an eye on are the base JobID values, and the values suffixed with *.0*. The first of these references the complete job. The later (and any subsequent suffixes like *.1*, *.2*) are the individual steps in the script that were called with the `srun` command.
 
 We can see here the time elapsed for each job, and the number of CPU hours used during the run. If we want a more detailed breakdown of the job we can use the `seff` command
 
@@ -67,6 +67,8 @@ Evaluating the quality of a raw metagenomic assembly is quite a tricky process. 
 
 A few quick checks I recommend are to see how many contigs or scaffolds your data were assembled into, and then see how many contigs or scaffolds you have above a certain minimum length threshold. We will use `seqmagick` for performing the length filtering, and then just count sequence numbers using `grep`.
 
+These steps will take place in the `4.evaluation` folder, which contains copies of our first `SPAdes` and `IDBA-UD` assemblies.
+
 ```bash
 module load seqmagick/0.7.0-gimkl-2018b-Python-3.7.3
 
@@ -75,14 +77,14 @@ cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.evaluation/
 seqmagick convert --min-length 1000 spades_assembly/spades_assembly.fna \
                                     spades_assembly/spades_assembly.m1000.fna
 grep -c '>' spades_assembly/spades_assembly.fna spades_assembly/spades_assembly.m1000.fna
-# spades_assembly/spades_assembly.fna:1913
-# spades_assembly/spades_assembly.m1000.fna:1047
+# spades_assembly/spades_assembly.fna:1343
+# spades_assembly/spades_assembly.m1000.fna:945
 
 seqmagick convert --min-length 1000 idbaud_assembly/idbaud_assembly.fna \
                                     idbaud_assembly/idbaud_assembly.m1000.fna
 grep -c '>' idbaud_assembly/idbaud_assembly.fna idbaud_assembly/idbaud_assembly.m1000.fna
-# idbaud_assembly/idbaud_assembly.fna:4891
-# idbaud_assembly/idbaud_assembly.m1000.fna:1901
+# idbaud_assembly/idbaud_assembly.fna:5057
+# idbaud_assembly/idbaud_assembly.m1000.fna:1996
 ```
 
 If you have your own assemblies and you want to try inspect them in the same way, try that now. Note that the file names will be slightly different to the files provided above. If you followed the exact commands in the previous exercise, you can use the following commands.
@@ -107,39 +109,40 @@ This gives quite a verbose output:
 
 ```bash
 A       C       G       T       N       IUPAC   Other   GC      GC_stdev
-0.2525  0.2468  0.2461  0.2546  0.0019  0.0000  0.0000  0.4929  0.0973
+0.2537	0.2465	0.2462	0.2536	0.0018	0.0000	0.0000	0.4928	0.0956
 
-Main genome scaffold total:             1047
-Main genome contig total:               2797
-Main genome scaffold sequence total:    33.635 MB
-Main genome contig sequence total:      33.572 MB       0.189% gap
-Main genome scaffold N/L50:             53/154.193 KB
-Main genome contig N/L50:               104/75.816 KB
-Main genome scaffold N/L90:             336/13.309 KB
-Main genome contig N/L90:               839/4.343 KB
-Max scaffold length:                    871.42 KB
-Max contig length:                      779.486 KB
-Number of scaffolds > 50 KB:            150
-% main genome in scaffolds > 50 KB:     75.48%
+Main genome scaffold total:         	  945
+Main genome contig total:           	  2713
+Main genome scaffold sequence total:	  34.296 MB
+Main genome contig sequence total:  	  34.233 MB  	0.184% gap
+Main genome scaffold N/L50:         	  54/160.826 KB
+Main genome contig N/L50:           	  106/72.909 KB
+Main genome scaffold N/L90:         	  306/15.236 KB
+Main genome contig N/L90:           	  817/4.63 KB
+Max scaffold length:                	  1.044 MB
+Max contig length:                  	  1.044 MB
+Number of scaffolds > 50 KB:        	  152
+% main genome in scaffolds > 50 KB: 	  76.69%
 
 
-Minimum         Number          Number          Total           Total           Scaffold
-Scaffold        of              of              Scaffold        Contig          Contig
-Length          Scaffolds       Contigs         Length          Length          Coverage
---------        --------------  --------------  --------------  --------------  --------
-    All                  1,047           2,797      33,635,467      33,572,059    99.81%
-   1 KB                  1,047           2,797      33,635,467      33,572,059    99.81%
- 2.5 KB                    801           2,471      33,229,209      33,172,921    99.83%
-   5 KB                    601           2,069      32,495,504      32,450,300    99.86%
-  10 KB                    401           1,489      31,045,953      31,015,553    99.90%
-  25 KB                    230             795      28,346,907      28,334,024    99.95%
-  50 KB                    150             521      25,386,942      25,377,983    99.96%
- 100 KB                     87             346      20,945,889      20,939,278    99.97%
- 250 KB                     30             133      12,482,836      12,479,278    99.97%
- 500 KB                      9              31       5,848,625       5,847,955    99.99%
+Minimum 	Number        	Number        	Total         	Total         	Scaffold
+Scaffold	of            	of            	Scaffold      	Contig        	Contig  
+Length  	Scaffolds     	Contigs       	Length        	Length        	Coverage
+--------	--------------	--------------	--------------	--------------	--------
+    All 	           945	         2,713	    34,296,303	    34,233,142	  99.82%
+   1 KB 	           945	         2,713	    34,296,303	    34,233,142	  99.82%
+ 2.5 KB 	           750	         2,453	    33,961,961	    33,903,372	  99.83%
+   5 KB 	           586	         2,136	    33,371,126	    33,318,361	  99.84%
+  10 KB 	           396	         1,590	    32,000,574	    31,962,900	  99.88%
+  25 KB 	           237	           929	    29,506,913	    29,487,807	  99.94%
+  50 KB 	           152	           587	    26,301,390	    26,289,386	  99.95%
+ 100 KB 	            92	           408	    22,108,408	    22,099,623	  99.96%
+ 250 KB 	            30	           138	    12,250,722	    12,247,681	  99.98%
+ 500 KB 	             6	            28	     4,735,549	     4,735,329	 100.00%
+   1 MB 	             1	             1	     1,043,932	     1,043,932	 100.00%
 ```
 
-But what we can highlight here is that the statistics for the `SPAdes` assembly, with short contigs removed, yielded an N50 of 104 kbp at the contig level. We will now compute those same statistics from the other assembly options
+But what we can highlight here is that the statistics for the `SPAdes` assembly, with short contigs removed, yielded an N50 of 106 kbp at the contig level. We will now compute those same statistics from the other assembly options
 
 ```bash
 stats.sh in=spades_assembly/spades_assembly.fna
@@ -150,10 +153,10 @@ stats.sh in=idbaud_assembly/idbaud_assembly.fna
 
 |Assembly|N50 (contig)|L50 (contig)|
 |:---|:---:|:---:|
-|**SPAdes** (filtered)|104 kbp|76 kbp|
-|**SPAdes** (unfiltered)|106 kbp|76 kbp|
-|**IDBA-UD** (filtered)|76 kbp|107 kbp|
-|**IDBA-UD** (unfiltered)|83 kbp|101 kbp|
+|**SPAdes** (filtered)|106 kbp|73 kbp|
+|**SPAdes** (unfiltered)|107 kbp|72 kbp|
+|**IDBA-UD** (filtered)|82 kbp|104 kbp|
+|**IDBA-UD** (unfiltered)|88 kbp|97 kbp|
 
 #### *Optional:* Evaluating assemblies using *MetaQUAST*
 
@@ -168,17 +171,17 @@ For more genome-informed evaluation of the assembly, we can use the `MetaQUAST` 
 
 A good summary and comparison of these tools (and more) was recently published by [Ye *et al.*](https://www.ncbi.nlm.nih.gov/pubmed/31398336).
 
-However, since we **_do_** know the composition of the original communities used to build this mock metagenome, `MetaQUAST` will work very well for us today. In your `4.evaluation/` directory you will find a file called `ref_genomes.txt`. This file contains the names of the 9 genomes used to build these mock metagenomes. We will provide these as the reference input for `MetaQUAST`.
+However, since we **_do_** know the composition of the original communities used to build this mock metagenome, `MetaQUAST` will work very well for us today. In your `4.evaluation/` directory you will find a file called `ref_genomes.txt`. This file contains the names of the genomes used to build these mock metagenomes. We will provide these as the reference input for `MetaQUAST`.
 
 ```bash
 module load QUAST/5.0.2-gimkl-2018b
 
 metaquast.py spades_assembly/spades_assembly.fna spades_assembly/spades_assembly.m1000.fna \
              idbaud_assembly/idbaud_assembly.fna idbaud_assembly/idbaud_assembly.m1000.fna \
-             --references-list ref_genomes.txt --max-ref-number 10 -t 10
+             --references-list ref_genomes.txt --max-ref-number 21 -t 10
 ```
 
-By now, you should be getting familiar enough with the console to understand what most of the parameters here refer to. The one parameter that needs explanation is the `--max-ref-number` flag, which we have set to 10. This caps the maximum number of reference genomes to be downloaded from NCBI which we do in the interest of speed. Since there are 10 species names in the file `ref_genomes.txt`, `MetaQUAST` will download one of each. If we increase the number we will start to get multiple references per name provided which is usually desirable.
+By now, you should be getting familiar enough with the console to understand what most of the parameters here refer to. The one parameter that needs explanation is the `--max-ref-number` flag, which we have set to 21. This caps the maximum number of reference genomes to be downloaded from NCBI which we do in the interest of speed. Since there are 21 names in the file `ref_genomes.txt` (10 prokaryote species and 11 viruses), `MetaQUAST` will download one of each. If we increase the number we will start to get multiple references per name provided which is usually desirable.
 
 We will now look at a few interesting assembly comparisons.
 
