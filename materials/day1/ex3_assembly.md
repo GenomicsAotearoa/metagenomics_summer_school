@@ -112,7 +112,7 @@ cat sample1.fna sample2.fna sample3.fna sample4.fna > for_idba.fna
 
 ### Basic assembly parameters
 
-For any assembler, there are a **_lot_** of parameters that can be fine-tuned depending on your data. As no two data sets are the same, it is almost impossible to predict which parameter combinations will yield the best outcome for your dataset. That said,an assembly can be quite a resource-intensive process and it is generally not practical to test every permutation of parameter value with your data. In genomics, the saying goes that the best assembly is the one that answers your question. As long as the data you are receiving is meaningful to the hypothesis you are seeking to address, then your assembly is as good as it needs to be.
+For any assembler, there are a **_lot_** of parameters that can be fine-tuned depending on your data. As no two data sets are the same, it is almost impossible to predict which parameter combinations will yield the best outcome for your dataset. That said, an assembly can be quite a resource-intensive process and it is generally not practical to test every permutation of parameter values with your data. In genomics, the saying goes that the best assembly is the one that answers your question. As long as the data you are receiving is meaningful to the hypothesis you are seeking to address, then your assembly is as good as it needs to be.
 
 Generally speaking, assemblers are developed in a way where they run with default parameters that have been empirically demonstrated to produce the best outcome **_on average_** across multiple data sets. For most purposes, there is not a lot of need to change these, but some parameters that we would always want to look at include:
 
@@ -184,8 +184,8 @@ Into this file, either write or copy/paste the following commands:
 #SBATCH -J spades_assembly
 #SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
-#SBATCH --time 01:00:00
-#SBATCH --mem 20GB
+#SBATCH --time 00:20:00
+#SBATCH --mem 10GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 16
 #SBATCH -e spades_assembly.err
@@ -229,7 +229,7 @@ When executing the `SPAdes` command, there are a few parameters to note here:
 
 Note that we also prefix the command (`spades.py`) with the `srun` command. This is a command specific to slurm and allows NeSI to track the resource usage of the `SPAdes` job.
 
-We don't explicitly set memory or thread counts for this job, simply for the sake of keeping the command uncluttered. The default memory limit of `SPAdes` (250 GB) is much higher than the 20 GB we have allowed our job here. If the memory cap was violated then both slurm and `SPAdes` will terminate the assembly. We have also left the number of threads at the default value of 16, which matches the number specified in the slurm header.
+We don't explicitly set memory or thread counts for this job, simply for the sake of keeping the command uncluttered. The default memory limit of `SPAdes` (250 GB) is much higher than the 10 GB we have allowed our job here. If the memory cap was violated then both slurm and `SPAdes` will terminate the assembly. We have also left the number of threads at the default value of 16, which matches the number specified in the slurm header.
 
 It is a good idea to match your number of threads request in the slurm script with what you intend to use with `SPAdes` because your project usage is calculated based off what you request in your slurm scripts rather than what you actually use. Requesting many unused threads simply drives your project down the priority queue. By contrast, requesting fewer threads than you attempt to use in the program (i.e. request 10 in slurm, set thread count to 30 in `SPAdes`) will result in reduced performance, as your `SPAdes` job will divide up jobs as though it has 30 threads, but only 10 will be provided. This is discussed [in this blog post](https://www.codeguru.com/cpp/sample_chapter/article.php/c13533/Why-Too-Many-Threads-Hurts-Performance-and-What-to-do-About-It.htm).
 
@@ -275,8 +275,8 @@ nano idbaud_assembly.sl
 #SBATCH -J idbaud_assembly
 #SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
-#SBATCH --time 00:30:00
-#SBATCH --mem 10GB
+#SBATCH --time 00:15:00
+#SBATCH --mem 4GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 16
 #SBATCH -e idbaud_assembly.err
