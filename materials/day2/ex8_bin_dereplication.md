@@ -10,7 +10,7 @@
 
 ### Bin dereplication using `DAS_Tool` - Creating input tables
 
-As we discussed in the previous exercise, we have now generated two sets of bins from the same single assembly. With this mock data set we can see that each tool recovered 10 bins, which is the number of genomes used to create this mock community. Since we **_shouldn't_** see more than 10 bins total, these tools have obviously recovered the same genomes. However, it is not clear which tool has done a better job of recruiting contigs to each bin - we very rarely expect to see the complete genome recovered from these kinds of data, so while it is probably the case that while an equivalent bin is present in the `MetaBAT` and `MaxBin` outputs, they will likely be of differing quality.
+As we discussed in the previous exercise, we have now generated two sets of bins from the same single assembly. With this mock data set we can see that `MetaBAT` recovered 12 bins, while `MexBin` recovered 10. Note that we are aiming to recover prokaryote genomes using these binning tools (we will use other tools to investigate viral genomes in later exercises), and 10 bacterial and archaeal genomes were used in the creation of this mock community. If our mock community only contained these 10 prokaryote genomes and omitted the viral genomes, we **_shouldn't_** expect to see more than 10 bins total. In our case here, these tools have likely recovered 10 bins of the same genomes, with `MetaBAT` identifying an additional 2 bins, which may be the result of additional noise introduced by the viral contigs in the binning process. Furthermore, it is not clear which tool has done a better job of recruiting contigs to each bin - we very rarely expect to see the complete genome recovered from these kinds of data, so while it is probably the case that while an equivalent bin is present in the `MetaBAT` and `MaxBin` outputs, they will likely be of differing quality.
 
 `DAS_Tool` is a program designed to analyse the bins in each of our binning sets and determine where these equivalent pairs (or triplets if we use three binners) exist and return the 'best' one. `DAS_Tool` does not use the actual bins, but a set of text files that link contigs to their corresponding bins in each of the bin sets. We can produce these files using `bash`.
 
@@ -177,7 +177,7 @@ The marker sets used in `CheckM` were chosen because they are present in at leas
 
 ##### Genes are considered as co-located clusters
 
-Rather than test the raw presence/absence of genes in the marker sets, the genes are organised into operon-like structures where genes known to co-located are placed together. This is advantageous for two reasons
+Rather than test the raw presence/absence of genes in the marker sets, the genes are organised into operon-like structures where genes known to be co-located are placed together. This is advantageous for two reasons
 
 1. These co-located groups are distributed around the prokaryotic genome, so estimates are not biased by lucky/unlucky recovery of a gene hotspot
 1. `CheckM` can account for how complete each individual gene cluster is, rather than just whether or not genes are present
@@ -196,8 +196,8 @@ We will need to run `CheckM` under a slurm script. This is because the tree plac
 #SBATCH -J bin_eval_checkm
 #SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
-#SBATCH --time 2:00:00
-#SBATCH --mem 100GB
+#SBATCH --time 00:20:00
+#SBATCH --mem 50GB
 #SBATCH --cpus-per-task 10
 #SBATCH -e bin_eval_checkm.err
 #SBATCH -o bin_eval_checkm.out
