@@ -58,8 +58,8 @@ The full script is provided here, and we will discuss it below.
 #SBATCH -J spades_mapping
 #SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
-#SBATCH --time 00:20:00
-#SBATCH --mem 20GB
+#SBATCH --time 00:05:00
+#SBATCH --mem 1GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 10
 #SBATCH -e spades_mapping.err
