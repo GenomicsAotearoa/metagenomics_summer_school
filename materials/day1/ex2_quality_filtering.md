@@ -23,12 +23,12 @@ To activate `FastQC` on NeSI, you need to first load the module using the comman
 module load FastQC/0.11.7
 ```
 
-`FastQC` can then be run either interactively (i.e. with a GUI) or from the command line. The different is simply whether or not you provide any input files to `FastQC` when it loads.
+`FastQC` can then be run either interactively (i.e. with a GUI) or from the command line. The difference is simply whether or not you provide any input files to `FastQC` when it loads.
 
 ```bash
 # Load interactively
 
-fastqc mock_R1.fastq.gz mock_R2.fastq.gz
+fastqc mock_R1.good.fastq.gz mock_R2.good.fastq.gz
 ```
 
 Now download the resulting files using `scp` and view them on your computer. Note that `FastQC` does not load the forward and reverse pairs of a library in the same window, so you need to be mindful of how your samples relate to each other. 
