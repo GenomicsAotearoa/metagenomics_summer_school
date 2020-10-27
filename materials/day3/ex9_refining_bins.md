@@ -46,7 +46,7 @@ Here we are taking the file `example_data.txt`, which contains the per-sample co
 
 ##### Step 2
 
-The `build_vizbin_inputs.py` script is what produces our input files for `VizBin`. It the folder of bin files as the input, and optionally a table of sub-contig coverage values, which is defined by the `-c` parameter.
+The `build_vizbin_inputs.py` script is what produces our input files for `VizBin`. It takes the folder of bin files as the input, and optionally a table of sub-contig coverage values, which is defined by the `-c` parameter.
 
 What this script is doing is taking each fasta file and picking out the names of the contigs found in that file (bin). It is then looking for any coverage information which is associated with that contig in the `sample1.txt` file, and adding that as a new column to the file. The resulting information is written to a file that carries the name from the `-o` parameter. This file is a comma-delimited table (*csv file*) that presents the information in the way that `VizBin` expects it.
 
