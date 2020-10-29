@@ -248,10 +248,10 @@ done
 
 ~~You can then create an *.ann* file using the same `python` script as above, but we will not be able to add in the coverage information for this run. Because the `build_vizbin_inputs.py` script is written in version 3 of `python`, but the `CONCOCT` module loads version 2, we need to reload `python 3.7` before running the script again.~~
 
-~~```bash
+```bash
 module load Python/3.7.3-gimkl-2018b
 python build_vizbin_inputs.py -o vb_sample1 custom_chop/*
-```~~
+```
 
 ...
 
