@@ -489,6 +489,6 @@ for bin_file in example_data_20k/*.fna; do
 done
 ```
 
-We now have the `all_bins.fna` and `all_bins.sample1.vizbin.ann` files that were provided at the [start of this exercise](prepare-input-files-for-vizbin).
+We now have the `all_bins.fna` and `all_bins.sample1.vizbin.ann` files that were provided at the [start of this exercise](#prepare-input-files-for-vizbin).
 
 ---
