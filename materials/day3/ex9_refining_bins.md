@@ -181,7 +181,7 @@ Note that in the case of the third contig from the excerpt above, the 'problemat
 
 ### Generate a list of contigs to *exclude* from filtering
 
-Create a list of contigs identified from vb_count_table.txt that are *not* to be filtered out by seqmagick in the next step. For example, those contigs that have sub-contigs split across multiple vizbin clusters, and for which it's reasonable to actually keep the contig (such as when a flagged selected sub-contig exported from vizbin is in one unexpected cluster, but all other sub-contigs from that parent contig are in the expected cluster; in this case, you likely *don't* want to filter out the parent contig from the data set moving forward). 
+Create a list of contigs identified from `vb_count_table.txt` that are *not* to be filtered out by seqmagick in the next step. For example, those contigs that have sub-contigs split across multiple vizbin clusters, and for which it's reasonable to actually keep the contig (such as when a flagged selected sub-contig exported from vizbin is in one unexpected cluster, but all other sub-contigs from that parent contig are in the expected cluster; in this case, you likely *don't* want to filter out the parent contig from the data set moving forward). 
 
 Below is an example. Simply replace the contig IDs between the quotes for as many lines as necessary for your data. 
 
@@ -206,7 +206,7 @@ This creates `vb_omit_contigs_filtered.txt`, which we will then pass to `seqmagi
 grep -v -f vb_keep_contigs.txt vb_omit_contigs_tmp.txt > vb_omit_contigs_filtered.txt
 ```
 
-##### Filter suspect contigs (based on `VizBin` analysis) from the bin data
+### Filter suspect contigs (based on `VizBin` analysis) from the bin data
 
 Use `seqmagick --exclude-from-file ...` to filter problematic contigs (those contigs listed in `vb_omit_contigs_filtered.txt`) out of the initial *unchopped* bin fasta files, generating final bins for downstream processing.
 
@@ -267,7 +267,7 @@ for bin_file in custom_chop/*.fna; do
 done
 ```
 
-If you wish to generate the full annotation file, including coverage and length values, you will need to go through the process outlined in the **Appendix** below (**Appendix: Generating input files for `VizBin` from `DAS_Tool` curated bins**).  
+If you wish to generate the full annotation file, including coverage and length values, you will need to go through the process outlined in the [Appendix](#appendix-generating-input-files-for-vizbin-from-das_tool-curated-bins) below.  
 
 ---
 
