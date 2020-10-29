@@ -157,6 +157,8 @@ For this exercise, a folder of the exported files from `VizBin` for all clusters
 
 We will input these files to the shell script `vizbin_count_table.sh` to generate a count table of the exprted subcontigs across each `VizBin` cluster (`vb_count_table.txt`), as well as a working list of contigs to potentially remove from our final bin data (`vb_omit_contigs_tmp.txt`).
 
+For future reference, a copy of this script is available for download [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/scripts/).
+
 ```bash
 ./vizbin_count_table.sh -i vizbin_example_exports/
 ```
