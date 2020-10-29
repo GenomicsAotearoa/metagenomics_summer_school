@@ -117,7 +117,7 @@ Today, we will run through an example of selecting potentially problematic (sub)
 
 ##### Export `VizBin` clusters
 
-First, for each `VizBin` cluster, select the area around the cluster (via multiple left-clicks around the cluster), right-click, 'Selection', 'Export'. Save this output as `cluster_1.fna`. In practice, we would do this for each `VizBin` cluster, saving each as a new `cluster_n.fna` file.
+First, for each `VizBin` cluster, select the area around the cluster (via multiple left-clicks around the cluster), right-click, 'Selection', 'Export'. Save this output as `cluster_1.fna`. Try this for one or two clusters. In practice, we would do this for each `VizBin` cluster, saving each as a new `cluster_n.fna` file.
 
 ...
 
@@ -144,7 +144,7 @@ Save the output as `contigs_1.fna`.
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_export.PNG)
 
-In practice, you could repeat this for each problemtic contig (or subset of problematic contigs), saving each as a new `contigs_n.fna` file.
+Try this for one or two problematic contigs (or subsets of problematic contigs). In practice, you could repeat this for all potential problemtic contigs, saving each export as a new `contigs_n.fna` file.
 
 *NOTE: for the subsequent step using `vizbin_count_table.sh`, all exported cluster files must share a common prefix (e.g. `cluster...fna`), and all files of problematic contigs must also share a common prefix (e.g. `contigs...fna`).*
 
