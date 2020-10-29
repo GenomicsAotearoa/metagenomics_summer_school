@@ -117,7 +117,9 @@ Today, we will run through an example of selecting potentially problematic (sub)
 
 ##### Export `VizBin` clusters
 
-First, for each `VizBin` cluster, select the area around the cluster (via multiple left-clicks around the cluster), right-click, 'Selection', 'Export'. Save this output as `cluster_1.fna`. Try this for one or two clusters. In practice, we would do this for each `VizBin` cluster, saving each as a new `cluster_n.fna` file.
+First, for each `VizBin` cluster, select the area around the cluster (via multiple left-clicks around the cluster), right-click, 'Selection', 'Export'. Save this output as `cluster_1.fna`. 
+
+Try this for one or two clusters. In practice, we would do this for each `VizBin` cluster, saving each as a new `cluster_n.fna` file.
 
 ...
 
