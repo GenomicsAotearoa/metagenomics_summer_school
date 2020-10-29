@@ -463,7 +463,7 @@ module load MetaBAT/2.13-GCC-7.4.0
 jgi_summarize_bam_contig_depths --outputDepth example_data_20k_cov.txt read_mapping/sample*.bam
 ```
 
-**6. Generate annotation table for vizbin**
+**6. Generate annotation table for `VizBin**
 
 Using the chopped bin files (`example_data_20k/`) and the coverage table generated above (`example_data_20k_cov.txt`), we can use the following script to generate an annotation table in the format that `VizBin` is expecting. Note that here we are including columns for per-sub-contig coverage based on *sample1* (see note at the start of this exercise), label (bin ID), and length values, and storing this in `all_bins.sample1.vizbin.ann`.
 
@@ -488,5 +488,7 @@ for bin_file in example_data_20k/*.fna; do
     done
 done
 ```
+
+We now have the `all_bins.fna` and `all_bins.sample1.vizbin.ann` files that were provided at the [start of this exercise](prepare-input-files-for-vizbin).
 
 ---
