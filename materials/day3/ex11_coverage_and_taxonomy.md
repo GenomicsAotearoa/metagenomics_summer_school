@@ -2,26 +2,26 @@
 
 ### Objectives
 
-* Calculating per-sample coverage stats of the filtered prokaryote bins
-* Calculating per-sample coverage stats of the viral contigs output by `VIBRANT`
-* Assigning taxonomy to the refined bins
+* Calculate per-sample coverage stats of the filtered prokaryote bins
+* Calculate per-sample coverage stats of the viral contigs output by `VIBRANT`
+* Assign taxonomy to the refined bins
 * Overview of using `vContact2` to predict taxonomy of viral contigs
 
 ---
 
-### Calculating per-sample coverage stats of the filtered prokaryote bins
+### Calculate per-sample coverage stats of the filtered prokaryote bins
 
 *WIP (MH)*
 
 ---
 
-### Calculating per-sample coverage stats of viral contigs
+### Calculate per-sample coverage stats of viral contigs
 
 *WIP (MH)*
 
 ---
 
-### Assigning taxonomy to the refined bins
+### Assign taxonomy to the refined bins
 
 It is always valuable to know the taxonomy of our binned MAGs, so that we can link them to the wider scientific literature. In order to do this, there are a few different options available to us:
 
@@ -49,8 +49,8 @@ This can all be achieved in a single command, although it must be performed thro
 #SBATCH -J gtdbtk_test
 #SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
-#SBATCH --time 2:00:00
-#SBATCH --mem 120GB
+#SBATCH --time 00:30:00
+#SBATCH --mem 140GB
 #SBATCH --cpus-per-task 10
 #SBATCH -e gtdbtk_test.err
 #SBATCH -o gtdbtk_test.out
