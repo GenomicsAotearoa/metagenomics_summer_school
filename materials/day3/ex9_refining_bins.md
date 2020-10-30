@@ -361,7 +361,7 @@ Example slurm script:
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A ga02676
+#SBATCH -A nesi02659
 #SBATCH -J 6.bin_refinement_mapping
 #SBATCH --time 00:05:00
 #SBATCH --mem 1GB
