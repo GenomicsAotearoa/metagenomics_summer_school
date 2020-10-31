@@ -239,7 +239,7 @@ Even more so than prokaryote taxonomy, establishing a coherent system for viral 
 
 There are a number of approaches that can be used to attempt to predict the taxonomy of the set of putative viral contigs output by programs such as `VIBRANT`, `VirSorter`, and `VirFinder`. [vContact2](https://www.nature.com/articles/s41587-019-0100-8) is one such method that uses 'guilt-by-contig-association' to predict the potential taxonomy of viral genomic sequence data based on relatedness to known viruses within a reference database (such as viral RefSeq). The principle is that, to the extent that the 'unknown' viral contigs cluster closely with known viral genomes, we can then expect that they are closely related enough to be able to predict a shared taxonomic rank. 
 
-*Anecdotally, in my own experience with this processes I have unfortunately been unable to predict the taxonomy of the vast majority of the viral contigs ouput by `VIBRANT`, `VirSorter`, or `VirFinder` from an environmental metagenomic data set (due to not clustering closely enough with known viruses in the reference database).*
+*NOTE: Anecdotally, in my own experience with this processes I have unfortunately been unable to predict the taxonomy of the vast majority of the viral contigs ouput by `VIBRANT`, `VirSorter`, or `VirFinder` from an environmental metagenomic data set (due to not clustering closely enough with known viruses in the reference database).*
 
 Running `vContact2` can require a reasonable amount of computational resources, and so we won't be running this in the workshop today. The required process is outlined below for reference, should you wish to experiment with this on your own data in the future.
 
@@ -247,7 +247,7 @@ Further information for installation and running of vContact2 can also be found 
 
 ### Overview of viral taxonomy prediction via `vContact2`
 
-NOTE: these steps are based on having `vContact2` set up as a `conda` environment. This documentation will be updated should `vContact2` become available as a NeSI module.
+*NOTE: these steps are based on having `vContact2` set up as a `conda` environment. This documentation will be updated should `vContact2` become available as a NeSI module.*
 
 **1. Predict genes via `prodigal`**
 
