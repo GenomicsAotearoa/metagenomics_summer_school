@@ -9,25 +9,33 @@
 
 ---
 
-### Identifying viral contigs: overview
+### Identifying viral contigs: background
 
 Viral metagenomics is a rapidly developing field, and there are continually new software developed and released each year that aim to successfully identify and characterise viral genomic sequence from assembled metagenomic sequence reads. 
 
 Currently, the most commonly used methods are [VIBRANT](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0), [VirSorter](https://peerj.com/articles/985/), and [VirFinder](https://link.springer.com/epdf/10.1186/s40168-017-0283-5?author_access_token=YQgkTWibFIFPtRICkTjZF2_BpE1tBhCbnbw3BuzI2RMCpVMGldKV8DA9scozc7Z-db3ufPFz9-pswHsYVHyEsCrziBuECllLPOgZ6ANHsMeKF5KejrdDKdeASyDkxB5wfFDq523QSd01cnqxCLqCiQ%3D%3D) (or the machine learning implementation of this, [DeepVirFinder](https://github.com/jessieren/DeepVirFinder)). A number of recent studies use either one of these tools, or a combination of several at once.
 
-`VIBRANT` uses a machine learning approach based on protein similarity (non-reference-based similarity searches with multiple HMM sets), and is in principle applicable to bacterial and archaeal DNA and RNA viruses, integrated proviruses (which are excised from contigs by `VIBRANT`), and eukaryotic viruses. 
+### `VIBRANT`
 
-`VirSorter` uses a predicted protein homology reference database-based approach, together with searching for a number of pre-defined metrics based on known viral genomic features. The authors note that `VirSorter` is currently best applied to DNA viruses (including prophage, which are also excised from contigs by `VirSorter`), but is likely poor with RNA viruses (from metatranscriptome data) and is also poor with eukaryotic viruses (as the database currently lacks eukaryotic viruses, and the genomic features incorporated were developed based on viruses of prokaryotes). 
+[VIBRANT](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0) uses a machine learning approach based on protein similarity (non-reference-based similarity searches with multiple HMM sets), and is in principle applicable to bacterial and archaeal DNA and RNA viruses, integrated proviruses (which are excised from contigs by `VIBRANT`), and eukaryotic viruses. 
+
+### `VIrSorter`
+
+[VirSorter](https://peerj.com/articles/985/) uses a predicted protein homology reference database-based approach, together with searching for a number of pre-defined metrics based on known viral genomic features. The authors note that `VirSorter` is currently best applied to DNA viruses (including prophage, which are also excised from contigs by `VirSorter`), but is likely poor with RNA viruses (from metatranscriptome data) and is also poor with eukaryotic viruses (as the database currently lacks eukaryotic viruses, and the genomic features incorporated were developed based on viruses of prokaryotes). 
 
 *Hot off the press: an early test version of `VirSorter2` was recently released, which expands `VirSorter`'s target viruses to now include dsDNAphage, ssDNA and RNA viruses, and the viral groups Nucleocytoviricota and lavidaviridae.* 
 
-`DeepVirFinder` uses a machine learning based approach based on *k*-mer frequencies. Having developed a database of the differences in *k*-mer frequencies between prokaryote and viral genomes, `VirFinder` examines assembled contigs and identifies whether their *k*-mer frequencies are comparable to known viruses in the database, using this to predict viral genomic sequence. This method has some limitation based on the viruses included when building the database (bacterial DNA viruses, but very few archaeal viruses, and, at least in some versions of the software, no eukaryotic viruses). However, tools are also provided to build your own database should you wish to develop an expanded one. Due to its distinctive *k*-mer frequency-based approach, `VirFinder` may also have the capability of identifying some novel viruses overlooked by tools such as `VIBRANT` or `VirSorter`.
+### `DeepVirFinder`
 
-Installation and further instructions: 
+[DeepVirFinder](https://github.com/jessieren/DeepVirFinder) uses a machine learning based approach based on *k*-mer frequencies. Having developed a database of the differences in *k*-mer frequencies between prokaryote and viral genomes, `VirFinder` examines assembled contigs and identifies whether their *k*-mer frequencies are comparable to known viruses in the database, using this to predict viral genomic sequence. This method has some limitation based on the viruses included when building the database (bacterial DNA viruses, but very few archaeal viruses, and, at least in some versions of the software, no eukaryotic viruses). However, tools are also provided to build your own database should you wish to develop an expanded one. Due to its distinctive *k*-mer frequency-based approach, `VirFinder` may also have the capability of identifying some novel viruses overlooked by tools such as `VIBRANT` or `VirSorter`.
+
+### Installation and further instructions: 
 
 * Further details for `VIBRANT` can be found [here](https://github.com/AnantharamanLab/VIBRANT).
 * Further details for `VirSorter` can be found [here](https://github.com/simroux/VirSorter).
 * Further details for `DeepVirFinder` can be found [here](https://github.com/jessieren/DeepVirFinder).
+
+---
 
 ### Identifying viral contigs using `VIBRANT`
 
