@@ -9,7 +9,7 @@
 
 ---
 
-### Identifying viral contigs
+### Identifying viral contigs: overview
 
 Viral metagenomics is a rapidly developing field, and there are continually new software developed and released each year that aim to successfully identify and characterise viral genomic sequence from assembled metagenomic sequence reads. 
 
@@ -24,8 +24,12 @@ Currently, the most commonly used methods are [VIBRANT](https://microbiomejourna
 `DeepVirFinder` uses a machine learning based approach based on *k*-mer frequencies. Having developed a database of the differences in *k*-mer frequencies between prokaryote and viral genomes, `VirFinder` examines assembled contigs and identifies whether their *k*-mer frequencies are comparable to known viruses in the database, using this to predict viral genomic sequence. This method has some limitation based on the viruses included when building the database (bacterial DNA viruses, but very few archaeal viruses, and, at least in some versions of the software, no eukaryotic viruses). However, tools are also provided to build your own database should you wish to develop an expanded one. Due to its distinctive *k*-mer frequency-based approach, `VirFinder` may also have the capability of identifying some novel viruses overlooked by tools such as `VIBRANT` or `VirSorter`.
 
 Installation and further instructions for `VIBRANT` can be found [here](https://github.com/AnantharamanLab/VIBRANT).
+
 Installation and further instrcutions for `VirSorter` can be found [here](https://github.com/simroux/VirSorter).
+
 Installation and further instrcutions for `DeepVirFinder` can be found [here](https://github.com/jessieren/DeepVirFinder).
+
+### Identifying viral contigs using `VIBRANT`
 
 For this exercise, we will use `VIBRANT` to identify viral contigs from our assembled contigs. As an added bonus, `VIBRANT` also provides outputs for gene and protein predictions, identified integrated prophage, and metabolism (including viral metabolism and auxiliary-metabolic genes (AMGs) - prokaryote host-derived genes that have been integrated in and are encoded by viral genomes). 
 
