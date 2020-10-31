@@ -359,9 +359,9 @@ Note from the `vContact2` online docs:
 
 The summary output of `vContact2` is the file `vConTACT2_Results/genome_by_genome_overview.csv`. As the comment above notes, one approach would be to search this file for particular contigs of interest, and see if any reference genomes fall into the same viral cluster (VC), using this reference to predict the taxonomy of the contig of interest.
 
-The following `python` script is effectively an automated version of this for all input contigs (*Note: this script has not been widely tested, and should be used with some degree of caution*). This script groups contigs (and reference genomes) that fall into each VC together, and then for each included contig and genome, outputs a list of all taxonomies (at the ranks of 'Order', 'Family', and 'Genus' separately) that were found in that cluster. The predictions (i.e. the list of all taxonomies found in the same VC) for each is output to the table `tax_predict_table.txt`. 
+The following `python` script is effectively an automated version of this for all input contigs (*Note: this script has not been widely tested, and so should be used with some degree of caution*). This script groups together contigs (and reference genomes) that fall into each VC, and then for each, outputs a list of all taxonomies (at the ranks of 'Order', 'Family', and 'Genus', separately) that were found in that cluster. The predictions (i.e. the list of all taxonomies found in the same VC) for each rank and each contig is output to the table `tax_predict_table.txt`. 
 
-*NOTE: The taxonomies are deliberately enclosed in square brackets (`[ ]`) to highlight the fact that these are *predictions*, rather than definitive taxonomy *assignments*.
+*NOTE: The taxonomies are deliberately enclosed in square brackets (`[ ]`) to highlight the fact that these are **predictions**, rather than definitive taxonomy **assignments**.*
 
 For future reference, a copy of this script is available for download [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/scripts/vcontact2_tax_predict.py)
 
