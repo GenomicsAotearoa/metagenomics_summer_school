@@ -1,6 +1,6 @@
 # Metagenomics Summer School
 
-Course materials for the Genomics Aotearoa Metagenomics Summer School, to be hosted at the University of Auckland in December.
+Course materials for the Genomics Aotearoa Metagenomics Summer School, to be hosted at the University of Auckland in November.
 
 A draft timetable for the day is provided below, but please keep in mind that this is subject to change as we evaluate our course material.
 
@@ -53,6 +53,8 @@ You can find a saved version of the workshop Etherpad notes [here](https://githu
 ### Day 3
 
 1. [Bin refinement](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex9_refining_bins.md)
+1. [Viruses](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex10_viruses.md)
+1. [Coverage and Taxonomy](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex11_coverage_and_taxonomy.md)
 1. [Gene prediction](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex10_gene_prediction.md)
 1. [Gene annotation (part 1)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex11_gene_annotation_part1.md)
 1. [Gene annotation (part 2)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex12_gene_annotation_part2.md)
