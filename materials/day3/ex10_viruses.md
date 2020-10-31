@@ -9,7 +9,7 @@
 
 ---
 
-### Identifying viral contigs: background
+### Identifying viral contigs
 
 Viral metagenomics is a rapidly developing field, and there are continually new software developed and released each year that aim to successfully identify and characterise viral genomic sequence from assembled metagenomic sequence reads. 
 
