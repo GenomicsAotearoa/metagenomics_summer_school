@@ -39,7 +39,7 @@ These exercises will take place in the `7.viruses/` folder.
 
 *Note: `VIBRANT` is currently not available as a module in NeSI. For this exercise we will be using a downloaded version of the program and relevant databases. We will use the script `source viral_module_load.sh` to add the path to the vibrant program directory to our `PATH` variable, as well as load modules for the dependencies `Python` (v.3.7+), `HMMER`, and `Prodigal`.*
 
-### Update `Python` packages for `VIBRANT`
+**Update `Python` packages for `VIBRANT`**
 
 The standard module load of `Python/3.8.2-gimkl-2020a` does not include the required `Python` package `seaborn`. Furthermore, while `scikit-learn` is available, we need to roll it back to version 0.21.3 for `VIBRANT` to work.
 
@@ -54,7 +54,7 @@ pip install --upgrade scikit-learn==0.21.3
 
 *NOTE: This version of `scikit-learn` will also be retained with this module load of `Python` (`Python/3.8.2-gimkl-2020a`) for future sessions. If you require the use of `Python/3.8.2-gimkl-2020a` with a later version of `scikit-learn` for other work, you can reupdate the package via `pip install --upgrade scikit-learn`).*
 
-### Run `Vibrant` 
+**Run `Vibrant`**
 
 For this we will input the assembled contigs from the `SPAdes` assembly we performed earlier. These assembly files are available at `7.viruses/spades_assembly/`
 
@@ -86,7 +86,7 @@ srun VIBRANT_run.py -t 16 \
 -folder vibrant/
 ```
 
-### Examine outputs of `VIBRANT`
+**Examine outputs of `VIBRANT`**
 
 Exercise: `VIBRANT` provides a number of different outputs. Explore through the various folders within the `vibrant/` folder and identify some that might be of particular interest. Open some of these files to see if you can find the following information:
 
@@ -107,7 +107,7 @@ Installation and further instructions for `CheckV` can be found [here](https://b
 
 *Note: `CheckV` is currently not available as a module in NeSI. For this exercise we will be using a downloaded version of the program and relevant databases. We will use the script `source viral_module_load.sh` to add the path of the directory containing `CheckV` to our `PATH` variable, as well as load modules for the dependencies `DIAMOND`, `HMMER`, and `Prodigal`.*
 
-### Run `CheckV`
+**Run `CheckV`**
 
 Run `CheckV` providing the *fastA* file of combined (virus and prophage) viral contigs output by `VIBRANT` as input (`spades_assembly.m1000.phages_combined.fna`).
 
@@ -142,7 +142,7 @@ srun checkv repeats ${checkv_in} ${checkv_out} --quiet
 srun checkv quality_summary ${checkv_in} ${checkv_out} --quiet
 ```
 
-### Examine outputs of `CheckV`
+**Examine outputs of `CheckV`**
 
 `CheckV` provides summary outputs for contamination, completeness, repeats, and an overall quality summary. Have a brief look at some examples of the included information you can draw from each of these `CheckV` outputs. 
 
