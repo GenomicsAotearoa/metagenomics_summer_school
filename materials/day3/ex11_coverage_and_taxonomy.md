@@ -1,4 +1,4 @@
-# Per-sample coverage stats and assigning taxonomy
+# Per-sample coverage and assigning taxonomy
 
 ### Objectives
 
