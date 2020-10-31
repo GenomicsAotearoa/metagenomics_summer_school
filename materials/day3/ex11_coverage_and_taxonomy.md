@@ -168,7 +168,7 @@ jgi_summarize_bam_contig_depths --outputDepth viruses_cov_table.txt viruses_cove
 
 The coverage table will be generated as `viruses_cov_table.txt`. As before, the key columns of interest are the `contigName`, and each `sample[1-n].bam` column.
 
-*NOTE: Unlike the prokaryote data, we have not used a binning process on the viral contigs (since many of the binning tools use hallmark characteristics of prokaryotes in the binning process). Here, `viruses_cov_table.txt` is the final coverage table. This can be combined with `CheckV` quality and completeness metrics to, for example, example the coverage profiles of only those viral contigs considered to be "High-quality" or "Complete".* 
+*NOTE: Unlike the prokaryote data, we have not used a binning process on the viral contigs (since many of the binning tools use hallmark characteristics of prokaryotes in the binning process). Here, `viruses_cov_table.txt` is the final coverage table. This can be combined with `CheckV` quality and completeness metrics to, for example, examine the coverage profiles of only those viral contigs considered to be "High-quality" or "Complete".* 
 
 ---
 
