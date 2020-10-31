@@ -146,7 +146,7 @@ do
 
   # Step 2
   bowtie2 --minins 200 --maxins 800 --threads 10 --sensitive \
-          -x viruses_coverage/bw_bins \
+          -x viruses_coverage/bw_viruses \
           -1 ../3.assembly/${i}_R1.fastq.gz -2 ../3.assembly/${i}_R2.fastq.gz \
           -S viruses_coverage/${i}.sam
 
