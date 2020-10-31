@@ -2,8 +2,8 @@
 
 ### Objectives
 
-* Calculate per-sample coverage stats of the filtered prokaryote bins
-* Calculate per-sample coverage stats of the viral contigs output by `VIBRANT`
+* Calculate per-sample coverage stats for the filtered prokaryote bins
+* Calculate per-sample coverage stats for the viral contigs output by `VIBRANT`
 * Assign taxonomy to the refined bins
 * Overview of using `vContact2` to predict taxonomy of viral contigs
 
