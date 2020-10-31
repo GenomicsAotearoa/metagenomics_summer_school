@@ -13,7 +13,7 @@
 
 Viral metagenomics is a rapidly developing field, and there are continually new software developed and released each year that aim to successfully identify and characterise viral genomic sequence from assembled metagenomic sequence reads. 
 
-Currently, the most commonly used methods are [VIBRANT](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0), [VirSorter](https://peerj.com/articles/985/), and [VirFinder](https://link.springer.com/epdf/10.1186/s40168-017-0283-5?author_access_token=YQgkTWibFIFPtRICkTjZF2_BpE1tBhCbnbw3BuzI2RMCpVMGldKV8DA9scozc7Z-db3ufPFz9-pswHsYVHyEsCrziBuECllLPOgZ6ANHsMeKF5KejrdDKdeASyDkxB5wfFDq523QSd01cnqxCLqCiQ%3D%3D) (or the machine learning implementation of this, `DeepVirFinder`). A number of recent studies use either one of these tools, or a combination of several at once.
+Currently, the most commonly used methods are [VIBRANT](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0), [VirSorter](https://peerj.com/articles/985/), and [VirFinder](https://link.springer.com/epdf/10.1186/s40168-017-0283-5?author_access_token=YQgkTWibFIFPtRICkTjZF2_BpE1tBhCbnbw3BuzI2RMCpVMGldKV8DA9scozc7Z-db3ufPFz9-pswHsYVHyEsCrziBuECllLPOgZ6ANHsMeKF5KejrdDKdeASyDkxB5wfFDq523QSd01cnqxCLqCiQ%3D%3D) (or the machine learning implementation of this, [DeepVirFinder](https://github.com/jessieren/DeepVirFinder)). A number of recent studies use either one of these tools, or a combination of several at once.
 
 `VIBRANT` uses a machine learning approach based on protein similarity (non-reference-based similarity searches with multiple HMM sets), and is in principle applicable to bacterial and archaeal DNA and RNA viruses, integrated proviruses (which are excised from contigs by `VIBRANT`), and eukaryotic viruses. 
 
@@ -23,11 +23,11 @@ Currently, the most commonly used methods are [VIBRANT](https://microbiomejourna
 
 `DeepVirFinder` uses a machine learning based approach based on *k*-mer frequencies. Having developed a database of the differences in *k*-mer frequencies between prokaryote and viral genomes, `VirFinder` examines assembled contigs and identifies whether their *k*-mer frequencies are comparable to known viruses in the database, using this to predict viral genomic sequence. This method has some limitation based on the viruses included when building the database (bacterial DNA viruses, but very few archaeal viruses, and, at least in some versions of the software, no eukaryotic viruses). However, tools are also provided to build your own database should you wish to develop an expanded one. Due to its distinctive *k*-mer frequency-based approach, `VirFinder` may also have the capability of identifying some novel viruses overlooked by tools such as `VIBRANT` or `VirSorter`.
 
-Installation and further instructions for `VIBRANT` can be found [here](https://github.com/AnantharamanLab/VIBRANT).
+Installation and further instructions: 
 
-Installation and further instrcutions for `VirSorter` can be found [here](https://github.com/simroux/VirSorter).
-
-Installation and further instrcutions for `DeepVirFinder` can be found [here](https://github.com/jessieren/DeepVirFinder).
+* Further details for `VIBRANT` can be found [here](https://github.com/AnantharamanLab/VIBRANT).
+* Further details for `VirSorter` can be found [here](https://github.com/simroux/VirSorter).
+* Further details for `DeepVirFinder` can be found [here](https://github.com/jessieren/DeepVirFinder).
 
 ### Identifying viral contigs using `VIBRANT`
 
