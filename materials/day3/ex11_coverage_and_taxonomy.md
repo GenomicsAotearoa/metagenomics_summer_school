@@ -241,13 +241,15 @@ There are a number of approaches that can be used to attempt to predict the taxo
 
 *NOTE: Anecdotally, in my own experience with this processes I have unfortunately been unable to predict the taxonomy of the vast majority of the viral contigs ouput by `VIBRANT`, `VirSorter`, or `VirFinder` from an environmental metagenomic data set (due to not clustering closely enough with known viruses in the reference database).*
 
-Running `vContact2` can require a reasonable amount of computational resources, and so we won't be running this in the workshop today. The required process is outlined below for reference, should you wish to experiment with this on your own data in the future.
+Running `vContact2` can require a reasonable amount of computational resources, and so we won't be running this in the workshop today. The required process is outlined in the [Appendix](#appendix-viral-taxonomy-prediction-via-vcontact2) below for reference, should you wish to experiment with this on your own data in the future.
 
-Further information for installation and running of vContact2 can also be found [here](https://bitbucket.org/MAVERICLab/vcontact2/src/master/).
+---
 
-### Overview of viral taxonomy prediction via `vContact2`
+### Appendix: viral taxonomy prediction via `vContact2`
 
 *NOTE: these steps are based on having `vContact2` set up as a `conda` environment. This documentation will be updated should `vContact2` become available as a NeSI module.*
+
+Further information for installing and running of vContact2 can also be found [here](https://bitbucket.org/MAVERICLab/vcontact2/src/master/).
 
 **1. Predict genes via `prodigal`**
 
