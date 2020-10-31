@@ -103,7 +103,7 @@ Exercise: `VIBRANT` provides a number of different outputs. Explore through the 
 
 ### Check quality and completeness of the viral contigs via `CheckV`
 
-[CheckV](https://www.biorxiv.org/content/10.1101/2020.05.06.081778v1.abstract) was recently developed as an analogue to `CheckM`. `CheckV` performs a 'contaminating sequence' trim, removing any retained (prokaryote) host sequence on the end of contigs containing integrated prophage, and assesses the quality and completeness of the assembled viral contigs. The quality of the contigs are also categoriesed based on the recently developed [Minimum Information about an Unclutivated Virus Genome](https://www.nature.com/articles/nbt.4306) (MIUViG) standards for reporting sequences of unclutivated virus geneomes (such as those recovered from metagenomic sequencing data).  
+[CheckV](https://www.biorxiv.org/content/10.1101/2020.05.06.081778v1.abstract) was recently developed as an analogue to `CheckM`. `CheckV` first performs a 'contaminating sequence' trim, removing any retained (prokaryote) host sequence on the end of contigs with integrated prophage, and then assesses the quality and completeness of the assembled viral contigs. The quality of the contigs are also categoriesed based on the recently developed [Minimum Information about an Unclutivated Virus Genome](https://www.nature.com/articles/nbt.4306) (MIUViG) standards for reporting sequences of unclutivated virus geneomes (such as those recovered from metagenomic sequencing data).  
 
 Installation and further instructions for `CheckV` can be found [here](https://bitbucket.org/berkeleylab/checkv/src/master/).
 
