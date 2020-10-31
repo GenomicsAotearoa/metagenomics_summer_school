@@ -146,7 +146,7 @@ srun checkv quality_summary ${checkv_in} ${checkv_out} --quiet
 
 **Examine outputs of `CheckV`**
 
-`CheckV` provides summary outputs for contamination, completeness, repeats, and an overall quality summary. Have a brief look at some examples of the included information you can draw from each of these `CheckV` outputs. 
+`CheckV` provides summary outputs for contamination, completeness, repeats, and an overall quality summary. Have a brief look at some examples of the information you can draw from each of these `CheckV` outputs. 
 
 Exercise: Examining `checkv/quality_summary.tsv`
 
