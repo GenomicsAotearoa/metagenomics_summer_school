@@ -37,7 +37,7 @@ For this exercise, we will use `VIBRANT` to identify viral contigs from our asse
 
 These exercises will take place in the `7.viruses/` folder.
 
-*Note: `VIBRANT` is currently not available as a module in NeSI. For this exercise we will be using a downloaded version of the program and relevant databases. We will use the script `source viral_module_load.sh` to add the path to the vibrant program directory to our `PATH` variable, as well as load modules for the dependencies `Python` (v.3.7+), `HMMER`, and `Prodigal`.*
+*Note: `VIBRANT` is currently not available as a module in NeSI. For this exercise we will be using a downloaded version of the program and relevant databases. We will use the script `source viral_module_load.sh` to add the path of the directory containing `VIBRANT` to our `PATH` variable, as well as load modules for the dependencies `Python` (v.3.7+), `HMMER`, and `Prodigal`.*
 
 **Update `Python` packages for `VIBRANT`**
 
