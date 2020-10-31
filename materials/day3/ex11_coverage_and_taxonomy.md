@@ -279,7 +279,7 @@ mkdir -p viral_taxonomy
 
 # Run main analyses 
 srun prodigal -p meta -q \
--i ../7.viruses/checkv/checkv_combined.fna \
+-i checkv_combined.fna \
 -a viral_taxonomy/checkv_combined.faa 
 ```
 
@@ -365,7 +365,7 @@ The following `python` script is effectively an automated version of this for al
 
 *NOTE: The taxonomies are deliberately enclosed in square brackets (`[ ]`) to highlight the fact that these are **predictions**, rather than definitive taxonomy **assignments**.*
 
-For future reference, a copy of this script is available for download [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/scripts/vcontact2_tax_predict.py)
+For future reference, a copy of this script is available for download [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/scripts/vcontact2_tax_predict.py)
 
 ```bash
 module load Python/3.8.2-gimkl-2020a
