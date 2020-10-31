@@ -52,7 +52,7 @@ pip install seaborn
 pip install --upgrade scikit-learn==0.21.3
 ```
 
-*NOTE: This version of `scikit-learn` will also be retained with this module load of `Python` (`Python/3.8.2-gimkl-2020a`) for future sessions. If you require the use of `Python/3.8.2-gimkl-2020a` with a later version of `scikit-learn` for other work, you can reupdate the package via `pip install --upgrade scikit-learn`).*
+*NOTE: This version of `scikit-learn` will also be retained with this module load of `Python` (`Python/3.8.2-gimkl-2020a`) for future sessions. If you require the use of `Python/3.8.2-gimkl-2020a` with a later version of `scikit-learn` for other work, you can re-update the package via `pip install --upgrade scikit-learn`).*
 
 **Run `Vibrant`**
 
