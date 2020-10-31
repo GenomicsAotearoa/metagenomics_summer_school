@@ -37,7 +37,7 @@ module load Bowtie2/2.3.5-GCC-7.4.0
 bowtie2-build filtered_bins/filtered_bins.fasta bin_coverage/bw_bins
 ```
 
-Map the quality-filtered reads (from `../assembly/`) to the index using `Bowtie2`, and sort and convert to `.bam` format via `samtools`.
+Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowtie2`, and sort and convert to `.bam` format via `samtools`.
 
 Example slurm script:
 
@@ -120,7 +120,7 @@ module load Bowtie2/2.3.5-GCC-7.4.0
 bowtie2-build checkv/checkv_combined.fna viruses_coverage/bw_viruses
 ```
 
-Map the quality-filtered reads (from `../assembly/`) to the index using `Bowtie2`, and sort and convert to `.bam` format via `samtools`.
+Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowtie2`, and sort and convert to `.bam` format via `samtools`.
 
 Example slurm script:
 
