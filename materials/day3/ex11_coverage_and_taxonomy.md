@@ -208,7 +208,7 @@ This can all be achieved in a single command, although it must be performed thro
 
 module load GTDB-Tk/0.2.2-gimkl-2018b-Python-2.7.16
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinement/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy
 
 gtdbtk classify_wf -x fna --cpus 10 --genome_dir filtered_bins/ --out_dir gtdbtk_out/
 ```
