@@ -11,7 +11,7 @@
 
 ### Identifying viral contigs
 
-Viral metagenomics is a rapidly developing field, and there are numerous software developed and released each year that aim to successfully identify and characteris viral genomic sequence from assembled metagenomic sequence reads. 
+Viral metagenomics is a rapidly developing field, and there are continually new software developed and released each year that aim to successfully identify and characterise viral genomic sequence from assembled metagenomic sequence reads. 
 
 Currently, the most commonly used methods are [VIBRANT](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0), [VirSorter](https://peerj.com/articles/985/), and [VirFinder](https://link.springer.com/epdf/10.1186/s40168-017-0283-5?author_access_token=YQgkTWibFIFPtRICkTjZF2_BpE1tBhCbnbw3BuzI2RMCpVMGldKV8DA9scozc7Z-db3ufPFz9-pswHsYVHyEsCrziBuECllLPOgZ6ANHsMeKF5KejrdDKdeASyDkxB5wfFDq523QSd01cnqxCLqCiQ%3D%3D) (or the machine learning implementation of this, `DeepVirFinder`). A number of recent studies use either one of these tools, or a combination of several at once.
 
