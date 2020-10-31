@@ -93,10 +93,10 @@ Exercise: `VIBRANT` provides a number of different outputs. Explore through the 
 * How many viral contigs did `VIBRANT` identify?
 * Of these, how many did `VIBRANT` identify as prophage?
 * What are some annotations of interest within the output annotations file? 
-  * *NOTE: the `VIBRANT` annotations file includes multiple columns for both **prokaryote** and **viral** protein predictions. Be careful as to which column you are looking at (as well as its associated confidence score) when assessing viral annotations vs. AMGs*).
+  * *NOTE: the `VIBRANT` annotations file includes multiple columns for both **prokaryote** and **viral** protein predictions. Be careful as to which column you are looking at (as well as its associated confidence score) when assessing viral annotations vs. AMGs*.
 * Among these annotations, how many were flagged as AMGs?
 * What broad metabolic categories did the AMGs fall into? 
-  * *NOTE: as well as providing this information in table format, `VIBRANT` also generates a number of summary figures. These figures are not viewable within NeSI, but can be downloaded and opened on your local machine (e.g. via `scp ...`) if you wish to look more closely at these*).
+  * *NOTE: as well as providing this information in table format, `VIBRANT` also generates a number of summary figures. These figures are not viewable within NeSI, but can be downloaded and opened on your local machine (e.g. via `scp ...`) if you wish to look more closely at these*.
 * Discussion point: How might we investigate whether identified putative AMGs are actually *within* the viral genomes, rather than residual contaminating host genomic sequence attached to the end of integrated prophage (but incompletely trimmed off in the excision process)?
 
 ---
