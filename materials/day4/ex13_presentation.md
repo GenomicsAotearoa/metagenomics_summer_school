@@ -70,7 +70,9 @@ To start, create a title and description for this Notebook.
   * convert to `Markdown` and enter a short description of the workshop (e.g. `Data presentation exercises for the Genomics Aotearoa Metagenomics Workshop, 2020`). 
   * as above, press <shift> + <enter> to render the text
    
-*Note: for `Markdown` blocks, simply double click on a block to be able to re-edit the rendered section. To run a code block, use the same method of clicking on the block and pressing `<shift> + <enter>` to interactively run the code for that block (in this case, to run our `R` code).*
+*NOTE: for `Markdown` blocks, simply double click on a block to be able to re-edit the rendered section.* 
+
+*NOTE: To run a code block, use the same method of clicking on the block and pressing `<shift> + <enter>` to interactively run the code for that block (in this case, to run our `R` code).*
 
 ---
 
