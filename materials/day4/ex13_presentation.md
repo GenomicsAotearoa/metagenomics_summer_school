@@ -99,7 +99,7 @@ We will be performing this exercise in two stages. Firstly, in `bash`, we will u
 
 For these `bash` steps, we will need to return to our logged in NeSI terminal. You can use the same terminal you have been using for the rest of the workshop if you wish. But fortunately, the NeSI `Jupyter hub` includes a terminal window as well. 
 
-Launch a terminal within the NeSI [Jupyter hub](https://jupyter.nesi.org.nz/hub/login):
+Launch a standard **terminal** within the NeSI [Jupyter hub](https://jupyter.nesi.org.nz/hub/login):
 
 * click on the `+` button in the top left of the screen (directly below the `File` drop-down menu) to bring up the `Jupyter` launcher window
 * launch the terminal using the bottom at the bottom left of the pane (under "Other"). 
@@ -161,7 +161,7 @@ We will now use these tables, together with the annotation tables to create the 
 
 #### Part 2 - Producing the figure in *R*
 
-First, move back to the `Jupyter Notebook` pane that we have running `R` (or relaunch a new `R 4.0.1` Notebook).
+First, move back to the `Jupyter Notebook` pane where we have `R` running as the kernel (or relaunch a new `R 4.0.1` Notebook).
 
 There are two `R` libaries we need to load for this exercise,
 
