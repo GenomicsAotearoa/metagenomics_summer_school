@@ -62,7 +62,7 @@ To start, create a title and description for this Notebook.
 
 * Click on the first code block
   * use the drop-down menu to convert the block to `Markdown`
-  * enter a title in the block preceeded by one or more `#` symbols (e.g. `# MGSS2020: Data presentation`). The `#` symbol denotes this as a title (multiple `#` symboles, e.g. `###`, denote sub-titles).
+  * enter a title in the block preceeded by one or more `#` symbols (e.g. `# MGSS2020: Data presentation`). In `Markdown`, the `#` symbol denotes this to be rendered as a title.
   * Click on the block and then press `<shift> + <enter>` to 'run' the block (in this case, to render the `Markdown` text).
 * Create a second block
   * convert to `Markdown` and enter a short description of the workshop (e.g. `Data presentation exercises for the Genomics Aotearoa Metagenomics Workshop, 2020`). 
