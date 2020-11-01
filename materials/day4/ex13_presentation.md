@@ -72,7 +72,7 @@ To start, create a title and description for this Notebook.
    
 *NOTE: for `Markdown` blocks, simply double click on a block to be able to re-edit the rendered section.* 
 
-*NOTE: To run a code block, use the same method of clicking on the block and pressing `<shift> + <enter>` to interactively run the code for that block (in this case, to run our `R` code).*
+*NOTE: To run a `code` block, use the same method of clicking on the block and pressing `<shift> + <enter>` to interactively run the code for that block (in this case, to run our `R` code).*
 
 ---
 
