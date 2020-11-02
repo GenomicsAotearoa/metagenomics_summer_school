@@ -454,7 +454,15 @@ collate_data_vir_log2 <- collate_data_vir
 collate_data_vir_log2[,names(select(collate_data_vir_log2, contains("sample")))] <- log2(collate_data_vir_log2[,names(select(collate_data_vir_log2, contains("sample")))] + 1)
 ```
 
-Now let's add an (optional) filtering step here to remove any contigs that `CheckV` returned a quality category of `Not-determined` or `Low-quality`. We will use `!=` in the `filter()` function here to return only those rows that do *not* include 'Not-determined' or 'Low-quality').
+Now let's add an (optional) filtering step here to remove any contigs that `CheckV` flagged as poor quality.
+
+First, take a look at all the categories of `checkv_quality` by using the `levels()` function.
+
+```R
+levels(collate_data_vir_log2$checkv_quality)
+```
+
+Let's filter out anything with a quality category of `Not-determined` or `Low-quality`. We will use `!=` in the `filter()` function here to return only those rows that do *not* include 'Not-determined' or 'Low-quality').
 
 ```R
 collate_data_vir_log2 <- collate_data_vir_log2 %>%
