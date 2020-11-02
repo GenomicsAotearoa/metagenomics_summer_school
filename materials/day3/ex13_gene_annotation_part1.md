@@ -24,13 +24,17 @@ The original tool for performing this kind of analysis was the `BLAST` tool. Whi
 
 An alternate method for attributing function to query sequences it to consider them as a collection of independently functioning protein folding domains. This is the approach used in the [HMMer](http://hmmer.org/) software, and the *Pfam*, *TIGRfam*, and *PANTHER* databases. In these analyses, the database consists not of individual sequences, but of Hidden Markov models built from a collection of proteins that share a common domain. These profiles build out a statistical map of the amino acid transitions (from position to position), variations (differences at a position), and insertions/deletions between positions in the domain across the different observations in the training database and apply these maps to the query data.
 
+These exercises will take place in the `8.gene_annotation/` folder.
+
 ---
 
 ### Annotating MAGs with against the *UniProt* database with *diamond*
 
 For this exercise we are going to use diamond for performing our annotation. We have chosen to use this tool because it is faster than BLAST, and usearch comes with licencing restrictions that make it hard to work with in a shared computing environment like NeSI.
 
-For this exercise we have created a diamond-compatible database from the 2018 release of the UniProt database
+For this exercise we have created a diamond-compatible database from the 2018 release of the UniProt database.
+
+For input files, we have copied the `predictions/` results from the previous gene prediction exercise over to `8.gene_annotation/predictions/` for these exercises.
 
 In general, diamond takes a simple pair of input files - the protein coding sequences we wish to annotate and the database we will use for this purpose. There are a few parameters that need to be tweaked for obtaining a useful output file, however.
 
@@ -60,11 +64,11 @@ diamond help
 There are two output formats we can chose from which are useful for our analysis. We will obtain our output in the BLAST tabular format, which provides the annotation information in a simple-to-parse text file that can be viewed in any text or spreadsheet viewing tool. This will allow us to investigate and evaluate the quality of our annotations.  For now, just annotate a single bin:
 
 ```bash
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.gene_annotation/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
 diamond blastp -p 1 --db /nesi/project/nesi02659/mg_workshop/uniprot_nr_200213.diamond \
                --max-target-seqs 5 --evalue 0.001 \
-               -q example_data/bin_0.filtered.genes.no_metadata.faa \
+               -q predictions/bin_0.filtered.genes.no_metadata.faa \
                --outfmt 6 -o bin_0.diamond.txt
 ```
 
@@ -78,7 +82,6 @@ Before we proceed with this exercise, lets set up a slurm job to annotate each o
 #!/bin/bash -e
 #SBATCH -A nesi02659
 #SBATCH -J annotate_uniprot
-#SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
 #SBATCH --time 02:00:00
 #SBATCH --mem 20GB
@@ -89,11 +92,11 @@ Before we proceed with this exercise, lets set up a slurm job to annotate each o
 
 module load DIAMOND/0.9.25-gimkl-2018b
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.gene_annotation/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
 mkdir -p gene_annotations/
 
-for prot_file in example_data/*.genes.no_metadata.faa;
+for prot_file in predictions/*.genes.no_metadata.faa;
 do
   out_file=$(basename ${prot_file} .faa)
 
@@ -175,7 +178,6 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
 #!/bin/bash -e
 #SBATCH -A nesi02659
 #SBATCH -J annotate_pfam
-#SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
 #SBATCH --time 02:00:00
 #SBATCH --mem 5GB
@@ -184,10 +186,9 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
 #SBATCH -e annotate_pfam_hmm.err
 #SBATCH -o annotate_pfam_hmm.out
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.gene_annotation/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
-
-for prot_file in example_data/*.genes.no_metadata.faa;
+for prot_file in predictions/*.genes.no_metadata.faa;
 do
   out_file=$(basename ${prot_file} .faa)
 
@@ -225,7 +226,7 @@ However, when comparing taxonomic assignments, it is important to be aware of th
 * [NCBI](https://www.ncbi.nlm.nih.gov/taxonomy)
 * [Genome Taxonomy Database](https://gtdb.ecogenomic.org/)
 
-This problem exists because despite the existance of a formal [Code](https://www.microbiologyresearch.org/content/journal/ijsem/10.1099/ijsem.0.000778) for the naming of bacteria and archaea, because 
+This problem exists despite the existance of a formal [Code](https://www.microbiologyresearch.org/content/journal/ijsem/10.1099/ijsem.0.000778) for the naming of bacteria and archaea, because 
 
 1. There are no rules governing how we define the grouping of these names together, other than for type species
 1. Defunct synonyms and basonyms are not correctly purged from taxonomy lists (this is quite noticable with the NCBI taxonomy)
@@ -253,10 +254,14 @@ After genome annotation, a distill step follows with the aim to curate these ann
 
 ---
 ## Annotation of the MAGs with DRAM 
-Beyond annotation, DRAM aims to be a data compiler. For that reason, output files from both CheckM and GTDB_tk steps can be input to DRAM to provide both taxonomy and genome quality information of the MAGs. CheckM output file (`checkm.txt`) can be input as it is. However, in order to use the file with the gtdb_tk taxonomy (`gtdbtk.bac120.classification_pplacer.tsv`) we should modify it first to include column headers 'bin_id' and 'classification'
+Beyond annotation, DRAM aims to be a data compiler. For that reason, output files from both CheckM and GTDB_tk steps can be input to DRAM to provide both taxonomy and genome quality information of the MAGs. 
+
+For these exercises, we have copied the relevant input files into the folder `10.gene_annotation/DRAM_input_files/`. `gtdbtk.bac120.classification_pplacer.tsv` was taken from the earlier `8.coverage_and_taxonomy/gtdbtk_out/` outputs, and `checkm.txt` from the `5.binning/` outputs.
+
+The CheckM output file (`checkm.txt`) can be input as it is. However, in order to use the file with the gtdb_tk taxonomy (`gtdbtk.bac120.classification_pplacer.tsv`) we should modify it first to include column headers 'bin_id' and 'classification'
 
 ```
-nano gtdbtk.bac120.classification_pplacer.tsv
+nano DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv
 
 # bin_1   d__Bacteria;p__Firmicutes;c__Bacilli;o__Staphylococcales;f__Staphylococcaceae;g__Staphylococcus;s__
 # bin_0   d__Bacteria;p__Cyanobacteria;c__Cyanobacteriia;o__Synechococcales;f__Cyanobiaceae;g__Prochlorococcus_C;s__
@@ -285,7 +290,7 @@ nano gtdbtk.bac120.classification_pplacer.tsv
 ```
 In default annotation mode, `DRAM` takes as only input the directory containing all the bins we would like to annotate in fasta format (either .fa or .fna). There are few parameter that can be modified if not using the default mode. Once the annotation step is done, the mode `distill` is used to summarise the obtained results. **Note:** due to the increased memory requirements, UniRef90 database is not default and the flag `–use_uniref` should be specified in order to search amino acid sequences against UniRef90. In this exercise, due to memory and time constrains, we won't be using UniRef90 database.
 ```
-module load Python
+module load Python/3.8.2-gimkl-2020a
 module load DRAM
 
 DRAM.py --help
@@ -318,12 +323,14 @@ To run this exercise we first need to set up a slurm job. We will use the result
 #SBATCH --mail-type ALL
 #SBATCH --mail-user <your_email>
 
-
+# Load modules
 module load Miniconda3/4.7.10
 source activate /nesi/nobackup/ga02676/Metagenomics_summerschool/carmen/00.DRAM/DRAM_env #Modify it when Dini gets DRAM set-up
 module load Python
 
-DRAM.py annotate -i '/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.annotation/example_data/*.fna' --checkm_quality /path/.../checkm.txt --gtdb_taxonomy /path/.../gtdbtk.bac120.classification_pplacer.tsv  -o annotation 
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
+
+DRAM.py annotate -i 'predictions/*.fna' --checkm_quality DRAM_input_files/checkm.txt --gtdb_taxonomy DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv  -o annotation 
 
 ## End of slurm script
 
