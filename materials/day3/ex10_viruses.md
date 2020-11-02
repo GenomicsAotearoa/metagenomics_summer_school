@@ -37,26 +37,11 @@ For this exercise, we will use `VIBRANT` to identify viral contigs from our asse
 
 These exercises will take place in the `7.viruses/` folder.
 
-*Note: `VIBRANT` is currently not available as a module in NeSI. For this exercise we will be using a downloaded version of the program and relevant databases. We will use the script `source viral_module_load.sh` to add the path of the directory containing `VIBRANT` to our `PATH` variable, as well as load modules for the dependencies `Python` (v.3.7+), `HMMER`, and `Prodigal`.*
-
-#### Update `Python` packages for *VIBRANT*
-
-The standard module load of `Python/3.8.2-gimkl-2020a` does not include the required `Python` package `seaborn`. Furthermore, while `scikit-learn` is available, we need to roll it back to version 0.21.3 for `VIBRANT` to work.
-
-Install the `seaborn` package, and roll back the version of `scikit-learn`. This step only needs to be performed once for any given `Python3` NeSI module (in this case, `Python/3.8.2-gimkl-2020a`).
-
-```bash
-module load Python/3.8.2-gimkl-2020a
-
-pip install seaborn
-pip install --upgrade scikit-learn==0.21.3
-```
-
-*NOTE: This version of `scikit-learn` will also be retained with this module load of `Python` (`Python/3.8.2-gimkl-2020a`) for future sessions. If you require the use of `Python/3.8.2-gimkl-2020a` with a later version of `scikit-learn` for other work, you can re-update the package via `pip install --upgrade scikit-learn`).*
-
 #### Run *Vibrant*
 
 For this we will input the assembled contigs from the `SPAdes` assembly we performed earlier. These assembly files are available at `7.viruses/spades_assembly/`
+
+*NOTE: The path to the required databases for the `VIBRANT` NeSI module have been linked to the variable `$DB_PATH`. This needs to be included in the command (using the `-d` flag) for `VIBRANT` to be able to locate them.*
 
 Example slurm script:
 
@@ -73,8 +58,8 @@ Example slurm script:
 #SBATCH -o vibrant.out
 #SBATCH --profile=task
 
-# Add VIBRANT to $PATH and load dependencies
-source viral_module_load.sh
+# Load VIBRANT module
+module load VIBRANT/1.2.1-gimkl-2020a
 
 # Set up working directories
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/
@@ -83,6 +68,7 @@ mkdir -p vibrant
 # Run VIBRANT
 srun VIBRANT_run.py -t 16 \
 -i spades_assembly/spades_assembly.m1000.fna \
+-d $DB_PATH \
 -folder vibrant/
 ```
 
