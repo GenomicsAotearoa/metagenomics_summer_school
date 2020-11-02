@@ -39,7 +39,7 @@ It is also not advised to use `prodigal` when making predictions through your un
 To get started, move into the exercise directory.
 
 ```bash
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_prediction/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction/
 ```
 
 #### Examining the *prodigal* parameters
@@ -47,7 +47,7 @@ cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_prediction/
 Before we start runnning `prodigal`, we will take quick look at the parameters.
 
 ```bash
-module load prodigal/2.6.3-GCCcore-7.4.0
+module load Prodigal/2.6.3-GCC-9.2.0
 
 prodigal -h
 
@@ -101,7 +101,6 @@ We will now run `prodigal` over the 10 bins in *anonymous* mode. As usual, we ca
 #!/bin/bash -e
 #SBATCH -A nesi02659
 #SBATCH -J prodigal
-#SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
 #SBATCH --time 00:10:00
 #SBATCH --mem 1GB
@@ -110,7 +109,7 @@ We will now run `prodigal` over the 10 bins in *anonymous* mode. As usual, we ca
 #SBATCH -e prodigal.err
 #SBATCH -o prodigal.out
 
-module load prodigal/2.6.3-GCCcore-7.4.0
+module load Prodigal/2.6.3-GCC-9.2.0
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_prediction/
 
@@ -201,7 +200,6 @@ To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits 
 #!/bin/bash -e
 #SBATCH -A nesi02659
 #SBATCH -J metaxa2
-#SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
 #SBATCH --time 00:30:00
 #SBATCH --mem 1GB
