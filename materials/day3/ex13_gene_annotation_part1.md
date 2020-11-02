@@ -26,7 +26,7 @@ An alternate method for attributing function to query sequences it to consider t
 
 ---
 
-### Annotating MAGs with against the *NCBI NR* database with *diamond*
+### Annotating MAGs with against the *UniProt* database with *diamond*
 
 For this exercise we are going to use diamond for performing our annotation. We have chosen to use this tool because it is faster than BLAST, and usearch comes with licencing restrictions that make it hard to work with in a shared computing environment like NeSI.
 
