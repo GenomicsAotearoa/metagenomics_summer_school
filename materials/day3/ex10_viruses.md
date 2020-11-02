@@ -127,7 +127,7 @@ Example slurm script:
 #SBATCH --profile=task
 
 # Load the module
-module load CheckV/0.6.0-gimkl-2020a-Python-3.8.2
+module load CheckV/0.7.0-gimkl-2020a-Python-3.8.2
 
 # Set up working directories
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/
@@ -135,18 +135,15 @@ mkdir -p checkv_out
 
 # Run main analyses 
 checkv_in="vibrant/VIBRANT_spades_assembly.m1000/VIBRANT_phages_spades_assembly.m1000/spades_assembly.m1000.phages_combined.fna"
-checkv_out="checkv"
-srun checkv contamination ${checkv_in} ${checkv_out} -t 10 --quiet
-srun checkv completeness ${checkv_in} ${checkv_out} -t 10 --quiet
-srun checkv repeats ${checkv_in} ${checkv_out} --quiet
-srun checkv quality_summary ${checkv_in} ${checkv_out} --quiet
+
+srun checkv end_to_end ${checkv_in} checkv_out -t 16 --quiet
 ```
 
 #### Examine outputs of *CheckV*
 
 `CheckV` provides summary outputs for contamination, completeness, repeats, and an overall quality summary. Have a brief look at some examples of the information you can draw from each of these `CheckV` outputs. 
 
-Exercise: Examining `checkv/quality_summary.tsv`
+Exercise: Examining `checkv_out/quality_summary.tsv`
 
 * How many viral contigs meet the "High-quality" (MIUViG) standard?
 * How many might we consider "complete" genomes based on `CheckV`'s completeness estimation?
