@@ -35,7 +35,6 @@ We will write a single slurm script to run all necessary commands, then analyse 
 #!/bin/bash -e
 #SBATCH -A nesi02659
 #SBATCH -J checkm_drep
-#SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
 #SBATCH --time 2:00:00
 #SBATCH --mem 80GB

@@ -77,7 +77,6 @@ Before we proceed with this exercise, lets set up a slurm job to annotate each o
 #!/bin/bash -e
 #SBATCH -A nesi02659
 #SBATCH -J annotate_diamond
-#SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
 #SBATCH --time 02:00:00
 #SBATCH --mem 20GB
