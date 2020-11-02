@@ -104,7 +104,7 @@ done
 ```
 ---
 
-## Annotating MAGs against the Pfam database with hmm
+### Annotating MAGs against the *Pfam* database with *hmmer*
 
 The standard software for performing this kind of annotation is [hmmer](http://hmmer.org/). Compared to BLAST, FASTA, and other sequence alignment and database search tools based on older scoring methodology, HMMER aims to be significantly more accurate and more able to detect remote homologs because of the strength of its underlying mathematical models. In the past, this strength came at significant computational expense, but in the new HMMER3 project, HMMER is now essentially as fast as BLAST. First, let's have a look at hmmer options.
 
