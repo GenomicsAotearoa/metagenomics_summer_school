@@ -5,7 +5,7 @@
 * Identifying viral contigs
 * Examine prophage identified by `VIBRANT`
 * Examine viral metabolism and auxiliary metabolic genes (AMGs) outputs from `VIBRANT`
-* Check quality and completeness of the viral contigs via `CheckV`
+* Check quality and estimate completeness of the viral contigs via `CheckV`
 
 ---
 
@@ -87,7 +87,7 @@ Exercise: `VIBRANT` provides a number of different outputs. Explore through the 
 
 ---
 
-### Check quality and completeness of the viral contigs via *CheckV*
+### Check quality and estimate completeness of the viral contigs via *CheckV*
 
 [CheckV](https://www.biorxiv.org/content/10.1101/2020.05.06.081778v1.abstract) was recently developed as an analogue to `CheckM`. `CheckV` first performs a 'contaminating sequence' trim, removing any retained (prokaryote) host sequence on the end of contigs with integrated prophage, and then assesses the quality and completeness of the assembled viral contigs. The quality of the contigs are also categoriesed based on the recently developed [Minimum Information about an Unclutivated Virus Genome](https://www.nature.com/articles/nbt.4306) (MIUViG) standards for reporting sequences of unclutivated virus geneomes (such as those recovered from metagenomic sequencing data). The MIUViG were developed as an extension of the [Minimum Information about any (x) Sequence](https://www.nature.com/articles/nbt.1823) ([MIxS](https://gensc.org/mixs/)) standards, which include, among others, standards for Metagenome-Assembled Genomes (MIMAG).
 
