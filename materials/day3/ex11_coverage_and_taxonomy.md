@@ -203,7 +203,6 @@ This can all be achieved in a single command, although it must be performed thro
 #!/bin/bash
 #SBATCH -A nesi02659
 #SBATCH -J gtdbtk_test
-#SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
 #SBATCH --time 00:30:00
 #SBATCH --mem 140GB
