@@ -425,6 +425,7 @@ checkv <- read_tsv("coverage/checkv_quality_summary.tsv") %>%
 
 # mapping file (import both columns as factors: col_types set to factor, factor)
 map.df <- read_tsv("coverage/mapping_file.txt", col_types = "ff")
+
 ```
 
 #### 2.2 wrangle data
@@ -452,6 +453,7 @@ collate_data_vir <- cov_vir %>%
 # Log(2)-transform coverage data
 collate_data_vir_log2 <- collate_data_vir
 collate_data_vir_log2[,names(select(collate_data_vir_log2, contains("sample")))] <- log2(collate_data_vir_log2[,names(select(collate_data_vir_log2, contains("sample")))] + 1)
+
 ```
 
 Now let's add an (optional) filtering step here to remove any contigs that `CheckV` flagged as poor quality.
@@ -460,6 +462,8 @@ First, take a look at all the categories of `checkv_quality` by using the `level
 
 ```R
 levels(collate_data_vir_log2$checkv_quality)
+
+# 'Not-determined''Low-quality''Medium-quality''High-quality''Complete'
 ```
 
 Let's filter out anything with a quality category of `Not-determined` or `Low-quality`. We will use `!=` in the `filter()` function here to return only those rows that do *not* include 'Not-determined' or 'Low-quality').
@@ -467,6 +471,7 @@ Let's filter out anything with a quality category of `Not-determined` or `Low-qu
 ```R
 collate_data_vir_log2 <- collate_data_vir_log2 %>%
   filter(checkv_quality != 'Not-determined' & checkv_quality != 'Low-quality')
+ 
 ```
 
 A few final data wrangling steps:
@@ -480,6 +485,7 @@ coverage.heatmap.data.vir <- collate_data_vir_log2 %>%
   droplevels() %>% 
   column_to_rownames(var = "vir_ID") %>%
   as.data.frame() 
+
 ```
 
 *NOTE: In this case, the script only keeps the `vir_ID*` identifiers without the genus taxonomy appended for use in the plots, since the the long labels (due to numerous genus predictions for some contigs) make the plots illegible otherwise. To retain the taxonomy, change the two `vir_ID` entries above to `vir_ID_tax`.*
@@ -507,6 +513,7 @@ plot(vir_cov_clus.avg.col, hang = -1, cex = 1.5)
 #png("coverage/Viruses_BC_hclust_MAGs.png", width=17, height=10, units="cm", res=300)
 plot(vir_cov_clus.avg.row, hang = -1, cex = 1.5)
 #dev.off()
+
 ```
 
 #### 2.4 Set the colour palettes
@@ -588,6 +595,7 @@ legend("bottomright",
        title = "X-axis key:\nSample groups"
 )
 #dev.off()
+
 ```
 
 ![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_Viruses_heatmap.png)
