@@ -6,6 +6,7 @@
 * Calculate per-sample coverage stats for the viral contigs output by `VIBRANT`
 * Assign taxonomy to the refined bins
 * Overview of using `vContact2` to predict taxonomy of viral contigs
+* *Appendix*: viral taxonomy prediction via `vContact2`
 
 ---
 
