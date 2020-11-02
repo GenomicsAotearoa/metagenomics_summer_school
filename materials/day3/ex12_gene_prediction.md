@@ -111,7 +111,7 @@ We will now run `prodigal` over the 10 bins in *anonymous* mode. As usual, we ca
 
 module load Prodigal/2.6.3-GCC-9.2.0
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_prediction/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction/
 
 mkdir -p predictions/
 
@@ -210,7 +210,7 @@ To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits 
 
 module load Metaxa2/2.1.3-gimkl-2017a
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_prediction/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction/
 
 mkdir -p ribosomes/
 
