@@ -35,7 +35,6 @@ We will write a single slurm script to run all necessary commands, then analyse 
 #!/bin/bash -e
 #SBATCH -A nesi02659
 #SBATCH -J checkm_drep
-#SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
 #SBATCH --time 2:00:00
 #SBATCH --mem 80GB
@@ -44,7 +43,7 @@ We will write a single slurm script to run all necessary commands, then analyse 
 #SBATCH -e checkm_drep.err
 #SBATCH -o checkm_drep.out
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.drep_example/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/12.drep_example/
 
 # Step 1
 module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
