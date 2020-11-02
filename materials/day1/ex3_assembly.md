@@ -182,7 +182,6 @@ Into this file, either write or copy/paste the following commands:
 #!/bin/bash -e
 #SBATCH -A nesi02659
 #SBATCH -J spades_assembly
-#SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
 #SBATCH --time 00:20:00
 #SBATCH --mem 10GB
@@ -273,7 +272,6 @@ nano idbaud_assembly.sl
 #!/bin/bash -e
 #SBATCH -A nesi02659
 #SBATCH -J idbaud_assembly
-#SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
 #SBATCH --time 00:15:00
 #SBATCH --mem 4GB
