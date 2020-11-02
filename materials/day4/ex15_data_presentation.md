@@ -551,7 +551,7 @@ heatmap.2(
   Rowv = as.dendrogram(vir_cov_clus.avg.row),
   cexCol = 1.2,
   cexRow = 1.2,
-  RowSideColors = MAG.cols[coverage.heatmap.data.vir.filt[,"taxonomy"]],
+  RowSideColors = vir.cols[coverage.heatmap.data.vir.filt[,"taxonomy"]],
   ColSideColors = map.df$col,
   margins = c(28,16),
   lwid = c(1, 8),
@@ -575,7 +575,7 @@ heatmap.2(
 legend("bottomleft",
        legend = levels(coverage.heatmap.data.vir.filt[,"taxonomy"]),
        border = NULL,
-       col = MAG.cols[1:length(levels(coverage.heatmap.data.vir.filt[,"taxonomy"]))],
+       col = vir.cols[1:length(levels(coverage.heatmap.data.vir.filt[,"taxonomy"]))],
        lty = 1,
        lwd = 6,
        bty = "n",
@@ -606,7 +606,7 @@ legend("bottomright",
 
 When investigating the evolution of genomes, we sometimes want to consider not only the presence/absence of genes in a genome, but also how they are arranged in an operon. For this exercise, we are going to visualise several sulfur assimilation genes from bin_2, bin_3 and bin_4, comparing their arrangement among the organisms.
 
-For this exercise, navigate to the folder `9.data_presentation/gene_synteny/`. Here, you have been provided with a copy of the `prodigal` gene predictions for each of the bins (`.faa` files), an annotation output table using multiple databases (`.aa` files), a small table of the annotation of some key genes of interest (`cys.txt` files), and blastn output (`blast*.txt`) comparing the genes of interest from these organisms. The annotation files were created by manually searching the annotations obtained in the previous exercises.
+For this exercise, navigate to the folder `9.data_presentation/annotations/`. You have been provided with a copy of the `prodigal` gene predictions for each of the bins (`.faa` files), an annotation output table using multiple databases (`.aa` files), a small table of the annotation of some key genes of interest (`cys.txt` files), and blastn output (`blast*.txt`) comparing the genes of interest from these organisms. The annotation files were created by manually searching the annotations obtained in the previous exercises.
 
 *NOTE: Refer to [gene_synteny_grab_GOI.md](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/gene_synteny_grab_GOI.md) for more information on how the `cys.txt` files were produced.*
 
@@ -623,17 +623,17 @@ Launch a standard **terminal** within the NeSI [Jupyter hub](https://jupyter.nes
 
 From here, we can run the `bash` commands below.
 
-First, navigate to the `9.data_presentation/gene_synteny/` folder, and then perform the `cut` and `tail` steps outlined above.
+First, navigate to the `9.data_presentation/annotations/` folder, and then perform the `cut` and `tail` steps outlined above.
 
 ```bash
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.data_presentation/gene_synteny/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.data_presentation/annotations/
 
 cut -f3 bin_2_cys.txt | tail -n+2 > bin_2_cys.genes
 cut -f3 bin_3_cys.txt | tail -n+2  > bin_3_cys.genes
 cut -f3 bin_4_cys.txt | tail -n+2  > bin_4_cys.genes
 ```
 
-We now have three new files, ending with the `.genes` suffix which are simply a list of the genes that we wish to extract from the `prodigal` files. We can then use each of these files as input in for `grep` to pull out the *fastA* entries that correspond to these genes.
+We now have three new files, ending with the `.genes` suffix which are simply a list of the genes that we wish to extract from the `prodigal` files. We can then use each of these files as input for `grep` to pull out the *fastA* entries that correspond to these genes.
 
 ```bash
 grep -f bin_2_cys.genes bin_2.genes.faa | cut -f1,2,3,4 -d "#" | sed 's/>//g' | sed 's/#/\t/g' > bin_2_cys.coords
@@ -678,14 +678,14 @@ We will now use these tables, together with the annotation tables to create the 
 
 #### Part 2 - Producing the figure in *R*
 
-First, move back to the `Jupyter Notebook` pane where we have `R` running as the kernel (or relaunch a new `R 4.0.1` Notebook).
+First, move back to the `Jupyter Notebook` pane where we have `R` running as the kernel (or relaunch a new `R 4.0.1` Notebook). 
 
-There are two `R` libaries we need to load for this exercise,
+There are two `R` libaries we need to load for this exercise.
 
 ##### Set working directory and load *R* libraries
 
 ```R
-setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.data_presentation/gene_synteny/')
+setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.data_presentation/annotations/')
 
 library(dplyr)
 library(genoPlotR)
@@ -845,7 +845,7 @@ Now we can generate the plot. Running this command in `RStudio` or our `Jupyter 
 *NOTE: the commented-out lines below (the two lines starting with `#`) will not run. Un-comment these if you wish to save the figure to file rather than opening it in the `Jupyter` or `RStudio` viewer. (N.b. alternatives using a similar command are also available other formats, including `tiff` and `png`).
 
 ```R
-#pdf("200926_genoplot_ori.pdf",colormodel = "cmyk",width = 8,height = 4,paper = 'special')
+#png("genoplot.pdf", width = 8, height = 4, res=300)
 plot_gene_map(dna_segs = list(bin_2_ds,bin_3_ds,bin_4_ds), 
               gene_type = "arrows", dna_seg_labels = c("bin_2", "bin_3","bin_4"), 
               comparisons = list(blast1,blast2), dna_seg_scale = TRUE, 
@@ -876,11 +876,11 @@ bin_4_ds$col = "blue"
 bin_4_ds$fill = "blue"
 ```
 
-Now we can regenerate the figure:
+Regenerate the figure:
 
 ```R
 #AFTER ROTATING
-#pdf("200926_genoplot_rotated.pdf",colormodel = "cmyk",width = 8, height = 4, paper = 'special')
+#png("genoplot_rotated.pdf", width = 8, height = 4, res=300)
 plot_gene_map(dna_segs = list(bin_2_ds,bin_3_ds,bin_4_ds), 
               gene_type = "arrows", dna_seg_labels = c("bin_2", "bin_3","bin_4"), 
               comparisons = list(blast1,blast2), dna_seg_scale = TRUE, 
