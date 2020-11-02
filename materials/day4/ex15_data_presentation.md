@@ -20,7 +20,7 @@ In your own work, it may be preferable to download the relevant files from NeSI 
 
 `Jupyter Notebooks` provide an interactive space that allows for mixing multiple languages within a single document, including [Markdown](https://en.wikipedia.org/wiki/Markdown), `Python`, and `R` (by default, `Markdown` and one coding language such as `R` can be used within one document, but there are add-ons available to expand this, should you wish to). `Jupyter Notebooks` can be extremely useful as a workspace that is the equivalent of an electronic "lab book". Today, we will be using it as an interactive space to run `R`. Note that, while the layout will be slightly different to `RStudio`, the commands we will be working through will work the same in both environments.
 
-These exercises will take place with files in the `9.data_presentation/` folder.
+These exercises will take place with files in the `11.data_presentation/` folder.
 
 ---
 
@@ -103,9 +103,9 @@ As a reminder:
 
 A simple way to present this information is via a heatmap. In this exercise we will build a clustered heatmap of these coverage profiles in `R`. Since we also have tables of taxonomy assignments (via `gtdb-tk` for MAGs) and/or predictions (via `vContact2` for viral contigs), we will also use these to add taxonomy information to the plot.
 
-The coverage and taxonomy tables generateed in earlier exercises have been copied to `9.data_presentation/coverage/` a for use in these exercises.
+The coverage and taxonomy tables generateed in earlier exercises have been copied to `11.data_presentation/coverage/` a for use in these exercises.
 
-In addition to this, a simple mapping file has also been created (within `9.data_presentation/coverage/mapping_file.txt`). This is a tab-delimited file listing each sample ID in the first column, and the sample "Group" in the second column (*Group_A*, *Group_B*, and *Group_C*). This grouping might represent, for example, three different sampling sites that we want to compare between. If you had other data (such as environmental measures, community diversity measures, etc.) that you wish to incorporate in other downstream analyses (such an fitting environmental variables to an ordination, or correlation analyses) you could also add new columns to this file and load them at the same time.
+In addition to this, a simple mapping file has also been created (`11.data_presentation/coverage/mapping_file.txt`). This is a tab-delimited file listing each sample ID in the first column, and the sample "Group" in the second column (*Group_A*, *Group_B*, and *Group_C*). This grouping might represent, for example, three different sampling sites that we want to compare between. If you had other data (such as environmental measures, community diversity measures, etc.) that you wish to incorporate in other downstream analyses (such an fitting environmental variables to an ordination, or correlation analyses) you could also add new columns to this file and load them at the same time.
 
 *NOTE: It is usually necessary to normalise coverage values based on sample depth. For example, by normalising all coverages for each sample based on either minimum or average library size (the number of sequencing reads per sample). In this case, the mock metagenome data we have been working with were already of equal depth, and so we will omit any normalisation step here. But this would not be the case with your own sequencing data sets.*
 
@@ -116,7 +116,7 @@ In addition to this, a simple mapping file has also been created (within `9.data
 First, set the working directory and load the required libraries.
 
 ```R
-setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.data_presentation/')
+setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/')
 
 # tidyverse libraries 
 library(tidyr)
@@ -392,7 +392,7 @@ We can run through the same process for the viral contigs. Many of the steps are
 In this case, import the coverage, taxonomy, mapping, *and checkv* files. For taxonomy we will select the `Genome` column (converted to `Contig`), `Order_VC_predicted` (converted to `taxonomy`), and `Genus_VC_predicted` (converted to `taxonomy_genus`) (we will use the `Order_VC_predicted` to colour code viral contigs in the heat map, and `Genus_VC_predicted` to add to viral contig names in the plot). 
 
 ```R
-setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.data_presentation/')
+setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/')
 
 # tidyverse libraries 
 library(tidyr)
@@ -606,7 +606,7 @@ legend("bottomright",
 
 When investigating the evolution of genomes, we sometimes want to consider not only the presence/absence of genes in a genome, but also how they are arranged in an operon. For this exercise, we are going to visualise several sulfur assimilation genes from bin_2, bin_3 and bin_4, comparing their arrangement among the organisms.
 
-For this exercise, navigate to the folder `9.data_presentation/annotations/`. You have been provided with a copy of the `prodigal` gene predictions for each of the bins (`.faa` files), an annotation output table using multiple databases (`.aa` files), a small table of the annotation of some key genes of interest (`cys.txt` files), and blastn output (`blast*.txt`) comparing the genes of interest from these organisms. The annotation files were created by manually searching the annotations obtained in the previous exercises.
+For this exercise, navigate to the folder `11.data_presentation/annotations/`. You have been provided with a copy of the `prodigal` gene predictions for each of the bins (`.faa` files), an annotation output table using multiple databases (`.aa` files), a small table of the annotation of some key genes of interest (`cys.txt` files), and blastn output (`blast*.txt`) comparing the genes of interest from these organisms. The annotation files were created by manually searching the annotations obtained in the previous exercises.
 
 *NOTE: Refer to [gene_synteny_grab_GOI.md](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/gene_synteny_grab_GOI.md) for more information on how the `cys.txt` files were produced.*
 
@@ -623,10 +623,10 @@ Launch a standard **terminal** within the NeSI [Jupyter hub](https://jupyter.nes
 
 From here, we can run the `bash` commands below.
 
-First, navigate to the `9.data_presentation/annotations/` folder, and then perform the `cut` and `tail` steps outlined above.
+First, navigate to the `11.data_presentation/annotations/` folder, and then perform the `cut` and `tail` steps outlined above.
 
 ```bash
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.data_presentation/annotations/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/annotations/
 
 cut -f3 bin_2_cys.txt | tail -n+2 > bin_2_cys.genes
 cut -f3 bin_3_cys.txt | tail -n+2  > bin_3_cys.genes
@@ -685,7 +685,7 @@ There are two `R` libaries we need to load for this exercise.
 ##### Set working directory and load *R* libraries
 
 ```R
-setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.data_presentation/annotations/')
+setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/annotations/')
 
 library(dplyr)
 library(genoPlotR)
@@ -845,7 +845,7 @@ Now we can generate the plot. Running this command in `RStudio` or our `Jupyter 
 *NOTE: the commented-out lines below (the two lines starting with `#`) will not run. Un-comment these if you wish to save the figure to file rather than opening it in the `Jupyter` or `RStudio` viewer. (N.b. alternatives using a similar command are also available other formats, including `tiff` and `png`).
 
 ```R
-#png("genoplot.pdf", width = 8, height = 4, res=300)
+#png("genoplot.png", width = 8, height = 4, res=300)
 plot_gene_map(dna_segs = list(bin_2_ds,bin_3_ds,bin_4_ds), 
               gene_type = "arrows", dna_seg_labels = c("bin_2", "bin_3","bin_4"), 
               comparisons = list(blast1,blast2), dna_seg_scale = TRUE, 
@@ -880,7 +880,7 @@ Regenerate the figure:
 
 ```R
 #AFTER ROTATING
-#png("genoplot_rotated.pdf", width = 8, height = 4, res=300)
+#png("genoplot_rotated.png", width = 8, height = 4, res=300)
 plot_gene_map(dna_segs = list(bin_2_ds,bin_3_ds,bin_4_ds), 
               gene_type = "arrows", dna_seg_labels = c("bin_2", "bin_3","bin_4"), 
               comparisons = list(blast1,blast2), dna_seg_scale = TRUE, 
@@ -912,7 +912,7 @@ The key package used here is [pathview](https://academic.oup.com/bioinformatics/
 Set the working directory and load the required packages
 
 ```R
-setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.data_presentation/gene_synteny/')
+setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/annotations')
 
 library(pathview)
 library(KEGGREST)
