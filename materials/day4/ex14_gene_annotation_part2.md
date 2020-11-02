@@ -9,7 +9,7 @@
 
 ## Overview of `DRAM.py annotate` output
 
-The submitted job from the previous session should be now completed. If we examine the output directory `annotation` we will see the following files:
+The submitted job from the previous session should be now completed. If we examine the output directory `10.gene_annotation/annotation/` we will see the following files:
 
 |File name | Description|
 |:--- | :--- | 
@@ -20,9 +20,11 @@ The submitted job from the previous session should be now completed. If we exami
 |**trnas.tsv** | Summary of the tRNAs found in each MAG |
 |**rrnas.tsv** | Summary of the rRNAs found in each MAG |
 
-If we inspectionate the head of the annotation file we will see the following
+If we inspect the head of the annotation file we will see the following
 
 ```
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
+
 head annotation/annotation.tsv
 
 fasta	scaffold	gene_position	start_position	end_position	strandedness	rank	kegg_id	kegg_hit	uniref_id	uniref_hit	uniref_taxonomy	uniref_RBH	uniref_identity	uniref_bitScore	uniref_eVal	peptidase_id	peptidase_family	peptidase_hit	peptidase_RBH	peptidase_identity	peptidase_bitScore	peptidase_eVal	pfam_hits	cazy_hits	vogdb_description	vogdb_categories	heme_regulatory_motif_count
@@ -33,13 +35,15 @@ bin_0_1f9359e86e6a75bcff340e6a8b60ef98_1	bin_0	1f9359e86e6a75bcff340e6a8b60ef98	
 
 ## DRAM distillation of the results
 
-After the annotation is finished, we will summarise and visualise these annotations with the so-called *Distillation* step. We do so by running the following command directly on the terminal. This will generate the distillate and liquor files
+After the annotation is finished, we will summarise and visualise these annotations with the so-called *Distillation* step. We do so by running the following command directly in the terminal. This will generate the distillate and liquor files.
 
 ```
 module load Miniconda3/4.7.10
 source activate /nesi/nobackup/ga02676/Metagenomics_summerschool/carmen/00.DRAM/DRAM_env # Modify path
 
-module load Python
+module load Python/3.8.2-gimkl-2020a
+
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
 DRAM.py distill -i annotation/annotations.tsv -o all_genomes_summaries --trna_path annotation_trial/trnas.tsv --rrna_path annotation/rrnas.tsv
 
