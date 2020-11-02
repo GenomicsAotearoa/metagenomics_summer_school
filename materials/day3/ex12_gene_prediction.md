@@ -4,7 +4,6 @@
 
 * Overview/refresher of `prodigal`
 * Predicting protein coding sequences in metagenome-assembled genomes
-* Predicting protein coding sequences in unassembled reads
 * Predicting RNA features and non-coding regions
 
 ---
@@ -187,54 +186,6 @@ head -n8 predictions/bin_0.genes.no_metadata.faa
 # SGDSTSELLQISADAQDVGSGSESLSAEFTGDSVQIAFNVRYVLDGLKVMDSDRIVLRCN
 # APTTPAIISPKDDDIGFTYLVMPVQIRS*
 ```
-
----
-
-### Predicting protein coding sequences in unassembled reads
-
-If you are working with unassembled metagenomic data and do not wish to go through the assembly/binning process, then `FragGeneScan` is a better choice for gene prediction. This is based partly on the fact that it has tuning parameters for short sequences (and hence incomplete genes) and it can also model sequence error in your data.
-
-`FragGeneScan` requires our reads to be in *fastA* format, rather than *fastQ*, so we will use `seqmagick` to make the transformation. Also, because we are going to be processing a much larger number of sequences with `FragGeneScan` than we would with `prodigal` we will bundle the job into a slurm script.
-
-```bash
-#!/bin/bash -e
-#SBATCH -A nesi02659
-#SBATCH -J fraggenescan
-#SBATCH --partition ga_bigmem
-#SBATCH --res SummerSchool
-#SBATCH --time 02:00:00
-#SBATCH --mem 2GB
-#SBATCH --ntasks 1
-#SBATCH --cpus-per-task 10
-#SBATCH -e fraggenescan.err
-#SBATCH -o fraggenescan.out
-
-module load FragGeneScan/1.31-gimkl-2018b seqmagick/0.7.0-gimkl-2018b-Python-3.7.3
-
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_prediction/
-
-mkdir -p predictions_short/
-
-for forward_reads in ../3.assembly/*_R1.fastq.gz;
-do
-    # Decompress the fastq reads and convert to fasta
-    out_file=$(basename ${forward_reads} .fastq.gz)
-    seqmagick convert ${forward_reads} ${out_file}.fna
-
-    # Perform coding sequence prediction
-    FragGeneScan -s ${out_file}.fna -o predictions_short/${out_file} -w 0 -p 10 -t illumina_5
-done
-```
-
-The parameters which we use here are:
-
-|Parameter|Function|
-|:---|:---|
-|**-s ..**|Input *fastA* file to analyse|
-|**-o ...**|Output prefix for finished files.<br>`FragGeneScan` will produce correponding nucleotide (*.ffn*), amino acid (*.faa*), and summary (*.out*) files|
-|**-w ...**|Specify whether we are working with complete gene sequences (1) or incomplete sequences (0)|
-|**-p ...**|Number of threads to use|
-|**-t ...**|Training model for the error rate. Must be preset in the *train/* folder.<br>Corresponds to Illumina with a 0.5% error rate.|
 
 ---
 
