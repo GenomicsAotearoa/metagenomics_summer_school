@@ -389,6 +389,8 @@ We can run through the same process for the viral contigs. Many of the steps are
 
 #### 2.1 Set working directory, load *R* libraries, and import data
 
+In this case, import the coverage, taxonomy, mapping, *and checkv* files. For taxonomy we will select the `Genome` column (converted to `Contig`), `Order_VC_predicted` (converted to `taxonomy`), and `Genus_VC_predicted` (converted to `taxonomy_genus`) (we will use the `Order_VC_predicted` to colour code viral contigs in the heat map, and `Genus_VC_predicted` to add to viral contig names in the plot). 
+
 ```R
 setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.data_presentation/')
 
@@ -402,11 +404,7 @@ library(tibble)
 # Other libraries
 library(gplots)
 library(vegan)
-```
 
-Import the coverage, taxonomy, checkv, and mapping files. In this case, for taxonomy we will select the `Genome` column (converted to `Contig`), `Order_VC_predicted` (converted to `taxonomy`), and `Genus_VC_predicted` (converted to `taxonomy_genus`) (in this case, we will use the `Order_VC_predicted` to colour code viral contigs in the heat map, and `Genus_VC_predicted` to add to viral contig names in the plot). 
-
-```R
 # coverage table
 cov_vir <- read_tsv("coverage/viruses_cov_table.txt") %>% 
   mutate(Contig = contigName) %>%
@@ -431,6 +429,8 @@ map.df <- read_tsv("coverage/mapping_file.txt", col_types = "ff")
 
 #### 2.2 wrangle data
 
+This time we will collate the coverage, checkv, and taxonomy tables into a single table for downstream use, and create `vir_ID_*` unique identifers.
+
 ```R
 # Strip .bam from sample names
 cov_vir <- cov_vir %>%
@@ -438,11 +438,7 @@ cov_vir <- cov_vir %>%
     vars(contains("sample")),
     list(~ str_replace(., ".bam", ""))
   )
-```
 
-Collate the coverage, checkv, and taxonomy tables into a single table for downstream use, and create `vir_ID_*` unique identifers.
-
-```R
 # Collate data, add unique 'vir_ID' identifer, add 'vir_ID_tax' column
 collate_data_vir <- cov_vir %>% 
   left_join(tax_vir, by = 'Contig') %>% 
@@ -452,27 +448,20 @@ collate_data_vir <- cov_vir %>%
   mutate(vir_ID_tax = paste(vir_ID, taxonomy_genus, sep="_")) %>% 
   filter(!is.na(checkv_quality)) %>%
   select(-taxonomy_genus)
-```
 
-Now let's add an (optional) filtering step here to remove any contigs that `CheckV` returned a quality category of `Not-determined` or `Low-quality`. We will use `!=` in the `filter()` function here to return only those rows that do *not* include 'Not-determined' or 'Low-quality').
-
-```R
-collate_data_vir <- collate_data_vir %>%
-  filter(checkv_quality != 'Not-determined' & checkv_quality != 'Low-quality')
-```
-
-Perform a log(2)-transformation on the coverage data.
-
-```
 # Log(2)-transform coverage data
 collate_data_vir_log2 <- collate_data_vir
 collate_data_vir_log2[,names(select(collate_data_vir_log2, contains("sample")))] <- log2(collate_data_vir_log2[,names(select(collate_data_vir_log2, contains("sample")))] + 1)
 ```
 
-To have the data in a format that is ready for `heatmap2` we will perform a few final data wrangling steps. Here we are re-ordering the file by row sums, selecting only the coverage columns (`contains("sample")`) and `taxonomy` column, ensuring `taxonomy` is set as a factor, and setting the rownames based on the `Bin` column. 
+Now let's add an (optional) filtering step here to remove any contigs that `CheckV` returned a quality category of `Not-determined` or `Low-quality`. We will use `!=` in the `filter()` function here to return only those rows that do *not* include 'Not-determined' or 'Low-quality').
 
-*NOTE: In this case, we'll also only keep the `vir_ID*` identifiers without the genus taxonomy appended for the plots, since the the long labels (due to numerous genus predictions for some contigs) make the plots illegible otherwise. To retain the taxonomy, change the two `vir_ID` entries below to `vir_ID_tax`.*
+```R
+collate_data_vir_log2 <- collate_data_vir_log2 %>%
+  filter(checkv_quality != 'Not-determined' & checkv_quality != 'Low-quality')
+```
 
+A few final data wrangling steps:
 
 ```R
 coverage.heatmap.data.vir <- collate_data_vir_log2 %>%
@@ -485,9 +474,11 @@ coverage.heatmap.data.vir <- collate_data_vir_log2 %>%
   as.data.frame() 
 ```
 
+*NOTE: In this case, the script only keeps the `vir_ID*` identifiers without the genus taxonomy appended for use in the plots, since the the long labels (due to numerous genus predictions for some contigs) make the plots illegible otherwise. To retain the taxonomy, change the two `vir_ID` entries above to `vir_ID_tax`.*
+
 #### 2.3 Calculate hierarchical clustering of columns (samples) and rows (viral contigs).
 
-Filter to remove any potential problem rows from the data.
+Filter to remove any potential problem rows from the data, and then run clustering and plot the dendrograms.
 
 ```R
 # Subset the relevant columns
@@ -495,11 +486,7 @@ coverage.heatmap.data.vir.filt <- select(coverage.heatmap.data.vir, contains("sa
 
 # Filter out zero-variance rows
 coverage.heatmap.data.vir.filt <- coverage.heatmap.data.vir.filt[!apply(select(coverage.heatmap.data.vir.filt, -"taxonomy")==select(coverage.heatmap.data.vir.filt, -"taxonomy")[[1]],1,all),]
-```
 
-Run the hierarchical clustering calculations based on [Bray-Curtis dissimilarity](https://en.wikipedia.org/wiki/Bray%E2%80%93Curtis_dissimilarity) by column and row.
-
-```R
 # hclust
 vir_cov_clus.avg.col <- hclust(vegdist(t(select(coverage.heatmap.data.vir.filt, contains("sample"))), method="bray", binary=FALSE, diag=FALSE, upper=FALSE, na.rm=FALSE), "aver")
 vir_cov_clus.avg.row <- hclust(vegdist(select(coverage.heatmap.data.vir.filt, contains("sample")), method="bray", binary=FALSE, diag=FALSE, upper=FALSE, na.rm=FALSE), "aver")
@@ -530,11 +517,7 @@ Group.col <- data.frame(
   Group = factor(levels(map.df$Group)),
   col = c('#71dfdf', '#3690b8', '#00429d'),
   stringsAsFactors = FALSE)
-```
 
-Join the `Group.col` colours to the mapping file (`map.df`) so that we can call them in the `heatmap.2` command.
-
-```R
 # Update map.df with `Group` colour code for each sample
 map.df <- data.frame(full_join(map.df,Group.col))
 ```
