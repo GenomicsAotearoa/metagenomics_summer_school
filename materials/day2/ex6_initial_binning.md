@@ -56,7 +56,6 @@ The full script is provided here, and we will discuss it below.
 #!/bin/bash -e
 #SBATCH -A nesi02659
 #SBATCH -J spades_mapping
-#SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
 #SBATCH --time 00:20:00
 #SBATCH --mem 20GB
@@ -160,7 +159,6 @@ If you have a large number of files to process, it might be worth using a slurm 
 #!/bin/bash -e
 #SBATCH -A nesi02659
 #SBATCH -J spades_mapping_array
-#SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
 #SBATCH --time 00:20:00
 #SBATCH --mem 20GB

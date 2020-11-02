@@ -102,7 +102,6 @@ We will now run `prodigal` over the 10 bins in *anonymous* mode. As usual, we ca
 #!/bin/bash -e
 #SBATCH -A nesi02659
 #SBATCH -J prodigal
-#SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
 #SBATCH --time 00:10:00
 #SBATCH --mem 1GB
@@ -200,7 +199,6 @@ If you are working with unassembled metagenomic data and do not wish to go throu
 #!/bin/bash -e
 #SBATCH -A nesi02659
 #SBATCH -J fraggenescan
-#SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
 #SBATCH --time 02:00:00
 #SBATCH --mem 2GB
@@ -250,7 +248,6 @@ To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits 
 #!/bin/bash -e
 #SBATCH -A nesi02659
 #SBATCH -J metaxa2
-#SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
 #SBATCH --time 00:30:00
 #SBATCH --mem 1GB
