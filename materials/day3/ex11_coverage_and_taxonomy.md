@@ -5,7 +5,7 @@
 * Calculate per-sample coverage stats for the filtered prokaryote bins
 * Calculate per-sample coverage stats for the viral contigs output by `VIBRANT`
 * Assign taxonomy to the refined bins
-* Overview of using `vContact2` to predict taxonomy of viral contigs
+* Introduction to `vContact2` for predicting taxonomy of viral contigs
 * *Appendix*: viral taxonomy prediction via `vContact2`
 
 ---
@@ -238,7 +238,7 @@ Have a look at your resulting taxonomy. The classification of your MAGs will be 
 
 ---
 
-### Overview of using `vContact2` to predict taxonomy of viral contigs
+### Introduction to *vContact2* for predicting taxonomy of viral contigs
 
 Even more so than prokaryote taxonomy, establishing a coherent system for viral taxonomy is complex and continues to evolve. Just in the last year, the International Committee on Taxonomy of Viruses ([ICTV](https://talk.ictvonline.org/)) overhauled the classification code into [15 hierarchical ranks](https://www.nature.com/articles/s41564-020-0709-x). Furthermore, the knowledge gap in databases of known and taxonomically assigned viruses remains substantial, and so identifying the putative taxonomy of viral contigs from environmental metagenomics data remains challenging.
 
@@ -250,7 +250,7 @@ Running `vContact2` can require a reasonable amount of computational resources, 
 
 ---
 
-### Appendix: viral taxonomy prediction via `vContact2`
+### Appendix: viral taxonomy prediction via *vContact2*
 
 *NOTE: these steps are based on having `vContact2` set up as a `conda` environment. This documentation will be updated should `vContact2` become available as a NeSI module.*
 
