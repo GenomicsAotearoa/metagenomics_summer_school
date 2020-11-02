@@ -183,7 +183,7 @@ collate_data_MAG <- cov_MAG %>%
 
 In many real-life cases, to enhance the visualisation across a wide range of coverage values, you may wish to perform a transformation on your data. 
 
-Perform a log(2)-transformation on the coverage data (those values in the columns that `matches("sample[1-9]")`). Note, here we are calculating log2(x + 1) to allow for any cases where coverage values are 0 in any of the samples (log2(0 + 1) = 0). 
+Perform a log(2)-transformation on the coverage data (those values in the columns that `contains("sample")`). Note, here we are calculating log2(x + 1) to allow for any cases where coverage values are 0 in any of the samples (log2(0 + 1) = 0). 
 
 ```
 # Log(2)-transform coverage data
