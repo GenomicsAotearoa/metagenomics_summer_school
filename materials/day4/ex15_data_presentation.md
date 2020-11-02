@@ -306,13 +306,11 @@ Output the full heat map with sample (column) and variable (row) clustering.
 
 *NOTE: Un-comment (remove the `#` symbol from) the lines `png(...)` and `dev.off()` before and after the heat map code will write the plot to file*
 
-A number of options for visual parameters within `heatmap2` can be set. Of the ones provided below, the first six (from `Colv` to `ColSideColors`) are likely to be the most of interest at this stage. `Colv` and `Rowv` set the clustering (using the Bray-Curtis hierarcical clustering we calculated above. The `cex...` commands set the font sizes. The `...SideColors` commands set the colours placed adjacent to the rows or columns to add further information to the plot (in this case, we are using this to add MAG taxonomy information). 
-
-It is often also valuable to add a colour scheme to the columns (samples) (for example, to quickly differentiate samples from different groups of interest). In this case, you would need to first create a mapping data.frame (e.g. `map.df`) of samples, groups, and colour codes corresponding to the different groups, and then pass this via, for example, uncommenting the line `ColSideColors = map.df$col`).
+A number of options for visual parameters within `heatmap2` can be set. Of the ones provided below, the first six (from `Colv` to `ColSideColors`) are likely to be the most of interest at this stage. `Colv` and `Rowv` set the clustering (using the Bray-Curtis hierarcical clustering we calculated above. The `cex...` commands set the font sizes. The `...SideColors` commands set the colours placed adjacent to the rows or columns to add further information to the plot (in this case, we are using this to add MAG taxonomy information and sample grouping information). 
 
 In some cases, you may wish to omit the column clustering (for example, if your samples are from a set transect and you want to preserve the order of samples in the plot). In this case, you can set `Colv = FALSE`.
 
-*NOTE: Here we are using gplot::legend to add two legends to the bottom of the plot for row-side and column-side colours. This can sometimes look a little clunky (and often requires experimenting with the `margins` settings). For final publication figures, it may be preferable to output each element (heatmap, legend1, and legend2) as separate image files, and then compile in a program such as Adobe Illustrator.*
+*NOTE: Here we are using gplot::legend to add two legends to the bottom of the plot for row-side and column-side colours. This can sometimes look a little clunky (and often requires experimenting with the `margins` settings). For final publication-quality figures, it may be preferable to output each element (heatmap, legend1, and legend2) as separate image files, and then compile in a program such as Adobe Illustrator.*
 
 ```R
 #png("coverage/MAGs_heatmap.png",width=17,height=21,units="cm",res=300)
