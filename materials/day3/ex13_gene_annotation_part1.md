@@ -243,15 +243,15 @@ DRAM is run in two stages: annotation and distillation.
 
 ![](https://github.com/mcastudillo/MAG-annotation-with-DRAM/blob/main/figures/DRAM_workflow.png)
 
+---
 ### Annotation
 The first step in DRAM is to annotate genes by assigning database identifiers to genes. Short contigs (default < 2,500 bp) are initially removed. Then, Prodigal is used to detect open reading frames (ORFs) and to predict their amino acid sequences. Next, DRAM searches all amino acid sequences against multiple databases, providing a single *Raw* output. When gene annotation is complete, all results are merged in a single tab-delimited annotation table, including best hit for each database for user comparison. 
 
-
+---
 ### Distillation 
 After genome annotation, a distill step follows with the aim to curate these annotations into useful functional categories, creating genome statistics and metabolism summary files, and stored in the *Distillate* output. The genome statistics provides most genome quality information required for [MIMAG](https://www.nature.com/articles/nbt.3893), including GTDB-tk and checkM information if provided by user. Summarised metabolism table include the number of genes with specific metabolic function identifiers (KO, CAZY ID, etc) fore each genome, with information obtained from multiple databases. The *Distillate* output is then further distilled into the *Product*, an html file displaying a heatmap, as well as the corresponding data table. We will investigate all these files later on.  
 
-
-
+---
 ## Annotation of the MAGs with DRAM 
 Beyond annotation, DRAM aims to be a data compiler. For that reason, output files from both CheckM and GTDB_tk steps can be input to DRAM to provide both taxonomy and genome quality information of the MAGs. CheckM output file (`checkm.txt`) can be input as it is. However, in order to use the file with the gtdb_tk taxonomy (`gtdbtk.bac120.classification_pplacer.tsv`) we should modify it first to include column headers 'bin_id' and 'classification'
 
