@@ -88,10 +88,10 @@ The only aspect of the data that `FastQC` is flagging as potentially problematic
 Lets take a look at a library with significant errors. Process the sequence file `mock_R1.adapter_decay.fastq` with `FastQC`.
 
 ```bash
-fastqc mock_R1.adapter_decay.fastq
+fastqc mock_R1.adapter_decay.fastq.gz
 ```
 
-Compare the results with the `mock_R1.good.fastq` file.
+Compare the results with the `mock_R1.good.fastq.gz` file.
 
 Which of the previous fields we examined are now flagged as problematic? How does this compare with your expectation? Are there any which should be flagged which are not?
 
