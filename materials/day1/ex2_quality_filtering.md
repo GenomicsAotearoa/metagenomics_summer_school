@@ -131,7 +131,7 @@ There is a lot going on in this command, so here is a breakdown of the parameter
 |SLIDINGWINDOW:4:30|*positional*|Quality filtering command. Analyses each sequence in a 4 base pair sliding window, truncating if the average quality drops below Q30|
 |MINLEN:80|*positional*|Length filtering command, discard sequences that are shorter than 80 base pairs after trimming|
 
-This signifcantly improves the output.
+Running the trimmed files back through `FastQC`, we can see that this signifcantly improves the output.
 
 ##### Quality of reads
 
