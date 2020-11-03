@@ -17,16 +17,16 @@
 1. Low quality regions of sequence
 1. Quality drop-off towards the end of read-pair sequence
 
-To activate `FastQC` on NeSI, you need to first load the module using the command
-
-```bash
-module load FastQC/0.11.7
-```
-
 These exercises will take place in the `2.fastqc/` folder. First, navigate to this folder. Copy the command below into your terminal (logged in to NeSI), replacing `<YOUR FOLDER>`, and then running the command.
 
 ```bash
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/
+```
+
+To activate `FastQC` on NeSI, you need to first load the module using the command
+
+```bash
+module load FastQC/0.11.7
 ```
 
 `FastQC` can then be run either interactively (i.e. with a GUI) or from the command line. The difference is simply whether or not you provide any input files to `FastQC` when it loads.
