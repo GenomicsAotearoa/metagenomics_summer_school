@@ -1,4 +1,6 @@
-# Presentation of data: Ecology 1, per-sample coverage heatmaps.
+# Presentation of data: Ecology
+
+## 1. Per-sample coverage heatmaps
 
 ### Objectives
 
