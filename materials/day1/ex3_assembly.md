@@ -238,7 +238,7 @@ Once you are happy with your slurm script, execute the job by navigating to the 
 sbatch assembly_spades.sl
 ```
 
-You will receive a message telling you the job identifier for your assembly. Record this number, as we will use it tomorrow.
+You will receive a message telling you the job identifier for your assembly. Record this number, as we will use it in the next exercise.
 
 #### Monitoring job progress
 
