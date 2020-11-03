@@ -43,7 +43,7 @@ fastqc mock_R1.good.fastq.gz mock_R2.good.fastq.gz
 
 #### Viewing the outputs from *FastQC*
 
-`FastQC` generates output reports in `.html` files that can be viewed in a standard browser. Unfortunately, these can not be viewed from within the standard NeSI teminal environment. In day-to-day usage, it will be necessary to download the resulting files using `scp` and view them on your computer. 
+`FastQC` generates output reports in `.html` files that can be viewed in a standard web browser. Unfortunately, these can not be viewed from within the standard NeSI terminal environment. In day-to-day usage, it will be necessary to download the resulting files using `scp` and view them on your computer. 
 
 Fortunately, if you're currently using the terminal within `Jupyter hub` for today's session, we can open the `.html` files directly from here:
 
