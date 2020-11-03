@@ -118,7 +118,9 @@ Finally, we create the actual plot by passing this matrix into the `pheatmap` li
 ```R
 library(pheatmap)
 
-cazy_matrix %>% column_to_rownames('Bin') %>% as.matrix(.) %>% pheatmap(.)
+colours <- colorRampPalette(c("#fff9e7","#920000"), space="Lab")(100)
+
+cazy_matrix %>% column_to_rownames('Bin') %>% as.matrix(.) %>% pheatmap(., col = colours)
 ```
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex14_heatmap.PNG)
