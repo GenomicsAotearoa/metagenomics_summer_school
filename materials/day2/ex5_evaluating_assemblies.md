@@ -185,6 +185,8 @@ By now, you should be getting familiar enough with the console to understand wha
 
 We will now look at a few interesting assembly comparisons.
 
+Note, a browser with Java Script enabled is required to compile the report. However, if you're working from the NeSI `Jupyter hub` environment, the html viewer *within* the NeSI `Jupyter hub` does not currently support this even if the browser you're running it in does. Download the file by navigating to the `4.evaluation/quast_results/latest/` folder, right-click `report.html` and select download. The downloaded file will then open within a new tab in a standard browser.
+
 #### Brief summary of assemblies
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex5_fig1_shortsummary.PNG)
