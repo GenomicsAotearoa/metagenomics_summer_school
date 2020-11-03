@@ -21,7 +21,14 @@ setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/annota
 
 library(pathview)
 library(KEGGREST)
-library(tidyverse)
+
+# tidyverse libraries
+library(readr)
+library(tibble)
+library(dplyr)
+library(tidyr)
+library(purrr)
+library(stringr)
 ```
 
 Load your files into R. Here, we are loading them into a list. Given that there are ten files, it is easier to load, clean, and analyze the data using list methods available in tidyverse.
@@ -84,7 +91,7 @@ Check if each query was only annotated with a single KO number. The length of KO
 length(which(str_length(kegg_filtered_annotations$KO) > 6))
 ```
 
-We can see that there are a total of 62 genes with multiple annotations. We will split them into their own rows. 
+We can see that there are a total of 66 genes with multiple annotations. We will split them into their own rows. 
 
 ```R
 kegg_filtered_annotations <- kegg_filtered_annotations %>%
@@ -117,11 +124,7 @@ kegg_matrix <- kegg_tally %>%
 
 Now we can generate images of the KEGG pathway maps using the matrix we just made. For this section, we will try to find genes related nitrogen metabolism. 
 
-We need to first identify the KEGG pathway ID. This is where `KEGGREST` comes in handy. `KEGGREST` can also help you identify other information stored in the KEGG database. For more information, the `KEGGREST` vignette can be viewed using the `vignette` function in `R`:
-
-```R
-vignette("KEGGREST-vignette")
-```
+We need to first identify the KEGG pathway ID. This is where `KEGGREST` comes in handy. `KEGGREST` can also help you identify other information stored in the KEGG database. For more information, the `KEGGREST` vignette can be viewed using the `vignette` function in `R`: `vignette("KEGGREST-vignette")`
 
 Use the `keggFind` function to identify the pathway ID for nitrogen metabolism:
 
@@ -153,9 +156,9 @@ pv_bin_0 <- pathview(
   ), 
   out.suffix = "nitrogen_metabolism.bin_0",
   na.col = "white",
-  low = "grey",
-  mid = "green",
-  high = "red"
+  low ='#ffdfdc',
+  mid = '#d57c69',
+  high = '#980000'
 )
 ```
 
@@ -186,14 +189,24 @@ for (i in 1:ncol(kegg_matrix)) {
     ), 
     out.suffix = out.suffix,
     na.col = "white",
-    low = "grey",
-    mid = "green",
-    high = "red"
+    low ='#ffdfdc',
+    mid = '#d57c69',
+    high = '#980000'
   )
   rm(i, out.suffix)
 }
 ```
 
 The above code will generate one png image file per bin, and will save it to the current working directory. The list `pv_all_bins` in the first line contains some plotting information. Importantly, it has the KO numbers it used to match the data provided to the pathway. If you wish to, you can subset your original data to only obtain those KO numbers related to the pathway that you have plotted for further analyses with other annotations.
+
+A few example output for bins 3 and 5:
+
+#### Bin 3 nitrogen metabolism KEGG map
+
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_KEGG_maps_ko00910_bin_3.png)
+
+#### Bin 5 nitrogen metabolism KEGG map
+
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_KEGG_maps_ko00910_bin_5.png)
 
 ---
