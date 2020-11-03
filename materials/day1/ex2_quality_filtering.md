@@ -17,6 +17,8 @@
 1. Low quality regions of sequence
 1. Quality drop-off towards the end of read-pair sequence
 
+---
+
 These exercises will take place in the `2.fastqc/` folder. First, navigate to this folder. Copy the command below into your terminal (logged in to NeSI), replacing `<YOUR FOLDER>`, and then running the command.
 
 ```bash
