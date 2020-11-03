@@ -10,7 +10,7 @@
 
 ### Evaluate the resource consumption of various assemblies
 
-Check to see if your jobs from last night have completed. If you have multiple jobs running or queued, the easiest way to check this is to simply run the `squeue` command from yesterday.
+Check to see if your assembly jobs have completed. If you have multiple jobs running or queued, the easiest way to check this is to simply run the `squeue` command.
 
 ```bash
 squeue -u <user name>
@@ -18,7 +18,7 @@ squeue -u <user name>
 #  JOBID     USER ACCOUNT            NAME  ST REASON    START_TIME                TIME TIME_LEFT NODES CPUS
 ```
 
-Since there are no jobs listed, either everything running has completed or failed. To get a list of all jobs we have run in the last day, we can use the `sacct` command. By default this will report all jobs for the day but we can add a parameter to tell the command to report all jobs run since the date we are specifying.
+If there are no jobs listed, either everything running has completed or failed. To get a list of all jobs we have run in the last day, we can use the `sacct` command. By default this will report all jobs for the day but we can add a parameter to tell the command to report all jobs run since the date we are specifying.
 
 ```bash
 sacct -S 2020-11-16
@@ -55,7 +55,7 @@ seff 8744675
 #Memory Efficiency: 29.85% of 20.00 GB
 ```
 
-Here we see some of the same information, but we also get some information regarding how well our job used the resources we allocated to it. You can see here that my CPU and memory usage was not particularly efficient, in hindsight I could have request a lot less RAM and still had the job run to completion.
+Here we see some of the same information, but we also get some information regarding how well our job used the resources we allocated to it. You can see here that my CPU and memory usage was not particularly efficient. (Note that for this particular job, 1 hr and 20 GB RAM were requested.) In hindsight I could have request a lot less time and RAM and still had the job run to completion.
 
 CPU efficiency is harder to interpret as it can be impacted by the behaviour of the program. For example, mapping tools like `bowtie` and `BBMap` can more or less use all of their threads, all of the time and achieve nearly 100% efficiency. More complicated processes, like those performed in `SPAdes` go through periods of multi-thread processing and periods of single-thread processing, drawing the average efficiency down.
 
@@ -67,7 +67,7 @@ Evaluating the quality of a raw metagenomic assembly is quite a tricky process. 
 
 A few quick checks I recommend are to see how many contigs or scaffolds your data were assembled into, and then see how many contigs or scaffolds you have above a certain minimum length threshold. We will use `seqmagick` for performing the length filtering, and then just count sequence numbers using `grep`.
 
-These steps will take place in the `4.evaluation` folder, which contains copies of our first `SPAdes` and `IDBA-UD` assemblies.
+These steps will take place in the `4.evaluation/` folder, which contains copies of our `SPAdes` and `IDBA-UD` assemblies.
 
 ```bash
 module load seqmagick/0.7.0-gimkl-2018b-Python-3.7.3
