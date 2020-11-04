@@ -146,7 +146,7 @@ hmmsearch -h
 
 We are now going to submit another slurm job to annotate our MAGs using the [Pfam database](https://pfam.xfam.org/). Matching sequences to a Pfam entry allows us to transfer the functional information from an experimentally characterised sequence to uncharacterised sequences in the same entry. Pfam then provides comprehensive annotation for each entry.
 
-```
+```bash
 #!/bin/bash -e
 #SBATCH -A nesi02659
 #SBATCH -J annotate_pfam
@@ -232,7 +232,7 @@ For these exercises, we have copied the relevant input files into the folder `10
 
 The CheckM output file (`checkm.txt`) can be input as it is. However, in order to use the file with the gtdb_tk taxonomy (`gtdbtk.bac120.classification_pplacer.tsv`) we should modify it first to include column headers 'bin_id' and 'classification'
 
-```
+```bash
 nano DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv
 
 # bin_1   d__Bacteria;p__Firmicutes;c__Bacilli;o__Staphylococcales;f__Staphylococcaceae;g__Staphylococcus;s__
@@ -261,7 +261,8 @@ nano DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv
 
 ```
 In default annotation mode, `DRAM` takes as only input the directory containing all the bins we would like to annotate in fasta format (either .fa or .fna). There are few parameter that can be modified if not using the default mode. Once the annotation step is done, the mode `distill` is used to summarise the obtained results. **Note:** due to the increased memory requirements, UniRef90 database is not default and the flag `–use_uniref` should be specified in order to search amino acid sequences against UniRef90. In this exercise, due to memory and time constrains, we won't be using UniRef90 database.
-```
+
+```bash
 module load DRAM
 
 DRAM.py --help
@@ -283,7 +284,7 @@ DRAM.py --help
 
 To run this exercise we first need to set up a slurm job. We will use the results for tomorrow's distillation step. 
 
-```
+```bash
 #!/bin/bash -e
 #SBATCH --job-name=DRAM_annotation
 #SBATCH --account=ga02676
