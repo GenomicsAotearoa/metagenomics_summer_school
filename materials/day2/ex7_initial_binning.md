@@ -88,7 +88,6 @@ This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we wan
 #!/bin/bash -e
 #SBATCH -A nesi02659
 #SBATCH -J maxbin_clustering
-#SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
 #SBATCH --time 00:05:00
 #SBATCH --mem 1GB
