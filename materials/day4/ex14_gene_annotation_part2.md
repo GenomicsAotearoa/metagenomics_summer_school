@@ -51,6 +51,7 @@ cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 DRAM.py distill -i annotation/annotations.tsv -o all_genomes_summaries --trna_path annotation_trial/trnas.tsv --rrna_path annotation/rrnas.tsv
 
 ```
+---
 
 Distillation step generates the following files:
 
@@ -61,7 +62,9 @@ Distillation step generates the following files:
 |**product.html**| HTML file displaying a heatmap summarising pathway coverage, electron transport chain component completion and presence/absence of specific functions |
 |**product.tsv**| Data table with product.html information |
 
+
 First, let's have a look at the genome stats to check the assembly quality of our bins
+
 
 |genome|number of scaffolds|taxonomy|completeness score|contamination score|5S rRNA|16S rRNA|23S rRNA|tRNA count|assembly quality|
 |:--- | :--- |:--- | :--- |:--- | :--- |:--- | :--- |:--- | :--- |
@@ -76,6 +79,8 @@ First, let's have a look at the genome stats to check the assembly quality of ou
 |bin_8|19|d__Bacteria;p__Desulfobacterota_A;c__Desulfovibrionia;o__Desulfovibrionales;f__Desulfovibrionaceae;g__Desulfovibrio;s__|99.41|0|2 present|bin_8, (3744, 5289)|bin_8, (379, 3300)|57|med|
 |bin_9|1|d__Bacteria;p__Planctomycetota;c__Brocadiae;o__Brocadiales;f__Brocadiaceae;g__;s__|97.8|1.65|bin_9, (1066028, 1066130)|bin_9, (1069811, 1071397)|bin_9, (1066309, 1069302)|46|high|
 
+---
+
 To finish, we visualize the *Product*, an .HTML file produced in the Distillation step, by double-clicking on it on our *Jupyter* lab notebook. The *Product* has three primary parts:
 
 1. Central metabolism pathways coverage. Completion of pathways is based on the structure of KEGG modules, with the pathway coverage calculated as the percent of steps with at least one gene present.   
@@ -84,6 +89,8 @@ To finish, we visualize the *Product*, an .HTML file produced in the Distillatio
 ![](https://github.com/mcastudillo/MAG-annotation-with-DRAM/blob/main/figures/DRAM_product_1.png)
 
 3. Presence of specific functions. 
+
+
 ![](https://github.com/mcastudillo/MAG-annotation-with-DRAM/blob/main/figures/DRAM_product_2.png)
 ![](https://github.com/mcastudillo/MAG-annotation-with-DRAM/blob/main/figures/DRAM_product_3.png)
 
