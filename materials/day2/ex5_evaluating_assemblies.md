@@ -189,15 +189,15 @@ When working from a standard terminal logged into NeSI, you can copy the entire 
 
 #### Brief summary of assemblies
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex5_fig1_shortsummary.PNG)
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex5_fig1_shortsummary.png)
 
 #### Comparison of NGA50 between assemblies
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex5_fig2_nga50.PNG)
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex5_fig2_nga50.png)
 
 #### Comparison of aligned contigs
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex5_fig3_contigsmatched.PNG)
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex5_fig3_contigsmatched.png)
 
 #### Inspection of unaligned contigs
 
