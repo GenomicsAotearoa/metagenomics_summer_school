@@ -62,7 +62,11 @@ We can now use these files in `VizBin` to curate the contigs in our bins. We wil
 
 *NOTE: Running `VizBin` remotely (e.g. within NeSI) can be slow with full data sets. Running a GUI (such as a program like `VizBin`) remotely can also require additional set up on some PCs. For day-to-day work, we recommend installing `VizBin` on your local machine and downloading the relevant input files (e.g. via `scp ...`) to run locally.*
 
-For today's exercise, open `VizBin` via: 
+`VizBin` cannot be opened within the NeSI `Jupyter hub`. For today's exercise, open `VizBin` via either:
+
+* Downloading the required files from NeSI to your machine (via `scp` or right-click > download, within the `Jupyter hub`).
+  * Download and install `VizBin`, and start `VizBin` locally.
+* OR: Logging into NeSI via a standard terminal (*not* the terminal within `Jupyter hub`) and running the following command (*NOTE: this may return an error if X11 fowarding is not set up for your machine. In this case, proceed with the first option above*).
 
 ```bash
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinement/
