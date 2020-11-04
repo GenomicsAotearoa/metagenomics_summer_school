@@ -125,35 +125,36 @@ How you proceed in this stage is up to you. You can either select bins based on 
 
 Today, we will run through an example of selecting potentially problematic (sub)contigs, and then deciding whether or not we want to filter these contigs out of our refined bins. We will use a combination of `VizBin` and `seqmagick` to remove contigs from bins where we do not trust the placement of the contig. We are aiming to reduce each bin to a trusted set of contigs.
 
-### Export `VizBin` clusters
+### 1. Export `VizBin` clusters
 
 First, for each `VizBin` cluster, select the area around the cluster (via multiple left-clicks around the cluster), right-click, 'Selection', 'Export'. Save this output as `cluster_1.fna`. 
 
 Try this for one or two clusters. In practice, we would do this for each `VizBin` cluster, saving each as a new `cluster_n.fna` file.
 
-...
-
-# Update in progress... (MH)
-
-...
-
-### Export potentially problematic contigs
-
-#### Highlight an area with problematic contigs to zoom into
+#### Highlight a cluster to zoom into
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_to_zoom.PNG)
 
-#### Select the contigs to examine
+#### Select the cluster to export
 
-Left-click several points around a selection of potentially problematic contigs
+Left-click several points around the cluster
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_outlier.PNG)
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_cluster.PNG)
 
-#### Export the contigs
+#### Export the cluster
 
-Right-click, 'Selection', 'Export'. Save the output as `contigs_1.fna`. 
+Right-click, 'Selection', 'Export'. Save the output as `cluster_1.fna`. 
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_export.PNG)
+
+
+### 2. Export potentially problematic contigs
+
+#### Select problematic contigs to examine
+
+Zoom in,  make a selection of potentially problematic contigs, and export as above.
+
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_outlier.PNG)
 
 Try this for one or two problematic contigs (or subsets of contigs). In practice, you could repeat this for all potentially problemtic contigs, saving each export as a new `contigs_n.fna` file.
 
