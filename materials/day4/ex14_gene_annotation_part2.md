@@ -22,7 +22,7 @@ The submitted job from the previous session should be now completed. If we exami
 
 If we inspect the head of the annotation file we will see the following
 
-```
+```bash
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
 head annotation/annotation.tsv
@@ -37,7 +37,7 @@ bin_0_1f9359e86e6a75bcff340e6a8b60ef98_1	bin_0	1f9359e86e6a75bcff340e6a8b60ef98	
 
 After the annotation is finished, we will summarise and visualise these annotations with the so-called *Distillation* step. We do so by running the following command directly in the terminal. This will generate the distillate and liquor files.
 
-```
+```bash
 module load Miniconda3/4.7.10
 source activate /nesi/nobackup/ga02676/Metagenomics_summerschool/carmen/00.DRAM/DRAM_env # Modify path
 
