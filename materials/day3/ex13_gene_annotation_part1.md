@@ -123,25 +123,25 @@ hmmsearch -h
 # Copyright (C) 2015 Howard Hughes Medical Institute.
 # Freely distributed under the GNU General Public License (GPLv3).
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Usage: hmmsearch [options] <hmmfile> <seqdb>
+# Usage: hmmsearch [options] <hmmfile> <seqdb>
 
-Basic options:
-  -h : show brief help on version and usage
+# Basic options:
+#  -h : show brief help on version and usage
 
-Options directing output:
-...
---tblout <f>     : save parseable table of per-sequence hits to file <f>
-....
+# Options directing output:
+# ...
+# --tblout <f>     : save parseable table of per-sequence hits to file <f>
+# ....
 
-Options controlling reporting thresholds:
-...
--E <x>     : report sequences <= this E-value threshold in output  [10.0]  (x>0)
-...
+# Options controlling reporting thresholds:
+# ...
+# -E <x>     : report sequences <= this E-value threshold in output  [10.0]  (x>0)
+# ...
 
-Other expert options:
-...
-  --cpu <n>     : number of parallel CPU workers to use for multithreads
-...
+# Other expert options:
+# ...
+# --cpu <n>     : number of parallel CPU workers to use for multithreads
+# ...
 ```
 
 We are now going to submit another slurm job to annotate our MAGs using the [Pfam database](https://pfam.xfam.org/). Matching sequences to a Pfam entry allows us to transfer the functional information from an experimentally characterised sequence to uncharacterised sequences in the same entry. Pfam then provides comprehensive annotation for each entry.
