@@ -1,10 +1,11 @@
 
 
-> Following instructions are for Mac,Linux and Windows with WSL enabled
+> Following instructions are for Mac,Linux and Windows with WSL enabled. 
 
 1. In a new local terminal run `mkdir -p ~/.ssh/sockets`
 
-2. Open your *ssh* config file with  `nano ~/.ssh/config` and add the following (copy & paste or type it in). Replace `myusername` with your **NeSI username**
+2. Open your *ssh* config file with  `nano ~/.ssh/config` and add the following (copy & paste or type it in). Replace `myusername` with your **NeSI username** in all three places
+>If you are using **Git Bash** in Windows, remove or comment out (#)  the first four lines
 
    ```
    Host *

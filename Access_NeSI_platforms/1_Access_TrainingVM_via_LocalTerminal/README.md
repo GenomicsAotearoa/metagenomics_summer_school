@@ -1,3 +1,5 @@
+<p align="center"><img  src="../img/LocalToLanderToRemote.png" alt="drawing" width="700"/></p>
+
 1. Type `ssh myusername@lander.nesi.org.nz` on yout local terminal (replace `myusername` with your **NeSI username**). 
 
 2. Then respond to `Login Password (First Factor) :` and `Authentication Code (Second Factor):` accordingly 
