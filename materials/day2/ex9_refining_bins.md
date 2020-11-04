@@ -4,10 +4,10 @@
 
 * Prepare input files for `VizBin`
 * Project a *t-SNE* using `VizBin` and examine bin clusters
-* Refine bins by removing incorrectly assigned contigs
+* Refine bins by identifying incorrectly assigned contigs
+* *Optional:* Refine and filter problematic contigs from bins
 * *Optional:* Creating new `VizBin` profiles with different fragment lengths
 * *Optional:* Scripts for processing data with `ESOMana`
-* Assigning taxonomy to the refined bins
 * *Appendix:* Generating input files for `VizBin` from `DAS_Tool` curated bins
 
 ---
@@ -99,11 +99,11 @@ Once this is imported, use the 'Show additional options' button to expose the ad
 
 For now leave all other parameters as default. Click the 'Start' button to begin building the ordination. When it completes, you should see an output similar to the following:
 
-##### Contigs coloured by bin
+#### Contigs coloured by bin
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_bin_only.PNG)
 
-##### Contigs coloured by bin, sized by length, shaded by coverage
+#### Contigs coloured by bin, sized by length, shaded by coverage
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_all_ann.PNG)
 
@@ -139,17 +139,17 @@ Try this for one or two clusters. In practice, we would do this for each `VizBin
 
 ### Export potentially problematic contigs
 
-##### Highlight an area with problematic contigs to zoom into
+#### Highlight an area with problematic contigs to zoom into
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_to_zoom.PNG)
 
-##### Select the contigs to examine
+#### Select the contigs to examine
 
 Left-click several points around a selection of potentially problematic contigs
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_outlier.PNG)
 
-##### Export the contigs
+#### Export the contigs
 
 Right-click, 'Selection', 'Export'. Save the output as `contigs_1.fna`. 
 
@@ -159,8 +159,11 @@ Try this for one or two problematic contigs (or subsets of contigs). In practice
 
 *NOTE: for the subsequent step using `vizbin_count_table.sh`, all exported cluster files must share a common prefix (e.g. `cluster...fna`), and all files of problematic contigs must also share a common prefix (e.g. `contigs...fna`).*
 
+---
 
-### Create a count table of counts of our problematic contigs across each bin
+### *Optional:* Refine and filter problematic contigs from bins
+
+#### Create a count table of counts of our problematic contigs across each bin
 
 You'll recall that, prior running `VizBin`, the contigs in our bins were first cut into fragments to improve the density of the clusters in the *t-SNE* projection. As such, the problematic contigs we have exported from `VizBin` are *sub-contig* fragments, rather than full contigs from our bins. It is entirely possible that different fragments of the original contigs have been placed in different clusters during our `VizBin` analysis - including cases where most sub-contigs have clustered with the bin we expect, and a small number have been identified as "problematic" (i.e. clustered with other bins). Based on the information from these extracted problematic sub-contigs, we now have to carefully consider whether or not we want to remove the *full* contig from our bin data.
 
@@ -194,7 +197,7 @@ Example excerpt:
 
 Note that in the case of the third contig from the excerpt above, the 'problematic' contig is only one of 39 sub-contigs, and all other 38 sub-contigs are in the expected cluster. In this case, we likely do *not* want to remove this contig from the bin.
 
-### Generate a list of contigs to *exclude* from filtering
+#### Generate a list of contigs to *exclude* from filtering
 
 Create a list of contigs identified from `vb_count_table.txt` that are *not* to be filtered out by seqmagick in the next step. For example, those contigs that have sub-contigs split across multiple vizbin clusters, and for which it's reasonable to actually keep the contig (such as when a flagged selected sub-contig exported from vizbin is in one unexpected cluster, but all other sub-contigs from that parent contig are in the expected cluster; in this case, you likely *don't* want to filter out the parent contig from the data set moving forward). 
 
@@ -211,7 +214,7 @@ echo "bin_9_NODE_4_length_793571_cov_0.517196" >> vb_keep_contigs.txt
 echo "bin_1_NODE_182_length_42779_cov_1.585353" >> vb_keep_contigs.txt
 ```
 
-### Create final `vb_omit_contigs_filtered.txt` list of contigs to filter from bins
+#### Create final `vb_omit_contigs_filtered.txt` list of contigs to filter from bins
 
 Using `grep`, filter contigs we wish to keep (after assessing `vb_count_table.txt`) out of the working `vb_omit_contigs_tmp.txt` list. 
 
@@ -221,7 +224,7 @@ This creates `vb_omit_contigs_filtered.txt`, which we will then pass to `seqmagi
 grep -v -f vb_keep_contigs.txt vb_omit_contigs_tmp.txt > vb_omit_contigs_filtered.txt
 ```
 
-### Filter suspect contigs (based on `VizBin` analysis) from the bin data
+#### Filter suspect contigs (based on `VizBin` analysis) from the bin data
 
 Use `seqmagick --exclude-from-file ...` to filter problematic contigs (those contigs listed in `vb_omit_contigs_filtered.txt`) out of the initial *unchopped* bin fasta files, generating final bins for downstream processing.
 
