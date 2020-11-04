@@ -64,9 +64,16 @@ We can now use these files in `VizBin` to curate the contigs in our bins. We wil
 
 `VizBin` cannot be opened within the NeSI `Jupyter hub`. For today's exercise, open `VizBin` via either:
 
-* Downloading the required files from NeSI to your machine (via `scp` or right-click > download, within the `Jupyter hub`).
-  * Download and install `VizBin`, and start `VizBin` locally.
-* OR: Logging into NeSI via a standard terminal (*not* the terminal within `Jupyter hub`) and running the following command (*NOTE: this may return an error if X11 fowarding is not set up for your machine. In this case, proceed with the first option above*).
+**A. Install and run `VizBin` locally**
+
+* Download `VizBin-dist.jar` from [here](https://github.com/claczny/VizBin/releases/tag/v1.0.0)
+* You may also need to [install Java locally](https://www.java.com/en/download/manual.jsp) (choose the relevant version for your machine).
+* Download the required files from NeSI to your machine (via `scp` or right-click > download, within the `Jupyter hub`).
+* Double-click `VizBin-dist.jar` to open `VizBin`, and then follow the steps below.
+
+**OR: B. Log in via a standard terminal.** 
+
+* Log into NeSI via a standard terminal (*not* the terminal within `Jupyter hub`) and run the following command (*NOTE: this may return an error if X11 fowarding is not set up for your machine. In this case, proceed with the first option above*).
 
 ```bash
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinement/
