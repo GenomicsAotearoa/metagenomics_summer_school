@@ -56,7 +56,6 @@ The full script is provided here, and we will discuss it below.
 #!/bin/bash -e
 #SBATCH -A nesi02659
 #SBATCH -J spades_mapping
-#SBATCH --partition ga_bigmem
 #SBATCH --res SummerSchool
 #SBATCH --time 00:05:00
 #SBATCH --mem 1GB
