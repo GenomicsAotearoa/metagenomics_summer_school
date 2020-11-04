@@ -24,7 +24,7 @@ The original tool for performing this kind of analysis was the `BLAST` tool. Whi
 
 An alternate method for attributing function to query sequences it to consider them as a collection of independently functioning protein folding domains. This is the approach used in the [HMMer](http://hmmer.org/) software, and the *Pfam*, *TIGRfam*, and *PANTHER* databases. In these analyses, the database consists not of individual sequences, but of Hidden Markov models built from a collection of proteins that share a common domain. These profiles build out a statistical map of the amino acid transitions (from position to position), variations (differences at a position), and insertions/deletions between positions in the domain across the different observations in the training database and apply these maps to the query data.
 
-These exercises will take place in the `8.gene_annotation/` folder.
+These exercises will take place in the `10.gene_annotation/` folder.
 
 ---
 
@@ -34,7 +34,7 @@ For this exercise we are going to use diamond for performing our annotation. We 
 
 For this exercise we have created a diamond-compatible database from the 2018 release of the UniProt database.
 
-For input files, we have copied the `predictions/` results from the previous gene prediction exercise over to `8.gene_annotation/predictions/` for these exercises.
+For input files, we have copied the `predictions/` results from the previous gene prediction exercise over to `10.gene_annotation/predictions/` for these exercises.
 
 In general, diamond takes a simple pair of input files - the protein coding sequences we wish to annotate and the database we will use for this purpose. There are a few parameters that need to be tweaked for obtaining a useful output file, however.
 
@@ -101,7 +101,7 @@ do
   out_file=$(basename ${prot_file} .faa)
 
   diamond blastp -p 20 --max-target-seqs 5 --evalue 0.001 \
-                 --db /nesi/nobackup/nesi02659/MGSS_resources/uniprot_nr_200213.diamond \ ## MODIFY PATHS ONCE THE DIRECTORY IS SET UP
+                 --db /nesi/nobackup/nesi02659/MGSS_resources/databases/uniprot_nr_200213.diamond \ 
                  -q ${prot_file} --outfmt 6 -o gene_annotations/${out_file}.uniprot.txt
 done
 ```
@@ -174,7 +174,7 @@ Other expert options:
 
 We are now going to submit another slurm job to annotate our MAGs using the [Pfam database](https://pfam.xfam.org/). Matching sequences to a Pfam entry allows us to transfer the functional information from an experimentally characterised sequence to uncharacterised sequences in the same entry. Pfam then provides comprehensive annotation for each entry.
 
-```bash
+```
 #!/bin/bash -e
 #SBATCH -A nesi02659
 #SBATCH -J annotate_pfam
@@ -192,7 +192,7 @@ for prot_file in predictions/*.genes.no_metadata.faa;
 do
   out_file=$(basename ${prot_file} .faa)
 
-  hmmsearch --tblout ${out_file}.pfam.txt -E 1e-3 --cpu 10 ../databases/Pfam-A.hmm ${prot_file}
+  hmmsearch --tblout ${out_file}.pfam.txt -E 1e-3 --cpu 10 /nesi/nobackup/nesi02659/MGSS_resources/databases/Pfam-A.hmm ${prot_file}
   
 done
 
@@ -290,7 +290,6 @@ nano DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv
 ```
 In default annotation mode, `DRAM` takes as only input the directory containing all the bins we would like to annotate in fasta format (either .fa or .fna). There are few parameter that can be modified if not using the default mode. Once the annotation step is done, the mode `distill` is used to summarise the obtained results. **Note:** due to the increased memory requirements, UniRef90 database is not default and the flag `–use_uniref` should be specified in order to search amino acid sequences against UniRef90. In this exercise, due to memory and time constrains, we won't be using UniRef90 database.
 ```
-module load Python/3.8.2-gimkl-2020a
 module load DRAM
 
 DRAM.py --help
@@ -318,21 +317,14 @@ To run this exercise we first need to set up a slurm job. We will use the result
 #SBATCH --account=ga02676
 #SBATCH --time=6:00:00
 #SBATCH --mem=25Gb
-#SBATCH -e slurm-DRAM_annot.%A-%a.err #Standard error
-#SBATCH -o slurm-DRAM_annot.%A-%a.out #Standard output
-#SBATCH --mail-type ALL
-#SBATCH --mail-user <your_email>
+#SBATCH -e dram_annot.err
+#SBATCH -o dram_annot.out
 
-# Load modules
-module load Miniconda3/4.7.10
-source activate /nesi/nobackup/ga02676/Metagenomics_summerschool/carmen/00.DRAM/DRAM_env #Modify it when Dini gets DRAM set-up
-module load Python
+module load DRAM/1.1.1
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
 DRAM.py annotate -i 'predictions/*.fna' --checkm_quality DRAM_input_files/checkm.txt --gtdb_taxonomy DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv  -o annotation 
-
-## End of slurm script
 
 ```
 
