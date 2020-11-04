@@ -154,7 +154,7 @@ Right-click, 'Selection', 'Export'. Save the output as `cluster_1.fna`.
 
 Zoom in,  make a selection of potentially problematic contigs, and export as above.
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_outlier.PNG)
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_outlier.png)
 
 Try this for one or two problematic contigs (or subsets of contigs). In practice, you could repeat this for all potentially problemtic contigs, saving each export as a new `contigs_n.fna` file.
 
