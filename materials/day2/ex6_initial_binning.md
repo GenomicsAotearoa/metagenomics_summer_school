@@ -64,6 +64,7 @@ The full script is provided here, and we will discuss it below.
 #SBATCH -e spades_mapping.err
 #SBATCH -o spades_mapping.out
 
+module purge
 module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
@@ -169,6 +170,7 @@ If you have a large number of files to process, it might be worth using a slurm 
 #SBATCH -e spades_mapping_array.%j.err
 #SBATCH -o spades_mapping_array.%j.out
 
+module purge
 module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
