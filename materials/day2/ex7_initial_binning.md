@@ -90,7 +90,7 @@ This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we wan
 #SBATCH -J maxbin_clustering
 #SBATCH --res SummerSchool
 #SBATCH --time 00:05:00
-#SBATCH --mem 1GB
+#SBATCH --mem 10GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 10
 #SBATCH -e maxbin_clustering.err
