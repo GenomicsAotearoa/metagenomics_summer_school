@@ -66,7 +66,7 @@ There are two output formats we can chose from which are useful for our analysis
 ```bash
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
-diamond blastp -p 1 --db /nesi/project/nesi02659/mg_workshop/uniprot_nr_200213.diamond \
+diamond blastp -p 1 --db /nesi/nobackup/nesi02659/MGSS_resources/databases/ \
                --max-target-seqs 5 --evalue 0.001 \
                -q predictions/bin_0.filtered.genes.no_metadata.faa \
                --outfmt 6 -o bin_0.diamond.txt
@@ -109,7 +109,8 @@ done
 
 ### Annotating MAGs against the *Pfam* database with *hmmer*
 
-The standard software for performing this kind of annotation is [hmmer](http://hmmer.org/). Compared to BLAST, FASTA, and other sequence alignment and database search tools based on older scoring methodology, HMMER aims to be significantly more accurate and more able to detect remote homologs because of the strength of its underlying mathematical models. In the past, this strength came at significant computational expense, but in the new HMMER3 project, HMMER is now essentially as fast as BLAST. First, let's have a look at hmmer options.
+The standard software for performing this kind of annotation is [hmmer](http://hmmer.org/). Compared to BLAST, FASTA, and other sequence alignment and database search tools based on older scoring methodology, HMMER aims to be significantly more accurate and more able to detect remote homologs because of the strength of its underlying mathematical models. In the past, this strength came at significant computational expense, but in the new HMMER3 project, HMMER is now essentially as fast as BLAST. We want to search one or more profiles against a sequence database. To do so we will use `hmmsearch`. For each profile in *hmmfile*, use that query profile to search the target database of sequences in seqdb, and output ranked lists of the sequences with the most significant matches to the profile. `hmmsearch` accepts any FASTA file as target database input. It also accepts EMBL/UniProtKB text format, and Genbank format. It will automatically determine what format your file is in so you don’t have to specify it. 
+As we did with `diamond`, we will also have to modify some parameters to get the desired ouotput. 
 
 
 ```
@@ -128,48 +129,19 @@ Basic options:
   -h : show brief help on version and usage
 
 Options directing output:
-  -o <f>           : direct output to file <f>, not stdout
-  -A <f>           : save multiple alignment of all hits to file <f>
-  --tblout <f>     : save parseable table of per-sequence hits to file <f>
-  --domtblout <f>  : save parseable table of per-domain hits to file <f>
-  --pfamtblout <f> : save table of hits and domains to file, in Pfam format <f>
-  --acc            : prefer accessions over names in output
-  --noali          : don't output alignments, so output is smaller
-  --notextw        : unlimit ASCII text output line width
-  --textw <n>      : set max width of ASCII text output lines  [120]  (n>=120)
+...
+--tblout <f>     : save parseable table of per-sequence hits to file <f>
+....
 
 Options controlling reporting thresholds:
-  -E <x>     : report sequences <= this E-value threshold in output  [10.0]  (x>0)
-  -T <x>     : report sequences >= this score threshold in output
-  --domE <x> : report domains <= this E-value threshold in output  [10.0]  (x>0)
-  --domT <x> : report domains >= this score cutoff in output
-
-Options controlling inclusion (significance) thresholds:
-  --incE <x>    : consider sequences <= this E-value threshold as significant
-  --incT <x>    : consider sequences >= this score threshold as significant
-  --incdomE <x> : consider domains <= this E-value threshold as significant
-  --incdomT <x> : consider domains >= this score threshold as significant
-
-Options controlling model-specific thresholding:
-  --cut_ga : use profile's GA gathering cutoffs to set all thresholding
-  --cut_nc : use profile's NC noise cutoffs to set all thresholding
-  --cut_tc : use profile's TC trusted cutoffs to set all thresholding
-
-Options controlling acceleration heuristics:
-  --max    : Turn all heuristic filters off (less speed, more power)
-  --F1 <x> : Stage 1 (MSV) threshold: promote hits w/ P <= F1  [0.02]
-  --F2 <x> : Stage 2 (Vit) threshold: promote hits w/ P <= F2  [1e-3]
-  --F3 <x> : Stage 3 (Fwd) threshold: promote hits w/ P <= F3  [1e-5]
-  --nobias : turn off composition bias filter
+...
+-E <x>     : report sequences <= this E-value threshold in output  [10.0]  (x>0)
+...
 
 Other expert options:
-  --nonull2     : turn off biased composition score corrections
-  -Z <x>        : set # of comparisons done, for E-value calculation
-  --domZ <x>    : set # of significant seqs, for domain E-value calculation
-  --seed <n>    : set RNG seed to <n> (if 0: one-time arbitrary seed)  [42]
-  --tformat <s> : assert target <seqfile> is in format <s>: no autodetection
+...
   --cpu <n>     : number of parallel CPU workers to use for multithreads
-
+...
 ```
 
 We are now going to submit another slurm job to annotate our MAGs using the [Pfam database](https://pfam.xfam.org/). Matching sequences to a Pfam entry allows us to transfer the functional information from an experimentally characterised sequence to uncharacterised sequences in the same entry. Pfam then provides comprehensive annotation for each entry.
