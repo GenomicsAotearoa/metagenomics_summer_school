@@ -113,7 +113,7 @@ The standard software for performing this kind of annotation is [hmmer](http://h
 As we did with `diamond`, we will also have to modify some parameters to get the desired ouotput. 
 
 
-```
+```bash
 module load HMMER/3.1b2-gimkl-2017a
 
 hmmsearch -h 
