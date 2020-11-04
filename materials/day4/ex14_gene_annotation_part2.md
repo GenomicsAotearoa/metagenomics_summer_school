@@ -38,10 +38,7 @@ bin_0_1f9359e86e6a75bcff340e6a8b60ef98_1	bin_0	1f9359e86e6a75bcff340e6a8b60ef98	
 After the annotation is finished, we will summarise and visualise these annotations with the so-called *Distillation* step. We do so by running the following command directly in the terminal. This will generate the distillate and liquor files.
 
 ```bash
-module load Miniconda3/4.7.10
-source activate /nesi/nobackup/ga02676/Metagenomics_summerschool/carmen/00.DRAM/DRAM_env # Modify path
-
-module load Python/3.8.2-gimkl-2020a
+module load DRAM/1.1.1
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
@@ -73,7 +70,7 @@ First, let's have a look at the genome stats to check the assembly quality of ou
 |bin_8|19|d__Bacteria;p__Desulfobacterota_A;c__Desulfovibrionia;o__Desulfovibrionales;f__Desulfovibrionaceae;g__Desulfovibrio;s__|99.41|0|2 present|bin_8, (3744, 5289)|bin_8, (379, 3300)|57|med|
 |bin_9|1|d__Bacteria;p__Planctomycetota;c__Brocadiae;o__Brocadiales;f__Brocadiaceae;g__;s__|97.8|1.65|bin_9, (1066028, 1066130)|bin_9, (1069811, 1071397)|bin_9, (1066309, 1069302)|46|high|
 
-To finish, we visualize the .html file by double-clicking on it on our jupyter lab notebook. 
+To finish, we visualize the .HTML file produced by double-clicking on it on our *Jupyter* lab notebook. 
 
 ![](https://github.com/mcastudillo/MAG-annotation-with-DRAM/blob/main/figures/DRAM_product_1.png)
 ![](https://github.com/mcastudillo/MAG-annotation-with-DRAM/blob/main/figures/DRAM_product_2.png)
