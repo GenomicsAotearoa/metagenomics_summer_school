@@ -122,7 +122,7 @@ mkdir -p checkv_out
 # Run main analyses 
 checkv_in="vibrant/VIBRANT_spades_assembly.m1000/VIBRANT_phages_spades_assembly.m1000/spades_assembly.m1000.phages_combined.fna"
 
-srun checkv end_to_end ${checkv_in} checkv_out -t 16 --quiet
+srun checkv end_to_end ${checkv_in} checkv_out -t 10 --quiet
 ```
 
 #### Examine outputs of *CheckV*
