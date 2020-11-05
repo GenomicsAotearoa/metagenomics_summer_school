@@ -268,7 +268,7 @@ A few notes to consider:
   * See the notes in the [Appendix](#appendix-viral-taxonomy-prediction-via-vcontact2) below for further information about why this might be.
 * As per the notes in the [Appendix](#appendix-viral-taxonomy-prediction-via-vcontact2) below, the `tax_predict_table.txt` file contains *predictions* of potential taxonomy (and or taxonom*ies*) of the input viral contigs for order, family, and genus, based on whether they clustered with any viruses in the reference database.
   * Bear in mind that these may be lists of *multiple* potential taxonomies, in the cases where viral contigs clustered with multiple reference viruses representing more than one taxonomy at the given rank.
-  * *NOTE: The taxonomies are deliberately enclosed in square brackets (`[ ]`) to highlight the fact that these are **predictions**, rather than definitive taxonomy **assignments**.
+  * *NOTE: The taxonomies are deliberately enclosed in square brackets (`[ ]`) to highlight the fact that these are **predictions**, rather than definitive taxonomy **assignments**.*
 
 ---
 
