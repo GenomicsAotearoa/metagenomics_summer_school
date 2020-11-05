@@ -17,7 +17,7 @@ The key package used here is [pathview](https://academic.oup.com/bioinformatics/
 Set the working directory and load the required packages
 
 ```R
-setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/annotations')
+setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/kegg_map')
 
 library(pathview)
 library(KEGGREST)
