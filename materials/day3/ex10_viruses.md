@@ -59,6 +59,7 @@ Example slurm script:
 #SBATCH --profile=task
 
 # Load VIBRANT module
+module purge
 module load VIBRANT/1.2.1-gimkl-2020a
 
 # Set up working directories
@@ -113,6 +114,7 @@ Example slurm script:
 #SBATCH --profile=task
 
 # Load the module
+module purge
 module load CheckV/0.7.0-gimkl-2020a-Python-3.8.2
 
 # Set up working directories
