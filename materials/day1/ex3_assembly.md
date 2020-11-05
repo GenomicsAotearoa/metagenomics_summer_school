@@ -189,6 +189,9 @@ Into this file, either write or copy/paste the following commands:
 #SBATCH --cpus-per-task 16
 #SBATCH -e spades_assembly.err
 #SBATCH -o spades_assembly.out
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load SPAdes/3.13.1-gimkl-2018b
@@ -280,6 +283,9 @@ nano idbaud_assembly.sl
 #SBATCH --cpus-per-task 16
 #SBATCH -e idbaud_assembly.err
 #SBATCH -o idbaud_assembly.out
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load IDBA/1.1.3-gimkl-2017a
