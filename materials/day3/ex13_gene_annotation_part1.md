@@ -66,7 +66,7 @@ There are two output formats we can chose from which are useful for our analysis
 ```bash
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
-diamond blastp -p 1 --db /nesi/nobackup/nesi02659/MGSS_resources/databases/ \
+diamond blastp -p 1 --db /nesi/nobackup/nesi02659/MGSS_resources/databases/NCBI_nr_2016.dmnd \
                --max-target-seqs 5 --evalue 0.001 \
                -q predictions/bin_0.filtered.genes.no_metadata.faa \
                --outfmt 6 -o bin_0.diamond.txt
@@ -106,13 +106,16 @@ do
                  -q ${prot_file} --outfmt 6 -o gene_annotations/${out_file}.uniprot.txt
 done
 ```
+
 ---
 
 ### Annotating MAGs against the *Pfam* database with *hmmer*
 
-The standard software for performing this kind of annotation is [hmmer](http://hmmer.org/). Compared to BLAST, FASTA, and other sequence alignment and database search tools based on older scoring methodology, HMMER aims to be significantly more accurate and more able to detect remote homologs because of the strength of its underlying mathematical models. In the past, this strength came at significant computational expense, but in the new HMMER3 project, HMMER is now essentially as fast as BLAST. We want to search one or more profiles against a sequence database. To do so we will use `hmmsearch`. For each profile in *hmmfile*, use that query profile to search the target database of sequences in seqdb, and output ranked lists of the sequences with the most significant matches to the profile. `hmmsearch` accepts any FASTA file as target database input. It also accepts EMBL/UniProtKB text format, and Genbank format. It will automatically determine what format your file is in so you don’t have to specify it. 
-As we did with `diamond`, we will also have to modify some parameters to get the desired ouotput. 
+The standard software for performing this kind of annotation is [hmmer](http://hmmer.org/). Compared to BLAST, FASTA, and other sequence alignment and database search tools based on older scoring methodology, HMMER aims to be significantly more accurate and more able to detect remote homologs because of the strength of its underlying mathematical models. In the past, this strength came at significant computational expense, but in the new HMMER3 project, HMMER is now essentially as fast as BLAST. 
 
+We want to search one or more profiles against a sequence database. To do so we will use `hmmsearch`. For each profile in *hmmfile*, use that query profile to search the target database of sequences in seqdb, and output ranked lists of the sequences with the most significant matches to the profile. `hmmsearch` accepts any *fastA* file as target database input. It also accepts EMBL/UniProtKB text format, and Genbank format. It will automatically determine what format your file is in so you don’t have to specify it. 
+
+As we did with `diamond`, we will also have to modify some parameters to get the desired ouotput. 
 
 ```bash
 module load HMMER/3.1b2-gimkl-2017a
@@ -155,7 +158,7 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
 #SBATCH --time 02:00:00
 #SBATCH --mem 5GB
 #SBATCH --ntasks 1
-#SBATCH --cpus-per-task 20
+#SBATCH --cpus-per-task 10
 #SBATCH -e annotate_pfam_hmm.err
 #SBATCH -o annotate_pfam_hmm.out
 
@@ -173,6 +176,7 @@ do
 done
 
 ```
+
 ---
 
 ### Evaluating the quality of gene assignment
@@ -212,29 +216,33 @@ It is therefore important to periodically sanity check your taxonomic annotation
 
 ---
 
-## Gene prediction and annotation with DRAM (Distilled and Refined Annotation of Metabolism) 
+### Gene prediction and annotation with *DRAM* (Distilled and Refined Annotation of Metabolism) 
 
-DRAM is a tool designed to profile microbial (meta)genomes for metabolisms known to impact ecosystem functions across biomes. DRAM annotates MAGs and viral contigs using KEGG (if provided by user), UniRef90, PFAM, CAZy, dbCAN, RefSeq viral, VOGDB (Virus Orthologous Groups) and the MEROPS peptidase database. It is also highly customizable to other custom user databases. 
-DRAM only uses assembly-derived FASTA files input by the user. These input files may come from unbinned data (metagenome contig or scaffols files) or genome-resolved data form one or many organisms (isolate genomes, single-amplified genome (SAGs), MAGs).
-DRAM is run in two stages: annotation and distillation. 
+[DRAM](http://dx.doi.org/10.1093/nar/gkaa621) is a tool designed to profile microbial (meta)genomes for metabolisms known to impact ecosystem functions across biomes. `DRAM` annotates MAGs and viral contigs using KEGG (if provided by user), UniRef90, PFAM, CAZy, dbCAN, RefSeq viral, VOGDB (Virus Orthologous Groups) and the MEROPS peptidase database. It is also highly customizable to other custom user databases. 
+
+`DRAM` only uses assembly-derived *fastA* files input by the user. These input files may come from unbinned data (metagenome contig or scaffold files) or genome-resolved data form one or many organisms (isolate genomes, single-amplified genome (SAGs), MAGs).
+
+`DRAM` is run in two stages: annotation and distillation. 
 
 ![](https://github.com/mcastudillo/MAG-annotation-with-DRAM/blob/main/figures/DRAM_workflow.png)
 
----
-### Annotation
-The first step in DRAM is to annotate genes by assigning database identifiers to genes. Short contigs (default < 2,500 bp) are initially removed. Then, Prodigal is used to detect open reading frames (ORFs) and to predict their amino acid sequences. Next, DRAM searches all amino acid sequences against multiple databases, providing a single *Raw* output. When gene annotation is complete, all results are merged in a single tab-delimited annotation table, including best hit for each database for user comparison. 
+#### Annotation
+
+The first step in `DRAM` is to annotate genes by assigning database identifiers to genes. Short contigs (default < 2,500 bp) are initially removed. Then, `Prodigal` is used to detect open reading frames (ORFs) and to predict their amino acid sequences. Next, `DRAM` searches all amino acid sequences against multiple databases, providing a single *Raw* output. When gene annotation is complete, all results are merged in a single tab-delimited annotation table, including best hit for each database for user comparison. 
+
+#### Distillation 
+
+After genome annotation, a distill step follows with the aim to curate these annotations into useful functional categories, creating genome statistics and metabolism summary files, and stored in the *Distillate* output. The genome statistics provides most genome quality information required for [MIMAG](https://www.nature.com/articles/nbt.3893), including `GTDB-tk` and `checkM` information if provided by the user. Summarised metabolism table include the number of genes with specific metabolic function identifiers (KO, CAZY ID, etc) fore each genome, with information obtained from multiple databases. The *Distillate* output is then further distilled into the *Product*, an html file displaying a heatmap, as well as the corresponding data table. We will investigate all these files later on.  
 
 ---
-### Distillation 
-After genome annotation, a distill step follows with the aim to curate these annotations into useful functional categories, creating genome statistics and metabolism summary files, and stored in the *Distillate* output. The genome statistics provides most genome quality information required for [MIMAG](https://www.nature.com/articles/nbt.3893), including GTDB-tk and checkM information if provided by user. Summarised metabolism table include the number of genes with specific metabolic function identifiers (KO, CAZY ID, etc) fore each genome, with information obtained from multiple databases. The *Distillate* output is then further distilled into the *Product*, an html file displaying a heatmap, as well as the corresponding data table. We will investigate all these files later on.  
 
----
-## Annotation of the MAGs with DRAM 
-Beyond annotation, DRAM aims to be a data compiler. For that reason, output files from both CheckM and GTDB_tk steps can be input to DRAM to provide both taxonomy and genome quality information of the MAGs. 
+### Annotation of the MAGs with *DRAM*
 
-For these exercises, we have copied the relevant input files into the folder `10.gene_annotation/DRAM_input_files/`. `gtdbtk.bac120.classification_pplacer.tsv` was taken from the earlier `8.coverage_and_taxonomy/gtdbtk_out/` outputs, and `checkm.txt` from the `5.binning/` outputs.
+Beyond annotation, `DRAM` aims to be a data compiler. For that reason, output files from both `CheckM` and `GTDB_tk` steps can be input to `DRAM` to provide both taxonomy and genome quality information of the MAGs. 
 
-The CheckM output file (`checkm.txt`) can be input as it is. However, in order to use the file with the gtdb_tk taxonomy (`gtdbtk.bac120.classification_pplacer.tsv`) we should modify it first to include column headers 'bin_id' and 'classification'
+For these exercises, we have copied the relevant input files into the folder `10.gene_annotation/DRAM_input_files/`. `gtdbtk.bac120.classification_pplacer.tsv` was taken from the earlier `8.coverage_and_taxonomy/gtdbtk_out/` outputs, and `checkm.txt` from the result of re-running `CheckM` on the final refined filtered bins in `6.bin_refinement/filtered_bins`.
+
+The `CheckM` output file (`checkm.txt`) can be input as it is. However, in order to use the file with the `gtdb_tk` taxonomy (`gtdbtk.bac120.classification_pplacer.tsv`) we should modify it first to include column headers 'bin_id' and 'classification'
 
 ```bash
 nano DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv
@@ -264,7 +272,10 @@ nano DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv
 # bin_8   d__Bacteria;p__Desulfobacterota_A;c__Desulfovibrionia;o__Desulfovibrionales;f__Desulfovibrionaceae;g__Desulfovibrio;s__
 
 ```
-In default annotation mode, `DRAM` takes as only input the directory containing all the bins we would like to annotate in fasta format (either .fa or .fna). There are few parameter that can be modified if not using the default mode. Once the annotation step is done, the mode `distill` is used to summarise the obtained results. **Note:** due to the increased memory requirements, UniRef90 database is not default and the flag `–use_uniref` should be specified in order to search amino acid sequences against UniRef90. In this exercise, due to memory and time constrains, we won't be using UniRef90 database.
+
+In default annotation mode, `DRAM` takes as only input the directory containing all the bins we would like to annotate in *fastA* format (either .fa or .fna). There are few parameters that can be modified if not using the default mode. Once the annotation step is done, the mode `distill` is used to summarise the obtained results. 
+
+*NOTE: due to the increased memory requirements, UniRef90 database is not default and the flag `–use_uniref` should be specified in order to search amino acid sequences against UniRef90. In this exercise, due to memory and time constraints, we won't be using UniRef90 database.*
 
 ```bash
 module load DRAM
@@ -290,8 +301,9 @@ To run this exercise we first need to set up a slurm job. We will use the result
 
 ```bash
 #!/bin/bash -e
-#SBATCH --job-name=DRAM_annotation
-#SBATCH --account=ga02676
+#SBATCH -A nesi02659
+#SBATCH -J DRAM_annotation
+#SBATCH --res SummerSchool
 #SBATCH --time=6:00:00
 #SBATCH --mem=25Gb
 #SBATCH -e dram_annot.err
@@ -302,7 +314,7 @@ module load DRAM/1.1.1
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
-DRAM.py annotate -i 'predictions/*.fna' --checkm_quality DRAM_input_files/checkm.txt --gtdb_taxonomy DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv  -o annotation 
+DRAM.py annotate -i 'predictions/*.fna' --checkm_quality DRAM_input_files/checkm.txt --gtdb_taxonomy DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv -o annotation 
 
 ```
 
