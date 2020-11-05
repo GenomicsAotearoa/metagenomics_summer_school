@@ -63,6 +63,9 @@ The full script is provided here, and we will discuss it below.
 #SBATCH --cpus-per-task 10
 #SBATCH -e spades_mapping.err
 #SBATCH -o spades_mapping.out
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
@@ -169,6 +172,9 @@ If you have a large number of files to process, it might be worth using a slurm 
 #SBATCH --cpus-per-task 10
 #SBATCH -e spades_mapping_array.%j.err
 #SBATCH -o spades_mapping_array.%j.out
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
