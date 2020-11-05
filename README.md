@@ -42,91 +42,95 @@ You can find a saved version of the workshop Etherpad notes [here](https://githu
 1. [Quality filtering raw reads](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex2_quality_filtering.md)
 1. [Assembly (part 1)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex3_assembly.md)
 1. [Assembly (part 2)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex4_assembly.md)
+1. [Evaluating the assembly](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex5_evaluating_assemblies.md)
 
 ### Day 2
 
-1. [Evaluating the overnight assembly](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex5_evaluating_assemblies.md)
 1. [Binning (part 1, read mapping)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex6_initial_binning.md)
 1. [Binning (part 2, initial binning)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex7_initial_binning.md)
 1. [Binning (part 3, dereplication)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex8_bin_dereplication.md)
+1. [Bin refinement](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex9_refining_bins.md)
+
 
 ### Day 3
 
-1. [Bin refinement](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex9_refining_bins.md)
 1. [Viruses](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex10_viruses.md)
 1. [Coverage and Taxonomy](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex11_coverage_and_taxonomy.md)
-1. [Gene prediction](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex10_gene_prediction.md)
-1. [Gene annotation (part 1)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex11_gene_annotation_part1.md)
-1. [Gene annotation (part 2)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex12_gene_annotation_part2.md)
+1. [Gene prediction](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex12_gene_prediction.md)
+1. [Gene annotation (part 1)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex13_gene_annotation_part1.md)
+1. [Gene annotation (part 2)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex14_gene_annotation_part2.md)
 
 ### Day 4
 
-1. [Presentation of data](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex13_presentation.md)
-1. [Optional: Working with dRep](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex14_drep.md)
+1. [Gene annotation (part 3)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex15_gene_annotation_part3.md)
+1. [Presentation of data](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16a_data_presentation_Intro.md)
+1. [Optional: Working with dRep](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex17_drep.md)
 
 ---
 
 ## Timetable
 
-### Day 1 - 10<sup>th</sup> December 2019
+### Day 1 - 17<sup>th</sup> November 2020
 
 |Time|Event|Session leader|
 |:---|:---|:---|
-|9:00 am – 9:45 am|**Introduction**<br>Welcome<br>Logging into NeSI|David Waite|
-|9:45 am – 10:30 am|**TASK: Bash scripting**|Dinindu Senanayake<br>Ngoni Faya|
+|9:00 am – 9:30 am|**Introduction**<br>Welcome<br>Logging into NeSI|Michael Hoggard|
+|9:30 am – 10:30 am|**TASK:** Bash scripting|Ngoni Faya|
 |10:30 am – 10:50 am|**Morning tea break**||
-|10:50 am – 11:30 am|**TASK: Bash scripting** (continued)|Dinindu Senanayake<br>Ngoni Faya|
-|11:30 am – 12:00 pm|**The metagenomics decision tree**<br>**TASK:** Dividing into working groups<br>**TASK:** Select a goal for your project|Kim Handley|
-|12:00 pm – 12:45 pm|**Break for lunch**||
-|12:45 pm – 1:45 pm|**Quality filtering raw reads**<br>**TASK:** Visualisation with *FastQC*<br>**TASK:** Read trimming and adapter removal<br>Diagnosing poor libraries<br>Common issues and best practice|Florian Pichlmuller|
-|1:45 pm – 3:00 pm|**Assembly (part 1)**<br>Choice of assemblers<br>Considerations for parameters, and when to stop!<br>**TASK:** Exploring assembler options<br>**TASK:** Submitting jobs to NeSI via slurm|David Waite|
-|3:00 pm – 3:20 pm|**Afternoon tea break**||
-|3:20 pm – 3:45 pm|**Assembly (part 2)**<br>**TASK:** Submitting variant assemblies to NeSI|David Waite|
-|4:00 pm – 5:00 pm|**End of day wrap up**<br>Attendees can work with their own data, if available|Kim Handley<br>David Waite|
+|10:50 am – 11:30 am|**TASK:** Bash scripting (continued)|Ngoni Faya|
+|11:30 am – 12:00 pm|**TALK:** The metagenomics decision tree**<br>**TALK:** Automation, reproducibility, and FAIR principles**|Kim Handley<br>Dan Jones|
+|12:00 pm – 12:45 pm|**Break for lunch** (*lunch not provided*)||
+|12:45 pm – 1:45 pm|**TALK:** Quality filtering raw reads**<br>**TASK:** Visualisation with *FastQC*<br>**TASK:** Read trimming and adapter removal<br>**TALK:** Diagnosing poor libraries<br>**TALK:** Common issues and best practice|Carmen Astudillo-Garcia|
+|1:45 pm – 3:00 pm|**TALK:** Assembly<br>Choice of assemblers<br>Considerations for parameters, and when to stop!<br>**TASK:** Exploring assembler options<br>**TASK:** Submitting jobs to NeSI via slurm<br>**TASK:** Run assembly<br>**TASK (*Optional*):** Submitting variant assemblies to NeSI|Kim Handley|
+|3:00 pm – 3:20 pm|**Afternoon tea break** (*Tea, coffee, and snacks provided*)||
+|3:20 pm – 5:00 pm|**TALK:** Future considerations - co-assembly vs. single assemblies<br>**TASK:** Assembly evaluation<br>**TASK:** Short contig removal|Michael Hoggard|
 
-### Day 2 - 11<sup>th</sup> December 2019
 
-|Time|Event|Session leader|
-|:---|:---|:---|
-|9:00 am – 9:30 am|**Introduction**<br>Overview of yesterday, questions|Kim Handley|
-|9:30 am – 10:30 am|**Evaluating the overnight assembly**<br>**TASK:** Run evaluation tool/script|Kim Handley|
-|10:30 am – 10:50 am|**Morning tea break**||
-|10:50 am – 11:20 am|**Overview of binning history**|Kim Handley|
-|11:20 am – 12:00 pm|**Binning (part 1)**<br>**TASK:** Short contig removal<br>**TASK:** Read mapping|Kim Handley|
-|12:00 pm – 12:45 pm|**Break for lunch**||
-|12:45 pm – 1:15 pm|**Overview of binning history (continued)**<br>Key parameters and strategies for binning|Kim Handley|
-|1:15 pm – 1:45 pm|**Binning (part 2)**<br>**TASK:** Multi-binning strategy|Kim Handley|
-|1:45 pm - 3:00 pm|**Binning (part 3)**<br>**TASK:** Bin dereplication via *DAS_Tool*<br>**TASK:** Evaluating bins using *CheckM*|Kim Handley|
-|3:00 pm – 3:20 pm|**Afternoon tea break**||
-|3:20 pm – 4:00 pm|**Binning (part 4)**<br>Discuss additional dereplication strategies, such as *dRep*<br>How to work with viral and eukaryotic bins<br>Dealing with organisms which possess minimal genomes|Kim Handley<br>David Waite|
-|4:00 pm – 5:00 pm|**End of day wrap up**<br>**Optional:** View assemblies with *TAblet*<br>Attendees can work with their own data, if available|Kim Handley<br>David Waite|
-
-### Day 3 - 12<sup>th</sup> December 2019
+### Day 2 - 18<sup>th</sup> November 2020
 
 |Time|Event|Session leader|
 |:---|:---|:---|
-|9:00 am – 9:30 am|**Introduction**<br>Overview of yesterday, questions<br>Overview of today|David Waite|
-|9:30 am – 10:30 am|**Bin refinement**<br>Refinement strategies - *VizBin* and *ESOMana*<br>**TASK:** Working with *VizBin*<br>**TASK:** Bin taxonomy with *GTDB-TK*|David Waite|
-|10:30 am – 10:50 am|**Morning tea break**||
-|10:50 am – 11:30 am|**Gene prediction**<br>Introduce *prodigal*, discuss single vs anon mode<br>Discuss what *prodigal* can't find, and where other tools are needed (*RNAmer*, *Aragorn*, etc)**TASK:** Predicting genes with *prodigal* and *FragGeneScan*|Christina Straub|
-|11:30 am – 12:00 pm|**Gene annotation (part 1)**<br>BLAST-like gene annotation using **usearch** or **diamond**<br>Introduce the different databases, highlight our reasons for *KEGG*<br>Evaluating the quality of gene assignment<br>Differences in taxonomies (*GTDB*, *NCBI* etc)|David Waite|
-|12:00 pm – 12:45 pm|**Break for lunch**||
-|12:45 pm – 3:00 pm|**Gene annotation (part 2)**)<br>**TASK:** Performing annotation with *diamond*<br>**TASK:** Examining gene networks in *MEGAN*<br>**TASK:** Tie findings to your initial goal|David Waite|
-|3:00 pm – 3:20 pm|**Afternoon tea break**||
-|3:20 pm – 4:00 pm|**Gene annotation**<br>Using online resources (*KEGG*, *BioCyc*, *MetaCyc*, *HydDB*, *PSORT*)<br>**TASK:** Tie findings to your initial hypothesis|Kim Handley|
-|4:00 pm – 5:00 pm|**End of day wrap up**<br>Attendees can work with their own data, if available|Kim Handley<br>David Waite|
+|9:00 am – 9:30 am|**Introduction**<br>Overview of yesterday, questions<br>Overview of today|Carmen Astudillo-Garcia|
+|9:30 am – 10:30 am|**TALK:** Overview of binning history<br>Key parameters and strategies for binning<br>**Binning (part 1)**<br>**TASK:** Read mapping|Kim Handley|
+|10:30 am – 10:50 am|**Morning tea break** (*Tea, coffee, and snacks provided*)||
+|10:50 am – 11:20 am|**TALK:** Overview of binning history (*continued*)<br>Key parameters and strategies for binning|Kim Handley|
+|11:20 am – 12:00 pm|**Binning (part 2)**<br>**TASK:** Multi-binning strategy (*Metabat* and *Maxbin*)|Kim Handley|
+|12:00 pm – 12:45 pm|**Break for lunch** (*lunch not provided*)||
+|12:45 pm – 2:00 pm|**Binning (part 3)**<br>**TASK:** Bin dereplication via *DAS_Tool*<br>**TASK:** Evaluating bins using *CheckM*|Michael Hoggard|
+|2:00 pm - 3:00 pm|**Binning (part 4)**<br>Discuss additional dereplication strategies, such as *dRep*<br>How to work with viral and eukaryotic bins<br>Dealing with organisms which possess minimal genomes|Carmen Astudillo-Garcia|
+|3:00 pm – 3:20 pm|**Afternoon tea break** (*Tea, coffee, and snacks provided*)||
+|3:20 pm – 5:00 pm|**TALK:** Bin refinement**<br>Refinement strategies - *VizBin* and *ESOMana*<br>**TASK:** Working with *VizBin*|Michael Hoggard|
 
-### Day 4 - 13<sup>th</sup> December 2019
+### Day 3 - 19<sup>th</sup> November 2020
 
 |Time|Event|Session leader|
 |:---|:---|:---|
-|9:00 am – 9:30 am|**Introduction**<br>Overview of yesterday, questions<br>Overview of today|Kim Handley|
-|9:30 am – 10:30 am|**Gene annotation** (refresher)<br>**TASK:** Tie findings to your initial goal<br>**TASK:** Prepare group presentation|Kim Handley|
-|10:30 am – 10:50 am|**Morning tea break**<br>**TASK:** Survey||
-|10:50 am – 12:00 pm|**Present and discuss findings**<br>**TASK:** Each group to give a casual discussion of their data*<br>What were you looking for, what did you find?<br>Which databases were most helpful?|Kim Handley|
-|12:00 pm – 12:45 pm|**Break for lunch**||
-|12:45 pm – 3:00 pm|**Presentation of data**<br>How do visualise findings - Metabolism maps, heatmaps, gene trees*<br>**TASK:** Gene synteny alignments and heatmaps|David Waite|
+|9:00 am – 9:30 am|**Introduction**<br>Overview of yesterday, questions<br>Overview of today|Michael Hoggard|
+|9:30 am – 10:30 am|**TASK:** Identifying viral contigs (*VIBRANT*)<br>**TALK:** Identifying viruses from metagenomic data<br>**TASK:** QC of viral contigs (*CheckV*)<br>**TASK:** Coverage calculation (*bowtie*)<br>**TASK:** Taxonomic classification (Bin taxonomy with *GTDB-TK*; viral taxonomy predictions with *vConTACT2*)|Michael Hoggard<br><br><br>David Waite|
+|10:30 am – 10:50 am|**Morning tea break** (*Tea, coffee, and snacks provided*)||
+|10:50 am – 11:30 am|**TALK:** Gene prediction, using *prodigal*, and other tools (*RNAmer*, *Aragorn*, etc)<br>**TASK:** Predict open reading frames and protein sequences|David Waite|
+|11:30 am – 12:00 pm|**TALK:** Gene annotation (part 1)<br>**TASK:** Gene annotation using *diamond* and *hmmer*<br>**Discussion:** Evaluating the quality of gene assignment<br>**Discussion:** Differences in taxonomies (*GTDB*, *NCBI* etc)|Carmen Astudillo-Garcia|
+|12:00 pm – 12:45 pm|**Break for lunch** (*lunch not provided*)||
+|12:45 pm – 2:00 pm|**TALK:** Gene annotation (part 2)<br>Using online resources (e.g. *KEGG, BioCyc, MetaCyc, HydDB, PSORT*)<br>**TASK:** View KEGG annotation in KEGG website|Christia Straub<br>Florian Pichlmueller|
+|2:00 pm – 3:00 pm|**TALK:** Bin taxonomic classification<br>Bin and species determination<br>**TASK:** View phylogenetic trait distribution (*ANNOTREE*)|David Waite|
 |3:00 pm – 3:20 pm|**Afternoon tea break**||
-|3:20 pm – 4:00 pm|**End of day wrap up**<br>Final discussion|Kim Handley<br>David Waite|
+|3:20 pm – 4:30 pm|**TASK:** MAG annotation with *DRAM*<br>**TASK:** Introduce group project goals<br>**TASK:** Dividing into working groups / get a group name<br>**TASK:** Select a goal from your project|Carmen Astudillo-Garcia|
+|4:30 pm – 5:00 pm|**End of day wrap up**|Kim Handley|
+
+### Day 4 - 20<sup>th</sup> November 2020
+
+|Time|Event|Session leader|
+|:---|:---|:---|
+|9:00 am – 9:15 am|**Introduction**<br>Overview of yesterday, questions<br>Overview of today|Michael Hoggard|
+|9:15 am – 10:00 am|**TALK:** *DRAM* results overview<br>**TASK:** Explore *DRAM* results|Carmen Astudillo-Garcia|
+|10:00 am – 10:30 am|**Presentation of data**<br>**TALK:** Visualising findings (metabolism maps, heatmaps, cell schematics, gene trees, gene maps)<br>**TASK:** Coverage heatmap / Ordination (*Optional*)|Michael Hoggard|
+|10:30 am – 10:50 am|**Morning tea break** (*Tea, coffee, and snacks provided*)<br>**TASK:** Workshop survey||
+|10:50 am – 12:00 pm|**Presentation of data (continued)**<br>**TALK:** Visualising findings (metabolism maps, heatmaps, cell schematics, gene trees, gene maps)<br>**TASK:** KEGG metabolic pathways<br>**TASK:** Gene synteny<br>**TASK:** CAZy heatmaps (*Optional*)|Carmen Astudillo-Garcia<br>Boey Jian Sheng<br>Hwee Sze Tee|
+|12:00 pm – 12:45 pm|**Break for lunch** (*lunch not provided*)||
+|12:45 pm – 2:30 pm|**TASK:** Analyse data for group work<br>**TASK:** Prepare group presentation|Kim Handley|
+|2:30 pm – 3:00 pm|**Present and discuss findings**<br>**TASK:** Each group to give an informal presentation of their data|Kim Handley|
+|3:00 pm – 3:20 pm|**Afternoon tea break** (*Tea, coffee, and snacks provided*)||
+|3:20 pm – 3:40 pm|**Present and discuss findings (continued)**<br>**TASK:** Each group to give an informal presentation of their data|Carmen Astudillo-Garcia|
+|3:40 pm – 4:00 pm|**End of day wrap up**<br>Final discussion|Kim Handley<br>Michael Hoggard|
 
 ----
