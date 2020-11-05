@@ -53,6 +53,9 @@ Example slurm script:
 #SBATCH --cpus-per-task 10
 #SBATCH -e mapping_filtered_bins.err
 #SBATCH -o mapping_filtered_bins.out
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
@@ -139,6 +142,9 @@ Example slurm script:
 #SBATCH --cpus-per-task 10
 #SBATCH -e mapping_filtered_viruses.err
 #SBATCH -o mapping_filtered_viruses.out
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
@@ -211,6 +217,9 @@ This can all be achieved in a single command, although it must be performed thro
 #SBATCH --cpus-per-task 10
 #SBATCH -e gtdbtk_test.err
 #SBATCH -o gtdbtk_test.out
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load GTDB-Tk/0.2.2-gimkl-2018b-Python-2.7.16
@@ -296,6 +305,9 @@ Example slurm script:
 #SBATCH --cpus-per-task=2
 #SBATCH -e prodigal.err
 #SBATCH -o prodigal.out
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 # Load dependencies
 module purge
@@ -352,6 +364,9 @@ Example slurm script:
 #SBATCH --cpus-per-task=20
 #SBATCH -e vcontact2.err
 #SBATCH -o vcontact2.out
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 # Set up working directories
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/viral_taxonomy/
