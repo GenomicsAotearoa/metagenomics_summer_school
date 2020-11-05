@@ -387,6 +387,7 @@ Example slurm script:
 #SBATCH -e 6.bin_refinement_mapping.err
 #SBATCH -o 6.bin_refinement_mapping.out
 
+module purge
 module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinement/
