@@ -230,7 +230,7 @@ plot_gene_map(dna_segs = list(bin_4_ds,bin_5_ds,bin_7_ds),
 
 ![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_gene_synteny_fig1.png)
 
-*NOTE: While we do have control over the colours of the arrows via setting the `bin_n_ds$col` and `bin_n_ds$fill` parameters for each contig (as above), unfortunately there appears to be little flexibility in setting the colours of the segements between the arrows for this `plot_gene_map()` function (the current options are 'red_blue', 'blue_red', and 'grey').*
+*NOTE: While we do have control over the colours of the arrows via setting the `bin_n_ds$col` and `bin_n_ds$fill` parameters for each contig (as above), unfortunately there appears to be little flexibility within the `plot_gene_map()` function for setting the colours of the segments joining the arrows (the current options are limited to 'red_blue', 'blue_red', and 'grey').*
 
 Careful analysis would be needed to determine whether this is a genuine rearrangement relative to the rest of the genome, as these are draft genomes and contig orientation can either be forward or reverse. In this case, you can see that genes in bin_5 are in reversed order relative to the other bin contigs, hence, we can manually rotate the contig.
 
