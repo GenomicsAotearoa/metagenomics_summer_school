@@ -302,6 +302,9 @@ An example of an updated slurm script to run `CheckM` on the `filtered_bins/` is
 #SBATCH --cpus-per-task 10
 #SBATCH -e bin_eval_checkm.err
 #SBATCH -o bin_eval_checkm.out
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
@@ -456,6 +459,9 @@ Example slurm script:
 #SBATCH --cpus-per-task 10
 #SBATCH -e 6.bin_refinement_mapping.err
 #SBATCH -o 6.bin_refinement_mapping.out
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
