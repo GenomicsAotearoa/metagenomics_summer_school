@@ -90,6 +90,7 @@ Before we proceed with this exercise, lets set up a slurm job to annotate each o
 #SBATCH -e annotate_uniprot_dmnd.err
 #SBATCH -o annotate_uniprot_dmnd.out
 
+module purge
 module load DIAMOND/0.9.25-gimkl-2018b
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
@@ -157,6 +158,9 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
 #SBATCH --cpus-per-task 20
 #SBATCH -e annotate_pfam_hmm.err
 #SBATCH -o annotate_pfam_hmm.out
+
+module purge
+module load HMMER/3.1b2-gimkl-2017a
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
@@ -293,6 +297,7 @@ To run this exercise we first need to set up a slurm job. We will use the result
 #SBATCH -e dram_annot.err
 #SBATCH -o dram_annot.out
 
+module purge
 module load DRAM/1.1.1
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
