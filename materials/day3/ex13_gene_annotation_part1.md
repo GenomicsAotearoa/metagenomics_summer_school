@@ -89,6 +89,9 @@ Before we proceed with this exercise, lets set up a slurm job to annotate each o
 #SBATCH --cpus-per-task 20
 #SBATCH -e annotate_uniprot_dmnd.err
 #SBATCH -o annotate_uniprot_dmnd.out
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load DIAMOND/0.9.25-gimkl-2018b
@@ -162,6 +165,9 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
 #SBATCH --cpus-per-task 10
 #SBATCH -e annotate_pfam_hmm.err
 #SBATCH -o annotate_pfam_hmm.out
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load HMMER/3.1b2-gimkl-2017a
@@ -309,6 +315,9 @@ To run this exercise we first need to set up a slurm job. We will use the result
 #SBATCH --mem=25Gb
 #SBATCH -e dram_annot.err
 #SBATCH -o dram_annot.out
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load DRAM/1.1.1
