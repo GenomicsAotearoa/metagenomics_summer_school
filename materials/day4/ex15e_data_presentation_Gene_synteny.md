@@ -216,7 +216,7 @@ What it does here is to set the line color according to the direction of the gen
 
 Now we can generate the plot. Running this command in `RStudio` or our `Jupyter Notebook` running the `R` kernel interactively loads the figure. 
 
-*NOTE: the commented-out lines below (the two lines starting with `#`) will not run. Un-comment these if you wish to save the figure to file rather than opening it in the `Jupyter` or `RStudio` viewer. (N.b. alternatives using a similar command are also available other formats, including `tiff` and `png`).
+*NOTE: the commented-out lines below (the two lines starting with `#`) will not run. Un-comment these if you wish to save the figure to file rather than opening it in the `Jupyter` or `RStudio` viewer. (N.b. alternatives using a similar command are also available other formats, including `tiff` and `png`).*
 
 ```R
 #pdf("genoplot.pdf",colormodel = "cmyk",width = 8,height = 4,paper = 'special')
@@ -230,6 +230,7 @@ plot_gene_map(dna_segs = list(bin_4_ds,bin_5_ds,bin_7_ds),
 
 ![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_gene_synteny_fig1.png)
 
+*NOTE: While we do have control over the colours of the arrows via setting the `bin_n_ds$col` and `bin_n_ds$fill` parameters for each contig (as above), unfortunately there appears to be little flexibility in setting the colours of the segements between the arrows for this `plot_gene_map()` function (the current options are 'red_blue', 'blue_red', and 'grey').*
 
 Careful analysis would be needed to determine whether this is a genuine rearrangement relative to the rest of the genome, as these are draft genomes and contig orientation can either be forward or reverse. In this case, you can see that genes in bin_5 are in reversed order relative to the other bin contigs, hence, we can manually rotate the contig.
 
