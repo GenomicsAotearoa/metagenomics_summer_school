@@ -109,6 +109,7 @@ We will now run `prodigal` over the 10 bins in *anonymous* mode. As usual, we ca
 #SBATCH -e prodigal.err
 #SBATCH -o prodigal.out
 
+module purge
 module load Prodigal/2.6.3-GCC-9.2.0
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction/
@@ -208,6 +209,7 @@ To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits 
 #SBATCH -e metaxa2.err
 #SBATCH -o metaxa2.out
 
+module purge
 module load Metaxa2/2.1.3-gimkl-2017a
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction/
