@@ -57,6 +57,9 @@ Example slurm script:
 #SBATCH -e vibrant.err
 #SBATCH -o vibrant.out
 #SBATCH --profile=task
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 # Load VIBRANT module
 module purge
@@ -112,6 +115,9 @@ Example slurm script:
 #SBATCH -e checkv.err
 #SBATCH -o checkv.out
 #SBATCH --profile=task
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 # Load the module
 module purge
