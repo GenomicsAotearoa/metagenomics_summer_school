@@ -6,7 +6,7 @@
 * Project a *t-SNE* using `VizBin` and examine bin clusters
 * Refine bins by identifying incorrectly assigned contigs
 * *Optional:* Refine and filter problematic contigs from bins
-* Comparing pre- and post-filtered bins via *CheckM*
+* *Optional:* Comparing pre- and post-filtered bins via *CheckM*
 * *Optional:* Creating new `VizBin` profiles with different fragment lengths
 * *Optional:* Scripts for processing data with `ESOMana`
 * *Appendix:* Generating input files for `VizBin` from `DAS_Tool` curated bins
@@ -247,7 +247,7 @@ Our filtered bins for downstream use are now in `filtered_bins/`
 
 ---
 
-### Comparing pre- and post-filtered bins via *CheckM*
+### *Optional:* Comparing pre- and post-filtered bins via *CheckM*
 
 The end goal of this process is the generation of a final set of refined bins. Following this, the `CheckM` procedure should be re-run, this time on the refined `filtered_bins/`. This provides `CheckM` metrics for the final actual (filtered) bin set, and also an opportunity to compare between pre- and post-filtering to see if the `VizBin` bin refinement steps have, for example, improved the degree of contamination in the bins.
 
