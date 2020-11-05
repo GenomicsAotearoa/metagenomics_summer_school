@@ -125,7 +125,7 @@ How you proceed in this stage is up to you. You can either select bins based on 
 
 Today, we will run through an example of selecting potentially problematic (sub)contigs, and then deciding whether or not we want to filter these contigs out of our refined bins. We will use a combination of `VizBin` and `seqmagick` to remove contigs from bins where we do not trust the placement of the contig. We are aiming to reduce each bin to a trusted set of contigs.
 
-### 1. Export `VizBin` clusters
+### 1. Export *VizBin* clusters
 
 First, for each `VizBin` cluster, select the area around the cluster (via multiple left-clicks around the cluster), right-click, 'Selection', 'Export'. Save this output as `cluster_1.fna`. 
 
@@ -215,7 +215,7 @@ echo "bin_9_NODE_4_length_793571_cov_0.517196" >> vb_keep_contigs.txt
 echo "bin_1_NODE_182_length_42779_cov_1.585353" >> vb_keep_contigs.txt
 ```
 
-#### Create final `vb_omit_contigs_filtered.txt` list of contigs to filter from bins
+#### Create final *vb_omit_contigs_filtered.txt* list of contigs to filter from bins
 
 Using `grep`, filter contigs we wish to keep (after assessing `vb_count_table.txt`) out of the working `vb_omit_contigs_tmp.txt` list. 
 
@@ -225,7 +225,7 @@ This creates `vb_omit_contigs_filtered.txt`, which we will then pass to `seqmagi
 grep -v -f vb_keep_contigs.txt vb_omit_contigs_tmp.txt > vb_omit_contigs_filtered.txt
 ```
 
-#### Filter suspect contigs (based on `VizBin` analysis) from the bin data
+#### Filter suspect contigs (based on *VizBin* analysis) from the bin data
 
 Use `seqmagick --exclude-from-file ...` to filter problematic contigs (those contigs listed in `vb_omit_contigs_filtered.txt`) out of the initial *unchopped* bin fasta files, generating final bins for downstream processing.
 
@@ -298,7 +298,7 @@ The tool `ESOMana` can be downloaded from [SourceForge](http://databionic-esom.s
 
 ---
 
-### Appendix: Generating input files for `VizBin` from `DAS_Tool` curated bins
+### Appendix: Generating input files for *VizBin* from *DAS_Tool* curated bins
 
 The final bins that we obtained in the previous step (output from `DAS_Tool`) have been copied into `6.bin_refinement/dastool_out/_DASTool_bins/`
 
@@ -422,7 +422,7 @@ module load MetaBAT/2.13-GCC-7.4.0
 jgi_summarize_bam_contig_depths --outputDepth example_data_20k_cov.txt read_mapping/sample*.bam
 ```
 
-**6. Generate annotation table for `VizBin**
+**6. Generate annotation table for `VizBin`**
 
 Using the chopped bin files (`example_data_20k/`) and the coverage table generated above (`example_data_20k_cov.txt`), we can use the following script to generate an annotation table in the format that `VizBin` is expecting. Note that here we are including columns for per-sub-contig coverage based on *sample1* (see note at the start of this exercise), label (bin ID), and length values, and storing this in `all_bins.sample1.vizbin.ann`.
 
