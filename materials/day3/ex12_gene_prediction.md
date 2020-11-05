@@ -130,36 +130,37 @@ done
 Once `prodigal` has completed, let's check one of the output files:
 
 ```bash
-head -n8 predictions/bin_0.genes.faa
-# >1f9359e86e6a75bcff340e6a8b60ef98_1 # 205 # 1371 # 1 # ID=1_1;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.449
-# MKLVCSQAELNTALQLVSRAVASRPTHPVLANVLLTADAGTDRLSLTGFDLSLGIQTALT
-# ASVESSGAITLPARLLGEIVSRLSSDSPITLATDEAGEQVELKSLSGSYQMRGMSADDFP
-# ELPLVESGKAVKVNARALLTALRGTLFASSSDEAKQLLTGVHLHFDGKAMEAAATDGHRL
-# AVLSLADALDVETTLSSDTDDEGENFAVTLPSRSLREVERLIAGWRSDDQVSLFCDKGQV
-# VFLAADQVVTSRTLDGTYPNYRQLIPDGFARSFDVDRRAFISALERIAVLADQHNNVVKV
-# SGDSTSELLQISADAQDVGSGSESLSAEFTGDSVQIAFNVRYVLDGLKVMDSDRIVLRCN
-# APTTPAIISPKDDDIGFTYLVMPVQIRS*
+head -n8 predictions/bin_0.filtered.genes.faa
+# >bin_0_NODE_5_length_607162_cov_1.000802_1 # 1 # 1503 # 1 # ID=1_1;partial=10;start_type=Edge;rbs_motif=None;rbs_spacer=None;gc_cont=0.322
+# RYLIMKKITEEDIIESIADACQYISFYHPEDFVKGMVEAYNVEKGEAAKNAIGQILINSK
+# MCAMGHRPLCQDTGSVNIFVKVGLNAPLDIKKELVDLLNEGVAKGYTDPDNTLRYSVVAD
+# PAGKRVNTKNNTPAVIHVSVDNSDEIDITVAAKGGGSENKSKFAVLNPSDSIYDWVMENV
+# RNMGAGWCPPGILGIGIGGNPEKSMLLAKESLMSHVDIHELKARGPKNALEELRLKLYED
+# INKVGIGAQGLGGITTVLDVKILDYPCHAASLPVAMIPNCAATRHIHFKLKGDGPAVFNK
+# PDLDLWPDIELPMDTIKRVNIEDLTKENLSQFKSGDTLLLSGKILTARDAAHKKIVEYKN
+# AGKDLPNGVKLEDRFIYYVGPVDPVRDEAVGPAGPTTSTRMDKFTKDMMEIGIMGMIGKA
 ```
 
 There are a few thing to unpack here. First lets look at the first line of the *fastA* file:
 
 ```bash
->1f9359e86e6a75bcff340e6a8b60ef98_1 # 205 # 1371 # 1 # ID=1_1;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.449
- |                                |   |     |      |   |      |
- |                                |   |     |      |   |      Are the gene boundaries complete or not
- |                                |   |     |      |   Unique gene ID
- |                                |   |     |      Orientation
- |                                |   |     Stop position
- |                                |   Start position
- |                                Gene suffix
- Contig name
+>bin_0_NODE_5_length_607162_cov_1.000802_1 # 1 # 1503 # 1 # ID=1_1;partial=10;start_type=Edge;rbs_motif=None;rbs_spacer=None;gc_cont=0.322
+ |                                       |   |   |      |   |      |
+ |                                       |   |   |      |   |      Are the gene boundaries complete or not
+ |                                       |   |   |      |   Unique gene ID
+ |                                       |   |   |      Orientation
+ |                                       |   |   Stop position
+ |                                       |   Start position
+ |                                       Gene suffix
+ Contig name  
 ```
 
 Here are the first few pieces of information in the *fastA* header identified by what they mean. `prodigal` names genes using the contig name followed by an underscore then the number of the gene along the contig. The next two pieces of information are the start and stop coordinates of the gene. Next, a 1 is report for a gene that is in the forward orientation (relative to the start of the contig) and a -1 for genes that are in reverse orientation.
 
 There is also a unique gene ID provided although this may not be necessary. As long as your contig names are unique, then all gene names generated from them will also be unique.
 
-The last option that is important to check is the *partial* parameter. This is reported as two digits which correspond to the start and end of the gene and report whether or not the gene has the expected amino acids for the start (M) and end of a gene (* in the protein file). A 0 indicates a complete gene edge, and 1 means partial. In this case, we have '00' which means the gene is fully formed. Alternate outcomes for this field are '01', '10', or '11'.
+The last option that is important to check is the *partial* parameter. This is reported as two digits which correspond to the start and end of the gene and report whether or not the gene has the expected amino acids for the start (M) and end of a gene (* in the protein file). A 0 indicates a complete gene edge, and 1 means partial. In this case, we have '10' which indicates the gene runs off the left edge of the contig. Alternate outcomes for this field are '00', '01', or '11'.
+
 
 ##### Stripping metadata
 
@@ -176,15 +177,15 @@ done
 ```
 
 ```bash
-head -n8 predictions/bin_0.genes.no_metadata.faa
-# >1f9359e86e6a75bcff340e6a8b60ef98_1
-# MKLVCSQAELNTALQLVSRAVASRPTHPVLANVLLTADAGTDRLSLTGFDLSLGIQTALT
-# ASVESSGAITLPARLLGEIVSRLSSDSPITLATDEAGEQVELKSLSGSYQMRGMSADDFP
-# ELPLVESGKAVKVNARALLTALRGTLFASSSDEAKQLLTGVHLHFDGKAMEAAATDGHRL
-# AVLSLADALDVETTLSSDTDDEGENFAVTLPSRSLREVERLIAGWRSDDQVSLFCDKGQV
-# VFLAADQVVTSRTLDGTYPNYRQLIPDGFARSFDVDRRAFISALERIAVLADQHNNVVKV
-# SGDSTSELLQISADAQDVGSGSESLSAEFTGDSVQIAFNVRYVLDGLKVMDSDRIVLRCN
-# APTTPAIISPKDDDIGFTYLVMPVQIRS*
+head -n8 predictions/bin_0.filtered.genes.no_metadata.faa
+# >bin_0_NODE_5_length_607162_cov_1.000802_1
+# RYLIMKKITEEDIIESIADACQYISFYHPEDFVKGMVEAYNVEKGEAAKNAIGQILINSK
+# MCAMGHRPLCQDTGSVNIFVKVGLNAPLDIKKELVDLLNEGVAKGYTDPDNTLRYSVVAD
+# PAGKRVNTKNNTPAVIHVSVDNSDEIDITVAAKGGGSENKSKFAVLNPSDSIYDWVMENV
+# RNMGAGWCPPGILGIGIGGNPEKSMLLAKESLMSHVDIHELKARGPKNALEELRLKLYED
+# INKVGIGAQGLGGITTVLDVKILDYPCHAASLPVAMIPNCAATRHIHFKLKGDGPAVFNK
+# PDLDLWPDIELPMDTIKRVNIEDLTKENLSQFKSGDTLLLSGKILTARDAAHKKIVEYKN
+# AGKDLPNGVKLEDRFIYYVGPVDPVRDEAVGPAGPTTSTRMDKFTKDMMEIGIMGMIGKA
 ```
 
 ---
