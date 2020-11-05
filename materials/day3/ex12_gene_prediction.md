@@ -203,7 +203,7 @@ To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits 
 #SBATCH -A nesi02659
 #SBATCH -J metaxa2
 #SBATCH --res SummerSchool
-#SBATCH --time 00:30:00
+#SBATCH --time 00:05:00
 #SBATCH --mem 1GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 10
