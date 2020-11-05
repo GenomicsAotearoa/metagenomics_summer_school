@@ -54,6 +54,7 @@ Example slurm script:
 #SBATCH -e mapping_filtered_bins.err
 #SBATCH -o mapping_filtered_bins.out
 
+module purge
 module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/
@@ -139,6 +140,7 @@ Example slurm script:
 #SBATCH -e mapping_filtered_viruses.err
 #SBATCH -o mapping_filtered_viruses.out
 
+module purge
 module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/
@@ -210,6 +212,7 @@ This can all be achieved in a single command, although it must be performed thro
 #SBATCH -e gtdbtk_test.err
 #SBATCH -o gtdbtk_test.out
 
+module purge
 module load GTDB-Tk/0.2.2-gimkl-2018b-Python-2.7.16
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy
@@ -295,10 +298,12 @@ Example slurm script:
 #SBATCH -o prodigal.out
 
 # Load dependencies
+module purge
 module load Prodigal/2.6.3-GCC-9.2.0
 
 # Set up working directories
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy
+
 mkdir -p viral_taxonomy
 
 # Run main analyses 
@@ -392,6 +397,7 @@ The following `python` script is effectively an automated version of this for al
 For future reference, a copy of this script is available for download [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/scripts/vcontact2_tax_predict.py)
 
 ```bash
+module purge
 module load Python/3.8.2-gimkl-2020a
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/
