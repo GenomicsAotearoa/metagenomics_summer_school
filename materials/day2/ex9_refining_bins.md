@@ -6,6 +6,7 @@
 * Project a *t-SNE* using `VizBin` and examine bin clusters
 * Refine bins by identifying incorrectly assigned contigs
 * *Optional:* Refine and filter problematic contigs from bins
+* Comparing pre- and post-filtered bins via *CheckM*
 * *Optional:* Creating new `VizBin` profiles with different fragment lengths
 * *Optional:* Scripts for processing data with `ESOMana`
 * *Appendix:* Generating input files for `VizBin` from `DAS_Tool` curated bins
@@ -123,7 +124,7 @@ We can use the interactive GUI to pick the boundaries of new bins, or to identif
 
 How you proceed in this stage is up to you. You can either select bins based on their boundary, and call these the refined bins. Alternatively, you could select outlier contigs and examine these in more detail to determine whether or not they were correctly placed into the bin. Which way you proceed really depends on how well the ordination resolves your bins, and it might be that both approaches are needed.
 
-Today, we will run through an example of selecting potentially problematic (sub)contigs, and then deciding whether or not we want to filter these contigs out of our refined bins. We will use a combination of `VizBin` and `seqmagick` to remove contigs from bins where we do not trust the placement of the contig. We are aiming to reduce each bin to a trusted set of contigs.
+Today, we will run through an example of selecting potentially problematic (sub)contigs, and then deciding whether or not we want to filter these contigs out of our refined bins. We can use a combination of `VizBin` and `seqmagick` to remove contigs from bins where we do not trust the placement of the contig. We are aiming to reduce each bin to a trusted set of contigs.
 
 ### 1. Export *VizBin* clusters
 
@@ -243,6 +244,75 @@ done
 ```
 
 Our filtered bins for downstream use are now in `filtered_bins/`
+
+---
+
+### Comparing pre- and post-filtered bins via *CheckM*
+
+The end goal of this process is the generation of a final set of refined bins. Following this, the `CheckM` procedure should be re-run, this time on the refined `filtered_bins/`. This provides `CheckM` metrics for the final actual (filtered) bin set, and also an opportunity to compare between pre- and post-filtering to see if the `VizBin` bin refinement steps have, for example, improved the degree of contamination in the bins.
+
+For this exercise, a copy of the output from running `CheckM` on the `filtered_bins/` is available at `6.bin_refinement/filtered_bins_checkm.txt`. View the previous `CheckM` output and the filtered bins output to compare via `cat`.
+
+```bash
+cat filtered_bins_checkm.txt 
+```
+
+|Bin Id | Marker lineage | # genomes   |    # markers    |   # marker sets  | 0     |  1    |   2  |     3   |    4    |   5+  |    Completeness  |  Contamination |  Strain heterogeneity|
+| :-- | :-- | --- | ---  | ---  | --- |  --- |  ---  | ---  | --- | --- | --- | --- | --- |
+|bin_0.filtered | k__Bacteria (UID3060) |  138   |  338  |   246   |  1  |     329  |   7     |  1   |    0      | 0     |  99.59 |  2.98   | 0.00|
+|bin_1.filtered | k__Bacteria (UID3060) |  138   |  338     246  |   1  |     336  |   1   |    0    |   0     |  0 |      99.59  | 0.41  |  0.00|
+|bin_2.filtered | k__Bacteria (UID2565)  | 2921   | 149  |   91  |    10    |  137   |  2    |   0    |   0     |  0     |  91.21 |  0.61  |  0.00|
+|bin_3.filtered | g__Staphylococcus (UID301)  |    45    |  940  |   178  |   14   |   924   |  2   |    0    |   0   |    0   |    98.58 |  0.11  |  0.00|
+|bin_4.filtered | c__Betaproteobacteria (UID3959)| 235   |  414  |  211    | 1   |    410   |  3    |   0    |   0     |  0    |   99.97  | 0.26  |  0.00|
+|bin_5.filtered | o__Pseudomonadales (UID4488)  |  185    | 813  |   308  |   25    |  787 |    1   |    0   |    0    |   0    |   96.87 |  0.11 |   0.00|
+|bin_6.filtered | c__Deltaproteobacteria (UID3218)    |    61  |    284   |  169 |    17   |   267|     0  |     0  |     0  |     0    |   91.72  | 0.00 |  0.00|
+|bin_7.filtered | f__Bradyrhizobiaceae (UID3695) | 47   |   693   |  296   |  2    |   691  |   0    |   0     |  0   |    0   |    99.80 |  0.00 |   0.00|
+|bin_8.filtered | p__Cyanobacteria (UID2143)  |    129    | 471 |    367   |  0  |     470  |   1   |    0  |     0     |  0      | 100.00 | 0.14  |  0.00|
+|bin_9.filtered | g__Vibrio (UID4878)  |   67    |  1130   | 369   |  4   |    1125  |  1     |  0    |   0     |  0    |   99.46 |  0.03  |  0.00|
+
+
+```bash
+cat ../5.binning/checkm.txt 
+```
+
+
+|Bin Id | Marker lineage | # genomes   |    # markers    |   # marker sets  | 0     |  1    |   2  |     3   |    4    |   5+  |    Completeness  |  Contamination |  Strain heterogeneity|
+| :-- | :-- | --- | ---  | ---  | --- |  --- |  ---  | ---  | --- | --- | --- | --- | --- |
+|maxbin.001_sub.contigs | k__Bacteria (UID3060)  | 138  |   338   |  246    | 1   |    328  |   8    |   1  |     0    |   0   |    99.59|   3.39 |   0.00|
+|maxbin.002_sub.contigs | k__Bacteria (UID3060)  | 138 |    338  |   246   |  1   |    336   |  1    |   0 |      0    |   0   |   99.59 |  0.41 |  0.00|
+|maxbin.009_sub.contigs | k__Bacteria (UID2565) |  2921 |   149  |   91   |   10   |   137  |   2    |   0   |    0     |  0    |   91.21  | 0.61 |   0.00|
+|metabat.1.contigs     |  c__Deltaproteobacteria (UID3218)   |     61  |    284   |  169   |  17   |   267  |   0    |   0    |   0    |   0     |  91.72 |  0.00  |  0.00|
+|metabat.10.contigs    |  g__Staphylococcus (UID301)   |   45   |   940    | 178   |  14  |    924   |  2    |   0  |     0   |    0    |   98.58 |  0.11 |   0.00|
+|metabat.11.contigs    |  c__Betaproteobacteria (UID3959) |235  |   414   |  211  |   1  |     408 |    5 |      0     |  0   |    0   |    99.97|   0.90   | 0.00|
+|metabat.12.contigs  |    o__Pseudomonadales (UID4488)   | 185    | 813   |  308   |  25    |  787   |  1  |    0    |   0    |   0      | 96.87 | 0.11  |  0.00|
+|metabat.4.contigs   |    f__Bradyrhizobiaceae (UID3695)|  47    |  693   |  296  |   2     |  691   |  0  |     0   |    0   |   0    |   99.80  | 0.00  |  0.00|
+|metabat.6.contigs   |    p__Cyanobacteria (UID2143)  |    129    | 471  |   367   |  0   |    470  |   1    |   0   |    0   |    0    |   100.00 | 0.14 |   0.00|
+|metabat.8.contigs    |   g__Vibrio (UID4878)  |   67    |  1130 |   369 |    4   |    1125  |  1   |    0  |     0  |     0   |    99.46 |  0.03 |   0.00|
+
+
+An example of an updated slurm script to run `CheckM` on the `filtered_bins/` is as follows:
+
+```bash
+#!/bin/bash -e
+#SBATCH -A nesi02659
+#SBATCH --res SummerSchool
+#SBATCH -J bin_eval_checkm
+#SBATCH --time 00:20:00
+#SBATCH --mem 50GB
+#SBATCH --cpus-per-task 10
+#SBATCH -e bin_eval_checkm.err
+#SBATCH -o bin_eval_checkm.out
+
+module purge
+module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
+
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinement/
+
+checkm lineage_wf -t 10 --pplacer_threads 10 -x fna \
+                  --tab_table -f filtered_bins_checkm.txt \
+                  filtered_bins/ filtered_bins_checkm_out/
+                  
+```
 
 ---
 
