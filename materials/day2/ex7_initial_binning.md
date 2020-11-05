@@ -95,6 +95,9 @@ This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we wan
 #SBATCH --cpus-per-task 10
 #SBATCH -e maxbin_clustering.err
 #SBATCH -o maxbin_clustering.out
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load MaxBin/2.2.6-gimkl-2018b-Perl-5.28.1
