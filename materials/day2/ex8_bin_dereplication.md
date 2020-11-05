@@ -201,6 +201,7 @@ We will need to run `CheckM` under a slurm script. This is because the tree plac
 #SBATCH -e bin_eval_checkm.err
 #SBATCH -o bin_eval_checkm.out
 
+module purge
 module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
