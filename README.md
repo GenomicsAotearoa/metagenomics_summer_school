@@ -99,7 +99,7 @@ You can find a saved version of the workshop Etherpad notes [here](https://githu
 |12:45 pm – 2:00 pm|**Binning (part 3)**<br>**TASK:** Bin dereplication via *DAS_Tool*<br>**TASK:** Evaluating bins using *CheckM*|Michael Hoggard|
 |2:00 pm - 3:00 pm|**Binning (part 4)**<br>Discuss additional dereplication strategies, such as *dRep*<br>How to work with viral and eukaryotic bins<br>Dealing with organisms which possess minimal genomes|Carmen Astudillo-Garcia|
 |3:00 pm – 3:20 pm|**Afternoon tea break** (*Tea, coffee, and snacks provided*)||
-|3:20 pm – 5:00 pm|**TALK:** Bin refinement**<br>Refinement strategies - *VizBin* and *ESOMana*<br>**TASK:** Working with *VizBin*|Michael Hoggard|
+|3:20 pm – 5:00 pm|**TALK:** Bin refinement<br>Refinement strategies - *VizBin* and *ESOMana*<br>**TASK:** Working with *VizBin*|Michael Hoggard|
 
 ### Day 3 - 19<sup>th</sup> November 2020
 
