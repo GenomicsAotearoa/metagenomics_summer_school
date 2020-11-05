@@ -200,6 +200,9 @@ We will need to run `CheckM` under a slurm script. This is because the tree plac
 #SBATCH --cpus-per-task 10
 #SBATCH -e bin_eval_checkm.err
 #SBATCH -o bin_eval_checkm.out
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
