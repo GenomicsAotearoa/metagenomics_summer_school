@@ -28,7 +28,7 @@ These exercises will take place in the `10.gene_annotation/` folder.
 
 ---
 
-### Annotating MAGs with against the *UniProt* database with *diamond*
+### Annotating MAGs against the *UniProt* database with *diamond*
 
 For this exercise we are going to use diamond for performing our annotation. We have chosen to use this tool because it is faster than BLAST, and usearch comes with licencing restrictions that make it hard to work with in a shared computing environment like NeSI.
 
@@ -61,7 +61,7 @@ diamond help
 # ...
 ```
 
-There are two output formats we can chose from which are useful for our analysis. We will obtain our output in the BLAST tabular format, which provides the annotation information in a simple-to-parse text file that can be viewed in any text or spreadsheet viewing tool. This will allow us to investigate and evaluate the quality of our annotations.  For now, just annotate a single bin:
+There are two output formats we can chose from which are useful for our analysis. We will obtain our output in the BLAST tabular format, which provides the annotation information in a simple-to-parse text file that can be viewed in any text or spreadsheet viewing tool. This will allow us to investigate and evaluate the quality of our annotations. For now, just annotate a single bin:
 
 ```bash
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
@@ -105,6 +105,7 @@ do
                  --db /nesi/nobackup/nesi02659/MGSS_resources/databases/uniprot_nr_200213.diamond \ 
                  -q ${prot_file} --outfmt 6 -o gene_annotations/${out_file}.uniprot.txt
 done
+
 ```
 
 ---
