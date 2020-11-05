@@ -1,4 +1,6 @@
 
+<p align="center"><img  src="../img/ssh_config.png" alt="drawing" width="1100"/></p>
+
 
 > Following instructions are for Mac,Linux and Windows with WSL enabled. 
 
