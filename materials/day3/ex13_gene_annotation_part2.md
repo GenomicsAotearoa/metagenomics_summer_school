@@ -83,23 +83,25 @@ To run this exercise we first need to set up a slurm job. We will use the result
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A nesi02659
 #SBATCH -J DRAM_annotation
-#SBATCH --res SummerSchool
+#SBATCH -A nesi02659
 #SBATCH --time=6:00:00
-#SBATCH --mem=25Gb
-#SBATCH -e dram_annot.err
-#SBATCH -o dram_annot.out
-#SBATCH --export NONE
+#SBATCH --mem=50Gb
+#SBATCH -e <login_name>.slurm-DRAM_annot.%A-%a.err 
+#SBATCH -o <login_name>.slurm-DRAM_annot.%A-%a.out 
 
-export SLURM_EXPORT_ENV=ALL
+cd /nesi/project/nesi02659/.conda/dramdbsetup
 
 module purge
-module load DRAM/1.1.1
+module load Miniconda3/4.8.3
+module load gimkl/2020a
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
+export CONDA_PKGS_DIRS=/nesi/project/nesi02659/.conda/pkgs
+export CONDA_ENVS_PATH=/nesi/project/nesi02659/.conda/envs
 
-DRAM.py annotate -i 'predictions/*.fna' --checkm_quality DRAM_input_files/checkm.txt --gtdb_taxonomy DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv -o annotation 
+source activate DRAM
+
+DRAM.py annotate -i '/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/bins_for_DRAM/*.fna' --checkm_quality /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/DRAM_input_files/checkm.txt --gtdb_taxonomy /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv -o /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/annotation_mgss
 
 ```
 
