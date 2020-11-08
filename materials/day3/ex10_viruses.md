@@ -25,9 +25,9 @@ Currently, the most commonly used methods are [VIBRANT](https://microbiomejourna
 
 **Further documentation**
 
-* [VIBRANT](https://github.com/AnantharamanLab/VIBRANT)
-* [VirSorter](https://github.com/simroux/VirSorter)
-* [DeepVirFinder](https://github.com/jessieren/DeepVirFinder)
+* [github.com/AnantharamanLab/VIBRANT](https://github.com/AnantharamanLab/VIBRANT)
+* [github.com/simroux/VirSorter](https://github.com/simroux/VirSorter)
+* [github.com/jessieren/DeepVirFinder](https://github.com/jessieren/DeepVirFinder)
 
 ---
 
