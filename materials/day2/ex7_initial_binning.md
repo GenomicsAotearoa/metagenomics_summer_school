@@ -24,7 +24,7 @@ In our own workflow, we use the tools `MetaBAT`, `MaxBin`, and `CONCOCT` for bin
 
 `MetaBAT` binning occurs in two steps. First, the *bam* files from the last exercise are parsed into a tab-delimited table of the average coverage depth and variance per sample mapped. Binning is then performed using this table.
 
-The *.bam* files can be passed in in either a user-defined order, or using wildcards.
+The *.bam* files can be passed in via either a user-defined order, or using wildcards.
 ```bash
 module load MetaBAT/2.13-GCC-7.4.0
 
@@ -89,13 +89,17 @@ This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we wan
 #SBATCH -A nesi02659
 #SBATCH -J maxbin_clustering
 #SBATCH --res SummerSchool
-#SBATCH --time 01:00:00
+#SBATCH --time 00:05:00
 #SBATCH --mem 10GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 10
 #SBATCH -e maxbin_clustering.err
 #SBATCH -o maxbin_clustering.out
+#SBATCH --export NONE
 
+export SLURM_EXPORT_ENV=ALL
+
+module purge
 module load MaxBin/2.2.6-gimkl-2018b-Perl-5.28.1
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/

@@ -17,21 +17,42 @@
 1. Low quality regions of sequence
 1. Quality drop-off towards the end of read-pair sequence
 
+#### Loading *FastQC*
+
+These exercises will take place in the `2.fastqc/` folder. First, navigate to this folder. Copy the command below into your terminal (logged in to NeSI), replacing `<YOUR FOLDER>`, and then running the command.
+
+```bash
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/
+```
+
 To activate `FastQC` on NeSI, you need to first load the module using the command
 
 ```bash
 module load FastQC/0.11.7
 ```
 
-`FastQC` can then be run either interactively (i.e. with a GUI) or from the command line. The different is simply whether or not you provide any input files to `FastQC` when it loads.
+#### Running *FastQC*
+
+`FastQC` can then be run either interactively (i.e. with a GUI) or from the command line. The difference is simply whether or not you provide any input files to `FastQC` when it loads.
 
 ```bash
 # Load interactively
 
-fastqc mock_R1.fastq.gz mock_R2.fastq.gz
+fastqc mock_R1.good.fastq.gz mock_R2.good.fastq.gz
 ```
 
-Now download the resulting files using `scp` and view them on your computer. Note that `FastQC` does not load the forward and reverse pairs of a library in the same window, so you need to be mindful of how your samples relate to each other. 
+#### Viewing the outputs from *FastQC*
+
+`FastQC` generates output reports in `.html` files that can be viewed in a standard web browser. Unfortunately, these can not be viewed from within the standard NeSI terminal environment. In day-to-day usage, it will be necessary to download the resulting files using `scp` and view them on your computer. 
+
+Fortunately, if you're currently using the terminal within `Jupyter hub` for today's session, we can open the `.html` files directly from here:
+
+* Click on the folder icon in the top left to open the folder navigator pane (if not already open).
+* The default viewed location will be the overall project that you have logged in to (in this case, the 'Genomics Aotearoa Virtual Lab Training Access (nesi02659)' project). 
+* Click through `MGSS_2020`, into your folder, and then into the `2.fastqc/` folder. 
+* Double click on the output `...fastqc.html` files to open them in the a new tab within the `Jupyter hub`.
+
+Note that `FastQC` does not load the forward and reverse pairs of a library in the same window, so you need to be mindful of how your samples relate to each other. 
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig1_overview.PNG)
 
@@ -62,7 +83,15 @@ Have a quick look through the left hand columns. As you can see, the data has pa
 
 The only aspect of the data that `FastQC` is flagging as potentially problematic is the GC% content of the data set. This is a common observation, as we are dealing with a mixed community and organisms and it is therefore unlikely that there will be a perfect normal distribution around an average value. For example, a community comprised of low- and high-GC organisms would manifest a bimodal distribution of peaks which would be a problematic outcome in terms of the expectations of `FastQC`, but completely consistent with the biology of the system.
 
-Lets take a look at a library with significant errors. Load the sequence file `mock_R1.adapter_decay.fastq` and compare the results with the `mock_R1.good.fastq` file.
+#### *FastQC* outputs for libraries with errors
+
+Lets take a look at a library with significant errors. Process the sequence file `mock_R1.adapter_decay.fastq` with `FastQC`.
+
+```bash
+fastqc mock_R1.adapter_decay.fastq.gz
+```
+
+Compare the results with the `mock_R1.good.fastq.gz` file.
 
 Which of the previous fields we examined are now flagged as problematic? How does this compare with your expectation? Are there any which should be flagged which are not?
 
@@ -102,7 +131,7 @@ There is a lot going on in this command, so here is a breakdown of the parameter
 |SLIDINGWINDOW:4:30|*positional*|Quality filtering command. Analyses each sequence in a 4 base pair sliding window, truncating if the average quality drops below Q30|
 |MINLEN:80|*positional*|Length filtering command, discard sequences that are shorter than 80 base pairs after trimming|
 
-This signifcantly improves the output.
+Running the trimmed files back through `FastQC`, we can see that this signifcantly improves the output.
 
 ##### Quality of reads
 

@@ -18,6 +18,11 @@
 
 ### Navigating your file system
 
+To launch a standard **terminal** within the NeSI [Jupyter hub](https://jupyter.nesi.org.nz/hub/login):
+
+* click on the `+` button in the top left of the screen (directly below the `File` drop-down menu) to bring up the `Jupyter` launcher window
+* launch the terminal using the bottom at the bottom left of the pane (under "Other"). 
+
 Find the current location by running the command `pwd` which stands for *print working directory*. At any given time, **current working directory** is current default directory.
 
 ```bash
