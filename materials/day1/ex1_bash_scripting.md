@@ -18,7 +18,11 @@
 
 ### Navigating your file system
 
-To launch a standard **terminal** within the NeSI [Jupyter hub](https://jupyter.nesi.org.nz/hub/login):
+To get started, log in to NeSI's `Jupyter hub` space via a standard browser at [jupyter.nesi.org.nz/hub/login](https://jupyter.nesi.org.nz/hub/login). You will need to enter your NeSI user name, NeSI password, and two-factor authentication.
+
+Select `Genomics Aotearoa Virtual Lab Training Access (nesi02659)` as the project, and select walltime of 8 hours. For now, leave the rest of the options at the default settings.
+
+To launch a standard **terminal** within the NeSI Jupyter hub:
 
 * click on the `+` button in the top left of the screen (directly below the `File` drop-down menu) to bring up the `Jupyter` launcher window
 * launch the terminal using the bottom at the bottom left of the pane (under "Other"). 
@@ -420,10 +424,10 @@ Slurm provides a rich set of features for organising your workload and an extens
 Copy the contents of the `BLAST/` folder to your current directory, using the following command
 
 ```bash
-cp -r /nesi/nobackup/nesi02659/BLAST ./
+cp -r /nesi/nobackup/nesi02659/SLURM/BLAST ./
 ```
 
-We will then anvigate into this directory with the `cd` command, then inspect the text of theh file `blast-test.sh` using `less` or `nano`.
+We will then navigate into this directory with the `cd` command, then inspect the text of the file `blast-test.sh` using `less` or `nano`.
 
 ```bash
 cd BLAST/
