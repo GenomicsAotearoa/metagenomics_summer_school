@@ -36,7 +36,7 @@ setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/')
 #library(tidyr)
 library(dplyr)
 library(readr)
-#library(stringr)
+library(stringr)
 #library(tibble)
 library(ggplot2)
 
@@ -104,19 +104,27 @@ Here we will use the functions `vegdist()` and `metaMDS()` from the `R` package 
 
 *NOTE: you may also wish to make use of the `set.seed()` function before each calculation to ensure that you obtain consistent results if the same commands are re-run at a later date.*
 
+*NOTE: in the `Jupyter` environment, these commands will create long outputs below each code block. If need be, these outputs can be cleared from the screeen via `right-click on the code block > Clear Outputs`.*
+
 ```bash 
 # Bins: weighted Bray-Curtis
 cov.bray.MAG <- vegdist(coverage.nmds.data.MAG, method="bray", binary=FALSE, diag=FALSE, upper=FALSE, na.rm=FALSE)
 cov.bray.sol.MAG <- metaMDS(cov.bray.MAG, k=2, trymax=999)
+```
 
+```bash
 # Bins: unweighted (binary) Bray-Curtis
 cov.bray.binary.MAG <- vegdist(coverage.nmds.data.MAG, method="bray", binary=TRUE, diag=FALSE, upper=FALSE, na.rm=FALSE)
 cov.bray.binary.sol.MAG <- metaMDS(cov.bray.binary.MAG, k=2, trymax=999)
+```
 
+```bash
 # Viruses: weighted Bray-Curtis
 cov.bray.vir <- vegdist(coverage.nmds.data.vir, method="bray", binary=FALSE, diag=FALSE, upper=FALSE, na.rm=FALSE)
 cov.bray.sol.vir <- metaMDS(cov.bray.vir, k=2, trymax=999)
+```
 
+```bash
 # Viruses: unweighted (binary) Bray-Curtis
 cov.bray.binary.vir <- vegdist(coverage.nmds.data.vir, method="bray", binary=TRUE, diag=FALSE, upper=FALSE, na.rm=FALSE)
 cov.bray.binary.sol.vir <- metaMDS(cov.bray.binary.vir, k=2, trymax=999)
@@ -145,7 +153,7 @@ sol.scrs <- data.frame(
   NMDS1 = bray.sol$point[,1],
   NMDS2 = bray.sol$point[,2]
 ) %>%
-merge(., map, by = "SampleID", type = "full") 
+merge(., map.df, by = "SampleID", type = "full") 
 ```
 
 #### 3.3 build the plot
@@ -204,15 +212,24 @@ Now, build the plot. In this function, we:
 *NOTE: change the file output name in the first line below for each different data set run through the above commands*
 
 ```bash
-tiff("nMDS_MAGs_weighted.tiff", width=17, height=17, units="cm", res=300)
+png("nMDS_MAGs_weighted.png", width=17, height=17, units="cm", res=300)
 NMDS.plot
 dev.off()
 ```
 
 Repeat the steps in "**3. Build nMDS plots in *R* using the *ggplot2* package**" above, each time inputting a different data set (bin or viral data, weighted or unweighted Bray-Curtis dissimilarity) into the `bray.dist` and `bray.sol` variables in the section, "**3.1 Select the data set**".
 
+#### Outputs
 
+*NOTE: How informative these types of analyses are depends in part on the number of samples you actually have and the degree of variation between the samples. As you can see in the nMDS plots based on unweighted (binary) Bray-Curtis dissimilarities (especially for the MAGs data) there are not enough differences between any of the samples (in this case, in terms of community membership, rather than relative abundances) for this to result in a particularly meaningful or useful plot in these cases.*
 
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_fig1_nMDS_MAGs_weighted.png)
+
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_fig2_nMDS_MAGs_unweighted.png)
+
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_fig3_nMDS_Vir_weighted.png)
+
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_fig4_nMDS_Vir_unweighted.png)
 
 ---
 
