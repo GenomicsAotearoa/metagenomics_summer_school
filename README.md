@@ -62,9 +62,9 @@ You can find a saved version of the workshop Etherpad notes [here](https://githu
 
 ### Day 4
 
-1. [Gene annotation (part 3)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex15_gene_annotation_part3.md)
+1. [Gene annotation (part 3)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex15_gene_annotation_part3.md)
 1. [Presentation of data](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16a_data_presentation_Intro.md)
-1. [Optional: Working with dRep](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex17_drep.md)
+1. [Optional: Working with dRep](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex17_OPTIONAL_dereplication.md)
 
 ---
 
