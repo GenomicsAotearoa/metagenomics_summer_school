@@ -83,16 +83,19 @@ First, let's have a look at the genome stats to check the assembly quality of ou
 
 To finish, we visualize the *Product*, an .HTML file produced in the Distillation step, by double-clicking on it on our *Jupyter* lab notebook. The *Product* has three primary parts:
 
-1.**Modules.** Central metabolism pathways coverage. Completion of pathways is based on the structure of KEGG modules, with the pathway coverage calculated as the percent of steps with at least one gene present.   
+1.**Modules.** Central metabolism pathways coverage. Completion of pathways is based on the structure of KEGG modules, with the pathway coverage calculated as the percent of steps with at least one gene present.
+
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_fig1_DRAM_product_met.png)
+
 2. **ETC Complexes.** Electron Transport Chain component completion
 
-![](https://github.com/mcastudillo/MAG-annotation-with-DRAM/blob/main/figures/DRAM_product_1.png)
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_fig2_DRAM_product_ETC.png)
 
-3. Presence of specific functions, including CAZy, Nitrogen metabolism, Sulfur metabolism and Photosynthesis. 
+3. Presence of specific functions, including CAZy, Nitrogen metabolism, Sulfur metabolism and Photosynthesis. Note that the taxonomic classification of each of the bins is also showed in the first figure 
 
 
-![](https://github.com/mcastudillo/MAG-annotation-with-DRAM/blob/main/figures/DRAM_product_2.png)
-![](https://github.com/mcastudillo/MAG-annotation-with-DRAM/blob/main/figures/DRAM_product_3.png)
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_fig3_DRAM_product.png)
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_fig4_DRAM_product.png)
 
 
 ---
