@@ -220,7 +220,7 @@ There are several approaches that can be used to achieve this. The general princ
 
 *NOTE: This process may be more complicated if a reference genome for your host taxa is not readily available. In this case an alternative method would need to be employed (for example: predicting taxonomy via Kraken2 and then filtering out all reads that map to the pylum or kingdom of your host taxa).*
 
-This exercise provides an example using **BBMap** to map against a masked human reference genome and retain only those reads that do *not* map to the reference. Here we are mapping the quality-filtered reads against a pre-prepared human genome that has been processed to mask sections of the genome, including those that: are presumbed microbial contaminant in the reference; have high homology to microbial genes/genomes (e.g. ribosomes); are of low complexity. This ensures that reads that would normally map to these sections of the human genome are *not* removed from the dataset (as genuine microbial reads that we wish to retain might also map to these regions), while all reads mapping to the rest of the human genome are removed.
+This exercise provides an example using **BBMap** to map against a masked human reference genome and retain only those reads that do *not* map to the reference. Here we are mapping the quality-filtered reads against a pre-prepared human genome that has been processed to mask sections of the genome, including those that: are presumbed microbial contaminant in the reference; have high homology to microbial genes/genomes (e.g. ribosomes); or those that are of low complexity. This ensures that reads that would normally map to these sections of the human genome are *not* removed from the dataset (as genuine microbial reads that we wish to retain might also map to these regions), while all reads mapping to the rest of the human genome are removed.
 
 *NOTE: The same process can be used to remove DNA matching other hosts (e.g. mouse), however you would need to search if anyone has prepared (and made available) a masked version of the reference genome, or create a masked version using bbmask. The creator of BBMap has made available masked human, mouse, cat, and dog genomes. More information, including links to these references and instructions on how to generate a masked genome for other taxa, can be found within [this thread](http://seqanswers.com/forums/showthread.php?t=42552).*
 
@@ -236,7 +236,7 @@ module load Python/3.8.2-gimkl-2020a
 pip install gdown
 ```
 
-Download the reference. It will also be necessary to first add your local `bin` location to the `PATH` variable, as this is where `gdown` is located (modify `<your_username>` before running the code below).
+Nest, download the reference. It will also be necessary to first add your local `bin` location to the `PATH` variable via the `export PATH=...` command, as this is where `gdown` is located (modify `<your_username>` before running the code below).
 
 ```bash
 mkdir BBMask_human_reference/
@@ -277,7 +277,7 @@ module load BBMap/38.81-gimkl-2020a
 srun bbmap.sh ref=hg19_main_mask_ribo_animal_allplant_allfungus.fa.gz -Xmx23g
 ```
 
-Map the quality-filtered reads to the reference via `BBMap`. Here we will submit the job as a slurm array, with one array job per sample. Breaking down this command a little:
+Finally, map the quality-filtered reads to the reference via `BBMap`. Here we will submit the job as a slurm array, with one array job per sample. Breaking down this command a little:
 
 - We pass the path to the `ref` file (the reference we just built) to `path=...`.
 - Provide quality-filtered reads as input (i.e. output of the `trimmomatic` process above). In this case, we will provide the *fastq* files located in `../3.assembly/` which have been processed via `trimmomatic` in the same manner as the exercise above. These are four sets of paired reads (representing metagenome data from four 'samples') that the remainder of the workshop exercises will be working with.
@@ -285,7 +285,7 @@ Map the quality-filtered reads to the reference via `BBMap`. Here we will submit
 - The rest of the settings in the `BBMap` call here are as per the recommendations found within [this thread](http://seqanswers.com/forums/showthread.php?t=42552) about processing data to remove host reads.
 - Finally, the filtered output *fastq* files for downstream use are output to the `host_filtered_reads/` folder (taken from the outputs `outu1=` and `otu2=`, which include only those reads that did not map to the host reference genome).
 
-*NOTE: Slurm array jobs automatically create a variable `SLURM_ARRAY_TASK_ID` for that job, which contains the array task number (i.e. between 1 and 4 in the case below). We use this to run the command on the sample that matches this array task ID. I.e. array job 3 will run the sample "sample3" (`sample${SLURM_ARRAY_TASK_ID}` is read in as `sample3`.
+*NOTE: Slurm array jobs automatically create a variable `SLURM_ARRAY_TASK_ID` for that job, which contains the array task number (i.e. between 1 and 4 in the case below). We use this to run the command on the sample that matches this array task ID. I.e. array job 3 will run the commands on "sample3" (`sample${SLURM_ARRAY_TASK_ID}` is read in as `sample3`).*
 
 ```bash
 #!/bin/bash -e
@@ -317,5 +317,7 @@ outu1=host_filtered_reads/sample${SLURM_ARRAY_TASK_ID}_R1_hostFilt.fastq \
 outu2=host_filtered_reads/sample${SLURM_ARRAY_TASK_ID}_R2_hostFilt.fastq
 
 ```
+
+The filtered reads are now available in `host_filtered_reads/` for downstream use.
 
 ---
