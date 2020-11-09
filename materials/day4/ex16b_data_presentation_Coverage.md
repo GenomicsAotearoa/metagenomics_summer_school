@@ -1,6 +1,4 @@
-# Presentation of data: Ecology
-
-## 1. Per-sample coverage heatmaps
+# Presentation of data: Per-sample coverage heatmaps
 
 ### Objectives
 
@@ -18,7 +16,7 @@ As a reminder:
 
 A simple way to present this information is via a heatmap. In this exercise we will build a clustered heatmap of these coverage profiles in `R`. Since we also have tables of taxonomy assignments (via `gtdb-tk` for MAGs) and/or predictions (via `vContact2` for viral contigs), we will also use these to add taxonomy information to the plot.
 
-The coverage and taxonomy tables generateed in earlier exercises have been copied to `11.data_presentation/coverage/` a for use in these exercises.
+The coverage and taxonomy tables generated in earlier exercises have been copied to `11.data_presentation/coverage/` a for use in these exercises.
 
 In addition to this, a simple mapping file has also been created (`11.data_presentation/coverage/mapping_file.txt`). This is a tab-delimited file listing each sample ID in the first column, and the sample "Group" in the second column (*Group_A*, *Group_B*, and *Group_C*). This grouping might represent, for example, three different sampling sites that we want to compare between. If you had other data (such as environmental measures, community diversity measures, etc.) that you wish to incorporate in other downstream analyses (such an fitting environmental variables to an ordination, or correlation analyses) you could also add new columns to this file and load them at the same time.
 
@@ -27,6 +25,8 @@ In addition to this, a simple mapping file has also been created (`11.data_prese
 ---
 
 ### Part 1 - Building a heatmap of MAG coverage per sample.
+
+To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and open a `Notebook` running the `R 4.0.1` module as the kernel (or, outside the context of this workshop, open `RStudio` with the required packages installed (see the [data presentation intro](https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/materials/day4/ex16a_data_presentation_Intro.md) docs for more information).
 
 #### 1.1 Set working directory, load *R* libraries, and import data
 
@@ -71,7 +71,7 @@ map.df <- read_tsv("coverage/mapping_file.txt", col_types = "ff")
 
 #### 1.2 wrangle data
 
-As noted during the [coverage and taxonomy](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex11_coverage_and_taxonomy.md) exercises, it is important to remember that we currently have a table of coverage values for all *contigs* contained within each MAG. Since we're aiming to present coverage for each *MAG*, we need to reduced these contig coverages into a single mean coverage value per MAG per sample. 
+As noted during the [coverage and taxonomy](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex11_coverage_and_taxonomy.md) exercises, it is important to remember that we currently have a table of coverage values for all *contigs* contained within each MAG. Since we're aiming to present coverage for each *MAG*, we need to reduce these contig coverages into a single mean coverage value per MAG per sample. 
 
 In the following code, we first strip the `.bam` extensions off of our sample names. We will then leverage the fact that we added bin IDs to each of the contig headers earlier to re-extract the bin ID for each using `gsub`, use the `group_by()` function to group by `Bin`, and the `summarise()` function to return the per-sample mean coverage of each set of contigs contained within each bin. 
 
