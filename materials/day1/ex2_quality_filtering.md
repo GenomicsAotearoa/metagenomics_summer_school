@@ -6,7 +6,7 @@
 * Read trimming and adapter removal with `trimmomatic`
 * Diagnosing poor libraries
 * Understand common issues and best practices
-* *Optional*: Filtering out host DNA
+* *Optional*: Filtering out host DNA with `BBMap`
 
 ---
 
