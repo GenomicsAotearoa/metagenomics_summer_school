@@ -2,7 +2,7 @@
 
 ### Objectives
 
-* Calculate weighted and unweighted Bray-Curtis dissimilarity metrics and nMDS analyses in `R` based on per-sample coverage values
+* Calculate weighted and unweighted Bray-Curtis dissimilarity metrics and nMDS analyses in `R` 
 * Build nMDS plots in `R` using the `ggplot2` package.
 
 ---
