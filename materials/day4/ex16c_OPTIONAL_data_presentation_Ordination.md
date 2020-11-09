@@ -9,9 +9,9 @@
 
 ### Introduction
 
-A common method to investigate the relatedness of samples to one another is to calculate [ordinations](https://en.wikipedia.org/wiki/Ordination_(statistics)) and visualise in the form of a principal components analysis (PCA) or non-metric multidimensional scaling (nMDS) plot. In this exercise, we will calculate ordinations based on weighted and unweighted (binary) [Bray-Curtis dissimilarity](https://en.wikipedia.org/wiki/Bray%E2%80%93Curtis_dissimilarity) and present them in nMDS plots.
+A common method to investigate the relatedness of samples to one another is to calculate [ordinations](https://en.wikipedia.org/wiki/Ordination_(statistics)) and to visualise this in the form of a principal components analysis (PCA) or non-metric multidimensional scaling (nMDS) plot. In this exercise, we will calculate ordinations based on weighted and unweighted (binary) [Bray-Curtis dissimilarity](https://en.wikipedia.org/wiki/Bray%E2%80%93Curtis_dissimilarity) and present these in nMDS plots.
 
-The coverage tables generateed in earlier exercises have been copied to `11.data_presentation/coverage/` a for use in these exercises.
+The coverage tables generated in earlier exercises have been copied to `11.data_presentation/coverage/` a for use in these exercises.
 
 In addition to this, a simple mapping file has also been created (`11.data_presentation/coverage/mapping_file.txt`). This is a tab-delimited file listing each sample ID in the first column, and the sample "Group" in the second column (*Group_A*, *Group_B*, and *Group_C*). This grouping might represent, for example, three different sampling sites that we want to compare between. If you had other data (such as environmental measures, community diversity measures, etc.) that you wish to incorporate in other downstream analyses (such an fitting environmental variables to an ordination) you could also add new columns to this file and load them at the same time.
 
@@ -21,7 +21,7 @@ In addition to this, a simple mapping file has also been created (`11.data_prese
 
 ### 1. Import and wrangle data in *R*
 
-*NOTE: You will recognise that the first few steps will follow the same process as the previous exercise on [generating coverage heatmaps](https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/materials/day4/ex16b_data_presentation_Coverage.md). In practice, these two workflows can be combined to reduce the repitition.*
+*NOTE: You will recognise that the first few steps will follow the same process as the previous exercise on [generating coverage heatmaps](https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/materials/day4/ex16b_data_presentation_Coverage.md). In practice, these two workflows can be combined to reduce the repititive aspects.*
 
 #### 1.1 Set working directory, load *R* libraries, and import data
 
@@ -45,8 +45,6 @@ library(vegan)
 
 Import the coverage tables and mapping file. When importing the files, we will select only the information of use here and will do a few basic first data wrangling steps. From the coverage table, we will select the `contigName` column and each of the columns of coverage values (columns `sample[1-4].bam`). 
 
-~~For taxonomy, we will select the `user_genome` column (converted to `Bin` ID) and `classification` (coverated to `taxonomy`), and will also use `gsub` to extract just the taxonomic ranks of interest (in this case, we will extract the *class* to colour code MAGs in the heat map, and *genus* to add to MAG names in the plot), and to add `Unassigned` to any MAGs not assigned at these ranks. (*NOTE: to view a different taxonomic rank, you will need to change the two `mutate(taxonomy_class = gsub(...))` rows below accordingly*).~~
-
 ```R
 # bins coverage table
 cov_MAG <- read_tsv("coverage/bins_cov_table.txt") %>% 
@@ -56,15 +54,6 @@ cov_MAG <- read_tsv("coverage/bins_cov_table.txt") %>%
 cov_vir <- read_tsv("coverage/viruses_cov_table.txt") %>% 
   mutate(Contig = contigName) %>%
   select(c('Contig', ends_with('.bam'))) 
-
-## bins taxonomy table
-#tax_MAG <- read_tsv("coverage/gtdbtk.bac120.summary.tsv") %>% 
-#  mutate(Bin = gsub("(.*).filtered", "\\1", .$user_genome)) %>% 
-#  mutate(taxonomy = gsub(".*;c(.*);o.*", "class\\1", classification)) %>% 
-#  mutate(taxonomy = gsub("^class__$", "Unassigned", taxonomy)) %>% 
-#  mutate(taxonomy_genus = gsub(".*;g__(.*);.*", "\\1", classification)) %>% 
-#  mutate(taxonomy_genus = gsub("^$", "Unassigned", taxonomy_genus)) %>% 
-#  select(c('Bin', 'taxonomy', 'taxonomy_genus'))
 
 # mapping file (import both columns as factors: col_types set to factor, factor)
 map.df <- read_tsv("coverage/mapping_file.txt", col_types = "ff")
@@ -107,7 +96,7 @@ coverage.nmds.data.vir <- t(as.data.frame(select(cov_vir, contains("sample"))))
 
 ### 2. Calculate weighted and unweighted Bray-Curtis dissimilarity and nMDS using *R*
 
-It is often useful to examine ordinations based on both weighted and unweighted (binary) dissimilarity (or distance) metrics. Weighted metrics take into account the proportions or abundances of each variable (in our case, the coverage value of each bin or viral contig). This can be particularly useful for visualising broad shifts in overal community structure (while the membership of the community may remain relatively unchanged). Unweighted metrics are based on presence/absence alone, and can be useful for highlighting cases where the actual membership of communities differs (ignoring their relative proportions within the communities). 
+It is often useful to examine ordinations based on both weighted and unweighted (binary) dissimilarity (or distance) metrics. Weighted metrics take into account the proportions or abundances of each variable (in our case, the coverage value of each bin or viral contig). This can be particularly useful for visualising broad shifts in overall community structure (while the membership of the community may remain relatively unchanged). Unweighted metrics are based on presence/absence alone, and can be useful for highlighting cases where the actual membership of communities differs (ignoring their relative proportions within the communities). 
 
 Here we will use the functions `vegdist()` and `metaMDS()` from the `R` package `vegan` to generate weighted and unweighted Bray-Curtis dissimilarity matrices and nMDS solutions for the microbial bin data and viral contigs data. 
 
@@ -122,11 +111,11 @@ cov.bray.sol.MAG <- metaMDS(cov.bray.MAG, k=2, trymax=999)
 cov.bray.binary.MAG <- vegdist(coverage.nmds.data.MAG, method="bray", binary=TRUE, diag=FALSE, upper=FALSE, na.rm=FALSE)
 cov.bray.binary.sol.MAG <- metaMDS(cov.bray.binary.MAG, k=2, trymax=999)
 
-# Bins: weighted Bray-Curtis
+# Viruses: weighted Bray-Curtis
 cov.bray.vir <- vegdist(coverage.nmds.data.vir, method="bray", binary=FALSE, diag=FALSE, upper=FALSE, na.rm=FALSE)
 cov.bray.sol.vir <- metaMDS(cov.bray.vir, k=2, trymax=999)
 
-# Bins: unweighted (binary) Bray-Curtis
+# Viruses: unweighted (binary) Bray-Curtis
 cov.bray.binary.vir <- vegdist(coverage.nmds.data.vir, method="bray", binary=TRUE, diag=FALSE, upper=FALSE, na.rm=FALSE)
 cov.bray.binary.sol.vir <- metaMDS(cov.bray.binary.vir, k=2, trymax=999)
 ```
@@ -137,7 +126,7 @@ cov.bray.binary.sol.vir <- metaMDS(cov.bray.binary.vir, k=2, trymax=999)
 
 #### 3.1 Select the data set
 
-From here, the process is identical for each of the different analyses calculated above (based on weighted and unweighted Bray-Curtis for both microbial bin (MAG) data and viral contig data). In the first step, we are simply setting up which data set we are wishing to plot (bin or viral data, weighted or unweighted Bray-Curtis dissimilarity). The same process can then be re-run for each data set by changing *both* of the data.frames being read into these `bray.dist` and `bray.sol` variables.
+From here, the process is identical for each of the different analyses calculated above (based on weighted and unweighted Bray-Curtis for both microbial bin (MAG) data and viral contig data). In the first step, we are simply setting up which data set we are wishing to plot (bin or viral data, weighted or unweighted Bray-Curtis dissimilarity). The same process can then be re-run for each data set by changing *both* of the data.frames being read into these `bray.dist` and `bray.sol` variables (copy the relevant data.frame names from the section above).
 
 ```bash
 bray.dist <- cov.bray.MAG
@@ -146,7 +135,7 @@ bray.sol <- cov.bray.sol.MAG
 
 #### 3.2 Create the nMDS data.frame
 
-Now, create a data.frame that includes each of the nMDS X and Y points (scores) for each sample, and merge with the mapping file to add the sample group information (i.e. whether samples are from GroupA, GroupB, and GroupC).
+Now, create a data.frame that includes each of the nMDS X and Y points (NMDS1 and NMDS2 scores) for each sample, and merge with the mapping file to add the sample group information (i.e. whether samples are from *GroupA*, *GroupB*, or *GroupC*).
 
 ```bash
 sol.scrs <- data.frame(
@@ -159,9 +148,9 @@ merge(., map, by = "SampleID", type = "full")
 
 #### 3.3 build the plot
 
-Finally, build the nMDS using the [ggplot2](https://ggplot2.tidyverse.org/) package. Note that `ggplot`s are based on the principle of layering various aspects of a plot on top of each other in sequential calls. Getting familair with the functionality of `ggplot`s is incredibly useful for visualising many different types of data sets in a variety of different formats. 
+Finally, build the nMDS plot using the [ggplot2](https://ggplot2.tidyverse.org/) package. Note that `ggplot`s are based on the principle of layering various aspects of a plot on top of each other in sequential calls. Getting familair with the functionality of `ggplot`s is incredibly useful for visualising many different types of data sets in a variety of different formats. 
 
-First, set the plot theme elements (via the `theme()` function) and the colour palette for the sample grouping. 
+First, set the plot theme elements (via the `theme()` function), and the colour palette for the sample grouping. 
 
 ```
 theme_Ordination <- theme(
@@ -203,14 +192,14 @@ Now, build the plot. In this function, we:
     geom_point(size = 2.5, aes(col = Group)) +
     coord_fixed() +
     geom_text(data=NULL, x=Inf, y =Inf, vjust=2.4, hjust=1.2, size=2.5, colour="black", fontface="italic", label=paste("Stress =", round(bray.sol$stress, digits=4))) +
-    scale_color_manual(values = salinity.col) +
+    scale_color_manual(values = group.cols) +
     ylab("nMDS2") + xlab("nMDS1") +
     theme_Ordination)
 ```
 
-#### 3.4 Write the plot to file
+#### 3.4 Save the plot to file
 
-*NOTE: ensure to change the file output name in the first line below for each different data set run through the above commands*
+*NOTE: change the file output name in the first line below for each different data set run through the above commands*
 
 ```bash
 tiff("nMDS_MAGs_weighted.tiff", width=17, height=17, units="cm", res=300)
@@ -220,6 +209,15 @@ dev.off()
 
 Repeat the steps in "**3. Build nMDS plots in *R* using the *ggplot2* package**" above, each time inputting a different data set (bin or viral data, weighted or unweighted Bray-Curtis dissimilarity) into the `bray.dist` and `bray.sol` variables in the section, "**3.1 Select the data set**".
 
-*NOTE: It is often valuable to follow these visualisations up with tests for beta-dispersion (whether or not sample groups have a comparable **spread** to one another) and, provided that beta-dispersion is not significantly different between groups, PERMANOVA tests (the extent to which the variation in the data can be explained by a given variable (such as sample groups or other environmental factors). Beta-dispersion can be calculated using the  `betadisper()` function from the `vegan` package (passing the `bray.dist` data and the `map$Group` variable to group by), followed by `anova()`, `permutest()`, or `TukeyHSD()` tests of differences between the groups on the generated `betadisper` output. PERMANOVA tests can be conducted via the `adonis()` function from the `vegan` package (e.g. via: `adonis(bray.dist ~ Group, data=map, permutations=999, method="bray")`.*
+
+
+
+---
+
+### Follow-up analyses
+
+It is often valuable to follow these visualisations up with tests for beta-dispersion (whether or not sample groups have a comparable *spread* to one another) and, provided that beta-dispersion is not significantly different between groups, PERMANOVA tests (the extent to which the variation in the data can be explained by a given variable (such as sample groups or other environmental factors, based on differences between the *centroids* of each group). 
+
+Beta-dispersion can be calculated using the  `betadisper()` function from the `vegan` package (passing the `bray.dist` data and the `map$Group` variable to group by), followed by `anova()`, `permutest()`, or `TukeyHSD()` tests of differences between the groups (by inputting the generated `betadisper` output). PERMANOVA tests can be conducted via the `adonis()` function from the `vegan` package (for example, via: `adonis(bray.dist ~ Group, data=map, permutations=999, method="bray")`.
 
 ---
