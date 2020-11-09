@@ -8,7 +8,9 @@
 
 ### Build a basic heatmap from annotation data using *R*
 
-For this exercise, navigate into the `11.data_presentation/cazy_heatmap/` directory. These annotation files we will be using have been pre-computed by annotating the `prodigal` gene predictions against the [CAZy](http://www.cazy.org/) database using the [dbCAN](http://bcb.unl.edu/dbCAN2/) resource. Briefly, each annotation was made by:
+To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and open a `Notebook` running the `R 4.0.1` module as the kernel (or, outside the context of this workshop, open `RStudio` with the required packages installed (see the [data presentation intro](https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/materials/day4/ex16a_data_presentation_Intro.md) docs for more information)).
+
+For this exercise, set `11.data_presentation/cazy_heatmap/` as the working directory. These annotation files we will be using have been pre-computed by annotating the `prodigal` gene predictions against the [CAZy](http://www.cazy.org/) database using the [dbCAN](http://bcb.unl.edu/dbCAN2/) resource. Briefly, each annotation was made by:
 
 1. Annotating each `prodigal` output against the **dbCAN** database using `hmmer`
 1. Converting the raw `hmmer` output into a table using the `hmmscan-parser.py` script that bundles with **dbCAN**
@@ -27,6 +29,8 @@ The first thing we need to do is import these annotations into `R`. We will do t
 First, we import our `R` libraries with the `library()` command. For this workflow, we need three libraries from the `tidyverse` package:
 
 ```R
+setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/cazy_heatmap/')
+
 library(dplyr)
 library(tidyr)
 library(tibble)
