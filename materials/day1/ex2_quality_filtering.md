@@ -216,7 +216,7 @@ Whether a library is 'poor' quality or not can be a bit subjective. These are so
 
 Metagenome data derived from microbial communities associated with a host should ideally be filtered to remove any reads originating from host DNA. This may improve the quality and efficiency of downstream data processing (since we will no longer be processing a bunch of data that we are likely not interested in), and is also an important consideration when working with metagenomes that may include data of a sensitive nature (and which may also need to be removed prior to making the data publicly available). This is especially important for any studies involving human subjects or those involving samples derived from Taonga species.
 
-There are several programs for doing this. The general principle is to map your reads to a reference genome (e.g. human genome) and remove those reads that map to the reference from the dataset. 
+There are several approaches that can be used to achieve this. The general principle is to map your reads to a reference genome (e.g. human genome) and remove those reads that map to the reference from the dataset. 
 
 *NOTE: This process may be more complicated if a reference genome for your host taxa is not readily available. In this case an alternative method would need to be employed (for example: predicting taxonomy via Kraken2 and then filtering out all reads that map to the pylum or kingdom of your host taxa).*
 
