@@ -214,7 +214,7 @@ Whether a library is 'poor' quality or not can be a bit subjective. These are so
 
 ### *Optional*: Filtering out host DNA
 
-Metagenome data for microbial communities associated with a host should ideally be filtered to remove any reads originating from host DNA. This may improve the quality and efficiency of downstream data processing (since we will remove data that we are likely not interested in), and is also an important consideration when working with data that may be sensitive (and which may also need to be removed prior to making the data set publicly available). This is especially important for any studies involving human subjects or those involving samples derived from Taonga species.
+Metagenome data derived from microbial communities associated with a host should ideally be filtered to remove any reads originating from host DNA. This may improve the quality and efficiency of downstream data processing (since we will remove data that we are likely not interested in), and is also an important consideration when working with data that may be sensitive (and which may also need to be removed prior to making the data set publicly available). This is especially important for any studies involving human subjects or those involving samples derived from Taonga species.
 
 There are several programs for doing this. The general principle is to map your reads to a reference genome (e.g. human genome) and remove those reads that map to the reference from the dataset. 
 
