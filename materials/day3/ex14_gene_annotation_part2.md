@@ -85,6 +85,7 @@ To run this exercise we first need to set up a slurm job. We will use the result
 #!/bin/bash -e
 #SBATCH -J DRAM_annotation
 #SBATCH -A nesi02659
+#SBATCH --res SummerSchool
 #SBATCH --time=6:00:00
 #SBATCH --mem=50Gb
 #SBATCH -e <login_name>.slurm-DRAM_annot.%A-%a.err 
