@@ -53,6 +53,8 @@ Fortunately, if you're currently using the terminal within `Jupyter hub` for tod
 * Click through `MGSS_2020`, into your folder, and then into the `2.fastqc/` folder. 
 * Double click on the output `...fastqc.html` files to open them in the a new tab within the `Jupyter hub`.
 
+Examples of the output files are also available for download [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/fastqc_results.zip).
+
 Note that `FastQC` does not load the forward and reverse pairs of a library in the same window, so you need to be mindful of how your samples relate to each other. 
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig1_overview.PNG)
