@@ -92,10 +92,10 @@ To run this exercise we first need to set up a slurm job. We will use the result
 #SBATCH -J DRAM_annotation
 #SBATCH -A nesi02659
 #SBATCH --res SummerSchool
-#SBATCH --time=6:00:00
-#SBATCH --mem=50Gb
-#SBATCH -e <login_name>.slurm-DRAM_annot.%A-%a.err 
-#SBATCH -o <login_name>.slurm-DRAM_annot.%A-%a.out 
+#SBATCH --time=5:00:00
+#SBATCH --mem=20Gb
+#SBATCH -e slurm-DRAM_annot.%A-%a.err 
+#SBATCH -o slurm-DRAM_annot.%A-%a.out 
 
 cd /nesi/project/nesi02659/.conda/dramdbsetup
 
