@@ -61,16 +61,7 @@ diamond help
 # ...
 ```
 
-There are two output formats we can chose from which are useful for our analysis. We will obtain our output in the BLAST tabular format, which provides the annotation information in a simple-to-parse text file that can be viewed in any text or spreadsheet viewing tool. This will allow us to investigate and evaluate the quality of our annotations. For now, just annotate a single bin:
-
-```bash
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
-
-diamond blastp -p 1 --db /nesi/nobackup/nesi02659/MGSS_resources/databases/NCBI_nr_2016.dmnd \
-               --max-target-seqs 5 --evalue 0.001 \
-               -q predictions/bin_0.filtered.genes.no_metadata.faa \
-               --outfmt 6 -o bin_0.diamond.txt
-```
+There are two output formats we can chose from which are useful for our analysis. We will obtain our output in the BLAST tabular format, which provides the annotation information in a simple-to-parse text file that can be viewed in any text or spreadsheet viewing tool. This will allow us to investigate and evaluate the quality of our annotations. 
 
 Awkwardly, `diamond` does not provide the headers for what the columns in the output table mean. [This table](http://www.metagenomics.wiki/tools/blast/blastn-output-format-6) is a handy reference for how to interpret the output.
 
