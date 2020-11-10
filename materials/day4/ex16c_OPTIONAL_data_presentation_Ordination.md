@@ -134,31 +134,9 @@ cov.bray.binary.sol.vir <- metaMDS(cov.bray.binary.vir, k=2, trymax=999)
 
 ### 3. Build nMDS plots in *R* using the *ggplot2* package.
 
-#### 3.1 Select the data set
+#### 3.1 Set the `ggplot` plot theme and sample groups colour palette
 
-From here, the process is identical for each of the different analyses calculated above (based on weighted and unweighted Bray-Curtis for both microbial bin (MAG) data and viral contig data). In the first step, we are simply setting up which data set we are wishing to plot (bin or viral data, weighted or unweighted Bray-Curtis dissimilarity). The same process can then be re-run for each data set by changing *both* of the data.frames being read into these `bray.dist` and `bray.sol` variables (copy the relevant data.frame names from the section above).
-
-```bash
-bray.dist <- cov.bray.MAG
-bray.sol <- cov.bray.sol.MAG
-```
-
-#### 3.2 Create the nMDS data.frame
-
-Now, create a data.frame that includes each of the nMDS X and Y points (NMDS1 and NMDS2 scores) for each sample, and merge with the mapping file to add the sample group information (i.e. whether samples are from *GroupA*, *GroupB*, or *GroupC*).
-
-```bash
-sol.scrs <- data.frame(
-  SampleID = dimnames(bray.sol$points)[[1]],
-  NMDS1 = bray.sol$point[,1],
-  NMDS2 = bray.sol$point[,2]
-) %>%
-merge(., map.df, by = "SampleID", type = "full") 
-```
-
-#### 3.3 build the plot
-
-Finally, build the nMDS plot using the [ggplot2](https://ggplot2.tidyverse.org/) package. Note that `ggplot`s are based on the principle of layering various aspects of a plot on top of each other in sequential calls. Getting familair with the functionality of `ggplot`s is incredibly useful for visualising many different types of data sets in a variety of different formats. 
+We will build the nMDS plot using the [ggplot2](https://ggplot2.tidyverse.org/) package. Note that `ggplot`s are based on the principle of layering various aspects of a plot on top of each other in sequential calls. Getting familair with the functionality of `ggplot`s is incredibly useful for visualising many different types of data sets in a variety of different formats. 
 
 First, set the plot theme elements (via the `theme()` function), and the colour palette for the sample grouping. 
 
@@ -185,7 +163,40 @@ theme_Ordination <- theme(
 group.cols = c('#71dfdf', '#3690b8', '#00429d')
 ```
 
-Now, build the plot. In this function, we:
+#### 3.2 Select the data set
+
+From here, the process is identical for each of the different analyses calculated above (based on weighted and unweighted Bray-Curtis for both microbial bin (MAG) data and viral contig data). In the first step, we are simply setting up which data set we are wishing to plot (bin or viral data, weighted or unweighted Bray-Curtis dissimilarity). The same process can then be re-run for each data set by changing *both* of the data.frames being read into these `bray.dist` and `bray.sol` variables (copy the relevant data.frame names from the section above, or un-comment the relevant lines below).
+
+```bash
+bray.dist <- cov.bray.MAG
+bray.sol <- cov.bray.sol.MAG
+
+#bray.dist <- cov.bray.binary.MAG
+#bray.sol <- cov.bray.binary.sol.MAG
+
+#bray.dist <- cov.bray.vir
+#bray.sol <- cov.bray.sol.vir
+
+#bray.dist <- cov.bray.binary.vir
+#bray.sol <- cov.bray.binary.sol.vir
+```
+
+#### 3.3 Create the nMDS data.frame
+
+Now, create a data.frame that includes each of the nMDS X and Y points (NMDS1 and NMDS2 scores) for each sample, and merge with the mapping file to add the sample group information (i.e. whether samples are from *GroupA*, *GroupB*, or *GroupC*).
+
+```bash
+sol.scrs <- data.frame(
+  SampleID = dimnames(bray.sol$points)[[1]],
+  NMDS1 = bray.sol$point[,1],
+  NMDS2 = bray.sol$point[,2]
+) %>%
+merge(., map.df, by = "SampleID", type = "full") 
+```
+
+#### 3.4 build the plot
+
+Finally, build the plot using `ggplot`. In this function, we:
 
 * load the data into `ggplot()`, setting `x` and `y` axes data as the `NMDS1` and `NMDS2` columns from the `sol.scrs` data.frame
 * plot the sample points using the `geom_point()` function, and also set the colour aesthetic to be based on the sample group (`Group`) from the mapping file information
@@ -217,7 +228,7 @@ NMDS.plot
 dev.off()
 ```
 
-Repeat the steps in "**3. Build nMDS plots in *R* using the *ggplot2* package**" above, each time inputting a different data set (bin or viral data, weighted or unweighted Bray-Curtis dissimilarity) into the `bray.dist` and `bray.sol` variables in the section, "**3.1 Select the data set**".
+Repeat the steps above (from 3.2 onwards), each time inputting a different data set (bin or viral data, weighted or unweighted Bray-Curtis dissimilarity) into the `bray.dist` and `bray.sol` variables in the section "**3.2 Select the data set**".
 
 #### Outputs:
 
