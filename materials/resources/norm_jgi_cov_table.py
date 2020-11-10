@@ -70,6 +70,9 @@ for column in cov_table.columns[cov_table.columns.str.endswith('bam')]:
     cov_table.loc[:, column] = round((cov_table.loc[:, column] / read_counts[i]) * avg_read_counts, 4)
     i += 1
 
+# Subset cov_table to retain only the columns of interest
+cov_table = cov_table.loc[:, (['contigName', 'contigLen'] + cov_table.columns[cov_table.columns.str.endswith('bam')].tolist())]
+
 # Write output table to file
 cov_table.to_csv(args.out_path+'normalised_'+args.cov_table_in, sep='\t', index=False)
 
@@ -77,4 +80,6 @@ print("Output:\r\n")
 print(args.out_path+'normalised_'+args.cov_table_in+' : coverage table output from jgi_summarize_bam_contig_depths, normalised by average sample read depth.\r\n')
 print("Completed norm_jgi_cov_table.py\r\n")
 
-
+####################
+# END
+####################
