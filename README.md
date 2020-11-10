@@ -22,7 +22,7 @@ A few helpful commands and shortcuts for working in `bash` or with `slurm` can b
 
 #### Snapshots of results to download
 
-If you are having trouble downloading files using `scp`, we are providing exemplar output files, which you can download through your browser, [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/tree/master/materials/resources). These include: 
+If you are having trouble downloading files using `scp`, we are providing exemplar output files, which you can download through your browser, [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/tree/master/materials/resources), or via the following links: 
 
 * [FastQC results](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/fastqc_results.zip)
 * [Quast results](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/quast_results.zip)
