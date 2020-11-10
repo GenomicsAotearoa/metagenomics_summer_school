@@ -205,7 +205,7 @@ Finally, build the plot using `ggplot`. In this function, we:
 * Add x- and y-axis labels
 * Modify various visual aspects of the plot using the `theme()` function (as set in the `theme_Ordination` variable above)
 * Save this into the variable `NMDS.plot`
-* *NOTE: here we are also surrounding the entire call in parentheses (`(...)`). This tells `R` to both save the plot in the variable `NMDS.plot` **and** also output the plot to the visualisation pane in `RStudio` or the `Jupyter Notebook`. Omitting the parentheses would result in saving to `NMDS.plot` but not also opening the plot.*
+* *NOTE: here we are also surrounding the entire call in parentheses (`(...)`). This tells `R` to both save the plot in the variable `NMDS.plot` and **also** output the plot to the visualisation pane in `RStudio` or the `Jupyter Notebook`. Omitting the parentheses would result in saving to `NMDS.plot` but not viewing the plot.*
 
 ```bash
 (NMDS.plot <- ggplot(sol.scrs, aes(NMDS1, NMDS2)) +
@@ -229,7 +229,9 @@ dev.off()
 
 Repeat the steps above (from 3.2 onwards), each time inputting a different data set (bin or viral data, weighted or unweighted Bray-Curtis dissimilarity) into the `bray.dist` and `bray.sol` variables in the section "**3.2 Select the data set**".
 
-#### Outputs:
+---
+
+### nMDS figures: example outputs
 
 *NOTE: How informative these types of analyses are depends in part on the number of samples you actually have and the degree of variation between the samples. As you can see in the nMDS plots based on unweighted (binary) Bray-Curtis dissimilarities (especially for the MAGs data) there are not enough differences between any of the samples (in this case, in terms of community membership, rather than relative abundances) for this to result in a particularly meaningful or useful plot in these cases.*
 
