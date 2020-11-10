@@ -131,7 +131,7 @@ cov.bray.binary.sol.vir <- metaMDS(cov.bray.binary.vir, k=2, trymax=999)
 
 ### 3. Build nMDS plots in *R* using the *ggplot2* package.
 
-#### 3.1 Set the `ggplot` plot theme and sample groups colour palette
+#### 3.1 Set the *ggplot* plot theme and sample groups colour palette
 
 We will build the nMDS plot using the [ggplot2](https://ggplot2.tidyverse.org/) package. Note that `ggplot`s are based on the principle of layering various aspects of a plot on top of each other in sequential calls. Getting familair with the functionality of `ggplot`s is incredibly useful for visualising many different types of data sets in a variety of different formats. 
 
