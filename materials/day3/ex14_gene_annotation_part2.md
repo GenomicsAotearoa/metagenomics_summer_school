@@ -66,7 +66,15 @@ In default annotation mode, `DRAM` takes as only input the directory containing 
 *NOTE: due to the increased memory requirements, UniRef90 database is not default and the flag `–use_uniref` should be specified in order to search amino acid sequences against UniRef90. In this exercise, due to memory and time constraints, we won't be using UniRef90 database.*
 
 ```bash
-module load DRAM
+
+module purge
+module load Miniconda3/4.8.3
+module load gimkl/2020a
+
+export CONDA_PKGS_DIRS=/nesi/project/nesi02659/.conda/pkgs
+export CONDA_ENVS_PATH=/nesi/project/nesi02659/.conda/envs
+
+source activate DRAM
 
 DRAM.py --help
 
@@ -86,6 +94,8 @@ DRAM.py --help
 ```
 
 To run this exercise we first need to set up a slurm job. We will use the results for tomorrow's distillation step. 
+*NOTE: Currently DRAM has to be run from the directory where* ```DRAM-setup.py``` *was ran in order to work, that is why we start the slurm script with* ```cd /nesi/project/nesi02659/.conda/dramdbsetup```
+
 
 ```bash
 #!/bin/bash -e
