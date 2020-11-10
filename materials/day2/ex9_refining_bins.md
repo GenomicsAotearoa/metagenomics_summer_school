@@ -69,7 +69,7 @@ We can now use these files in `VizBin` to curate the contigs in our bins. We wil
 
 * Download `VizBin-dist.jar` from [here](https://github.com/claczny/VizBin/releases/tag/v1.0.0)
 * You may also need to [install Java locally](https://www.java.com/en/download/manual.jsp) (choose the relevant version for your machine).
-* Download the required files from NeSI to your machine (via `scp` or right-click > download, within the `Jupyter hub`).
+* Download the required files from NeSI to your machine (via `scp`, or right-click > download, from within the `Jupyter hub`), or download the example files from [this link](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/vizbin_files.zip).
 * Double-click `VizBin-dist.jar` to open `VizBin`, and then follow the steps below.
 
 **OR**
