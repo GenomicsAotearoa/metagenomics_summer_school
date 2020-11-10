@@ -30,7 +30,7 @@ You can find a copy of the slides presented during the workshop, with published 
 
 #### Etherpad
 
-We will be using a collaborative document to share long code, results, or even code errors. This document can be found [here](https://etherpad.wikimedia.org/p/MGSS_17_11_20). or type https://etherpad.wikimedia.org/p/MGSS_17_11_20
+We will be using a collaborative document to share long code, results, or even code errors. This document can be found [here](https://etherpad.wikimedia.org/p/MGSS_17_11_20) or type https://etherpad.wikimedia.org/p/MGSS_17_11_20 in your browser.
 
 ---
 
