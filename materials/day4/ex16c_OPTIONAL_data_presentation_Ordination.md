@@ -219,17 +219,17 @@ dev.off()
 
 Repeat the steps in "**3. Build nMDS plots in *R* using the *ggplot2* package**" above, each time inputting a different data set (bin or viral data, weighted or unweighted Bray-Curtis dissimilarity) into the `bray.dist` and `bray.sol` variables in the section, "**3.1 Select the data set**".
 
-#### Outputs
+#### Outputs:
 
 *NOTE: How informative these types of analyses are depends in part on the number of samples you actually have and the degree of variation between the samples. As you can see in the nMDS plots based on unweighted (binary) Bray-Curtis dissimilarities (especially for the MAGs data) there are not enough differences between any of the samples (in this case, in terms of community membership, rather than relative abundances) for this to result in a particularly meaningful or useful plot in these cases.*
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_fig1_nMDS_MAGs_weighted.png)
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_fig1_nMDS_MAGs_weighted.png)
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_fig2_nMDS_MAGs_unweighted.png)
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_fig2_nMDS_MAGs_unweighted.png)
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_fig3_nMDS_Vir_weighted.png)
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_fig3_nMDS_Vir_weighted.png)
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_fig4_nMDS_Vir_unweighted.png)
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_fig4_nMDS_Vir_unweighted.png)
 
 ---
 
