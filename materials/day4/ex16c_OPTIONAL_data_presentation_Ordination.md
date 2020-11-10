@@ -162,7 +162,9 @@ group.cols = c('#71dfdf', '#3690b8', '#00429d')
 
 #### 3.2 Select the data set
 
-From here, the process is identical for each of the different analyses calculated above (based on weighted and unweighted Bray-Curtis for both microbial bin (MAG) data and viral contig data). In the first step, we are simply setting up which data set we are wishing to plot (bin or viral data, weighted or unweighted Bray-Curtis dissimilarity). The same process can then be re-run for each data set by changing *both* of the data.frames being read into these `bray.dist` and `bray.sol` variables (copy the relevant data.frame names from the section above, or un-comment the relevant lines below).
+From here, the process is identical for each of the different analyses calculated above (based on weighted and unweighted Bray-Curtis for both microbial bin (MAG) data and viral contig data). 
+
+In this first step, we are simply setting up which data set we are wishing to plot (bin or viral data, weighted or unweighted Bray-Curtis dissimilarity). The same process can then be re-run for each data set by changing *both* of the data.frames being read into these `bray.dist` and `bray.sol` variables (copy the relevant data.frame names from the section above, or un-comment the relevant lines below).
 
 ```bash
 bray.dist <- cov.bray.MAG
