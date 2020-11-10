@@ -172,9 +172,9 @@ plot(cov_clus.avg.col, hang = -1, cex = 1.5)
 plot(cov_clus.avg.row, hang = -1, cex = 1.5)
 ```
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_MAGs_BC_hclust_Samples.png)
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_MAGs_BC_hclust_Samples.png)
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_MAGs_BC_hclust_MAGs.png)
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_MAGs_BC_hclust_MAGs.png)
 
 If you wish to write these to file, we can wrap them in the `png(...)` and `dev.off()` lines, as below (this is true of all of the figures we will be generating):
 
@@ -283,7 +283,7 @@ legend("bottomright",
 #dev.off()
 ```
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_MAGs_heatmap.png)
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_MAGs_heatmap.png)
 
 Some quick take-aways from looking at this plot:
 
@@ -516,6 +516,6 @@ legend("bottomright",
 
 ```
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_Viruses_heatmap.png)
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_Viruses_heatmap.png)
 
 ---
