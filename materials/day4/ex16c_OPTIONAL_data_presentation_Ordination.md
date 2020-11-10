@@ -33,15 +33,12 @@ First, set the working directory and load the required libraries.
 setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/')
 
 # tidyverse libraries 
-#library(tidyr)
 library(dplyr)
 library(readr)
 library(stringr)
-#library(tibble)
 library(ggplot2)
 
 # Other libraries
-#library(gplots)
 library(vegan)
 ```
 
