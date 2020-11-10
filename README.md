@@ -27,7 +27,7 @@ If you are having trouble downloading files using `scp`, we are providing exempl
 * [FastQC results](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/fastqc_results.zip)
 * [Quast results](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/quast_results.zip)
 * [Input files for VizBin](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/vizbin_files.zip)
-* [An annotations table]()
+* [Table of gene annotations]()
 * [DRAM output files]()
 
 #### Slides for workshop
