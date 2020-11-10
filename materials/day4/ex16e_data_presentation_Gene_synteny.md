@@ -78,7 +78,7 @@ We will now use these tables, together with the annotation tables to create the 
 
 #### Part 2 - Producing the figure in *R*
 
-First, move back to the [Jupyter hub Notebook](https://jupyter.nesi.org.nz/hub/login) pane where we have `R` running as the kernel (or relaunch a new `R 4.0.1` Notebook). (Outside the context of this workshop, open `RStudio` with the required packages installed (see the [data presentation intro](https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/materials/day4/ex16a_data_presentation_Intro.md) docs for more information)).
+First, move back to the [Jupyter hub Notebook](https://jupyter.nesi.org.nz/hub/login) pane where we have `R` running as the kernel (or relaunch a new `R 4.0.1` Notebook). (Outside the context of this workshop, open `RStudio` with the required packages installed (see the [data presentation intro](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16a_data_presentation_Intro.md) docs for more information)).
 
 There are two `R` libaries we need to load for this exercise.
 
