@@ -107,6 +107,9 @@ To run this exercise we first need to set up a slurm job. We will use the result
 #SBATCH --mem=20Gb
 #SBATCH -e slurm-DRAM_annot.%A-%a.err 
 #SBATCH -o slurm-DRAM_annot.%A-%a.out 
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 cd /nesi/project/nesi02659/.conda/dramdbsetup
 
