@@ -1,4 +1,4 @@
-### How to generate the blast files provided in ex15_gene_synteny
+### How to generate the blast files provided in [ex15_gene_synteny](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16e_data_presentation_Gene_synteny.md)
 
 There are several ways of getting the blast files. `genoplotR` can read tabular files: either user-generated tab files (read_comparison_from_tab), or from BLAST output (read_comparison_from_blast). To produce files that are readable by genoPlotR, the `-m` 8 or 9 option should be used in blastall, or `-outfmt` 6 or 7 with the BLAST+ suite.
 
