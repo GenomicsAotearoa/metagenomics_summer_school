@@ -65,7 +65,7 @@ map.df <- read_tsv("coverage/mapping_file.txt", col_types = "ff")
 
 As noted during the [coverage and taxonomy](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex11_coverage_and_taxonomy.md) exercises, for the bin data it is important to remember that we currently have a table of coverage values for all *contigs* contained within each bin (MAG). Since we're aiming to present coverage for each *MAG*, we need to reduce these contig coverages into a single mean coverage value per MAG per sample. 
 
-In the following code, we first strip the `.bam` extensions off of our sample names. For the bin data, we will then leverage the fact that we added bin IDs to each of the contig headers earlier to re-extract the bin ID for each using `gsub`, use the `group_by()` function to group by `Bin`, and the `summarise()` function to return the per-sample mean coverage of each set of contigs contained within each bin (these steps are not necessary for the viral contig data).
+In the following code, we first strip the `.bam` extensions off of our sample names. For the bin data, we will then leverage the fact that we added bin IDs to each of the contig headers earlier to re-extract the bin ID for each using `gsub`, use the `group_by()` function to group by `Bin`, and the `summarise()` function to return the per-sample mean coverage of each set of contigs contained within each bin (these grouping steps are not necessary for the viral contig data).
 
 ```R
 # Bins data: Extract BinID, group by Bin, calculate mean coverages for each set of contigs per Bin
