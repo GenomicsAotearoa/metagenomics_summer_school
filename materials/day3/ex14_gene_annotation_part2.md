@@ -94,6 +94,7 @@ DRAM.py --help
 ```
 
 To run this exercise we first need to set up a slurm job. We will use the results for tomorrow's distillation step. 
+
 *NOTE: Currently DRAM has to be run from the directory where* ```DRAM-setup.py``` *was ran in order to work, that is why we start the slurm script with* ```cd /nesi/project/nesi02659/.conda/dramdbsetup```
 
 
