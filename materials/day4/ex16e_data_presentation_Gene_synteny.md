@@ -230,7 +230,7 @@ plot_gene_map(dna_segs = list(bin_4_ds,bin_5_ds,bin_7_ds),
 #dev.off()
 ```
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_gene_synteny_fig1.png)
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_gene_synteny_fig1.png)
 
 *NOTE: While we do have control over the colours of the arrows via setting the `bin_n_ds$col` and `bin_n_ds$fill` parameters for each contig (as above), unfortunately there appears to be little flexibility within the `plot_gene_map()` function for setting the colours of the segments joining the arrows (the current options are limited to 'red_blue', 'blue_red', and 'grey').*
 
@@ -268,7 +268,7 @@ plot_gene_map(dna_segs = list(bin_4_ds,bin_5_ds,bin_7_ds),
 ```
 
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_gene_synteny_fig2.png)
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_gene_synteny_fig2.png)
 
 
 All done! We can see here that compared to bin_5 and bin_7 the following differences are apparent in the gene operon for bin_4:
