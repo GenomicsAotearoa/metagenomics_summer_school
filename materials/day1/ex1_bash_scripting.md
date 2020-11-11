@@ -18,18 +18,7 @@
 
 ### Navigating your file system
 
-To get started, log in to NeSI's `Jupyter hub` space via a standard browser at [jupyter.nesi.org.nz/hub/login](https://jupyter.nesi.org.nz/hub/login). You will need to enter your NeSI user name, NeSI password, and two-factor authentication.
-
-Select `Genomics Aotearoa Virtual Lab Training Access (nesi02659)` as the project, and select walltime of 8 hours. For now, leave the rest of the options at the default settings.
-
-To launch a standard **terminal** within the NeSI Jupyter hub:
-
-* click on the `+` button in the top left of the screen (directly below the `File` drop-down menu) to bring up the `Jupyter` launcher window
-* launch the terminal using the bottom at the bottom left of the pane (under "Other"). 
-
-By default, `Jupyter` will take you to the project folder but for this exercise we will use the home directory therefore navigate to the home directory.
-
-Find the current location by running the command `pwd` which stands for *print working directory*. At any given time, **current working directory** is current default directory.
+Log in to NeSI and find the current location by running the command `pwd` which stands for *print working directory*. At any given time, **current working directory** is current default directory.
 
 ```bash
 pwd
