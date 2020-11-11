@@ -203,7 +203,7 @@ In this case, the mock metagenome data we have been working with are already of 
 
 The script `norm_jgi_cov_table.py` is available in the folder `8.coverage_and_taxonomy/`, and is also available for download for future reference at [this link](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/scripts/norm_jgi_cov_table.py). 
 
-*NOTE: This script was developed as a simple example for this workshop. It has not yet been widely tested: it is recommended in early usage to manually check a few values to ensure the conversions in the output file are as expected.
+*NOTE: This script was developed as a simple example for this workshop. It has not yet been widely tested: it is recommended in early usage to manually check a few values to ensure the conversions in the output file are as expected.*
 
 In brief, this `python` script leverages the fact that the standard error output from `bowtie2` includes read counts for each sample. This has been saved in `mapping_filtered_bins.err`, as per the slurm script that was submitted for the read mapping step. Note that, since we know the order that `bowtie2` processed the samples (based on the loop we provided to `bowtie2`: `for i in sample1 sample2 sample3 sample4`), we know that the read count lines in the output error file will appear in the same order. We can therefore iterate through each of these lines, extracting the individual sample read count each time. These values are then used to calculate the average read depth for all samples. Coverage values (in each of the `*.bam` columns) are normalised for each sample based on: `(coverage / sample_read_depth) * average_read_depth`. Finally, this is saved to the new file with the prefix 'normalised_' (e.g. `normalised_bins_cov_table.txt`).
 
@@ -220,7 +220,7 @@ Run `norm_jgi_cov_table.py` for microbial bins data and viral contigs, inputting
 * A. the `bins_cov_table.txt` and `mapping_filtered_bins.err` files
 * B. the `viruses_cov_table.txt` and `mapping_filtered_viruses.err` files. 
 
-This will generate the outputs `normalised_bins_cov_table.txt` and `normalised_bins_cov_table.txt`. 
+This will generate the outputs `normalised_bins_cov_table.txt` and `normalised_viruses_cov_table.txt`. 
 
 *NOTE: If this `python` script is in the directory you are currently in, you can call it simply by adding `./` in front of the script name. If you have saved the script elsewhere, you will need to add the absolute path to the script, or add the script to your bin path.*
 
