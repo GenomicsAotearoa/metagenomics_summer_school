@@ -4,9 +4,9 @@
 
 * Calculate per-sample coverage stats for the filtered prokaryote bins
 * Calculate per-sample coverage stats for the viral contigs output by `VIBRANT`
+* *Optional*: Normalise per-sample coverage values by average library size
 * Assign taxonomy to the refined bins
 * Introduction to `vContact2` for predicting taxonomy of viral contigs
-* *Optional*: Normalise per-sample coverage values by average library size
 
 ---
 
