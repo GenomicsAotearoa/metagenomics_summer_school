@@ -201,14 +201,14 @@ for (i in 1:ncol(kegg_matrix)) {
 
 The above code will generate one png image file per bin, and will save it to the current working directory. The list `pv_all_bins` in the first line contains some plotting information. Importantly, it has the KO numbers it used to match the data provided to the pathway. If you wish to, you can subset your original data to only obtain those KO numbers related to the pathway that you have plotted for further analyses with other annotations.
 
-A few example output for bins 3 and 5:
+A few example outputs for bins 3 and 5:
 
 #### Bin 3 nitrogen metabolism KEGG map
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_KEGG_maps_ko00910_bin_3.png)
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_KEGG_maps_ko00910_bin_3.png)
 
 #### Bin 5 nitrogen metabolism KEGG map
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex15_KEGG_maps_ko00910_bin_5.png)
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_KEGG_maps_ko00910_bin_5.png)
 
 ---
