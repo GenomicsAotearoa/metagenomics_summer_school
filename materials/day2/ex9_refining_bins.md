@@ -359,7 +359,7 @@ for bin_file in custom_chop/*.fna; do
 done
 ```
 
-If you wish to generate the full annotation file, including coverage and length values, you will need to go through the process outlined in the [Appendix](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex9_Generating_input_files_for_VizBin.md) below.  
+If you wish to generate the full annotation file, including coverage and length values, you will need to go through the process outlined in the [Appendix for this exercise](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex9_Generating_input_files_for_VizBin.md).  
 
 ---
 
