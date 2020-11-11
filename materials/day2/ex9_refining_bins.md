@@ -9,7 +9,6 @@
 * *Optional:* Comparing pre- and post-filtered bins via *CheckM*
 * *Optional:* Creating new `VizBin` profiles with different fragment lengths
 * *Optional:* Scripts for processing data with `ESOMana`
-* *Appendix:* Generating input files for `VizBin` from `DAS_Tool` curated bins
 
 ---
 
