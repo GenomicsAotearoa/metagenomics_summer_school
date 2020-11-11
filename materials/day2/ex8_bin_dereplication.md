@@ -5,7 +5,7 @@
 * Bin dereplication using `DAS_Tool` - Creating input tables
 * Bin dereplication using `DAS_Tool` - Running the tool
 * Evaluating bins using `CheckM`
-* Discussion: dereplicating across multiple assemblies
+* Discussion: dereplication across multiple assemblies
 
 ---
 
@@ -232,7 +232,7 @@ When your job completes, we will download the summary file and examine it.
 
 ---
 
-### Discussion: dereplicating across multiple assemblies
+### Discussion: dereplication across multiple assemblies
 
 In this workshop, we have generated a set of putative MAGs by binning scaffolds taken from a *single co-assembly*. Alternatively, we may have chosen to generate multiple assemblies (for example, mini-co-assemblies for each sample group, or individual assemblies for each sample). In this case, it would be necessary to work through the binning process for each assembly, and then conduct an additional dereplication step *across* the multiple assemblies to generate a single set of dereplicated bins for all assemblies. 
 
