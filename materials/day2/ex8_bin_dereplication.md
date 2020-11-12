@@ -2,8 +2,8 @@
 
 ### Objectives
 
-* [Bin dereplication using `DAS_Tool` - Creating input tables](#bin-dereplication-using-das_tool-creating-input-tables)
-* [Bin dereplication using `DAS_Tool` - Running the tool](#bin-dereplication-using-das_tool-running-the-tool)
+* [Bin dereplication using `DAS_Tool` - Creating input tables](#bin-dereplication-using-das_tool---creating-input-tables)
+* [Bin dereplication using `DAS_Tool` - Running the tool](#bin-dereplication-using-das_tool---running-the-tool)
 * [Evaluating bins using `CheckM`](#evaluating-bins-using-checkm)
 * [Discussion: dereplication across multiple assemblies](#discussion-dereplication-across-multiple-assemblies)
 
