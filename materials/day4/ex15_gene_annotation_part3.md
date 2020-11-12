@@ -1,13 +1,14 @@
-# Gene annotation (cont)
+# Gene annotation (part 3)
 
-## Objectives
-- Overview of `DRAM.py annotate` output
-- `DRAM` Distillation step and visualization of results
-- Tie findings to your initial goal
+### Objectives
+
+* [Overview of `DRAM.py annotate` output](#overview-of-drampy-annotate-output)
+* [`DRAM` Distillation step and visualization of results](#dram-distillation-of-the-results)
+* [Tie findings to your initial goal](#tie-findings-to-your-initial-goal)
 
 ---
 
-## Overview of `DRAM.py annotate` output
+### Overview of *DRAM.py annotate* output
 
 The submitted job from the previous session should be now completed. If we examine the output directory `10.gene_annotation/annotation/` we will see the following files:
 
@@ -39,7 +40,7 @@ For each gene annotate, DRAM provides a summary rank (from A to E), representing
 
 ---
 
-## DRAM distillation of the results
+### *DRAM* distillation of the results
 
 After the annotation is finished, we will summarise and visualise these annotations with the so-called *Distillation* step. We do so by running the following command directly in the terminal. This will generate the distillate and liquor files.
 
@@ -100,7 +101,7 @@ To finish, we visualize the *Product*, an .HTML file produced in the Distillatio
 
 ---
 
-## Tie findings to your initial goal
+### Tie findings to your initial goal
 
 It is now time to explore the genomes and try to address your original goal!
 
