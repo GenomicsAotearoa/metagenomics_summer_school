@@ -2,11 +2,11 @@
 
 ### Objectives
 
-* Calculate per-sample coverage stats for the filtered prokaryote bins
-* Calculate per-sample coverage stats for the viral contigs output by `VIBRANT`
-* *Optional*: Normalise per-sample coverage values by average library size
-* Assign taxonomy to the refined bins
-* Introduction to `vContact2` for predicting taxonomy of viral contigs
+* [Calculate per-sample coverage stats for the filtered prokaryote bins](#calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins)
+* [Calculate per-sample coverage stats for the viral contigs output by `VIBRANT`](#calculate-per-sample-coverage-stats-of-viral-contigs)
+* [*Optional*: Normalise per-sample coverage values by average library size](#optional-normalise-per-sample-coverage-values-by-average-library-size)
+* [Assign taxonomy to the refined bins](#assign-taxonomy-to-the-refined-bins)
+* [Introduction to `vContact2` for predicting taxonomy of viral contigs](#introduction-to-vcontact2-for-predicting-taxonomy-of-viral-contigs)
 
 ---
 
