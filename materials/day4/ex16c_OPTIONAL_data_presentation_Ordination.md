@@ -2,8 +2,9 @@
 
 ### Objectives
 
-* Calculate weighted and unweighted Bray-Curtis dissimilarity metrics and nMDS analyses in `R` 
-* Build nMDS plots in `R` using the `ggplot2` package.
+* [Import and wrangle data in `R`](#1-import-and-wrangle-data-in-r)
+* [Calculate weighted and unweighted Bray-Curtis dissimilarity metrics and nMDS analyses](#2-calculate-weighted-and-unweighted-bray-curtis-dissimilarity-and-nmds-using-r)
+* [Build nMDS plots in `R` using the `ggplot2` package](#3-build-nmds-plots-in-r-using-the-ggplot2-package)
 
 ---
 
@@ -129,7 +130,7 @@ cov.bray.binary.sol.vir <- metaMDS(cov.bray.binary.vir, k=2, trymax=999)
 
 ---
 
-### 3. Build nMDS plots in *R* using the *ggplot2* package.
+### 3. Build nMDS plots in *R* using the *ggplot2* package
 
 #### 3.1 Set the *ggplot* plot theme and sample groups colour palette
 
