@@ -4,7 +4,7 @@
 
 * [Build a sulfur assimilation gene alignment figure to investigate gene synteny using `R`](#build-a-sulfur-assimilation-gene-alignment-figure-to-investigate-gene-synteny-using-r)
 * [Parsing files in `bash`](#part-1---parsing-files-in-bash)
-* [Import and wrangle data in `R`](#set-working-directory-and-load-r-libraries)
+* [Import and wrangle data in `R`](#part-2---producing-the-figure-in-r)
 * [Create a comparison table and build the plot in `R`](#part-23---creating-a-comparison-table-and-building-the-plot-in-r)
 
 ---
@@ -160,7 +160,7 @@ bin_5_ds$col = "#1a535c"
 bin_5_ds$fill = "#1a535c"
 ```
 
-##### Part 2.3 - Load annotation tables
+##### Part 2.2 - Load annotation tables
 
 Then, we can load the annotation tables we have into `R` and take a look at them.
 
