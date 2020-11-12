@@ -2,7 +2,8 @@
 
 ### Objectives
 
-* Build heatmaps of average coverage per sample using `R`
+* [Building a heatmap of MAG coverage per sample](#part-1---building-a-heatmap-of-mag-coverage-per-sample)
+* [Building a heatmap of viral contigs per sample](#part-2---building-a-heatmap-of-viral-contigs-per-sample)
 
 ---
 
@@ -24,7 +25,7 @@ In addition to this, a simple mapping file has also been created (`11.data_prese
 
 ---
 
-### Part 1 - Building a heatmap of MAG coverage per sample.
+### Part 1 - Building a heatmap of MAG coverage per sample
 
 To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and open a `Notebook` running the `R 4.0.1` module as the kernel (or, outside the context of this workshop, open `RStudio` with the required packages installed (see the [data presentation intro](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16a_data_presentation_Intro.md) docs for more information)).
 
@@ -301,7 +302,7 @@ Feel free to experiment with some of the settings above. For example:
 
 --- 
 
-### Part 2 - Building a heatmap of viral contigs per sample.
+### Part 2 - Building a heatmap of viral contigs per sample
 
 We can run through the same process for the viral contigs. Many of the steps are as outlined above, so we will work through these a bit quicker and with less commentary along the way. However, we will highlight a handful of differences compared to the commands for the MAGs above, for example:  steps for selecting and/or formatting the taxonomy; importing the quality output from `CheckV`; and the (optional) addition of filtering out low quality contigs.
 
