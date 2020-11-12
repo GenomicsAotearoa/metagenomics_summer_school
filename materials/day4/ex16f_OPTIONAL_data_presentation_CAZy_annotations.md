@@ -2,7 +2,10 @@
 
 ### Objectives
 
-* Build a basic heatmap from `BLAST` data using `R`
+* [Build a basic heatmap from `BLAST` data using `R`](#build-a-basic-heatmap-from-annotation-data-using-r)
+* [Import and wrangle data in `R`](#import-the-data-into-an-r-dataframe)
+* [Build the plot in `R`](#build-the-plot-in-r)
+
 
 ---
 
@@ -116,6 +119,8 @@ We now have a data.frame-like object (a [tibble](https://tibble.tidyverse.org/))
 ```R
 cazy_matrix = cazy_counts %>% pivot_wider(id_cols=Bin, names_from=CAZy, values_from=n, values_fill=list(n = 0))
 ```
+
+#### Build the plot in *R*
 
 Finally, we create the actual plot by passing this matrix into the `pheatmap` library. Before doing this, we need to take the text column `Bin` from the matrix and move it into the rownames, as this is how `pheatmap` infers the names of our samples. Also, if we left text data in the numeric input for a heatmap, the function would crash. We can quickly transfer the `Bin` column to the rownames using the `column_to_rownames` function from the `tibble` library.
 
