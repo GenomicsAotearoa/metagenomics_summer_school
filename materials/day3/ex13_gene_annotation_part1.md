@@ -1,4 +1,4 @@
-# Gene annotation
+# Gene annotation (part 1)
 
 ### Objectives
 
