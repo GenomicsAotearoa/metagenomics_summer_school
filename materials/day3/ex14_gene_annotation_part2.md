@@ -1,3 +1,12 @@
+# Gene annotation (part 2)
+
+### Objectives
+
+* [Gene prediction and annotation with `DRAM`](#gene-prediction-and-annotation-with-dram-distilled-and-refined-annotation-of-metabolism)
+* [Annotation of the MAGs with `DRAM`](#annotation-of-the-mags-with-dram)
+
+---
+
 ### Gene prediction and annotation with *DRAM* (Distilled and Refined Annotation of Metabolism) 
 
 [DRAM](http://dx.doi.org/10.1093/nar/gkaa621) is a tool designed to profile microbial (meta)genomes for metabolisms known to impact ecosystem functions across biomes. `DRAM` annotates MAGs and viral contigs using KEGG (if provided by user), UniRef90, PFAM, CAZy, dbCAN, RefSeq viral, VOGDB (Virus Orthologous Groups) and the MEROPS peptidase database. It is also highly customizable to other custom user databases. 
