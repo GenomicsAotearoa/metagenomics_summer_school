@@ -2,11 +2,11 @@
 
 ### Objectives
 
-* Visualising raw reads with `FastQC` on NeSI
-* Read trimming and adapter removal with `trimmomatic`
-* Diagnosing poor libraries
-* Understand common issues and best practices
-* *Optional*: Filtering out host DNA with `BBMap`
+* [Visualising raw reads with `FastQC` on NeSI](#visualising-raw-reads)
+* [Read trimming and adapter removal with `trimmomatic`](#read-trimming-and-adapter-removal-with-trimmomatic)
+* [Diagnosing poor libraries](#diagnosing-poor-libraries)
+* [Understand common issues and best practices](#understand-common-issues-and-best-practices)
+* [*Optional*: Filtering out host DNA with `BBMap`](#optional-filtering-out-host-dna)
 
 ---
 
