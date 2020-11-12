@@ -2,11 +2,10 @@
 
 ### Objectives
 
-* **BLAST**-like gene annotations and domain annotations
-* Overview of annotation databases
-* Evaluating the quality of gene assignment
-* *Discussion: Differences in taxonomies (GTDB, NCBI etc)*
-* Annotating MAGs with **DRAM**
+* [**BLAST**-like gene annotations and domain annotations](#blast-like-gene-annotations-and-domain-annotations)
+* [Overview of annotation databases](#blast-like-gene-annotations-and-domain-annotations)
+* [Evaluating the quality of gene assignment](#evaluating-the-quality-of-gene-assignment)
+* [*Discussion: Differences in taxonomies (GTDB, NCBI etc)*](#differences-in-taxonomies)
 
 ---
 
