@@ -2,9 +2,9 @@
 
 ### Objectives
 
-* Become familiar with the standard input files for `SPAdes` and `IDBA-UD`
-* Understand the basic parameters that should be modified when using these assemblers
-* Prepare an assembly job to run under slurm
+* [Become familiar with the standard input files for `SPAdes` and `IDBA-UD`](#the-standard-input-files-for-spades-and-idba-ud*)
+* [Understand the basic parameters that should be modified when using these assemblers](#basic-assembly-parameters)
+* [Prepare an assembly job to run under slurm](#preparing-an-assembly-job-for-slurm)
 
 All work for this exercise will occur in the `3.assembly/` directory.
 
