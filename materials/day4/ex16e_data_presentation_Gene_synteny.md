@@ -2,7 +2,10 @@
 
 ### Objectives
 
-* Build a sulfur assimilation gene alignment figure to investigate gene synteny using `R`
+* [Build a sulfur assimilation gene alignment figure to investigate gene synteny using `R`](#build-a-sulfur-assimilation-gene-alignment-figure-to-investigate-gene-synteny-using-r)
+* [Parsing files in `bash`](#part-1---parsing-files-in-bash)
+* [Import and wrangle data in `R`](#set-working-directory-and-load-r-libraries)
+* [Create a comparison table and build the plot in `R`](#part-23---creating-a-comparison-table-and-building-the-plot-in-r)
 
 ---
 
@@ -16,7 +19,7 @@ For this exercise, navigate to the folder `11.data_presentation/gene_synteny/`. 
 
 *NOTE: Refer to [gene_synteny_Generate_blast_files.md](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex15_gene_synteny_Generate_blast_files.md) for detailed information on how the `blast` files were produced.*
 
-#### Part 1 - Parsing files in bash
+#### Part 1 - Parsing files in *bash*
 
 We will be performing this exercise in two stages. Firstly, in `bash`, we will use `cut` and `tail` to pull out the genes of interest listed in the `*cys.txt` files from the `prodigal` files. The gene names will then be used to create a table of gene coordinates from the `prodigal` output using `grep`, `cut`, and `sed`.
 
@@ -204,7 +207,7 @@ annot2 <- annotation(x1 = c(bin_7_ds$start[1], bin_7_ds$start[2],bin_7_ds$start[
                     rot = 0, col = "black")
 ```
 
-##### Part 2.3 - Creating a comparison table
+##### Part 2.3 - Creating a comparison table and building the plot in *R*
 
 Then, we can parse the blast output as comparison file among the genomes. genoPlotR can read tabular files, either user-generated tab files (read_comparison_from_tab), or from BLAST output (read_comparison_from_blast). To produce files that are readable by genoPlotR, the -m 8 or 9 option should be used in blastall, or -outfmt 6 or 7 with the BLAST+ suite.
 
