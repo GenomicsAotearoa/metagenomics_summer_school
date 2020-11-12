@@ -1,4 +1,4 @@
-### Grab Gene of Interest
+### Grab Gene of Interest (generate the *cys.txt* files provided in [ex15_gene_synteny])
 
 Below is the example documentation for how the files of genes that we were interested in (`*cys.txt` files) were generated. 
 
