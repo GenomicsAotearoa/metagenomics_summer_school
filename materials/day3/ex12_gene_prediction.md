@@ -2,9 +2,9 @@
 
 ### Objectives
 
-* Overview/refresher of `prodigal`
-* Predicting protein coding sequences in metagenome-assembled genomes
-* Predicting RNA features and non-coding regions
+* [Overview/refresher of `prodigal`](#overviewrefresher-of-prodigal)
+* [Predicting protein coding sequences in metagenome-assembled genomes](#predicting-protein-coding-sequences-in-mags)
+* [Predicting RNA features and non-coding regions](#predicting-rna-features-and-non-coding-regions)
 
 ---
 
