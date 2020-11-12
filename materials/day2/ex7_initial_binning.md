@@ -2,9 +2,9 @@
 
 ### Objectives
 
-* Overview
-* Create initial bins using `MetaBAT`
-* Create initial bins using `MaxBin`
+* [Overview](#overview)
+* [Create initial bins using `MetaBAT`](#metabat)
+* [Create initial bins using `MaxBin`](#maxbin)
 
 ---
 
