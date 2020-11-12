@@ -2,8 +2,8 @@
 
 ### Objectives
 
-* Evaluate the resource consumption of various assemblies
-* Evaluate the assemblies
+* [Evaluate the resource consumption of various assemblies](#evaluate-the-resource-consumption-of-various-assemblies)
+* [Evaluate the assemblies](#evaluate-the-assemblies)
 * Future considerations
 
 ---
