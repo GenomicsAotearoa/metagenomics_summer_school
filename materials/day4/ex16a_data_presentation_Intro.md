@@ -2,9 +2,9 @@
 
 ### Objectives
 
-* Overview, `RStudio`, and using `R` in the `Jupyter` environment
-* Data visualisation and accessibility
-
+* [Overview, `RStudio`, and using `R` in the `Jupyter` environment](#overview-rrstudio-and-using-r-in-the-jupyter-environment)
+* [Data visualisation and accessibility](#data-visualisation-and-accessibility)
+* [Logging in to the NeSI `Jupyter hub`](#getting-started-logging-in-to-the-nesi-jupyter-hub)
 ---
 
 ### Overview, *R/RStudio*, and using *R* in the *Jupyter* environment
