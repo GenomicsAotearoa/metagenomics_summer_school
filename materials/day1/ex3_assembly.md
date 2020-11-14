@@ -45,7 +45,7 @@ At a glance, you could provide any of the following data types to `SPAdes` and h
 1. Oxford Nanopore reads
 1. Pre-assembled scaffolds for guiding the assembly
 
-Awkwardly, while `SPAdes` accepts multiple input libraries (i.e. samples) in a single assembly, this behaviour does not work with the `-meta` flag enabled. We therefore need to concatenate our four individual samples together ready for sequencing.
+Awkwardly, while `SPAdes` accepts multiple input libraries (i.e. samples) in a single assembly, this behaviour does not work with the `-meta` flag enabled, which is needed in our example to activate metagenome assembly mode. We therefore need to concatenate our four individual samples together ready for sequencing.
 
 ```bash
 cat sample1_R1.fastq.gz sample2_R1.fastq.gz sample3_R1.fastq.gz sample4_R1.fastq.gz > for_spades_R1.fq.gz
