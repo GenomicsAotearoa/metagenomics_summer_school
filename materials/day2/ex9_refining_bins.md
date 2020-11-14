@@ -259,7 +259,7 @@ cat filtered_bins_checkm.txt
 |Bin Id | Marker lineage | # genomes   |    # markers    |   # marker sets  | 0     |  1    |   2  |     3   |    4    |   5+  |    Completeness  |  Contamination |  Strain heterogeneity|
 | :-- | :-- | --- | ---  | ---  | --- |  --- |  ---  | ---  | --- | --- | --- | --- | --- |
 |bin_0.filtered | k__Bacteria (UID3060) |  138   |  338  |   246   |  1  |     329  |   7     |  1   |    0      | 0     |  99.59 |  2.98   | 0.00|
-|bin_1.filtered | k__Bacteria (UID3060) |  138   |  338     246  |   1  |     336  |   1   |    0    |   0     |  0 |      99.59  | 0.41  |  0.00|
+|bin_1.filtered | k__Bacteria (UID3060) |  138   |  338  |   246  |   1  |     336  |   1   |    0    |   0     |  0 |      99.59  | 0.41  |  0.00|
 |bin_2.filtered | k__Bacteria (UID2565)  | 2921   | 149  |   91  |    10    |  137   |  2    |   0    |   0     |  0     |  91.21 |  0.61  |  0.00|
 |bin_3.filtered | g__Staphylococcus (UID301)  |    45    |  940  |   178  |   14   |   924   |  2   |    0    |   0   |    0   |    98.58 |  0.11  |  0.00|
 |bin_4.filtered | c__Betaproteobacteria (UID3959)| 235   |  414  |  211    | 1   |    410   |  3    |   0    |   0     |  0    |   99.97  | 0.26  |  0.00|
