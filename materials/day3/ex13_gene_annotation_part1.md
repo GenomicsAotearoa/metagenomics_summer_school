@@ -105,9 +105,9 @@ done
 
 ### Annotating MAGs against the *Pfam* database with *hmmer*
 
-The standard software for performing this kind of annotation is [hmmer](http://hmmer.org/). Compared to BLAST, FASTA, and other sequence alignment and database search tools based on older scoring methodology, HMMER aims to be significantly more accurate and more able to detect remote homologs because of the strength of its underlying mathematical models. In the past, this strength came at significant computational expense, but in the new HMMER3 project, HMMER is now essentially as fast as BLAST. 
+The standard software for performing HMM-profiling annotation is [hmmer](http://hmmer.org/). Compared to BLAST, FASTA, and other sequence alignment and database search tools based on older scoring methodology, HMMER aims to be significantly more accurate and more able to detect remote homologs because of the strength of its underlying mathematical models. In the past, this strength came at significant computational expense, but in the new HMMER3 project, HMMER is now essentially as fast as BLAST. 
 
-We want to search one or more profiles against a sequence database. To do so we will use `hmmsearch`. For each profile in *hmmfile*, use that query profile to search the target database of sequences in seqdb, and output ranked lists of the sequences with the most significant matches to the profile. `hmmsearch` accepts any *fastA* file as target database input. It also accepts EMBL/UniProtKB text format, and Genbank format. It will automatically determine what format your file is in so you don’t have to specify it. 
+*hmmer* will search one or more profiles against a sequence database for sequence hommologs, and for making sequence alignments, implementing profile hidden Markov models. In this exercise, we will perform a search using `hmmsearch`. For each profile in *hmmfile*, *hmmer* use that query profile to search the target database of sequences indicated in *seqdb*, and output ranked lists of the sequences with the most significant matches to the profile. `hmmsearch` accepts any *fastA* file as target database input. It also accepts EMBL/UniProtKB text format, and Genbank format. It will automatically determine what format your file is in so you don’t have to specify it. 
 
 As we did with `diamond`, we will also have to modify some parameters to get the desired ouotput. 
 
