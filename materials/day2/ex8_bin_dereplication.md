@@ -174,7 +174,7 @@ There are several characteristics of the `CheckM` marker set worth noting:
 
 ##### Highly conserved, single copy markers
 
-The marker sets used in `CheckM` were chosen because they are present in at least 95% of bacterial/archaeal genomes, and are single copy in ≥97% genomes tested. This means that if a gene is missing from a genome, it is likely due to incompleteness in either the original assembly or the binning approach. Simiarly, if a marker is observed more than once in a bin it is likely the result of over-clustering of the data.
+The marker sets used in `CheckM` were chosen because they are present in at least 95% of bacterial/archaeal genomes, and are single copy in ≥97% genomes tested. This means that if a gene is missing from a genome, it is likely due to incompleteness in either the original assembly or the binning approach. Similarly, if a marker is observed more than once in a bin it is likely the result of over-clustering of the data.
 
 ##### Genes are considered as co-located clusters
 
