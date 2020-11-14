@@ -1,4 +1,4 @@
-# Identifying viral contigs in metagenomics data
+# Identifying viral contigs in metagenomic data
 
 ### Objectives
 
