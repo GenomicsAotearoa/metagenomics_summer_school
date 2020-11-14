@@ -51,7 +51,7 @@ less DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv
 #bin_6.filtered  d__Bacteria;p__Desulfobacterota_A;c__Desulfovibrionia;o__Desulfovibrionales;f__Desulfovibrionaceae;g__Desulfovibrio;s__
 
 
-sed -i '1s/^/bin_id\tclassification\n/' DRAM_input_files/gtdbtk.bac120.classification_pplacer2.tsv
+sed -i '1s/^/bin_id\tclassification\n/' DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv
 
 
 less DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv
