@@ -35,10 +35,9 @@ module load FastQC/0.11.7
 
 #### Running *FastQC*
 
-`FastQC` can then be run either interactively (i.e. with a GUI) or from the command line. The difference is simply whether or not you provide any input files to `FastQC` when it loads.
+We will run `FastQC` from the command line as follows:
 
 ```bash
-# Load interactively
 
 fastqc mock_R1.good.fastq.gz mock_R2.good.fastq.gz
 ```
