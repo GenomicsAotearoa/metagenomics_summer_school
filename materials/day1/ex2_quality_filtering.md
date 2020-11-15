@@ -29,6 +29,7 @@ cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/
 To activate `FastQC` on NeSI, you need to first load the module using the command
 
 ```bash
+module purge
 module load FastQC/0.11.7
 ```
 
@@ -234,8 +235,9 @@ To install `gdown`, we can use `pip`.
 
 ```bash
 # Install gdown (for downloading from google drive)
+module purge
 module load Python/3.8.2-gimkl-2020a
-pip install gdown
+pip install --user gdown
 ```
 
 Nest, download the reference. It will also be necessary to first add your local `bin` location to the `PATH` variable via the `export PATH=...` command, as this is where `gdown` is located (modify `<your_username>` before running the code below).
@@ -269,10 +271,14 @@ Build index reference via `BBMap`. We will do this by submitting the job via slu
 #SBATCH --cpus-per-task 1
 #SBATCH -e host_filt_bbmap_index.err
 #SBATCH -o host_filt_bbmap_index.out
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/BBMask_human_reference/
 
 # Load BBMap module
+module purge
 module load BBMap/38.81-gimkl-2020a
 
 # Build indexed reference file via BBMap
@@ -301,12 +307,16 @@ Finally, map the quality-filtered reads to the reference via `BBMap`. Here we wi
 #SBATCH --cpus-per-task 20
 #SBATCH -e host_filt_bbmap_map_%a.err
 #SBATCH -o host_filt_bbmap_map_%a.out
+#SBATCH --export NONE
+
+export SLURM_EXPORT_ENV=ALL
 
 # Set up working directories
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/
 mkdir -p host_filtered_reads/
 
 # Load BBMap module
+module purge
 module load BBMap/38.81-gimkl-2020a
 
 # Run bbmap
