@@ -10,7 +10,7 @@
 
 ### Overview of *DRAM.py annotate* output
 
-The submitted job from the previous session should be now completed. If we examine the output directory `10.gene_annotation/annotation/` we will see the following files:
+The submitted job from the previous session should be now completed. If we examine the output directory `10.gene_annotation/annotation_dram/` we will see the following files:
 
 |File name | Description|
 |:--- | :--- | 
@@ -26,7 +26,7 @@ If we inspect the head of the annotation file we will see the following
 ```bash
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
-head annotation/annotation.tsv
+head annotation_dram/annotation.tsv
 
 fasta	scaffold	gene_position	start_position	end_position	strandedness	rank	kegg_id	kegg_hit	uniref_id	uniref_hit	uniref_taxonomy	uniref_RBH	uniref_identity	uniref_bitScore	uniref_eVal	peptidase_id	peptidase_family	peptidase_hit	peptidase_RBH	peptidase_identity	peptidase_bitScore	peptidase_eVal	pfam_hits	cazy_hits	vogdb_description	vogdb_categories	heme_regulatory_motif_count
 bin_0_1f9359e86e6a75bcff340e6a8b60ef98_1	bin_0	1f9359e86e6a75bcff340e6a8b60ef98	1	205	1371	1	B	K02338	DNA polymerase III subunit beta [EC:2.7.7.7]	Q7V9E7_PROMM	UniRef90_Q7V9E7 Beta sliding clamp n=10 Tax=Prochlorococcus TaxID=1218 RepID=Q7V9E7_PROMM	Prochlorococcus	True	0.8959999999999999	726.0	1.5509999999999984e-233								DNA polymerase III beta subunit, C-terminal domain [PF02768.16]; DNA polymerase III beta subunit, N-terminal domain [PF00712.20]; DNA polymerase III beta subunit, central domain [PF02767.17]		sp|P9WNU1|DPO3B_MYCTU Beta sliding clamp; XhXr	Xr;Xh	0
