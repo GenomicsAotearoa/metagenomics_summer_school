@@ -33,7 +33,7 @@ For this exercise we are going to use diamond for performing our annotation. We 
 
 For this exercise we have created a diamond-compatible database from the 2018 release of the UniProt database.
 
-For input files, we have copied the `predictions/` results from the previous gene prediction exercise over to `10.gene_annotation/predictions/` for these exercises.
+For input files, the `predictions/` results from the previous gene prediction exercise have been copied over to `10.gene_annotation/predictions/`.
 
 In general, diamond takes a simple pair of input files - the protein coding sequences we wish to annotate and the database we will use for this purpose. There are a few parameters that need to be tweaked for obtaining a useful output file, however.
 
@@ -66,7 +66,7 @@ Awkwardly, `diamond` does not provide the headers for what the columns in the ou
 
 From here we can view important stastics for each query/target pairing such as the number of identify residues between sequences and the aligned length between query and target.
 
-Before we proceed with this exercise, lets set up a slurm job to annotate each of our MAGs. We will use this tomorrow.
+Lets set up a slurm job to annotate each of our MAGs. 
 
 ```bash
 #!/bin/bash -e
@@ -105,9 +105,9 @@ done
 
 ### Annotating MAGs against the *Pfam* database with *hmmer*
 
-The standard software for performing HMM-profiling annotation is [hmmer](http://hmmer.org/). Compared to BLAST, FASTA, and other sequence alignment and database search tools based on older scoring methodology, HMMER aims to be significantly more accurate and more able to detect remote homologs because of the strength of its underlying mathematical models. In the past, this strength came at significant computational expense, but in the new HMMER3 project, HMMER is now essentially as fast as BLAST. 
+The standard software for performing HMM-profiling annotation is [hmmer](http://hmmer.org/). Compared to `BLAST`, `FASTA`, and other sequence alignment and database search tools based on older scoring methodology, `HMMER` aims to be significantly more accurate and more able to detect remote homologs because of the strength of its underlying mathematical models. In the past, this strength came at significant computational expense, but in the new `HMMER3` project, `HMMER` is now essentially as fast as `BLAST`. 
 
-*hmmer* will search one or more profiles against a sequence database for sequence hommologs, and for making sequence alignments, implementing profile hidden Markov models. In this exercise, we will perform a search using `hmmsearch`. For each profile in *hmmfile*, *hmmer* use that query profile to search the target database of sequences indicated in *seqdb*, and output ranked lists of the sequences with the most significant matches to the profile. `hmmsearch` accepts any *fastA* file as target database input. It also accepts EMBL/UniProtKB text format, and Genbank format. It will automatically determine what format your file is in so you don’t have to specify it. 
+`HMMER` will search one or more profiles against a sequence database for sequence hommologs, and for making sequence alignments, implementing profile hidden Markov models. In this exercise, we will perform a search using `hmmsearch`. For each profile in *hmmfile*, `HMMER` uses that query profile to search the target database of sequences indicated in *seqdb*, and output ranked lists of the sequences with the most significant matches to the profile. `hmmsearch` accepts any *fastA* file as target database input. It also accepts EMBL/UniProtKB text format, and Genbank format. It will automatically determine what format your file is in so you don’t have to specify it. 
 
 As we did with `diamond`, we will also have to modify some parameters to get the desired ouotput. 
 
@@ -142,7 +142,7 @@ hmmsearch -h
 # ...
 ```
 
-We are now going to submit another slurm job to annotate our MAGs using the [Pfam database](https://pfam.xfam.org/). Matching sequences to a Pfam entry allows us to transfer the functional information from an experimentally characterised sequence to uncharacterised sequences in the same entry. Pfam then provides comprehensive annotation for each entry.
+We are now going to submit another slurm job to annotate our MAGs using the [Pfam database](https://pfam.xfam.org/). Matching sequences to a `Pfam` entry allows us to transfer the functional information from an experimentally characterised sequence to uncharacterised sequences in the same entry. `Pfam` then provides comprehensive annotation for each entry.
 
 ```bash
 #!/bin/bash -e
@@ -178,7 +178,7 @@ done
 
 ### Evaluating the quality of gene assignment
 
-Determining how trustworthy a gene annotation is can be a very tricky process. How similar to do protein sequences need to be to perform the same function? The answer is surprisingly low - a bioinformatic analysis performed in 1999 identified that proteins with as little as 20 - 35% sequence identity can still share the same function ([Rost, 1999](https://doi.org/10.1093/protein/12.2.85)) but this is not a universal occurrence. When evaluating your annotations, we consider the following questions:
+Determining how trustworthy a gene annotation is can be a very tricky process. How similar do protein sequences need to be to perform the same function? The answer is surprisingly low. A bioinformatic analysis performed in 1999 identified that proteins with as little as 20 - 35% sequence identity can still share the same function ([Rost, 1999](https://doi.org/10.1093/protein/12.2.85)), but this is not a universal occurrence. When evaluating annotations, consider the following questions:
 
 1. What is the amino acid identity along the aligned region?
 1. What is the amino acid *similarity* between the aligned region?
@@ -188,7 +188,7 @@ Determining how trustworthy a gene annotation is can be a very tricky process. H
 1. Does the gene sit on a long contig that is core to the MAG, or is it a short contig carrying only a single gene?
 1. If we are uncertain of a particular annotation, does the predicted gene occur in an operon? If so, are the other genes present in the annotation?
 
-We must also remain aware of the potential for incorrectly annotated genes in the annotation database and that proteins can perform multiple functions (and may therefore be attributed multiple, inconsistent annotations). Furthermore, it is also important to consider exactly which part of the target gene the alignment is happening across. There are several catalytic centers of enzymes, such as the Fe-S cofactor, which are shared across many different proteins and if your annotation is only spanning one of these regions then it may simply be the case that you are identifying a generic electron accepting or donating domain.
+We must also remain aware of the potential for incorrectly annotated genes in the annotation database and that proteins can perform multiple functions (and may therefore be attributed multiple, inconsistent annotations). Furthermore, it is also important to consider exactly which part of the target gene the alignment is happening across. There are several catalytic centers of enzymes, such as the Fe-S cofactor, which are shared across many different proteins, and if your annotation is only spanning one of these regions then it may simply be the case that you are identifying a generic electron accepting or donating domain.
 
 ---
 
@@ -196,7 +196,7 @@ We must also remain aware of the potential for incorrectly annotated genes in th
 
 Another way to determine if a annotation 'belongs' in the MAG of interest is to consider the predicted taxonomy of the query gene with that of the MAG itself. For example, if you detect a *Desulfovibrio*-like *dsrA* seuqence in a bin that has been classified as belonging to the genus *Desulfovibrio* then it is probably a safe bet that the annotation is correct.
 
-However, when comparing taxonomic assignments, it is important to be aware of the differing taxonomic schemes that are circulating in the microbiological and bioinformatic literature and to know how to reconcile their differences. Similar to how the 16S rRNA gene taxonomies provided by *SILVA*, *Greengenes*, and *RDP* taxonomies all differ in some aspects there are multiple competing taxonomies in protein databases.
+However, when comparing taxonomic assignments, it is important to be aware of the differing taxonomic schemas that are circulating in the microbiological and bioinformatic literature and to know how to reconcile their differences. Similar to how the 16S rRNA gene taxonomies provided by *SILVA*, *Greengenes*, and *RDP* taxonomies all differ in some aspects, there are multiple competing taxonomies in protein databases.
 
 #### Examples of various genome-level and protein taxonomies
 
