@@ -57,12 +57,12 @@ source activate DRAM
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
-DRAM.py distill -i annotation_dram/annotations.tsv -o all_genomes_summaries --trna_path annotation_dram/trnas.tsv --rrna_path annotation_dram/rrnas.tsv
+DRAM.py distill -i annotation_dram/annotations.tsv -o dram_distillation --trna_path annotation_dram/trnas.tsv --rrna_path annotation_dram/rrnas.tsv
 
 ```
 ---
 
-Distillation step generates the following files:
+Distillation step generates the following files that can be found within the ```dram_distillation``` directory :
 
 |File name | Description|
 |:--- | :--- |
@@ -72,7 +72,7 @@ Distillation step generates the following files:
 |**product.tsv**| Data table with product.html information |
 
 
-First, let's have a look at the genome stats to check the assembly quality of our bins
+First, let's have a look at the ```genome_stats.tsv``` file to check the assembly quality of our bins by double-clicking
 
 
 |genome|number of scaffolds|taxonomy|completeness score|contamination score|5S rRNA|16S rRNA|23S rRNA|tRNA count|assembly quality|
@@ -127,3 +127,4 @@ You were tasked with identfying one of the following.
 10. Aerobic (versus anaerobic) metabolism
 
 Depending on what you are looking for, you will either be trying to find gene(s) of relevance to a particular functional pathway, or the omission of genes that might be critical in function. In either case, make sure to use the taxonomy of each MAG to determine whether it is likely to be a worthwhile candidate for exploration, as some of these traits are quite restricted in terms of which organisms carry them.
+To conduct this exersise, you should use the information generated with ```DRAM``` as well as the annotation files we created yesterday and that are available in the directory ```10.gene_annotation/gene_annotations```. Please note that we have also provided further annotation files within the directory ```10.gene_annotation/example_annotation_tables``` that contain information obtained after annotating the MAGs against additional databases (UniProt, UniRef100, KEGG, PFAM and TIGRfam). 
