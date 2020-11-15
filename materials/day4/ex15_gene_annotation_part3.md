@@ -10,11 +10,11 @@
 
 ### Overview of *DRAM.py annotate* output
 
-The submitted job from the previous session should be now completed. If we examine the output directory `10.gene_annotation/annotation_dram/` we will see the following files:
+The submitted job from the previous session should now be completed. If we examine the output directory `10.gene_annotation/annotation_dram/` we will see the following files:
 
 |File name | Description|
 |:--- | :--- | 
-|**genes.faa** and **genes.fna** | Fasta files with all the genes called by Prodigal with additional header information gained from the annotation as nucleotide and amino acid records respectively |
+|**genes.faa** and **genes.fna** | Fasta files with all the genes called by `Prodigal`, with additional header information gained from the annotation as nucleotide and amino acid records, respectively |
 |**genes.gff** | GFF3 file with the same annotation information as well as gene locations |
 |**scaffolds.fna** | A collection of all scaffolds/contigs given as input to `DRAM.py annotate` with added bin information |
 |**annotations.tsv** | This file includes all annotation information about every gene from all MAGs |
@@ -32,10 +32,10 @@ fasta	scaffold	gene_position	start_position	end_position	strandedness	rank	kegg_
 bin_0_1f9359e86e6a75bcff340e6a8b60ef98_1	bin_0	1f9359e86e6a75bcff340e6a8b60ef98	1	205	1371	1	B	K02338	DNA polymerase III subunit beta [EC:2.7.7.7]	Q7V9E7_PROMM	UniRef90_Q7V9E7 Beta sliding clamp n=10 Tax=Prochlorococcus TaxID=1218 RepID=Q7V9E7_PROMM	Prochlorococcus	True	0.8959999999999999	726.0	1.5509999999999984e-233								DNA polymerase III beta subunit, C-terminal domain [PF02768.16]; DNA polymerase III beta subunit, N-terminal domain [PF00712.20]; DNA polymerase III beta subunit, central domain [PF02767.17]		sp|P9WNU1|DPO3B_MYCTU Beta sliding clamp; XhXr	Xr;Xh	0
 
 ```
-For each gene annotated, DRAM provides a summary rank (from A to E), representing the confidence of the annotation based on reciprocal best hits (RBH). The following figure briefly explains how this summary rank is calculated:
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/MGSS2020_DEV/materials/figures/ex14_DRAM_annotation_rank.png)
+For each gene annotated, `DRAM` provides a summary rank (from A to E), representing the confidence of the annotation based on reciprocal best hits (RBH). The following figure briefly explains how this summary rank is calculated:
 
+![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex14_DRAM_annotation_rank.png)
 
 
 ---
@@ -59,16 +59,17 @@ cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
 DRAM.py distill -i annotation_dram/annotations.tsv -o dram_distillation --trna_path annotation_dram/trnas.tsv --rrna_path annotation_dram/rrnas.tsv
 
+conda deactivate
 ```
 ---
 
-Distillation step generates the following files that can be found within the ```dram_distillation``` directory :
+The distillation step generates the following files that can be found within the ```dram_distillation``` directory :
 
 |File name | Description|
 |:--- | :--- |
 |**genome_stats.tsv**| Genome quality information required for [MIMAG](https://www.nature.com/articles/nbt.3893) |
 |**metabolism_summary.xlsx**| Summarise metabolism table containing number of genes with specific metabolic function identifiers |
-|**product.html**| HTML file displaying a heatmap summarising pathway coverage, electron transport chain component completion and presence/absence of specific functions |
+|**product.html**| HTML file displaying a heatmap summarising pathway coverage, electron transport chain component completion, and presence/absence of specific functions |
 |**product.tsv**| Data table with product.html information |
 
 
@@ -90,7 +91,7 @@ First, let's have a look at the ```genome_stats.tsv``` file to check the assembl
 
 ---
 
-To finish, we visualize the *Product*, an .HTML file produced in the Distillation step, by double-clicking on it on our *Jupyter* lab notebook. The *Product* has three primary parts:
+To finish, we visualize the *Product*, an .HTML file produced in the Distillation step, by double-clicking on it in our *Jupyter* lab notebook or downloading from [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/DRAM_results.zip). The *Product* has three primary parts:
 
 1.**Modules.** Central metabolism pathways coverage. Completion of pathways is based on the structure of KEGG modules, with the pathway coverage calculated as the percent of steps with at least one gene present.
 
@@ -100,8 +101,7 @@ To finish, we visualize the *Product*, an .HTML file produced in the Distillatio
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_fig2_DRAM_product_ETC.png)
 
-3. Presence of specific functions, including CAZy, Nitrogen metabolism, Sulfur metabolism and Photosynthesis. Note that the taxonomic classification of each of the bins is also showed in the first figure 
-
+3. Presence of specific functions, including CAZy, Nitrogen metabolism, Sulfur metabolism and Photosynthesis. Note that the taxonomic classification of each of the bins is also shown in the first figure 
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_fig3_DRAM_product.png)
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_fig4_DRAM_product.png)
@@ -127,4 +127,7 @@ You were tasked with identfying one of the following.
 10. Aerobic (versus anaerobic) metabolism
 
 Depending on what you are looking for, you will either be trying to find gene(s) of relevance to a particular functional pathway, or the omission of genes that might be critical in function. In either case, make sure to use the taxonomy of each MAG to determine whether it is likely to be a worthwhile candidate for exploration, as some of these traits are quite restricted in terms of which organisms carry them.
-To conduct this exersise, you should use the information generated with ```DRAM``` as well as the annotation files we created yesterday and that are available in the directory ```10.gene_annotation/gene_annotations```. Please note that we have also provided further annotation files within the directory ```10.gene_annotation/example_annotation_tables``` that contain information obtained after annotating the MAGs against additional databases (UniProt, UniRef100, KEGG, PFAM and TIGRfam). 
+
+To conduct this exersise, you should use the information generated with ```DRAM``` as well as the annotation files we created yesterday and that are available in the directory ```10.gene_annotation/gene_annotations```. Please note that we have also provided further annotation files within the directory ```10.gene_annotation/example_annotation_tables``` that contain information obtained after annotating the MAGs against additional databases (UniProt, UniRef100, KEGG, PFAM and TIGRfam). These example files can also be downloaded from [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/example_annotation_tables.zip). 
+
+---
