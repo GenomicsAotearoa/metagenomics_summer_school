@@ -168,7 +168,7 @@ for prot_file in predictions/*.genes.no_metadata.faa;
 do
   out_file=$(basename ${prot_file} .faa)
 
-  hmmsearch --tblout ${out_file}.pfam.txt -E 1e-3 --cpu 10 /nesi/nobackup/nesi02659/MGSS_resources_2020/databases/Pfam-A.hmm ${prot_file}
+  hmmsearch --tblout gene_annotations/${out_file}.pfam.txt -E 1e-3 --cpu 10 /nesi/nobackup/nesi02659/MGSS_resources_2020/databases/Pfam-A.hmm ${prot_file}
   
 done
 
