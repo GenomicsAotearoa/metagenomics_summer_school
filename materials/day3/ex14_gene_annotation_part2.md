@@ -134,7 +134,7 @@ source activate DRAM
 DRAM.py annotate -i '/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/predictions/*.filtered.fna' \
 --checkm_quality /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/DRAM_input_files/checkm.txt \
 --gtdb_taxonomy /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv \
--o /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/annotation_mgss
+-o /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/annotation_dram
 
 ```
 
