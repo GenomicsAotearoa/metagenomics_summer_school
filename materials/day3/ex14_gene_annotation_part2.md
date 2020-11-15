@@ -31,6 +31,8 @@ After genome annotation, a distill step follows with the aim to curate these ann
 
 Beyond annotation, `DRAM` aims to be a data compiler. For that reason, output files from both `CheckM` and `GTDB_tk` steps can be input to `DRAM` to provide both taxonomy and genome quality information of the MAGs. 
 
+#### *DRAM* input files
+
 For these exercises, we have copied the relevant input files into the folder `10.gene_annotation/DRAM_input_files/`. `gtdbtk.bac120.classification_pplacer.tsv` was taken from the earlier `8.coverage_and_taxonomy/gtdbtk_out/` outputs, and `checkm.txt` from the result of re-running `CheckM` on the final refined filtered bins in `6.bin_refinement/filtered_bins`.
 
 The `CheckM` output file (`checkm.txt`) can be input as it is. However, in order to use the file with the `gtdb_tk` taxonomy (`gtdbtk.bac120.classification_pplacer.tsv`) we should modify it first to include column headers 'bin_id' and 'classification'
@@ -74,6 +76,8 @@ less DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv
 
 ```
 
+#### *DRAM* annotation
+
 In default annotation mode, `DRAM` only requires as input the directory containing all the bins we would like to annotate in *fastA* format (either .fa or .fna). There are few parameters that can be modified if not using the default mode. Once the annotation step is complete, the mode `distill` is used to summarise the obtained results. 
 
 *NOTE: due to the increased memory requirements, UniRef90 database is not default and the flag `–use_uniref` should be specified in order to search amino acid sequences against UniRef90. In this exercise, due to memory and time constraints, we won't be using the UniRef90 database.*
@@ -113,6 +117,8 @@ To deactivate the `conda` environment and return to the standard command prompt,
 ```bash
 conda deactivate
 ```
+
+#### Submitting *DRAM* annotation as a slurm job
 
 To run this exercise we first need to set up a slurm job. We will use the results for tomorrow's distillation step. 
 
