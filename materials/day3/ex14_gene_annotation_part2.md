@@ -9,9 +9,9 @@
 
 ### Gene prediction and annotation with *DRAM* (Distilled and Refined Annotation of Metabolism) 
 
-[DRAM](http://dx.doi.org/10.1093/nar/gkaa621) is a tool designed to profile microbial (meta)genomes for metabolisms known to impact ecosystem functions across biomes. `DRAM` annotates MAGs and viral contigs using KEGG (if provided by user), UniRef90, PFAM, CAZy, dbCAN, RefSeq viral, VOGDB (Virus Orthologous Groups) and the MEROPS peptidase database. It is also highly customizable to other custom user databases. 
+[DRAM](http://dx.doi.org/10.1093/nar/gkaa621) is a tool designed to profile microbial (meta)genomes for metabolisms known to impact ecosystem functions across biomes. `DRAM` annotates MAGs and viral contigs using KEGG (if provided by user), UniRef90, PFAM, CAZy, dbCAN, RefSeq viral, VOGDB (Virus Orthologous Groups), and the MEROPS peptidase database. It is also highly customizable to other custom user databases. 
 
-`DRAM` only uses assembly-derived *fastA* files input by the user. These input files may come from unbinned data (metagenome contig or scaffold files) or genome-resolved data form one or many organisms (isolate genomes, single-amplified genome (SAGs), MAGs).
+`DRAM` only uses assembly-derived *fastA* files input by the user. These input files may come from unbinned data (metagenome contig or scaffold files) or genome-resolved data from one or many organisms (isolate genomes, single-amplified genome (SAGs), MAGs).
 
 `DRAM` is run in two stages: annotation and distillation. 
 
@@ -19,11 +19,11 @@
 
 #### Annotation
 
-The first step in `DRAM` is to annotate genes by assigning database identifiers to genes. Short contigs (default < 2,500 bp) are initially removed. Then, `Prodigal` is used to detect open reading frames (ORFs) and to predict their amino acid sequences. Next, `DRAM` searches all amino acid sequences against multiple databases, providing a single *Raw* output. When gene annotation is complete, all results are merged in a single tab-delimited annotation table, including best hit for each database for user comparison. 
+The first step in `DRAM` is to annotate genes by assigning database identifiers to genes. Short contigs (default < 2,500 bp) are initially removed. Then, `Prodigal` is used to detect open reading frames (ORFs) and to predict their amino acid sequences. Next, `DRAM` searches all amino acid sequences against multiple databases, providing a single *Raw* output. When gene annotation is complete, all results are merged in a single tab-delimited annotation table, including the best hit for each database for user comparison. 
 
 #### Distillation 
 
-After genome annotation, a distill step follows with the aim to curate these annotations into useful functional categories, creating genome statistics and metabolism summary files, and stored in the *Distillate* output. The genome statistics provides most genome quality information required for [MIMAG](https://www.nature.com/articles/nbt.3893), including `GTDB-tk` and `checkM` information if provided by the user. Summarised metabolism table include the number of genes with specific metabolic function identifiers (KO, CAZY ID, etc) fore each genome, with information obtained from multiple databases. The *Distillate* output is then further distilled into the *Product*, an html file displaying a heatmap, as well as the corresponding data table. We will investigate all these files later on.  
+After genome annotation, a distill step follows with the aim to curate these annotations into useful functional categories, creating genome statistics and metabolism summary files, which are stored in the *Distillate* output. The genome statistics provides most genome quality information required for [MIMAG](https://www.nature.com/articles/nbt.3893) standards, including `GTDB-tk` and `checkM` information if provided by the user. The summarised metabolism table includes the number of genes with specific metabolic function identifiers (KO, CAZY ID, etc) for each genome, with information obtained from multiple databases. The *Distillate* output is then further distilled into the *Product*, an html file displaying a heatmap, as well as the corresponding data table. We will investigate all these files later on.  
 
 ---
 
@@ -35,8 +35,9 @@ For these exercises, we have copied the relevant input files into the folder `10
 
 The `CheckM` output file (`checkm.txt`) can be input as it is. However, in order to use the file with the `gtdb_tk` taxonomy (`gtdbtk.bac120.classification_pplacer.tsv`) we should modify it first to include column headers 'bin_id' and 'classification'
 
-```bash
+First, take a quick look at the current format of the taxonomy file using `less`
 
+```bash
 less DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv
 
 #bin_3.filtered  d__Bacteria;p__Firmicutes;c__Bacilli;o__Staphylococcales;f__Staphylococcaceae;g__Staphylococcus;s__
@@ -49,8 +50,11 @@ less DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv
 #bin_0.filtered  d__Bacteria;p__Campylobacterota;c__Campylobacteria;o__Campylobacterales;f__Arcobacteraceae;g__Arcobacter;s__
 #bin_1.filtered  d__Bacteria;p__Campylobacterota;c__Campylobacteria;o__Nautiliales;f__Nautiliaceae;g__;s__
 #bin_6.filtered  d__Bacteria;p__Desulfobacterota_A;c__Desulfovibrionia;o__Desulfovibrionales;f__Desulfovibrionaceae;g__Desulfovibrio;s__
+```
 
+Now, use `sed` to add the headers as a new line. The `^` character indicates to make the additions at the start of the line (in this case, the first line). `\t` and `\n` represent a tab space and a newline character, respectively.
 
+```bash
 sed -i '1s/^/bin_id\tclassification\n/' DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv
 
 
@@ -70,9 +74,11 @@ less DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv
 
 ```
 
-In default annotation mode, `DRAM` takes as only input the directory containing all the bins we would like to annotate in *fastA* format (either .fa or .fna). There are few parameters that can be modified if not using the default mode. Once the annotation step is done, the mode `distill` is used to summarise the obtained results. 
+In default annotation mode, `DRAM` only requires as input the directory containing all the bins we would like to annotate in *fastA* format (either .fa or .fna). There are few parameters that can be modified if not using the default mode. Once the annotation step is complete, the mode `distill` is used to summarise the obtained results. 
 
-*NOTE: due to the increased memory requirements, UniRef90 database is not default and the flag `–use_uniref` should be specified in order to search amino acid sequences against UniRef90. In this exercise, due to memory and time constraints, we won't be using UniRef90 database.*
+*NOTE: due to the increased memory requirements, UniRef90 database is not default and the flag `–use_uniref` should be specified in order to search amino acid sequences against UniRef90. In this exercise, due to memory and time constraints, we won't be using the UniRef90 database.*
+
+`DRAM` is not currently available as a NeSI module. Here, we will be running `DRAM` from within a `conda environment`. This is activated by entering the commands below before running the `DRAM.py` command.
 
 ```bash
 
@@ -102,9 +108,15 @@ DRAM.py --help
 
 ```
 
+To deactivate the `conda` environment and return to the standard command prompt, enter:
+
+```bash
+conda deactivate
+```
+
 To run this exercise we first need to set up a slurm job. We will use the results for tomorrow's distillation step. 
 
-*NOTE: Currently DRAM has to be run from the directory where* ```DRAM-setup.py``` *was ran in order to work, that is why we start the slurm script with* ```cd /nesi/project/nesi02659/.conda/dramdbsetup```
+*NOTE: Currently DRAM has to be run from the directory where* ```DRAM-setup.py``` *was run in order to work. That is why we start the slurm script with* ```cd /nesi/project/nesi02659/.conda/dramdbsetup``` *and pass absolute paths to each of the arguments included in the `DRAM.py` script.*
 
 
 ```bash
@@ -136,6 +148,9 @@ DRAM.py annotate -i '/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annot
 --gtdb_taxonomy /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv \
 -o /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/annotation_dram
 
+conda deactivate
 ```
 
 The program will take 4-4.5 hours to run, so we will submit the jobs and inspect the results tomorrow morning. 
+
+---
