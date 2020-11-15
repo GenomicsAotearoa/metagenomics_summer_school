@@ -385,7 +385,7 @@ The format of the `scp` command is: `scp path/to/copy/from path/to/copy/to`
 
 If you wish to copy whole directories, include the -r flag: `scp -r path/to/copy/from path/to/copy/to`
 
-Finally, include `mahuika:` or `ga-vl01:` at the start of the NeSI file path to identify that this path is located within the *remote* cluster/machine.
+Finally, include `mahuika:` or `ga-vl01:` at the start of the remote machine file path (in this case, NeSI) to identify that this path is located within the *remote* cluster/machine.
 
 *NOTE: the following templates are written in a way where the commands are to be **executed from local**; i.e. a terminal **not** logged in to NeSI. On some systems, it may be preferable to open one terminal, log in to NeSI in that terminal, and then open a new terminal (that is not logged into NeSI) to perform the `scp` command. This avoids having to provide your NeSI log in details each time you wish to copy something.*
 
