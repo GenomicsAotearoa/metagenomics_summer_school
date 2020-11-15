@@ -57,7 +57,7 @@ source activate DRAM
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
-DRAM.py distill -i annotation/annotations.tsv -o all_genomes_summaries --trna_path annotation_trial/trnas.tsv --rrna_path annotation/rrnas.tsv
+DRAM.py distill -i annotation_dram/annotations.tsv -o all_genomes_summaries --trna_path annotation_dram/trnas.tsv --rrna_path annotation_dram/rrnas.tsv
 
 ```
 ---
