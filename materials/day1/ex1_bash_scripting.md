@@ -410,7 +410,8 @@ Jobs running on NeSI are submitted in the form of a batch script containing the 
 All NeSI systems use the slurm batch scheduler for the submission, control and management of user jobs.
 Slurm provides a rich set of features for organising your workload and an extensive array of tools for managing your resource usage. In most cases you need to know the commands:
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex1_slurm_components.png) 
+<p align="center"><img  src="../figures/slurm2020.png" alt="drawing" width="1000"/></p>
+
 
 Copy the contents of the `BLAST/` folder to your current directory, using the following command
 
