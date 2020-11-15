@@ -95,8 +95,8 @@ do
   out_file=$(basename ${prot_file} .faa)
 
   diamond blastp -p 20 --max-target-seqs 5 --evalue 0.001 \
-                 --db /nesi/nobackup/nesi02659/MGSS_resources_2020/databases/uniprot_nr_200213.diamond \ 
-                 -q ${prot_file} --outfmt 6 -o gene_annotations/${out_file}.uniprot.txt
+        --db /nesi/nobackup/nesi02659/MGSS_resources_2020/databases/uniprot_nr_200213.diamond \
+        -q ${prot_file} --outfmt 6 -o gene_annotations/${out_file}.uniprot.txt
 done
 
 ```
