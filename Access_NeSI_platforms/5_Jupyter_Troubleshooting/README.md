@@ -4,9 +4,9 @@
 
 <p align="center"><img  src="../img/failedToSpawn.png" alt="drawing" width="900"/></p>
 
-1. It will re-direct to a page simlilar to below. Then click `Stop My Server` and wait for `Server Not Running` page
+2. It will re-direct to a page simlilar to below. Then click `Stop My Server` and wait for `Server Not Running` page
 
-<p align="center"><img src="../img/stopmyServer.png" alt="drawing" width="900"/></p>
+<p align="center"><img src="../img/stopmyServer%20-%20Copy.png" alt="drawing" width="900"/></p>
 
 3. Then click on `Launch Sever` to restart the launch
 
