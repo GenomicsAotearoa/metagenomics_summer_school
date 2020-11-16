@@ -85,8 +85,8 @@ We will be using a collaborative document to share long code, results, or even c
 |10:50 am – 11:30 am|**TASK:** Bash scripting (continued)|Ngoni Faya|
 |11:30 am – 12:00 pm|**TALK:** The metagenomics decision tree<br>**TALK:** Automation, reproducibility, and FAIR principles|Kim Handley<br>Dan Jones|
 |12:00 pm – 12:45 pm|**Break for lunch** (*lunch not provided*)||
-|12:45 pm – 1:45 pm|**TALK:** Quality filtering raw reads<br>**TASK:** Visualisation with *FastQC*<br>**TASK:** Read trimming and adapter removal<br>**TALK:** Diagnosing poor libraries<br>**TALK:** Common issues and best practice|Carmen Astudillo-Garcia|
-|1:45 pm – 3:00 pm|**TALK:** Assembly<br>- Choice of assemblers<br>- Considerations for parameters, and when to stop!<br>**TASK:** Exploring assembler options<br>**TASK:** Submitting jobs to NeSI via slurm<br>**TASK:** Run assembly<br>**TASK (*Optional*):** Submitting variant assemblies to NeSI|Kim Handley|
+|12:45 pm – 1:45 pm|**TALK:** Quality filtering raw reads<br>**TASK:** Visualisation with *FastQC*<br>**TASK:** Read trimming and adapter removal<br>**TASK:** Diagnosing poor libraries<br>**TASK:** Common issues and best practice|Carmen Astudillo-Garcia|
+|1:45 pm – 3:00 pm|**TASK:** Run IDBA_UD assembly<br>**TALK:** Assembly<br>- Choice of assemblers<br>- Considerations for parameters, and when to stop!<br>**TASK:** Exploring assembler options<br>**TASK:** Submitting jobs to NeSI via slurm<br>**TASK:** Run SPAdes assembly<br>**TASK (*Optional*):** Submitting variant assemblies to NeSI|Kim Handley|
 |3:00 pm – 3:20 pm|**Afternoon tea break** (*Tea, coffee, and snacks provided*)||
 |3:20 pm – 5:00 pm|**TALK:** Future considerations - co-assembly vs. single assemblies<br>**TASK:** Assembly evaluation<br>**TASK:** Short contig removal|Michael Hoggard|
 
@@ -102,9 +102,9 @@ We will be using a collaborative document to share long code, results, or even c
 |11:20 am – 12:00 pm|**Binning (part 2)**<br>**TASK:** Multi-binning strategy (*Metabat* and *Maxbin*)|Kim Handley|
 |12:00 pm – 12:45 pm|**Break for lunch** (*lunch not provided*)||
 |12:45 pm – 2:00 pm|**Binning (part 3)**<br>**TASK:** Bin dereplication via *DAS_Tool*<br>**TASK:** Evaluating bins using *CheckM*|Michael Hoggard|
-|2:00 pm - 3:00 pm|**Binning (part 4)**<br>- Discuss additional dereplication strategies, such as *dRep*<br>- How to work with viral and eukaryotic bins<br>- Dealing with organisms which possess minimal genomes|Carmen Astudillo-Garcia|
+|2:00 pm - 3:00 pm|**Binning (part 4)**<br>- Discuss additional dereplication strategies, such as *dRep*<br>- How to work with viral and eukaryotic bins<br>- Dealing with organisms which possess minimal genomes<br>**TALK:** Bin refinement<br>- Refinement strategies - |Carmen Astudillo-Garcia<br>Michael Hoggard|
 |3:00 pm – 3:20 pm|**Afternoon tea break** (*Tea, coffee, and snacks provided*)||
-|3:20 pm – 5:00 pm|**TALK:** Bin refinement<br>- Refinement strategies - *VizBin* and *ESOMana*<br>**TASK:** Working with *VizBin*|Michael Hoggard|
+|3:20 pm – 5:00 pm|**TALK:** Bin refinement<br>- Refinement strategies (cont) - *VizBin* and *ESOMana*<br>**TASK:** Working with *VizBin*<br>**TASK:** Submit *VIBRANT* job|Michael Hoggard|
 
 ### Day 3 - 19<sup>th</sup> November 2020
 
