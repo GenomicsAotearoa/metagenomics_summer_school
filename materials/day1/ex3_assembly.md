@@ -183,7 +183,7 @@ Into this file, either write or copy/paste the following commands:
 #SBATCH -A nesi02659
 #SBATCH -J spades_assembly
 #SBATCH --res SummerSchool
-#SBATCH --time 00:35:00
+#SBATCH --time 00:50:00
 #SBATCH --mem 10GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 12
@@ -277,7 +277,7 @@ nano idbaud_assembly.sl
 #SBATCH -A nesi02659
 #SBATCH -J idbaud_assembly
 #SBATCH --res SummerSchool
-#SBATCH --time 00:20:00
+#SBATCH --time 00:35:00
 #SBATCH --mem 4GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 8
