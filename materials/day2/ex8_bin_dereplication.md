@@ -189,7 +189,15 @@ As part of determining the correct marker set to use for each bin (bacterial or 
 
 This process isn't perfect, however, and we will discuss some times when you might need to create your own marker set in the next session.
 
-We will need to run `CheckM` under a slurm script. This is because the tree placement process requires a large amount of memory to perform, independently of the size of your data set. A basic script for submitting a `CheckM` job would be:
+We will need to run `CheckM` under a slurm script. This is because the tree placement process requires a large amount of memory to perform, independently of the size of your data set. A basic script for submitting a `CheckM` job would be as follows:
+
+Create a new script
+
+```bash
+nano bin_eval_checkm.sl
+```
+
+Paste in the following script (replacing `<YOUR FOLDER>` with your own folder).
 
 ```bash
 #!/bin/bash
@@ -213,6 +221,12 @@ cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 checkm lineage_wf -t 10 --pplacer_threads 10 -x fa \
                   --tab_table -f checkm.txt \
                   dastool_out/_DASTool_bins/ checkm_out/
+```
+
+Submit the script as a slurm job
+
+```
+sbatch bin_eval_checkm.sl
 ```
 
 The breakdown of parameters is as follows
