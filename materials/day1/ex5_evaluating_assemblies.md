@@ -153,10 +153,10 @@ stats.sh in=idbaud_assembly/idbaud_assembly.fna
 
 |Assembly|N50 (contig)|L50 (contig)|
 |:---|:---:|:---:|
-|**SPAdes** (filtered)|106 kbp|73 kbp|
-|**SPAdes** (unfiltered)|107 kbp|72 kbp|
-|**IDBA-UD** (filtered)|82 kbp|104 kbp|
-|**IDBA-UD** (unfiltered)|88 kbp|97 kbp|
+|**SPAdes** (filtered)|106 kbp|73 |
+|**SPAdes** (unfiltered)|107 kbp|72 |
+|**IDBA-UD** (filtered)|82 kbp|104 |
+|**IDBA-UD** (unfiltered)|88 kbp|97 |
 
 #### *Optional:* Evaluating assemblies using *MetaQUAST*
 
