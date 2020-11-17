@@ -38,6 +38,7 @@ For input files, the `predictions/` results from the previous gene prediction ex
 In general, diamond takes a simple pair of input files - the protein coding sequences we wish to annotate and the database we will use for this purpose. There are a few parameters that need to be tweaked for obtaining a useful output file, however.
 
 ```bash
+module purge
 module load DIAMOND/0.9.25-gimkl-2018b
 
 diamond help
@@ -67,6 +68,14 @@ Awkwardly, `diamond` does not provide the headers for what the columns in the ou
 From here we can view important stastics for each query/target pairing such as the number of identify residues between sequences and the aligned length between query and target.
 
 Lets set up a slurm job to annotate each of our MAGs. 
+
+Create a new script
+
+```bash
+nano annotate_uniprot.sl
+```
+
+Paste in the script (update `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash -e
@@ -99,6 +108,12 @@ do
         -q ${prot_file} --outfmt 6 -o gene_annotations/${out_file}.uniprot.txt
 done
 
+```
+
+Submit the script
+
+```bash
+sbatch annotate_uniprot.sl
 ```
 
 ---
@@ -144,6 +159,14 @@ hmmsearch -h
 
 We are now going to submit another slurm job to annotate our MAGs using the [Pfam database](https://pfam.xfam.org/). Matching sequences to a `Pfam` entry allows us to transfer the functional information from an experimentally characterised sequence to uncharacterised sequences in the same entry. `Pfam` then provides comprehensive annotation for each entry.
 
+Create a new script
+
+```bash
+nano annotate_pfam.sl
+```
+
+Paste in the script (update `<YOUR FOLDER>`)
+
 ```bash
 #!/bin/bash -e
 #SBATCH -A nesi02659
@@ -172,6 +195,12 @@ do
   
 done
 
+```
+
+Submit the script
+
+```bash
+sbatch annotate_pfam.sl
 ```
 
 ---
