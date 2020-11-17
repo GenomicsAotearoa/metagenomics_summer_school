@@ -26,6 +26,7 @@ In our own workflow, we use the tools `MetaBAT`, `MaxBin`, and `CONCOCT` for bin
 
 The *.bam* files can be passed in via either a user-defined order, or using wildcards.
 ```bash
+module purge
 module load MetaBAT/2.13-GCC-7.4.0
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
