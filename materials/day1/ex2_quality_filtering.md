@@ -50,7 +50,7 @@ Fortunately, if you're currently using the terminal within `Jupyter hub` for tod
 
 * Click on the folder icon in the top left to open the folder navigator pane (if not already open).
 * The default viewed location will be the overall project that you have logged in to (in this case, the 'Genomics Aotearoa Virtual Lab Training Access (nesi02659)' project). 
-* Click through `MGSS_2020`, into your folder, and then into the `2.fastqc/` folder. 
+* Click through `MGSS_U`, into your folder, and then into the `2.fastqc/` folder. 
 * Double click on the output `...fastqc.html` files to open them in the a new tab within the `Jupyter hub`.
 
 Examples of the output files are also available for download [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/fastqc_results.zip).
