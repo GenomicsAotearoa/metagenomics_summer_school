@@ -40,7 +40,13 @@ bowtie2-build filtered_bins.fna bin_coverage/bw_bins
 
 Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowtie2`, and sort and convert to `.bam` format via `samtools`.
 
-Example slurm script:
+Create a new script
+
+```bash
+nano mapping_bins.sl
+```
+
+Paste in the script (replacing `<YOUR FOLDER>`)
 
 ```bash 
 #!/bin/bash -e
@@ -76,6 +82,12 @@ do
   samtools sort -@ 10 -o bin_coverage/${i}.bam bin_coverage/${i}.sam
 
 done
+```
+
+Submit the script
+
+```bash
+sbatch mapping_bins.sl
 ```
 
 Finally, generate the per-sample coverage table for each contig in each bin via `MetaBAT`'s `jgi_summarize_bam_contig_depths`.
@@ -133,7 +145,13 @@ bowtie2-build checkv_combined.fna viruses_coverage/bw_viruses
 
 Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowtie2`, and sort and convert to `.bam` format via `samtools`.
 
-Example slurm script:
+Create a new script
+
+```bash
+nano mapping_viruses.sl
+```
+
+Paste in the script (replacing `<YOUR FOLDER>`)
 
 ```bash 
 #!/bin/bash -e
@@ -169,6 +187,12 @@ do
   samtools sort -@ 10 -o viruses_coverage/${i}.bam viruses_coverage/${i}.sam
 
 done
+```
+
+Run the script
+
+```bash
+sbatch mapping_viruses.sl
 ```
 
 Finally, generate the per-sample coverage table for each viral contig via `MetaBAT`'s `jgi_summarize_bam_contig_depths`.
@@ -256,6 +280,14 @@ For this exercise, we will use the last option in the list, making use of the `G
 
 This can all be achieved in a single command, although it must be performed through a slurm script due to the high memory requirements of the process.
 
+Create a new script
+
+```bash
+nano gtdbtk_test.sl
+```
+
+Paste in the script (replacing `<YOUR FOLDER>`)
+
 ```bash
 #!/bin/bash
 #SBATCH -A nesi02659
@@ -276,6 +308,12 @@ module load GTDB-Tk/0.2.2-gimkl-2018b-Python-2.7.16
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy
 
 gtdbtk classify_wf -x fna --cpus 10 --genome_dir filtered_bins/ --out_dir gtdbtk_out/
+```
+
+Submit the script
+
+```bash
+sbatch gtdbtk_test.sl
 ```
 
 As usual, lets look at the parameters here
