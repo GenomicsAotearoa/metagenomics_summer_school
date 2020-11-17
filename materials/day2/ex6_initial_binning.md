@@ -52,6 +52,14 @@ We will create a slurm script to perform the mapping steps, as these benefit gre
 
 The full script is provided here, and we will discuss it below.
 
+Open a new script using nano:
+
+```bash 
+nano spades_mapping.sl
+```
+
+Paste in the following script. Remember to replace <YOUR FOLDER> with your own folder.
+
 ```bash
 #!/bin/bash -e
 #SBATCH -A nesi02659
@@ -86,6 +94,12 @@ do
   samtools sort -@ 10 -o ${i}.bam ${i}.sam
 
 done
+```
+
+Now run the script using `sbatch`
+
+```bash
+sbatch spades_mapping.sl
 ```
 
 #### Step 1 - Loop through the sample files
@@ -159,6 +173,12 @@ samtools view -bS sample1.sam | samtools sort -o sample1.bam
 
 If you have a large number of files to process, it might be worth using a slurm array to distribute you individual mapping jobs across many separate nodes. An example script for how to perform this is given below, although it will not be covered in this workshop.
 
+Open a new script using nano:
+
+```bash 
+nano spades_mapping_array.sl
+```
+
 ```bash
 #!/bin/bash -e
 #SBATCH -A nesi02659
@@ -193,4 +213,10 @@ srun bowtie2 --minins 200 --maxins 800 --threads 10 --sensitive -x spades_assemb
              -S ${samples[ $SLURM_ARRAY_TASK_ID ]}.sam
 
 srun samtools sort -o ${samples[ $SLURM_ARRAY_TASK_ID ]}.bam ${samples[ $SLURM_ARRAY_TASK_ID ]}.sam
+```
+
+submit the job to slurm
+
+```bash
+sbatch spades_mapping_array.sl
 ```
