@@ -32,6 +32,7 @@ Now build the index for `Bowtie2` using the concatenated bin data. We will also 
 mkdir -p bin_coverage/
 
 # Load Bowtie2
+module purge
 module load Bowtie2/2.3.5-GCC-7.4.0
 
 # Build Bowtie2 index
