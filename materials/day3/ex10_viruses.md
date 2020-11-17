@@ -43,7 +43,13 @@ For this we will input the assembled contigs from the `SPAdes` assembly we perfo
 
 *NOTE: The path to the required databases for the `VIBRANT` NeSI module have been linked to the variable `$DB_PATH`. This needs to be included in the command (using the `-d` flag) for `VIBRANT` to be able to locate them.*
 
-Example slurm script:
+Create a new script
+
+```bash
+nano vibrant.sl
+```
+
+Paste in the following (updating `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash -e
@@ -76,6 +82,12 @@ srun VIBRANT_run.py -t 16 \
 -folder vibrant/
 ```
 
+Submit the script as a slurm job
+
+```bash
+sbatch vibrant.sl
+```
+
 #### Examine outputs of *VIBRANT*
 
 Exercise: `VIBRANT` provides a number of different outputs. Explore through the various folders within the `vibrant/` folder and identify some that might be of particular interest. Open some of these files to see if you can find the following information:
@@ -101,7 +113,13 @@ Installation and further instructions for `CheckV` can be found [here](https://b
 
 Run `CheckV` providing the *fastA* file of combined (virus and prophage) viral contigs output by `VIBRANT` as input (`spades_assembly.m1000.phages_combined.fna`).
 
-Example slurm script:
+Create a new script
+
+```bash
+nano checkv.sl
+```
+
+Paste in the following (updating `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash -e
@@ -131,6 +149,12 @@ mkdir -p checkv_out
 checkv_in="vibrant/VIBRANT_spades_assembly.m1000/VIBRANT_phages_spades_assembly.m1000/spades_assembly.m1000.phages_combined.fna"
 
 srun checkv end_to_end ${checkv_in} checkv_out -t 10 --quiet
+```
+
+Submit the script as a slurm job
+
+```bash
+sbatch checkv.sl
 ```
 
 #### Examine outputs of *CheckV*
