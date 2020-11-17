@@ -35,6 +35,12 @@ Beyond annotation, `DRAM` aims to be a data compiler. For that reason, output fi
 
 For these exercises, we have copied the relevant input files into the folder `10.gene_annotation/DRAM_input_files/`. `gtdbtk.bac120.classification_pplacer.tsv` was taken from the earlier `8.coverage_and_taxonomy/gtdbtk_out/` outputs, and `checkm.txt` from the result of re-running `CheckM` on the final refined filtered bins in `6.bin_refinement/filtered_bins`.
 
+Navigate to the `10.gene_annotation/` folder
+
+```bash
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
+```
+
 The `CheckM` output file (`checkm.txt`) can be input as it is. However, in order to use the file with the `gtdb_tk` taxonomy (`gtdbtk.bac120.classification_pplacer.tsv`) we should modify it first to include column headers 'bin_id' and 'classification'
 
 First, take a quick look at the current format of the taxonomy file using `less`
@@ -124,6 +130,13 @@ To run this exercise we first need to set up a slurm job. We will use the result
 
 *NOTE: Currently DRAM has to be run from the directory where* ```DRAM-setup.py``` *was run in order to work. That is why we start the slurm script with* ```cd /nesi/project/nesi02659/.conda/dramdbsetup``` *and pass absolute paths to each of the arguments included in the `DRAM.py` script.*
 
+Create a new script
+
+```bash
+nano dram_annnotation.sl
+```
+
+Paste in the script (update all of the cases of `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash -e
@@ -155,6 +168,12 @@ DRAM.py annotate -i '/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annot
 -o /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/annotation_dram
 
 conda deactivate
+```
+
+Submit the job
+
+```bash
+sbatch dram_annnotation.sl
 ```
 
 The program will take 4-4.5 hours to run, so we will submit the jobs and inspect the results tomorrow morning. 
