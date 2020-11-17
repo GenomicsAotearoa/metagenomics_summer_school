@@ -233,6 +233,7 @@ Use `seqmagick --exclude-from-file ...` to filter problematic contigs (those con
 mkdir filtered_bins/
 
 # Load seqmagick
+module purge
 module load seqmagick/0.7.0-gimkl-2018b-Python-3.7.3
 
 # filter problematic contigs out of original bin files
