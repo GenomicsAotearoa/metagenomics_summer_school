@@ -272,6 +272,8 @@ To run an equivalent assembly with `IDBA-UD`, create a new slurm script as follo
 nano idbaud_assembly.sl
 ```
 
+Paste or type in the following:
+
 ```bash
 #!/bin/bash -e
 #SBATCH -A nesi02659
@@ -292,6 +294,8 @@ module load IDBA/1.1.3-gimkl-2017a
 
 idba_ud --num_threads 8 --mink 33 --maxk 99 --step 22 -r for_idba.fna -o idbaud_assembly/
 ```
+
+And submit the script as a slurm job:
 
 ```bash
 sbatch idbaud_assembly.sl
