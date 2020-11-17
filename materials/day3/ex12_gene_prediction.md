@@ -97,6 +97,14 @@ Anecdotally, when applied to a MAG or genome, anonymous mode (`-p meta`) will id
 
 We will now run `prodigal` over the 10 bins in *anonymous* mode. As usual, we can use a loop to get the predictions for all of our bins.
 
+Create a new script
+
+```bash
+nano prodigal.sl
+```
+
+Paste in the script (modifying `<YOUR FOLDER>`)
+
 ```bash
 #!/bin/bash -e
 #SBATCH -A nesi02659
@@ -128,6 +136,12 @@ do
              -a predictions/${pred_file}.genes.faa \
              -o predictions/${pred_file}.genes.gbk
 done
+```
+
+Submit the script
+
+```bash
+sbatch prodigal.sl
 ```
 
 Once `prodigal` has completed, let's check one of the output files:
@@ -199,7 +213,15 @@ head -n8 predictions/bin_0.filtered.genes.no_metadata.faa
 
 While they will not be covered in great detail here, there are a few other prediction tools that are useful when working with metagenomic data. The first of these is `MeTaxa2`, which can be used to predict ribosomal RNA sequences in a genome. Detection of these is a handy way to link your MAGs to the scientific literature and taxonomy, although recovery of ribosomal sequences like the 16S rRNA subunit is often not successful.
 
-To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits in our data, use the following commands:
+To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits in our data, use the following commands.
+
+Create a new script
+
+```bash
+nano metaxa2.sl
+```
+
+Paste in the script (replacing `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash -e
@@ -230,6 +252,12 @@ do
     metaxa2 --cpu 10 -g ssu -i ${bin_file} -o ribosomes/${pred_file}.ssu
     metaxa2 --cpu 10 -g lsu -i ${bin_file} -o ribosomes/${pred_file}.lsu
 done
+```
+
+Submit the script
+
+```bash
+sbatch metaxa2.sl
 ```
 
 The parameters here are fairly self-explanatory, so we won't discuss them in detail. Briefly, `--cpu` tells the program how many CPUs to use in sequence prediction, and the `-g` flag determines whether we are using the training data set for SSU or LSU regions. the `-i` and `-o` flags denote the input file and output prefix.
