@@ -37,6 +37,10 @@ For this exercise, we will use `VIBRANT` to identify viral contigs from our asse
 
 These exercises will take place in the `7.viruses/` folder.
 
+```bash
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/
+```
+
 #### Run *Vibrant*
 
 For this we will input the assembled contigs from the `SPAdes` assembly we performed earlier. These assembly files are available at `7.viruses/spades_assembly/`
