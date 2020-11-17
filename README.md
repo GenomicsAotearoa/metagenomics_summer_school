@@ -83,7 +83,7 @@ We will be using a collaborative document to share long code, results, or even c
 |9:30 am – 10:30 am|**TASK:** Bash scripting|Ngoni Faya|
 |10:30 am – 10:50 am|**Morning tea break**||
 |10:50 am – 11:30 am|**TASK:** Bash scripting (continued)|Ngoni Faya|
-|11:30 am – 12:00 pm|**TALK:** The metagenomics decision tree<br>**TALK:** Automation, reproducibility, and FAIR principles|Kim Handley<br>Dan Jones|
+|11:30 am – 12:00 pm|**TALK:** The metagenomics decision tree|Kim Handley|
 |12:00 pm – 12:45 pm|**Break for lunch** (*lunch not provided*)||
 |12:45 pm – 1:45 pm|**TALK:** Quality filtering raw reads<br>**TASK:** Visualisation with *FastQC*<br>**TASK:** Read trimming and adapter removal<br>**TASK:** Diagnosing poor libraries<br>**TASK:** Common issues and best practice|Carmen Astudillo-Garcia|
 |1:45 pm – 3:00 pm|**TASK:** Run IDBA_UD assembly<br>**TALK:** Assembly<br>- Choice of assemblers<br>- Considerations for parameters, and when to stop!<br>**TASK:** Exploring assembler options<br>**TASK:** Submitting jobs to NeSI via slurm<br>**TASK:** Run SPAdes assembly<br>**TASK (*Optional*):** Submitting variant assemblies to NeSI|Kim Handley|
@@ -95,7 +95,8 @@ We will be using a collaborative document to share long code, results, or even c
 
 |Time|Event|Session leader|
 |:---|:---|:---|
-|9:00 am – 9:30 am|**Introduction**<br>- Overview of yesterday, questions<br>- Overview of today|Carmen Astudillo-Garcia|
+|9:00 am – 9:15 am|**Introduction**<br>- Overview of yesterday, questions<br>- Overview of today|Carmen Astudillo-Garcia|
+|9:15 am – 9:30 am|**TALK:** Automation, reproducibility, and FAIR principles|Dan Jones|
 |9:30 am – 10:30 am|**Binning (part 1)**<br>**TALK:** Overview of binning history<br>- Key parameters and strategies for binning<br>**TASK:** Read mapping|Kim Handley|
 |10:30 am – 10:50 am|**Morning tea break** (*Tea, coffee, and snacks provided*)||
 |10:50 am – 11:20 am|**TALK:** Overview of binning history (*continued*)<br>- Key parameters and strategies for binning|Kim Handley|
