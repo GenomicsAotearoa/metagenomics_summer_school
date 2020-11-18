@@ -179,3 +179,26 @@ sbatch dram_annnotation.sl
 The program will take 4-4.5 hours to run, so we will submit the jobs and inspect the results tomorrow morning. 
 
 ---
+
+### Tie findings to your initial goal
+
+It is now time to explore the genomes and try to address your original goal!
+
+You were tasked with identfying one of the following.
+
+1. Denitrification (Nitrate or nitrite to nitrogen)
+2. Ammonia oxidation (Ammonia to nitrite or nitrate)
+3. Anammox (Ammonia and nitrite to nitrogen)
+4. Sulfur oxidation (SOX pathway, thiosulfate to sulfate)
+5. Sulfur reduction (DSR pathway, sulfate to sulfide)
+6. Photosynthetic carbon fixation
+7. Non-photosynthetic carbon fixation (Reverse TCA or Wood-Ljundahl)
+8. Non-polar flagella expression due to a chromosomal deletion
+9. Plasmid-encoded antibiotic resistance
+10. Aerobic (versus anaerobic) metabolism
+
+Depending on what you are looking for, you will either be trying to find gene(s) of relevance to a particular functional pathway, or the omission of genes that might be critical in function. In either case, make sure to use the taxonomy of each MAG to determine whether it is likely to be a worthwhile candidate for exploration, as some of these traits are quite restricted in terms of which organisms carry them.
+
+To conduct this exersise, you should use the information generated with ```DRAM``` as well as the annotation files we created yesterday and that are available in the directory ```10.gene_annotation/gene_annotations```. 
+
+Please note that we have also provided further annotation files within the directory ```10.gene_annotation/example_annotation_tables``` that contain information obtained after annotating the MAGs against additional databases (UniProt, UniRef100, KEGG, PFAM and TIGRfam). These example files can also be downloaded from [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/example_annotation_tables.zip). 
