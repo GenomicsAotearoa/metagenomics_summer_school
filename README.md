@@ -40,7 +40,7 @@ We will be using a collaborative document to share long code, results, or even c
 
 
 #### Post-Workshop Survey
-Please complete the [survey] (https://otago.au1.qualtrics.com/jfe/form/SV_cY1iU9WJm7Z07kh) before you leave to help us continue to provide A+ workshops
+Please complete the <a href="https://otago.au1.qualtrics.com/jfe/form/SV_cY1iU9WJm7Z07kh">survey</a> before you leave to help us continue to provide A+ workshops
 
 ---
 
