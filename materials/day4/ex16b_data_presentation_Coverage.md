@@ -239,7 +239,7 @@ heatmap.2(
   cexCol = 1.2,
   cexRow = 1.2,
   RowSideColors = MAG.cols[coverage.heatmap.data.MAG.filt[,"taxonomy"]],
-  ColSideColors = map.df$col,
+  ColSideColors = map.col$col,
   margins = c(28,16),
   lwid = c(1, 8),
   lhei = c(1, 8),
