@@ -180,11 +180,9 @@ The program will take 4-4.5 hours to run, so we will submit the jobs and inspect
 
 ---
 
-### Tie findings to your initial goal
+### Select initial goal
 
-It is now time to explore the genomes and try to address your original goal!
-
-You were tasked with identfying one of the following.
+It is now time to select the goals to investigate the genomes you have been working with. We ask you to select one of the following goals:
 
 1. Denitrification (Nitrate or nitrite to nitrogen)
 2. Ammonia oxidation (Ammonia to nitrite or nitrate)
@@ -199,6 +197,6 @@ You were tasked with identfying one of the following.
 
 Depending on what you are looking for, you will either be trying to find gene(s) of relevance to a particular functional pathway, or the omission of genes that might be critical in function. In either case, make sure to use the taxonomy of each MAG to determine whether it is likely to be a worthwhile candidate for exploration, as some of these traits are quite restricted in terms of which organisms carry them.
 
-To conduct this exersise, you should use the information generated with ```DRAM``` as well as the annotation files we created yesterday and that are available in the directory ```10.gene_annotation/gene_annotations```. 
+To conduct this exersise, you should use the information generated with ```DRAM``` as well as the annotation files we created previously that will be available in the directory ```10.gene_annotation/gene_annotations```. 
 
 Please note that we have also provided further annotation files within the directory ```10.gene_annotation/example_annotation_tables``` that contain information obtained after annotating the MAGs against additional databases (UniProt, UniRef100, KEGG, PFAM and TIGRfam). These example files can also be downloaded from [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/example_annotation_tables.zip). 
