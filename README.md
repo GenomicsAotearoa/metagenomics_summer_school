@@ -38,6 +38,10 @@ You can find a copy of the slides presented during the workshop, with published 
 
 We will be using a collaborative document to share long code, results, or even code errors. This document can be found [here](https://etherpad.wikimedia.org/p/MGSS_17_11_20) or type https://etherpad.wikimedia.org/p/MGSS_17_11_20 in your browser.
 
+
+#### Post-Workshop Survey
+Please complete the [survey] (https://otago.au1.qualtrics.com/jfe/form/SV_cY1iU9WJm7Z07kh) before you leave to help us continue to provide A+ workshops
+
 ---
 
 ## Workshop exercises
