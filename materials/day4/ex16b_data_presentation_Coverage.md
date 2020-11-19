@@ -271,7 +271,7 @@ legend("bottomleft",
        title = "Y-axis key:\nMAG taxonomy"
 )
 legend("bottomright",
-       legend = levels(map.df$Group),
+       legend = levels(map.col$Group),
        border = NULL,
        col = unique(map.col$col),
        lty = 1,
