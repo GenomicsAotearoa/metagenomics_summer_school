@@ -95,20 +95,6 @@ setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/gene_s
 library(dplyr)
 library(genoPlotR)
 ```
-    
-    Attaching package: ‘dplyr’
-    
-    The following objects are masked from ‘package:stats’:
-    
-        filter, lag
-    
-    The following objects are masked from ‘package:base’:
-    
-        intersect, setdiff, setequal, union
-    
-    Loading required package: ade4
-    Loading required package: grid
-
 
 ##### Part 2.1 - Load coordinate files
 
