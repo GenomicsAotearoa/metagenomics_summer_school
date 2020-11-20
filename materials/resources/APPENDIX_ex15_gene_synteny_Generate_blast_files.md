@@ -30,6 +30,6 @@ Download the `*cys.fna` files to your local computer and then upload them to the
 
 You will get the output that looks like this. Click `download all`, and select `Hit Table (text)`.
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_gene_synteny_createBlast_fig2.PNG)
+![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_gene_synteny_createBlast_fig2.png)
 
 That's it! Now you will have downloaded two files (one comparing between bin 4 and bin 5, and another between bin 5 and bin 7).
