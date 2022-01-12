@@ -262,7 +262,7 @@ Paste in the script (replacing `<YOUR FOLDER>`)
 export SLURM_EXPORT_ENV=ALL
 
 module purge
-module load GTDB-Tk/0.2.2-gimkl-2018b-Python-2.7.16
+module load GTDB-Tk/1.5.0-gimkl-2020a-Python-3.8.2
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy
 
