@@ -62,15 +62,15 @@ Paste in the following script. Remember to replace <YOUR FOLDER> with your own f
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A nesi02659
-#SBATCH -J spades_mapping
+#SBATCH --account nesi02659
+#SBATCH --job-name spades_mapping
 #SBATCH --res SummerSchool
 #SBATCH --time 00:05:00
 #SBATCH --mem 1GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 10
-#SBATCH -e spades_mapping.err
-#SBATCH -o spades_mapping.out
+#SBATCH --error spades_mapping.err
+#SBATCH --output spades_mapping.out
 #SBATCH --export NONE
 
 export SLURM_EXPORT_ENV=ALL
