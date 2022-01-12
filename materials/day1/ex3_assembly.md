@@ -180,15 +180,15 @@ Into this file, either write or copy/paste the following commands:
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A nesi02659
-#SBATCH -J spades_assembly
+#SBATCH --account nesi02659
+#SBATCH --job-name spades_assembly
 #SBATCH --res SummerSchool
 #SBATCH --time 00:50:00
 #SBATCH --mem 10GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 12
-#SBATCH -e spades_assembly.err
-#SBATCH -o spades_assembly.out
+#SBATCH --error spades_assembly.err
+#SBATCH --output spades_assembly.out
 #SBATCH --export NONE
 
 export SLURM_EXPORT_ENV=ALL
