@@ -275,15 +275,15 @@ Paste or type in the following:
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A nesi02659
-#SBATCH -J idbaud_assembly
+#SBATCH --account nesi02659
+#SBATCH --job-name idbaud_assembly
 #SBATCH --res SummerSchool
 #SBATCH --time 00:35:00
 #SBATCH --mem 4GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 8
-#SBATCH -e idbaud_assembly.err
-#SBATCH -o idbaud_assembly.out
+#SBATCH --error idbaud_assembly.err
+#SBATCH --output idbaud_assembly.out
 #SBATCH --export NONE
 
 export SLURM_EXPORT_ENV=ALL
