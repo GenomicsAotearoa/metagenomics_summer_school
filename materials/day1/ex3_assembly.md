@@ -204,16 +204,15 @@ To save your file, use `Ctrl + O` to save the file, then `Ctrl + X` to exit `nan
 |Slurm parameter|Function|
 |:---|:---|
 |**#!/bin/bash -e**|Header for the file, letting NeSI know how to interpret the following commands. The `-e` flag means that the slurm run will halt at the first failed command (rather than pushing through and trying to execute subsequent ones)|
-|**-A ...**|The name of the project account to run the run under. You are provided with this when you create a project on NeSI|
-|**-J ...**|The name of the job, to display when using the `squeue` command|
-|**--partition ...**|Which of the NeSI cluster [partitions](https://support.nesi.org.nz/hc/en-gb/articles/360000204076) you want to use for the job|
+|**--account ...**|The name of the project account to run the run under. You are provided with this when you create a project on NeSI|
+|**--job-name ...**|The name of the job, to display when using the `squeue` command|
 |**--res ...*|This is a parameter that we need due to a system reservation for this workshop. For your own work, ignore this flag|
 |**--time ...**|Maximum run time for the job before it is killed|
 |**--mem ...**|Amount of server memory to allocate to the job. If this is exceeded, the job will be terminated|
 |**--ntasks ...**|Number of tasks to distribute the job across. For all tools we use today, this will remain as 1|
 |**--cpus-per-task ...**|number of processing cores to assign to the job. This should match with the number used by your assembler|
-|**-e ...**|File to log the [standard error](https://en.wikipedia.org/wiki/Standard_streams) stream of the program.<br>This is typically used to prove error reports, or to just inform the user of job progress|
-|**-o ...**|File to log the [standard output](https://en.wikipedia.org/wiki/Standard_streams) stream of the program.<br>This is typically used to inform the user of job progress and supply messages|
+|**--error ...**|File to log the [standard error](https://en.wikipedia.org/wiki/Standard_streams) stream of the program.<br>This is typically used to prove error reports, or to just inform the user of job progress|
+|**--output ...**|File to log the [standard output](https://en.wikipedia.org/wiki/Standard_streams) stream of the program.<br>This is typically used to inform the user of job progress and supply messages|
 
 The `module load` command needs to be invoked within your slurm script. It is also a good idea to explicitly set the path to your files within the job so that
 
