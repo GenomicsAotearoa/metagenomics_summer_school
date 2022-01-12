@@ -249,14 +249,14 @@ Paste in the script (replacing `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash
-#SBATCH -A nesi02659
-#SBATCH -J gtdbtk_test
+#SBATCH --account nesi02659
+#SBATCH --job-name gtdbtk_test
 #SBATCH --res SummerSchool
 #SBATCH --time 00:30:00
 #SBATCH --mem 140GB
 #SBATCH --cpus-per-task 10
-#SBATCH -e gtdbtk_test.err
-#SBATCH -o gtdbtk_test.out
+#SBATCH --error gtdbtk_test.err
+#SBATCH --output gtdbtk_test.out
 #SBATCH --export NONE
 
 export SLURM_EXPORT_ENV=ALL
