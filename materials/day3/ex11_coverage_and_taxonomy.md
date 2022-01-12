@@ -155,15 +155,14 @@ Paste in the script (replacing `<YOUR FOLDER>`)
 
 ```bash 
 #!/bin/bash -e
-#SBATCH -A nesi02659
+#SBATCH --account nesi02659
 #SBATCH --res SummerSchool
-#SBATCH -J mapping_filtered_viruses
+#SBATCH --job-name mapping_filtered_viruses
 #SBATCH --time 00:05:00
 #SBATCH --mem 1GB
-#SBATCH --ntasks 1
 #SBATCH --cpus-per-task 10
-#SBATCH -e mapping_filtered_viruses.err
-#SBATCH -o mapping_filtered_viruses.out
+#SBATCH --error mapping_filtered_viruses.err
+#SBATCH --output mapping_filtered_viruses.out
 #SBATCH --export NONE
 
 export SLURM_EXPORT_ENV=ALL
