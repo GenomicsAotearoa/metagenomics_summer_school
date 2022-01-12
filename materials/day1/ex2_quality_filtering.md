@@ -296,16 +296,16 @@ Finally, map the quality-filtered reads to the reference via `BBMap`. Here we wi
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A nesi02659
-#SBATCH -J host_filt_bbmap_map
+#SBATCH --account nesi02659
+#SBATCH --job-name host_filt_bbmap_map
 #SBATCH --res SummerSchool
 #SBATCH --time 01:00:00
 #SBATCH --mem 27GB
 #SBATCH --ntasks 1
 #SBATCH --array=1-4
 #SBATCH --cpus-per-task 20
-#SBATCH -e host_filt_bbmap_map_%a.err
-#SBATCH -o host_filt_bbmap_map_%a.out
+#SBATCH --error host_filt_bbmap_map_%a.err
+#SBATCH --output host_filt_bbmap_map_%a.out
 #SBATCH --export NONE
 
 export SLURM_EXPORT_ENV=ALL
