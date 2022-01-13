@@ -201,14 +201,14 @@ Paste in the following script (replacing `<YOUR FOLDER>` with your own folder).
 
 ```bash
 #!/bin/bash
-#SBATCH -A nesi02659
-#SBATCH -J bin_eval_checkm
+#SBATCH --account nesi02659
+#SBATCH --job-name bin_eval_checkm
 #SBATCH --res SummerSchool
 #SBATCH --time 00:20:00
 #SBATCH --mem 50GB
 #SBATCH --cpus-per-task 10
-#SBATCH -e bin_eval_checkm.err
-#SBATCH -o bin_eval_checkm.out
+#SBATCH --error bin_eval_checkm.err
+#SBATCH --output bin_eval_checkm.out
 #SBATCH --export NONE
 
 export SLURM_EXPORT_ENV=ALL
