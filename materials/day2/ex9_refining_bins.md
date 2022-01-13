@@ -294,14 +294,14 @@ An example of an updated slurm script to run `CheckM` on the `filtered_bins/` is
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A nesi02659
+#SBATCH --account nesi02659
+#SBATCH --job-name bin_eval_checkm
 #SBATCH --res SummerSchool
-#SBATCH -J bin_eval_checkm
 #SBATCH --time 00:20:00
 #SBATCH --mem 50GB
 #SBATCH --cpus-per-task 10
-#SBATCH -e bin_eval_checkm.err
-#SBATCH -o bin_eval_checkm.out
+#SBATCH --error bin_eval_checkm.err
+#SBATCH --output bin_eval_checkm.out
 #SBATCH --export NONE
 
 export SLURM_EXPORT_ENV=ALL
