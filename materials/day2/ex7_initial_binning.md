@@ -95,15 +95,15 @@ Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own f
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A nesi02659
-#SBATCH -J maxbin_clustering
+#SBATCH --account nesi02659
+#SBATCH --job-name maxbin_clustering
 #SBATCH --res SummerSchool
 #SBATCH --time 00:05:00
 #SBATCH --mem 10GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 10
-#SBATCH -e maxbin_clustering.err
-#SBATCH -o maxbin_clustering.out
+#SBATCH --error maxbin_clustering.err
+#SBATCH --output maxbin_clustering.out
 #SBATCH --export NONE
 
 export SLURM_EXPORT_ENV=ALL
