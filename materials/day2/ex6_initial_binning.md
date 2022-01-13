@@ -181,16 +181,16 @@ nano spades_mapping_array.sl
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A nesi02659
-#SBATCH -J spades_mapping_array
+#SBATCH --account nesi02659
+#SBATCH --job-name spades_mapping_array
 #SBATCH --res SummerSchool
 #SBATCH --time 00:20:00
 #SBATCH --mem 20GB
 #SBATCH --ntasks 1
 #SBATCH --array 0-3
 #SBATCH --cpus-per-task 10
-#SBATCH -e spades_mapping_array.%j.err
-#SBATCH -o spades_mapping_array.%j.out
+#SBATCH --error spades_mapping_array.%j.err
+#SBATCH --output spades_mapping_array.%j.out
 #SBATCH --export NONE
 
 export SLURM_EXPORT_ENV=ALL
