@@ -57,15 +57,15 @@ Paste in the following (updating `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A nesi02659
+#SBATCH --account nesi02659
 #SBATCH --res SummerSchool
-#SBATCH -J vibrant
+#SBATCH --job-name vibrant
 #SBATCH --time 00:30:00
 #SBATCH --mem=4GB
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16
-#SBATCH -e vibrant.err
-#SBATCH -o vibrant.out
+#SBATCH --error vibrant.err
+#SBATCH --output vibrant.out
 #SBATCH --profile=task
 #SBATCH --export NONE
 
