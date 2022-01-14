@@ -127,15 +127,15 @@ Paste in the following (updating `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A nesi02659
+#SBATCH --account nesi02659
 #SBATCH --res SummerSchool
-#SBATCH -J checkv
+#SBATCH --job-name checkv
 #SBATCH --time 00:10:00
 #SBATCH --mem=3GB
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=10
-#SBATCH -e checkv.err
-#SBATCH -o checkv.out
+#SBATCH --error checkv.err
+#SBATCH --output checkv.out
 #SBATCH --profile=task
 #SBATCH --export NONE
 
