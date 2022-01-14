@@ -108,15 +108,15 @@ Paste in the script (modifying `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A nesi02659
-#SBATCH -J prodigal
+#SBATCH --account nesi02659
+#SBATCH --job-name prodigal
 #SBATCH --res SummerSchool
 #SBATCH --time 00:10:00
 #SBATCH --mem 1GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 1
-#SBATCH -e prodigal.err
-#SBATCH -o prodigal.out
+#SBATCH --error prodigal.err
+#SBATCH --output prodigal.out
 #SBATCH --export NONE
 
 export SLURM_EXPORT_ENV=ALL
