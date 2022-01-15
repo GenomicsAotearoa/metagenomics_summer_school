@@ -226,8 +226,8 @@ Paste in the script (replacing `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A nesi02659
-#SBATCH -J metaxa2
+#SBATCH --account nesi02659
+#SBATCH --job-name metaxa2
 #SBATCH --res SummerSchool
 #SBATCH --time 00:05:00
 #SBATCH --mem 1GB
