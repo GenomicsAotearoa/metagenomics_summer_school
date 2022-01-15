@@ -233,8 +233,8 @@ Paste in the script (replacing `<YOUR FOLDER>`)
 #SBATCH --mem 1GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 10
-#SBATCH -e metaxa2.err
-#SBATCH -o metaxa2.out
+#SBATCH --error metaxa2.err
+#SBATCH --output metaxa2.out
 #SBATCH --export NONE
 
 export SLURM_EXPORT_ENV=ALL
