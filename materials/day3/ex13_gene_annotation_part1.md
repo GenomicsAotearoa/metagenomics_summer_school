@@ -79,15 +79,15 @@ Paste in the script (update `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A nesi02659
-#SBATCH -J annotate_uniprot
+#SBATCH --account nesi02659
+#SBATCH --job-name annotate_uniprot
 #SBATCH --res SummerSchool
 #SBATCH --time 02:00:00
 #SBATCH --mem 20GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 20
-#SBATCH -e annotate_uniprot_dmnd.err
-#SBATCH -o annotate_uniprot_dmnd.out
+#SBATCH --error annotate_uniprot_dmnd.err
+#SBATCH --output annotate_uniprot_dmnd.out
 #SBATCH --export NONE
 
 export SLURM_EXPORT_ENV=ALL
