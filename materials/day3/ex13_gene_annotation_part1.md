@@ -169,15 +169,15 @@ Paste in the script (update `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A nesi02659
-#SBATCH -J annotate_pfam
+#SBATCH --account nesi02659
+#SBATCH --job-name annotate_pfam
 #SBATCH --res SummerSchool
 #SBATCH --time 02:00:00
 #SBATCH --mem 5GB
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 10
-#SBATCH -e annotate_pfam_hmm.err
-#SBATCH -o annotate_pfam_hmm.out
+#SBATCH --error annotate_pfam_hmm.err
+#SBATCH --output annotate_pfam_hmm.out
 #SBATCH --export NONE
 
 export SLURM_EXPORT_ENV=ALL
