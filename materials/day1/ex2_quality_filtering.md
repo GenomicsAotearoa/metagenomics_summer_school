@@ -278,7 +278,7 @@ cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/BBMask_human_reference
 
 # Load BBMap module
 module purge
-module load BBMap/38.81-gimkl-2020a
+module load BBMap/38.90-gimkl-2020a
 
 # Build indexed reference file via BBMap
 srun bbmap.sh ref=hg19_main_mask_ribo_animal_allplant_allfungus.fa.gz -Xmx23g
