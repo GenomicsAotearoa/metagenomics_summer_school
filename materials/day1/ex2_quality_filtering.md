@@ -316,7 +316,7 @@ mkdir -p host_filtered_reads/
 
 # Load BBMap module
 module purge
-module load BBMap/38.90-gimkl-2020a
+module load BBMap/38.95-gimkl-2020a
 
 # Run bbmap
 srun bbmap.sh -Xmx27g -t=20 \
