@@ -24,12 +24,12 @@ theme:
     toggle:
       icon: material/brightness-auto
       name: Switch to light mode
-    primary: deep purple
+    primary: lime
 
   # Palette toggle for light mode
   - media: "(prefers-color-scheme: light)"
     scheme: default
-    primary: deep purple
+    primary: lime
 
 
     toggle:
@@ -42,7 +42,7 @@ theme:
     toggle:
       icon: material/brightness-4
       name: Switch to system preference
-    primary: deep purple
+    primary: lime
   
   features:
     - navigation.tracking
