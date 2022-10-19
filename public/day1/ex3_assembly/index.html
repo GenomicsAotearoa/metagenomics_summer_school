@@ -1,0 +1,969 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Genomics Aotearoa & NeSI">
+      
+      
+        <link rel="canonical" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/day1/ex3_assembly/">
+      
+      <link rel="icon" href="../../images/nesi_ga.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>Assembly - Metagenomics Summer School</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Mukta";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="deep-purple" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#assembly" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Metagenomics Summer School" class="md-header__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../images/nesi_ga.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Metagenomics Summer School
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Assembly
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="" data-md-color-primary="deep-purple" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+          
+            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Metagenomics Summer School" class="md-nav__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../images/nesi_ga.png" alt="logo">
+
+    </a>
+    Metagenomics Summer School
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Day1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day1" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Day1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex1_bash_scripting/" class="md-nav__link">
+        Introduction to the command line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex2_quality_filtering/" class="md-nav__link">
+        Quality filtering raw reads
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Assembly
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Assembly
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-standard-input-files-for-spades-and-idba-ud" class="md-nav__link">
+    The standard input files for SPAdes and IDBA-UD
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-assembly-parameters" class="md-nav__link">
+    Basic assembly parameters
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic assembly parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-the-k-mer-size" class="md-nav__link">
+    Setting the k-mer size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-the-number-of-threads" class="md-nav__link">
+    Specifying the number of threads
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-a-memory-limit" class="md-nav__link">
+    Setting a memory limit
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparing-an-assembly-job-for-slurm" class="md-nav__link">
+    Preparing an assembly job for slurm
+  </a>
+  
+    <nav class="md-nav" aria-label="Preparing an assembly job for slurm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#submitting-a-spades-job-to-nesi-using-slurm" class="md-nav__link">
+    Submitting a SPAdes job to NeSI using slurm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-job-progress" class="md-nav__link">
+    Monitoring job progress
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#submitting-an-idba-ud-job-to-nesi-using-slurm" class="md-nav__link">
+    Submitting an IDBA-UD job to NeSI using slurm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex4_assembly/" class="md-nav__link">
+        Assembly (part 2)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex5_evaluating_assemblies/" class="md-nav__link">
+        Evaluating the assemblies
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-standard-input-files-for-spades-and-idba-ud" class="md-nav__link">
+    The standard input files for SPAdes and IDBA-UD
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-assembly-parameters" class="md-nav__link">
+    Basic assembly parameters
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic assembly parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-the-k-mer-size" class="md-nav__link">
+    Setting the k-mer size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-the-number-of-threads" class="md-nav__link">
+    Specifying the number of threads
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-a-memory-limit" class="md-nav__link">
+    Setting a memory limit
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparing-an-assembly-job-for-slurm" class="md-nav__link">
+    Preparing an assembly job for slurm
+  </a>
+  
+    <nav class="md-nav" aria-label="Preparing an assembly job for slurm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#submitting-a-spades-job-to-nesi-using-slurm" class="md-nav__link">
+    Submitting a SPAdes job to NeSI using slurm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-job-progress" class="md-nav__link">
+    Monitoring job progress
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#submitting-an-idba-ud-job-to-nesi-using-slurm" class="md-nav__link">
+    Submitting an IDBA-UD job to NeSI using slurm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/day1/ex3_assembly.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="assembly">Assembly<a class="headerlink" href="#assembly" title="Permanent link">&para;</a></h1>
+<h3 id="objectives">Objectives<a class="headerlink" href="#objectives" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="#the-standard-input-files-for-spades-and-idba-ud">Become familiar with the standard input files for <code>SPAdes</code> and <code>IDBA-UD</code></a></li>
+<li><a href="#basic-assembly-parameters">Understand the basic parameters that should be modified when using these assemblers</a></li>
+<li><a href="#preparing-an-assembly-job-for-slurm">Prepare an assembly job to run under slurm</a></li>
+</ul>
+<p>All work for this exercise will occur in the <code>3.assembly/</code> directory.</p>
+<hr />
+<h3 id="the-standard-input-files-for-spades-and-idba-ud">The standard input files for <em>SPAdes</em> and <em>IDBA-UD</em><a class="headerlink" href="#the-standard-input-files-for-spades-and-idba-ud" title="Permanent link">&para;</a></h3>
+<p>Although they both make use of the same types of data, both <code>SPAdes</code> and <code>IDBA-UD</code> have their own preferences for how sequence data is provided to them. To begin, we will look at the types of data accepted by <code>SPAdes</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module load SPAdes/3.13.1-gimkl-2018b
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>spades.py -h
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># ...</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">#Input data:</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1">#-1      &lt;filename&gt;      file with forward paired-end reads</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">#-2      &lt;filename&gt;      file with reverse paired-end reads</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1">#-s      &lt;filename&gt;      file with unpaired reads</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1">#--mp&lt;#&gt;-1       &lt;filename&gt;      file with forward reads for mate-pair library number &lt;#&gt; (&lt;#&gt; = 1,2,..,9)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1">#--mp&lt;#&gt;-2       &lt;filename&gt;      file with reverse reads for mate-pair library number &lt;#&gt; (&lt;#&gt; = 1,2,..,9)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1">#--hqmp&lt;#&gt;-1     &lt;filename&gt;      file with forward reads for high-quality mate-pair library number &lt;#&gt; (&lt;#&gt; = 1,2,..,9)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1">#--hqmp&lt;#&gt;-2     &lt;filename&gt;      file with reverse reads for high-quality mate-pair library number &lt;#&gt; (&lt;#&gt; = 1,2,..,9)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1">#--nxmate&lt;#&gt;-1   &lt;filename&gt;      file with forward reads for Lucigen NxMate library number &lt;#&gt; (&lt;#&gt; = 1,2,..,9)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1">#--nxmate&lt;#&gt;-2   &lt;filename&gt;      file with reverse reads for Lucigen NxMate library number &lt;#&gt; (&lt;#&gt; = 1,2,..,9)</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1">#--sanger        &lt;filename&gt;      file with Sanger reads</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="c1">#--pacbio        &lt;filename&gt;      file with PacBio reads</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="c1">#--nanopore      &lt;filename&gt;      file with Nanopore reads</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="c1">#--tslr  &lt;filename&gt;      file with TSLR-contigs</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="c1">#--trusted-contigs       &lt;filename&gt;      file with trusted contigs</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="c1">#--untrusted-contigs     &lt;filename&gt;      file with untrusted contigs</span>
+</code></pre></div>
+<p>At a glance, you could provide any of the following data types to <code>SPAdes</code> and have it perform an assembly:</p>
+<ol>
+<li>Illumina paired-end sequencing data, either as standard library or Mate Pairs</li>
+<li>Sanger sequences</li>
+<li>PacBio reads</li>
+<li>Oxford Nanopore reads</li>
+<li>Pre-assembled scaffolds for guiding the assembly</li>
+</ol>
+<p>Awkwardly, while <code>SPAdes</code> accepts multiple input libraries (i.e. samples) in a single assembly, this behaviour does not work with the <code>-meta</code> flag enabled, which is needed in our example to activate metagenome assembly mode. We therefore need to concatenate our four individual samples together ready for sequencing.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cat sample1_R1.fastq.gz sample2_R1.fastq.gz sample3_R1.fastq.gz sample4_R1.fastq.gz &gt; for_spades_R1.fq.gz
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>cat sample1_R2.fastq.gz sample2_R2.fastq.gz sample3_R2.fastq.gz sample4_R2.fastq.gz &gt; for_spades_R2.fq.gz
+</code></pre></div>
+<p>Note that these <em>fastQ</em> files are compressed, yet we can concatenate them together with the <code>cat</code> command regardless. This is a nice feature of <em>.gz</em> files that is handy to remember.</p>
+<p>By contrast, what does <code>IDBA-UD</code> accept?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>module load IDBA/1.1.3-gimkl-2017a
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>idba_ud
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># ...</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># -o, --out arg (=out) output directory</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># -r, --read arg       fasta read file (&lt;=128)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># ...</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># -l, --long_read arg  fasta long read file (&gt;128)</span>
+</code></pre></div>
+<p>'Short' or 'long' reads, and only a single file for each. This means that if we want to assemble our community data using <code>IDBA-UD</code> we will need to pool the paired-end data into a single, interleaved <em>fastA</em> file. Interleaved means that instead of having a pair of files that contain the separate forward and reverse sequences, the read pairs are in a single file in alternating order. For example</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Paired-end file, forward</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>&gt;read1_1
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>...
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>&gt;read2_1
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>...
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Paired-end file, forward</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>&gt;read1_2
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>...
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>&gt;read2_2
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>...
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="c1"># Interleaved file</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>&gt;read1_1
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>...
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>&gt;read1_2
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>...
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>&gt;read2_1
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>...
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>&gt;read2_2
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>...
+</code></pre></div>
+<p>Fortunately, the <code>IDBA</code> set of tools comes with some helper scripts to achieve just this. Unfortunately we cannot apply this shuffling operation to compressed data, so we must decompress the data first.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>module load pigz/2.4-GCCcore-7.4.0
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">for</span> i <span class="k">in</span> sample1 sample2 sample3 sample4<span class="p">;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">do</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  pigz --keep --decompress <span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R1.fastq.gz <span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R2.fastq.gz
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>  fq2fa --merge <span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R1.fastq <span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R2.fastq <span class="si">${</span><span class="nv">i</span><span class="si">}</span>.fna
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">done</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>cat sample1.fna sample2.fna sample3.fna sample4.fna &gt; for_idba.fna
+</code></pre></div>
+<hr />
+<h3 id="basic-assembly-parameters">Basic assembly parameters<a class="headerlink" href="#basic-assembly-parameters" title="Permanent link">&para;</a></h3>
+<p>For any assembler, there are a <strong><em>lot</em></strong> of parameters that can be fine-tuned depending on your data. As no two data sets are the same, it is almost impossible to predict which parameter combinations will yield the best outcome for your dataset. That said, an assembly can be quite a resource-intensive process and it is generally not practical to test every permutation of parameter values with your data. In genomics, the saying goes that the best assembly is the one that answers your question. As long as the data you are receiving is meaningful to the hypothesis you are seeking to address, then your assembly is as good as it needs to be.</p>
+<p>Generally speaking, assemblers are developed in a way where they run with default parameters that have been empirically demonstrated to produce the best outcome <strong><em>on average</em></strong> across multiple data sets. For most purposes, there is not a lot of need to change these, but some parameters that we would always want to look at include:</p>
+<ol>
+<li><em>k</em>-mer sizes to be assembled over, and step size if using a range</li>
+<li>Number of threads to use during assembly</li>
+<li>Memory limit to prevent the assembler from using up all available RAM and forcing the computer to use its <a href="https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/ch-swapspace.html">swap space</a></li>
+</ol>
+<h4 id="setting-the-k-mer-size">Setting the <em>k</em>-mer size<a class="headerlink" href="#setting-the-k-mer-size" title="Permanent link">&para;</a></h4>
+<p>Depending on which assembler you are using, the commands for chosing the <em>k</em>-mer sizes for the assembly vary slightly, but they are recognisable between programs. In <code>SPAdes</code>, you can set the <em>k</em>-mer size using either</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>spades.py -k <span class="m">21</span>,33,55,77,99,121 ...
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>spades.py -k auto ...
+</code></pre></div>
+<p>The first command lets us specify the <em>k</em>-mers ourselves, or we are letting <code>SPAdes</code> automatically pick the most appropriate size. For <code>IDBA-UD</code>, we can select the <em>k</em>-mer size using</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>idba_ud --mink <span class="m">21</span> --maxk <span class="m">121</span> --step <span class="m">22</span>
+</code></pre></div>
+<p>Unlike <code>SPAdes</code>, we do not have fine-scale control over the <em>k</em>-mer sizes used in the assembly. We instead provide <code>IDBA-UD</code> with the first and last <em>k</em>-mer size to use, then specify the increment to use between these. In either case, it is important that we are always assembling using a <em>k</em>-mer of uneven (odd) length in order to avoid the creation of palindromic <em>k</em>-mers.</p>
+<h4 id="specifying-the-number-of-threads">Specifying the number of threads<a class="headerlink" href="#specifying-the-number-of-threads" title="Permanent link">&para;</a></h4>
+<p>This is simple in either assembler:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>spades.py -t <span class="m">20</span> ...
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>idba_ud --num_threads <span class="m">20</span> ...
+</code></pre></div>
+<p>The only thing to keep in mind is that these tools have different default behaviour. If no thread count is specified by the user, <code>SPAdes</code> will assemble with 16 threads. <code>IDBA-UD</code> will use all available threads, which can be problematic if you are using a shared compute environment that does not use a resource management system like slurm.</p>
+<h4 id="setting-a-memory-limit">Setting a memory limit<a class="headerlink" href="#setting-a-memory-limit" title="Permanent link">&para;</a></h4>
+<p>By far, the worst feature of <code>SPAdes</code> is the high memory requirement for performing an assembly. In the absence of monitoring, <code>SPAdes</code> will request more and more memory as it proceeds. If this requires more memory than is available on your computer, your system will start to store memory to disk space. This is an extremely slow operation and can render your computer effectively unusable. In managed environments such as NeSI a memory limit is imposed upon all running jobs, but if you are not using such a system you are advised to set a memory limit when executing <code>SPAdes</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>spades.py -m 400GB ...
+</code></pre></div>
+<p>No such parameter exists in <code>IDBA-UD</code>, but it requires far less RAM than <code>SPAdes</code>, so you are less likely to need it.</p>
+<hr />
+<h3 id="preparing-an-assembly-job-for-slurm">Preparing an assembly job for slurm<a class="headerlink" href="#preparing-an-assembly-job-for-slurm" title="Permanent link">&para;</a></h3>
+<p>NeSI does not allow users to execute large jobs interactively on the terminal. Instead, the node that we have logged in to (<em>lander02</em>) has only a small fraction of the computing resources that NeSI houses. The <em>lander</em> node is used to write small command scripts, which are then deployed to the large compute nodes by a system called <strong>slurm</strong>. The ins and outs of working in slurm are well beyond the scope of this workshop (and may not be relevant if your institution uses a different resource allocation system). In this workshop, we will therefore only be showing you how to write minimal slurm scripts sufficient to achieve our goals. By the end of the workshop, you should have built up a small collection of slurm scripts for performing the necessary stages of our workflow and with experience you will be able to modify these to suit your own needs.</p>
+<h4 id="submitting-a-spades-job-to-nesi-using-slurm">Submitting a <em>SPAdes</em> job to NeSI using slurm<a class="headerlink" href="#submitting-a-spades-job-to-nesi-using-slurm" title="Permanent link">&para;</a></h4>
+<p>To begin, we need to open a text file using the <code>nano</code> text editor. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span> <span class="m">3</span>.assembly/
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>nano assembly_spades.sl
+</code></pre></div>
+<p>Into this file, either write or copy/paste the following commands:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="ch">#!/bin/bash -e</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1">#SBATCH --account nesi02659</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c1">#SBATCH --job-name spades_assembly</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1">#SBATCH --res SummerSchool</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1">#SBATCH --time 00:50:00</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="c1">#SBATCH --mem 10GB</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1">#SBATCH --ntasks 1</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="c1">#SBATCH --cpus-per-task 12</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="c1">#SBATCH --error spades_assembly.err</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="c1">#SBATCH --output spades_assembly.out</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="c1">#SBATCH --export NONE</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="nb">export</span> <span class="nv">SLURM_EXPORT_ENV</span><span class="o">=</span>ALL
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>module purge
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>module load SPAdes/3.15.3-gimkl-2020a
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>spades.py --meta -k <span class="m">33</span>,55,77,99,121 -t <span class="m">12</span> -1 for_spades_R1.fq.gz -2 for_spades_R2.fq.gz -o spades_assembly/
+</code></pre></div>
+<p>To save your file, use <code>Ctrl + O</code> to save the file, then <code>Ctrl + X</code> to exit <code>nano</code>. Going through those lines one by one;</p>
+<table>
+<thead>
+<tr>
+<th align="left">Slurm parameter</th>
+<th align="left">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>#!/bin/bash -e</strong></td>
+<td align="left">Header for the file, letting NeSI know how to interpret the following commands. The <code>-e</code> flag means that the slurm run will halt at the first failed command (rather than pushing through and trying to execute subsequent ones)</td>
+</tr>
+<tr>
+<td align="left"><strong>--account ...</strong></td>
+<td align="left">The name of the project account to run the run under. You are provided with this when you create a project on NeSI</td>
+</tr>
+<tr>
+<td align="left"><strong>--job-name ...</strong></td>
+<td align="left">The name of the job, to display when using the <code>squeue</code> command</td>
+</tr>
+<tr>
+<td align="left">**--res ...*</td>
+<td align="left">This is a parameter that we need due to a system reservation for this workshop. For your own work, ignore this flag</td>
+</tr>
+<tr>
+<td align="left"><strong>--time ...</strong></td>
+<td align="left">Maximum run time for the job before it is killed</td>
+</tr>
+<tr>
+<td align="left"><strong>--mem ...</strong></td>
+<td align="left">Amount of server memory to allocate to the job. If this is exceeded, the job will be terminated</td>
+</tr>
+<tr>
+<td align="left"><strong>--ntasks ...</strong></td>
+<td align="left">Number of tasks to distribute the job across. For all tools we use today, this will remain as 1</td>
+</tr>
+<tr>
+<td align="left"><strong>--cpus-per-task ...</strong></td>
+<td align="left">number of processing cores to assign to the job. This should match with the number used by your assembler</td>
+</tr>
+<tr>
+<td align="left"><strong>--error ...</strong></td>
+<td align="left">File to log the <a href="https://en.wikipedia.org/wiki/Standard_streams">standard error</a> stream of the program.<br>This is typically used to prove error reports, or to just inform the user of job progress</td>
+</tr>
+<tr>
+<td align="left"><strong>--output ...</strong></td>
+<td align="left">File to log the <a href="https://en.wikipedia.org/wiki/Standard_streams">standard output</a> stream of the program.<br>This is typically used to inform the user of job progress and supply messages</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>module load</code> command needs to be invoked within your slurm script. It is also a good idea to explicitly set the path to your files within the job so that</p>
+<ol>
+<li>There is no chance of having the job fail immediately because it cannot find the relevant files</li>
+<li>When looking back through your slurm logs, you know where the data is meant to be</li>
+</ol>
+<p>When executing the <code>SPAdes</code> command, there are a few parameters to note here:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Parameter</th>
+<th align="left">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>--meta</strong></td>
+<td align="left">Activate metagenome assembly mode. Default is to assemble your metagenome using single genome assembly assumptions</td>
+</tr>
+<tr>
+<td align="left"><strong>-k ...</strong></td>
+<td align="left"><em>k</em>-mer sizes for assembly. These choices will provide the output we will use in the <strong>Binning</strong> session, but feel free to experiment with these to see if you can improve the assembly</td>
+</tr>
+<tr>
+<td align="left"><strong>-1 ..</strong></td>
+<td align="left">Forward reads, matched to their reverse partners</td>
+</tr>
+<tr>
+<td align="left"><strong>-2 ...</strong></td>
+<td align="left">Reverse reads, matched to their forward partners</td>
+</tr>
+<tr>
+<td align="left"><strong>-o ...</strong></td>
+<td align="left">Output directory for all files</td>
+</tr>
+</tbody>
+</table>
+<p>Note that we also prefix the command (<code>spades.py</code>) with the <code>srun</code> command. This is a command specific to slurm and allows NeSI to track the resource usage of the <code>SPAdes</code> job.</p>
+<p>We don't explicitly set memory or thread counts for this job, simply for the sake of keeping the command uncluttered. The default memory limit of <code>SPAdes</code> (250 GB) is much higher than the 10 GB we have allowed our job here. If the memory cap was violated then both slurm and <code>SPAdes</code> will terminate the assembly. We have also left the number of threads at the default value of 16, which matches the number specified in the slurm header.</p>
+<p>It is a good idea to match your number of threads request in the slurm script with what you intend to use with <code>SPAdes</code> because your project usage is calculated based off what you request in your slurm scripts rather than what you actually use. Requesting many unused threads simply drives your project down the priority queue. By contrast, requesting fewer threads than you attempt to use in the program (i.e. request 10 in slurm, set thread count to 30 in <code>SPAdes</code>) will result in reduced performance, as your <code>SPAdes</code> job will divide up jobs as though it has 30 threads, but only 10 will be provided. This is discussed <a href="https://www.codeguru.com/cpp/sample_chapter/article.php/c13533/Why-Too-Many-Threads-Hurts-Performance-and-What-to-do-About-It.htm">in this blog post</a>.</p>
+<p>Once you are happy with your slurm script, execute the job by navigating to the location of your script and entering the command</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sbatch assembly_spades.sl
+</code></pre></div>
+<p>You will receive a message telling you the job identifier for your assembly. Record this number, as we will use it in the next exercise.</p>
+<h4 id="monitoring-job-progress">Monitoring job progress<a class="headerlink" href="#monitoring-job-progress" title="Permanent link">&para;</a></h4>
+<p>You can view the status of your current jobs using the command</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>squeue -u &lt;login name&gt;
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>  JOBID     USER ACCOUNT            NAME  ST REASON    START_TIME                TIME TIME_LEFT NODES CPUS
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="m">8744675</span>  dwai012 ga02676 spades_assembly  PD Priority  <span class="m">2019</span>-11-29T16:37:43       <span class="m">0</span>:00 <span class="m">00</span>:30:00      <span class="m">1</span>   <span class="m">16</span>
+</code></pre></div>
+<p>We can see here that the job has not yet begun, as NeSI is waiting for resources to come available. At the stage the <code>START_TIME</code> is an estimation of when the resources are expected to become available. When they do, the output will change to</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>  JOBID     USER ACCOUNT            NAME  ST REASON    START_TIME                TIME TIME_LEFT NODES CPUS
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="m">8744675</span>  dwai012 ga02676 spades_assembly   R None      <span class="m">2019</span>-11-29T16:40:00       <span class="m">1</span>:20 <span class="m">00</span>:28:40      <span class="m">1</span>   <span class="m">16</span>
+</code></pre></div>
+<p>Which allows us to track how far into our run we are, and see the remaining time for the job. The <code>START_TIME</code> column now reports the time the job actually began.</p>
+<h4 id="submitting-an-idba-ud-job-to-nesi-using-slurm">Submitting an <em>IDBA-UD</em> job to NeSI using slurm<a class="headerlink" href="#submitting-an-idba-ud-job-to-nesi-using-slurm" title="Permanent link">&para;</a></h4>
+<p>To run an equivalent assembly with <code>IDBA-UD</code>, create a new slurm script as follows</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>nano idbaud_assembly.sl
+</code></pre></div>
+<p>Paste or type in the following:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="ch">#!/bin/bash -e</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="c1">#SBATCH --account nesi02659</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="c1">#SBATCH --job-name idbaud_assembly</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1">#SBATCH --res SummerSchool</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1">#SBATCH --time 00:35:00</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="c1">#SBATCH --mem 4GB</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1">#SBATCH --ntasks 1</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="c1">#SBATCH --cpus-per-task 8</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="c1">#SBATCH --error idbaud_assembly.err</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="c1">#SBATCH --output idbaud_assembly.out</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="c1">#SBATCH --export NONE</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="nb">export</span> <span class="nv">SLURM_EXPORT_ENV</span><span class="o">=</span>ALL
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>module purge
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>module load IDBA/1.1.3-gimkl-2017a
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>idba_ud --num_threads <span class="m">8</span> --mink <span class="m">33</span> --maxk <span class="m">99</span> --step <span class="m">22</span> -r for_idba.fna -o idbaud_assembly/
+</code></pre></div>
+<p>And submit the script as a slurm job:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sbatch idbaud_assembly.sl
+</code></pre></div>
+<p>Remember to record your job identification number.</p>
+<hr />
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../ex2_quality_filtering/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quality filtering raw reads" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Quality filtering raw reads
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../ex4_assembly/" class="md-footer__link md-footer__link--next" aria-label="Next: Assembly (part 2)" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Assembly (part 2)
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

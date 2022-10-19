@@ -1,0 +1,1066 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Genomics Aotearoa & NeSI">
+      
+      
+        <link rel="canonical" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/day1/ex2_quality_filtering/">
+      
+      <link rel="icon" href="../../images/nesi_ga.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>Quality filtering raw reads - Metagenomics Summer School</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Mukta";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="deep-purple" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#quality-filtering-raw-reads" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Metagenomics Summer School" class="md-header__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../images/nesi_ga.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Metagenomics Summer School
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Quality filtering raw reads
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="" data-md-color-primary="deep-purple" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+          
+            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Metagenomics Summer School" class="md-nav__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../images/nesi_ga.png" alt="logo">
+
+    </a>
+    Metagenomics Summer School
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Day1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day1" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Day1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex1_bash_scripting/" class="md-nav__link">
+        Introduction to the command line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Quality filtering raw reads
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Quality filtering raw reads
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualising-raw-reads" class="md-nav__link">
+    Visualising raw reads
+  </a>
+  
+    <nav class="md-nav" aria-label="Visualising raw reads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loading-fastqc" class="md-nav__link">
+    Loading FastQC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-fastqc" class="md-nav__link">
+    Running FastQC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#viewing-the-outputs-from-fastqc" class="md-nav__link">
+    Viewing the outputs from FastQC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastqc-outputs-for-libraries-with-errors" class="md-nav__link">
+    FastQC outputs for libraries with errors
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-trimming-and-adapter-removal-with-trimmomatic" class="md-nav__link">
+    Read trimming and adapter removal with trimmomatic
+  </a>
+  
+    <nav class="md-nav" aria-label="Read trimming and adapter removal with trimmomatic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quality-of-reads" class="md-nav__link">
+    Quality of reads
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nucleotide-distribution" class="md-nav__link">
+    Nucleotide distribution
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#considerations-when-working-with-trimmomatic" class="md-nav__link">
+    Considerations when working with trimmomatic
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-working-with-the-illuminaclip-command" class="md-nav__link">
+    Optional: Working with the ILLUMINACLIP command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagnosing-poor-libraries" class="md-nav__link">
+    Diagnosing poor libraries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understand-common-issues-and-best-practices" class="md-nav__link">
+    Understand common issues and best practices
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-filtering-out-host-dna" class="md-nav__link">
+    Optional: Filtering out host DNA
+  </a>
+  
+    <nav class="md-nav" aria-label="Optional: Filtering out host DNA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#downloading-the-masked-human-reference-genome" class="md-nav__link">
+    Downloading the masked human reference genome
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indexing-the-reference-genome-and-read-mapping-with-bbmap" class="md-nav__link">
+    Indexing the reference genome and read mapping with BBMap
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex3_assembly/" class="md-nav__link">
+        Assembly
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex4_assembly/" class="md-nav__link">
+        Assembly (part 2)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex5_evaluating_assemblies/" class="md-nav__link">
+        Evaluating the assemblies
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualising-raw-reads" class="md-nav__link">
+    Visualising raw reads
+  </a>
+  
+    <nav class="md-nav" aria-label="Visualising raw reads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loading-fastqc" class="md-nav__link">
+    Loading FastQC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-fastqc" class="md-nav__link">
+    Running FastQC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#viewing-the-outputs-from-fastqc" class="md-nav__link">
+    Viewing the outputs from FastQC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastqc-outputs-for-libraries-with-errors" class="md-nav__link">
+    FastQC outputs for libraries with errors
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-trimming-and-adapter-removal-with-trimmomatic" class="md-nav__link">
+    Read trimming and adapter removal with trimmomatic
+  </a>
+  
+    <nav class="md-nav" aria-label="Read trimming and adapter removal with trimmomatic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quality-of-reads" class="md-nav__link">
+    Quality of reads
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nucleotide-distribution" class="md-nav__link">
+    Nucleotide distribution
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#considerations-when-working-with-trimmomatic" class="md-nav__link">
+    Considerations when working with trimmomatic
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-working-with-the-illuminaclip-command" class="md-nav__link">
+    Optional: Working with the ILLUMINACLIP command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagnosing-poor-libraries" class="md-nav__link">
+    Diagnosing poor libraries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understand-common-issues-and-best-practices" class="md-nav__link">
+    Understand common issues and best practices
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-filtering-out-host-dna" class="md-nav__link">
+    Optional: Filtering out host DNA
+  </a>
+  
+    <nav class="md-nav" aria-label="Optional: Filtering out host DNA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#downloading-the-masked-human-reference-genome" class="md-nav__link">
+    Downloading the masked human reference genome
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indexing-the-reference-genome-and-read-mapping-with-bbmap" class="md-nav__link">
+    Indexing the reference genome and read mapping with BBMap
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/day1/ex2_quality_filtering.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="quality-filtering-raw-reads">Quality filtering raw reads<a class="headerlink" href="#quality-filtering-raw-reads" title="Permanent link">&para;</a></h1>
+<h3 id="objectives">Objectives<a class="headerlink" href="#objectives" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="#visualising-raw-reads">Visualising raw reads with <code>FastQC</code> on NeSI</a></li>
+<li><a href="#read-trimming-and-adapter-removal-with-trimmomatic">Read trimming and adapter removal with <code>trimmomatic</code></a></li>
+<li><a href="#diagnosing-poor-libraries">Diagnosing poor libraries</a></li>
+<li><a href="#understand-common-issues-and-best-practices">Understand common issues and best practices</a></li>
+<li><a href="#optional-filtering-out-host-dna"><em>Optional</em>: Filtering out host DNA with <code>BBMap</code></a></li>
+</ul>
+<hr />
+<h3 id="visualising-raw-reads">Visualising raw reads<a class="headerlink" href="#visualising-raw-reads" title="Permanent link">&para;</a></h3>
+<p><code>FastQC</code> is an extremely popular tool for checking your sequencing libraries, as the visual interface makes it easy to identify the following issues:</p>
+<ol>
+<li>Adapter/barcode sequences</li>
+<li>Low quality regions of sequence</li>
+<li>Quality drop-off towards the end of read-pair sequence</li>
+</ol>
+<h4 id="loading-fastqc">Loading <em>FastQC</em><a class="headerlink" href="#loading-fastqc" title="Permanent link">&para;</a></h4>
+<p>These exercises will take place in the <code>2.fastqc/</code> folder. First, navigate to this folder. Copy the command below into your terminal (logged in to NeSI), replacing <code>&lt;YOUR FOLDER&gt;</code>, and then running the command.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/2.fastqc/
+</code></pre></div>
+<p>To activate <code>FastQC</code> on NeSI, you need to first load the module using the command</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>module purge
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>module load FastQC/0.11.7
+</code></pre></div>
+<h4 id="running-fastqc">Running <em>FastQC</em><a class="headerlink" href="#running-fastqc" title="Permanent link">&para;</a></h4>
+<p>We will run <code>FastQC</code> from the command line as follows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>fastqc mock_R1.good.fastq.gz mock_R2.good.fastq.gz
+</code></pre></div>
+<h4 id="viewing-the-outputs-from-fastqc">Viewing the outputs from <em>FastQC</em><a class="headerlink" href="#viewing-the-outputs-from-fastqc" title="Permanent link">&para;</a></h4>
+<p><code>FastQC</code> generates output reports in <code>.html</code> files that can be viewed in a standard web browser. Unfortunately, these can not be viewed from within the standard NeSI terminal environment. In day-to-day usage, it will be necessary to download the resulting files using <code>scp</code> and view them on your computer. </p>
+<p>Fortunately, if you're currently using the terminal within <code>Jupyter hub</code> for today's session, we can open the <code>.html</code> files directly from here:</p>
+<ul>
+<li>Click on the folder icon in the top left to open the folder navigator pane (if not already open).</li>
+<li>The default viewed location will be the overall project that you have logged in to (in this case, the 'Genomics Aotearoa Virtual Lab Training Access (nesi02659)' project). </li>
+<li>Click through <code>MGSS_U</code>, into your folder, and then into the <code>2.fastqc/</code> folder. </li>
+<li>Double click on the output <code>...fastqc.html</code> files to open them in the a new tab within the <code>Jupyter hub</code>.</li>
+</ul>
+<p>Examples of the output files are also available for download <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/fastqc_results.zip">here</a>.</p>
+<p>Note that <code>FastQC</code> does not load the forward and reverse pairs of a library in the same window, so you need to be mindful of how your samples relate to each other. </p>
+<p><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig1_overview.PNG" /></p>
+<p>At a first glance, we can see the follow statistics:</p>
+<ol>
+<li>The data is stored in Sanger / Illumina 1.9 encoding. <em>This will be important to remember when read trimming.</em></li>
+<li>There are 100,000 reads in the file</li>
+<li>The maximum sequence length is 251 base pairs. <em>This is good to check, since the data were generated using Illumina
+2x250 bp sequencing.</em></li>
+</ol>
+<p>Have a quick look through the left hand columns. As you can see, the data has passed most of the basic parameters.</p>
+<p><strong>Per-base sequence quality</strong></p>
+<p><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig2_quality.PNG" /></p>
+<p><strong>Per base sequence content</strong></p>
+<p><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig3_content.PNG" /></p>
+<p><strong>Adapter Content</strong></p>
+<p><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig4_adapter.PNG" /></p>
+<p><strong>Per sequence GC content</strong></p>
+<p><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig5_gc.PNG" /></p>
+<p>The only aspect of the data that <code>FastQC</code> is flagging as potentially problematic is the GC% content of the data set. This is a common observation, as we are dealing with a mixed community and organisms and it is therefore unlikely that there will be a perfect normal distribution around an average value. For example, a community comprised of low- and high-GC organisms would manifest a bimodal distribution of peaks which would be a problematic outcome in terms of the expectations of <code>FastQC</code>, but completely consistent with the biology of the system.</p>
+<h4 id="fastqc-outputs-for-libraries-with-errors"><em>FastQC</em> outputs for libraries with errors<a class="headerlink" href="#fastqc-outputs-for-libraries-with-errors" title="Permanent link">&para;</a></h4>
+<p>Lets take a look at a library with significant errors. Process the sequence file <code>mock_R1.adapter_decay.fastq</code> with <code>FastQC</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>fastqc mock_R1.adapter_decay.fastq.gz
+</code></pre></div>
+<p>Compare the results with the <code>mock_R1.good.fastq.gz</code> file.</p>
+<p>Which of the previous fields we examined are now flagged as problematic? How does this compare with your expectation? Are there any which should be flagged which are not?</p>
+<p><strong>Per-base sequence quality</strong></p>
+<p><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig6_taildecay.PNG" /></p>
+<hr />
+<h3 id="read-trimming-and-adapter-removal-with-trimmomatic">Read trimming and adapter removal with <em>trimmomatic</em><a class="headerlink" href="#read-trimming-and-adapter-removal-with-trimmomatic" title="Permanent link">&para;</a></h3>
+<p>There are a multitude of programs which can be used to quality trim sequence data and remove adapter sequence. For this exercise we are going to use <code>trimmomatic</code>, but this should in no way be interpreted as an endorsement of <code>trimmomatic</code> over equivalent tools like <code>BBMap</code>, <code>sickle</code>, <code>cutadapt</code> or any other.</p>
+<p>For a first run with <code>trimmomatic</code>, type the following commands into your console:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>module load Trimmomatic/0.39-Java-1.8.0_144
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>trimmomatic PE -threads <span class="m">10</span> -phred33 <span class="se">\</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>               mock_R1.adapter_decay.fastq.gz mock_R2.adapter_decay.fastq.gz <span class="se">\</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>               mock_R1.qc.fastq.gz mock_s1.qc.fastq.gz mock_R2.qc.fastq.gz mock_s2.qc.fastq.gz <span class="se">\</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>               HEADCROP:10 SLIDINGWINDOW:4:30 MINLEN:80
+</code></pre></div>
+<p>There is a lot going on in this command, so here is a breakdown of the parameters in the command above</p>
+<table>
+<thead>
+<tr>
+<th align="left">Parameter</th>
+<th align="center">Type</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">PE</td>
+<td align="center"><em>positional</em></td>
+<td align="left">Specifies whether we are analysing single- or paired-end reads</td>
+</tr>
+<tr>
+<td align="left">-threads 10</td>
+<td align="center"><em>keyword</em></td>
+<td align="left">Specifies the number of threads to use when processing</td>
+</tr>
+<tr>
+<td align="left">-phred33</td>
+<td align="center"><em>keyword</em></td>
+<td align="left">Specifies the fastq encoding used</td>
+</tr>
+<tr>
+<td align="left">mock_R1.adapter_decay.fastq.gz / mock_R2.adapter_decay.fastq.gz</td>
+<td align="center"><em>positional</em></td>
+<td align="left">The paired forward and reverse reads to trim</td>
+</tr>
+<tr>
+<td align="left">mock_R1.qc.fastq.gz</td>
+<td align="center"><em>positional</em></td>
+<td align="left">The file to write forward reads which passed quality trimming, if their reverse partner also passed</td>
+</tr>
+<tr>
+<td align="left">mock_s1.qc.fastq.gz</td>
+<td align="center"><em>positional</em></td>
+<td align="left">The file to write forward reads which passed quality trimming, if their reverse partner failed (orphan reads)</td>
+</tr>
+<tr>
+<td align="left">mock_R2.qc.fastq.gz / mock_s2.qc.fastq.gz</td>
+<td align="center"><em>positional</em></td>
+<td align="left">The reverse-sequence equivalent of above</td>
+</tr>
+<tr>
+<td align="left">HEADCROP:10</td>
+<td align="center"><em>positional</em></td>
+<td align="left">Adapter trimming command. Remove the first 10 positions in the sequence</td>
+</tr>
+<tr>
+<td align="left">SLIDINGWINDOW:4:30</td>
+<td align="center"><em>positional</em></td>
+<td align="left">Quality filtering command. Analyses each sequence in a 4 base pair sliding window, truncating if the average quality drops below Q30</td>
+</tr>
+<tr>
+<td align="left">MINLEN:80</td>
+<td align="center"><em>positional</em></td>
+<td align="left">Length filtering command, discard sequences that are shorter than 80 base pairs after trimming</td>
+</tr>
+</tbody>
+</table>
+<p>Running the trimmed files back through <code>FastQC</code>, we can see that this signifcantly improves the output.</p>
+<h5 id="quality-of-reads">Quality of reads<a class="headerlink" href="#quality-of-reads" title="Permanent link">&para;</a></h5>
+<p><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig7_qualtrim.PNG" /></p>
+<h5 id="nucleotide-distribution">Nucleotide distribution<a class="headerlink" href="#nucleotide-distribution" title="Permanent link">&para;</a></h5>
+<p><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig8_headtrim.PNG" /></p>
+<hr />
+<h3 id="considerations-when-working-with-trimmomatic">Considerations when working with <em>trimmomatic</em><a class="headerlink" href="#considerations-when-working-with-trimmomatic" title="Permanent link">&para;</a></h3>
+<p><strong>Order of operations</strong></p>
+<p>The basic format for a <code>trimmomatic</code> command is</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>trimmomatic PE &lt;keyword flags&gt; &lt;sequence input&gt; &lt;sequence output&gt; &lt;trimming parameters&gt;
+</code></pre></div>
+<p>The trimming parameters are processed in the order you specify them. This is a deliberate behaviour, but can have some unexpected consequences for new users.</p>
+<p>For example, consider these two scenarios:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>trimmomatic PE &lt;keyword flags&gt; &lt;sequence input&gt; &lt;sequence output&gt; SLIDINGWINDOW:4:30 MINLEN:80
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>trimmomatic PE &lt;keyword flags&gt; &lt;sequence input&gt; &lt;sequence output&gt; MINLEN:80 SLIDINGWINDOW:4:30
+</code></pre></div>
+<p>In the first run we would not expect any sequence shorter than 80 base pairs to exist in the output files, but we might encounter them in the second command. This is because in the second command we remove sequences shorter than 80 base pairs, <strong><em>then</em></strong> perform quality trimming. If a sequence is trimmed to a length shorter than 80 base pairs <strong><em>after</em></strong> trimming the <code>MINLEN</code> filtering does not execute a second time. In the first instance, we are excluding performing trimming <strong><em>before</em></strong> size selection, so any reads that start longer than 80 base pairs, but are trimmed to under 80 base pairs during quality trimming will be caught in the <code>MINLEN</code> run.</p>
+<p>A more subtle consequence of this behaviour is the interplay between adapter removal and quality filtering. In the command above, we try to identify adapters <strong><em>before</em></strong> quality trimming. Why do you think this is?</p>
+<hr />
+<h3 id="optional-working-with-the-illuminaclip-command"><em>Optional:</em> Working with the ILLUMINACLIP command<a class="headerlink" href="#optional-working-with-the-illuminaclip-command" title="Permanent link">&para;</a></h3>
+<p><code>Trimmomatic</code> also provides the <code>ILLUMINACLIP</code> command, which can be used to pass a <em>fastA</em> file of adapter and barcode sequences to be found and removed from your data. The format for the <code>ILLUMINACLIP</code> parameter can be quite confusing to work with and so we generally favour a <code>HEADCROP</code> where possitble. If you wish to work with the <code>ILLUMINACLIP</code> command, then you can see its use here in the <code>trimmomatic</code> <a href="http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf">manual</a>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ILLUMINACLIP:iua.fna:1:25:7
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>             <span class="p">|</span>       <span class="p">|</span> <span class="p">|</span>  <span class="p">|</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>             <span class="p">|</span>       <span class="p">|</span> <span class="p">|</span>  <span class="p">|</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>             <span class="p">|</span>       <span class="p">|</span> <span class="p">|</span>  Simple clip threshold
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>             <span class="p">|</span>       <span class="p">|</span> Palindrome clip threshold
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>             <span class="p">|</span>       Seed mismatches
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>             File of expected sequences
+</code></pre></div>
+<p>There is always some subjectivity in how sensitive you want your adapter (and barcode) searching to be. If the settings are too strict you might end up discarding real sequence data that only partially overlaps with the Illumina adapters. If your settings are not strict enough then you might leave partial adapters in the sequence. Where possible, we favour the use of simple positional trimming.</p>
+<hr />
+<h3 id="diagnosing-poor-libraries">Diagnosing poor libraries<a class="headerlink" href="#diagnosing-poor-libraries" title="Permanent link">&para;</a></h3>
+<p>Whether a library is 'poor' quality or not can be a bit subjective. These are some aspects of the library that you should be looking for when evaluating <code>FastQC</code>:</p>
+<ol>
+<li>Does the sequencing length match what you ordered from the facility?</li>
+<li>If the sequences are shorter than expected, is adapter read-through a concern?</li>
+<li>What does the sequence quality look like for the whole length of the run? Are there any expected/unexpected regions of quality degradation?</li>
+<li>Are adapters and/or barcodes removed? (look at the <em>Per base sequence content</em> to diagnose this)</li>
+<li>Is there unexpected sequence duplication? (this can occur when low-input library preparations are used)</li>
+<li>Are over-represented <em>k</em>-mers present? (this can be a sign of adapter and barcode contamination)</li>
+</ol>
+<hr />
+<h3 id="understand-common-issues-and-best-practices">Understand common issues and best practices<a class="headerlink" href="#understand-common-issues-and-best-practices" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Do I need to remove (rare) adapters?</li>
+<li>I don’t know if adapters have been removed or not</li>
+<li>How do I identify and remove adapter read-through</li>
+<li>Identifying incomplete barcode/adapter removal</li>
+<li>Over aggressive trimming</li>
+<li>GC skew is outside of expected range</li>
+</ol>
+<hr />
+<h3 id="optional-filtering-out-host-dna"><em>Optional</em>: Filtering out host DNA<a class="headerlink" href="#optional-filtering-out-host-dna" title="Permanent link">&para;</a></h3>
+<p>Metagenome data derived from microbial communities associated with a host should ideally be filtered to remove any reads originating from host DNA. This may improve the quality and efficiency of downstream data processing (since we will no longer be processing a bunch of data that we are likely not interested in), and is also an important consideration when working with metagenomes that may include data of a sensitive nature (and which may also need to be removed prior to making the data publicly available). This is especially important for any studies involving human subjects or those involving samples derived from Taonga species.</p>
+<p>There are several approaches that can be used to achieve this. The general principle is to map your reads to a reference genome (e.g. human genome) and remove those reads that map to the reference from the dataset. </p>
+<p><em>NOTE: This process may be more complicated if a reference genome for your host taxa is not readily available. In this case an alternative method would need to be employed (for example: predicting taxonomy via Kraken2 and then filtering out all reads that map to the pylum or kingdom of your host taxa).</em></p>
+<p>This exercise provides an example using <strong>BBMap</strong> to map against a masked human reference genome and retain only those reads that do <em>not</em> map to the reference. Here we are mapping the quality-filtered reads against a pre-prepared human genome that has been processed to mask sections of the genome, including those that: are presumbed microbial contaminant in the reference; have high homology to microbial genes/genomes (e.g. ribosomes); or those that are of low complexity. This ensures that reads that would normally map to these sections of the human genome are <em>not</em> removed from the dataset (as genuine microbial reads that we wish to retain might also map to these regions), while all reads mapping to the rest of the human genome are removed.</p>
+<p><em>NOTE: The same process can be used to remove DNA matching other hosts (e.g. mouse), however you would need to search if anyone has prepared (and made available) a masked version of the reference genome, or create a masked version using bbmask. The creator of BBMap has made available masked human, mouse, cat, and dog genomes. More information, including links to these references and instructions on how to generate a masked genome for other taxa, can be found within <a href="http://seqanswers.com/forums/showthread.php?t=42552">this thread</a>.</em></p>
+<h4 id="downloading-the-masked-human-reference-genome">Downloading the masked human reference genome<a class="headerlink" href="#downloading-the-masked-human-reference-genome" title="Permanent link">&para;</a></h4>
+<p>The masked reference genome is available via a google drive link. We can use <code>gdown</code> to download this file from google drive via the command line.</p>
+<p>To install <code>gdown</code>, we can use <code>pip</code>. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Install gdown (for downloading from google drive)</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>module purge
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>module load Python/3.8.2-gimkl-2020a
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>pip install --user gdown
+</code></pre></div>
+<p>Nest, download the reference. It will also be necessary to first add your local <code>bin</code> location to the <code>PATH</code> variable via the <code>export PATH=...</code> command, as this is where <code>gdown</code> is located (modify <code>&lt;your_username&gt;</code> before running the code below).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>mkdir BBMask_human_reference/
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">cd</span> BBMask_human_reference/
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/home/&lt;your_username&gt;/.local/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>gdown https://drive.google.com/uc?id<span class="o">=</span>0B3llHR93L14wd0pSSnFULUlhcUk
+</code></pre></div>
+<h4 id="indexing-the-reference-genome-and-read-mapping-with-bbmap">Indexing the reference genome and read mapping with <em>BBMap</em><a class="headerlink" href="#indexing-the-reference-genome-and-read-mapping-with-bbmap" title="Permanent link">&para;</a></h4>
+<p>We will cover more about read mapping in <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex6_initial_binning.md">later exercises</a>. For now, it is important to know that it is first necessary to build an index of the reference using the read mapping tool of choice. Here, we will first build a <code>BBMap</code> index, and then use <code>BBMap</code> to map the quality-filtered reads to that index, ultimately retaining only those reads that do <em>not</em> map to the index.</p>
+<p>Build index reference via <code>BBMap</code>. We will do this by submitting the job via slurm. </p>
+<p><em>NOTE: See <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex3_assembly.md#preparing-an-assembly-job-for-slurm">Preparing an assembly job for slurm</a> for more information about how to submit a job via slurm.</em></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="ch">#!/bin/bash -e</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1">#SBATCH -A nesi02659</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c1">#SBATCH -J host_filt_bbmap_index</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1">#SBATCH --res SummerSchool</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1">#SBATCH -J 2.qc_bbmap_ref</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="c1">#SBATCH --time 00:20:00</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1">#SBATCH --mem 23GB</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="c1">#SBATCH --ntasks 1</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="c1">#SBATCH --cpus-per-task 1</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="c1">#SBATCH -e host_filt_bbmap_index.err</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="c1">#SBATCH -o host_filt_bbmap_index.out</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="c1">#SBATCH --export NONE</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="nb">export</span> <span class="nv">SLURM_EXPORT_ENV</span><span class="o">=</span>ALL
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/2.fastqc/BBMask_human_reference/
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="c1"># Load BBMap module</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>module purge
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>module load BBMap/38.90-gimkl-2020a
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="c1"># Build indexed reference file via BBMap</span>
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>srun bbmap.sh <span class="nv">ref</span><span class="o">=</span>hg19_main_mask_ribo_animal_allplant_allfungus.fa.gz -Xmx23g
+</code></pre></div>
+<p>Finally, map the quality-filtered reads to the reference via <code>BBMap</code>. Here we will submit the job as a slurm array, with one array job per sample. Breaking down this command a little:</p>
+<ul>
+<li>We pass the path to the <code>ref</code> file (the reference we just built) to <code>path=...</code>.</li>
+<li>Provide quality-filtered reads as input (i.e. output of the <code>trimmomatic</code> process above). In this case, we will provide the <em>fastq</em> files located in <code>../3.assembly/</code> which have been processed via <code>trimmomatic</code> in the same manner as the exercise above. These are four sets of paired reads (representing metagenome data from four 'samples') that the remainder of the workshop exercises will be working with.</li>
+<li>The flags <code>-Xmx27g</code> and <code>-t=20</code> set the max memory and threads allocations, and must match the <code>--mem</code> and <code>--cpus_per_task</code> allocations in the slurm headers at the top of the script.</li>
+<li>The rest of the settings in the <code>BBMap</code> call here are as per the recommendations found within <a href="http://seqanswers.com/forums/showthread.php?t=42552">this thread</a> about processing data to remove host reads.</li>
+<li>Finally, the filtered output <em>fastq</em> files for downstream use are output to the <code>host_filtered_reads/</code> folder (taken from the outputs <code>outu1=</code> and <code>otu2=</code>, which include only those reads that did not map to the host reference genome).</li>
+</ul>
+<p><em>NOTE: Slurm array jobs automatically create a variable <code>SLURM_ARRAY_TASK_ID</code> for that job, which contains the array task number (i.e. between 1 and 4 in the case below). We use this to run the command on the sample that matches this array task ID. I.e. array job 3 will run the commands on "sample3" (<code>sample${SLURM_ARRAY_TASK_ID}</code> is read in as <code>sample3</code>).</em></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="ch">#!/bin/bash -e</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1">#SBATCH --account nesi02659</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="c1">#SBATCH --job-name host_filt_bbmap_map</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1">#SBATCH --res SummerSchool</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1">#SBATCH --time 01:00:00</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="c1">#SBATCH --mem 27GB</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1">#SBATCH --ntasks 1</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="c1">#SBATCH --array=1-4</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="c1">#SBATCH --cpus-per-task 20</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="c1">#SBATCH --error host_filt_bbmap_map_%a.err</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="c1">#SBATCH --output host_filt_bbmap_map_%a.out</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="c1">#SBATCH --export NONE</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="nb">export</span> <span class="nv">SLURM_EXPORT_ENV</span><span class="o">=</span>ALL
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="c1"># Set up working directories</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/2.fastqc/
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>mkdir -p host_filtered_reads/
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="c1"># Load BBMap module</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>module purge
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>module load BBMap/38.95-gimkl-2020a
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="c1"># Run bbmap</span>
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>srun bbmap.sh -Xmx27g -t<span class="o">=</span><span class="m">20</span> <span class="se">\</span>
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="nv">minid</span><span class="o">=</span><span class="m">0</span>.95 <span class="nv">maxindel</span><span class="o">=</span><span class="m">3</span> <span class="nv">bwr</span><span class="o">=</span><span class="m">0</span>.16 <span class="nv">bw</span><span class="o">=</span><span class="m">12</span> quickmatch fast <span class="nv">minhits</span><span class="o">=</span><span class="m">2</span> <span class="nv">qtrim</span><span class="o">=</span>rl <span class="nv">trimq</span><span class="o">=</span><span class="m">10</span> untrim <span class="se">\</span>
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="nv">in1</span><span class="o">=</span>../3.assembly/sample<span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>_R1.fastq.gz <span class="se">\</span>
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a><span class="nv">in2</span><span class="o">=</span>../3.assembly/sample<span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>_R1.fastq.gz <span class="se">\</span>
+<a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a><span class="nv">path</span><span class="o">=</span>BBMask_human_reference/ <span class="se">\</span>
+<a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a><span class="nv">outu1</span><span class="o">=</span>host_filtered_reads/sample<span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>_R1_hostFilt.fastq <span class="se">\</span>
+<a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="nv">outu2</span><span class="o">=</span>host_filtered_reads/sample<span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>_R2_hostFilt.fastq
+</code></pre></div>
+<p>The filtered reads are now available in <code>host_filtered_reads/</code> for downstream use.</p>
+<hr />
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../ex1_bash_scripting/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction to the command line" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Introduction to the command line
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../ex3_assembly/" class="md-footer__link md-footer__link--next" aria-label="Next: Assembly" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Assembly
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

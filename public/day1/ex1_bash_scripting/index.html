@@ -1,0 +1,1075 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Genomics Aotearoa & NeSI">
+      
+      
+        <link rel="canonical" href="https://genomicsaotearoa.github.io/Gene_Regulatory_Networks_Simulation_Workshop/day1/ex1_bash_scripting/">
+      
+      <link rel="icon" href="../../images/nesi_ga.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>Introduction to the command line - Metagenomics Summer School</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Mukta";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="deep-purple" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction-to-the-command-line" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Metagenomics Summer School" class="md-header__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../images/nesi_ga.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Metagenomics Summer School
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction to the command line
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="" data-md-color-primary="deep-purple" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+          
+            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Metagenomics Summer School" class="md-nav__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../images/nesi_ga.png" alt="logo">
+
+    </a>
+    Metagenomics Summer School
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Day1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day1" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Day1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Introduction to the command line
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Introduction to the command line
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigating-your-file-system" class="md-nav__link">
+    Navigating your file system
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copying-moving-renaming-and-removing-files" class="md-nav__link">
+    Copying, Moving, Renaming and Removing files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examining-file-contents" class="md-nav__link">
+    Examining file contents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redirection-manipulation-and-extraction" class="md-nav__link">
+    Redirection, manipulation and extraction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text-and-file-manipulation" class="md-nav__link">
+    Text and file manipulation
+  </a>
+  
+    <nav class="md-nav" aria-label="Text and file manipulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cut" class="md-nav__link">
+    Cut
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basename" class="md-nav__link">
+    basename
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sed" class="md-nav__link">
+    sed
+  </a>
+  
+    <nav class="md-nav" aria-label="sed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-replacingsubstituting-a-string" class="md-nav__link">
+    Example - Replacing/substituting a string
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-replacing-all-occurrences" class="md-nav__link">
+    Example - Replacing all occurrences
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-deleting-a-line" class="md-nav__link">
+    Example - Deleting a line
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loops" class="md-nav__link">
+    Loops
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripts" class="md-nav__link">
+    Scripts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moving-files-between-your-laptop-and-remote-clustermachine" class="md-nav__link">
+    Moving Files between your laptop and remote cluster/machine
+  </a>
+  
+    <nav class="md-nav" aria-label="Moving Files between your laptop and remote cluster/machine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-local-to-remote" class="md-nav__link">
+    FROM local TO remote
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-remote-to-local" class="md-nav__link">
+    FROM remote TO local
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-slurm" class="md-nav__link">
+    Introduction to slurm
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex2_quality_filtering/" class="md-nav__link">
+        Quality filtering raw reads
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex3_assembly/" class="md-nav__link">
+        Assembly
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex4_assembly/" class="md-nav__link">
+        Assembly (part 2)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex5_evaluating_assemblies/" class="md-nav__link">
+        Evaluating the assemblies
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigating-your-file-system" class="md-nav__link">
+    Navigating your file system
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copying-moving-renaming-and-removing-files" class="md-nav__link">
+    Copying, Moving, Renaming and Removing files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examining-file-contents" class="md-nav__link">
+    Examining file contents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redirection-manipulation-and-extraction" class="md-nav__link">
+    Redirection, manipulation and extraction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text-and-file-manipulation" class="md-nav__link">
+    Text and file manipulation
+  </a>
+  
+    <nav class="md-nav" aria-label="Text and file manipulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cut" class="md-nav__link">
+    Cut
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basename" class="md-nav__link">
+    basename
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sed" class="md-nav__link">
+    sed
+  </a>
+  
+    <nav class="md-nav" aria-label="sed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-replacingsubstituting-a-string" class="md-nav__link">
+    Example - Replacing/substituting a string
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-replacing-all-occurrences" class="md-nav__link">
+    Example - Replacing all occurrences
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-deleting-a-line" class="md-nav__link">
+    Example - Deleting a line
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loops" class="md-nav__link">
+    Loops
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripts" class="md-nav__link">
+    Scripts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moving-files-between-your-laptop-and-remote-clustermachine" class="md-nav__link">
+    Moving Files between your laptop and remote cluster/machine
+  </a>
+  
+    <nav class="md-nav" aria-label="Moving Files between your laptop and remote cluster/machine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-local-to-remote" class="md-nav__link">
+    FROM local TO remote
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-remote-to-local" class="md-nav__link">
+    FROM remote TO local
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-to-slurm" class="md-nav__link">
+    Introduction to slurm
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/day1/ex1_bash_scripting.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="introduction-to-the-command-line">Introduction to the command line<a class="headerlink" href="#introduction-to-the-command-line" title="Permanent link">&para;</a></h1>
+<hr />
+<h3 id="objectives">Objectives<a class="headerlink" href="#objectives" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="#navigating-your-file-system">Navigating your file system</a></li>
+<li><a href="#copying-moving-renaming-and-removing-files">Copying, Moving, Renaming and Removing files</a></li>
+<li><a href="#examining-file-contents">Examining file contents</a></li>
+<li><a href="#redirection-manipulation-and-extraction">Redirection, manipulation and extraction</a></li>
+<li><a href="#text-and-file-manipulation">Text and file manipulation</a></li>
+<li><a href="#loops">Loops</a></li>
+<li><a href="#scripts">Shell scripting</a></li>
+<li><a href="#moving-files-between-your-laptop-and-remote-clustermachine">Moving files between your laptop and NeSI</a></li>
+<li><a href="#introduction-to-slurm">Introduction to slurm</a></li>
+</ul>
+<hr />
+<h3 id="navigating-your-file-system">Navigating your file system<a class="headerlink" href="#navigating-your-file-system" title="Permanent link">&para;</a></h3>
+<p>Log in to NeSI and find the current location by running the command <code>pwd</code> which stands for <em>print working directory</em>. At any given time, <strong>current working directory</strong> is current default directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">pwd</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># /home/UserName/</span>
+</code></pre></div>
+<p>We can see what files and subdirectories are in this directory by running <code>ls</code>, which stands for "listing".</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ls
+</code></pre></div>
+<p>Navigating to the <code>MGSS_Intro/</code> directory can be done with the <code>cd</code> command which stands for <em>change directory</em>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span> MGSS_Intro/
+</code></pre></div>
+<p>Run the <code>ls</code> command to list the contents of the current directory. Check whether there are two <em>.fastq</em> files.</p>
+<p>The <code>mkdir</code> command (<em>make directory</em>) is used to make a directory. Enter <code>mkdir</code> followed by a space, then the directory name you want to create</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mkdir backup/
+</code></pre></div>
+<hr />
+<h3 id="copying-moving-renaming-and-removing-files">Copying, Moving, Renaming and Removing files<a class="headerlink" href="#copying-moving-renaming-and-removing-files" title="Permanent link">&para;</a></h3>
+<p>Make a second copy of <code>SRR097977.fastq</code> and rename it as <code>Test_1_backup.fastq</code>.  Then move that file to <code>backup/</code> directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>cp SRR097977.fastq Test_1_backup.fastq
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>mv Test_1_backup.fastq backup
+</code></pre></div>
+<p>Navigate to <code>backup/</code> directory and use <code>mv</code> command to rename and move <code>Test_1_backup.fastq</code> as <code>Test_1_copy.fastq</code> to the directory immediately above.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span> backup/
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>mv Test_1_backup.fastq ../Test_1_copy.fastq
+</code></pre></div>
+<p>Return to the directory immediately above, check whether the <code>Test_1_copy.fastq</code> was moved and renamed as instructed and remove it by using the <code>rm</code> command.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span> ..
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>rm Test_1_copy.fastq
+</code></pre></div>
+<p>See whether you can remove the <code>backup/</code> directory by using the <code>rm</code> command as well. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>rm backup/
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># rm : can not remove &#39;backup/&#39;: Is a directory</span>
+</code></pre></div>
+<p>By default, <code>rm</code> will not delete directories. This can be done by using <code>-r</code> (recursive) option.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>rm -r backup
+</code></pre></div>
+<hr />
+<h3 id="examining-file-contents">Examining file contents<a class="headerlink" href="#examining-file-contents" title="Permanent link">&para;</a></h3>
+<p>There are a number of ways to examine the content of a file. <code>cat</code> and <code>less</code> are two commonly used programs for a quick look. Check the content of <code>SRR097977.fastq</code> by using these commands. Take a note of the differences. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>cat SRR097977.fastq
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a># less SRR097977.fastq
+</code></pre></div>
+<p>A few useful shortcuts for navigating in <code>less</code></p>
+<p><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex1_less_shortcuts.jpg" /> </p>
+<p>There are ways to take a look at parts of a file. For example, the <code>head</code> and <code>tail</code> commands will scan the beginning and end of a file, respectively. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>head SRR097977.fastq
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>tail SRR097977.fastq
+</code></pre></div>
+<p>Adding <code>-n</code> option to either of these commands will print the first or last <em>n</em> lines of a file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>head -n <span class="m">1</span> SRR097977.fastq
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1"># @SRR097977.1 209DTAAXX_Lenski2_1_7:8:3:710:178 length=36</span>
+</code></pre></div>
+<hr />
+<h3 id="redirection-manipulation-and-extraction">Redirection, manipulation and extraction<a class="headerlink" href="#redirection-manipulation-and-extraction" title="Permanent link">&para;</a></h3>
+<p>Although using <code>cat</code> and <code>less</code> commands will allow us to view the content of the whole file, most of the time we are in search of particular characters (strings) of interest, rather than the full content of the file. One of the most commonly used command-line utilities to search for strings is <code>grep</code>. Let's use this command to search for the string <code>NNNNNNNNNN</code> in <code>SRR098026.fastq</code> file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>grep NNNNNNNNNN SRR098026.fastq
+</code></pre></div>
+<p>Retrieve and discuss the output you get when <code>grep</code> was executed with the <code>-B1</code> and <code>-A1</code> flags.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>grep -B1 -A2 NNNNNNNNNN SRR098026.fastq
+</code></pre></div>
+<p>In both occasions, outputs were printed to the terminal where they can not be reproduced without the execution of the same command. In order for "string" of interest to be used for other operations, this has to be "redirected" (captured and written into a file). The command for redirecting output to a file is <code>&gt;</code>. Redirecting the string of bad reads that was searched using the <code>grep</code> command to a file named <code>bad_reads.txt</code> can be done with</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>grep -B1 -A2 NNNNNNNNNN SRR098026.fastq &gt; bad_reads.txt
+</code></pre></div>
+<p>Use the <code>wc</code> command to count the number of words, lines and characters in the <code>bad_reads.txt</code> file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>wc bad_reads.txt
+</code></pre></div>
+<p>Add <code>-l</code> flag to <code>wc</code> command and compare the number with the above output</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>wc -l bad_reads.txt
+</code></pre></div>
+<p>In an instance where the same operation has to be applied for multiple input files and the outputs are to be redirected to the same output file, it is important to make sure that the new output is not over-writing the previous output. This can be avoided with the use of <code>&gt;&gt;</code> (append redirect) command which will append the new output to the end of the file, rather than overwriting it. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>grep -B1 -A2 NNNNNNNNNN SRR097977.fastq &gt;&gt; bad_reads.txt
+</code></pre></div>
+<p>Executing the same operation on multiple files with the same file extension (or different) can be done with <em>wildcards</em>, which are symbols or special characters that represent other characters. For an example. Using <code>*</code> wildcard, we can run the previous <code>grep</code> command on both files at the same time.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>grep -B1 -A2 NNNNNNNNNN *.fastq &gt;&gt; bad_reads.txt
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>wc -l bad_reads.txt
+</code></pre></div>
+<p>The objective of the redirection example above is to search for a string in a set of files, write the output to a file, and then count the number of lines in that file. Generating output files for short routine tasks like this will end up generating an excessive number of files with little value. The <code>|</code> (pipe) command is a commonly used method to apply an operation for an ouput without creating intermediate files. It takes the output generated by one command and uses it as the input to another command. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>grep -B1 -A2 NNNNNNNNNN SRR098026.fastq <span class="p">|</span> wc -l
+</code></pre></div>
+<hr />
+<h3 id="text-and-file-manipulation">Text and file manipulation<a class="headerlink" href="#text-and-file-manipulation" title="Permanent link">&para;</a></h3>
+<p>There are a number of handy command line tools for working with text files and performing operations like selecting columns from a table or modifying text in a file stream. A few examples of these are below.</p>
+<h4 id="cut">Cut<a class="headerlink" href="#cut" title="Permanent link">&para;</a></h4>
+<p>The <code>cut</code> command prints selected parts of lines from each file to standard output. It is basically a tool for selecting columns of text, delimited by a particular character. The tab character is the default delimiter that <code>cut</code> uses to determine what constitutes a field. If the columns in your file are delimited by another character, you can specify this using the <code>-d</code> parameter.</p>
+<p>See what results you get from the file <code>names.txt</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>cat names.txt
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>cut -d <span class="s2">&quot; &quot;</span> -f <span class="m">1</span> names.txt
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>cut -d <span class="s2">&quot; &quot;</span> -f <span class="m">1</span>-3 names.txt
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>cut -d <span class="s2">&quot; &quot;</span> -f <span class="m">1</span>,3 names.txt
+</code></pre></div>
+<h4 id="basename">basename<a class="headerlink" href="#basename" title="Permanent link">&para;</a></h4>
+<p><code>basename</code> is a function in UNIX that is helpful for removing a uniform part of a name from a list of files. In this case, we will use <code>basename</code> to remove the .fastq extension from the files that we've been working with.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>basename SRR097977.fastq .fastq
+</code></pre></div>
+<h4 id="sed">sed<a class="headerlink" href="#sed" title="Permanent link">&para;</a></h4>
+<p><code>sed</code> is a stream editor. A stream editor is used to perform basic text transformations on an input stream (a file, or input from a pipeline) like, searching, find and replace, insertion or deletion. The most common use of the <code>sed</code> command in UNIX is for substitution or for find and replace. By using <code>sed</code> you can edit files even without opening them, which is extremely important when working with large files.</p>
+<p>View the contents of the <code>animals.txt</code> file using <code>cat</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>cat animals.txt
+</code></pre></div>
+<p>We will now use <code>sed</code> to make some replacements to the text in this file. </p>
+<h5 id="example-replacingsubstituting-a-string">Example - Replacing/substituting a string<a class="headerlink" href="#example-replacingsubstituting-a-string" title="Permanent link">&para;</a></h5>
+<p><code>sed</code> is mostly used to replace the text in a file. In the following example, <code>sed</code> replaces the word 'dogs' with 'cats' in the file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>sed <span class="s1">&#39;s/dogs/cats/&#39;</span> animals.txt
+</code></pre></div>
+<p>Here the <code>s</code> specifies the substitution operation. The <code>/</code> characters are delimiters. The <code>dogs</code> is the search pattern and the <code>cats</code> is the replacement string.</p>
+<p>By default, the <code>sed</code> command replaces the first occurrence of the pattern in each line and it won't replace additional occurrences in the line.</p>
+<h5 id="example-replacing-all-occurrences">Example - Replacing all occurrences<a class="headerlink" href="#example-replacing-all-occurrences" title="Permanent link">&para;</a></h5>
+<p>The substitute flag <code>g</code> (global replacement) can be added to the command to replace all the occurrences of the string in the line.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>sed <span class="s1">&#39;s/dogs/cats/g&#39;</span> animals.txt
+</code></pre></div>
+<h5 id="example-deleting-a-line">Example - Deleting a line<a class="headerlink" href="#example-deleting-a-line" title="Permanent link">&para;</a></h5>
+<p>To delete a particular line, we can specify the line number followed by the <code>d</code> character. For example</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>sed <span class="s1">&#39;1d&#39;</span> animals.txt
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="c1"># Delete the first line</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>sed <span class="s1">&#39;2d&#39;</span> animals.txt
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="c1"># Delete the second line</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>sed <span class="s1">&#39;$d&#39;</span> animals.txt
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="c1"># Delete the last line</span>
+</code></pre></div>
+<hr />
+<h3 id="loops">Loops<a class="headerlink" href="#loops" title="Permanent link">&para;</a></h3>
+<p>Loops are a common concept in most programming languages which allow us to execute commands repeatedly with ease. There are three basic loop constructs in <code>bash</code> scripting,</p>
+<ul>
+<li><strong>for</strong> - iterates over a list of items and performs the given set of commands</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>for item in [LIST]
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>do
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>    [COMMANDS]
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>done
+</code></pre></div>
+<ul>
+<li><strong>while</strong> - Performs a given set of commands an unknown number of times as long as the given condition evaluates is true</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>while [CONDITION]
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>do
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>    [COMMANDS]
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>done
+</code></pre></div>
+<ul>
+<li><strong>until</strong> - Execute a given set of commands as longs as the given condition evaluates to false</li>
+</ul>
+<p>For most of our uses, a <code>for loop</code> is sufficient for our needs, so that is what we will be focusing on for this exercise.</p>
+<p>Shell identifies the <code>for</code> command and repeats a block of commands once for each item in a list. The for loop will take each item in the list (in order, one after the other), assign that item as the value of a variable, execute the commands between the <code>do</code> and <code>done</code> keywords, then proceed to the next item in the list and repeat over. The value of a variable is accessed by placing the <code>$</code> character in front of the variable name. This will tell the interpreter to access the data stored within the variable, rather than the variable name. For example</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nv">i</span><span class="o">=</span><span class="s2">&quot;DAVE WAS HERE&quot;</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="nb">echo</span> i
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="c1"># i</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="nb">echo</span> <span class="nv">$i</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="c1"># DAVE WAS HERE</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="nb">echo</span> <span class="si">${</span><span class="nv">i</span><span class="si">}</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="c1"># DAVE WAS HERE</span>
+</code></pre></div>
+<p>This prevents the shell interpreter from treating <code>i</code> as a string or a command. The process is known as <em>expanding</em> the variable. We will now write a for loop to print the first two lines of our <em>fastQ</em> files:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>for filename in *.fastq
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>do
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>    head -n 2 ${filename}
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>done
+</code></pre></div>
+<p>Another useful command to be used with <code>for</code> loops is <code>basename</code> which strips directory information and suffixes from file names (i.e. prints the filename name with any leading directory components removed).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>basename SRR097977.fastq .fastq
+</code></pre></div>
+<p><code>basename</code> is rather a powerful tool when used in a for loop. It enables the user to access just the file prefix which can be use to name things</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>for filename in *.fastq
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>do
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>    name=$(basename ${filename} .fastq)
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>    echo ${name}
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>done
+</code></pre></div>
+<hr />
+<h3 id="scripts">Scripts<a class="headerlink" href="#scripts" title="Permanent link">&para;</a></h3>
+<p>Executing operations that contain multiple lines/tasks or steps such as for loops via command line is rather inconvenient. For an example, imagine fixing a simple spelling mistake made somewhere in the middle of a for loop that was directly executed on the terminal.</p>
+<p>The solution for this is the use of shell scripts, which are essentially a set of commands that you write into a text file and then run as a single command. In UNIX-like operating systems, inbuilt text editors such as <code>nano</code>, <code>emacs</code>, and <code>vi</code> provide the platforms to write scripts. For this workshop we will use <code>nano</code> to create a file named <code>ForLoop.sh</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>nano ForLoop.sh
+</code></pre></div>
+<p>Add the following for-loop to the script (note the header <code>#!/bin/bash</code>).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="k">for</span> filename <span class="k">in</span> *.fastq
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="k">do</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>    head -n <span class="m">2</span> <span class="si">${</span><span class="nv">filename</span><span class="si">}</span>
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="k">done</span>
+</code></pre></div>
+<p>Because <code>nano</code> is designed to work without a mouse for input, all commands you pass into the editor are done via keyboard shortcuts. You can save your changes by pressing <code>Ctrl + O</code>, then exit <code>nano</code> using <code>Ctrl + X</code>. If you try to exit without saving changes, you will get a prompt confirming whether or not you want to save before exiting, just like you would if you were working in <strong>Notepad</strong> or <strong>Word</strong>.</p>
+<p>Now that you have saved your file, see if you can run the file by just typing the name of it (as you would for any command run off the terminal). You will notice the command written in the file will not be executed. The solution for this is to tell the machine what program to use to run the script. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>bash ForLoop.sh
+</code></pre></div>
+<p>Although the file contains enough information to be considered as a program itself, the operating system can not recognise it as a program. This is due to it's lacking "executable" permissions to be executed without the assistance of a third party. Run the <code>ls -l ForLoop.sh</code> command and evaluate the first part of the output</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>ls -l ForLoop.sh 
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="c1"># -rw-rw-r-- 1 user user 88 Dec  6 19:52 ForLoop.sh</span>
+</code></pre></div>
+<p>There are three file permission flags that a file we create on NeSI can possess. Two of these, the read (<code>r</code>) and write (<code>w</code>) are marked for the <code>ForLoop.sh</code> file .The third flag, executable (<code>x</code>) is not set. We want to change these permissions so that the file can be executed as a program. This can be done by using <code>chmod</code> command. Add the executable permissions (<code>+x</code>) to <code>ForLoop.sh</code> and run <code>ls</code> again to see what has changed.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>chmod +x ForLoop.sh
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>ls -l ForLoop.sh 
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="c1"># -rwxrwxr-x 1 user user 88 Dec  6 19:52 ForLoop.sh</span>
+</code></pre></div>
+<p>Re-open the file in <code>nano</code> and append the output to <strong>TwoLines.txt</strong>, save and exit</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="k">for</span> filename <span class="k">in</span> *.fastq
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="k">do</span>
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>    head -n <span class="m">2</span> <span class="si">${</span><span class="nv">filename</span><span class="si">}</span> &gt;&gt; TwoLines.txt
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="k">done</span>
+</code></pre></div>
+<p>Execute the file <code>ForLoop.sh</code>. We'll need to put <code>./</code> at the beginning so the computer knows to look here in this directory for the program.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>./ForLoop.sh
+</code></pre></div>
+<hr />
+<h3 id="moving-files-between-your-laptop-and-remote-clustermachine">Moving Files between your laptop and remote cluster/machine<a class="headerlink" href="#moving-files-between-your-laptop-and-remote-clustermachine" title="Permanent link">&para;</a></h3>
+<p>There are multiple commands and tools to move files between your laptop and remote clusters/machines. <code>scp</code> and <code>rsync</code> are some of the commands, and <code>Globus</code> and <code>Cyberduck</code> are some of these tools. <code>scp</code> is commonly used, as this is a simple to use tool that makes use of the <code>ssh</code> configuration we have already established for connecting to NeSI.</p>
+<p>In order it use it error free, we need to pay attention to whether the file is moving <em>FROM</em> or <em>TO</em> the remote cluster/machine, <em>absolute</em> paths, <em>relative</em> paths, Local vs Remote, etc. </p>
+<p>The format of the <code>scp</code> command is: <code>scp path/to/copy/from path/to/copy/to</code></p>
+<p>If you wish to copy whole directories, include the -r flag: <code>scp -r path/to/copy/from path/to/copy/to</code></p>
+<p>Finally, include <code>mahuika:</code> or <code>ga-vl01:</code> at the start of the remote machine file path (in this case, NeSI) to identify that this path is located within the <em>remote</em> cluster/machine.</p>
+<p><em>NOTE: the following templates are written in a way where the commands are to be **executed from local*</em>; i.e. a terminal <strong>not</strong> logged in to NeSI. On some systems, it may be preferable to open one terminal, log in to NeSI in that terminal, and then open a new terminal (that is not logged into NeSI) to perform the <code>scp</code> command. This avoids having to provide your NeSI log in details each time you wish to copy something.*</p>
+<h4 id="from-local-to-remote"><em>FROM</em> local <em>TO</em> remote<a class="headerlink" href="#from-local-to-remote" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>scp /path/from/local/ ga-vl01:/path/to/remote/
+</code></pre></div>
+<h4 id="from-remote-to-local"><em>FROM</em> remote <em>TO</em> local<a class="headerlink" href="#from-remote-to-local" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>scp ga-vl01:/path/from/remote/ /path/to/local/
+</code></pre></div>
+<p>If the <code>~/.ssh/config</code> is not set with aliases you will need to replace the shortcut <code>ga-vl01</code> with the full address of the remote:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>scp -oProxyCommand=&quot;ssh -W %h:%p user@lander.nesi.org.nz&quot; /path/in/local/ user@ga-vl01.mahuika.nesi.org.nz:/path/to/remote/
+</code></pre></div>
+<p><em>NOTE: If you are already comfortable with using <code>scp</code>, you are welcome to use this. However, for the purposes of this workshop, the relevant example files are available for download from the <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school">workshop main page</a>. Alternatively, if you are working within the NeSI <code>Jupyter hub</code>, you can download individual files by right clicking on the file in the navigation pane on the left and clicking <code>download</code>.</em></p>
+<hr />
+<h3 id="introduction-to-slurm">Introduction to slurm<a class="headerlink" href="#introduction-to-slurm" title="Permanent link">&para;</a></h3>
+<p>Jobs running on NeSI are submitted in the form of a batch script containing the code you want to run and a header of information needed by a job scheduler. </p>
+<p>All NeSI systems use the slurm batch scheduler for the submission, control and management of user jobs.
+Slurm provides a rich set of features for organising your workload and an extensive array of tools for managing your resource usage. In most cases, you need to know the commands:</p>
+<p align="center"><img  src="../figures/slurm2020.png" alt="drawing" width="1000"/></p>
+
+<p>Copy the contents of the <code>BLAST/</code> folder to your current directory, using the following command</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>cp -r /nesi/nobackup/nesi02659/SLURM/BLAST ./
+</code></pre></div>
+<p>We will then navigate into this directory with the <code>cd</code> command, and inspect the text of the file <code>blast-test.sh</code> using <code>less</code> or <code>nano</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="nb">cd</span> BLAST/
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>less blast-test.sh
+</code></pre></div>
+<p>Evaluate the contents of the <code>blast-test.sh</code> script. Take a note of the basic slurm variables, path variables, etc. We will revisit these in the afternoon, when you create your own slurm scripts.</p>
+<p>Submit the script to the job queue as below.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>sbatch blast-test.sh
+</code></pre></div>
+<hr />
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Home
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../ex2_quality_filtering/" class="md-footer__link md-footer__link--next" aria-label="Next: Quality filtering raw reads" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Quality filtering raw reads
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
