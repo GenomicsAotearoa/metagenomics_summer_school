@@ -11,8 +11,8 @@ repo_url: https://github.com/GenomicsAotearoa/metagenomics_summer_school
 
 theme:
   name: material
-  logo: images/nesi_ga.png
-  favicon: images/nesi_ga.png
+  logo: ./theme_images/nesi_ga.png
+  favicon: ./theme_images/nesi_ga.png
    # 404 page
   static_templates:
     - 404.html
