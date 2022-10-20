@@ -1,1 +1,3 @@
-# Hi!
+<center>
+# **Metagenomics Summer School**
+</center>
