@@ -1,24 +1,24 @@
 # Bin dereplication
 
-### Objectives
+!!! info "Objectives"
 
-- [Bin dereplication](#bin-dereplication)
-    - [Objectives](#objectives)
-    - [Bin dereplication using `DAS_Tool` - Creating input tables](#bin-dereplication-using-das_tool---creating-input-tables)
-      - [Creating contig/bin tables - *MetaBAT*](#creating-contigbin-tables---metabat)
-          - [Command 1](#command-1)
-          - [Command 2](#command-2)
-          - [Command 3](#command-3)
-          - [Command 4](#command-4)
-      - [Creating contig/bin tables - *MaxBin*](#creating-contigbin-tables---maxbin)
-        - [Warning for unbinned contigs](#warning-for-unbinned-contigs)
-    - [Bin dereplication using *DAS_Tool* - Running the tool](#bin-dereplication-using-das_tool---running-the-tool)
-    - [Evaluating bins using *CheckM*](#evaluating-bins-using-checkm)
-        - [Highly conserved, single copy markers](#highly-conserved-single-copy-markers)
-        - [Genes are considered as co-located clusters](#genes-are-considered-as-co-located-clusters)
-        - [Lineage-specific duplications and losses can be identified](#lineage-specific-duplications-and-losses-can-be-identified)
-    - [Discussion: dereplication across multiple assemblies](#discussion-dereplication-across-multiple-assemblies)
-
+    - [Bin dereplication](#bin-dereplication)
+        - [Objectives](#objectives)
+        - [Bin dereplication using `DAS_Tool` - Creating input tables](#bin-dereplication-using-das_tool---creating-input-tables)
+          - [Creating contig/bin tables - *MetaBAT*](#creating-contigbin-tables---metabat)
+              - [Command 1](#command-1)
+              - [Command 2](#command-2)
+              - [Command 3](#command-3)
+              - [Command 4](#command-4)
+          - [Creating contig/bin tables - *MaxBin*](#creating-contigbin-tables---maxbin)
+            - [Warning for unbinned contigs](#warning-for-unbinned-contigs)
+        - [Bin dereplication using *DAS_Tool* - Running the tool](#bin-dereplication-using-das_tool---running-the-tool)
+        - [Evaluating bins using *CheckM*](#evaluating-bins-using-checkm)
+            - [Highly conserved, single copy markers](#highly-conserved-single-copy-markers)
+            - [Genes are considered as co-located clusters](#genes-are-considered-as-co-located-clusters)
+            - [Lineage-specific duplications and losses can be identified](#lineage-specific-duplications-and-losses-can-be-identified)
+        - [Discussion: dereplication across multiple assemblies](#discussion-dereplication-across-multiple-assemblies)
+    
 ---
 
 ### Bin dereplication using `DAS_Tool` - Creating input tables
