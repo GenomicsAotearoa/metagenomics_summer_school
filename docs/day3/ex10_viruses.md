@@ -1,12 +1,12 @@
 # Identifying viral contigs in metagenomic data
 
-### Objectives
+!!! info "Objectives"
 
-* [Identifying viral contigs using `VIBRANT`](#identifying-viral-contigs-using-vibrant)
-* [Examine prophage identified by `VIBRANT`](#examine-outputs-of-vibrant)
-* [Examine viral metabolism and auxiliary metabolic genes (AMGs) outputs from `VIBRANT`](#examine-outputs-of-vibrant)
-* [Check quality and estimate completeness of the viral contigs via `CheckV`](#check-quality-and-estimate-completeness-of-the-viral-contigs-via-checkv)
-
+    * [Identifying viral contigs using `VIBRANT`](#identifying-viral-contigs-using-vibrant)
+    * [Examine prophage identified by `VIBRANT`](#examine-outputs-of-vibrant)
+    * [Examine viral metabolism and auxiliary metabolic genes (AMGs) outputs from `VIBRANT`](#examine-outputs-of-vibrant)
+    * [Check quality and estimate completeness of the viral contigs via `CheckV`](#check-quality-and-estimate-completeness-of-the-viral-contigs-via-checkv)
+    
 ---
 
 ### Identifying viral contigs
