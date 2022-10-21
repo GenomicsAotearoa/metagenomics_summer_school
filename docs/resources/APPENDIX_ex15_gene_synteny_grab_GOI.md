@@ -1,4 +1,4 @@
-### Grab Gene of Interest (generate the *cys.txt* files provided in [ex15_gene_synteny](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16e_data_presentation_Gene_synteny.md))
+# *APPENDIX (ex15)*: Grab Gene of Interest (generate the *cys.txt* files provided in [ex15_gene_synteny](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16e_data_presentation_Gene_synteny.md))
 
 Below is the example documentation for how the files of genes that we were interested in (`*cys.txt` files) were generated. 
 
