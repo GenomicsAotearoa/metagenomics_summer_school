@@ -112,7 +112,7 @@ To finish, we visualize the *Product*, an .HTML file produced in the Distillatio
 
 It is now time to explore the genomes and try to address your original goal!
 
-You were tasked with identfying one of the following.
+You were tasked with identifying one of the following.
 
 1. Denitrification (Nitrate or nitrite to nitrogen)
 2. Ammonia oxidation (Ammonia to nitrite or nitrate)
