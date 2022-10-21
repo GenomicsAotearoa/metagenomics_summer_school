@@ -45,7 +45,6 @@ For each gene annotated, `DRAM` provides a summary rank (from A to E), represent
 After the annotation is finished, we will summarise and visualise these annotations with the so-called *Distillation* step. We do so by running the following command directly in the terminal. This will generate the distillate and liquor files.
 
 ```bash
-
 module purge
 module load Miniconda3/4.8.3
 module load gimkl/2020a
@@ -61,7 +60,7 @@ DRAM.py distill -i annotation_dram/annotations.tsv -o dram_distillation --trna_p
 
 conda deactivate
 ```
----
+
 
 The distillation step generates the following files that can be found within the ```dram_distillation``` directory :
 

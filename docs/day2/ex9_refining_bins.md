@@ -14,18 +14,20 @@
 
 ### Prepare input files for *VizBin*
 
-[**VizBin**](http://claczny.github.io/VizBin/) is a handy, GUI-based tool for creating ordinations of our binning data using the [t-Distributed Stochastic Neighbor Embedding (t-SNE)](https://lvdmaaten.github.io/tsne/) algorithm to project high-dimensional data down into a 2D plot that preserves clustering information. There's a really good video on [YouTube](https://www.youtube.com/watch?v=NEaUSP4YerM) that explains how the algorithm works in high-level terms, but for our purposes you can really consider it as a similar approach to a PCA or NMDS.
+!!! quote ""
 
-On its own, `VizBin` takes a set of contigs and performs the *t-SNE* projection using compositional data. We can optionally provide it files that annotate contigs as belonging to particular bins and a file that adds coverage data to be considered when clustering. Unfortuantely, at this stage `VizBin` only allows a single coverage value per contig, which is not ideal. This is because `VizBin` only uses coverage as a means to modify the visualisation, not the ordination itself. It is possible to create your own *t-SNE* projection using multiple coverage values, however this is beyond the scope of today's exercise, and here we will be providing `VizBin` with coverage values for sample1 only. 
-
-The only required input file for `VizBin` is a single `.fna` file of the concatenated bins. An additional annotation file containing per-contig coverage values and bin IDs can also be provided. Colouring contigs by bin is a really effective way to spot areas that might need refinement.
-
-*NOTE: When running VizBin, it is often preferable to split long contigs into smaller pieces in order to increase the density of clustering in the **t-SNE**. The data we are working with today are based on our bins output by `DAS_Tool` in the last binning exercise, but have been further processed using the `cut_up_fasta.py` script that comes with the binning tool `CONCOCT` to cut long contigs into 20k fragments. When reviewing our `VizBin` plots and outputs, it is important to remember that here we are looking at the **fragmented sub-contigs**, rather than the full complete contigs (the importance of this will be clear when we are reviewing our `vb_count_table.txt` later in this exercise).*
-
-In the interests of time today, the input files have been generated and are provided in the `6.bin_refinement/` folder: 
-
-* `all_bins.fna` is a concatenation of the bins of *fragmented* sub-contigs (fragmented to 20k)
-* `all_bins.sample1.vizbin.ann` is the annotation file containing per-subcontig coverage, label (bin ID), and length values.
+    [**VizBin**](http://claczny.github.io/VizBin/) is a handy, GUI-based tool for creating ordinations of our binning data using the [t-Distributed Stochastic Neighbor Embedding (t-SNE)](https://lvdmaaten.github.io/tsne/) algorithm to project high-dimensional data down into a 2D plot that preserves clustering information. There's a really good video on [YouTube](https://www.youtube.com/watch?v=NEaUSP4YerM) that explains how the algorithm works in high-level terms, but for our purposes you can really consider it as a similar approach to a PCA or NMDS.
+    
+    On its own, `VizBin` takes a set of contigs and performs the *t-SNE* projection using compositional data. We can optionally provide it files that annotate contigs as belonging to particular bins and a file that adds coverage data to be considered when clustering. Unfortuantely, at this stage `VizBin` only allows a single coverage value per contig, which is not ideal. This is because `VizBin` only uses coverage as a means to modify the visualisation, not the ordination itself. It is possible to create your own *t-SNE* projection using multiple coverage values, however this is beyond the scope of today's exercise, and here we will be providing `VizBin` with coverage values for sample1 only. 
+    
+    The only required input file for `VizBin` is a single `.fna` file of the concatenated bins. An additional annotation file containing per-contig coverage values and bin IDs can also be provided. Colouring contigs by bin is a really effective way to spot areas that might need refinement.
+    
+    *NOTE: When running VizBin, it is often preferable to split long contigs into smaller pieces in order to increase the density of clustering in the **t-SNE**. The data we are working with today are based on our bins output by `DAS_Tool` in the last binning exercise, but have been further processed using the `cut_up_fasta.py` script that comes with the binning tool `CONCOCT` to cut long contigs into 20k fragments. When reviewing our `VizBin` plots and outputs, it is important to remember that here we are looking at the **fragmented sub-contigs**, rather than the full complete contigs (the importance of this will be clear when we are reviewing our `vb_count_table.txt` later in this exercise).*
+    
+    In the interests of time today, the input files have been generated and are provided in the `6.bin_refinement/` folder: 
+    
+    * `all_bins.fna` is a concatenation of the bins of *fragmented* sub-contigs (fragmented to 20k)
+    * `all_bins.sample1.vizbin.ann` is the annotation file containing per-subcontig coverage, label (bin ID), and length values.
 
 For future reference, and for working with your own data, a step-by-step process for generating these files from the curated bins generated by `DAS_Tool` has been provided as an [Appendix](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex9_Generating_input_files_for_VizBin.md).
 
