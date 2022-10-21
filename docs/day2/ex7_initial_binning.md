@@ -1,10 +1,10 @@
 # Introduction to binning
 
-### Objectives
+!!! info "Objectives"
 
-* [Overview](#overview)
-* [Create initial bins using `MetaBAT`](#metabat)
-* [Create initial bins using `MaxBin`](#maxbin)
+    * [Overview](#overview)
+    * [Create initial bins using `MetaBAT`](#metabat)
+    * [Create initial bins using `MaxBin`](#maxbin)
 
 ---
 
