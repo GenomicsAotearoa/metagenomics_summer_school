@@ -1,4 +1,4 @@
-### Appendix (ex11): viral taxonomy prediction via *vContact2*
+# Appendix (ex11): viral taxonomy prediction via *vContact2*
 
 *NOTE: these steps are based on having `vContact2` set up as a `conda` environment. This documentation will be updated should `vContact2` become available as a NeSI module.*
 
