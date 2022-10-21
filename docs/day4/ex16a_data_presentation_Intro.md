@@ -9,13 +9,15 @@
 
 ### Overview, *R/RStudio*, and using *R* in the *Jupyter* environment
 
-There are a number of powerful packages within the `R` software environment which can be used to create high quality images of genomic and metagenomic data. While each of these packages comes with its own documentation, these documents and tutorials usually assume that your data is already in some already-prepared format. Our data will almost never be in this format, though, so these exercises show two brief examples of how we can scrape data from our existing files to create useful figures. As such, these examples are more complicated than what you would get reading the tutorials and manuals of the plotting tools, but will be transferable to your own work.
+!!! quote ""
 
-In your own work, it may be preferable to download the relevant files from NeSI (e.g. via `scp ...`) and work with them on a locally installed version of `RStudio` on your own machine. For today, to be able to run these `R` exercises in a stable environment within the NeSI platform, we will be running an `R` [kernel](https://en.wikipedia.org/wiki/Kernel_(operating_system)) from within a [Jupyter](https://jupyter.org/) environment. 
+    There are a number of powerful packages within the `R` software environment which can be used to create high quality images of genomic and metagenomic data. While each of these packages comes with its own documentation, these documents and tutorials usually assume that your data is already in some already-prepared format. Our data will almost never be in this format, though, so these exercises show two brief examples of how we can scrape data from our existing files to create useful figures. As such, these examples are more complicated than what you would get reading the tutorials and manuals of the plotting tools, but will be transferable to your own work.
 
-By now you should be very familiar with running the terminal window from within the NeSI [Jupyter hub](https://jupyter.nesi.org.nz/hub/login). In addition to the terminal, `Jupyter Notebooks` more generally also provide an interactive space that allows for mixing multiple languages within a single document, including [Markdown](https://en.wikipedia.org/wiki/Markdown), `Python`, and `R` (by default, `Markdown` and one coding language such as `R` can be used within one document, but there are add-ons available to expand this, should you wish to). `Jupyter Notebooks` can be extremely useful as a workspace that is the equivalent of an electronic "lab book". Today, we will be using it as an interactive space to run `R`. Note that, while the layout will be slightly different to `RStudio`, the commands we will be working through will work the same in both environments.
+    In your own work, it may be preferable to download the relevant files from NeSI (e.g. via `scp ...`) and work with them on a locally installed version of `RStudio` on your own machine. For today, to be able to run these `R` exercises in a stable environment within the NeSI platform, we will be running an `R` [kernel](https://en.wikipedia.org/wiki/Kernel_(operating_system)) from within a [Jupyter](https://jupyter.org/) environment. 
 
-These exercises will take place with files in the `11.data_presentation/` folder.
+    By now you should be very familiar with running the terminal window from within the NeSI [Jupyter hub](https://jupyter.nesi.org.nz/hub/login). In addition to the terminal, `Jupyter Notebooks` more generally also provide an interactive space that allows for mixing multiple languages within a single document, including [Markdown](https://en.wikipedia.org/wiki/Markdown), `Python`, and `R` (by default, `Markdown` and one coding language such as `R` can be used within one document, but there are add-ons available to expand this, should you wish to). `Jupyter Notebooks` can be extremely useful as a workspace that is the equivalent of an electronic "lab book". Today, we will be using it as an interactive space to run `R`. Note that, while the layout will be slightly different to `RStudio`, the commands we will be working through will work the same in both environments.
+
+    These exercises will take place with files in the `11.data_presentation/` folder.
 
 ---
 
@@ -68,20 +70,24 @@ if (!require(BiocManager)) {
 
 Spend a few minutes familiarising yourself with the `Jupyter Notebook` workspace, and how it differs to the standard terminal we've been working in. You'll see the coding language kernel running in the background of this `Notebook` in the top right of the pane. The main document works in *blocks*; click the `+` button to add additional blocks. The *Code* drop-down menu allows you to select between whether the current block is a `Markdown` or `code` (in this case, `R`) block. 
 
-To start, create a title and description for this Notebook. 
+To start, create a title and description for this Notebook.
 
-* Create a title
-  * Click on the first code block
-  * use the drop-down menu to convert the block to `Markdown`
-  * enter a title in the block preceeded by one or more `#` symbols (e.g. `# MGSS2020: Data presentation`). In `Markdown`, the `#` symbol denotes this to be rendered as a title.
-  * Click on the block and then press `<shift> + <enter>` to 'run' the block (in this case, to render the `Markdown` text).
-* Create a comment or sub-title
-  * Create a second block
-  * convert to `Markdown` and enter a short description of the workshop (e.g. `Data presentation exercises for the Genomics Aotearoa Metagenomics Workshop, 2020`). 
-  * as above, press <shift> + <enter> to render the text
+!!! abstract ""
+
+    * Create a title
+      * Click on the first code block
+      * use the drop-down menu to convert the block to `Markdown`
+      * enter a title in the block preceeded by one or more `#` symbols (e.g. `# MGSS2020: Data presentation`). In `Markdown`, the `#` symbol denotes this to be rendered as a title.
+      * Click on the block and then press `<shift> + <enter>` to 'run' the block (in this case, to render the `Markdown` text).
+    * Create a comment or sub-title
+      * Create a second block
+      * convert to `Markdown` and enter a short description of the workshop (e.g. `Data presentation exercises for the Genomics Aotearoa Metagenomics Workshop, 2020`). 
+      * as above, press <shift> + <enter> to render the text
    
-*NOTE: for `Markdown` blocks, simply double click on a block to be able to re-edit the rendered section.* 
+!!! abstract "Note"
 
-*NOTE: To run a `code` block, use the same method of clicking on the block and pressing `<shift> + <enter>` to interactively run the code for that block (in this case, to run our `R` code).*
+    * For `Markdown` blocks, simply double click on a block to be able to re-edit the rendered section.* 
+
+    * To run a `code` block, use the same method of clicking on the block and pressing `<shift> + <enter>` to interactively run the code for that block (in this case, to run our `R` code).*
 
 ---
