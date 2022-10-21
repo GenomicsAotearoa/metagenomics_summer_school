@@ -1,10 +1,10 @@
 # Introduction to binning
 
-### Objectives
+!!! info "Objectives"
 
-* [Remove short contigs from the data set](#remove-short-contigs-from-the-data-set)
-* [Obtain coverage profiles for assembled contigs via read mapping](#obtain-coverage-profiles-for-assembled-contigs-via-read-mapping)
-* [*Optional:* Read mapping using a slurm array](#optional-read-mapping-using-an-array)
+    * [Remove short contigs from the data set](#remove-short-contigs-from-the-data-set)
+    * [Obtain coverage profiles for assembled contigs via read mapping](#obtain-coverage-profiles-for-assembled-contigs-via-read-mapping)
+    * [*Optional:* Read mapping using a slurm array](#optional-read-mapping-using-an-array)
 
 ---
 
