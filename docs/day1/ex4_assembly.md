@@ -1,8 +1,8 @@
 # Assembly (part 2)
 
-### Objectives
+!!! info "Objectives"
 
-* [Examine the effect of changing parameters for assembly](#examine-the-effect-of-changing-assembly-parameters)
+    * [Examine the effect of changing parameters for assembly](#examine-the-effect-of-changing-assembly-parameters)
 
 All work for this exercise will occur in the `3.assembly/` directory.
 
