@@ -44,38 +44,6 @@ Please complete the <a href="https://otago.au1.qualtrics.com/jfe/form/SV_cY1iU9W
 
 ---
 
-## Workshop exercises
-
-### Day 1
-
-1. [Bash scripting](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex1_bash_scripting.md)
-1. [Quality filtering raw reads](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex2_quality_filtering.md)
-1. [Assembly (part 1)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex3_assembly.md)
-1. [Assembly (part 2)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex4_assembly.md)
-1. [Evaluating the assembly](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex5_evaluating_assemblies.md)
-
-### Day 2
-
-1. [Binning (part 1, read mapping)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex6_initial_binning.md)
-1. [Binning (part 2, initial binning)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex7_initial_binning.md)
-1. [Binning (part 3, dereplication)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex8_bin_dereplication.md)
-1. [Bin refinement](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex9_refining_bins.md)
-
-
-### Day 3
-
-1. [Viruses](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex10_viruses.md)
-1. [Coverage and Taxonomy](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex11_coverage_and_taxonomy.md)
-1. [Gene prediction](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex12_gene_prediction.md)
-1. [Gene annotation (part 1)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex13_gene_annotation_part1.md)
-1. [Gene annotation (part 2)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex14_gene_annotation_part2.md)
-
-### Day 4
-
-1. [Gene annotation (part 3)](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex15_gene_annotation_part3.md)
-1. [Presentation of data](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16a_data_presentation_Intro.md)
-
----
 
 ## Timetable
 
