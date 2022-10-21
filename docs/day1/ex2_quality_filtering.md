@@ -314,9 +314,6 @@ Finally, map the quality-filtered reads to the reference via `BBMap`. Here we wi
 #SBATCH --cpus-per-task 20
 #SBATCH --error host_filt_bbmap_map_%a.err
 #SBATCH --output host_filt_bbmap_map_%a.out
-#SBATCH --export NONE
-
-export SLURM_EXPORT_ENV=ALL
 
 # Set up working directories
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/
