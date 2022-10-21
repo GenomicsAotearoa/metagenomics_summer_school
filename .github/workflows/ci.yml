@@ -15,6 +15,7 @@ jobs:
         with:
           python-version: 3.x
       - run: pip install mkdocs-material 
+             pip install mkdocs-glightbox
 
 
       - run: mkdocs gh-deploy --force
