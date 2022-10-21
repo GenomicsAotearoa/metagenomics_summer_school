@@ -71,9 +71,6 @@ Paste in the following script. Remember to replace <YOUR FOLDER> with your own f
 #SBATCH --cpus-per-task 10
 #SBATCH --error spades_mapping.err
 #SBATCH --output spades_mapping.out
-#SBATCH --export NONE
-
-export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
