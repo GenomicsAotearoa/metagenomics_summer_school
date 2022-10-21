@@ -1,9 +1,9 @@
 # Gene annotation (part 2)
 
-### Objectives
+!!! info "Objectives"
 
-* [Gene prediction and annotation with `DRAM`](#gene-prediction-and-annotation-with-dram-distilled-and-refined-annotation-of-metabolism)
-* [Annotation of the MAGs with `DRAM`](#annotation-of-the-mags-with-dram)
+    * [Gene prediction and annotation with `DRAM`](#gene-prediction-and-annotation-with-dram-distilled-and-refined-annotation-of-metabolism)
+    * [Annotation of the MAGs with `DRAM`](#annotation-of-the-mags-with-dram)
 
 ---
 
