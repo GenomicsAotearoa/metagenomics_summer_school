@@ -241,13 +241,21 @@ Repeat the steps above (from 3.2 onwards), each time inputting a different data 
 
 *NOTE: How informative these types of analyses are depends in part on the number of samples you actually have and the degree of variation between the samples. As you can see in the nMDS plots based on unweighted (binary) Bray-Curtis dissimilarities (especially for the MAGs data) there are not enough differences between any of the samples (in this case, in terms of community membership, rather than relative abundances) for this to result in a particularly meaningful or useful plot in these cases.*
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_fig1_nMDS_MAGs_weighted.png)
+<center>
+![image](../figures/ex15_fig1_nMDS_MAGs_weighted.png){width="600"}
+</center>
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_fig2_nMDS_MAGs_unweighted.png)
+<center>
+![image](../figures/ex15_fig2_nMDS_MAGs_unweighted.png){width="600"}
+</center>
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_fig3_nMDS_Vir_weighted.png)
+<center>
+![image](../figures/ex15_fig3_nMDS_Vir_weighted.png){width="600"}
+</center>
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_fig4_nMDS_Vir_unweighted.png)
+<center>
+![image](../figures/ex15_fig4_nMDS_Vir_unweighted.png){width="600"}
+</center>
 
 ---
 
