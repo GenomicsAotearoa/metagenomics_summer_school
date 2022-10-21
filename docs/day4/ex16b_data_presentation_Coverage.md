@@ -1,9 +1,9 @@
 # Presentation of data: Per-sample coverage heatmaps
 
-### Objectives
+!!! info "Objectives"
 
-* [Building a heatmap of MAG coverage per sample](#part-1---building-a-heatmap-of-mag-coverage-per-sample)
-* [Building a heatmap of viral contigs per sample](#part-2---building-a-heatmap-of-viral-contigs-per-sample)
+    * [Building a heatmap of MAG coverage per sample](#part-1---building-a-heatmap-of-mag-coverage-per-sample)
+    * [Building a heatmap of viral contigs per sample](#part-2---building-a-heatmap-of-viral-contigs-per-sample)
 
 ---
 
