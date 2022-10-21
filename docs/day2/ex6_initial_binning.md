@@ -10,7 +10,7 @@
 
 ### Remove short contigs from the data set
 
-Ideally, we do not want to be creating bins from all of the assembled contigs, as there is often a long tail of contigs which are only several *k*-mers long. These have little biological meaning, as they are too short for robust gene annotation, and they can introduce a significant degree of noise in the clustering algorithms used for binning. We therefore identify a suitable threshold for a minimum length of contigs to be considered for binning.
+Ideally, we do not want to be creating bins from all of the assembled contigs, as there is often a long tail of contigs which are only several $k$-mers long. These have little biological meaning, as they are too short for robust gene annotation, and they can introduce a significant degree of noise in the clustering algorithms used for binning. We therefore identify a suitable threshold for a minimum length of contigs to be considered for binning.
 
 We have already done this in the [previous exercise](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex5_evaluating_assemblies.md) so we could either use the existing filtering at 1,000 bp in length, or move to something stricter. Most binning tools have a default cut-off for minimum contig size - `MetaBAT` uses a default minimum of 2,500 bp, and recommends at least 1,500 bp. By contrast, `MaxBin` sets the minimum length at 1,000 bp.
 
@@ -20,7 +20,7 @@ We have already done this in the [previous exercise](https://github.com/Genomics
 
 Binning is done using a combination of information encoded in the *composition* and *coverage* of the assembled contigs. *Composition* refers to *k*-mer (usually tetranucleotide) frequency profiles of the contigs, which are generally conserved within a genome. By contrast, *coverage* is a reflection of the abundance of the contigs in the assembly. Organisms which are more abundant will contribute more genomic material to the metagenome, and hence their DNA will be, on average, more abundant in the sample. When binning, we can look for pieces of DNA which are not assembled together, but have similar *composition* and occur at approximately equal abundances in the sample to identify contigs which likely originate in the same genome.
 
-The composition of the contigs is calculated by the binning tool at run time, but to obtain coverage information we must map our unassembled reads from each sample against the assembly to generate the differential abundance profiles for each contig. This is acheived using `bowtie2` to map the reads against the assembly, then `samtools` to sort and compress the resulting file.
+The composition of the contigs is calculated by the binning tool at run time, but to obtain coverage information we must map our unassembled reads from each sample against the assembly to generate the differential abundance profiles for each contig. This is achieved using `bowtie2` to map the reads against the assembly, then `samtools` to sort and compress the resulting file.
 
 #### Creating a mapping index
 
