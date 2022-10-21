@@ -1,0 +1,1256 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Genomics Aotearoa & NeSI">
+      
+      
+        <link rel="canonical" href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations/">
+      
+      <link rel="icon" href="../../images/nesi_ga.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>Presentation of data: *Optional exercise*: CAZy annotations heatmap - Metagenomics Summer School</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Mukta";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="lime" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#presentation-of-data-optional-exercise-cazy-annotations-heatmap" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Metagenomics Summer School" class="md-header__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../images/nesi_ga.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Metagenomics Summer School
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Presentation of data: *Optional exercise*: CAZy annotations heatmap
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+          
+            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Metagenomics Summer School" class="md-nav__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../images/nesi_ga.png" alt="logo">
+
+    </a>
+    Metagenomics Summer School
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Hi!
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Day1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day1" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Day1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex1_bash_scripting/" class="md-nav__link">
+        Introduction to the command line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex2_quality_filtering/" class="md-nav__link">
+        Quality filtering raw reads
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex3_assembly/" class="md-nav__link">
+        Assembly
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex4_assembly/" class="md-nav__link">
+        Assembly (part 2)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex5_evaluating_assemblies/" class="md-nav__link">
+        Evaluating the assemblies
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Day2
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day2" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Day2
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex6_initial_binning/" class="md-nav__link">
+        Introduction to binning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex7_initial_binning/" class="md-nav__link">
+        Introduction to binning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex8_bin_dereplication/" class="md-nav__link">
+        Bin dereplication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex9_refining_bins/" class="md-nav__link">
+        Manually refining bins
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Day3
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day3" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Day3
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex10_viruses/" class="md-nav__link">
+        Identifying viral contigs in metagenomic data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex11_coverage_and_taxonomy/" class="md-nav__link">
+        Per-sample coverage and assigning taxonomy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex12_gene_prediction/" class="md-nav__link">
+        Gene prediction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex13_gene_annotation_part1/" class="md-nav__link">
+        Gene annotation (part 1)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex14_gene_annotation_part2/" class="md-nav__link">
+        Gene annotation (part 2)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Day4
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day4" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Day4
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex15_gene_annotation_part3/" class="md-nav__link">
+        Gene annotation (part 3)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16a_data_presentation_Intro/" class="md-nav__link">
+        Presentation of data: Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16b_data_presentation_Coverage/" class="md-nav__link">
+        Presentation of data: Per-sample coverage heatmaps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16c_OPTIONAL_data_presentation_Ordination/" class="md-nav__link">
+        (*Optional*) Presentation of data: Ordinations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16d_data_presentation_KEGG_pathways/" class="md-nav__link">
+        Presentation of data: KEGG pathway maps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16e_data_presentation_Gene_synteny/" class="md-nav__link">
+        Presentation of data: Gene synteny
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Presentation of data: *Optional exercise*: CAZy annotations heatmap
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Presentation of data: *Optional exercise*: CAZy annotations heatmap
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-a-basic-heatmap-from-annotation-data-using-r" class="md-nav__link">
+    Build a basic heatmap from annotation data using R
+  </a>
+  
+    <nav class="md-nav" aria-label="Build a basic heatmap from annotation data using R">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-the-data-into-an-r-dataframe" class="md-nav__link">
+    Import the data into an R data.frame
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-the-plot-in-r" class="md-nav__link">
+    Build the plot in R
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Figures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Figures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Figures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../figures/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          Resources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Resources" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Resources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex11_Normalise_coverage_example/" class="md-nav__link">
+        APPENDIX ex11 Normalise coverage example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/" class="md-nav__link">
+        APPENDIX ex11 viral taxonomy prediction via vContact2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex15_gene_synteny_Generate_blast_files/" class="md-nav__link">
+        APPENDIX ex15 gene synteny Generate blast files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex15_gene_synteny_grab_GOI/" class="md-nav__link">
+        APPENDIX ex15 gene synteny grab GOI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex8_Dereplication/" class="md-nav__link">
+        Dereplicating data from multiple assemblies
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex9_Generating_input_files_for_VizBin/" class="md-nav__link">
+        APPENDIX ex9 Generating input files for VizBin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/command_line_shortcuts/" class="md-nav__link">
+        Useful command line shortcuts
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-a-basic-heatmap-from-annotation-data-using-r" class="md-nav__link">
+    Build a basic heatmap from annotation data using R
+  </a>
+  
+    <nav class="md-nav" aria-label="Build a basic heatmap from annotation data using R">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-the-data-into-an-r-dataframe" class="md-nav__link">
+    Import the data into an R data.frame
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-the-plot-in-r" class="md-nav__link">
+    Build the plot in R
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="presentation-of-data-optional-exercise-cazy-annotations-heatmap">Presentation of data: <em>Optional exercise</em>: CAZy annotations heatmap<a class="headerlink" href="#presentation-of-data-optional-exercise-cazy-annotations-heatmap" title="Permanent link">&para;</a></h1>
+<h3 id="objectives">Objectives<a class="headerlink" href="#objectives" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="#build-a-basic-heatmap-from-annotation-data-using-r">Build a basic heatmap from <code>BLAST</code> data using <code>R</code></a></li>
+<li><a href="#import-the-data-into-an-r-dataframe">Import and wrangle data in <code>R</code></a></li>
+<li><a href="#build-the-plot-in-r">Build the plot in <code>R</code></a></li>
+</ul>
+<hr />
+<h3 id="build-a-basic-heatmap-from-annotation-data-using-r">Build a basic heatmap from annotation data using <em>R</em><a class="headerlink" href="#build-a-basic-heatmap-from-annotation-data-using-r" title="Permanent link">&para;</a></h3>
+<p>To get started, if you're not already, log back in to NeSI's <a href="https://jupyter.nesi.org.nz/hub/login">Jupyter hub</a> and open a <code>Notebook</code> running the <code>R 4.0.1</code> module as the kernel (or, outside the context of this workshop, open <code>RStudio</code> with the required packages installed (see the <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16a_data_presentation_Intro.md">data presentation intro</a> docs for more information)).</p>
+<p>For this exercise, set <code>11.data_presentation/cazy_heatmap/</code> as the working directory. These annotation files we will be using have been pre-computed by annotating the <code>prodigal</code> gene predictions against the <a href="http://www.cazy.org/">CAZy</a> database using the <a href="http://bcb.unl.edu/dbCAN2/">dbCAN</a> resource. Briefly, each annotation was made by:</p>
+<ol>
+<li>Annotating each <code>prodigal</code> output against the <strong>dbCAN</strong> database using <code>hmmer</code></li>
+<li>Converting the raw <code>hmmer</code> output into a table using the <code>hmmscan-parser.py</code> script that bundles with <strong>dbCAN</strong></li>
+</ol>
+<h4 id="import-the-data-into-an-r-dataframe">Import the data into an R data.frame<a class="headerlink" href="#import-the-data-into-an-r-dataframe" title="Permanent link">&para;</a></h4>
+<p>The first thing we need to do is import these annotations into <code>R</code>. We will do this using the following workflow</p>
+<ol>
+<li>Import <code>tidyverse</code> libraries for manipulating data tables</li>
+<li>Create an empty data.frame (master data.frame)</li>
+<li>Importing each of the text file into an <code>R</code>, then </li>
+<li>Append a new column to the text file, consisting of the name of the bin</li>
+<li>Select only the bin name and gene annotation from the imported table</li>
+<li>Append the text table to the master data.frame</li>
+</ol>
+<p>First, we import our <code>R</code> libraries with the <code>library()</code> command. For this workflow, we need three libraries from the <code>tidyverse</code> package:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">setwd</span><span class="p">(</span><span class="s">&#39;/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/11.data_presentation/cazy_heatmap/&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nf">library</span><span class="p">(</span><span class="n">tibble</span><span class="p">)</span>
+</code></pre></div>
+<p>We can then import our data using the <code>list.files()</code> function to loop over each text file, and the <code>mutate</code>, <code>select</code>, and pipe (<code>%&gt;%</code>) functions from the <code>dplyr</code> library.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">cazy_files</span> <span class="o">=</span> <span class="nf">list.files</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># For each file, import it, drop unneeded columns, and add a column recording the bin name</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">cazy_df</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">()</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nf">for</span><span class="p">(</span> <span class="n">cazy_file</span> <span class="n">in</span> <span class="n">cazy_files</span> <span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">df</span> <span class="o">=</span> <span class="nf">read.table</span><span class="p">(</span><span class="n">cazy_file</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39;\t&#39;</span><span class="p">,</span> <span class="n">stringsAsFactors</span><span class="o">=</span><span class="bp">F</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>         <span class="nf">mutate</span><span class="p">(</span><span class="s">&#39;Bin&#39;</span> <span class="o">=</span> <span class="n">cazy_file</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>         <span class="nf">select</span><span class="p">(</span><span class="n">CAZy</span><span class="o">=</span><span class="n">V3</span><span class="p">,</span> <span class="n">Bin</span><span class="p">)</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">cazy_df</span> <span class="o">=</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">cazy_df</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">}</span>
+</code></pre></div>
+<p>We can inspect the final data.frame using the <code>head</code> command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nf">head</span><span class="p">(</span><span class="n">cazy_df</span><span class="p">)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1">#         CAZy       Bin</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># 1    AA3.hmm bin_0.txt</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 2 GH13_9.hmm bin_0.txt</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># 3  GH104.hmm bin_0.txt</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># 4    GT5.hmm bin_0.txt</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># 5  GH116.hmm bin_0.txt</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># 6   GT41.hmm bin_0.txt</span>
+</code></pre></div>
+<p>We can also confirm that we have imported all of the text files by looking at the unique entries in the <code>Bin</code> column:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nf">unique</span><span class="p">(</span><span class="n">cazy_df</span><span class="o">$</span><span class="n">Bin</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># [1] &quot;bin_0.txt&quot; &quot;bin_1.txt&quot; &quot;bin_2.txt&quot; &quot;bin_3.txt&quot; &quot;bin_4.txt&quot; &quot;bin_5.txt&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># [7] &quot;bin_6.txt&quot; &quot;bin_7.txt&quot; &quot;bin_8.txt&quot; &quot;bin_9.txt&quot;</span>
+</code></pre></div>
+<p>We will now perform a summarising step, aggregating instances of multiple genes with the same annotation into a single count for each genome. We do this by</p>
+<ul>
+<li>For each bin in the data.frame</li>
+<li>For each annotation in the bin<ul>
+<li>Count the number of times the annotation is observed</li>
+</ul>
+</li>
+</ul>
+<p>For the majority of cases this will probably be one, but there will be a few cases where multiple annotations have been seen.</p>
+<p>This process is done using the <code>group_by</code> and <code>tally</code> functions from <code>dplyr</code>, again using pipes to pass the data between functions.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">cazy_counts</span> <span class="o">=</span> <span class="n">cazy_df</span> <span class="o">%&gt;%</span> <span class="nf">group_by</span><span class="p">(</span><span class="n">Bin</span><span class="p">,</span> <span class="n">CAZy</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">tally</span><span class="p">()</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">cazy_counts</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># A tibble: 253 x 3</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># Groups:   Bin [10]</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1">#   Bin       CAZy            n</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1">#   &lt;chr&gt;     &lt;chr&gt;       &lt;int&gt;</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1"># 1 bin_0.txt AA3.hmm         1</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># 2 bin_0.txt AA7.hmm         1</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># 3 bin_0.txt CE11.hmm        1</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="c1"># 4 bin_0.txt CE9.hmm         1</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="c1"># 5 bin_0.txt GH100.hmm       1</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="c1"># 6 bin_0.txt GH104.hmm       1</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="c1"># 7 bin_0.txt GH116.hmm       1</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="c1"># 8 bin_0.txt GH13_11.hmm     1</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="c1"># 9 bin_0.txt GH13_20.hmm     1</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="c1">#10 bin_0.txt GH13_9.hmm      1</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="c1"># … with 243 more rows</span>
+</code></pre></div>
+<p>We now have a data.frame-like object (a <a href="https://tibble.tidyverse.org/">tibble</a>) with three columns. We can convert this into a gene matrix using the <code>pivot_wider</code> function from the <code>tidyr</code> library to create a genome x gene matrix in the following form:</p>
+<table>
+<thead>
+<tr>
+<th align="center">Bin</th>
+<th align="center">CAZy_1</th>
+<th align="center">CAZy_2</th>
+<th align="center">...</th>
+<th align="center">CAZy_n</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">bin_0</td>
+<td align="center">N. of genes</td>
+<td align="center">N. of genes</td>
+<td align="center">...</td>
+<td align="center">N. of genes</td>
+</tr>
+<tr>
+<td align="center">bin_1</td>
+<td align="center">N. of genes</td>
+<td align="center">...</td>
+<td align="center">...</td>
+<td align="center">...</td>
+</tr>
+<tr>
+<td align="center">...</td>
+<td align="center">...</td>
+<td align="center">...</td>
+<td align="center">...</td>
+<td align="center">...</td>
+</tr>
+<tr>
+<td align="center">bin_9</td>
+<td align="center">N. of genes</td>
+<td align="center">...</td>
+<td align="center">...</td>
+<td align="center">...</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">cazy_matrix</span> <span class="o">=</span> <span class="n">cazy_counts</span> <span class="o">%&gt;%</span> <span class="nf">pivot_wider</span><span class="p">(</span><span class="n">id_cols</span><span class="o">=</span><span class="n">Bin</span><span class="p">,</span> <span class="n">names_from</span><span class="o">=</span><span class="n">CAZy</span><span class="p">,</span> <span class="n">values_from</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">values_fill</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="m">0</span><span class="p">))</span>
+</code></pre></div>
+<h4 id="build-the-plot-in-r">Build the plot in <em>R</em><a class="headerlink" href="#build-the-plot-in-r" title="Permanent link">&para;</a></h4>
+<p>Finally, we create the actual plot by passing this matrix into the <code>pheatmap</code> library. Before doing this, we need to take the text column <code>Bin</code> from the matrix and move it into the rownames, as this is how <code>pheatmap</code> infers the names of our samples. Also, if we left text data in the numeric input for a heatmap, the function would crash. We can quickly transfer the <code>Bin</code> column to the rownames using the <code>column_to_rownames</code> function from the <code>tibble</code> library.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nf">library</span><span class="p">(</span><span class="n">pheatmap</span><span class="p">)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">colours</span> <span class="o">&lt;-</span> <span class="nf">colorRampPalette</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;#fff9e7&quot;</span><span class="p">,</span><span class="s">&quot;#920000&quot;</span><span class="p">),</span> <span class="n">space</span><span class="o">=</span><span class="s">&quot;Lab&quot;</span><span class="p">)(</span><span class="m">100</span><span class="p">)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">cazy_matrix</span> <span class="o">%&gt;%</span> <span class="nf">column_to_rownames</span><span class="p">(</span><span class="s">&#39;Bin&#39;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="n">.</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">pheatmap</span><span class="p">(</span><span class="n">.</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">colours</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_CAZy_heatmap.png" /></p>
+<p>And there we go. This is a pretty basic heatmap, so there are a number of presentation issues with it. If you have time, try to do the following fixes to the heatmap by exploring the manual for <code>pheatmap</code> or other <code>tidyverse</code> and <code>R</code> functions.</p>
+<ol>
+<li>Replace the column-wise clustering with alphabetic arrangement of the gene columns</li>
+<li>Change the colour palette of the heatmap</li>
+<li>Reduce the font size in the column (gene) labels</li>
+<li>Remove the <code>.hmm</code> extensions from the gene names, and the <code>.txt</code> extensions from the bin names</li>
+<li>Add colouring to the row (bins), marking bins belonging to the same phyla</li>
+</ol>
+<hr />
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../ex16e_data_presentation_Gene_synteny/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Presentation of data: Gene synteny" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Presentation of data: Gene synteny
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../figures/" class="md-footer__link md-footer__link--next" aria-label="Next: Index" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Index
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1669 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Genomics Aotearoa & NeSI">
+      
+      
+        <link rel="canonical" href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day4/ex16b_data_presentation_Coverage/">
+      
+      <link rel="icon" href="../../images/nesi_ga.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>Presentation of data: Per-sample coverage heatmaps - Metagenomics Summer School</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Mukta";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="lime" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#presentation-of-data-per-sample-coverage-heatmaps" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Metagenomics Summer School" class="md-header__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../images/nesi_ga.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Metagenomics Summer School
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Presentation of data: Per-sample coverage heatmaps
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+          
+            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Metagenomics Summer School" class="md-nav__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../images/nesi_ga.png" alt="logo">
+
+    </a>
+    Metagenomics Summer School
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Hi!
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Day1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day1" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Day1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex1_bash_scripting/" class="md-nav__link">
+        Introduction to the command line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex2_quality_filtering/" class="md-nav__link">
+        Quality filtering raw reads
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex3_assembly/" class="md-nav__link">
+        Assembly
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex4_assembly/" class="md-nav__link">
+        Assembly (part 2)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex5_evaluating_assemblies/" class="md-nav__link">
+        Evaluating the assemblies
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Day2
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day2" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Day2
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex6_initial_binning/" class="md-nav__link">
+        Introduction to binning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex7_initial_binning/" class="md-nav__link">
+        Introduction to binning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex8_bin_dereplication/" class="md-nav__link">
+        Bin dereplication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex9_refining_bins/" class="md-nav__link">
+        Manually refining bins
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Day3
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day3" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Day3
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex10_viruses/" class="md-nav__link">
+        Identifying viral contigs in metagenomic data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex11_coverage_and_taxonomy/" class="md-nav__link">
+        Per-sample coverage and assigning taxonomy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex12_gene_prediction/" class="md-nav__link">
+        Gene prediction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex13_gene_annotation_part1/" class="md-nav__link">
+        Gene annotation (part 1)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex14_gene_annotation_part2/" class="md-nav__link">
+        Gene annotation (part 2)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Day4
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day4" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Day4
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex15_gene_annotation_part3/" class="md-nav__link">
+        Gene annotation (part 3)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16a_data_presentation_Intro/" class="md-nav__link">
+        Presentation of data: Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Presentation of data: Per-sample coverage heatmaps
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Presentation of data: Per-sample coverage heatmaps
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-a-heatmap-of-average-coverage-per-sample-using-r" class="md-nav__link">
+    Build a heatmap of average coverage per sample using R
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-building-a-heatmap-of-mag-coverage-per-sample" class="md-nav__link">
+    Part 1 - Building a heatmap of MAG coverage per sample
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 1 - Building a heatmap of MAG coverage per sample">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-set-working-directory-load-r-libraries-and-import-data" class="md-nav__link">
+    1.1 Set working directory, load R libraries, and import data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-wrangle-data" class="md-nav__link">
+    1.2 wrangle data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-calculate-hierarchical-clustering-of-columns-samples-and-rows-mags" class="md-nav__link">
+    1.3 Calculate hierarchical clustering of columns (samples) and rows (MAGs).
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-set-the-colour-palettes" class="md-nav__link">
+    1.4 Set the colour palettes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-build-the-heat-map" class="md-nav__link">
+    1.5 Build the heat map
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-building-a-heatmap-of-viral-contigs-per-sample" class="md-nav__link">
+    Part 2 - Building a heatmap of viral contigs per sample
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 2 - Building a heatmap of viral contigs per sample">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-set-working-directory-load-r-libraries-and-import-data" class="md-nav__link">
+    2.1 Set working directory, load R libraries, and import data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-wrangle-data" class="md-nav__link">
+    2.2 wrangle data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-calculate-hierarchical-clustering-of-columns-samples-and-rows-viral-contigs" class="md-nav__link">
+    2.3 Calculate hierarchical clustering of columns (samples) and rows (viral contigs).
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-set-the-colour-palettes" class="md-nav__link">
+    2.4 Set the colour palettes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-build-the-heat-map" class="md-nav__link">
+    2.5 Build the heat map
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16c_OPTIONAL_data_presentation_Ordination/" class="md-nav__link">
+        (*Optional*) Presentation of data: Ordinations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16d_data_presentation_KEGG_pathways/" class="md-nav__link">
+        Presentation of data: KEGG pathway maps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16e_data_presentation_Gene_synteny/" class="md-nav__link">
+        Presentation of data: Gene synteny
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16f_OPTIONAL_data_presentation_CAZy_annotations/" class="md-nav__link">
+        Presentation of data: *Optional exercise*: CAZy annotations heatmap
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Figures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Figures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Figures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../figures/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          Resources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Resources" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Resources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex11_Normalise_coverage_example/" class="md-nav__link">
+        APPENDIX ex11 Normalise coverage example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/" class="md-nav__link">
+        APPENDIX ex11 viral taxonomy prediction via vContact2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex15_gene_synteny_Generate_blast_files/" class="md-nav__link">
+        APPENDIX ex15 gene synteny Generate blast files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex15_gene_synteny_grab_GOI/" class="md-nav__link">
+        APPENDIX ex15 gene synteny grab GOI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex8_Dereplication/" class="md-nav__link">
+        Dereplicating data from multiple assemblies
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex9_Generating_input_files_for_VizBin/" class="md-nav__link">
+        APPENDIX ex9 Generating input files for VizBin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/command_line_shortcuts/" class="md-nav__link">
+        Useful command line shortcuts
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-a-heatmap-of-average-coverage-per-sample-using-r" class="md-nav__link">
+    Build a heatmap of average coverage per sample using R
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-building-a-heatmap-of-mag-coverage-per-sample" class="md-nav__link">
+    Part 1 - Building a heatmap of MAG coverage per sample
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 1 - Building a heatmap of MAG coverage per sample">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-set-working-directory-load-r-libraries-and-import-data" class="md-nav__link">
+    1.1 Set working directory, load R libraries, and import data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-wrangle-data" class="md-nav__link">
+    1.2 wrangle data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-calculate-hierarchical-clustering-of-columns-samples-and-rows-mags" class="md-nav__link">
+    1.3 Calculate hierarchical clustering of columns (samples) and rows (MAGs).
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-set-the-colour-palettes" class="md-nav__link">
+    1.4 Set the colour palettes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-build-the-heat-map" class="md-nav__link">
+    1.5 Build the heat map
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-building-a-heatmap-of-viral-contigs-per-sample" class="md-nav__link">
+    Part 2 - Building a heatmap of viral contigs per sample
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 2 - Building a heatmap of viral contigs per sample">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-set-working-directory-load-r-libraries-and-import-data" class="md-nav__link">
+    2.1 Set working directory, load R libraries, and import data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-wrangle-data" class="md-nav__link">
+    2.2 wrangle data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-calculate-hierarchical-clustering-of-columns-samples-and-rows-viral-contigs" class="md-nav__link">
+    2.3 Calculate hierarchical clustering of columns (samples) and rows (viral contigs).
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-set-the-colour-palettes" class="md-nav__link">
+    2.4 Set the colour palettes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-build-the-heat-map" class="md-nav__link">
+    2.5 Build the heat map
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/day4/ex16b_data_presentation_Coverage.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="presentation-of-data-per-sample-coverage-heatmaps">Presentation of data: Per-sample coverage heatmaps<a class="headerlink" href="#presentation-of-data-per-sample-coverage-heatmaps" title="Permanent link">&para;</a></h1>
+<h3 id="objectives">Objectives<a class="headerlink" href="#objectives" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="#part-1---building-a-heatmap-of-mag-coverage-per-sample">Building a heatmap of MAG coverage per sample</a></li>
+<li><a href="#part-2---building-a-heatmap-of-viral-contigs-per-sample">Building a heatmap of viral contigs per sample</a></li>
+</ul>
+<hr />
+<h3 id="build-a-heatmap-of-average-coverage-per-sample-using-r">Build a heatmap of average coverage per sample using <em>R</em><a class="headerlink" href="#build-a-heatmap-of-average-coverage-per-sample-using-r" title="Permanent link">&para;</a></h3>
+<p>One of the first questions we often ask when studying the ecology of a system is: What are the pattens of abundance and distribution of taxa across the different samples? In the previous <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex11_coverage_and_taxonomy.md">coverage and taxonomy</a> exercises we generated per-sample coverage tables by mapping the quality-filtered unassembled reads back to the refined bins and the viral contigs to then generate coverage profiles for each. </p>
+<p>As a reminder:</p>
+<blockquote>
+<p>Genomes in higher abundance in a sample will contribute more genomic sequence to the metagenome, and so the average depth of sequencing coverage for each of the different genomes provides a proxy for abundance in each sample.</p>
+</blockquote>
+<p>A simple way to present this information is via a heatmap. In this exercise we will build a clustered heatmap of these coverage profiles in <code>R</code>. Since we also have tables of taxonomy assignments (via <code>gtdb-tk</code> for MAGs) and/or predictions (via <code>vContact2</code> for viral contigs), we will also use these to add taxonomy information to the plot.</p>
+<p>The coverage and taxonomy tables generated in earlier exercises have been copied to <code>11.data_presentation/coverage/</code> a for use in these exercises.</p>
+<p>In addition to this, a simple mapping file has also been created (<code>11.data_presentation/coverage/mapping_file.txt</code>). This is a tab-delimited file listing each sample ID in the first column, and the sample "Group" in the second column (<em>Group_A</em>, <em>Group_B</em>, and <em>Group_C</em>). This grouping might represent, for example, three different sampling sites that we want to compare between. If you had other data (such as environmental measures, community diversity measures, etc.) that you wish to incorporate in other downstream analyses (such an fitting environmental variables to an ordination, or correlation analyses) you could also add new columns to this file and load them at the same time.</p>
+<p><em>NOTE: As discussed in the <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex11_coverage_and_taxonomy.md">coverage and taxonomy exercises</a>, it is usually necessary to normalise coverage values across samples based on equal sequencing depth. This isn't necessary with the mock metagenome data we're working with, but if you include this step in your own work you would read the **normalised*</em> coverage tables into the steps outlined below.*</p>
+<hr />
+<h3 id="part-1-building-a-heatmap-of-mag-coverage-per-sample">Part 1 - Building a heatmap of MAG coverage per sample<a class="headerlink" href="#part-1-building-a-heatmap-of-mag-coverage-per-sample" title="Permanent link">&para;</a></h3>
+<p>To get started, if you're not already, log back in to NeSI's <a href="https://jupyter.nesi.org.nz/hub/login">Jupyter hub</a> and open a <code>Notebook</code> running the <code>R 4.0.1</code> module as the kernel (or, outside the context of this workshop, open <code>RStudio</code> with the required packages installed (see the <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16a_data_presentation_Intro.md">data presentation intro</a> docs for more information)).</p>
+<h4 id="11-set-working-directory-load-r-libraries-and-import-data">1.1 Set working directory, load <em>R</em> libraries, and import data<a class="headerlink" href="#11-set-working-directory-load-r-libraries-and-import-data" title="Permanent link">&para;</a></h4>
+<p>First, set the working directory and load the required libraries.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">setwd</span><span class="p">(</span><span class="s">&#39;/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/11.data_presentation/&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># tidyverse libraries </span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nf">library</span><span class="p">(</span><span class="n">readr</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nf">library</span><span class="p">(</span><span class="n">stringr</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nf">library</span><span class="p">(</span><span class="n">tibble</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Other libraries</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nf">library</span><span class="p">(</span><span class="n">gplots</span><span class="p">)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="nf">library</span><span class="p">(</span><span class="n">vegan</span><span class="p">)</span>
+</code></pre></div>
+<p><em>NOTE: after copying this code into a code block in <code>Jupyter</code>, remember that, to run the code, press <code>&lt;shift&gt; + &lt;enter&gt;</code> with the code block selected.</em></p>
+<p>Import the coverage and taxonomy tables. When importing the files, we will select only the information of use here and will do a few basic first data wrangling steps. For the coverage table, we will select the <code>contigName</code> column and each of the columns of coverage values (columns <code>sample[1-4].bam</code>). For taxonomy, we will select the <code>user_genome</code> column (converted to <code>Bin</code> ID) and <code>classification</code> (coverated to <code>taxonomy</code>), and will also use <code>gsub</code> to extract just the taxonomic ranks of interest (in this case, we will extract the <em>class</em> to colour code MAGs in the heat map, and <em>genus</em> to add to MAG names in the plot), and to add <code>Unassigned</code> to any MAGs not assigned at these ranks. (<em>NOTE: to view a different taxonomic rank, you will need to change the two <code>mutate(taxonomy_class = gsub(...))</code> rows below accordingly</em>).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># coverage table</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">cov_MAG</span> <span class="o">&lt;-</span> <span class="nf">read_tsv</span><span class="p">(</span><span class="s">&quot;coverage/bins_cov_table.txt&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  <span class="nf">select</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;contigName&#39;</span><span class="p">,</span> <span class="nf">ends_with</span><span class="p">(</span><span class="s">&#39;.bam&#39;</span><span class="p">)))</span> 
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># taxonomy table</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">tax_MAG</span> <span class="o">&lt;-</span> <span class="nf">read_tsv</span><span class="p">(</span><span class="s">&quot;coverage/gtdbtk.bac120.summary.tsv&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">Bin</span> <span class="o">=</span> <span class="nf">gsub</span><span class="p">(</span><span class="s">&quot;(.*).filtered&quot;</span><span class="p">,</span> <span class="s">&quot;\\1&quot;</span><span class="p">,</span> <span class="n">.</span><span class="o">$</span><span class="n">user_genome</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">taxonomy</span> <span class="o">=</span> <span class="nf">gsub</span><span class="p">(</span><span class="s">&quot;.*;c(.*);o.*&quot;</span><span class="p">,</span> <span class="s">&quot;class\\1&quot;</span><span class="p">,</span> <span class="n">classification</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">taxonomy</span> <span class="o">=</span> <span class="nf">gsub</span><span class="p">(</span><span class="s">&quot;^class__$&quot;</span><span class="p">,</span> <span class="s">&quot;Unassigned&quot;</span><span class="p">,</span> <span class="n">taxonomy</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">taxonomy_genus</span> <span class="o">=</span> <span class="nf">gsub</span><span class="p">(</span><span class="s">&quot;.*;g__(.*);.*&quot;</span><span class="p">,</span> <span class="s">&quot;\\1&quot;</span><span class="p">,</span> <span class="n">classification</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">taxonomy_genus</span> <span class="o">=</span> <span class="nf">gsub</span><span class="p">(</span><span class="s">&quot;^$&quot;</span><span class="p">,</span> <span class="s">&quot;Unassigned&quot;</span><span class="p">,</span> <span class="n">taxonomy_genus</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>  <span class="nf">select</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;Bin&#39;</span><span class="p">,</span> <span class="s">&#39;taxonomy&#39;</span><span class="p">,</span> <span class="s">&#39;taxonomy_genus&#39;</span><span class="p">))</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="c1"># mapping file (import both columns as factors: col_types set to factor, factor)</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="n">map.df</span> <span class="o">&lt;-</span> <span class="nf">read_tsv</span><span class="p">(</span><span class="s">&quot;coverage/mapping_file.txt&quot;</span><span class="p">,</span> <span class="n">col_types</span> <span class="o">=</span> <span class="s">&quot;ff&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="12-wrangle-data">1.2 wrangle data<a class="headerlink" href="#12-wrangle-data" title="Permanent link">&para;</a></h4>
+<p>As noted during the <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex11_coverage_and_taxonomy.md">coverage and taxonomy</a> exercises, it is important to remember that we currently have a table of coverage values for all <em>contigs</em> contained within each MAG. Since we're aiming to present coverage for each <em>MAG</em>, we need to reduce these contig coverages into a single mean coverage value per MAG per sample. </p>
+<p>In the following code, we first strip the <code>.bam</code> extensions off of our sample names. We will then leverage the fact that we added bin IDs to each of the contig headers earlier to re-extract the bin ID for each using <code>gsub</code>, use the <code>group_by()</code> function to group by <code>Bin</code>, and the <code>summarise()</code> function to return the per-sample mean coverage of each set of contigs contained within each bin. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Extract BinID, group by Bin, calculate mean coverages for each set of contigs per Bin</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">cov_MAG</span> <span class="o">&lt;-</span> <span class="n">cov_MAG</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  <span class="nf">rename_at</span><span class="p">(</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="nf">vars</span><span class="p">(</span><span class="nf">contains</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">)),</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="nf">list</span><span class="p">(</span><span class="o">~</span> <span class="nf">str_replace</span><span class="p">(</span><span class="n">.</span><span class="p">,</span> <span class="s">&quot;.bam&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">))</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  <span class="p">)</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">Bin</span> <span class="o">=</span> <span class="nf">gsub</span><span class="p">(</span><span class="s">&quot;(.*)_NODE.*&quot;</span><span class="p">,</span> <span class="s">&quot;\\1&quot;</span><span class="p">,</span> <span class="n">.</span><span class="o">$</span><span class="n">contigName</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>  <span class="nf">group_by</span><span class="p">(</span><span class="n">Bin</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>  <span class="nf">summarise</span><span class="p">(</span><span class="nf">across</span><span class="p">(</span><span class="nf">where</span><span class="p">(</span><span class="n">is.numeric</span><span class="p">),</span> <span class="n">mean</span><span class="p">))</span>
+</code></pre></div>
+<p>Finally, collate the coverage and taxonomy tables into a single table for downstream use, and rename bins to include the genus name.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Collate coverage and taxonomy</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">collate_data_MAG</span> <span class="o">&lt;-</span> <span class="n">cov_MAG</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>  <span class="nf">left_join</span><span class="p">(</span><span class="n">tax_MAG</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">Bin</span> <span class="o">=</span> <span class="nf">paste</span><span class="p">(</span><span class="n">Bin</span><span class="p">,</span> <span class="n">taxonomy_genus</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;_&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  <span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="n">taxonomy_genus</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">taxonomy</span> <span class="o">=</span> <span class="nf">replace_na</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="s">&quot;Unassigned&quot;</span><span class="p">))</span>
+</code></pre></div>
+<p>In many real-life cases, to enhance the visualisation across a wide range of coverage values, you may wish to perform a transformation on your data. </p>
+<p>Perform a log(2)-transformation on the coverage data (those values in the columns that <code>contains("sample")</code>). Note, here we are calculating log2(x + 1) to allow for any cases where coverage values are 0 in any of the samples (log2(0 + 1) = 0). </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a># Log(2)-transform coverage data
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>collate_data_MAG_log2 &lt;- collate_data_MAG
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>collate_data_MAG_log2[,names(select(collate_data_MAG_log2, contains(&quot;sample&quot;)))] &lt;- log2(collate_data_MAG_log2[,names(select(collate_data_MAG_log2, contains(&quot;sample&quot;)))] + 1)
+</code></pre></div>
+<p>To have the data in a format that is ready for <code>heatmap2</code> we will perform a few final data wrangling steps. Here we are re-ordering the file by row sums, selecting only the coverage columns (<code>contains("sample")</code>) and <code>taxonomy</code> column, ensuring <code>taxonomy</code> is set as a factor, and setting the rownames based on the <code>Bin</code> column.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">coverage.heatmap.data.MAG</span> <span class="o">&lt;-</span> <span class="n">collate_data_MAG_log2</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">sum</span> <span class="o">=</span> <span class="nf">rowSums</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">collate_data_MAG_log2</span><span class="p">,</span> <span class="nf">contains</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">))))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>  <span class="nf">arrange</span><span class="p">(</span><span class="nf">desc</span><span class="p">(</span><span class="n">sum</span><span class="p">))</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>  <span class="nf">select</span><span class="p">(</span><span class="s">&quot;Bin&quot;</span><span class="p">,</span> <span class="nf">contains</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">),</span> <span class="s">&quot;taxonomy&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">taxonomy</span> <span class="o">=</span> <span class="nf">factor</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>  <span class="nf">droplevels</span><span class="p">()</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>  <span class="nf">column_to_rownames</span><span class="p">(</span><span class="n">var</span> <span class="o">=</span> <span class="s">&quot;Bin&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>  <span class="nf">as.data.frame</span><span class="p">()</span> 
+</code></pre></div>
+<p>As there are only 10 bins in our mock metagenome data, spread over 7 different <em>classes</em> (the taxonomic rank we've chosen), we can include colour codes for all classes here. If you had many more cases of the selected taxonomic rank, it would be necessary to select a subset to colour code (e.g. the top 10 taxa, and grouping all others into <code>Other</code>) so as not to have so many colours that things become unintelligible.</p>
+<p><strong>We <em>don't</em> need to run this code block today</strong> (in fact, it will return an error due to having too few bins compared to the number we're trying to subset). But if you wished to do this for your own work, you could run something like the following to identify the 10 most abundant taxa (at the selected rank), and change the taxonomy of all others to <code>Other</code>. </p>
+<blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">## Identify most abundant Phyla in MAG data</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># Aggregate rows based on taxonomic assignments, reorder by overall relative abundance</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">cov_MAG.tax</span> <span class="o">&lt;-</span> <span class="n">collate_data_MAG_log2</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>  <span class="nf">replace_na</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">taxonomy</span> <span class="o">=</span> <span class="s">&quot;Unassigned&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">sum</span> <span class="o">=</span> <span class="nf">rowSums</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">collate_data_MAG_log2</span><span class="p">,</span> <span class="nf">contains</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">))))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>  <span class="nf">group_by</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>  <span class="nf">summarise_if</span><span class="p">(</span><span class="n">is.numeric</span><span class="p">,</span> <span class="nf">list</span><span class="p">(</span><span class="n">sum</span> <span class="o">=</span> <span class="n">sum</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>  <span class="nf">arrange</span><span class="p">(</span><span class="nf">desc</span><span class="p">(</span><span class="n">sum_sum</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">tax_summary</span> <span class="o">=</span> <span class="nf">factor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">],</span> <span class="nf">rep</span><span class="p">(</span><span class="s">&quot;Other&quot;</span><span class="p">,</span> <span class="nf">length</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">)</span><span class="m">-10</span><span class="p">))))</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="c1">## Add summaries of top 14 taxa to coverage.heatmap.data.MAG</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="n">coverage.heatmap.data.MAG</span> <span class="o">&lt;-</span> <span class="n">coverage.heatmap.data.MAG</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>  <span class="nf">rownames_to_column</span><span class="p">(</span><span class="s">&quot;Bin&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>  <span class="nf">left_join</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">cov_MAG.tax</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;taxonomy&quot;</span><span class="p">,</span> <span class="s">&quot;tax_summary&quot;</span><span class="p">)))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">taxonomy</span> <span class="o">=</span> <span class="nf">factor</span><span class="p">(</span><span class="n">tax_summary</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>  <span class="nf">column_to_rownames</span><span class="p">(</span><span class="s">&quot;Bin&quot;</span><span class="p">)</span>
+</code></pre></div>
+</blockquote>
+<h4 id="13-calculate-hierarchical-clustering-of-columns-samples-and-rows-mags">1.3 Calculate hierarchical clustering of columns (samples) and rows (MAGs).<a class="headerlink" href="#13-calculate-hierarchical-clustering-of-columns-samples-and-rows-mags" title="Permanent link">&para;</a></h4>
+<p>It can be useful to arrange our rows and/or columns by some form of clustering. The plotting function <code>heatmap2</code> can do this for us. However, here we will first perform this ourselves to be able to view the clustering output separately. We can then pass the same clustering to <code>heatmap2</code> using the <code>as.dendrogram()</code> function within the <code>heatmap2</code> command.</p>
+<p>Some data sets will encounter an issue with the clustering calculation due to some variables having insufficient variance. Let's first perform a filter to remove any potential problem rows from the data.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Subset the relevant columns</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">coverage.heatmap.data.MAG.filt</span> <span class="o">&lt;-</span> <span class="nf">select</span><span class="p">(</span><span class="n">coverage.heatmap.data.MAG</span><span class="p">,</span> <span class="nf">contains</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">),</span> <span class="s">&quot;taxonomy&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Filter out zero-variance rows</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">coverage.heatmap.data.MAG.filt</span> <span class="o">&lt;-</span> <span class="n">coverage.heatmap.data.MAG.filt</span><span class="p">[</span><span class="o">!</span><span class="nf">apply</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">coverage.heatmap.data.MAG.filt</span><span class="p">,</span> <span class="o">-</span><span class="s">&quot;taxonomy&quot;</span><span class="p">)</span><span class="o">==</span><span class="nf">select</span><span class="p">(</span><span class="n">coverage.heatmap.data.MAG.filt</span><span class="p">,</span> <span class="o">-</span><span class="s">&quot;taxonomy&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]],</span><span class="m">1</span><span class="p">,</span><span class="n">all</span><span class="p">),]</span>
+</code></pre></div>
+<p>Run the hierarchical clustering calculations based on <a href="https://en.wikipedia.org/wiki/Bray%E2%80%93Curtis_dissimilarity">Bray-Curtis dissimilarity</a> by column and row.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">cov_clus.avg.col</span> <span class="o">&lt;-</span> <span class="nf">hclust</span><span class="p">(</span><span class="nf">vegdist</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">coverage.heatmap.data.MAG.filt</span><span class="p">,</span> <span class="nf">contains</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">))),</span> <span class="n">method</span><span class="o">=</span><span class="s">&quot;bray&quot;</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">diag</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">na.rm</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">),</span> <span class="s">&quot;aver&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">cov_clus.avg.row</span> <span class="o">&lt;-</span> <span class="nf">hclust</span><span class="p">(</span><span class="nf">vegdist</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">coverage.heatmap.data.MAG.filt</span><span class="p">,</span> <span class="nf">contains</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">)),</span> <span class="n">method</span><span class="o">=</span><span class="s">&quot;bray&quot;</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">diag</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">na.rm</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">),</span> <span class="s">&quot;aver&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Let's have a quick look at the outputs of each using the basic <code>plot</code> function.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nf">plot</span><span class="p">(</span><span class="n">cov_clus.avg.col</span><span class="p">,</span> <span class="n">hang</span> <span class="o">=</span> <span class="m">-1</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">1.5</span><span class="p">)</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nf">plot</span><span class="p">(</span><span class="n">cov_clus.avg.row</span><span class="p">,</span> <span class="n">hang</span> <span class="o">=</span> <span class="m">-1</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">1.5</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="png" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_MAGs_BC_hclust_Samples.png" /></p>
+<p><img alt="png" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_MAGs_BC_hclust_MAGs.png" /></p>
+<p>If you wish to write these to file, we can wrap them in the <code>png(...)</code> and <code>dev.off()</code> lines, as below (this is true of all of the figures we will be generating):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nf">png</span><span class="p">(</span><span class="s">&quot;coverage/MAGs_BC_hclust_Samples.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">17</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&quot;cm&quot;</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="m">300</span><span class="p">)</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nf">plot</span><span class="p">(</span><span class="n">cov_clus.avg.col</span><span class="p">,</span> <span class="n">hang</span> <span class="o">=</span> <span class="m">-1</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nf">dev.off</span><span class="p">()</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nf">png</span><span class="p">(</span><span class="s">&quot;coverage/MAGs_BC_hclust_MAGs.png&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">17</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&quot;cm&quot;</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="m">300</span><span class="p">)</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="nf">plot</span><span class="p">(</span><span class="n">cov_clus.avg.row</span><span class="p">,</span> <span class="n">hang</span> <span class="o">=</span> <span class="m">-1</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="nf">dev.off</span><span class="p">()</span>
+</code></pre></div>
+<h4 id="14-set-the-colour-palettes">1.4 Set the colour palettes<a class="headerlink" href="#14-set-the-colour-palettes" title="Permanent link">&para;</a></h4>
+<p>Before generating the heat map, let's set some colour palettes to use within the plot. We will create a greyscale for the coverage values in the heat map, one colour palette to colour the rows by the taxonomy of the MAG, and an additional palette for the columns (sample groups). </p>
+<p><em>NOTE: The list of colours for the taxonomy palette are taken from a 15-colour colour blind-friendly palette available <a href="http://mkweb.bcgsc.ca/colorblind/palettes.mhtml#page-container">here</a>. The <code>Group.col</code> palette was selected using <a href="https://gka.github.io/palettes/#/7|d|6e5300,7c8c00,00a63e|ffffe0,ff005e,93003a|1|1">Chroma.js</a>.</em></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Load greyscale palette</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">scalegreys</span> <span class="o">&lt;-</span> <span class="nf">colorRampPalette</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="s">&quot;black&quot;</span><span class="p">),</span> <span class="n">space</span><span class="o">=</span><span class="s">&quot;Lab&quot;</span><span class="p">)(</span><span class="m">100</span><span class="p">)</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Taxonomy colour palette</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">MAG.cols</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>  <span class="s">&quot;#006DDB&quot;</span><span class="p">,</span><span class="s">&quot;#FF6DB6&quot;</span><span class="p">,</span><span class="s">&quot;#DBD100&quot;</span><span class="p">,</span><span class="s">&quot;#FFB677&quot;</span><span class="p">,</span><span class="s">&quot;#004949&quot;</span><span class="p">,</span><span class="s">&quot;#009292&quot;</span><span class="p">,</span><span class="s">&quot;#FFFF6D&quot;</span><span class="p">,</span><span class="s">&quot;#924900&quot;</span><span class="p">,</span><span class="s">&quot;#490092&quot;</span><span class="p">,</span><span class="s">&quot;#24FF24&quot;</span><span class="p">,</span><span class="s">&quot;#920000&quot;</span><span class="p">,</span><span class="s">&quot;#B6DBFF&quot;</span><span class="p">,</span><span class="s">&quot;#B66DFF&quot;</span><span class="p">,</span><span class="s">&quot;#6DB6FF&quot;</span><span class="p">,</span><span class="s">&quot;#000000&quot;</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="p">)</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="c1"># Data.frame containing &#39;sample groups&#39; colour palette</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="n">Group.col</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>  <span class="n">Group</span> <span class="o">=</span> <span class="nf">factor</span><span class="p">(</span><span class="nf">levels</span><span class="p">(</span><span class="n">map.df</span><span class="o">$</span><span class="n">Group</span><span class="p">)),</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>  <span class="n">col</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;#71dfdf&#39;</span><span class="p">,</span> <span class="s">&#39;#3690b8&#39;</span><span class="p">,</span> <span class="s">&#39;#00429d&#39;</span><span class="p">),</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>  <span class="n">stringsAsFactors</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</code></pre></div>
+<p>Finally, join the <code>Group.col</code> colours to the mapping file (<code>map.df</code>) so that we can call them in the <code>heatmap.2</code> command.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Update map.df with `Group` colour code for each sample</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">map.col</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="nf">full_join</span><span class="p">(</span><span class="n">map.df</span><span class="p">,</span><span class="n">Group.col</span><span class="p">))</span>
+</code></pre></div>
+<h4 id="15-build-the-heat-map">1.5 Build the heat map<a class="headerlink" href="#15-build-the-heat-map" title="Permanent link">&para;</a></h4>
+<p>Output the full heat map with sample (column) and variable (row) clustering.</p>
+<p><em>NOTE: Un-comment (remove the <code>#</code> symbol from) the lines <code>png(...)</code> and <code>dev.off()</code> before and after the heat map code will write the plot to file</em></p>
+<p>A number of options for visual parameters within <code>heatmap2</code> can be set. Of the ones provided below, the first six (from <code>Colv</code> to <code>ColSideColors</code>) are likely to be the most of interest at this stage. <code>Colv</code> and <code>Rowv</code> set the clustering (using the Bray-Curtis hierarcical clustering we calculated above. The <code>cex...</code> commands set the font sizes. The <code>...SideColors</code> commands set the colours placed adjacent to the rows or columns to add further information to the plot (in this case, we are using this to add MAG taxonomy information and sample grouping information). </p>
+<p>In some cases, you may wish to omit the column clustering (for example, if your samples are from a set transect and you want to preserve the order of samples in the plot). In this case, you can set <code>Colv = FALSE</code>.</p>
+<p><em>NOTE: Here we are using gplot::legend to add two legends to the bottom of the plot for row-side and column-side colours. This can sometimes look a little clunky (and often requires experimenting with the <code>margins</code> settings). For final publication-quality figures, it may be preferable to output each element (heatmap, legend1, and legend2) as separate image files, and then compile in a program such as Adobe Illustrator.</em></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1">#png(&quot;coverage/MAGs_heatmap.png&quot;,width=17,height=21,units=&quot;cm&quot;,res=300)</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nf">heatmap.2</span><span class="p">(</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>  <span class="nf">as.matrix</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">coverage.heatmap.data.MAG.filt</span><span class="p">,</span> <span class="nf">contains</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">))),</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>  <span class="n">Colv</span> <span class="o">=</span> <span class="nf">as.dendrogram</span><span class="p">(</span><span class="n">cov_clus.avg.col</span><span class="p">),</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>  <span class="n">Rowv</span> <span class="o">=</span> <span class="nf">as.dendrogram</span><span class="p">(</span><span class="n">cov_clus.avg.row</span><span class="p">),</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>  <span class="n">cexCol</span> <span class="o">=</span> <span class="m">1.2</span><span class="p">,</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>  <span class="n">cexRow</span> <span class="o">=</span> <span class="m">1.2</span><span class="p">,</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>  <span class="n">RowSideColors</span> <span class="o">=</span> <span class="n">MAG.cols</span><span class="p">[</span><span class="n">coverage.heatmap.data.MAG.filt</span><span class="p">[,</span><span class="s">&quot;taxonomy&quot;</span><span class="p">]],</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>  <span class="n">ColSideColors</span> <span class="o">=</span> <span class="n">map.col</span><span class="o">$</span><span class="n">col</span><span class="p">,</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>  <span class="n">margins</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">28</span><span class="p">,</span><span class="m">16</span><span class="p">),</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>  <span class="n">lwid</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">8</span><span class="p">),</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>  <span class="n">lhei</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">8</span><span class="p">),</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>  <span class="n">col</span> <span class="o">=</span> <span class="n">scalegreys</span><span class="p">,</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>  <span class="n">na.color</span> <span class="o">=</span> <span class="s">&quot;white&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>  <span class="n">scale</span> <span class="o">=</span> <span class="s">&#39;none&#39;</span><span class="p">,</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>  <span class="n">srtCol</span> <span class="o">=</span> <span class="m">45</span><span class="p">,</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>  <span class="n">density.info</span><span class="o">=</span><span class="s">&quot;none&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>  <span class="n">xlab</span> <span class="o">=</span> <span class="kc">NA</span><span class="p">,</span>
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>  <span class="n">ylab</span> <span class="o">=</span> <span class="kc">NA</span><span class="p">,</span>
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>  <span class="n">trace</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;none&#39;</span><span class="p">),</span>
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>  <span class="n">offsetRow</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">,</span> 
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a>  <span class="n">offsetCol</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">,</span> 
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a>  <span class="n">key.title</span> <span class="o">=</span> <span class="kc">NA</span><span class="p">,</span>
+<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>  <span class="n">key.xlab</span> <span class="o">=</span> <span class="s">&quot;log2(coverage)&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>  <span class="n">key.par</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">mgp</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span>
+<a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a>               <span class="n">mar</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span>
+<a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a>               <span class="n">cex</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">),</span>
+<a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a><span class="p">)</span>
+<a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a><span class="nf">legend</span><span class="p">(</span><span class="s">&quot;bottomleft&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a>       <span class="n">legend</span> <span class="o">=</span> <span class="nf">levels</span><span class="p">(</span><span class="n">coverage.heatmap.data.MAG.filt</span><span class="p">[,</span><span class="s">&quot;taxonomy&quot;</span><span class="p">]),</span>
+<a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a>       <span class="n">border</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
+<a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a>       <span class="n">col</span> <span class="o">=</span> <span class="n">MAG.cols</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="nf">levels</span><span class="p">(</span><span class="n">coverage.heatmap.data.MAG.filt</span><span class="p">[,</span><span class="s">&quot;taxonomy&quot;</span><span class="p">]))],</span>
+<a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a>       <span class="n">lty</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+<a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a>       <span class="n">lwd</span> <span class="o">=</span> <span class="m">6</span><span class="p">,</span>
+<a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a>       <span class="n">bty</span> <span class="o">=</span> <span class="s">&quot;n&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a>       <span class="n">ncol</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+<a id="__codelineno-13-37" name="__codelineno-13-37" href="#__codelineno-13-37"></a>       <span class="n">cex</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span>
+<a id="__codelineno-13-38" name="__codelineno-13-38" href="#__codelineno-13-38"></a>       <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Y-axis key:\nMAG taxonomy&quot;</span>
+<a id="__codelineno-13-39" name="__codelineno-13-39" href="#__codelineno-13-39"></a><span class="p">)</span>
+<a id="__codelineno-13-40" name="__codelineno-13-40" href="#__codelineno-13-40"></a><span class="nf">legend</span><span class="p">(</span><span class="s">&quot;bottomright&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-41" name="__codelineno-13-41" href="#__codelineno-13-41"></a>       <span class="n">legend</span> <span class="o">=</span> <span class="nf">levels</span><span class="p">(</span><span class="n">map.col</span><span class="o">$</span><span class="n">Group</span><span class="p">),</span>
+<a id="__codelineno-13-42" name="__codelineno-13-42" href="#__codelineno-13-42"></a>       <span class="n">border</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
+<a id="__codelineno-13-43" name="__codelineno-13-43" href="#__codelineno-13-43"></a>       <span class="n">col</span> <span class="o">=</span> <span class="nf">unique</span><span class="p">(</span><span class="n">map.col</span><span class="o">$</span><span class="n">col</span><span class="p">),</span>
+<a id="__codelineno-13-44" name="__codelineno-13-44" href="#__codelineno-13-44"></a>       <span class="n">lty</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+<a id="__codelineno-13-45" name="__codelineno-13-45" href="#__codelineno-13-45"></a>       <span class="n">lwd</span> <span class="o">=</span> <span class="m">6</span><span class="p">,</span>
+<a id="__codelineno-13-46" name="__codelineno-13-46" href="#__codelineno-13-46"></a>       <span class="n">bty</span> <span class="o">=</span> <span class="s">&quot;n&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-47" name="__codelineno-13-47" href="#__codelineno-13-47"></a>       <span class="n">ncol</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+<a id="__codelineno-13-48" name="__codelineno-13-48" href="#__codelineno-13-48"></a>       <span class="n">cex</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span>
+<a id="__codelineno-13-49" name="__codelineno-13-49" href="#__codelineno-13-49"></a>       <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;X-axis key:\nSample groups&quot;</span>
+<a id="__codelineno-13-50" name="__codelineno-13-50" href="#__codelineno-13-50"></a><span class="p">)</span>
+<a id="__codelineno-13-51" name="__codelineno-13-51" href="#__codelineno-13-51"></a><span class="c1">#dev.off()</span>
+</code></pre></div>
+<p><img alt="png" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_MAGs_heatmap.png" /></p>
+<p>Some quick take-aways from looking at this plot:</p>
+<ul>
+<li>We can see that three MAGs are from the same class (<em>Gammaproteobacteria</em>)</li>
+<li>Sample 4 (from sample group <em>Group_C</em>) is somewhat of an outlier, with only two bins (MAGs) recovered. Furthermore <em>bin_7_Nitrobacter</em> was <em>only</em> recovered from this sample.</li>
+<li>Samples from sample groups A and B each recovered the same sets of bins. </li>
+<li>With more samples, we would also be able to better discern co-occurence patterns of the MAGs across the samples by examining the clustering patterns in the dendrogram on the left.</li>
+</ul>
+<p>Feel free to experiment with some of the settings above. For example:</p>
+<ul>
+<li>What happens if you set <code>Colv = TRUE, Rowv = TRUE</code> instead of providing our pre-calculated Bray-Curtis dissimilarity-based clustering? Why might this cluster differently? (Hint: have a look at the documentation for <code>heatmap.2</code> to see it's default settings for clustering: <code>?heatmap.2()</code>). </li>
+<li><em>NOTE: in the <code>Jupyter</code> environment, leaving a manual for a function open can be cumbersome. To clear the manual, right-click on the code block containing <code>?heatmap.2()</code> and click <code>Clear Outputs</code>.</em></li>
+<li>Try removing the column clustering (but retaining the row clustering) by setting <code>Colv = FALSE, Rowv = as.dendrogram(cov_clus.avg.row)</code>.</li>
+<li>Play around with the <code>margins = ...</code> settings to see what difference each makes.</li>
+</ul>
+<hr />
+<h3 id="part-2-building-a-heatmap-of-viral-contigs-per-sample">Part 2 - Building a heatmap of viral contigs per sample<a class="headerlink" href="#part-2-building-a-heatmap-of-viral-contigs-per-sample" title="Permanent link">&para;</a></h3>
+<p>We can run through the same process for the viral contigs. Many of the steps are as outlined above, so we will work through these a bit quicker and with less commentary along the way. However, we will highlight a handful of differences compared to the commands for the MAGs above, for example:  steps for selecting and/or formatting the taxonomy; importing the quality output from <code>CheckV</code>; and the (optional) addition of filtering out low quality contigs.</p>
+<h4 id="21-set-working-directory-load-r-libraries-and-import-data">2.1 Set working directory, load <em>R</em> libraries, and import data<a class="headerlink" href="#21-set-working-directory-load-r-libraries-and-import-data" title="Permanent link">&para;</a></h4>
+<p>In this case, import the coverage, taxonomy, mapping, <em>and checkv</em> files. For taxonomy we will select the <code>Genome</code> column (converted to <code>Contig</code>), <code>Order_VC_predicted</code> (converted to <code>taxonomy</code>), and <code>Genus_VC_predicted</code> (converted to <code>taxonomy_genus</code>) (we will use the <code>Order_VC_predicted</code> to colour code viral contigs in the heat map, and <code>Genus_VC_predicted</code> to add to viral contig names in the plot). </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nf">setwd</span><span class="p">(</span><span class="s">&#39;/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/11.data_presentation/&#39;</span><span class="p">)</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="c1"># tidyverse libraries </span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="nf">library</span><span class="p">(</span><span class="n">readr</span><span class="p">)</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="nf">library</span><span class="p">(</span><span class="n">stringr</span><span class="p">)</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="nf">library</span><span class="p">(</span><span class="n">tibble</span><span class="p">)</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="c1"># Other libraries</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="nf">library</span><span class="p">(</span><span class="n">gplots</span><span class="p">)</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="nf">library</span><span class="p">(</span><span class="n">vegan</span><span class="p">)</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="c1"># coverage table</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="n">cov_vir</span> <span class="o">&lt;-</span> <span class="nf">read_tsv</span><span class="p">(</span><span class="s">&quot;coverage/viruses_cov_table.txt&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">Contig</span> <span class="o">=</span> <span class="n">contigName</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>  <span class="nf">select</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;Contig&#39;</span><span class="p">,</span> <span class="nf">ends_with</span><span class="p">(</span><span class="s">&#39;.bam&#39;</span><span class="p">)))</span> 
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="c1"># taxonomy table</span>
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="n">tax_vir</span> <span class="o">&lt;-</span> <span class="nf">read_tsv</span><span class="p">(</span><span class="s">&quot;coverage/vcontact2_tax_predict_table.txt&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">Contig</span> <span class="o">=</span> <span class="n">Genome</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">taxonomy</span> <span class="o">=</span> <span class="nf">factor</span><span class="p">(</span><span class="n">Order_VC_predicted</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">taxonomy_genus</span> <span class="o">=</span> <span class="nf">factor</span><span class="p">(</span><span class="n">Genus_VC_predicted</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>  <span class="nf">select</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;Contig&#39;</span><span class="p">,</span> <span class="s">&#39;taxonomy&#39;</span><span class="p">,</span> <span class="s">&#39;taxonomy_genus&#39;</span><span class="p">))</span>
+<a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a>
+<a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="c1"># CheckV quality</span>
+<a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a><span class="n">checkv</span> <span class="o">&lt;-</span> <span class="nf">read_tsv</span><span class="p">(</span><span class="s">&quot;coverage/checkv_quality_summary.tsv&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">Contig</span> <span class="o">=</span> <span class="n">contig_id</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a>  <span class="nf">select</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;Contig&#39;</span><span class="p">,</span> <span class="s">&#39;checkv_quality&#39;</span><span class="p">))</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">checkv_quality</span> <span class="o">=</span> <span class="nf">factor</span><span class="p">(</span><span class="n">checkv_quality</span><span class="p">,</span> <span class="n">levels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Not-determined&quot;</span><span class="p">,</span> <span class="s">&quot;Low-quality&quot;</span><span class="p">,</span> <span class="s">&quot;Medium-quality&quot;</span><span class="p">,</span> <span class="s">&quot;High-quality&quot;</span><span class="p">,</span> <span class="s">&quot;Complete&quot;</span><span class="p">)))</span> 
+<a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a>
+<a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a><span class="c1"># mapping file (import both columns as factors: col_types set to factor, factor)</span>
+<a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a><span class="n">map.df</span> <span class="o">&lt;-</span> <span class="nf">read_tsv</span><span class="p">(</span><span class="s">&quot;coverage/mapping_file.txt&quot;</span><span class="p">,</span> <span class="n">col_types</span> <span class="o">=</span> <span class="s">&quot;ff&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="22-wrangle-data">2.2 wrangle data<a class="headerlink" href="#22-wrangle-data" title="Permanent link">&para;</a></h4>
+<p>This time we will collate the coverage, checkv, and taxonomy tables into a single table for downstream use, and create <code>vir_ID_*</code> unique identifers.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Strip .bam from sample names</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">cov_vir</span> <span class="o">&lt;-</span> <span class="n">cov_vir</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>  <span class="nf">rename_at</span><span class="p">(</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="nf">vars</span><span class="p">(</span><span class="nf">contains</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">)),</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="nf">list</span><span class="p">(</span><span class="o">~</span> <span class="nf">str_replace</span><span class="p">(</span><span class="n">.</span><span class="p">,</span> <span class="s">&quot;.bam&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">))</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>  <span class="p">)</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="c1"># Collate data, add unique &#39;vir_ID&#39; identifer, add &#39;vir_ID_tax&#39; column</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="n">collate_data_vir</span> <span class="o">&lt;-</span> <span class="n">cov_vir</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>  <span class="nf">left_join</span><span class="p">(</span><span class="n">tax_vir</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="s">&#39;Contig&#39;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>  <span class="nf">left_join</span><span class="p">(</span><span class="n">checkv</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="s">&#39;Contig&#39;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">vir_ID</span> <span class="o">=</span> <span class="nf">paste</span><span class="p">(</span><span class="s">&quot;vir&quot;</span><span class="p">,</span> <span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="nf">length</span><span class="p">(</span><span class="n">Contig</span><span class="p">)),</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;_&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>  <span class="nf">relocate</span><span class="p">(</span><span class="s">&#39;vir_ID&#39;</span><span class="p">)</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">vir_ID_tax</span> <span class="o">=</span> <span class="nf">paste</span><span class="p">(</span><span class="n">vir_ID</span><span class="p">,</span> <span class="n">taxonomy_genus</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;_&quot;</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>  <span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">checkv_quality</span><span class="p">))</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>  <span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="n">taxonomy_genus</span><span class="p">)</span>
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="c1"># Log(2)-transform coverage data</span>
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="n">collate_data_vir_log2</span> <span class="o">&lt;-</span> <span class="n">collate_data_vir</span>
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="n">collate_data_vir_log2</span><span class="p">[,</span><span class="nf">names</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">collate_data_vir_log2</span><span class="p">,</span> <span class="nf">contains</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">)))]</span> <span class="o">&lt;-</span> <span class="nf">log2</span><span class="p">(</span><span class="n">collate_data_vir_log2</span><span class="p">[,</span><span class="nf">names</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">collate_data_vir_log2</span><span class="p">,</span> <span class="nf">contains</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">)))]</span> <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
+</code></pre></div>
+<p>Now let's add an (optional) filtering step here to remove any contigs that <code>CheckV</code> flagged as poor quality.</p>
+<p>First, take a look at all the categories of <code>checkv_quality</code> by using the <code>levels()</code> function.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nf">levels</span><span class="p">(</span><span class="n">collate_data_vir_log2</span><span class="o">$</span><span class="n">checkv_quality</span><span class="p">)</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="c1"># &#39;Not-determined&#39;&#39;Low-quality&#39;&#39;Medium-quality&#39;&#39;High-quality&#39;&#39;Complete&#39;</span>
+</code></pre></div>
+<p>Let's filter out anything with a quality category of <code>Not-determined</code> or <code>Low-quality</code>. We will use <code>!=</code> in the <code>filter()</code> function here to return only those rows that do <em>not</em> include 'Not-determined' or 'Low-quality').</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">collate_data_vir_log2</span> <span class="o">&lt;-</span> <span class="n">collate_data_vir_log2</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>  <span class="nf">filter</span><span class="p">(</span><span class="n">checkv_quality</span> <span class="o">!=</span> <span class="s">&#39;Not-determined&#39;</span> <span class="o">&amp;</span> <span class="n">checkv_quality</span> <span class="o">!=</span> <span class="s">&#39;Low-quality&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>A few final data wrangling steps:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">coverage.heatmap.data.vir</span> <span class="o">&lt;-</span> <span class="n">collate_data_vir_log2</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">sum</span> <span class="o">=</span> <span class="nf">rowSums</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">collate_data_vir_log2</span><span class="p">,</span> <span class="nf">contains</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">))))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>  <span class="nf">arrange</span><span class="p">(</span><span class="nf">desc</span><span class="p">(</span><span class="n">sum</span><span class="p">))</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>  <span class="nf">select</span><span class="p">(</span><span class="s">&quot;vir_ID&quot;</span><span class="p">,</span> <span class="nf">contains</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">),</span> <span class="s">&quot;taxonomy&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>  <span class="nf">mutate</span><span class="p">(</span><span class="n">taxonomy</span> <span class="o">=</span> <span class="nf">factor</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>  <span class="nf">droplevels</span><span class="p">()</span> <span class="o">%&gt;%</span> 
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>  <span class="nf">column_to_rownames</span><span class="p">(</span><span class="n">var</span> <span class="o">=</span> <span class="s">&quot;vir_ID&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>  <span class="nf">as.data.frame</span><span class="p">()</span> 
+</code></pre></div>
+<p><em>NOTE: In this case, the script only keeps the <code>vir_ID*</code> identifiers without the genus taxonomy appended for use in the plots, since the the long labels (due to numerous genus predictions for some contigs) make the plots illegible otherwise. To retain the taxonomy, change the two <code>vir_ID</code> entries above to <code>vir_ID_tax</code>.</em></p>
+<h4 id="23-calculate-hierarchical-clustering-of-columns-samples-and-rows-viral-contigs">2.3 Calculate hierarchical clustering of columns (samples) and rows (viral contigs).<a class="headerlink" href="#23-calculate-hierarchical-clustering-of-columns-samples-and-rows-viral-contigs" title="Permanent link">&para;</a></h4>
+<p>Filter to remove any potential problem rows from the data, and then run clustering and plot the dendrograms.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Subset the relevant columns</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">coverage.heatmap.data.vir.filt</span> <span class="o">&lt;-</span> <span class="nf">select</span><span class="p">(</span><span class="n">coverage.heatmap.data.vir</span><span class="p">,</span> <span class="nf">contains</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">),</span> <span class="s">&quot;taxonomy&quot;</span><span class="p">)</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1"># Filter out zero-variance rows</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="n">coverage.heatmap.data.vir.filt</span> <span class="o">&lt;-</span> <span class="n">coverage.heatmap.data.vir.filt</span><span class="p">[</span><span class="o">!</span><span class="nf">apply</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">coverage.heatmap.data.vir.filt</span><span class="p">,</span> <span class="o">-</span><span class="s">&quot;taxonomy&quot;</span><span class="p">)</span><span class="o">==</span><span class="nf">select</span><span class="p">(</span><span class="n">coverage.heatmap.data.vir.filt</span><span class="p">,</span> <span class="o">-</span><span class="s">&quot;taxonomy&quot;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]],</span><span class="m">1</span><span class="p">,</span><span class="n">all</span><span class="p">),]</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="c1"># hclust</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="n">vir_cov_clus.avg.col</span> <span class="o">&lt;-</span> <span class="nf">hclust</span><span class="p">(</span><span class="nf">vegdist</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">coverage.heatmap.data.vir.filt</span><span class="p">,</span> <span class="nf">contains</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">))),</span> <span class="n">method</span><span class="o">=</span><span class="s">&quot;bray&quot;</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">diag</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">na.rm</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">),</span> <span class="s">&quot;aver&quot;</span><span class="p">)</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="n">vir_cov_clus.avg.row</span> <span class="o">&lt;-</span> <span class="nf">hclust</span><span class="p">(</span><span class="nf">vegdist</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">coverage.heatmap.data.vir.filt</span><span class="p">,</span> <span class="nf">contains</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">)),</span> <span class="n">method</span><span class="o">=</span><span class="s">&quot;bray&quot;</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">diag</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">na.rm</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">),</span> <span class="s">&quot;aver&quot;</span><span class="p">)</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="c1"># plot</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="c1">#png(&quot;coverage/Viruses_BC_hclust_Samples.png&quot;, width=17, height=10, units=&quot;cm&quot;, res=300)</span>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="nf">plot</span><span class="p">(</span><span class="n">vir_cov_clus.avg.col</span><span class="p">,</span> <span class="n">hang</span> <span class="o">=</span> <span class="m">-1</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">1.5</span><span class="p">)</span>
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="c1">#dev.off()</span>
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="c1">#png(&quot;coverage/Viruses_BC_hclust_MAGs.png&quot;, width=17, height=10, units=&quot;cm&quot;, res=300)</span>
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="nf">plot</span><span class="p">(</span><span class="n">vir_cov_clus.avg.row</span><span class="p">,</span> <span class="n">hang</span> <span class="o">=</span> <span class="m">-1</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">1.5</span><span class="p">)</span>
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="c1">#dev.off()</span>
+</code></pre></div>
+<h4 id="24-set-the-colour-palettes">2.4 Set the colour palettes<a class="headerlink" href="#24-set-the-colour-palettes" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Load greyscale palette</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="n">scalegreys</span> <span class="o">&lt;-</span> <span class="nf">colorRampPalette</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;white&quot;</span><span class="p">,</span><span class="s">&quot;black&quot;</span><span class="p">),</span> <span class="n">space</span><span class="o">=</span><span class="s">&quot;Lab&quot;</span><span class="p">)(</span><span class="m">100</span><span class="p">)</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># Taxonomy colour palette</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="n">vir.cols</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>  <span class="s">&quot;#006DDB&quot;</span><span class="p">,</span><span class="s">&quot;#FF6DB6&quot;</span><span class="p">,</span><span class="s">&quot;#DBD100&quot;</span><span class="p">,</span><span class="s">&quot;#FFB677&quot;</span><span class="p">,</span><span class="s">&quot;#004949&quot;</span><span class="p">,</span><span class="s">&quot;#009292&quot;</span><span class="p">,</span><span class="s">&quot;#FFFF6D&quot;</span><span class="p">,</span><span class="s">&quot;#924900&quot;</span><span class="p">,</span><span class="s">&quot;#490092&quot;</span><span class="p">,</span><span class="s">&quot;#24FF24&quot;</span><span class="p">,</span><span class="s">&quot;#920000&quot;</span><span class="p">,</span><span class="s">&quot;#B6DBFF&quot;</span><span class="p">,</span><span class="s">&quot;#B66DFF&quot;</span><span class="p">,</span><span class="s">&quot;#6DB6FF&quot;</span><span class="p">,</span><span class="s">&quot;#000000&quot;</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="p">)</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="c1"># Data.frame containing &#39;sample groups&#39; colour palette</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="n">Group.col</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>  <span class="n">Group</span> <span class="o">=</span> <span class="nf">factor</span><span class="p">(</span><span class="nf">levels</span><span class="p">(</span><span class="n">map.df</span><span class="o">$</span><span class="n">Group</span><span class="p">)),</span>
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>  <span class="n">col</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;#71dfdf&#39;</span><span class="p">,</span> <span class="s">&#39;#3690b8&#39;</span><span class="p">,</span> <span class="s">&#39;#00429d&#39;</span><span class="p">),</span>
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>  <span class="n">stringsAsFactors</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>
+<a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="c1"># Update map.df with `Group` colour code for each sample</span>
+<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="n">map.df</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="nf">full_join</span><span class="p">(</span><span class="n">map.df</span><span class="p">,</span><span class="n">Group.col</span><span class="p">))</span>
+</code></pre></div>
+<h4 id="25-build-the-heat-map">2.5 Build the heat map<a class="headerlink" href="#25-build-the-heat-map" title="Permanent link">&para;</a></h4>
+<p>Output the full heat map with sample (column) and variable (row) clustering.</p>
+<p><em>NOTE: Un-comment (remove the <code>#</code> symbol from) the lines <code>png(...)</code> and <code>dev.off()</code> before and after the heat map code will write the plot to file</em></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1">#png(&quot;coverage/Viruses_heatmap.png&quot;,width=17,height=21,units=&quot;cm&quot;,res=300)</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="nf">heatmap.2</span><span class="p">(</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>  <span class="nf">as.matrix</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">coverage.heatmap.data.vir.filt</span><span class="p">,</span> <span class="nf">contains</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">))),</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>  <span class="n">Colv</span> <span class="o">=</span> <span class="nf">as.dendrogram</span><span class="p">(</span><span class="n">vir_cov_clus.avg.col</span><span class="p">),</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>  <span class="n">Rowv</span> <span class="o">=</span> <span class="nf">as.dendrogram</span><span class="p">(</span><span class="n">vir_cov_clus.avg.row</span><span class="p">),</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>  <span class="n">cexCol</span> <span class="o">=</span> <span class="m">1.2</span><span class="p">,</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>  <span class="n">cexRow</span> <span class="o">=</span> <span class="m">1.2</span><span class="p">,</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>  <span class="n">RowSideColors</span> <span class="o">=</span> <span class="n">vir.cols</span><span class="p">[</span><span class="n">coverage.heatmap.data.vir.filt</span><span class="p">[,</span><span class="s">&quot;taxonomy&quot;</span><span class="p">]],</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>  <span class="n">ColSideColors</span> <span class="o">=</span> <span class="n">map.df</span><span class="o">$</span><span class="n">col</span><span class="p">,</span>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>  <span class="n">margins</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">28</span><span class="p">,</span><span class="m">16</span><span class="p">),</span>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>  <span class="n">lwid</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">8</span><span class="p">),</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>  <span class="n">lhei</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">8</span><span class="p">),</span>
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>  <span class="n">col</span> <span class="o">=</span> <span class="n">scalegreys</span><span class="p">,</span>
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>  <span class="n">na.color</span> <span class="o">=</span> <span class="s">&quot;white&quot;</span><span class="p">,</span>
+<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>  <span class="n">scale</span> <span class="o">=</span> <span class="s">&#39;none&#39;</span><span class="p">,</span>
+<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>  <span class="n">srtCol</span> <span class="o">=</span> <span class="m">45</span><span class="p">,</span>
+<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>  <span class="n">density.info</span><span class="o">=</span><span class="s">&quot;none&quot;</span><span class="p">,</span>
+<a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a>  <span class="n">xlab</span> <span class="o">=</span> <span class="kc">NA</span><span class="p">,</span>
+<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a>  <span class="n">ylab</span> <span class="o">=</span> <span class="kc">NA</span><span class="p">,</span>
+<a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>  <span class="n">trace</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;none&#39;</span><span class="p">),</span>
+<a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a>  <span class="n">offsetRow</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">,</span> 
+<a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>  <span class="n">offsetCol</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">,</span> 
+<a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>  <span class="n">key.title</span> <span class="o">=</span> <span class="kc">NA</span><span class="p">,</span>
+<a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a>  <span class="n">key.xlab</span> <span class="o">=</span> <span class="s">&quot;log2(coverage)&quot;</span><span class="p">,</span>
+<a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a>  <span class="n">key.par</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">mgp</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span>
+<a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a>               <span class="n">mar</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span>
+<a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a>               <span class="n">cex</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">),</span>
+<a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a><span class="p">)</span>
+<a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a><span class="nf">legend</span><span class="p">(</span><span class="s">&quot;bottomleft&quot;</span><span class="p">,</span>
+<a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a>       <span class="n">legend</span> <span class="o">=</span> <span class="nf">levels</span><span class="p">(</span><span class="n">coverage.heatmap.data.vir.filt</span><span class="p">[,</span><span class="s">&quot;taxonomy&quot;</span><span class="p">]),</span>
+<a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a>       <span class="n">border</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
+<a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a>       <span class="n">col</span> <span class="o">=</span> <span class="n">vir.cols</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="nf">levels</span><span class="p">(</span><span class="n">coverage.heatmap.data.vir.filt</span><span class="p">[,</span><span class="s">&quot;taxonomy&quot;</span><span class="p">]))],</span>
+<a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a>       <span class="n">lty</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+<a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a>       <span class="n">lwd</span> <span class="o">=</span> <span class="m">6</span><span class="p">,</span>
+<a id="__codelineno-21-35" name="__codelineno-21-35" href="#__codelineno-21-35"></a>       <span class="n">bty</span> <span class="o">=</span> <span class="s">&quot;n&quot;</span><span class="p">,</span>
+<a id="__codelineno-21-36" name="__codelineno-21-36" href="#__codelineno-21-36"></a>       <span class="n">ncol</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+<a id="__codelineno-21-37" name="__codelineno-21-37" href="#__codelineno-21-37"></a>       <span class="n">cex</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span>
+<a id="__codelineno-21-38" name="__codelineno-21-38" href="#__codelineno-21-38"></a>       <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Y-axis key:\nVirus taxonomy (Order)&quot;</span>
+<a id="__codelineno-21-39" name="__codelineno-21-39" href="#__codelineno-21-39"></a><span class="p">)</span>
+<a id="__codelineno-21-40" name="__codelineno-21-40" href="#__codelineno-21-40"></a><span class="nf">legend</span><span class="p">(</span><span class="s">&quot;bottomright&quot;</span><span class="p">,</span>
+<a id="__codelineno-21-41" name="__codelineno-21-41" href="#__codelineno-21-41"></a>       <span class="n">legend</span> <span class="o">=</span> <span class="nf">levels</span><span class="p">(</span><span class="n">map.df</span><span class="o">$</span><span class="n">Group</span><span class="p">),</span>
+<a id="__codelineno-21-42" name="__codelineno-21-42" href="#__codelineno-21-42"></a>       <span class="n">border</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
+<a id="__codelineno-21-43" name="__codelineno-21-43" href="#__codelineno-21-43"></a>       <span class="n">col</span> <span class="o">=</span> <span class="nf">unique</span><span class="p">(</span><span class="n">map.df</span><span class="o">$</span><span class="n">col</span><span class="p">),</span>
+<a id="__codelineno-21-44" name="__codelineno-21-44" href="#__codelineno-21-44"></a>       <span class="n">lty</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+<a id="__codelineno-21-45" name="__codelineno-21-45" href="#__codelineno-21-45"></a>       <span class="n">lwd</span> <span class="o">=</span> <span class="m">6</span><span class="p">,</span>
+<a id="__codelineno-21-46" name="__codelineno-21-46" href="#__codelineno-21-46"></a>       <span class="n">bty</span> <span class="o">=</span> <span class="s">&quot;n&quot;</span><span class="p">,</span>
+<a id="__codelineno-21-47" name="__codelineno-21-47" href="#__codelineno-21-47"></a>       <span class="n">ncol</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+<a id="__codelineno-21-48" name="__codelineno-21-48" href="#__codelineno-21-48"></a>       <span class="n">cex</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span>
+<a id="__codelineno-21-49" name="__codelineno-21-49" href="#__codelineno-21-49"></a>       <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;X-axis key:\nSample groups&quot;</span>
+<a id="__codelineno-21-50" name="__codelineno-21-50" href="#__codelineno-21-50"></a><span class="p">)</span>
+<a id="__codelineno-21-51" name="__codelineno-21-51" href="#__codelineno-21-51"></a><span class="c1">#dev.off()</span>
+</code></pre></div>
+<p><img alt="png" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_Viruses_heatmap.png" /></p>
+<hr />
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../ex16a_data_presentation_Intro/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Presentation of data: Introduction" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Presentation of data: Introduction
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../ex16c_OPTIONAL_data_presentation_Ordination/" class="md-footer__link md-footer__link--next" aria-label="Next: (*Optional*) Presentation of data: Ordinations" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              (*Optional*) Presentation of data: Ordinations
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1372 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Genomics Aotearoa & NeSI">
+      
+      
+        <link rel="canonical" href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day3/ex13_gene_annotation_part1/">
+      
+      <link rel="icon" href="../../images/nesi_ga.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>Gene annotation (part 1) - Metagenomics Summer School</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Mukta";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="lime" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gene-annotation-part-1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Metagenomics Summer School" class="md-header__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../images/nesi_ga.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Metagenomics Summer School
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Gene annotation (part 1)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+          
+            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Metagenomics Summer School" class="md-nav__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../images/nesi_ga.png" alt="logo">
+
+    </a>
+    Metagenomics Summer School
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Hi!
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Day1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day1" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Day1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex1_bash_scripting/" class="md-nav__link">
+        Introduction to the command line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex2_quality_filtering/" class="md-nav__link">
+        Quality filtering raw reads
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex3_assembly/" class="md-nav__link">
+        Assembly
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex4_assembly/" class="md-nav__link">
+        Assembly (part 2)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex5_evaluating_assemblies/" class="md-nav__link">
+        Evaluating the assemblies
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Day2
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day2" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Day2
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex6_initial_binning/" class="md-nav__link">
+        Introduction to binning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex7_initial_binning/" class="md-nav__link">
+        Introduction to binning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex8_bin_dereplication/" class="md-nav__link">
+        Bin dereplication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex9_refining_bins/" class="md-nav__link">
+        Manually refining bins
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Day3
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day3" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Day3
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex10_viruses/" class="md-nav__link">
+        Identifying viral contigs in metagenomic data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex11_coverage_and_taxonomy/" class="md-nav__link">
+        Per-sample coverage and assigning taxonomy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex12_gene_prediction/" class="md-nav__link">
+        Gene prediction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Gene annotation (part 1)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Gene annotation (part 1)
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blast-like-gene-annotations-and-domain-annotations" class="md-nav__link">
+    BLAST-like gene annotations and domain annotations
+  </a>
+  
+    <nav class="md-nav" aria-label="BLAST-like gene annotations and domain annotations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#blast-like-annotation" class="md-nav__link">
+    BLAST-like annotation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hmm-profiling-of-domains" class="md-nav__link">
+    HMM-profiling of domains
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#annotating-mags-against-the-uniprot-database-with-diamond" class="md-nav__link">
+    Annotating MAGs against the UniProt database with diamond
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#annotating-mags-against-the-pfam-database-with-hmmer" class="md-nav__link">
+    Annotating MAGs against the Pfam database with hmmer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evaluating-the-quality-of-gene-assignment" class="md-nav__link">
+    Evaluating the quality of gene assignment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differences-in-taxonomies" class="md-nav__link">
+    Differences in taxonomies
+  </a>
+  
+    <nav class="md-nav" aria-label="Differences in taxonomies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples-of-various-genome-level-and-protein-taxonomies" class="md-nav__link">
+    Examples of various genome-level and protein taxonomies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex14_gene_annotation_part2/" class="md-nav__link">
+        Gene annotation (part 2)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Day4
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day4" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Day4
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex15_gene_annotation_part3/" class="md-nav__link">
+        Gene annotation (part 3)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex16a_data_presentation_Intro/" class="md-nav__link">
+        Presentation of data: Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex16b_data_presentation_Coverage/" class="md-nav__link">
+        Presentation of data: Per-sample coverage heatmaps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex16c_OPTIONAL_data_presentation_Ordination/" class="md-nav__link">
+        (*Optional*) Presentation of data: Ordinations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex16d_data_presentation_KEGG_pathways/" class="md-nav__link">
+        Presentation of data: KEGG pathway maps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex16e_data_presentation_Gene_synteny/" class="md-nav__link">
+        Presentation of data: Gene synteny
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations/" class="md-nav__link">
+        Presentation of data: *Optional exercise*: CAZy annotations heatmap
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Figures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Figures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Figures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../figures/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          Resources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Resources" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Resources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex11_Normalise_coverage_example/" class="md-nav__link">
+        APPENDIX ex11 Normalise coverage example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/" class="md-nav__link">
+        APPENDIX ex11 viral taxonomy prediction via vContact2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex15_gene_synteny_Generate_blast_files/" class="md-nav__link">
+        APPENDIX ex15 gene synteny Generate blast files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex15_gene_synteny_grab_GOI/" class="md-nav__link">
+        APPENDIX ex15 gene synteny grab GOI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex8_Dereplication/" class="md-nav__link">
+        Dereplicating data from multiple assemblies
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex9_Generating_input_files_for_VizBin/" class="md-nav__link">
+        APPENDIX ex9 Generating input files for VizBin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/command_line_shortcuts/" class="md-nav__link">
+        Useful command line shortcuts
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blast-like-gene-annotations-and-domain-annotations" class="md-nav__link">
+    BLAST-like gene annotations and domain annotations
+  </a>
+  
+    <nav class="md-nav" aria-label="BLAST-like gene annotations and domain annotations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#blast-like-annotation" class="md-nav__link">
+    BLAST-like annotation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hmm-profiling-of-domains" class="md-nav__link">
+    HMM-profiling of domains
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#annotating-mags-against-the-uniprot-database-with-diamond" class="md-nav__link">
+    Annotating MAGs against the UniProt database with diamond
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#annotating-mags-against-the-pfam-database-with-hmmer" class="md-nav__link">
+    Annotating MAGs against the Pfam database with hmmer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evaluating-the-quality-of-gene-assignment" class="md-nav__link">
+    Evaluating the quality of gene assignment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differences-in-taxonomies" class="md-nav__link">
+    Differences in taxonomies
+  </a>
+  
+    <nav class="md-nav" aria-label="Differences in taxonomies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples-of-various-genome-level-and-protein-taxonomies" class="md-nav__link">
+    Examples of various genome-level and protein taxonomies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/day3/ex13_gene_annotation_part1.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="gene-annotation-part-1">Gene annotation (part 1)<a class="headerlink" href="#gene-annotation-part-1" title="Permanent link">&para;</a></h1>
+<h3 id="objectives">Objectives<a class="headerlink" href="#objectives" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="#blast-like-gene-annotations-and-domain-annotations"><strong>BLAST</strong>-like gene annotations and <strong>domain</strong> annotations</a></li>
+<li><a href="#blast-like-gene-annotations-and-domain-annotations">Overview of annotation databases</a></li>
+<li><a href="#evaluating-the-quality-of-gene-assignment">Evaluating the quality of gene assignment</a></li>
+<li><a href="#differences-in-taxonomies"><em>Discussion: Differences in taxonomies (GTDB, NCBI etc)</em></a></li>
+</ul>
+<hr />
+<h3 id="blast-like-gene-annotations-and-domain-annotations"><em>BLAST</em>-like gene annotations and domain annotations<a class="headerlink" href="#blast-like-gene-annotations-and-domain-annotations" title="Permanent link">&para;</a></h3>
+<p>Broadly speaking, there are two ways we perform gene annotations with protein sequences. Both compare our sequences of interest against a curated set of protein sequences for which function is known, or is strongly suspected. In each case, there are particular strenths to the approach and for particular research questions, one option may be favoured over another.</p>
+<h4 id="blast-like-annotation">BLAST-like annotation<a class="headerlink" href="#blast-like-annotation" title="Permanent link">&para;</a></h4>
+<p>The first of these is the <code>BLAST</code> algorithm for sequence alignment. This approach performs pairwise alignment between the gene of interest (query sequence) and the sequences in the database (target sequence). <code>BLAST</code> searches each potential target sequence for <em>k</em>-mers identified in the query sequence. Where these <em>k</em>-mers are found in targets, the ends are extended out to try to create longer regions of highly similar sequence spans. Across this span, the tool identifies the longest span of characters (nucleotide or amino acid) that match within a scoring framework to return the length of the region (coverage) and the sequence identity over the span (identity).</p>
+<p>The original tool for performing this kind of analysis was the <code>BLAST</code> tool. While <code>BLAST</code> and its variants are still excellent tools for performing this kind of sequence annotation, they suffer from a slow runtime speed due to the need to test each query sequence against every target sequence in the database. For this reason, several tools have been published which take the basic approach of <code>BLAST</code>, but augment it with methods to reduce the number of pairwise comparisons needed to identify targets with high sequence similarity to the query. Two popular pieces of software are the tools <code>usearch</code> <a href="http://www.drive5.com/usearch/">here</a> and <code>diamond</code> <a href="https://github.com/bbuchfink/diamond">here</a>.</p>
+<h4 id="hmm-profiling-of-domains">HMM-profiling of domains<a class="headerlink" href="#hmm-profiling-of-domains" title="Permanent link">&para;</a></h4>
+<p>An alternate method for attributing function to query sequences it to consider them as a collection of independently functioning protein folding domains. This is the approach used in the <a href="http://hmmer.org/">HMMer</a> software, and the <em>Pfam</em>, <em>TIGRfam</em>, and <em>PANTHER</em> databases. In these analyses, the database consists not of individual sequences, but of Hidden Markov models built from a collection of proteins that share a common domain. These profiles build out a statistical map of the amino acid transitions (from position to position), variations (differences at a position), and insertions/deletions between positions in the domain across the different observations in the training database and apply these maps to the query data.</p>
+<p>These exercises will take place in the <code>10.gene_annotation/</code> folder.</p>
+<hr />
+<h3 id="annotating-mags-against-the-uniprot-database-with-diamond">Annotating MAGs against the <em>UniProt</em> database with <em>diamond</em><a class="headerlink" href="#annotating-mags-against-the-uniprot-database-with-diamond" title="Permanent link">&para;</a></h3>
+<p>For this exercise we are going to use diamond for performing our annotation. We have chosen to use this tool because it is faster than BLAST, and usearch comes with licencing restrictions that make it hard to work with in a shared computing environment like NeSI.</p>
+<p>For this exercise we have created a diamond-compatible database from the 2018 release of the UniProt database.</p>
+<p>For input files, the <code>predictions/</code> results from the previous gene prediction exercise have been copied over to <code>10.gene_annotation/predictions/</code>.</p>
+<p>In general, diamond takes a simple pair of input files - the protein coding sequences we wish to annotate and the database we will use for this purpose. There are a few parameters that need to be tweaked for obtaining a useful output file, however.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>module purge
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>module load DIAMOND/0.9.25-gimkl-2018b
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>diamond <span class="nb">help</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># diamond v0.9.25.126 | by Benjamin Buchfink &lt;buchfink@gmail.com&gt;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># Licensed under the GNU GPL &lt;https://www.gnu.org/licenses/gpl.txt&gt;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Check http://github.com/bbuchfink/diamond for updates.</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># Syntax: diamond COMMAND [OPTIONS]</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># Commands:</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># ...</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># blastp  Align amino acid query sequences against a protein reference database</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># ...</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="c1"># General options:</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="c1"># --threads (-p)         number of CPU threads</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="c1"># --db (-d)              database file</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="c1"># --out (-o)             output file</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="c1"># --outfmt (-f)          output format</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="c1"># ...</span>
+</code></pre></div>
+<p>There are two output formats we can chose from which are useful for our analysis. We will obtain our output in the BLAST tabular format, which provides the annotation information in a simple-to-parse text file that can be viewed in any text or spreadsheet viewing tool. This will allow us to investigate and evaluate the quality of our annotations. </p>
+<p>Awkwardly, <code>diamond</code> does not provide the headers for what the columns in the output table mean. <a href="http://www.metagenomics.wiki/tools/blast/blastn-output-format-6">This table</a> is a handy reference for how to interpret the output.</p>
+<p>From here we can view important stastics for each query/target pairing such as the number of identify residues between sequences and the aligned length between query and target.</p>
+<p>Lets set up a slurm job to annotate each of our MAGs. </p>
+<p>Create a new script</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>nano annotate_uniprot.sl
+</code></pre></div>
+<p>Paste in the script (update <code>&lt;YOUR FOLDER&gt;</code>)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="ch">#!/bin/bash -e</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1">#SBATCH --account nesi02659</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1">#SBATCH --job-name annotate_uniprot</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1">#SBATCH --res SummerSchool</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1">#SBATCH --time 02:00:00</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1">#SBATCH --mem 20GB</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1">#SBATCH --ntasks 1</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1">#SBATCH --cpus-per-task 20</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1">#SBATCH --error annotate_uniprot_dmnd.err</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1">#SBATCH --output annotate_uniprot_dmnd.out</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1">#SBATCH --export NONE</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="nb">export</span> <span class="nv">SLURM_EXPORT_ENV</span><span class="o">=</span>ALL
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>module purge
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>module load DIAMOND/0.9.25-gimkl-2018b
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/10.gene_annotation/
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>mkdir -p gene_annotations/
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="k">for</span> prot_file <span class="k">in</span> predictions/*.genes.no_metadata.faa<span class="p">;</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="k">do</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>  <span class="nv">out_file</span><span class="o">=</span><span class="k">$(</span>basename <span class="si">${</span><span class="nv">prot_file</span><span class="si">}</span> .faa<span class="k">)</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>  diamond blastp -p <span class="m">20</span> --max-target-seqs <span class="m">5</span> --evalue <span class="m">0</span>.001 <span class="se">\</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>        --db /nesi/nobackup/nesi02659/MGSS_resources_2020/databases/uniprot_nr_200213.diamond <span class="se">\</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>        -q <span class="si">${</span><span class="nv">prot_file</span><span class="si">}</span> --outfmt <span class="m">6</span> -o gene_annotations/<span class="si">${</span><span class="nv">out_file</span><span class="si">}</span>.uniprot.txt
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="k">done</span>
+</code></pre></div>
+<p>Submit the script</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sbatch annotate_uniprot.sl
+</code></pre></div>
+<hr />
+<h3 id="annotating-mags-against-the-pfam-database-with-hmmer">Annotating MAGs against the <em>Pfam</em> database with <em>hmmer</em><a class="headerlink" href="#annotating-mags-against-the-pfam-database-with-hmmer" title="Permanent link">&para;</a></h3>
+<p>The standard software for performing HMM-profiling annotation is <a href="http://hmmer.org/">hmmer</a>. Compared to <code>BLAST</code>, <code>FASTA</code>, and other sequence alignment and database search tools based on older scoring methodology, <code>HMMER</code> aims to be significantly more accurate and more able to detect remote homologs because of the strength of its underlying mathematical models. In the past, this strength came at significant computational expense, but in the new <code>HMMER3</code> project, <code>HMMER</code> is now essentially as fast as <code>BLAST</code>. </p>
+<p><code>HMMER</code> will search one or more profiles against a sequence database for sequence hommologs, and for making sequence alignments, implementing profile hidden Markov models. In this exercise, we will perform a search using <code>hmmsearch</code>. For each profile in <em>hmmfile</em>, <code>HMMER</code> uses that query profile to search the target database of sequences indicated in <em>seqdb</em>, and output ranked lists of the sequences with the most significant matches to the profile. <code>hmmsearch</code> accepts any <em>fastA</em> file as target database input. It also accepts EMBL/UniProtKB text format, and Genbank format. It will automatically determine what format your file is in so you don’t have to specify it. </p>
+<p>As we did with <code>diamond</code>, we will also have to modify some parameters to get the desired ouotput. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>module load HMMER/3.1b2-gimkl-2017a
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>hmmsearch -h 
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># hmmsearch :: search profile(s) against a sequence database</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># HMMER 3.1b2 (February 2015); http://hmmer.org/</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Copyright (C) 2015 Howard Hughes Medical Institute.</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1"># Freely distributed under the GNU General Public License (GPLv3).</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># Usage: hmmsearch [options] &lt;hmmfile&gt; &lt;seqdb&gt;</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="c1"># Basic options:</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="c1">#  -h : show brief help on version and usage</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="c1"># Options directing output:</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="c1"># ...</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="c1"># --tblout &lt;f&gt;     : save parseable table of per-sequence hits to file &lt;f&gt;</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="c1"># ....</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="c1"># Options controlling reporting thresholds:</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="c1"># ...</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="c1"># -E &lt;x&gt;     : report sequences &lt;= this E-value threshold in output  [10.0]  (x&gt;0)</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="c1"># ...</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="c1"># Other expert options:</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="c1"># ...</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="c1"># --cpu &lt;n&gt;     : number of parallel CPU workers to use for multithreads</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="c1"># ...</span>
+</code></pre></div>
+<p>We are now going to submit another slurm job to annotate our MAGs using the <a href="https://pfam.xfam.org/">Pfam database</a>. Matching sequences to a <code>Pfam</code> entry allows us to transfer the functional information from an experimentally characterised sequence to uncharacterised sequences in the same entry. <code>Pfam</code> then provides comprehensive annotation for each entry.</p>
+<p>Create a new script</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>nano annotate_pfam.sl
+</code></pre></div>
+<p>Paste in the script (update <code>&lt;YOUR FOLDER&gt;</code>)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="ch">#!/bin/bash -e</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1">#SBATCH --account nesi02659</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1">#SBATCH --job-name annotate_pfam</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1">#SBATCH --res SummerSchool</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1">#SBATCH --time 02:00:00</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1">#SBATCH --mem 5GB</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1">#SBATCH --ntasks 1</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1">#SBATCH --error annotate_pfam_hmm.err</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="c1">#SBATCH --output annotate_pfam_hmm.out</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="c1">#SBATCH --export NONE</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="nb">export</span> <span class="nv">SLURM_EXPORT_ENV</span><span class="o">=</span>ALL
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>module purge
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>module load HMMER/3.1b2-gimkl-2017a
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/10.gene_annotation/
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="k">for</span> prot_file <span class="k">in</span> predictions/*.genes.no_metadata.faa<span class="p">;</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="k">do</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>  <span class="nv">out_file</span><span class="o">=</span><span class="k">$(</span>basename <span class="si">${</span><span class="nv">prot_file</span><span class="si">}</span> .faa<span class="k">)</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>  hmmsearch --tblout gene_annotations/<span class="si">${</span><span class="nv">out_file</span><span class="si">}</span>.pfam.txt -E 1e-3 --cpu <span class="m">10</span> /nesi/nobackup/nesi02659/MGSS_resources_2020/databases/Pfam-A.hmm <span class="si">${</span><span class="nv">prot_file</span><span class="si">}</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="k">done</span>
+</code></pre></div>
+<p>Submit the script</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sbatch annotate_pfam.sl
+</code></pre></div>
+<hr />
+<h3 id="evaluating-the-quality-of-gene-assignment">Evaluating the quality of gene assignment<a class="headerlink" href="#evaluating-the-quality-of-gene-assignment" title="Permanent link">&para;</a></h3>
+<p>Determining how trustworthy a gene annotation is can be a very tricky process. How similar do protein sequences need to be to perform the same function? The answer is surprisingly low. A bioinformatic analysis performed in 1999 identified that proteins with as little as 20 - 35% sequence identity can still share the same function (<a href="https://doi.org/10.1093/protein/12.2.85">Rost, 1999</a>), but this is not a universal occurrence. When evaluating annotations, consider the following questions:</p>
+<ol>
+<li>What is the amino acid identity along the aligned region?</li>
+<li>What is the amino acid <em>similarity</em> between the aligned region?</li>
+<li>What is the coverage as a percentage or the query and target genes?</li>
+<li>If we infer a phylogeny of this query gene with references from the target family, is a stable tree resolved?</li>
+<li>Does the inclusion of this gene function make sense in the context of the organism's taxonomy?</li>
+<li>Does the gene sit on a long contig that is core to the MAG, or is it a short contig carrying only a single gene?</li>
+<li>If we are uncertain of a particular annotation, does the predicted gene occur in an operon? If so, are the other genes present in the annotation?</li>
+</ol>
+<p>We must also remain aware of the potential for incorrectly annotated genes in the annotation database and that proteins can perform multiple functions (and may therefore be attributed multiple, inconsistent annotations). Furthermore, it is also important to consider exactly which part of the target gene the alignment is happening across. There are several catalytic centers of enzymes, such as the Fe-S cofactor, which are shared across many different proteins, and if your annotation is only spanning one of these regions then it may simply be the case that you are identifying a generic electron accepting or donating domain.</p>
+<hr />
+<h3 id="differences-in-taxonomies">Differences in taxonomies<a class="headerlink" href="#differences-in-taxonomies" title="Permanent link">&para;</a></h3>
+<p>Another way to determine if a annotation 'belongs' in the MAG of interest is to consider the predicted taxonomy of the query gene with that of the MAG itself. For example, if you detect a <em>Desulfovibrio</em>-like <em>dsrA</em> seuqence in a bin that has been classified as belonging to the genus <em>Desulfovibrio</em> then it is probably a safe bet that the annotation is correct.</p>
+<p>However, when comparing taxonomic assignments, it is important to be aware of the differing taxonomic schemas that are circulating in the microbiological and bioinformatic literature and to know how to reconcile their differences. Similar to how the 16S rRNA gene taxonomies provided by <em>SILVA</em>, <em>Greengenes</em>, and <em>RDP</em> taxonomies all differ in some aspects, there are multiple competing taxonomies in protein databases.</p>
+<h4 id="examples-of-various-genome-level-and-protein-taxonomies">Examples of various genome-level and protein taxonomies<a class="headerlink" href="#examples-of-various-genome-level-and-protein-taxonomies" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI</a></li>
+<li><a href="https://gtdb.ecogenomic.org/">Genome Taxonomy Database</a></li>
+</ul>
+<p>This problem exists despite the existance of a formal <a href="https://www.microbiologyresearch.org/content/journal/ijsem/10.1099/ijsem.0.000778">Code</a> for the naming of bacteria and archaea, because </p>
+<ol>
+<li>There are no rules governing how we define the grouping of these names together, other than for type species</li>
+<li>Defunct synonyms and basonyms are not correctly purged from taxonomy lists (this is quite noticable with the NCBI taxonomy)</li>
+<li>Valid names cannot be assigned for uncultivate organisms, meaning there are many informal placeholder names in the literature. For example, clades like WPS-2, SAR324, and SAUL are widely cited in the literature despite having no official standing</li>
+</ol>
+<p>It is therefore important to periodically sanity check your taxonomic annotations in order to avoid splitting taxa based on spelling differences or the use of historic names that have since been reclassified.</p>
+<hr />
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../ex12_gene_prediction/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Gene prediction" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Gene prediction
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../ex14_gene_annotation_part2/" class="md-footer__link md-footer__link--next" aria-label="Next: Gene annotation (part 2)" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Gene annotation (part 2)
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

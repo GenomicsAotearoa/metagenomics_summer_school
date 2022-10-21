@@ -2,10 +2,22 @@
 
 ### Objectives
 
-* [Bin dereplication using `DAS_Tool` - Creating input tables](#bin-dereplication-using-das_tool---creating-input-tables)
-* [Bin dereplication using `DAS_Tool` - Running the tool](#bin-dereplication-using-das_tool---running-the-tool)
-* [Evaluating bins using `CheckM`](#evaluating-bins-using-checkm)
-* [Discussion: dereplication across multiple assemblies](#discussion-dereplication-across-multiple-assemblies)
+- [Bin dereplication](#bin-dereplication)
+    - [Objectives](#objectives)
+    - [Bin dereplication using `DAS_Tool` - Creating input tables](#bin-dereplication-using-das_tool---creating-input-tables)
+      - [Creating contig/bin tables - *MetaBAT*](#creating-contigbin-tables---metabat)
+          - [Command 1](#command-1)
+          - [Command 2](#command-2)
+          - [Command 3](#command-3)
+          - [Command 4](#command-4)
+      - [Creating contig/bin tables - *MaxBin*](#creating-contigbin-tables---maxbin)
+        - [Warning for unbinned contigs](#warning-for-unbinned-contigs)
+    - [Bin dereplication using *DAS_Tool* - Running the tool](#bin-dereplication-using-das_tool---running-the-tool)
+    - [Evaluating bins using *CheckM*](#evaluating-bins-using-checkm)
+        - [Highly conserved, single copy markers](#highly-conserved-single-copy-markers)
+        - [Genes are considered as co-located clusters](#genes-are-considered-as-co-located-clusters)
+        - [Lineage-specific duplications and losses can be identified](#lineage-specific-duplications-and-losses-can-be-identified)
+    - [Discussion: dereplication across multiple assemblies](#discussion-dereplication-across-multiple-assemblies)
 
 ---
 
@@ -116,7 +128,7 @@ Both `MetaBAT` and `MaxBin` have the option to output unbinned contigs after bin
 We are now ready to run `DAS_Tool`. This can be done from the command line, as it does not take a particularly long time to run for this data set. Start by loading `DAS_Tool`.
 
 ```bash
-module load DAS_Tool/1.1.1-gimkl-2018b-R-3.6.1
+module load DAS_Tool/1.1.5-gimkl-2022a-R-4.2.1
 ```
 
 Depending on whether or not your session has been continued from previous exercises, you may encounter an error performing this module load. This is because some of the tools we have used in previous exercises have dependencies which conflict with the dependencies in `DAS_Tool`. If this is the case for you, you can unload all previous module loads with the following:
@@ -124,16 +136,21 @@ Depending on whether or not your session has been continued from previous exerci
 ```bash
 module purge
 
-module load DAS_Tool/1.1.1-gimkl-2018b-R-3.6.1
-module load DIAMOND/0.9.25-gimkl-2018b
+module load DAS_Tool/1.1.5-gimkl-2022a-R-4.2.1
+module load DIAMOND/2.0.15-GCC-11.3.0
 module load USEARCH/11.0.667-i86linux32
 ```
 
 `DAS_Tool` should now load without issue. With 2 threads, `DAS_Tool` should take 10 - 15 minutes to complete.
 
 ```bash
-DAS_Tool -i metabat_associations.txt,maxbin_associations.txt -l MetaBAT,MaxBin \
-         -t 2 --write_bins 1 --search_engine blast \
+# Create DAS_Tool output directory
+mkdir -p dastool_out/
+
+# Run DAS_Tool
+DAS_Tool -i metabat_associations.txt,maxbin_associations.txt \
+         -l MetaBAT,MaxBin \
+         -t 2 --write_bins --search_engine blastp \
          -c spades_assembly/spades_assembly.m1000.fna \
          -o dastool_out/
 ```
@@ -145,8 +162,8 @@ As usual, we will break down the parameters:
 |**-i ...**|A comma-separated list of the contig/bin files we wish to process|
 |**-l ...**|A comma-separated list of the binning tools used|
 |**-t ...**|Number of threads to use|
-|**--write_bins 1**|A 0 or 1 value telling `DAS_Tool` whether or not to write out a new set of bins<br>This is recommended, because `DAS_Tool` can create slices of old bins based on marker composition (see [the paper](https://www.nature.com/articles/s41564-018-0171-1) for details)|
-|**--search_engine blast**|Specify whether to use `usearch`, `diamond`, or `BLAST` as the alignment tool for comparing gene sequences (see note below)|
+|**--write_bins**|An argument telling `DAS_Tool` whether or not to write out a new set of bins<br>This is recommended, because `DAS_Tool` can create slices of old bins based on marker composition (see [the paper](https://www.nature.com/articles/s41564-018-0171-1) for details)|
+|**--search_engine blastp**|Specify whether to use `usearch`, `diamond`, or `BLAST` as the alignment tool for comparing gene sequences (see note below)|
 |**-c ...**|Path to the assembly used in binning|
 |**-o ..**|Output directory for all files|
 

@@ -1,0 +1,1306 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Genomics Aotearoa & NeSI">
+      
+      
+        <link rel="canonical" href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day3/ex10_viruses/">
+      
+      <link rel="icon" href="../../images/nesi_ga.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>Identifying viral contigs in metagenomic data - Metagenomics Summer School</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Mukta";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="lime" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#identifying-viral-contigs-in-metagenomic-data" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Metagenomics Summer School" class="md-header__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../images/nesi_ga.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Metagenomics Summer School
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Identifying viral contigs in metagenomic data
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+          
+            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Metagenomics Summer School" class="md-nav__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../images/nesi_ga.png" alt="logo">
+
+    </a>
+    Metagenomics Summer School
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Hi!
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Day1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day1" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Day1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex1_bash_scripting/" class="md-nav__link">
+        Introduction to the command line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex2_quality_filtering/" class="md-nav__link">
+        Quality filtering raw reads
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex3_assembly/" class="md-nav__link">
+        Assembly
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex4_assembly/" class="md-nav__link">
+        Assembly (part 2)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex5_evaluating_assemblies/" class="md-nav__link">
+        Evaluating the assemblies
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Day2
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day2" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Day2
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex6_initial_binning/" class="md-nav__link">
+        Introduction to binning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex7_initial_binning/" class="md-nav__link">
+        Introduction to binning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex8_bin_dereplication/" class="md-nav__link">
+        Bin dereplication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex9_refining_bins/" class="md-nav__link">
+        Manually refining bins
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Day3
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day3" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Day3
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Identifying viral contigs in metagenomic data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Identifying viral contigs in metagenomic data
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifying-viral-contigs" class="md-nav__link">
+    Identifying viral contigs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifying-viral-contigs-using-vibrant" class="md-nav__link">
+    Identifying viral contigs using VIBRANT
+  </a>
+  
+    <nav class="md-nav" aria-label="Identifying viral contigs using VIBRANT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-vibrant" class="md-nav__link">
+    Run Vibrant
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examine-outputs-of-vibrant" class="md-nav__link">
+    Examine outputs of VIBRANT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-quality-and-estimate-completeness-of-the-viral-contigs-via-checkv" class="md-nav__link">
+    Check quality and estimate completeness of the viral contigs via CheckV
+  </a>
+  
+    <nav class="md-nav" aria-label="Check quality and estimate completeness of the viral contigs via CheckV">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-checkv" class="md-nav__link">
+    Run CheckV
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examine-outputs-of-checkv" class="md-nav__link">
+    Examine outputs of CheckV
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex11_coverage_and_taxonomy/" class="md-nav__link">
+        Per-sample coverage and assigning taxonomy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex12_gene_prediction/" class="md-nav__link">
+        Gene prediction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex13_gene_annotation_part1/" class="md-nav__link">
+        Gene annotation (part 1)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex14_gene_annotation_part2/" class="md-nav__link">
+        Gene annotation (part 2)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Day4
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day4" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Day4
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex15_gene_annotation_part3/" class="md-nav__link">
+        Gene annotation (part 3)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex16a_data_presentation_Intro/" class="md-nav__link">
+        Presentation of data: Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex16b_data_presentation_Coverage/" class="md-nav__link">
+        Presentation of data: Per-sample coverage heatmaps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex16c_OPTIONAL_data_presentation_Ordination/" class="md-nav__link">
+        (*Optional*) Presentation of data: Ordinations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex16d_data_presentation_KEGG_pathways/" class="md-nav__link">
+        Presentation of data: KEGG pathway maps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex16e_data_presentation_Gene_synteny/" class="md-nav__link">
+        Presentation of data: Gene synteny
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations/" class="md-nav__link">
+        Presentation of data: *Optional exercise*: CAZy annotations heatmap
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Figures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Figures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Figures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../figures/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          Resources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Resources" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Resources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex11_Normalise_coverage_example/" class="md-nav__link">
+        APPENDIX ex11 Normalise coverage example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/" class="md-nav__link">
+        APPENDIX ex11 viral taxonomy prediction via vContact2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex15_gene_synteny_Generate_blast_files/" class="md-nav__link">
+        APPENDIX ex15 gene synteny Generate blast files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex15_gene_synteny_grab_GOI/" class="md-nav__link">
+        APPENDIX ex15 gene synteny grab GOI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex8_Dereplication/" class="md-nav__link">
+        Dereplicating data from multiple assemblies
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex9_Generating_input_files_for_VizBin/" class="md-nav__link">
+        APPENDIX ex9 Generating input files for VizBin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/command_line_shortcuts/" class="md-nav__link">
+        Useful command line shortcuts
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifying-viral-contigs" class="md-nav__link">
+    Identifying viral contigs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifying-viral-contigs-using-vibrant" class="md-nav__link">
+    Identifying viral contigs using VIBRANT
+  </a>
+  
+    <nav class="md-nav" aria-label="Identifying viral contigs using VIBRANT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-vibrant" class="md-nav__link">
+    Run Vibrant
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examine-outputs-of-vibrant" class="md-nav__link">
+    Examine outputs of VIBRANT
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-quality-and-estimate-completeness-of-the-viral-contigs-via-checkv" class="md-nav__link">
+    Check quality and estimate completeness of the viral contigs via CheckV
+  </a>
+  
+    <nav class="md-nav" aria-label="Check quality and estimate completeness of the viral contigs via CheckV">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-checkv" class="md-nav__link">
+    Run CheckV
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examine-outputs-of-checkv" class="md-nav__link">
+    Examine outputs of CheckV
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/day3/ex10_viruses.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="identifying-viral-contigs-in-metagenomic-data">Identifying viral contigs in metagenomic data<a class="headerlink" href="#identifying-viral-contigs-in-metagenomic-data" title="Permanent link">&para;</a></h1>
+<h3 id="objectives">Objectives<a class="headerlink" href="#objectives" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="#identifying-viral-contigs-using-vibrant">Identifying viral contigs using <code>VIBRANT</code></a></li>
+<li><a href="#examine-outputs-of-vibrant">Examine prophage identified by <code>VIBRANT</code></a></li>
+<li><a href="#examine-outputs-of-vibrant">Examine viral metabolism and auxiliary metabolic genes (AMGs) outputs from <code>VIBRANT</code></a></li>
+<li><a href="#check-quality-and-estimate-completeness-of-the-viral-contigs-via-checkv">Check quality and estimate completeness of the viral contigs via <code>CheckV</code></a></li>
+</ul>
+<hr />
+<h3 id="identifying-viral-contigs">Identifying viral contigs<a class="headerlink" href="#identifying-viral-contigs" title="Permanent link">&para;</a></h3>
+<p>Viral metagenomics is a rapidly progressing field, and new software are constantly being developed and released each year that aim to better identify and characterise viral genomic sequences from assembled metagenomic sequence reads. </p>
+<p>Currently, the most commonly used methods are <a href="https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0">VIBRANT</a>, <a href="https://peerj.com/articles/985/">VirSorter</a>, and <a href="https://link.springer.com/epdf/10.1186/s40168-017-0283-5?author_access_token=YQgkTWibFIFPtRICkTjZF2_BpE1tBhCbnbw3BuzI2RMCpVMGldKV8DA9scozc7Z-db3ufPFz9-pswHsYVHyEsCrziBuECllLPOgZ6ANHsMeKF5KejrdDKdeASyDkxB5wfFDq523QSd01cnqxCLqCiQ%3D%3D">VirFinder</a> (or the machine learning implementation of this, <a href="https://github.com/jessieren/DeepVirFinder">DeepVirFinder</a>). A number of recent studies use either one of these tools, or a combination of several at once.</p>
+<p><a href="https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0">VIBRANT</a> uses a machine learning approach based on protein similarity (non-reference-based similarity searches with multiple HMM sets), and is in principle applicable to bacterial and archaeal DNA and RNA viruses, integrated proviruses (which are excised from contigs by <code>VIBRANT</code>), and eukaryotic viruses. </p>
+<p><a href="https://peerj.com/articles/985/">VirSorter</a> uses a predicted protein homology reference database-based approach, together with searching for a number of pre-defined metrics based on known viral genomic features. The authors note that <code>VirSorter</code> is currently best applied to DNA viruses (including prophage, which are also excised from contigs by <code>VirSorter</code>), but is likely poor with RNA viruses (from metatranscriptome data) and is also poor with eukaryotic viruses (as the database currently lacks eukaryotic viruses, and the genomic features incorporated were developed based on viruses of prokaryotes). </p>
+<ul>
+<li><em>Hot off the press: an early test version of <code>VirSorter2</code> was recently released, which expands <code>VirSorter</code>'s target viruses to now include dsDNAphage, ssDNA and RNA viruses, and the viral groups Nucleocytoviricota and lavidaviridae.</em> </li>
+</ul>
+<p><a href="https://github.com/jessieren/DeepVirFinder">DeepVirFinder</a> uses a machine learning based approach based on <em>k</em>-mer frequencies. Having developed a database of the differences in <em>k</em>-mer frequencies between prokaryote and viral genomes, <code>VirFinder</code> examines assembled contigs and identifies whether their <em>k</em>-mer frequencies are comparable to known viruses in the database, using this to predict viral genomic sequence. This method has some limitation based on the viruses that were included when building the database (bacterial DNA viruses, but very few archaeal viruses, and, at least in some versions of the software, no eukaryotic viruses). However, tools are also provided to build your own database should you wish to develop an expanded one. Due to its distinctive <em>k</em>-mer frequency-based approach, <code>VirFinder</code> may also have the capability of identifying some novel viruses overlooked by tools such as <code>VIBRANT</code> or <code>VirSorter</code>.</p>
+<p><strong>Further documentation</strong></p>
+<ul>
+<li><a href="https://github.com/AnantharamanLab/VIBRANT">github.com/AnantharamanLab/VIBRANT</a></li>
+<li><a href="https://github.com/simroux/VirSorter">github.com/simroux/VirSorter</a></li>
+<li><a href="https://github.com/jessieren/DeepVirFinder">github.com/jessieren/DeepVirFinder</a></li>
+</ul>
+<hr />
+<h3 id="identifying-viral-contigs-using-vibrant">Identifying viral contigs using <code>VIBRANT</code><a class="headerlink" href="#identifying-viral-contigs-using-vibrant" title="Permanent link">&para;</a></h3>
+<p>For this exercise, we will use <code>VIBRANT</code> to identify viral contigs from our assembled contigs. As an added bonus, <code>VIBRANT</code> also provides outputs for gene and protein predictions, identified integrated prophage, and metabolism (including viral metabolism and auxiliary-metabolic genes (AMGs) - prokaryote host-derived genes that have been integrated in, and are encoded by, viral genomes). </p>
+<p>These exercises will take place in the <code>7.viruses/</code> folder.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/7.viruses/
+</code></pre></div>
+<h4 id="run-vibrant">Run <em>Vibrant</em><a class="headerlink" href="#run-vibrant" title="Permanent link">&para;</a></h4>
+<p>For this we will input the assembled contigs from the <code>SPAdes</code> assembly we performed earlier. These assembly files are available at <code>7.viruses/spades_assembly/</code></p>
+<p><em>NOTE: The path to the required databases for the <code>VIBRANT</code> NeSI module have been linked to the variable <code>$DB_PATH</code>. This needs to be included in the command (using the <code>-d</code> flag) for <code>VIBRANT</code> to be able to locate them.</em></p>
+<p>Create a new script</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>nano vibrant.sl
+</code></pre></div>
+<p>Paste in the following (updating <code>&lt;YOUR FOLDER&gt;</code>)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="ch">#!/bin/bash -e</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1">#SBATCH --account nesi02659</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1">#SBATCH --res SummerSchool</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1">#SBATCH --job-name vibrant</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1">#SBATCH --time 00:30:00</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1">#SBATCH --mem=4GB</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1">#SBATCH --ntasks=1</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1">#SBATCH --cpus-per-task=16</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1">#SBATCH --error vibrant.err</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1">#SBATCH --output vibrant.out</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1">#SBATCH --profile=task</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="c1">#SBATCH --export NONE</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="nb">export</span> <span class="nv">SLURM_EXPORT_ENV</span><span class="o">=</span>ALL
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="c1"># Load VIBRANT module</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>module purge
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>module load VIBRANT/1.2.1-gimkl-2020a
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="c1"># Set up working directories</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/7.viruses/
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>mkdir -p vibrant
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="c1"># Run VIBRANT</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>srun VIBRANT_run.py -t <span class="m">16</span> <span class="se">\</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>-i spades_assembly/spades_assembly.m1000.fna <span class="se">\</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>-d <span class="nv">$DB_PATH</span> <span class="se">\</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>-folder vibrant/
+</code></pre></div>
+<p>Submit the script as a slurm job</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sbatch vibrant.sl
+</code></pre></div>
+<h4 id="examine-outputs-of-vibrant">Examine outputs of <em>VIBRANT</em><a class="headerlink" href="#examine-outputs-of-vibrant" title="Permanent link">&para;</a></h4>
+<p>Exercise: <code>VIBRANT</code> provides a number of different outputs. Explore through the various folders within the <code>vibrant/</code> folder and identify some that might be of particular interest. Open some of these files to see if you can find the following information:</p>
+<ul>
+<li>How many viral contigs did <code>VIBRANT</code> identify?</li>
+<li>Of these, how many did <code>VIBRANT</code> identify as prophage?</li>
+<li>What are some annotations of interest within the output annotations file? </li>
+<li><em>NOTE: the <code>VIBRANT</code> annotations file includes multiple columns for both **prokaryote*</em> and <strong>viral</strong> protein predictions. Be careful as to which column you are looking at (as well as its associated confidence score) when assessing viral annotations vs. AMGs*.</li>
+<li>Among these annotations, how many were flagged as AMGs?</li>
+<li>What broad metabolic categories did the AMGs fall into? </li>
+<li><em>NOTE: as well as providing this information in table format, <code>VIBRANT</code> also generates a number of summary figures. These figures are not viewable within NeSI, but can be downloaded and opened on your local machine (e.g. via <code>scp ...</code>) if you wish to look more closely at these</em>.</li>
+<li>Discussion point: How might we investigate whether identified putative AMGs are actually <em>within</em> the viral genomes, rather than residual contaminating host genomic sequence attached to the end of integrated prophage (but incompletely trimmed off in the excision process)?</li>
+</ul>
+<hr />
+<h3 id="check-quality-and-estimate-completeness-of-the-viral-contigs-via-checkv">Check quality and estimate completeness of the viral contigs via <em>CheckV</em><a class="headerlink" href="#check-quality-and-estimate-completeness-of-the-viral-contigs-via-checkv" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.biorxiv.org/content/10.1101/2020.05.06.081778v1.abstract">CheckV</a> was recently developed as an analogue to <code>CheckM</code>. <code>CheckV</code> first performs a 'contaminating sequence' trim, removing any retained (prokaryote) host sequence on the end of contigs with integrated prophage, and then assesses the quality and completeness of the assembled viral contigs. The quality of the contigs are also categoriesed based on the recently developed <a href="https://www.nature.com/articles/nbt.4306">Minimum Information about an Unclutivated Virus Genome</a> (MIUViG) standards for reporting sequences of unclutivated virus geneomes (such as those recovered from metagenomic sequencing data). The MIUViG were developed as an extension of the <a href="https://www.nature.com/articles/nbt.1823">Minimum Information about any (x) Sequence</a> (<a href="https://gensc.org/mixs/">MIxS</a>) standards, which include, among others, standards for Metagenome-Assembled Genomes (MIMAG).</p>
+<p>Installation and further instructions for <code>CheckV</code> can be found <a href="https://bitbucket.org/berkeleylab/checkv/src/master/">here</a>.</p>
+<h4 id="run-checkv">Run <em>CheckV</em><a class="headerlink" href="#run-checkv" title="Permanent link">&para;</a></h4>
+<p>Run <code>CheckV</code> providing the <em>fastA</em> file of combined (virus and prophage) viral contigs output by <code>VIBRANT</code> as input (<code>spades_assembly.m1000.phages_combined.fna</code>).</p>
+<p>Create a new script</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>nano checkv.sl
+</code></pre></div>
+<p>Paste in the following (updating <code>&lt;YOUR FOLDER&gt;</code>)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="ch">#!/bin/bash -e</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1">#SBATCH --account nesi02659</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1">#SBATCH --res SummerSchool</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1">#SBATCH --job-name checkv</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1">#SBATCH --time 00:10:00</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1">#SBATCH --mem=3GB</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1">#SBATCH --ntasks=1</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1">#SBATCH --cpus-per-task=10</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="c1">#SBATCH --error checkv.err</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1">#SBATCH --output checkv.out</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="c1">#SBATCH --profile=task</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="c1">#SBATCH --export NONE</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="nb">export</span> <span class="nv">SLURM_EXPORT_ENV</span><span class="o">=</span>ALL
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="c1"># Load the module</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>module purge
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>module load CheckV/0.7.0-gimkl-2020a-Python-3.8.2
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="c1"># Set up working directories</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/7.viruses/
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>mkdir -p checkv_out
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="c1"># Run main analyses </span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="nv">checkv_in</span><span class="o">=</span><span class="s2">&quot;vibrant/VIBRANT_spades_assembly.m1000/VIBRANT_phages_spades_assembly.m1000/spades_assembly.m1000.phages_combined.fna&quot;</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>srun checkv end_to_end <span class="si">${</span><span class="nv">checkv_in</span><span class="si">}</span> checkv_out -t <span class="m">10</span> --quiet
+</code></pre></div>
+<p>Submit the script as a slurm job</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sbatch checkv.sl
+</code></pre></div>
+<h4 id="examine-outputs-of-checkv">Examine outputs of <em>CheckV</em><a class="headerlink" href="#examine-outputs-of-checkv" title="Permanent link">&para;</a></h4>
+<p><code>CheckV</code> provides summary outputs for contamination, completeness, repeats, and an overall quality summary. Have a brief look at some examples of the information you can draw from each of these <code>CheckV</code> outputs. </p>
+<p>Exercise: Examining <code>checkv_out/quality_summary.tsv</code></p>
+<ul>
+<li>How many viral contigs meet the "High-quality" (MIUViG) standard?</li>
+<li>How many might we consider "complete" genomes based on <code>CheckV</code>'s completeness estimation?</li>
+<li>Were any terminal repeat regions identified for any of the contigs?</li>
+<li>How many prophage were identified by <code>CheckV</code>? Why might this differ to <code>VIBRANT</code>'s identification of prophage above?</li>
+<li>Are there any suspicious contigs that you might want to flag for closer examination (and/or careful consideration in downstream analyses)?</li>
+</ul>
+<hr />
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../../day2/ex9_refining_bins/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Manually refining bins" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Manually refining bins
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../ex11_coverage_and_taxonomy/" class="md-footer__link md-footer__link--next" aria-label="Next: Per-sample coverage and assigning taxonomy" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Per-sample coverage and assigning taxonomy
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

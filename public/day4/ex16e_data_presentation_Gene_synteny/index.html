@@ -1,0 +1,1377 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Genomics Aotearoa & NeSI">
+      
+      
+        <link rel="canonical" href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day4/ex16e_data_presentation_Gene_synteny/">
+      
+      <link rel="icon" href="../../images/nesi_ga.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>Presentation of data: Gene synteny - Metagenomics Summer School</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Mukta";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="lime" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#presentation-of-data-gene-synteny" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Metagenomics Summer School" class="md-header__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../images/nesi_ga.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Metagenomics Summer School
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Presentation of data: Gene synteny
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+          
+            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Metagenomics Summer School" class="md-nav__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../images/nesi_ga.png" alt="logo">
+
+    </a>
+    Metagenomics Summer School
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Hi!
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Day1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day1" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Day1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex1_bash_scripting/" class="md-nav__link">
+        Introduction to the command line
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex2_quality_filtering/" class="md-nav__link">
+        Quality filtering raw reads
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex3_assembly/" class="md-nav__link">
+        Assembly
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex4_assembly/" class="md-nav__link">
+        Assembly (part 2)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex5_evaluating_assemblies/" class="md-nav__link">
+        Evaluating the assemblies
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Day2
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day2" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Day2
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex6_initial_binning/" class="md-nav__link">
+        Introduction to binning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex7_initial_binning/" class="md-nav__link">
+        Introduction to binning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex8_bin_dereplication/" class="md-nav__link">
+        Bin dereplication
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex9_refining_bins/" class="md-nav__link">
+        Manually refining bins
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Day3
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day3" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Day3
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex10_viruses/" class="md-nav__link">
+        Identifying viral contigs in metagenomic data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex11_coverage_and_taxonomy/" class="md-nav__link">
+        Per-sample coverage and assigning taxonomy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex12_gene_prediction/" class="md-nav__link">
+        Gene prediction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex13_gene_annotation_part1/" class="md-nav__link">
+        Gene annotation (part 1)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex14_gene_annotation_part2/" class="md-nav__link">
+        Gene annotation (part 2)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Day4
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day4" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Day4
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex15_gene_annotation_part3/" class="md-nav__link">
+        Gene annotation (part 3)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16a_data_presentation_Intro/" class="md-nav__link">
+        Presentation of data: Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16b_data_presentation_Coverage/" class="md-nav__link">
+        Presentation of data: Per-sample coverage heatmaps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16c_OPTIONAL_data_presentation_Ordination/" class="md-nav__link">
+        (*Optional*) Presentation of data: Ordinations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16d_data_presentation_KEGG_pathways/" class="md-nav__link">
+        Presentation of data: KEGG pathway maps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Presentation of data: Gene synteny
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Presentation of data: Gene synteny
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-a-sulfur-assimilation-gene-alignment-figure-to-investigate-gene-synteny-using-r" class="md-nav__link">
+    Build a sulfur assimilation gene alignment figure to investigate gene synteny using R
+  </a>
+  
+    <nav class="md-nav" aria-label="Build a sulfur assimilation gene alignment figure to investigate gene synteny using R">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#part-1-parsing-files-in-bash" class="md-nav__link">
+    Part 1 - Parsing files in bash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-2-producing-the-figure-in-r" class="md-nav__link">
+    Part 2 - Producing the figure in R
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 2 - Producing the figure in R">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-working-directory-and-load-r-libraries" class="md-nav__link">
+    Set working directory and load R libraries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-21-load-coordinate-files" class="md-nav__link">
+    Part 2.1 - Load coordinate files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-22-load-annotation-tables" class="md-nav__link">
+    Part 2.2 - Load annotation tables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-23-creating-a-comparison-table-and-building-the-plot-in-r" class="md-nav__link">
+    Part 2.3 - Creating a comparison table and building the plot in R
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotate-the-contig-and-update-the-annotation" class="md-nav__link">
+    Rotate the contig and update the annotation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16f_OPTIONAL_data_presentation_CAZy_annotations/" class="md-nav__link">
+        Presentation of data: *Optional exercise*: CAZy annotations heatmap
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Figures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Figures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Figures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../figures/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          Resources
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Resources" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Resources
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex11_Normalise_coverage_example/" class="md-nav__link">
+        APPENDIX ex11 Normalise coverage example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/" class="md-nav__link">
+        APPENDIX ex11 viral taxonomy prediction via vContact2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex15_gene_synteny_Generate_blast_files/" class="md-nav__link">
+        APPENDIX ex15 gene synteny Generate blast files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex15_gene_synteny_grab_GOI/" class="md-nav__link">
+        APPENDIX ex15 gene synteny grab GOI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex8_Dereplication/" class="md-nav__link">
+        Dereplicating data from multiple assemblies
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/APPENDIX_ex9_Generating_input_files_for_VizBin/" class="md-nav__link">
+        APPENDIX ex9 Generating input files for VizBin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/command_line_shortcuts/" class="md-nav__link">
+        Useful command line shortcuts
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-a-sulfur-assimilation-gene-alignment-figure-to-investigate-gene-synteny-using-r" class="md-nav__link">
+    Build a sulfur assimilation gene alignment figure to investigate gene synteny using R
+  </a>
+  
+    <nav class="md-nav" aria-label="Build a sulfur assimilation gene alignment figure to investigate gene synteny using R">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#part-1-parsing-files-in-bash" class="md-nav__link">
+    Part 1 - Parsing files in bash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-2-producing-the-figure-in-r" class="md-nav__link">
+    Part 2 - Producing the figure in R
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 2 - Producing the figure in R">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-working-directory-and-load-r-libraries" class="md-nav__link">
+    Set working directory and load R libraries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-21-load-coordinate-files" class="md-nav__link">
+    Part 2.1 - Load coordinate files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-22-load-annotation-tables" class="md-nav__link">
+    Part 2.2 - Load annotation tables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-23-creating-a-comparison-table-and-building-the-plot-in-r" class="md-nav__link">
+    Part 2.3 - Creating a comparison table and building the plot in R
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotate-the-contig-and-update-the-annotation" class="md-nav__link">
+    Rotate the contig and update the annotation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/day4/ex16e_data_presentation_Gene_synteny.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="presentation-of-data-gene-synteny">Presentation of data: Gene synteny<a class="headerlink" href="#presentation-of-data-gene-synteny" title="Permanent link">&para;</a></h1>
+<h3 id="objectives">Objectives<a class="headerlink" href="#objectives" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="#build-a-sulfur-assimilation-gene-alignment-figure-to-investigate-gene-synteny-using-r">Build a sulfur assimilation gene alignment figure to investigate gene synteny using <code>R</code></a></li>
+<li><a href="#part-1---parsing-files-in-bash">Parsing files in <code>bash</code></a></li>
+<li><a href="#part-2---producing-the-figure-in-r">Import and wrangle data in <code>R</code></a></li>
+<li><a href="#part-23---creating-a-comparison-table-and-building-the-plot-in-r">Create a comparison table and build the plot in <code>R</code></a></li>
+</ul>
+<hr />
+<h3 id="build-a-sulfur-assimilation-gene-alignment-figure-to-investigate-gene-synteny-using-r">Build a sulfur assimilation gene alignment figure to investigate gene synteny using <code>R</code><a class="headerlink" href="#build-a-sulfur-assimilation-gene-alignment-figure-to-investigate-gene-synteny-using-r" title="Permanent link">&para;</a></h3>
+<p>When investigating the evolution of genomes, we sometimes want to consider not only the presence/absence of genes in a genome, but also how they are arranged in an operon. For this exercise, we are going to visualise several sulfur assimilation genes from bin_4, bin_5 and bin_7, comparing their arrangement among the organisms.</p>
+<p>For this exercise, navigate to the folder <code>11.data_presentation/gene_synteny/</code>. You have been provided with a copy of the <code>prodigal</code> gene predictions for each of the bins (<code>.faa</code> files), an annotation output table using multiple databases (<code>.aa</code> files), a small table of the annotation of some key genes of interest (<code>cys.txt</code> files), and blastn output (<code>blast*.txt</code>) comparing the genes of interest from these organisms. The annotation files were created by manually searching the annotations obtained in the previous exercises.</p>
+<p><em>NOTE: Refer to <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex15_gene_synteny_grab_GOI.md">gene_synteny_grab_GOI.md</a> for detailed information on how the <code>cys.txt</code> files were produced.</em></p>
+<p><em>NOTE: Refer to <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex15_gene_synteny_Generate_blast_files.md">gene_synteny_Generate_blast_files.md</a> for detailed information on how the <code>blast</code> files were produced.</em></p>
+<h4 id="part-1-parsing-files-in-bash">Part 1 - Parsing files in <em>bash</em><a class="headerlink" href="#part-1-parsing-files-in-bash" title="Permanent link">&para;</a></h4>
+<p>We will be performing this exercise in two stages. Firstly, in <code>bash</code>, we will use <code>cut</code> and <code>tail</code> to pull out the genes of interest listed in the <code>*cys.txt</code> files from the <code>prodigal</code> files. The gene names will then be used to create a table of gene coordinates from the <code>prodigal</code> output using <code>grep</code>, <code>cut</code>, and <code>sed</code>.</p>
+<p>For these <code>bash</code> steps, we will need to return to our logged in NeSI terminal. Switch over to a NeSI <code>Jupyter hub</code> terminal or log in to a fresh session in a new terminal. </p>
+<p>Navigate to the <code>11.data_presentation/gene_synteny/</code> folder, and then perform the <code>cut</code> and <code>tail</code> steps outlined above.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/11.data_presentation/gene_synteny/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>cut -f3 bin_4_cys.txt <span class="p">|</span> tail -n+2 &gt; bin_4_cys.genes
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>cut -f3 bin_5_cys.txt <span class="p">|</span> tail -n+2 &gt; bin_5_cys.genes
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>cut -f3 bin_7_cys.txt <span class="p">|</span> tail -n+2 &gt; bin_7_cys.genes
+</code></pre></div>
+<p>We now have three new files, ending with the <code>.genes</code> suffix which are simply a list of the genes that we wish to extract from the <code>prodigal</code> files. We can then use each of these files as input for <code>grep</code> to pull out the <em>fastA</em> entries that correspond to these genes.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>grep -f bin_4_cys.genes bin_4.filtered.genes.faa <span class="p">|</span> cut -f1,2,3,4 -d <span class="s2">&quot;#&quot;</span> <span class="p">|</span> sed <span class="s1">&#39;s/&gt;//g&#39;</span> <span class="p">|</span> sed <span class="s1">&#39;s/#/\t/g&#39;</span> &gt; bin_4_cys.coords
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>grep -f bin_5_cys.genes bin_5.filtered.genes.faa <span class="p">|</span> cut -f1,2,3,4 -d <span class="s2">&quot;#&quot;</span> <span class="p">|</span> sed <span class="s1">&#39;s/&gt;//g&#39;</span> <span class="p">|</span> sed <span class="s1">&#39;s/#/\t/g&#39;</span> &gt; bin_5_cys.coords
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>grep -f bin_7_cys.genes bin_7.filtered.genes.faa <span class="p">|</span> cut -f1,2,3,4 -d <span class="s2">&quot;#&quot;</span> <span class="p">|</span> sed <span class="s1">&#39;s/&gt;//g&#39;</span> <span class="p">|</span> sed <span class="s1">&#39;s/#/\t/g&#39;</span> &gt; bin_7_cys.coords
+</code></pre></div>
+<p>As previously, we will quickly go through the steps of this command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>grep -f bin_4_cys.genes bin_4.filtered.genes.faa <span class="p">|</span> cut -f1,2,3,4 -d <span class="s2">&quot;#&quot;</span> <span class="p">|</span> sed <span class="s1">&#39;s/&gt;//g&#39;</span> <span class="p">|</span> sed <span class="s1">&#39;s/#/\t/g&#39;</span> &gt; bin_4_cys.coords
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p">|</span>                                     <span class="p">|</span>                      <span class="p">|</span>              <span class="p">|</span>                <span class="p">|</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">|</span>                                     <span class="p">|</span>                      <span class="p">|</span>              <span class="p">|</span>                Write the output
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">|</span>                                     <span class="p">|</span>                      <span class="p">|</span>              <span class="p">|</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">|</span>                                     <span class="p">|</span>                      <span class="p">|</span>              Replace each <span class="s1">&#39;#&#39;</span> character with tab
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">|</span>                                     <span class="p">|</span>                      <span class="p">|</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">|</span>                                     <span class="p">|</span>                      For each line, replace the <span class="s1">&#39;&gt;&#39;</span> with empty text
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">|</span>                                     <span class="p">|</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">|</span>                                     Split the results into columns delimited by the <span class="c1"># character,</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">|</span>                                     <span class="k">then</span> take columns <span class="m">1</span> - <span class="m">4</span>.
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">|</span> Select the lines of the bin_4_cys.faa file that contain entries found <span class="k">in</span> the bin_4_cys.genes file.
+</code></pre></div>
+<p>Check the content of the <code>.coords</code> files now. You should see something like the following:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cat bin_4_cys.coords
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># bin_4_NODE_55_length_158395_cov_1.135272_128     135928          136935          1</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># bin_4_NODE_55_length_158395_cov_1.135272_129     136994          137299          1</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># bin_4_NODE_55_length_158395_cov_1.135272_130     137411          138322          1</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># bin_4_NODE_55_length_158395_cov_1.135272_131     138413          139201          1</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># bin_4_NODE_55_length_158395_cov_1.135272_132     139267          140100          1</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># bin_4_NODE_55_length_158395_cov_1.135272_133     140110          140988          1</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># bin_4_NODE_55_length_158395_cov_1.135272_134     140985          142073          1</span>
+</code></pre></div>
+<p>If you recall from the previous exercise on gene prediction, we have taken the first four entries from each line of the <code>prodigal</code> output, which consists of:</p>
+<ol>
+<li>The gene name, written as [CONTIG]_[GENE]</li>
+<li>The start position of the gene</li>
+<li>The stop position of the gene</li>
+<li>The orienation of the gene</li>
+</ol>
+<p>We will now use these tables, together with the annotation tables to create the gene synteny view in <code>R</code>.</p>
+<h4 id="part-2-producing-the-figure-in-r">Part 2 - Producing the figure in <em>R</em><a class="headerlink" href="#part-2-producing-the-figure-in-r" title="Permanent link">&para;</a></h4>
+<p>First, move back to the <a href="https://jupyter.nesi.org.nz/hub/login">Jupyter hub Notebook</a> pane where we have <code>R</code> running as the kernel (or relaunch a new <code>R 4.0.1</code> Notebook). (Outside the context of this workshop, open <code>RStudio</code> with the required packages installed (see the <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16a_data_presentation_Intro.md">data presentation intro</a> docs for more information)).</p>
+<p>There are two <code>R</code> libaries we need to load for this exercise.</p>
+<h5 id="set-working-directory-and-load-r-libraries">Set working directory and load <em>R</em> libraries<a class="headerlink" href="#set-working-directory-and-load-r-libraries" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nf">setwd</span><span class="p">(</span><span class="s">&#39;/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/11.data_presentation/gene_synteny/&#39;</span><span class="p">)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nf">library</span><span class="p">(</span><span class="n">genoPlotR</span><span class="p">)</span>
+</code></pre></div>
+<h5 id="part-21-load-coordinate-files">Part 2.1 - Load coordinate files<a class="headerlink" href="#part-21-load-coordinate-files" title="Permanent link">&para;</a></h5>
+<p>We can now begin importing the data. First, we will import the <code>.coords</code> files, and set column names to the files.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">bin_4_coords</span> <span class="o">=</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&#39;bin_4_cys.coords&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">F</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39;\t&#39;</span><span class="p">,</span> <span class="n">stringsAsFactors</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nf">colnames</span><span class="p">(</span><span class="n">bin_4_coords</span><span class="p">)</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&#39;start&#39;</span><span class="p">,</span> <span class="s">&#39;end&#39;</span><span class="p">,</span> <span class="s">&#39;strand&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">bin_5_coords</span> <span class="o">=</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&#39;bin_5_cys.coords&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">F</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39;\t&#39;</span><span class="p">,</span> <span class="n">stringsAsFactors</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nf">colnames</span><span class="p">(</span><span class="n">bin_5_coords</span><span class="p">)</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&#39;start&#39;</span><span class="p">,</span> <span class="s">&#39;end&#39;</span><span class="p">,</span> <span class="s">&#39;strand&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">bin_7_coords</span> <span class="o">=</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&#39;bin_7_cys.coords&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">F</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39;\t&#39;</span><span class="p">,</span> <span class="n">stringsAsFactors</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nf">colnames</span><span class="p">(</span><span class="n">bin_7_coords</span><span class="p">)</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&#39;start&#39;</span><span class="p">,</span> <span class="s">&#39;end&#39;</span><span class="p">,</span> <span class="s">&#39;strand&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>Take a look at the content of each of these data.frames, by entering their names into the terminal. You should notice that the coordinates occur at quite different positions between the genomes. If we were looking at complete genomes, this would indicate their position relative to the <em>origin of replication</em>, but as these are unclosed genomes obtained from MAGs, they reflect the coordinates upon their particular <em>contig</em>.</p>
+<p>We now parse these data.frames into the <em>dna_seg</em> data class, which is defined by the <code>genoPlotR</code> library.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">bin_4_ds</span> <span class="o">=</span> <span class="nf">dna_seg</span><span class="p">(</span><span class="n">bin_4_coords</span><span class="p">)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">bin_5_ds</span> <span class="o">=</span> <span class="nf">dna_seg</span><span class="p">(</span><span class="n">bin_5_coords</span><span class="p">)</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">bin_7_ds</span> <span class="o">=</span> <span class="nf">dna_seg</span><span class="p">(</span><span class="n">bin_7_coords</span><span class="p">)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">bin_5_ds</span>
+</code></pre></div>
+<table>
+<caption>A dna_seg: 4 × 11</caption>
+<thead>
+    <tr><th scope=col>name</th><th scope=col>start</th><th scope=col>end</th><th scope=col>strand</th><th scope=col>col</th><th scope=col>fill</th><th scope=col>lty</th><th scope=col>lwd</th><th scope=col>pch</th><th scope=col>cex</th><th scope=col>gene_type</th></tr>
+    <tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><td>bin_5_NODE_95_length_91726_cov_0.379357_18 </td><td>16268</td><td>17257</td><td>-1</td><td>blue</td><td>blue</td><td>1</td><td>1</td><td>8</td><td>1</td><td>arrows</td></tr>
+    <tr><td>bin_5_NODE_95_length_91726_cov_0.379357_19 </td><td>17261</td><td>18130</td><td>-1</td><td>blue</td><td>blue</td><td>1</td><td>1</td><td>8</td><td>1</td><td>arrows</td></tr>
+    <tr><td>bin_5_NODE_95_length_91726_cov_0.379357_20 </td><td>18141</td><td>18959</td><td>-1</td><td>blue</td><td>blue</td><td>1</td><td>1</td><td>8</td><td>1</td><td>arrows</td></tr>
+    <tr><td>bin_5_NODE_95_length_91726_cov_0.379357_21 </td><td>19121</td><td>20119</td><td>-1</td><td>blue</td><td>blue</td><td>1</td><td>1</td><td>8</td><td>1</td><td>arrows</td></tr>
+</tbody>
+</table>
+
+<p>By looking at the table, we can see that the genes in bin_5 are in reversed order (strand -1), so we might want to change the color of the gene to make sure they are different than bin_4 and bin_7.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">bin_5_ds</span><span class="o">$</span><span class="n">col</span> <span class="o">=</span> <span class="s">&quot;#1a535c&quot;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">bin_5_ds</span><span class="o">$</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;#1a535c&quot;</span>
+</code></pre></div>
+<h5 id="part-22-load-annotation-tables">Part 2.2 - Load annotation tables<a class="headerlink" href="#part-22-load-annotation-tables" title="Permanent link">&para;</a></h5>
+<p>Then, we can load the annotation tables we have into <code>R</code> and take a look at them.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">bin_4_ann</span> <span class="o">=</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&#39;bin_4_cys.txt&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39;\t&#39;</span><span class="p">,</span> <span class="n">stringsAsFactors</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nf">cbind</span><span class="p">(</span><span class="n">.</span><span class="p">,</span> <span class="n">bin_4_coords</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nf">select</span><span class="p">(</span><span class="n">Annotation</span><span class="p">,</span> <span class="n">start1</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end1</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">strand1</span><span class="o">=</span><span class="n">strand</span><span class="p">)</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">bin_5_ann</span> <span class="o">=</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&#39;bin_5_cys.txt&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39;\t&#39;</span><span class="p">,</span> <span class="n">stringsAsFactors</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nf">cbind</span><span class="p">(</span><span class="n">.</span><span class="p">,</span> <span class="n">bin_5_coords</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nf">select</span><span class="p">(</span><span class="n">Annotation</span><span class="p">,</span> <span class="n">start1</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end1</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">strand1</span><span class="o">=</span><span class="n">strand</span><span class="p">)</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">bin_7_ann</span> <span class="o">=</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&#39;bin_7_cys.txt&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39;\t&#39;</span><span class="p">,</span> <span class="n">stringsAsFactors</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="nf">cbind</span><span class="p">(</span><span class="n">.</span><span class="p">,</span> <span class="n">bin_7_coords</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="nf">select</span><span class="p">(</span><span class="n">Annotation</span><span class="p">,</span> <span class="n">start1</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end1</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">strand1</span><span class="o">=</span><span class="n">strand</span><span class="p">)</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="n">bin_5_ann</span>
+</code></pre></div>
+<table>
+<caption>A data.frame: 4 × 4</caption>
+<thead>
+    <tr><th scope=col>Annotation</th><th scope=col>start1</th><th scope=col>end1</th><th scope=col>strand1</th></tr>
+    <tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><td> sbp; sulfate-binding protein                                      </td><td>16268</td><td>17257</td><td>-1</td></tr>
+    <tr><td> cysT; sulfate transporter CysT                                    </td><td>17261</td><td>18130</td><td>-1</td></tr>
+    <tr><td> cysW; sulfate transporter CysW                                    </td><td>18141</td><td>18959</td><td>-1</td></tr>
+    <tr><td> cysA; sulfate.thiosulfate ABC transporter ATP-binding protein CysA</td><td>19121</td><td>20119</td><td>-1</td></tr>
+</tbody>
+</table>
+
+<p>We need to create one more table with descriptive information. This is an <em>annotation</em> object, which contains the name of each gene in the figure along with the coordinates to write the name. x1 = starts of the gene, x2 = end of the gene</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">annot1</span> <span class="o">&lt;-</span> <span class="nf">annotation</span><span class="p">(</span><span class="n">x1</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">bin_4_ds</span><span class="o">$</span><span class="n">start</span><span class="p">[</span><span class="m">1</span><span class="p">],</span> <span class="n">bin_4_ds</span><span class="o">$</span><span class="n">start</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="n">bin_4_ds</span><span class="o">$</span><span class="n">start</span><span class="p">[</span><span class="m">5</span><span class="p">],</span><span class="n">bin_4_ds</span><span class="o">$</span><span class="n">start</span><span class="p">[</span><span class="m">6</span><span class="p">],</span><span class="n">bin_4_ds</span><span class="o">$</span><span class="n">start</span><span class="p">[</span><span class="m">7</span><span class="p">]),</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>                    <span class="n">x2</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">bin_4_ds</span><span class="o">$</span><span class="n">end</span><span class="p">[</span><span class="m">1</span><span class="p">],</span> <span class="n">bin_4_ds</span><span class="o">$</span><span class="n">end</span><span class="p">[</span><span class="m">4</span><span class="p">],</span> <span class="n">bin_4_ds</span><span class="o">$</span><span class="n">end</span><span class="p">[</span><span class="m">5</span><span class="p">],</span> <span class="n">bin_4_ds</span><span class="o">$</span><span class="n">end</span><span class="p">[</span><span class="m">6</span><span class="p">],</span> <span class="n">bin_4_ds</span><span class="o">$</span><span class="n">end</span><span class="p">[</span><span class="m">7</span><span class="p">]),</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>                    <span class="n">text</span> <span class="o">=</span>  <span class="nf">c</span><span class="p">(</span><span class="s">&quot;sbp&quot;</span><span class="p">,</span> <span class="s">&quot;unknown domain&quot;</span><span class="p">,</span> <span class="s">&quot;cysU&quot;</span><span class="p">,</span> <span class="s">&quot;cysW&quot;</span><span class="p">,</span> <span class="s">&quot;cysA&quot;</span><span class="p">),</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>                    <span class="n">rot</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">annot2</span> <span class="o">&lt;-</span> <span class="nf">annotation</span><span class="p">(</span><span class="n">x1</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">bin_7_ds</span><span class="o">$</span><span class="n">start</span><span class="p">[</span><span class="m">1</span><span class="p">],</span> <span class="n">bin_7_ds</span><span class="o">$</span><span class="n">start</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="n">bin_7_ds</span><span class="o">$</span><span class="n">start</span><span class="p">[</span><span class="m">3</span><span class="p">],</span><span class="n">bin_7_ds</span><span class="o">$</span><span class="n">start</span><span class="p">[</span><span class="m">4</span><span class="p">]),</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>                    <span class="n">x2</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">bin_7_ds</span><span class="o">$</span><span class="n">end</span><span class="p">[</span><span class="m">1</span><span class="p">],</span> <span class="n">bin_7_ds</span><span class="o">$</span><span class="n">end</span><span class="p">[</span><span class="m">2</span><span class="p">],</span> <span class="n">bin_7_ds</span><span class="o">$</span><span class="n">end</span><span class="p">[</span><span class="m">3</span><span class="p">],</span> <span class="n">bin_7_ds</span><span class="o">$</span><span class="n">end</span><span class="p">[</span><span class="m">4</span><span class="p">]),</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>                    <span class="n">text</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;sbp&quot;</span><span class="p">,</span> <span class="s">&quot;cysT&quot;</span><span class="p">,</span><span class="s">&quot;cysW&quot;</span><span class="p">,</span><span class="s">&quot;cysA&quot;</span><span class="p">),</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>                    <span class="n">rot</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;black&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h5 id="part-23-creating-a-comparison-table-and-building-the-plot-in-r">Part 2.3 - Creating a comparison table and building the plot in <em>R</em><a class="headerlink" href="#part-23-creating-a-comparison-table-and-building-the-plot-in-r" title="Permanent link">&para;</a></h5>
+<p>Then, we can parse the blast output as comparison file among the genomes. genoPlotR can read tabular files, either user-generated tab files (read_comparison_from_tab), or from BLAST output (read_comparison_from_blast). To produce files that are readable by genoPlotR, the -m 8 or 9 option should be used in blastall, or -outfmt 6 or 7 with the BLAST+ suite.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">blast1</span> <span class="o">=</span> <span class="nf">read_comparison_from_blast</span><span class="p">(</span><span class="s">&quot;blast_bin4_bin5.txt&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">blast2</span> <span class="o">=</span> <span class="nf">read_comparison_from_blast</span><span class="p">(</span><span class="s">&quot;blast_bin5_bin7.txt&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>What it does here is to set the line color according to the direction of the gene match and the color gradient is based on the percent identity of the matches. Lighter color indicates weaker match and darker color indicates strong match.</p>
+<p>Now we can generate the plot. Running this command in <code>RStudio</code> or our <code>Jupyter Notebook</code> running the <code>R</code> kernel interactively loads the figure. </p>
+<p><em>NOTE: the commented-out lines below (the two lines starting with <code>#</code>) will not run. Un-comment these if you wish to save the figure to file rather than opening it in the <code>Jupyter</code> or <code>RStudio</code> viewer. (N.b. alternatives using a similar command are also available other formats, including <code>tiff</code> and <code>png</code>).</em></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">#pdf(&quot;genoplot.pdf&quot;,colormodel = &quot;cmyk&quot;,width = 8,height = 4,paper = &#39;special&#39;)</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nf">plot_gene_map</span><span class="p">(</span><span class="n">dna_segs</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">bin_4_ds</span><span class="p">,</span><span class="n">bin_5_ds</span><span class="p">,</span><span class="n">bin_7_ds</span><span class="p">),</span> 
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>              <span class="n">gene_type</span> <span class="o">=</span> <span class="s">&quot;arrows&quot;</span><span class="p">,</span> <span class="n">dna_seg_labels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;bin_4&quot;</span><span class="p">,</span> <span class="s">&quot;bin_5&quot;</span><span class="p">,</span><span class="s">&quot;bin_7&quot;</span><span class="p">),</span> 
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>              <span class="n">comparisons</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">blast1</span><span class="p">,</span><span class="n">blast2</span><span class="p">),</span> <span class="n">dna_seg_scale</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> 
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>              <span class="n">override_color_schemes</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="n">annotations</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">annot1</span><span class="p">,</span><span class="kc">NULL</span><span class="p">,</span><span class="n">annot2</span><span class="p">),</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>              <span class="n">annotation_height</span><span class="o">=</span><span class="m">1.7</span><span class="p">,</span> <span class="n">dna_seg_label_cex</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span><span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Sulfur assimilation&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1">#dev.off()</span>
+</code></pre></div>
+<p><img alt="png" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_gene_synteny_fig1.png" /></p>
+<p><em>NOTE: While we do have control over the colours of the arrows via setting the <code>bin_n_ds$col</code> and <code>bin_n_ds$fill</code> parameters for each contig (as above), unfortunately there appears to be little flexibility within the <code>plot_gene_map()</code> function for setting the colours of the segments joining the arrows (the current options are limited to 'red_blue', 'blue_red', and 'grey').</em></p>
+<p>Careful analysis would be needed to determine whether this is a genuine rearrangement relative to the rest of the genome, as these are draft genomes and contig orientation can either be forward or reverse. In this case, you can see that genes in bin_5 are in reversed order relative to the other bin contigs, hence, we can manually rotate the contig.</p>
+<h5 id="rotate-the-contig-and-update-the-annotation">Rotate the contig and update the annotation<a class="headerlink" href="#rotate-the-contig-and-update-the-annotation" title="Permanent link">&para;</a></h5>
+<p>Rotate the orientation of the contig from bin_5:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">blast1</span> <span class="o">=</span> <span class="nf">mutate</span><span class="p">(</span><span class="n">blast1</span><span class="p">,</span> <span class="n">direction</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">blast2</span> <span class="o">=</span> <span class="nf">mutate</span><span class="p">(</span><span class="n">blast2</span><span class="p">,</span> <span class="n">direction</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1">#annot3 &lt;- annotation(x1 = c(bin_4_ds$start[1], bin_4_ds$start[2],bin_4_ds$start[3],bin_4_ds$start[4],bin_4_ds$start[7]),</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="c1">#                    x2 = c(bin_4_ds$end[1], bin_4_ds$end[2], bin_4_ds$end[3], bin_4_ds$end[6], bin_4_ds$end[7]),</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="c1">#                    text = c(&quot;cysA&quot;,&quot;cysW&quot;,&quot;cysU&quot;,&quot;unknown domain&quot; ,&quot;sbp&quot;),</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1">#                    rot = 0, col = &quot;black&quot;)</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="c1">#edit the color</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="n">bin_5_ds</span><span class="o">$</span><span class="n">col</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="n">bin_5_ds</span><span class="o">$</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span>
+</code></pre></div>
+<p>Regenerate the figure:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1">#AFTER ROTATING</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1">#pdf(&quot;genoplot_rotated.pdf&quot;,colormodel = &quot;cmyk&quot;,width = 8, height = 4, paper = &#39;special&#39;)</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nf">plot_gene_map</span><span class="p">(</span><span class="n">dna_segs</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">bin_4_ds</span><span class="p">,</span><span class="n">bin_5_ds</span><span class="p">,</span><span class="n">bin_7_ds</span><span class="p">),</span> 
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>              <span class="n">gene_type</span> <span class="o">=</span> <span class="s">&quot;arrows&quot;</span><span class="p">,</span> <span class="n">dna_seg_labels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;bin_4&quot;</span><span class="p">,</span> <span class="s">&quot;bin_5&quot;</span><span class="p">,</span><span class="s">&quot;bin_7&quot;</span><span class="p">),</span> 
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>              <span class="n">comparisons</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">blast1</span><span class="p">,</span><span class="n">blast2</span><span class="p">),</span> <span class="n">dna_seg_scale</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> 
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>              <span class="n">override_color_schemes</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="n">annotations</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">annot1</span><span class="p">,</span><span class="kc">NULL</span><span class="p">,</span><span class="n">annot2</span><span class="p">),</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>              <span class="n">annotation_height</span><span class="o">=</span><span class="m">1.7</span><span class="p">,</span> <span class="n">dna_seg_label_cex</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span><span class="n">xlims</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="kc">NULL</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="kc">Inf</span><span class="p">,</span> <span class="o">-</span><span class="kc">Inf</span><span class="p">),</span> <span class="kc">NULL</span><span class="p">),</span><span class="n">main</span> <span class="o">=</span> <span class="s">&quot;Sulfur assimilation&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="c1">#dev.off()</span>
+</code></pre></div>
+<p><img alt="png" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_gene_synteny_fig2.png" /></p>
+<p>All done! We can see here that compared to bin_5 and bin_7 the following differences are apparent in the gene operon for bin_4:</p>
+<ol>
+<li>Three genes with unknown domain/function present in bin_4 in between <em>cysU</em> and <em>SBP</em></li>
+<li><em>cysW</em> and <em>cysA</em> are highly conserved among the genomes and have higher similarity compared to <em>cysU</em> and <em>SBP</em>.</li>
+</ol>
+<hr />
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../ex16d_data_presentation_KEGG_pathways/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Presentation of data: KEGG pathway maps" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Presentation of data: KEGG pathway maps
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../ex16f_OPTIONAL_data_presentation_CAZy_annotations/" class="md-footer__link md-footer__link--next" aria-label="Next: Presentation of data: *Optional exercise*: CAZy annotations heatmap" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Presentation of data: *Optional exercise*: CAZy annotations heatmap
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
