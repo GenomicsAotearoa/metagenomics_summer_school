@@ -526,6 +526,6 @@ legend("bottomright",
 ```
 
 <center>
-![image](../figures/ex15_Viruses_heatmap.png)
+![image](../figures/ex15_Viruses_heatmap.png){width="600"}
 </center>
 ---
