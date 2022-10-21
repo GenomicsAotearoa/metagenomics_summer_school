@@ -209,10 +209,13 @@ A few example outputs for bins 3 and 5:
 
 #### Bin 3 nitrogen metabolism KEGG map
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_KEGG_maps_ko00910_bin_3.png)
+<center>
+![image](../figures/ex15_KEGG_maps_ko00910_bin_3.png){width="700"}
+</center>
 
 #### Bin 5 nitrogen metabolism KEGG map
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_KEGG_maps_ko00910_bin_5.png)
-
+<center>
+![image](../figures/ex15_KEGG_maps_ko00910_bin_5.png){width="700"}
+</center>
 ---
