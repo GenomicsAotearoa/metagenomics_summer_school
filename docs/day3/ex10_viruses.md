@@ -75,9 +75,7 @@ Paste in the following (updating `<YOUR FOLDER>`)
 #SBATCH --error vibrant.err
 #SBATCH --output vibrant.out
 #SBATCH --profile=task
-#SBATCH --export NONE
 
-export SLURM_EXPORT_ENV=ALL
 
 # Load VIBRANT module
 module purge
