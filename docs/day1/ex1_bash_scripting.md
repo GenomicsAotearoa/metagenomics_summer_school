@@ -2,17 +2,17 @@
 
 ---
 
-### Objectives
+!!! info "Objectives"
 
-* [Navigating your file system](#navigating-your-file-system)
-* [Copying, Moving, Renaming and Removing files](#copying-moving-renaming-and-removing-files)
-* [Examining file contents](#examining-file-contents)
-* [Redirection, manipulation and extraction](#redirection-manipulation-and-extraction)
-* [Text and file manipulation](#text-and-file-manipulation)
-* [Loops](#loops)
-* [Shell scripting](#scripts)
-* [Moving files between your laptop and NeSI](#moving-files-between-your-laptop-and-remote-clustermachine)
-* [Introduction to slurm](#introduction-to-slurm)
+    * [Navigating your file system](#navigating-your-file-system)
+    * [Copying, Moving, Renaming and Removing files](#copying-moving-renaming-and-removing-files)
+    * [Examining file contents](#examining-file-contents)
+    * [Redirection, manipulation and extraction](#redirection-manipulation-and-extraction)
+    * [Text and file manipulation](#text-and-file-manipulation)
+    * [Loops](#loops)
+    * [Shell scripting](#scripts)
+    * [Moving files between your laptop and NeSI](#moving-files-between-your-laptop-and-remote-clustermachine)
+    * [Introduction to slurm](#introduction-to-slurm)
 
 ---
 
