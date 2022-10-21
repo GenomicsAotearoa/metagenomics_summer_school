@@ -127,18 +127,20 @@ trimmomatic PE -threads 10 -phred33 \
 
 There is a lot going on in this command, so here is a breakdown of the parameters in the command above
 
-|Parameter|Type|Description|
-|:---|:---:|:---|
-|PE|*positional*|Specifies whether we are analysing single- or paired-end reads|
-|-threads 10|*keyword*|Specifies the number of threads to use when processing|
-|-phred33|*keyword*|Specifies the fastq encoding used|
-|mock_R1.adapter_decay.fastq.gz / mock_R2.adapter_decay.fastq.gz|*positional*|The paired forward and reverse reads to trim|
-|mock_R1.qc.fastq.gz|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner also passed|
-|mock_s1.qc.fastq.gz|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner failed (orphan reads)|
-|mock_R2.qc.fastq.gz / mock_s2.qc.fastq.gz|*positional*|The reverse-sequence equivalent of above|
-|HEADCROP:10|*positional*|Adapter trimming command. Remove the first 10 positions in the sequence|
-|SLIDINGWINDOW:4:30|*positional*|Quality filtering command. Analyses each sequence in a 4 base pair sliding window, truncating if the average quality drops below Q30|
-|MINLEN:80|*positional*|Length filtering command, discard sequences that are shorter than 80 base pairs after trimming|
+!!! info ""
+
+    |Parameter|Type|Description|
+    |:---|:---:|:---|
+    |PE|*positional*|Specifies whether we are analysing single- or paired-end reads|
+    |-threads 10|*keyword*|Specifies the number of threads to use when processing|
+    |-phred33|*keyword*|Specifies the fastq encoding used|
+    |mock_R1.adapter_decay.fastq.gz / mock_R2.adapter_decay.fastq.gz|*positional*|The paired forward and reverse reads to trim|
+    |mock_R1.qc.fastq.gz|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner also passed|
+    |mock_s1.qc.fastq.gz|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner failed (orphan reads)|
+    |mock_R2.qc.fastq.gz / mock_s2.qc.fastq.gz|*positional*|The reverse-sequence equivalent of above|
+    |HEADCROP:10|*positional*|Adapter trimming command. Remove the first 10 positions in the sequence|
+    |SLIDINGWINDOW:4:30|*positional*|Quality filtering command. Analyses each sequence in a 4 base pair sliding window, truncating if the average quality drops below Q30|
+    |MINLEN:80|*positional*|Length filtering command, discard sequences that are shorter than 80 base pairs after trimming|
 
 Running the trimmed files back through `FastQC`, we can see that this signifcantly improves the output.
 
