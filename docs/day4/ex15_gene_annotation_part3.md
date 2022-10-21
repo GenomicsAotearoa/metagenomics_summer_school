@@ -1,10 +1,10 @@
 # Gene annotation (part 3)
 
-### Objectives
+!!! info "Objectives"
 
-* [Overview of `DRAM.py annotate` output](#overview-of-drampy-annotate-output)
-* [`DRAM` Distillation step and visualization of results](#dram-distillation-of-the-results)
-* [Tie findings to your initial goal](#tie-findings-to-your-initial-goal)
+    * [Overview of `DRAM.py annotate` output](#overview-of-drampy-annotate-output)
+    * [`DRAM` Distillation step and visualization of results](#dram-distillation-of-the-results)
+    * [Tie findings to your initial goal](#tie-findings-to-your-initial-goal)
 
 ---
 
