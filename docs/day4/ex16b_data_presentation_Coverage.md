@@ -288,21 +288,25 @@ legend("bottomright",
 #dev.off()
 ```
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_MAGs_heatmap.png)
+<center>
+![image](../figures/ex15_MAGs_heatmap.png){width="600"}
+</center>
 
-Some quick take-aways from looking at this plot:
+!!! tip
 
-* We can see that three MAGs are from the same class (*Gammaproteobacteria*)
-* Sample 4 (from sample group *Group_C*) is somewhat of an outlier, with only two bins (MAGs) recovered. Furthermore *bin_7_Nitrobacter* was *only* recovered from this sample.
-* Samples from sample groups A and B each recovered the same sets of bins. 
-* With more samples, we would also be able to better discern co-occurence patterns of the MAGs across the samples by examining the clustering patterns in the dendrogram on the left.
+    Some quick take-aways from looking at this plot:
 
-Feel free to experiment with some of the settings above. For example:
+    * We can see that three MAGs are from the same class (*Gammaproteobacteria*)
+    * Sample 4 (from sample group *Group_C*) is somewhat of an outlier, with only two bins (MAGs) recovered. Furthermore *bin_7_Nitrobacter* was *only* recovered from this sample.
+    * Samples from sample groups A and B each recovered the same sets of bins. 
+    * With more samples, we would also be able to better discern co-occurence patterns of the MAGs across the samples by examining the clustering patterns in the dendrogram on the left.
 
-* What happens if you set `Colv = TRUE, Rowv = TRUE` instead of providing our pre-calculated Bray-Curtis dissimilarity-based clustering? Why might this cluster differently? (Hint: have a look at the documentation for `heatmap.2` to see it's default settings for clustering: `?heatmap.2()`). 
-  * *NOTE: in the `Jupyter` environment, leaving a manual for a function open can be cumbersome. To clear the manual, right-click on the code block containing `?heatmap.2()` and click `Clear Outputs`.*
-* Try removing the column clustering (but retaining the row clustering) by setting `Colv = FALSE, Rowv = as.dendrogram(cov_clus.avg.row)`.
-* Play around with the `margins = ...` settings to see what difference each makes.
+    Feel free to experiment with some of the settings above. For example:
+
+    * What happens if you set `Colv = TRUE, Rowv = TRUE` instead of providing our pre-calculated Bray-Curtis dissimilarity-based clustering? Why might this cluster differently? (Hint: have a look at the documentation for `heatmap.2` to see it's default settings for clustering: `?heatmap.2()`). 
+      * *NOTE: in the `Jupyter` environment, leaving a manual for a function open can be cumbersome. To clear the manual, right-click on the code block containing `?heatmap.2()` and click `Clear Outputs`.*
+    * Try removing the column clustering (but retaining the row clustering) by setting `Colv = FALSE, Rowv = as.dendrogram(cov_clus.avg.row)`.
+    * Play around with the `margins = ...` settings to see what difference each makes.
 
 --- 
 
@@ -521,6 +525,7 @@ legend("bottomright",
 
 ```
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_Viruses_heatmap.png)
-
+<center>
+![image](../figures/ex15_Viruses_heatmap.png)
+</center>
 ---
