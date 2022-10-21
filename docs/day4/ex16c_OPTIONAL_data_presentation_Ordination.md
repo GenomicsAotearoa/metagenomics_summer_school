@@ -20,7 +20,7 @@ In addition to this, a simple mapping file has also been created (`11.data_prese
 !!! abstract "Note"
 
     As discussed in the [coverage and taxonomy exercises](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex11_coverage_and_taxonomy.md), it is usually necessary to normalise coverage values across samples based on equal sequencing depth. This isn't necessary with the mock metagenome data we're working with, but if you include this step in your own work you would read the **normalised** coverage tables into the steps outlined below.*
-    
+
 ---
 
 ### 1. Import and wrangle data in *R*
@@ -201,15 +201,17 @@ merge(., map.df, by = "SampleID", type = "full")
 
 Finally, build the plot using `ggplot`. In this function, we:
 
-* load the data into `ggplot()`, setting `x` and `y` axes data as the `NMDS1` and `NMDS2` columns from the `sol.scrs` data.frame
-* plot the sample points using the `geom_point()` function, and also set the colour aesthetic to be based on the sample group (`Group`) from the mapping file information
-* set `coord_fixed()` to ensure the the scales of the x- and y-axes are kept consistent
-* use the `geom_text` function to add a text label of the [stress value](https://www.researchgate.net/post/What_is_the_importanceexplanation_of_stress_values_in_NMDS_Plots) for this ordination (extracted from `bray.sol$stress`) to the top right corner of the plot
-* set the colours for the sample groups using the `scale_colour_manual()` function. Here we will pass the `group.cols` variable generated above (which is set to have a consistent colour scheme with the figures generated in the previous exercise on coverage heatmaps).
-* Add x- and y-axis labels
-* Modify various visual aspects of the plot using the `theme()` function (as set in the `theme_Ordination` variable above)
-* Save this into the variable `NMDS.plot`
-* *NOTE: here we are also surrounding the entire call in parentheses (`(...)`). This tells `R` to both save the plot in the variable `NMDS.plot` and **also** output the plot to the visualisation pane in `RStudio` or the `Jupyter Notebook`. Omitting the parentheses would result in saving to `NMDS.plot` but not viewing the plot.*
+!!! tip ""
+
+    * load the data into `ggplot()`, setting `x` and `y` axes data as the `NMDS1` and `NMDS2` columns from the `sol.scrs` data.frame
+    * plot the sample points using the `geom_point()` function, and also set the colour aesthetic to be based on the sample group (`Group`) from the mapping file information
+    * set `coord_fixed()` to ensure the the scales of the x- and y-axes are kept consistent
+    * use the `geom_text` function to add a text label of the [stress value](https://www.researchgate.net/post/What_is_the_importanceexplanation_of_stress_values_in_NMDS_Plots) for this ordination (extracted from `bray.sol$stress`) to the top right corner of the plot
+    * set the colours for the sample groups using the `scale_colour_manual()` function. Here we will pass the `group.cols` variable generated above (which is set to have a consistent colour scheme with the figures generated in the previous exercise on coverage heatmaps).
+    * Add x- and y-axis labels
+    * Modify various visual aspects of the plot using the `theme()` function (as set in the `theme_Ordination` variable above)
+    * Save this into the variable `NMDS.plot`
+    * *NOTE: here we are also surrounding the entire call in parentheses (`(...)`). This tells `R` to both save the plot in the variable `NMDS.plot` and **also** output the plot to the visualisation pane in `RStudio` or the `Jupyter Notebook`. Omitting the parentheses would result in saving to `NMDS.plot` but not viewing the plot.* 
 
 ```bash
 (NMDS.plot <- ggplot(sol.scrs, aes(NMDS1, NMDS2)) +
