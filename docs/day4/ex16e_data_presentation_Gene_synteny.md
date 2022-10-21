@@ -218,12 +218,15 @@ plot_gene_map(dna_segs = list(bin_4_ds,bin_5_ds,bin_7_ds),
               annotation_height=1.7, dna_seg_label_cex = 1,main = "Sulfur assimilation")
 #dev.off()
 ```
+<center>
+![image](../figures/ex15_gene_synteny_fig1.png){width="700"}
+</center>
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_gene_synteny_fig1.png)
+!!! abstrac "Note"
 
-*NOTE: While we do have control over the colours of the arrows via setting the `bin_n_ds$col` and `bin_n_ds$fill` parameters for each contig (as above), unfortunately there appears to be little flexibility within the `plot_gene_map()` function for setting the colours of the segments joining the arrows (the current options are limited to 'red_blue', 'blue_red', and 'grey').*
+    While we do have control over the colours of the arrows via setting the `bin_n_ds$col` and `bin_n_ds$fill` parameters for each contig (as above), unfortunately there appears to be little flexibility within the `plot_gene_map()` function for setting the colours of the segments joining the arrows (the current options are limited to 'red_blue', 'blue_red', and 'grey').*
 
-Careful analysis would be needed to determine whether this is a genuine rearrangement relative to the rest of the genome, as these are draft genomes and contig orientation can either be forward or reverse. In this case, you can see that genes in bin_5 are in reversed order relative to the other bin contigs, hence, we can manually rotate the contig.
+    Careful analysis would be needed to determine whether this is a genuine rearrangement relative to the rest of the genome, as these are draft genomes and contig orientation can either be forward or reverse. In this case, you can see that genes in bin_5 are in reversed order relative to the other bin contigs, hence, we can manually rotate the contig.
 
 ##### Rotate the contig and update the annotation
 
@@ -256,9 +259,9 @@ plot_gene_map(dna_segs = list(bin_4_ds,bin_5_ds,bin_7_ds),
 #dev.off()
 ```
 
-
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_gene_synteny_fig2.png)
-
+<center>
+![image](../figures/ex15_gene_synteny_fig2.png){width="700"}
+</center>
 
 All done! We can see here that compared to bin_5 and bin_7 the following differences are apparent in the gene operon for bin_4:
 
