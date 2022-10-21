@@ -1,10 +1,10 @@
 # Evaluating the assemblies
 
-### Objectives
+!!! info "Objectives"
 
-* [Evaluate the resource consumption of various assemblies](#evaluate-the-resource-consumption-of-various-assemblies)
-* [Evaluate the assemblies](#evaluate-the-assemblies)
-* Future considerations
+    * [Evaluate the resource consumption of various assemblies](#evaluate-the-resource-consumption-of-various-assemblies)
+    * [Evaluate the assemblies](#evaluate-the-assemblies)
+    * Future considerations
 
 ---
 
