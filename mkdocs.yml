@@ -24,12 +24,12 @@ theme:
     toggle:
       icon: material/brightness-auto
       name: Switch to light mode
-    primary: lime
+    primary: blue
 
   # Palette toggle for light mode
   - media: "(prefers-color-scheme: light)"
     scheme: default
-    primary: lime
+    primary: blue
 
 
     toggle:
@@ -42,7 +42,7 @@ theme:
     toggle:
       icon: material/brightness-4
       name: Switch to system preference
-    primary: lime
+    primary: blue
   
   features:
     - navigation.tracking
