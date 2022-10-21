@@ -131,8 +131,9 @@ colours <- colorRampPalette(c("#fff9e7","#920000"), space="Lab")(100)
 
 cazy_matrix %>% column_to_rownames('Bin') %>% as.matrix(.) %>% pheatmap(., col = colours)
 ```
-
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_CAZy_heatmap.png)
+<center>
+![image](../figures/ex15_CAZy_heatmap.png){width="700"}
+</center>
 
 And there we go. This is a pretty basic heatmap, so there are a number of presentation issues with it. If you have time, try to do the following fixes to the heatmap by exploring the manual for `pheatmap` or other `tidyverse` and `R` functions.
 
