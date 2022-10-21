@@ -1,12 +1,12 @@
 # Presentation of data: KEGG pathway maps
 
-### Objectives
+!!! info "Objectives"
 
-* [Build a KEGG pathway map using `R`](#build-a-kegg-pathway-map-using-r)
-* [Import and wrangle data in `R`](#set-the-working-directory-and-load-packages-and-files-into-r)
-* [Subset the data for KO IDs of interest](#subset-the-data)
-* [Reshape the data for input into pathview](#reshaping-the-data-for-input-into-pathview)
-* [Creating pathway map of genes related to nitrogen metabolism](#creating-pathway-map-of-genes-related-to-nitrogen-metabolism)
+    * [Build a KEGG pathway map using `R`](#build-a-kegg-pathway-map-using-r)
+    * [Import and wrangle data in `R`](#set-the-working-directory-and-load-packages-and-files-into-r)
+    * [Subset the data for KO IDs of interest](#subset-the-data)
+    * [Reshape the data for input into pathview](#reshaping-the-data-for-input-into-pathview)
+    * [Creating pathway map of genes related to nitrogen metabolism](#creating-pathway-map-of-genes-related-to-nitrogen-metabolism)
 
 ---
 
