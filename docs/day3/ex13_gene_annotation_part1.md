@@ -1,17 +1,17 @@
 # Gene annotation (part 1)
 
-### Objectives
+!!! info "Objectives"
 
-- [Gene annotation (part 1)](#gene-annotation-part-1)
-    - [Objectives](#objectives)
-    - [*BLAST*-like gene annotations and domain annotations](#blast-like-gene-annotations-and-domain-annotations)
-      - [BLAST-like annotation](#blast-like-annotation)
-      - [HMM-profiling of domains](#hmm-profiling-of-domains)
-    - [Annotating MAGs against the *UniProt* database with *diamond*](#annotating-mags-against-the-uniprot-database-with-diamond)
-    - [Annotating MAGs against the *Pfam* database with *hmmer*](#annotating-mags-against-the-pfam-database-with-hmmer)
-    - [Evaluating the quality of gene assignment](#evaluating-the-quality-of-gene-assignment)
-    - [Differences in taxonomies](#differences-in-taxonomies)
-      - [Examples of various genome-level and protein taxonomies](#examples-of-various-genome-level-and-protein-taxonomies)
+    - [Gene annotation (part 1)](#gene-annotation-part-1)
+        - [Objectives](#objectives)
+        - [*BLAST*-like gene annotations and domain annotations](#blast-like-gene-annotations-and-domain-annotations)
+          - [BLAST-like annotation](#blast-like-annotation)
+          - [HMM-profiling of domains](#hmm-profiling-of-domains)
+        - [Annotating MAGs against the *UniProt* database with *diamond*](#annotating-mags-against-the-uniprot-database-with-diamond)
+        - [Annotating MAGs against the *Pfam* database with *hmmer*](#annotating-mags-against-the-pfam-database-with-hmmer)
+        - [Evaluating the quality of gene assignment](#evaluating-the-quality-of-gene-assignment)
+        - [Differences in taxonomies](#differences-in-taxonomies)
+          - [Examples of various genome-level and protein taxonomies](#examples-of-various-genome-level-and-protein-taxonomies)
 
 ---
 
