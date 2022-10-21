@@ -88,47 +88,32 @@ In default annotation mode, `DRAM` only requires as input the directory containi
 
 *NOTE: due to the increased memory requirements, UniRef90 database is not default and the flag `–use_uniref` should be specified in order to search amino acid sequences against UniRef90. In this exercise, due to memory and time constraints, we won't be using the UniRef90 database.*
 
-`DRAM` is not currently available as a NeSI module. Here, we will be running `DRAM` from within a `conda environment`. This is activated by entering the commands below before running the `DRAM.py` command.
+We will start by making sure `DRAM` is loaded properly.
 
-```bash
-
+```sh
 module purge
-module load Miniconda3/4.8.3
-module load gimkl/2020a
-
-export CONDA_PKGS_DIRS=/nesi/project/nesi02659/.conda/pkgs
-export CONDA_ENVS_PATH=/nesi/project/nesi02659/.conda/envs
-
-source activate DRAM
+module load DRAM/1.3.5-Miniconda3
 
 DRAM.py --help
 
-# usage: DRAM.py [-h] {annotate,annotate_genes,distill,strainer,neighborhoods} ...
-
+# usage: DRAM.py [-h] {annotate,annotate_genes,distill,strainer,neighborhoods,merge_annotations} ...
+# 
 # positional arguments:
-#   {annotate,annotate_genes,distill,strainer,neighborhoods}
-#    annotate            Annotate genomes/contigs/bins/MAGs
-#    annotate_genes      Annotate already called genes, limited functionality compared to annotate
-#    distill             Summarize metabolic content of annotated genomes
-#    strainer            Strain annotations down to genes of interest
-#    neighborhoods       Find neighborhoods around genes of interest
-
-#optional arguments:
-#  -h, --help            show this help message and exit
-
-```
-
-To deactivate the `conda` environment and return to the standard command prompt, enter:
-
-```bash
-conda deactivate
+#   {annotate,annotate_genes,distill,strainer,neighborhoods,merge_annotations}
+#     annotate            Annotate genomes/contigs/bins/MAGs
+#     annotate_genes      Annotate already called genes, limited functionality compared to annotate
+#     distill             Summarize metabolic content of annotated genomes
+#     strainer            Strain annotations down to genes of interest
+#     neighborhoods       Find neighborhoods around genes of interest
+#     merge_annotations   Merge multiple annotations to one larger set
+# 
+# options:
+#   -h, --help            show this help message and exit
 ```
 
 #### Submitting *DRAM* annotation as a slurm job
 
 To run this exercise we first need to set up a slurm job. We will use the results for tomorrow's distillation step. 
-
-*NOTE: Currently DRAM has to be run from the directory where* ```DRAM-setup.py``` *was run in order to work. That is why we start the slurm script with* ```cd /nesi/project/nesi02659/.conda/dramdbsetup``` *and pass absolute paths to each of the arguments included in the `DRAM.py` script.*
 
 Create a new script
 
@@ -138,7 +123,7 @@ nano dram_annnotation.sl
 
 Paste in the script (update all of the cases of `<YOUR FOLDER>`)
 
-```bash
+```sh
 #!/bin/bash -e
 
 #SBATCH --account nesi02659
@@ -146,29 +131,22 @@ Paste in the script (update all of the cases of `<YOUR FOLDER>`)
 #SBATCH --res SummerSchool
 #SBATCH --time=5:00:00
 #SBATCH --mem=20Gb
+#SBATCH --cpus-per-task=24
 #SBATCH --error slurm-DRAM_annot.%A-%a.err 
 #SBATCH --output slurm-DRAM_annot.%A-%a.out 
 #SBATCH --export NONE
 
 export SLURM_EXPORT_ENV=ALL
 
-cd /nesi/project/nesi02659/.conda/dramdbsetup
-
 module purge
-module load Miniconda3/4.8.3
-module load gimkl/2020a
+module load DRAM/1.3.5-Miniconda3
 
-export CONDA_PKGS_DIRS=/nesi/project/nesi02659/.conda/pkgs
-export CONDA_ENVS_PATH=/nesi/project/nesi02659/.conda/envs
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
-source activate DRAM
-
-DRAM.py annotate -i '/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/predictions/*.filtered.fna' \
---checkm_quality /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/DRAM_input_files/checkm.txt \
---gtdb_taxonomy /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv \
--o /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/annotation_dram
-
-conda deactivate
+DRAM.py annotate -i 'predictions/*.filtered.fna' \
+--checkm_quality DRAM_input_files/checkm.txt \
+--gtdb_taxonomy DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv \
+-o annotation_dram --threads $SLURM_CPUS_PER_TASK
 ```
 
 Submit the job

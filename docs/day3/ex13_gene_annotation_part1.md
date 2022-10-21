@@ -2,10 +2,16 @@
 
 ### Objectives
 
-* [**BLAST**-like gene annotations and **domain** annotations](#blast-like-gene-annotations-and-domain-annotations)
-* [Overview of annotation databases](#blast-like-gene-annotations-and-domain-annotations)
-* [Evaluating the quality of gene assignment](#evaluating-the-quality-of-gene-assignment)
-* [*Discussion: Differences in taxonomies (GTDB, NCBI etc)*](#differences-in-taxonomies)
+- [Gene annotation (part 1)](#gene-annotation-part-1)
+    - [Objectives](#objectives)
+    - [*BLAST*-like gene annotations and domain annotations](#blast-like-gene-annotations-and-domain-annotations)
+      - [BLAST-like annotation](#blast-like-annotation)
+      - [HMM-profiling of domains](#hmm-profiling-of-domains)
+    - [Annotating MAGs against the *UniProt* database with *diamond*](#annotating-mags-against-the-uniprot-database-with-diamond)
+    - [Annotating MAGs against the *Pfam* database with *hmmer*](#annotating-mags-against-the-pfam-database-with-hmmer)
+    - [Evaluating the quality of gene assignment](#evaluating-the-quality-of-gene-assignment)
+    - [Differences in taxonomies](#differences-in-taxonomies)
+      - [Examples of various genome-level and protein taxonomies](#examples-of-various-genome-level-and-protein-taxonomies)
 
 ---
 
@@ -157,7 +163,7 @@ hmmsearch -h
 # ...
 ```
 
-We are now going to submit another slurm job to annotate our MAGs using the [Pfam database](https://pfam.xfam.org/). Matching sequences to a `Pfam` entry allows us to transfer the functional information from an experimentally characterised sequence to uncharacterised sequences in the same entry. `Pfam` then provides comprehensive annotation for each entry.
+We are now going to submit another slurm job to annotate our MAGs using the [Pfam database](https://www.ebi.ac.uk/interpro/download/Pfam/). Pfam used to have a standalone website, but it has recently been integrated into InterPro maintained by the European Bioinformatics Institute (see [announcement](https://xfam.wordpress.com/2022/08/04/pfam-website-decommission/)). Matching sequences to a `Pfam` entry allows us to transfer the functional information from an experimentally characterised sequence to uncharacterised sequences in the same entry. `Pfam` then provides comprehensive annotation for each entry.
 
 Create a new script
 
