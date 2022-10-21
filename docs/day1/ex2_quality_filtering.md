@@ -2,7 +2,7 @@
 
 ### Objectives
 
-* [Visualising raw reads with `FastQC` on NeSI](#visualising-raw-reads)
+* [Visualising raw reads with `FastQC`](#visualising-raw-reads)
 * [Read trimming and adapter removal with `trimmomatic`](#read-trimming-and-adapter-removal-with-trimmomatic)
 * [Diagnosing poor libraries](#diagnosing-poor-libraries)
 * [Understand common issues and best practices](#understand-common-issues-and-best-practices)
