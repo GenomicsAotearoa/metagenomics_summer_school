@@ -162,12 +162,13 @@ stats.sh in=idbaud_assembly/idbaud_assembly.fna
 
 For more genome-informed evaluation of the assembly, we can use the `MetaQUAST` tool to view our assembled metagenome. This is something of an optional step because, like `QUAST`, `MetaQUAST` aligns your assembly against a set of reference genomes. Under normal circumstances we wouldn't know the composition of the metagenome that led to our assembly. In this instance determining the optimal reference genomes for a `MetaQUAST` evaluation is a bit of a problem. For your own work, the following tools could be used to generate taxonomic summaries of your metagenomes to inform your reference selection:
 
-1. [Kraken2](https://ccb.jhu.edu/software/kraken2/) (DNA based, *k*-mer classification)
-1. [CLARK](http://clark.cs.ucr.edu/) (DNA based. *k*-mer classification)
-1. [Kaiju](http://kaiju.binf.ku.dk/) (Protein based, BLAST classification)
-1. [Centrifuge](https://ccb.jhu.edu/software/centrifuge/manual.shtml) (DNA based, sequence alignment classification)
-1. [MeTaxa2](https://microbiology.se/software/metaxa2/) or [SingleM](https://github.com/wwood/singlem) (DNA based, 16S rRNA recovery and classification)
-1. [MetaPhlAn2](http://huttenhower.sph.harvard.edu/metaphlan2) (DNA based, clade-specific marker gene classification)
+!!! abstract ""
+    1. [Kraken2](https://ccb.jhu.edu/software/kraken2/) (DNA based, *k*-mer classification)
+    1. [CLARK](http://clark.cs.ucr.edu/) (DNA based. *k*-mer classification)
+    1. [Kaiju](http://kaiju.binf.ku.dk/) (Protein based, BLAST classification)
+    1. [Centrifuge](https://ccb.jhu.edu/software/centrifuge/manual.shtml) (DNA based, sequence alignment classification)
+    1. [MeTaxa2](https://microbiology.se/software/metaxa2/) or [SingleM](https://github.com/wwood/singlem) (DNA based, 16S rRNA recovery and classification)
+    1. [MetaPhlAn2](http://huttenhower.sph.harvard.edu/metaphlan2) (DNA based, clade-specific marker gene classification)
 
 A good summary and comparison of these tools (and more) was recently published by [Ye *et al.*](https://www.ncbi.nlm.nih.gov/pubmed/31398336).
 
