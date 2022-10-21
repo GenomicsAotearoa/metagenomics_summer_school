@@ -92,10 +92,12 @@ If this fails to open on your PC, or if it runs prohibitively slowly, team up wi
 Once `VizBin` is open, to get started, simply click the 'Choose...' button then navigate to the *fastA* file.
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_load_fasta.PNG)
+<center>![image](../figures/ex10_load_fasta.PNG)</center>
 
 Once this is imported, use the 'Show additional options' button to expose the advanced options, and add your **'bin only'** *.ann* file into the 'Annotation file (optional)' field.
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_load_ann.PNG)
+<center>![image](../figures/ex10_load_ann.PNG)</center>
 
 #### Executing the *t-SNE*
 
@@ -104,10 +106,12 @@ For now leave all other parameters as default. Click the 'Start' button to begin
 #### Contigs coloured by bin
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_bin_only.PNG)
+<center>![image](../figures/ex10_bin_only.PNG){width="600"}</center>
 
 #### Contigs coloured by bin, sized by length, shaded by coverage
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_all_ann.PNG)
+<center>![image](../figures/ex10_all_ann.PNG){width="600"}</center>
 
 Similar to any other projection technique, we interpret the closeness of points as a proxy for how similar they are, and because of our *.ann* file we can see which contigs belong to the same bin.
 
@@ -136,18 +140,21 @@ Try this for one or two clusters. In practice, we would do this for each `VizBin
 #### Highlight a cluster to zoom into
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_to_zoom.PNG)
+<center>![image](../figures/ex10_select_to_zoom.PNG){width="600"}</center>
 
 #### Select the cluster to export
 
 Left-click several points around the cluster
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_cluster.PNG)
+<center>![image](../figures/ex10_select_cluster.PNG){width="600"}</center>
 
 #### Export the cluster
 
 Right-click, 'Selection', 'Export'. Save the output as `cluster_1.fna`. 
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_export.PNG)
+<center>![image](../figures/ex10_export.PNG){width="600"}</center>
 
 
 ### 2. Export potentially problematic contigs
@@ -157,10 +164,13 @@ Right-click, 'Selection', 'Export'. Save the output as `cluster_1.fna`.
 Zoom in,  make a selection of potentially problematic contigs, and export as above.
 
 ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_outlier.png)
+<center>![image](../figures/ex10_select_outlier.png){width="600"}</center>
 
 Try this for one or two problematic contigs (or subsets of contigs). In practice, you could repeat this for all potentially problemtic contigs, saving each export as a new `contigs_n.fna` file.
 
-*NOTE: for the subsequent step using `vizbin_count_table.sh`, all exported cluster files must share a common prefix (e.g. `cluster...fna`), and all files of problematic contigs must also share a common prefix (e.g. `contigs...fna`).*
+!!! abstract "Note"
+
+    For the subsequent step using `vizbin_count_table.sh`, all exported cluster files must share a common prefix (e.g. `cluster...fna`), and all files of problematic contigs must also share a common prefix (e.g. `contigs...fna`).*
 
 ---
 
@@ -258,39 +268,40 @@ For this exercise, a copy of the output from running `CheckM` on the `filtered_b
 ```bash
 cat filtered_bins_checkm.txt 
 ```
+??? success "content of filtered_bins_checkm.txt"
 
-|Bin Id | Marker lineage | # genomes   |    # markers    |   # marker sets  | 0     |  1    |   2  |     3   |    4    |   5+  |    Completeness  |  Contamination |  Strain heterogeneity|
-| :-- | :-- | --- | ---  | ---  | --- |  --- |  ---  | ---  | --- | --- | --- | --- | --- |
-|bin_0.filtered | k__Bacteria (UID3060) |  138   |  338  |   246   |  1  |     329  |   7     |  1   |    0      | 0     |  99.59 |  2.98   | 0.00|
-|bin_1.filtered | k__Bacteria (UID3060) |  138   |  338  |   246  |   1  |     336  |   1   |    0    |   0     |  0 |      99.59  | 0.41  |  0.00|
-|bin_2.filtered | k__Bacteria (UID2565)  | 2921   | 149  |   91  |    10    |  137   |  2    |   0    |   0     |  0     |  91.21 |  0.61  |  0.00|
-|bin_3.filtered | g__Staphylococcus (UID301)  |    45    |  940  |   178  |   14   |   924   |  2   |    0    |   0   |    0   |    98.58 |  0.11  |  0.00|
-|bin_4.filtered | c__Betaproteobacteria (UID3959)| 235   |  414  |  211    | 1   |    410   |  3    |   0    |   0     |  0    |   99.97  | 0.26  |  0.00|
-|bin_5.filtered | o__Pseudomonadales (UID4488)  |  185    | 813  |   308  |   25    |  787 |    1   |    0   |    0    |   0    |   96.87 |  0.11 |   0.00|
-|bin_6.filtered | c__Deltaproteobacteria (UID3218)    |    61  |    284   |  169 |    17   |   267|     0  |     0  |     0  |     0    |   91.72  | 0.00 |  0.00|
-|bin_7.filtered | f__Bradyrhizobiaceae (UID3695) | 47   |   693   |  296   |  2    |   691  |   0    |   0     |  0   |    0   |    99.80 |  0.00 |   0.00|
-|bin_8.filtered | p__Cyanobacteria (UID2143)  |    129    | 471 |    367   |  0  |     470  |   1   |    0  |     0     |  0      | 100.00 | 0.14  |  0.00|
-|bin_9.filtered | g__Vibrio (UID4878)  |   67    |  1130   | 369   |  4   |    1125  |  1     |  0    |   0     |  0    |   99.46 |  0.03  |  0.00|
+    |Bin Id | Marker lineage | # genomes   |    # markers    |   # marker sets  | 0     |  1    |   2  |     3   |    4    |   5+  |    Completeness  |  Contamination |  Strain heterogeneity|
+    | :-- | :-- | --- | ---  | ---  | --- |  --- |  ---  | ---  | --- | --- | --- | --- | --- |
+    |bin_0.filtered | k__Bacteria (UID3060) |  138   |  338  |   246   |  1  |     329  |   7     |  1   |    0      | 0     |  99.59 |  2.98   | 0.00|
+    |bin_1.filtered | k__Bacteria (UID3060) |  138   |  338  |   246  |   1  |     336  |   1   |    0    |   0     |  0 |      99.59  | 0.41  |  0.00|
+    |bin_2.filtered | k__Bacteria (UID2565)  | 2921   | 149  |   91  |    10    |  137   |  2    |   0    |   0     |  0     |  91.21 |  0.61  |  0.00|
+    |bin_3.filtered | g__Staphylococcus (UID301)  |    45    |  940  |   178  |   14   |   924   |  2   |    0    |   0   |    0   |    98.58 |  0.11  |  0.00|
+    |bin_4.filtered | c__Betaproteobacteria (UID3959)| 235   |  414  |  211    | 1   |    410   |  3    |   0    |   0     |  0    |   99.97  | 0.26  |  0.00|
+    |bin_5.filtered | o__Pseudomonadales (UID4488)  |  185    | 813  |   308  |   25    |  787 |    1   |    0   |    0    |   0    |   96.87 |  0.11 |   0.00|
+    |bin_6.filtered | c__Deltaproteobacteria (UID3218)    |    61  |    284   |  169 |    17   |   267|     0  |     0  |     0  |     0    |   91.72  | 0.00 |  0.00|
+    |bin_7.filtered | f__Bradyrhizobiaceae (UID3695) | 47   |   693   |  296   |  2    |   691  |   0    |   0     |  0   |    0   |    99.80 |  0.00 |   0.00|
+    |bin_8.filtered | p__Cyanobacteria (UID2143)  |    129    | 471 |    367   |  0  |     470  |   1   |    0  |     0     |  0      | 100.00 | 0.14  |  0.00|
+    |bin_9.filtered | g__Vibrio (UID4878)  |   67    |  1130   | 369   |  4   |    1125  |  1     |  0    |   0     |  0    |   99.46 |  0.03  |  0.00|
 
 
 ```bash
 cat ../5.binning/checkm.txt 
 ```
+??? success "content of checkm.txt"
 
-
-|Bin Id | Marker lineage | # genomes   |    # markers    |   # marker sets  | 0     |  1    |   2  |     3   |    4    |   5+  |    Completeness  |  Contamination |  Strain heterogeneity|
-| :-- | :-- | --- | ---  | ---  | --- |  --- |  ---  | ---  | --- | --- | --- | --- | --- |
-|maxbin.001_sub.contigs | k__Bacteria (UID3060)  | 138  |   338   |  246    | 1   |    328  |   8    |   1  |     0    |   0   |    99.59|   3.39 |   0.00|
-|maxbin.002_sub.contigs | k__Bacteria (UID3060)  | 138 |    338  |   246   |  1   |    336   |  1    |   0 |      0    |   0   |   99.59 |  0.41 |  0.00|
-|maxbin.009_sub.contigs | k__Bacteria (UID2565) |  2921 |   149  |   91   |   10   |   137  |   2    |   0   |    0     |  0    |   91.21  | 0.61 |   0.00|
-|metabat.1.contigs     |  c__Deltaproteobacteria (UID3218)   |     61  |    284   |  169   |  17   |   267  |   0    |   0    |   0    |   0     |  91.72 |  0.00  |  0.00|
-|metabat.10.contigs    |  g__Staphylococcus (UID301)   |   45   |   940    | 178   |  14  |    924   |  2    |   0  |     0   |    0    |   98.58 |  0.11 |   0.00|
-|metabat.11.contigs    |  c__Betaproteobacteria (UID3959) |235  |   414   |  211  |   1  |     408 |    5 |      0     |  0   |    0   |    99.97|   0.90   | 0.00|
-|metabat.12.contigs  |    o__Pseudomonadales (UID4488)   | 185    | 813   |  308   |  25    |  787   |  1  |    0    |   0    |   0      | 96.87 | 0.11  |  0.00|
-|metabat.4.contigs   |    f__Bradyrhizobiaceae (UID3695)|  47    |  693   |  296  |   2     |  691   |  0  |     0   |    0   |   0    |   99.80  | 0.00  |  0.00|
-|metabat.6.contigs   |    p__Cyanobacteria (UID2143)  |    129    | 471  |   367   |  0   |    470  |   1    |   0   |    0   |    0    |   100.00 | 0.14 |   0.00|
-|metabat.8.contigs    |   g__Vibrio (UID4878)  |   67    |  1130 |   369 |    4   |    1125  |  1   |    0  |     0  |     0   |    99.46 |  0.03 |   0.00|
-
+    |Bin Id | Marker lineage | # genomes   |    # markers    |   # marker sets  | 0     |  1    |   2  |     3   |    4    |   5+  |    Completeness  |  Contamination |  Strain heterogeneity|
+    | :-- | :-- | --- | ---  | ---  | --- |  --- |  ---  | ---  | --- | --- | --- | --- | --- |
+    |maxbin.001_sub.contigs | k__Bacteria (UID3060)  | 138  |   338   |  246    | 1   |    328  |   8    |   1  |     0    |   0   |    99.59|   3.39 |   0.00|
+    |maxbin.002_sub.contigs | k__Bacteria (UID3060)  | 138 |    338  |   246   |  1   |    336   |  1    |   0 |      0    |   0   |   99.59 |  0.41 |  0.00|
+    |maxbin.009_sub.contigs | k__Bacteria (UID2565) |  2921 |   149  |   91   |   10   |   137  |   2    |   0   |    0     |  0    |   91.21  | 0.61 |   0.00|
+    |metabat.1.contigs     |  c__Deltaproteobacteria (UID3218)   |     61  |    284   |  169   |  17   |   267  |   0    |   0    |   0    |   0     |  91.72 |  0.00  |  0.00|
+    |metabat.10.contigs    |  g__Staphylococcus (UID301)   |   45   |   940    | 178   |  14  |    924   |  2    |   0  |     0   |    0    |   98.58 |  0.11 |   0.00|
+    |metabat.11.contigs    |  c__Betaproteobacteria (UID3959) |235  |   414   |  211  |   1  |     408 |    5 |      0     |  0   |    0   |    99.97|   0.90   | 0.00|
+    |metabat.12.contigs  |    o__Pseudomonadales (UID4488)   | 185    | 813   |  308   |  25    |  787   |  1  |    0    |   0    |   0      | 96.87 | 0.11  |  0.00|
+    |metabat.4.contigs   |    f__Bradyrhizobiaceae (UID3695)|  47    |  693   |  296  |   2     |  691   |  0  |     0   |    0   |   0    |   99.80  | 0.00  |  0.00|
+    |metabat.6.contigs   |    p__Cyanobacteria (UID2143)  |    129    | 471  |   367   |  0   |    470  |   1    |   0   |    0   |    0    |   100.00 | 0.14 |   0.00|
+    |metabat.8.contigs    |   g__Vibrio (UID4878)  |   67    |  1130 |   369 |    4   |    1125  |  1   |    0  |     0  |     0   |    99.46 |  0.03 |   0.00|
+    
 
 An example of an updated slurm script to run `CheckM` on the `filtered_bins/` is as follows:
 
@@ -304,9 +315,7 @@ An example of an updated slurm script to run `CheckM` on the `filtered_bins/` is
 #SBATCH --cpus-per-task 10
 #SBATCH --error bin_eval_checkm.err
 #SBATCH --output bin_eval_checkm.out
-#SBATCH --export NONE
 
-export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
