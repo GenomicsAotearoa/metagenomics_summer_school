@@ -15,9 +15,11 @@ When investigating the evolution of genomes, we sometimes want to consider not o
 
 For this exercise, navigate to the folder `11.data_presentation/gene_synteny/`. You have been provided with a copy of the `prodigal` gene predictions for each of the bins (`.faa` files), an annotation output table using multiple databases (`.aa` files), a small table of the annotation of some key genes of interest (`cys.txt` files), and blastn output (`blast*.txt`) comparing the genes of interest from these organisms. The annotation files were created by manually searching the annotations obtained in the previous exercises.
 
-*NOTE: Refer to [gene_synteny_grab_GOI.md](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex15_gene_synteny_grab_GOI.md) for detailed information on how the `cys.txt` files were produced.*
+!!! note "Note"
 
-*NOTE: Refer to [gene_synteny_Generate_blast_files.md](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex15_gene_synteny_Generate_blast_files.md) for detailed information on how the `blast` files were produced.*
+    Refer to [gene_synteny_grab_GOI.md](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex15_gene_synteny_grab_GOI.md) for detailed information on how the `cys.txt` files were produced.*
+
+    Refer to [gene_synteny_Generate_blast_files.md](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex15_gene_synteny_Generate_blast_files.md) for detailed information on how the `blast` files were produced.*
 
 #### Part 1 - Parsing files in *bash*
 
@@ -207,8 +209,10 @@ What it does here is to set the line color according to the direction of the gen
 
 Now we can generate the plot. Running this command in `RStudio` or our `Jupyter Notebook` running the `R` kernel interactively loads the figure. 
 
-*NOTE: the commented-out lines below (the two lines starting with `#`) will not run. Un-comment these if you wish to save the figure to file rather than opening it in the `Jupyter` or `RStudio` viewer. (N.b. alternatives using a similar command are also available other formats, including `tiff` and `png`).*
+!!! note "Note"
 
+    The commented-out lines below (the two lines starting with `#`) will not run. Un-comment these if you wish to save the figure to file rather than opening it in the `Jupyter` or `RStudio` viewer. (N.b. alternatives using a similar command are also available other formats, including `tiff` and `png`).*
+    
 ```R
 #pdf("genoplot.pdf",colormodel = "cmyk",width = 8,height = 4,paper = 'special')
 plot_gene_map(dna_segs = list(bin_4_ds,bin_5_ds,bin_7_ds), 
@@ -222,7 +226,7 @@ plot_gene_map(dna_segs = list(bin_4_ds,bin_5_ds,bin_7_ds),
 ![image](../figures/ex15_gene_synteny_fig1.png){width="700"}
 </center>
 
-!!! abstrac "Note"
+!!! note "Note"
 
     While we do have control over the colours of the arrows via setting the `bin_n_ds$col` and `bin_n_ds$fill` parameters for each contig (as above), unfortunately there appears to be little flexibility within the `plot_gene_map()` function for setting the colours of the segments joining the arrows (the current options are limited to 'red_blue', 'blue_red', and 'grey').*
 
