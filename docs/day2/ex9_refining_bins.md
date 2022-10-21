@@ -1,14 +1,14 @@
 # Manually refining bins
 
-### Objectives
+!!! info "Objectives"
 
-* [Prepare input files for `VizBin`](#prepare-input-files-for-vizbin)
-* [Project a *t-SNE* using `VizBin` and examine bin clusters](#project-a-t-sne-and-examine-bin-clusters)
-* [Refine bins by identifying incorrectly assigned contigs](#picking-refined-bins)
-* [*Optional:* Refine and filter problematic contigs from bins](#optional-refine-and-filter-problematic-contigs-from-bins)
-* [*Optional:* Comparing pre- and post-filtered bins via *CheckM*](#optional-comparing-pre--and-post-filtered-bins-via-checkm)
-* [*Optional:* Creating new `VizBin` profiles with different fragment lengths](#optional-creating-new-vizbin-profiles-with-different-fragment-lengths)
-* [*Optional:* Scripts for processing data with `ESOMana`](#optional-scripts-for-processing-data-with-esomana)
+    * [Prepare input files for `VizBin`](#prepare-input-files-for-vizbin)
+    * [Project a *t-SNE* using `VizBin` and examine bin clusters](#project-a-t-sne-and-examine-bin-clusters)
+    * [Refine bins by identifying incorrectly assigned contigs](#picking-refined-bins)
+    * [*Optional:* Refine and filter problematic contigs from bins](#optional-refine-and-filter-problematic-contigs-from-bins)
+    * [*Optional:* Comparing pre- and post-filtered bins via *CheckM*](#optional-comparing-pre--and-post-filtered-bins-via-checkm)
+    * [*Optional:* Creating new `VizBin` profiles with different fragment lengths](#optional-creating-new-vizbin-profiles-with-different-fragment-lengths)
+    * [*Optional:* Scripts for processing data with `ESOMana`](#optional-scripts-for-processing-data-with-esomana)
 
 ---
 
