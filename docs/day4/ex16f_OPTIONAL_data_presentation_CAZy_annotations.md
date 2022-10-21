@@ -1,10 +1,10 @@
 # Presentation of data: *Optional exercise*: CAZy annotations heatmap
 
-### Objectives
+!!! info "Objectives"
 
-* [Build a basic heatmap from `BLAST` data using `R`](#build-a-basic-heatmap-from-annotation-data-using-r)
-* [Import and wrangle data in `R`](#import-the-data-into-an-r-dataframe)
-* [Build the plot in `R`](#build-the-plot-in-r)
+    * [Build a basic heatmap from `BLAST` data using `R`](#build-a-basic-heatmap-from-annotation-data-using-r)
+    * [Import and wrangle data in `R`](#import-the-data-into-an-r-dataframe)
+    * [Build the plot in `R`](#build-the-plot-in-r)
 
 
 ---
