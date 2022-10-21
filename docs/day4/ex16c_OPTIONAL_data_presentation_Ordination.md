@@ -1,11 +1,11 @@
 # (*Optional*) Presentation of data: Ordinations
 
-### Objectives
+!!! info "Objectives"
 
-* [Import and wrangle data in `R`](#1-import-and-wrangle-data-in-r)
-* [Calculate weighted and unweighted Bray-Curtis dissimilarity metrics and nMDS analyses](#2-calculate-weighted-and-unweighted-bray-curtis-dissimilarity-and-nmds-using-r)
-* [Build nMDS plots in `R` using the `ggplot2` package](#3-build-nmds-plots-in-r-using-the-ggplot2-package)
-* [Discussion: Follow-up analyses](#follow-up-analyses)
+    * [Import and wrangle data in `R`](#1-import-and-wrangle-data-in-r)
+    * [Calculate weighted and unweighted Bray-Curtis dissimilarity metrics and nMDS analyses](#2-calculate-weighted-and-unweighted-bray-curtis-dissimilarity-and-nmds-using-r)
+    * [Build nMDS plots in `R` using the `ggplot2` package](#3-build-nmds-plots-in-r-using-the-ggplot2-package)
+    * [Discussion: Follow-up analyses](#follow-up-analyses)
 
 ---
 
