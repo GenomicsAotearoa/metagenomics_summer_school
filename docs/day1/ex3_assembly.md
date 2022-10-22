@@ -312,12 +312,9 @@ Paste or type in the following:
 #SBATCH --cpus-per-task 8
 #SBATCH --error         idbaud_assembly.err
 #SBATCH --output        idbaud_assembly.out
-#SBATCH --export NONE
-
-export SLURM_EXPORT_ENV=ALL
 
 module purge
-module load IDBA/1.1.3-gimkl-2017a
+module load IDBA-UD/1.1.3-GCC-11.3.0
 
 idba_ud --num_threads 8 --mink 33 --maxk 99 --step 22 -r for_idba.fna -o idbaud_assembly/
 ```
