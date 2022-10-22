@@ -179,16 +179,15 @@ nano spades_mapping_array.sl
 ```bash
 #!/bin/bash -e
 
-#SBATCH --account nesi02659
-#SBATCH --job-name spades_mapping_array
-#SBATCH --res SummerSchool
-#SBATCH --time 00:20:00
-#SBATCH --mem 20GB
-#SBATCH --ntasks 1
-#SBATCH --array 0-3
+#SBATCH --account       nesi02659
+#SBATCH --job-name      spades_mapping_array
+#SBATCH --res           SummerSchool
+#SBATCH --time          00:20:00
+#SBATCH --mem           20GB
+#SBATCH --array         0-3
 #SBATCH --cpus-per-task 10
-#SBATCH --error spades_mapping_array.%j.err
-#SBATCH --output spades_mapping_array.%j.out
+#SBATCH --error         spades_mapping_array.%j.err
+#SBATCH --output        spades_mapping_array.%j.out
 
 module purge
 module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
