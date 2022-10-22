@@ -5,7 +5,6 @@
 
 
 
-
 |<div style="width:290px"> **Day**</div>                                         | **Lesson overview**                           | 
 |:---------------------------------------------------|:---------------------------------------|
 |[  Day 1  ](""){ .md-button .md-button--primary }   | [1. Introduction to shell and HPC Job Scheduler](./day1/ex1_bash_and_scheduler.md)<br>[2. Quality filtering raw reads](./day1/ex2_quality_filtering.md)</br><br>[3. Assembly](./day1/ex3_assembly.md)</br><br>[4. Assembly 2](./day1/ex4_assembly.md)</br><br>[5. Evaluating the assemblies](./day1/ex5_evaluating_assemblies.md)</br>                                       |

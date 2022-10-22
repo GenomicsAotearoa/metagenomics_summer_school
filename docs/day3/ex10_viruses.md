@@ -137,19 +137,15 @@ Paste in the following (updating `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash -e
-#SBATCH --account nesi02659
-#SBATCH --res SummerSchool
-#SBATCH --job-name checkv
-#SBATCH --time 00:10:00
-#SBATCH --mem=3GB
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=10
-#SBATCH --error checkv.err
-#SBATCH --output checkv.out
-#SBATCH --profile=task
-#SBATCH --export NONE
+#SBATCH --account       nesi02659
+#SBATCH --res           SummerSchool
+#SBATCH --job-name      checkv
+#SBATCH --time          00:10:00
+#SBATCH --mem           3GB
+#SBATCH --cpus-per-task 10
+#SBATCH --error         checkv.err
+#SBATCH --output        checkv.out
 
-export SLURM_EXPORT_ENV=ALL
 
 # Load the module
 module purge
