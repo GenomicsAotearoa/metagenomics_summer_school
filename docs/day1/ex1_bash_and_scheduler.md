@@ -375,42 +375,6 @@ Execute the file `ForLoop.sh`. We'll need to put `./` at the beginning so the co
 
 ---
 
-### Moving Files between your laptop and remote cluster/machine
-
-There are multiple commands and tools to move files between your laptop and remote clusters/machines. `scp` and `rsync` are some of the commands, and `Globus` and `Cyberduck` are some of these tools. `scp` is commonly used, as this is a simple to use tool that makes use of the `ssh` configuration we have already established for connecting to NeSI.
-
-In order it use it error free, we need to pay attention to whether the file is moving *FROM* or *TO* the remote cluster/machine, *absolute* paths, *relative* paths, Local vs Remote, etc. 
-
-The format of the `scp` command is: `scp path/to/copy/from path/to/copy/to`
-
-If you wish to copy whole directories, include the -r flag: `scp -r path/to/copy/from path/to/copy/to`
-
-Finally, include `mahuika:` or `ga-vl01:` at the start of the remote machine file path (in this case, NeSI) to identify that this path is located within the *remote* cluster/machine.
-
-*NOTE: the following templates are written in a way where the commands are to be **executed from local**; i.e. a terminal **not** logged in to NeSI. On some systems, it may be preferable to open one terminal, log in to NeSI in that terminal, and then open a new terminal (that is not logged into NeSI) to perform the `scp` command. This avoids having to provide your NeSI log in details each time you wish to copy something.*
-
-#### *FROM* local *TO* remote
-
-```
-scp /path/from/local/ ga-vl01:/path/to/remote/
-```
-
-#### *FROM* remote *TO* local
-
-```
-scp ga-vl01:/path/from/remote/ /path/to/local/
-```
-
-If the `~/.ssh/config` is not set with aliases you will need to replace the shortcut `ga-vl01` with the full address of the remote:
-
-```
-scp -oProxyCommand="ssh -W %h:%p user@lander.nesi.org.nz" /path/in/local/ user@ga-vl01.mahuika.nesi.org.nz:/path/to/remote/
-```
-
-*NOTE: If you are already comfortable with using `scp`, you are welcome to use this. However, for the purposes of this workshop, the relevant example files are available for download from the [workshop main page](https://github.com/GenomicsAotearoa/metagenomics_summer_school). Alternatively, if you are working within the NeSI `Jupyter hub`, you can download individual files by right clicking on the file in the navigation pane on the left and clicking `download`.*
-
----
-
 ### Introduction to slurm
 
 <center>![image](../theme_images/scheduler_image.png){width="500"}</center>
