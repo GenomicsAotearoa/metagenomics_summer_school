@@ -63,15 +63,14 @@ Paste in the following script. Remember to replace <YOUR FOLDER> with your own f
 ```bash
 #!/bin/bash -e
 
-#SBATCH --account nesi02659
-#SBATCH --job-name spades_mapping
-#SBATCH --res SummerSchool
-#SBATCH --time 00:05:00
-#SBATCH --mem 1GB
-#SBATCH --ntasks 1
+#SBATCH --account       nesi02659
+#SBATCH --job-name      spades_mapping
+#SBATCH --res           SummerSchool
+#SBATCH --time          00:05:00
+#SBATCH --mem           1GB
 #SBATCH --cpus-per-task 10
-#SBATCH --error spades_mapping.err
-#SBATCH --output spades_mapping.out
+#SBATCH --error         spades_mapping.err
+#SBATCH --output        spades_mapping.out
 
 module purge
 module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
