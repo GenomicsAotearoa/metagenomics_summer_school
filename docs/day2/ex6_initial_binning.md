@@ -27,7 +27,7 @@ The composition of the contigs is calculated by the binning tool at run time, bu
 Before we can map reads, we need to create a `bowtie2` index file from the assembly, for use in read mapping. Navigate into the `5.binning/` folder to begin.
 
 ```bash
-module load Bowtie2/2.3.5-GCC-7.4.0
+module load Bowtie2/2.4.5-GCC-11.3.0
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 
