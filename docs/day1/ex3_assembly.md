@@ -184,39 +184,38 @@ Into this file, either write or copy/paste the following commands:
 
 ```bash
 #!/bin/bash -e
-#SBATCH --account nesi02659
-#SBATCH --job-name spades_assembly
-#SBATCH --res SummerSchool
-#SBATCH --time 00:50:00
-#SBATCH --mem 10GB
-#SBATCH --ntasks 1
-#SBATCH --cpus-per-task 12
-#SBATCH --error spades_assembly.err
-#SBATCH --output spades_assembly.out
-#SBATCH --export NONE
 
-export SLURM_EXPORT_ENV=ALL
+#SBATCH --account       nesi02659
+#SBATCH --job-name      spades_assembly
+#SBATCH --res           SummerSchool
+#SBATCH --time          00:50:00
+#SBATCH --mem           10GB
+#SBATCH --cpus-per-task 12
+#SBATCH --error         spades_assembly.err
+#SBATCH --output        spades_assembly.out
 
 module purge
-module load SPAdes/3.15.3-gimkl-2020a
+module load SPAdes/3.15.4-gimkl-2022a-Python-3.10.5
 
 spades.py --meta -k 33,55,77,99,121 -t 12 -1 for_spades_R1.fq.gz -2 for_spades_R2.fq.gz -o spades_assembly/
 ```
 
 To save your file, use `Ctrl + O` to save the file, then `Ctrl + X` to exit `nano`. Going through those lines one by one;
 
-|Slurm parameter|Function|
-|:---|:---|
-|**#!/bin/bash -e**|Header for the file, letting NeSI know how to interpret the following commands. The `-e` flag means that the slurm run will halt at the first failed command (rather than pushing through and trying to execute subsequent ones)|
-|**--account ...**|The name of the project account to run the run under. You are provided with this when you create a project on NeSI|
-|**--job-name ...**|The name of the job, to display when using the `squeue` command|
-|**--res ...*|This is a parameter that we need due to a system reservation for this workshop. For your own work, ignore this flag|
-|**--time ...**|Maximum run time for the job before it is killed|
-|**--mem ...**|Amount of server memory to allocate to the job. If this is exceeded, the job will be terminated|
-|**--ntasks ...**|Number of tasks to distribute the job across. For all tools we use today, this will remain as 1|
-|**--cpus-per-task ...**|number of processing cores to assign to the job. This should match with the number used by your assembler|
-|**--error ...**|File to log the [standard error](https://en.wikipedia.org/wiki/Standard_streams) stream of the program.<br>This is typically used to prove error reports, or to just inform the user of job progress|
-|**--output ...**|File to log the [standard output](https://en.wikipedia.org/wiki/Standard_streams) stream of the program.<br>This is typically used to inform the user of job progress and supply messages|
+!!! quote ""
+
+    |Slurm parameter|Function|
+    |:---|:---|
+    |**#!/bin/bash -e**|Header for the file, letting NeSI know how to interpret the following commands. The `-e` flag means that the slurm run will halt at the first failed command (rather than pushing through and trying to execute subsequent ones)|
+    |**--account ...**|The name of the project account to run the run under. You are provided with this when you create a project on NeSI|
+    |**--job-name ...**|The name of the job, to display when using the `squeue` command|
+    |**--res**|This is a parameter that we need due to a system reservation for this workshop. For your own work, ignore this flag|
+    |**--time ...**|Maximum run time for the job before it is killed|
+    |**--mem ...**|Amount of server memory to allocate to the job. If this is exceeded, the job will be terminated|
+    |**--ntasks ...**|Number of tasks to distribute the job across. For all tools we use today, this will remain as 1|
+    |**--cpus-per-task ...**|number of processing cores to assign to the job. This should match with the number used by your assembler|
+    |**--error ...**|File to log the [standard error](https://en.wikipedia.org/wiki/Standard_streams) stream of the program.<br>This is typically used to prove error reports, or to just inform the user of job progress|
+    |**--output ...**|File to log the [standard output](https://en.wikipedia.org/wiki/Standard_streams) stream of the program.<br>This is typically used to inform the user of job progress and supply messages|
 
 The `module load` command needs to be invoked within your slurm script. It is also a good idea to explicitly set the path to your files within the job so that
 
@@ -252,7 +251,7 @@ You will receive a message telling you the job identifier for your assembly. Rec
 You can view the status of your current jobs using the command
 
 ```bash
-squeue -u <login name>
+squeue --me
 
   JOBID     USER ACCOUNT            NAME  ST REASON    START_TIME                TIME TIME_LEFT NODES CPUS
 8744675  dwai012 ga02676 spades_assembly  PD Priority  2019-11-29T16:37:43       0:00 00:30:00      1   16
