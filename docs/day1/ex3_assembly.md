@@ -63,14 +63,38 @@ By contrast, what does `IDBA-UD` accept?
 module purge
 module load IDBA-UD/1.1.3-GCC-11.3.0
 ```
-```
-idba_ud
-# ...
-# -o, --out arg (=out) output directory
-# -r, --read arg       fasta read file (<=128)
-# ...
-# -l, --long_read arg  fasta long read file (>128)
-```
+
+??? info "`idba_ud --help`"
+
+    ```bash
+      -o, --out arg (=out)                   output directory
+      -r, --read arg                         fasta read file (<=128)
+          --read_level_2 arg                 paired-end reads fasta for second level scaffolds
+          --read_level_3 arg                 paired-end reads fasta for third level scaffolds
+          --read_level_4 arg                 paired-end reads fasta for fourth level scaffolds
+          --read_level_5 arg                 paired-end reads fasta for fifth level scaffolds
+      -l, --long_read arg                    fasta long read file (>128)
+          --mink arg (=20)                   minimum k value (<=124)
+          --maxk arg (=100)                  maximum k value (<=124)
+          --step arg (=20)                   increment of k-mer of each iteration
+          --inner_mink arg (=10)             inner minimum k value
+          --inner_step arg (=5)              inner increment of k-mer
+          --prefix arg (=3)                  prefix length used to build sub k-mer table
+          --min_count arg (=2)               minimum multiplicity for filtering k-mer when building the graph
+          --min_support arg (=1)             minimum supoort in each iteration
+          --num_threads arg (=0)             number of threads
+          --seed_kmer arg (=30)              seed kmer size for alignment
+          --min_contig arg (=200)            minimum size of contig
+          --similar arg (=0.95)              similarity for alignment
+          --max_mismatch arg (=3)            max mismatch of error correction
+          --min_pairs arg (=3)               minimum number of pairs
+          --no_bubble                        do not merge bubble
+          --no_local                         do not use local assembly
+          --no_coverage                      do not iterate on coverage
+          --no_correct                       do not do correction
+          --pre_correction                   perform pre-correction before assembly
+    ```
+
 
 'Short' or 'long' reads, and only a single file for each. This means that if we want to assemble our community data using `IDBA-UD` we will need to pool the paired-end data into a single, interleaved *fastA* file. Interleaved means that instead of having a pair of files that contain the separate forward and reverse sequences, the read pairs are in a single file in alternating order. For example
 
