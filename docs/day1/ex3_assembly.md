@@ -64,7 +64,7 @@ module purge
 module load IDBA-UD/1.1.3-GCC-11.3.0
 ```
 
-??? info "`idba_ud --help`"
+??? abstract "`idba_ud --help`"
 
     ```bash
       -o, --out arg (=out)                   output directory
@@ -198,7 +198,7 @@ No such parameter exists in `IDBA-UD`, but it requires far less RAM than `SPAdes
 NeSI does not allow users to execute large jobs interactively on the terminal. Instead, the node that we have logged in to (*lander02*) has only a small fraction of the computing resources that NeSI houses. The *lander* node is used to write small command scripts, which are then deployed to the large compute nodes by a system called **slurm**. The ins and outs of working in slurm are well beyond the scope of this workshop (and may not be relevant if your institution uses a different resource allocation system). In this workshop, we will therefore only be showing you how to write minimal slurm scripts sufficient to achieve our goals. By the end of the workshop, you should have built up a small collection of slurm scripts for performing the necessary stages of our workflow and with experience you will be able to modify these to suit your own needs.
 
 #### Submitting a *SPAdes* job to NeSI using slurm
-
+...
 To begin, we need to open a text file using the `nano` text editor. 
 
 ```bash
