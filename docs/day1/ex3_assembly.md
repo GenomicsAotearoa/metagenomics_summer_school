@@ -100,7 +100,7 @@ idba_ud
 Fortunately, the `IDBA` set of tools comes with some helper scripts to achieve just this. Unfortunately we cannot apply this shuffling operation to compressed data, so we must decompress the data first.
 
 ```bash
-module load pigz/2.4-GCCcore-7.4.0
+module load pigz/2.7
 
 for i in sample1 sample2 sample3 sample4;
 do
