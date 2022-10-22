@@ -413,13 +413,30 @@ scp -oProxyCommand="ssh -W %h:%p user@lander.nesi.org.nz" /path/in/local/ user@g
 
 ### Introduction to slurm
 
-Jobs running on NeSI are submitted in the form of a batch script containing the code you want to run and a header of information needed by a job scheduler. 
+An HPC system might have thousands of nodes and thousands of users. How do we decide who gets what and when? How do we ensure that a task is run with the resources it needs? This job is handled by a special piece of software called the scheduler. On an HPC system, the scheduler manages which jobs run where and when. In brief, scheduler is a 
 
-All NeSI systems use the slurm batch scheduler for the submission, control and management of user jobs.
-Slurm provides a rich set of features for organising your workload and an extensive array of tools for managing your resource usage. In most cases, you need to know the commands:
 
-<p align="center"><img  src="../figures/slurm2020.png" alt="drawing" width="1000"/></p>
+* Mechanism to control access by many users to shared computing resources
+* Queuing / scheduling system for users’ jobs
+* Manages the reservation of resources and job execution on these resources 
+* Allows users to “fire and forget” large, long calculations or many jobs (“production runs”)
 
+!!! info "Why do we need a scheduler ?"
+
+    * To ensure the machine is utilised as fully as possible
+    * To ensure all users get a fair chance to use compute resources (demand usually exceeds supply)
+    * To track usage - for accounting and budget control
+    * To mediate access to other resources e.g. software licences
+
+    **Commonly used schedulers**
+
+    * Slurm
+    * PBS , Torque
+    * Grid Engine
+    * LSF – IBM Systems
+
+    ![image](./nesi_images/slurm_comms2compute.png)
+    <small>Researchers can not communicate directly to  Compute nodes from the login node. Only way to establish a connection OR send scripts to compute nodes is to use scheduler as the carrier/manager</small>
 
 Copy the contents of the `BLAST/` folder to your current directory, using the following command
 
