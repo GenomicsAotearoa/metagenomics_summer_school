@@ -126,7 +126,7 @@ Generally speaking, assemblers are developed in a way where they run with defaul
 
 #### Setting the *k*-mer size
 
-Depending on which assembler you are using, the commands for chosing the *k*-mer sizes for the assembly vary slightly, but they are recognisable between programs. In `SPAdes`, you can set the *k*-mer size using either
+Depending on which assembler you are using, the commands for choosing the *k*-mer sizes for the assembly vary slightly, but they are recognisable between programs. In `SPAdes`, you can set the *k*-mer size using either
 
 ```bash
 spades.py -k 21,33,55,77,99,121 ...
