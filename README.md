@@ -3,9 +3,6 @@
 
 ## <img src="./docs/theme_images/link2material.png" alt="drawing" width="20"> **Material** https://genomicsaotearoa.github.io/metagenomics_summer_school/
 
-
-A draft timetable for the day is provided below, but please keep in mind that this is subject to change as we evaluate our course material.
-
 ---
 
 ## Useful locations and links
