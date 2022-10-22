@@ -15,8 +15,10 @@ All work for this exercise will occur in the `3.assembly/` directory.
 Although they both make use of the same types of data, both `SPAdes` and `IDBA-UD` have their own preferences for how sequence data is provided to them. To begin, we will look at the types of data accepted by `SPAdes`:
 
 ```bash
-module load SPAdes/3.13.1-gimkl-2018b
-
+module purge
+module load SPAdes/3.15.4-gimkl-2022a-Python-3.10.5
+```
+```bash
 spades.py -h
 # ...
 #Input data:
