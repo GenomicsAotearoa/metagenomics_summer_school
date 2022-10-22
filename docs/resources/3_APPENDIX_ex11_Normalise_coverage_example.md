@@ -1,4 +1,4 @@
-# *APPENDIX (ex11)*: Normalise per-sample coverage values by average library size (example)
+# APPENDIX (ex11): Normalise per-sample coverage values by average library size (example)
 
 Having generated per-sample coverage values, it is usually necessary to also normalise these values across samples of differing sequencing depth. Commonly, this is done by calculating something like [RPKM](https://rna-seqblog.com/rpkm-fpkm-and-tpm-clearly-explained/) to normalise to both library size (sample sequencing depth) and gene length, or simply by normalising to minimum or average library size alone. 
 

@@ -1,4 +1,4 @@
-# *APPENDIX (ex9)*: Generating input files for *VizBin* from *DAS_Tool* curated bins
+# APPENDIX (ex9): Generating input files for *VizBin* from *DAS_Tool* curated bins
 
 The final bins that we obtained in the previous step (output from `DAS_Tool`) have been copied into `6.bin_refinement/dastool_out/_DASTool_bins/`
 
