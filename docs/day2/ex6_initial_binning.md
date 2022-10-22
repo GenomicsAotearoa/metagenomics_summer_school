@@ -178,6 +178,7 @@ nano spades_mapping_array.sl
 
 ```bash
 #!/bin/bash -e
+
 #SBATCH --account nesi02659
 #SBATCH --job-name spades_mapping_array
 #SBATCH --res SummerSchool
@@ -188,12 +189,9 @@ nano spades_mapping_array.sl
 #SBATCH --cpus-per-task 10
 #SBATCH --error spades_mapping_array.%j.err
 #SBATCH --output spades_mapping_array.%j.out
-#SBATCH --export NONE
-
-export SLURM_EXPORT_ENV=ALL
 
 module purge
-module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
+module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 
