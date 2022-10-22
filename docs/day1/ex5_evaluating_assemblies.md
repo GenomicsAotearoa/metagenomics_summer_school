@@ -194,22 +194,22 @@ An example of the `MetaQUAST` output files are also available for download [here
 
 #### Brief summary of assemblies
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex5_fig1_shortsummary.png)
+
 ![image](../figures/ex5_fig1_shortsummary.png)
 
 #### Comparison of NGA50 between assemblies
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex5_fig2_nga50.png)
+
 ![image](../figures/ex5_fig2_nga50.png)
 
 #### Comparison of aligned contigs
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex5_fig3_contigsmatched.png)
+
 ![image](../figures/ex5_fig3_contigsmatched.png)
 
 #### Inspection of unaligned contigs
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex5_fig4_contigsunmatched.PNG)
+
 ![image](../figures/ex5_fig4_contigsunmatched.PNG)
 
 ---
