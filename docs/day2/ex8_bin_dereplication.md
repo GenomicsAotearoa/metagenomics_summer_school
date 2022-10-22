@@ -218,17 +218,14 @@ Paste in the following script (replacing `<YOUR FOLDER>` with your own folder).
 
 ```bash
 #!/bin/bash
-#SBATCH --account nesi02659
-#SBATCH --job-name bin_eval_checkm
-#SBATCH --res SummerSchool
-#SBATCH --time 00:20:00
-#SBATCH --mem 50GB
+#SBATCH --account       nesi02659
+#SBATCH --job-name      bin_eval_checkm
+#SBATCH --res           SummerSchool
+#SBATCH --time          00:20:00
+#SBATCH --mem           50GB
 #SBATCH --cpus-per-task 10
-#SBATCH --error bin_eval_checkm.err
-#SBATCH --output bin_eval_checkm.out
-#SBATCH --export NONE
-
-export SLURM_EXPORT_ENV=ALL
+#SBATCH --error         bin_eval_checkm.err
+#SBATCH --output        bin_eval_checkm.out
 
 module purge
 module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
