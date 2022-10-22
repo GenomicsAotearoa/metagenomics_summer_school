@@ -145,9 +145,11 @@ For any assembler, there are a **_lot_** of parameters that can be fine-tuned de
 
 Generally speaking, assemblers are developed in a way where they run with default parameters that have been empirically demonstrated to produce the best outcome **_on average_** across multiple data sets. For most purposes, there is not a lot of need to change these, but some parameters that we would always want to look at include:
 
-1. *k*-mer sizes to be assembled over, and step size if using a range
-1. Number of threads to use during assembly
-1. Memory limit to prevent the assembler from using up all available RAM and forcing the computer to use its [swap space](https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/ch-swapspace.html)
+!!! quote ""
+
+    1. *k*-mer sizes to be assembled over, and step size if using a range
+    1. Number of threads to use during assembly
+    1. Memory limit to prevent the assembler from using up all available RAM and forcing the computer to use its [swap space](https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/ch-swapspace.html)
 
 #### Setting the *k*-mer size
 
