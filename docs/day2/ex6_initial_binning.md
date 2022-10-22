@@ -121,7 +121,7 @@ For large sets of files, it can be beneficial to use a slurm *array* to send the
 
 #### Step 3 - Sorting and compressing results
 
-The default output format for most maping tools is the Sequence Alignment/Map (*sam*) format. This is a compact text representation of where each short read sits in the contigs. You can view this file using any text viewer, although owing to the file size `less` is a good idea.
+The default output format for most mapping tools is the Sequence Alignment/Map (*sam*) format. This is a compact text representation of where each short read sits in the contigs. You can view this file using any text viewer, although owing to the file size `less` is a good idea.
 
 Generally I wouldn't bother with this - there is a lot of information in here and unless you are looking to extract specific information from the alignment directly, this is just an intermediate file in our workflow. In order to save disk space, and prepare the file for downstream analysis we now perform two final steps:
 
