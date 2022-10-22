@@ -249,7 +249,7 @@ To install `gdown`, we can use `pip`.
 ```bash
 # Install gdown (for downloading from google drive)
 module purge
-module load Python/3.8.2-gimkl-2020a
+module load Python/3.10.5-gimkl-2022a
 pip install --user gdown
 ```
 
