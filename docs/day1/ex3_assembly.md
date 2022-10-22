@@ -18,26 +18,27 @@ Although they both make use of the same types of data, both `SPAdes` and `IDBA-U
 module purge
 module load SPAdes/3.15.4-gimkl-2022a-Python-3.10.5
 ```
-```bash
-spades.py -h
-# ...
-#Input data:
-#-1      <filename>      file with forward paired-end reads
-#-2      <filename>      file with reverse paired-end reads
-#-s      <filename>      file with unpaired reads
-#--mp<#>-1       <filename>      file with forward reads for mate-pair library number <#> (<#> = 1,2,..,9)
-#--mp<#>-2       <filename>      file with reverse reads for mate-pair library number <#> (<#> = 1,2,..,9)
-#--hqmp<#>-1     <filename>      file with forward reads for high-quality mate-pair library number <#> (<#> = 1,2,..,9)
-#--hqmp<#>-2     <filename>      file with reverse reads for high-quality mate-pair library number <#> (<#> = 1,2,..,9)
-#--nxmate<#>-1   <filename>      file with forward reads for Lucigen NxMate library number <#> (<#> = 1,2,..,9)
-#--nxmate<#>-2   <filename>      file with reverse reads for Lucigen NxMate library number <#> (<#> = 1,2,..,9)
-#--sanger        <filename>      file with Sanger reads
-#--pacbio        <filename>      file with PacBio reads
-#--nanopore      <filename>      file with Nanopore reads
-#--tslr  <filename>      file with TSLR-contigs
-#--trusted-contigs       <filename>      file with trusted contigs
-#--untrusted-contigs     <filename>      file with untrusted contigs
-```
+??? note "`spades -h`"
+    ```bash
+    spades.py -h
+    # ...
+    #Input data:
+    #-1      <filename>      file with forward paired-end reads
+    #-2      <filename>      file with reverse paired-end reads
+    #-s      <filename>      file with unpaired reads
+    #--mp<#>-1       <filename>      file with forward reads for mate-pair library number <#> (<#> = 1,2,..,9)
+    #--mp<#>-2       <filename>      file with reverse reads for mate-pair library number <#> (<#> = 1,2,..,9)
+    #--hqmp<#>-1     <filename>      file with forward reads for high-quality mate-pair library number <#> (<#> = 1,2,..,9)
+    #--hqmp<#>-2     <filename>      file with reverse reads for high-quality mate-pair library number <#> (<#> = 1,2,..,9)
+    #--nxmate<#>-1   <filename>      file with forward reads for Lucigen NxMate library number <#> (<#> = 1,2,..,9)
+    #--nxmate<#>-2   <filename>      file with reverse reads for Lucigen NxMate library number <#> (<#> = 1,2,..,9)
+    #--sanger        <filename>      file with Sanger reads
+    #--pacbio        <filename>      file with PacBio reads
+    #--nanopore      <filename>      file with Nanopore reads
+    #--tslr  <filename>      file with TSLR-contigs
+    #--trusted-contigs       <filename>      file with trusted contigs
+    #--untrusted-contigs     <filename>      file with untrusted contigs
+    ```
 
 At a glance, you could provide any of the following data types to `SPAdes` and have it perform an assembly:
 
@@ -278,15 +279,15 @@ Paste or type in the following:
 
 ```bash
 #!/bin/bash -e
-#SBATCH --account nesi02659
-#SBATCH --job-name idbaud_assembly
-#SBATCH --res SummerSchool
-#SBATCH --time 00:35:00
-#SBATCH --mem 4GB
-#SBATCH --ntasks 1
+
+#SBATCH --account       nesi02659
+#SBATCH --job-name      idbaud_assembly
+#SBATCH --res           SummerSchool
+#SBATCH --time          00:35:00
+#SBATCH --mem           4GB
 #SBATCH --cpus-per-task 8
-#SBATCH --error idbaud_assembly.err
-#SBATCH --output idbaud_assembly.out
+#SBATCH --error         idbaud_assembly.err
+#SBATCH --output        idbaud_assembly.out
 #SBATCH --export NONE
 
 export SLURM_EXPORT_ENV=ALL
