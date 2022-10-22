@@ -26,10 +26,13 @@ done
 
 Download the `*cys.fna` files to your local computer and then upload them to the [NCBI website](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=tblastx&PAGE_TYPE=BlastSearch&BLAST_SPEC=&LINK_LOC=blasttab&LAST_PAGE=blastp) for blasting between bin 4 and bin 5, and then again between bin 5 and bin 7. 
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_gene_synteny_createBlast_fig1.PNG)
-
+<center>
+![image](../figures/ex15_gene_synteny_createBlast_fig1.PNG){width="600"}
+</center>
 You will get the output that looks like this. Click `download all`, and select `Hit Table (text)`.
 
-![png](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_gene_synteny_createBlast_fig2.png)
+<center>
+![image](../figures/ex15_gene_synteny_createBlast_fig2.png){width="600"}
+</center>
 
 That's it! Now you will have downloaded two files (one comparing between bin 4 and bin 5, and another between bin 5 and bin 7).
