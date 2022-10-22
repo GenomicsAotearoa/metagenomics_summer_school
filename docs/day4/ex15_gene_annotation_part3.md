@@ -46,13 +46,8 @@ After the annotation is finished, we will summarise and visualise these annotati
 
 ```bash
 module purge
-module load Miniconda3/4.8.3
-module load gimkl/2020a
+module load DRAM/1.3.5-Miniconda3
 
-export CONDA_PKGS_DIRS=/nesi/project/nesi02659/.conda/pkgs
-export CONDA_ENVS_PATH=/nesi/project/nesi02659/.conda/envs
-
-source activate DRAM
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
