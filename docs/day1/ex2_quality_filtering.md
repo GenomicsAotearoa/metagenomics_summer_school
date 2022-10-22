@@ -286,9 +286,7 @@ Build index reference via `BBMap`. We will do this by submitting the job via slu
 #SBATCH --cpus-per-task 1
 #SBATCH -e host_filt_bbmap_index.err
 #SBATCH -o host_filt_bbmap_index.out
-#SBATCH --export NONE
 
-export SLURM_EXPORT_ENV=ALL
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/BBMask_human_reference/
 
