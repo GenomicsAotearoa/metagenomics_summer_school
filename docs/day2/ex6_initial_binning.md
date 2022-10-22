@@ -128,13 +128,13 @@ Generally I wouldn't bother with this - there is a lot of information in here an
 1. Sort the mapping information
 1. Compress the *sam* file into its binary equivalent, *bam*
 
-Which is achieved with the following parameters
+!!! abstract "Which is achieved with the following parameters"
 
-|Parameter|Function|
-|:---|:---|
-|**sort**|Subcommand for `samtools` to invoke the `sort` operation|
-|**-@ ...**|Number of threads to use for sorting and compressing|
-|**-o ...**|Output file name. When we specify the *bam* extension `samtools` automatically compresses the output|
+    |Parameter|Function|
+    |:---|:---|
+    |**sort**|Subcommand for `samtools` to invoke the `sort` operation|
+    |**-@**|Number of threads to use for sorting and compressing|
+    |**-o**|Output file name. When we specify the *bam* extension `samtools` automatically compresses the output|
 
 Compressing the file to the *bam* format is an important step as when working with real data *sam* files can be massive and our storage capacity on NeSI is limited. It is also helpful to sort the mapping information so that reads mapped to a contig are listed in order of their start position. For example
 
