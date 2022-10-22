@@ -59,8 +59,10 @@ Note that these *fastQ* files are compressed, yet we can concatenate them togeth
 By contrast, what does `IDBA-UD` accept?
 
 ```bash
-module load IDBA/1.1.3-gimkl-2017a
-
+module purge
+module load IDBA-UD/1.1.3-GCC-11.3.0
+```
+```
 idba_ud
 # ...
 # -o, --out arg (=out) output directory
