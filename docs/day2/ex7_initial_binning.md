@@ -104,12 +104,10 @@ Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own f
 #SBATCH --cpus-per-task 10
 #SBATCH --error maxbin_clustering.err
 #SBATCH --output maxbin_clustering.out
-#SBATCH --export NONE
 
-export SLURM_EXPORT_ENV=ALL
 
 module purge
-module load MaxBin/2.2.6-gimkl-2018b-Perl-5.28.1
+module load MaxBin/2.2.7-GCC-11.3.0-Perl-5.34.1
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 
