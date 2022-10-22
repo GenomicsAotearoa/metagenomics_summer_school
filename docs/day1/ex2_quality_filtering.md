@@ -204,23 +204,27 @@ There is always some subjectivity in how sensitive you want your adapter (and ba
 
 Whether a library is 'poor' quality or not can be a bit subjective. These are some aspects of the library that you should be looking for when evaluating `FastQC`:
 
-1. Does the sequencing length match what you ordered from the facility?
-1. If the sequences are shorter than expected, is adapter read-through a concern?
-1. What does the sequence quality look like for the whole length of the run? Are there any expected/unexpected regions of quality degradation?
-1. Are adapters and/or barcodes removed? (look at the *Per base sequence content* to diagnose this)
-1. Is there unexpected sequence duplication? (this can occur when low-input library preparations are used)
-1. Are over-represented *k*-mers present? (this can be a sign of adapter and barcode contamination)
+!!! note ""
+
+    1. Does the sequencing length match what you ordered from the facility?
+    1. If the sequences are shorter than expected, is adapter read-through a concern?
+    1. What does the sequence quality look like for the whole length of the run? Are there any expected/unexpected regions of quality degradation?
+    1. Are adapters and/or barcodes removed? (look at the *Per base sequence content* to diagnose this)
+    1. Is there unexpected sequence duplication? (this can occur when low-input library preparations are used)
+    1. Are over-represented *k*-mers present? (this can be a sign of adapter and barcode contamination)
 
 ---
 
 ### Understand common issues and best practices
 
-1. Do I need to remove (rare) adapters?
-1. I don’t know if adapters have been removed or not
-1. How do I identify and remove adapter read-through
-1. Identifying incomplete barcode/adapter removal
-1. Over aggressive trimming
-1. GC skew is outside of expected range
+!!! success ""
+
+    1. Do I need to remove (rare) adapters?
+    1. I don’t know if adapters have been removed or not
+    1. How do I identify and remove adapter read-through
+    1. Identifying incomplete barcode/adapter removal
+    1. Over aggressive trimming
+    1. GC skew is outside of expected range
 
 ---
 
