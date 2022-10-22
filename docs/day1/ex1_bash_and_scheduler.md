@@ -413,7 +413,7 @@ scp -oProxyCommand="ssh -W %h:%p user@lander.nesi.org.nz" /path/in/local/ user@g
 
 ### Introduction to slurm
 
-<center>![image](./theme_images/scheduler_image.png){width="500"}</center>
+<center>![image](../theme_images/scheduler_image.png){width="500"}</center>
 
 An HPC system might have thousands of nodes and thousands of users. How do we decide who gets what and when? How do we ensure that a task is run with the resources it needs? This job is handled by a special piece of software called the scheduler. On an HPC system, the scheduler manages which jobs run where and when. In brief, scheduler is a 
 
@@ -437,8 +437,31 @@ An HPC system might have thousands of nodes and thousands of users. How do we de
     * Grid Engine
     * LSF – IBM Systems
 
-    ![image](./nesi_images/slurm_comms2compute.png)
+    <center>![image](../theme_images/slurm_comms2compute.png){width="800"}</center>
+
     <small>Researchers can not communicate directly to  Compute nodes from the login node. Only way to establish a connection OR send scripts to compute nodes is to use scheduler as the carrier/manager</small>
+
+
+## Life cycle of a slurm job
+
+<br>
+<center>![image](../theme_images/batch_system_flow%20.png){width="800"}</center>
+<br>
+
+The main commands you will use with Slurm on NeSI Mahuika cluster are:
+   
+---
+
+| Command        | Function                                                                                             |
+|:---------------|:------------------------------------------------------------------------------------------------------|
+| `sbatch`       | Submit non-interactive (batch) jobs to the scheduler                                                 |
+| `squeue`       | List jobs in the queue                                                                               |
+| `scancel`      | Cancel a job                                                                                         |
+| `sacct`        | Display accounting data for all jobs and job steps in the Slurm job accounting log or Slurm database|
+| `srun`         | Slurm directive for parallel computing                                                                      |
+| `sinfo`        | Query the current state of nodes                                                                     |
+| `salloc`       | Submit interactive jobs to the scheduler                                                             |
+
 
 Copy the contents of the `BLAST/` folder to your current directory, using the following command
 
