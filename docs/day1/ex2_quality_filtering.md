@@ -230,11 +230,15 @@ Metagenome data derived from microbial communities associated with a host should
 
 There are several approaches that can be used to achieve this. The general principle is to map your reads to a reference genome (e.g. human genome) and remove those reads that map to the reference from the dataset. 
 
-*NOTE: This process may be more complicated if a reference genome for your host taxa is not readily available. In this case an alternative method would need to be employed (for example: predicting taxonomy via Kraken2 and then filtering out all reads that map to the pylum or kingdom of your host taxa).*
+!!! note "Note"
+
+    This process may be more complicated if a reference genome for your host taxa is not readily available. In this case an alternative method would need to be employed (for example: predicting taxonomy via Kraken2 and then filtering out all reads that map to the pylum or kingdom of your host taxa).*
 
 This exercise provides an example using **BBMap** to map against a masked human reference genome and retain only those reads that do *not* map to the reference. Here we are mapping the quality-filtered reads against a pre-prepared human genome that has been processed to mask sections of the genome, including those that: are presumbed microbial contaminant in the reference; have high homology to microbial genes/genomes (e.g. ribosomes); or those that are of low complexity. This ensures that reads that would normally map to these sections of the human genome are *not* removed from the dataset (as genuine microbial reads that we wish to retain might also map to these regions), while all reads mapping to the rest of the human genome are removed.
 
-*NOTE: The same process can be used to remove DNA matching other hosts (e.g. mouse), however you would need to search if anyone has prepared (and made available) a masked version of the reference genome, or create a masked version using bbmask. The creator of BBMap has made available masked human, mouse, cat, and dog genomes. More information, including links to these references and instructions on how to generate a masked genome for other taxa, can be found within [this thread](http://seqanswers.com/forums/showthread.php?t=42552).*
+!!! note "Note"
+
+    The same process can be used to remove DNA matching other hosts (e.g. mouse), however you would need to search if anyone has prepared (and made available) a masked version of the reference genome, or create a masked version using bbmask. The creator of BBMap has made available masked human, mouse, cat, and dog genomes. More information, including links to these references and instructions on how to generate a masked genome for other taxa, can be found within [this thread](http://seqanswers.com/forums/showthread.php?t=42552).*
 
 #### Downloading the masked human reference genome
 
@@ -266,7 +270,9 @@ We will cover more about read mapping in [later exercises](https://github.com/Ge
 
 Build index reference via `BBMap`. We will do this by submitting the job via slurm. 
 
-*NOTE: See [Preparing an assembly job for slurm](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex3_assembly.md#preparing-an-assembly-job-for-slurm) for more information about how to submit a job via slurm.*
+!!! note "Note"
+
+    See [Preparing an assembly job for slurm](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex3_assembly.md#preparing-an-assembly-job-for-slurm) for more information about how to submit a job via slurm.*
 
 ```bash
 #!/bin/bash -e
@@ -302,7 +308,9 @@ Finally, map the quality-filtered reads to the reference via `BBMap`. Here we wi
 - The rest of the settings in the `BBMap` call here are as per the recommendations found within [this thread](http://seqanswers.com/forums/showthread.php?t=42552) about processing data to remove host reads.
 - Finally, the filtered output *fastq* files for downstream use are output to the `host_filtered_reads/` folder (taken from the outputs `outu1=` and `otu2=`, which include only those reads that did not map to the host reference genome).
 
-*NOTE: Slurm array jobs automatically create a variable `SLURM_ARRAY_TASK_ID` for that job, which contains the array task number (i.e. between 1 and 4 in the case below). We use this to run the command on the sample that matches this array task ID. I.e. array job 3 will run the commands on "sample3" (`sample${SLURM_ARRAY_TASK_ID}` is read in as `sample3`).*
+!!! note "Note"
+
+    Slurm array jobs automatically create a variable `SLURM_ARRAY_TASK_ID` for that job, which contains the array task number (i.e. between 1 and 4 in the case below). We use this to run the command on the sample that matches this array task ID. I.e. array job 3 will run the commands on "sample3" (`sample${SLURM_ARRAY_TASK_ID}` is read in as `sample3`).*
 
 ```bash
 #!/bin/bash -e
