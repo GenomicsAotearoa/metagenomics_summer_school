@@ -1,4 +1,4 @@
-# Introduction to the command line
+# Introduction to shell & HPC Job Scheduler
 
 ---
 
