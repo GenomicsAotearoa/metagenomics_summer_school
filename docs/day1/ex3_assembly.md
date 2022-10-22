@@ -248,15 +248,15 @@ The `module load` command needs to be invoked within your slurm script. It is al
 1. There is no chance of having the job fail immediately because it cannot find the relevant files
 1. When looking back through your slurm logs, you know where the data is meant to be
 
-When executing the `SPAdes` command, there are a few parameters to note here:
+!!! abstract "When executing the `SPAdes` command, there are a few parameters to note here:"
 
-|Parameter|Function|
-|:---|:---|
-|**--meta**|Activate metagenome assembly mode. Default is to assemble your metagenome using single genome assembly assumptions|
-|**-k ...**|*k*-mer sizes for assembly. These choices will provide the output we will use in the **Binning** session, but feel free to experiment with these to see if you can improve the assembly|
-|**-1 ..**|Forward reads, matched to their reverse partners|
-|**-2 ...**|Reverse reads, matched to their forward partners|
-|**-o ...**|Output directory for all files|
+    |Parameter|Function|
+    |:---|:---|
+    |**--meta**|Activate metagenome assembly mode. Default is to assemble your metagenome using single genome assembly assumptions|
+    |**-k**|*k*-mer sizes for assembly. These choices will provide the output we will use in the **Binning** session, but feel free to experiment with these to see if you can improve the assembly|
+    |**-1**|Forward reads, matched to their reverse partners|
+    |**-2**|Reverse reads, matched to their forward partners|
+    |**-o**|Output directory for all files|
 
 Note that we also prefix the command (`spades.py`) with the `srun` command. This is a command specific to slurm and allows NeSI to track the resource usage of the `SPAdes` job.
 
