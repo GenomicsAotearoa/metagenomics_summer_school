@@ -16,4 +16,5 @@
 | [Appendix 2](""){ .md-button }   |[Generating input files for "VizBin" from "DAS_Tool" curated bins](./resources/2_APPENDIX_ex9_Generating_input_files_for_VizBin.md)|
 | [Appendix 3](""){ .md-button }   | [Normalise per-sample coverage values by average library size](./resources/3_APPENDIX_ex11_Normalise_coverage_example.md) |
 | [Appendix 4](""){ .md-button }   | [Viral taxonomy prediction via vContact2](./resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md) |
-| [Appendix 5](""){ .md-button }    | []
+| [Appendix 5](""){ .md-button }    | [How to generate the blast files provided by Gene synteny](./resources/5_APPENDIX_ex15_gene_synteny_Generate_blast_files.md)  |
+| [Appendix 6](""){ .md-button }    | [Extract Gene of Interes](./resources/6_APPENDIX_ex15_gene_synteny_grab_GOI.md)  |
