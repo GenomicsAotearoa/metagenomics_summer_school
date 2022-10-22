@@ -246,7 +246,7 @@ mkdir filtered_bins/
 
 # Load seqmagick
 module purge
-module load seqmagick/0.7.0-gimkl-2018b-Python-3.7.3
+module load seqmagick/0.8.4-gimkl-2020a-Python-3.8.2
 
 # filter problematic contigs out of original bin files
 for bin_file in example_data_unchopped/*.fna; do
