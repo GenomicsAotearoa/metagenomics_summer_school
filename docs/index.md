@@ -26,3 +26,11 @@
     |[Appendix 4](""){ .md-button    } | [Viral taxonomy prediction via vContact2](./resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md) |
     |[Appendix 5](""){ .md-button } | [How to generate the blast files provided by Gene synteny](./resources/5_APPENDIX_ex15_gene_synteny_Generate_blast_files.md) |
     |[Appendix 6](""){ .md-button } | [Extract Gene of Interest](./resources/6_APPENDIX_ex15_gene_synteny_grab_GOI.md)|
+
+
+<br>
+<br>
+
+# License 
+
+Genomics Aotearoa / New Zealand eScience Infrastructure/ University of Auckland **Metagenomics Summer School** material is licensed under the **GNU General Public License v3.0, 29 June 2007** . ([Follow this link for more information](https://github.com/GenomicsAotearoa/shell-for-bioinformatics/blob/main/LICENSE))
