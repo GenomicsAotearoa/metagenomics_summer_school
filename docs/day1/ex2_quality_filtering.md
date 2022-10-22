@@ -276,16 +276,15 @@ Build index reference via `BBMap`. We will do this by submitting the job via slu
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A nesi02659
-#SBATCH -J host_filt_bbmap_index
-#SBATCH --res SummerSchool
-#SBATCH -J 2.qc_bbmap_ref
-#SBATCH --time 00:20:00
-#SBATCH --mem 23GB
-#SBATCH --ntasks 1
+
+#SBATCH --account       nesi02659
+#SBATCH --res           SummerSchool
+#SBATCH --job-name      2.qc_bbmap_ref
+#SBATCH --time          00:20:00
+#SBATCH --mem           23GB
 #SBATCH --cpus-per-task 1
-#SBATCH -e host_filt_bbmap_index.err
-#SBATCH -o host_filt_bbmap_index.out
+#SBATCH --error         host_filt_bbmap_index.err
+#SBATCH --output        host_filt_bbmap_index.out
 
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/BBMask_human_reference/
