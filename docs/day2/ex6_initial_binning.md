@@ -107,17 +107,17 @@ For large sets of files, it can be beneficial to use a slurm *array* to send the
 
 #### Step 2 - Map the reads using *bowtie2*
 
-This is performed using the following parameters
+!!! abstract "This is performed using the following parameters"
 
-|Parameter|Function|
-|:---|:---|
-|**--minins ...**|Minimum insert size, determines the minimum distance between the start of each read pair|
-|**--maxins ...**|Maximum insert size, determines the maximum distance between the start of each read pair|
-|**--threads ...**|Number of threads to use in read mapping|
-|**--sensitive**|Specifies where we want to be positioned in the trade-off between speed and sensitivity. See the manual for more information|
-|**-x ...**|The base name of our assembly index. Should be exactly the same as what was specified when running **bowtie2-build**|
-|**-1 ...** / **-2 ...**|The forward and reverse read pairs to map to the assembly|
-|**-S ...**|Name of the output file, to be written in *sam* format|
+    |Parameter|Function|
+    |:---|:---|
+    |**--minins**|Minimum insert size, determines the minimum distance between the start of each read pair|
+    |**--maxins**|Maximum insert size, determines the maximum distance between the start of each read pair|
+    |**--threads**|Number of threads to use in read mapping|
+    |**--sensitive**|Specifies where we want to be positioned in the trade-off between speed and sensitivity. See the manual for more information|
+    |**-x**|The base name of our assembly index. Should be exactly the same as what was specified when running **bowtie2-build**|
+    |**-1** / **-2**|The forward and reverse read pairs to map to the assembly|
+    |**-S**|Name of the output file, to be written in *sam* format|
 
 #### Step 3 - Sorting and compressing results
 
