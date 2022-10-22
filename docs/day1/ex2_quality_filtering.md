@@ -311,16 +311,16 @@ Finally, map the quality-filtered reads to the reference via `BBMap`. Here we wi
 
 ```bash
 #!/bin/bash -e
-#SBATCH --account nesi02659
-#SBATCH --job-name host_filt_bbmap_map
-#SBATCH --res SummerSchool
-#SBATCH --time 01:00:00
-#SBATCH --mem 27GB
-#SBATCH --ntasks 1
-#SBATCH --array=1-4
+
+#SBATCH --account       nesi02659
+#SBATCH --job-name      host_filt_bbmap_map
+#SBATCH --res           SummerSchool
+#SBATCH --time          01:00:00
+#SBATCH --mem           27GB
+#SBATCH --array         1-4
 #SBATCH --cpus-per-task 20
-#SBATCH --error host_filt_bbmap_map_%a.err
-#SBATCH --output host_filt_bbmap_map_%a.out
+#SBATCH --error         host_filt_bbmap_map_%a.err
+#SBATCH --output        host_filt_bbmap_map_%a.out
 
 # Set up working directories
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/
@@ -328,7 +328,7 @@ mkdir -p host_filtered_reads/
 
 # Load BBMap module
 module purge
-module load BBMap/38.95-gimkl-2020a
+module load BBMap/39.01-GCC-11.3.0
 
 # Run bbmap
 srun bbmap.sh -Xmx27g -t=20 \
