@@ -171,12 +171,12 @@ sbatch checkv.sl
 
 `CheckV` provides summary outputs for contamination, completeness, repeats, and an overall quality summary. Have a brief look at some examples of the information you can draw from each of these `CheckV` outputs. 
 
-Exercise: Examining `checkv_out/quality_summary.tsv`
+!!! question "Exercise: Examining `checkv_out/quality_summary.tsv`"
 
-* How many viral contigs meet the "High-quality" (MIUViG) standard?
-* How many might we consider "complete" genomes based on `CheckV`'s completeness estimation?
-* Were any terminal repeat regions identified for any of the contigs?
-* How many prophage were identified by `CheckV`? Why might this differ to `VIBRANT`'s identification of prophage above?
-* Are there any suspicious contigs that you might want to flag for closer examination (and/or careful consideration in downstream analyses)?
+    * How many viral contigs meet the "High-quality" (MIUViG) standard?
+    * How many might we consider "complete" genomes based on `CheckV`'s completeness estimation?
+    * Were any terminal repeat regions identified for any of the contigs?
+    * How many prophage were identified by `CheckV`? Why might this differ to `VIBRANT`'s identification of prophage above?
+    * Are there any suspicious contigs that you might want to flag for closer examination (and/or careful consideration in downstream analyses)?
 
 ---
