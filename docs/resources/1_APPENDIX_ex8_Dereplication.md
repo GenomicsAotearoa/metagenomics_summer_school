@@ -1,10 +1,10 @@
 # APPENDIX (ex8):Dereplicating data from multiple assemblies
 
-### Objectives
+!!! info "Objectives"
 
-* Understand the common issues with using `dRep` and `CheckM`
-* Use `CheckM` and `dRep` together to dereplicate a set of genomes
-* De-duplicate viral contigs using `BBMap`'s `dedupe.sh`
+    * Understand the common issues with using `dRep` and `CheckM`
+    * Use `CheckM` and `dRep` together to dereplicate a set of genomes
+    * De-duplicate viral contigs using `BBMap`'s `dedupe.sh`
 
 ---
 
