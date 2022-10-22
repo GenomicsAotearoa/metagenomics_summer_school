@@ -60,7 +60,7 @@ theme:
   language: en
   font:
     text: Mukta
-    code: Fira Code
+    code: Roboto Mono
 
 markdown_extensions:
   - abbr
