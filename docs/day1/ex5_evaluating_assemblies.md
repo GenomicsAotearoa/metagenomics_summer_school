@@ -13,7 +13,7 @@
 Check to see if your assembly jobs have completed. If you have multiple jobs running or queued, the easiest way to check this is to simply run the `squeue` command.
 
 ```bash
-squeue -u <user name>
+squeue --me
 
 #  JOBID     USER ACCOUNT            NAME  ST REASON    START_TIME                TIME TIME_LEFT NODES CPUS
 ```
