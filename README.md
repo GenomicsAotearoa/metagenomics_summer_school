@@ -1,6 +1,6 @@
 # Metagenomics Summer School
 
-Material migration is in-progress (to be completed by 12:00hrs October 24th) - new url is https://genomicsaotearoa.github.io/metagenomics_summer_school/
+ https://genomicsaotearoa.github.io/metagenomics_summer_school/
 
 Course materials for the Genomics Aotearoa Metagenomics Summer School, to be hosted at the University of Auckland in November.
 
