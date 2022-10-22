@@ -30,7 +30,7 @@ To activate `FastQC` on NeSI, you need to first load the module using the comman
 
 ```bash
 module purge
-module load FastQC/0.11.7
+module load FastQC/0.11.9
 ```
 
 #### Running *FastQC*
