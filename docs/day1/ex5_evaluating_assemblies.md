@@ -70,7 +70,8 @@ A few quick checks I recommend are to see how many contigs or scaffolds your dat
 These steps will take place in the `4.evaluation/` folder, which contains copies of our `SPAdes` and `IDBA-UD` assemblies.
 
 ```bash
-module load seqmagick/0.7.0-gimkl-2018b-Python-3.7.3
+module purge
+module load seqmagick/0.8.4-gimkl-2020a-Python-3.8.2
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.evaluation/
 
@@ -101,7 +102,7 @@ seqmagick convert --min-length 1000 ../3.assembly/idbaud_assembly/scaffold.fa my
 As we can see here, the `SPAdes` assembly has completed with fewer contigs assembled than the `IDBA-UD`, both in terms of total contigs assembled and contigs above the 1,000 bp size. This doesn't tell us a lot though - has `SPAdes` managed to assemble fewer reads, or has it managed to assemble the sequences into longer (and hence fewer) contigs? We can check this by looking at the N50/L50 of the assembly with `BBMap`.
 
 ```bash
-module load BBMap/38.73-gimkl-2018b
+module load BBMap/39.01-GCC-11.3.0
 
 stats.sh in=spades_assembly/spades_assembly.m1000.fna
 ```
