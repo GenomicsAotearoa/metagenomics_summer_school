@@ -177,7 +177,7 @@ A good summary and comparison of these tools (and more) was recently published b
 However, since we **_do_** know the composition of the original communities used to build this mock metagenome, `MetaQUAST` will work very well for us today. In your `4.evaluation/` directory you will find a file called `ref_genomes.txt`. This file contains the names of the genomes used to build these mock metagenomes. We will provide these as the reference input for `MetaQUAST`.
 
 ```bash
-module load QUAST/5.0.2-gimkl-2018b
+module load QUAST/5.2.0-gimkl-2022a
 
 metaquast.py spades_assembly/spades_assembly.fna spades_assembly/spades_assembly.m1000.fna \
              idbaud_assembly/idbaud_assembly.fna idbaud_assembly/idbaud_assembly.m1000.fna \
