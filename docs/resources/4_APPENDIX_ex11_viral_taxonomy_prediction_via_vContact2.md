@@ -19,9 +19,9 @@ Example slurm script:
 #SBATCH --job-name      prodigal
 #SBATCH --time          00:05:00
 #SBATCH --mem           1GB
-#SBATCH --cpus-per-task=2
-#SBATCH -e prodigal.err
-#SBATCH -o prodigal.out
+#SBATCH --cpus-per-task 2
+#SBATCH --error         prodigal.err
+#SBATCH --output        prodigal.out
 
 
 # Load dependencies
@@ -71,6 +71,7 @@ Example slurm script:
 
 ```bash
 #!/bin/bash -e
+
 #SBATCH -A nesi02659
 #SBATCH -J vcontact2
 #SBATCH --time 02:00:00
@@ -79,9 +80,7 @@ Example slurm script:
 #SBATCH --cpus-per-task=20
 #SBATCH -e vcontact2.err
 #SBATCH -o vcontact2.out
-#SBATCH --export NONE
 
-export SLURM_EXPORT_ENV=ALL
 
 # Set up working directories
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/viral_taxonomy/
