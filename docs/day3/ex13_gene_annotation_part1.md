@@ -45,7 +45,7 @@ In general, diamond takes a simple pair of input files - the protein coding sequ
 
 ```bash
 module purge
-module load DIAMOND/0.9.25-gimkl-2018b
+module load DIAMOND/2.0.15-GCC-11.3.0
 
 diamond help
 # diamond v0.9.25.126 | by Benjamin Buchfink <buchfink@gmail.com>
@@ -99,7 +99,7 @@ Paste in the script (update `<YOUR FOLDER>`)
 export SLURM_EXPORT_ENV=ALL
 
 module purge
-module load DIAMOND/0.9.25-gimkl-2018b
+module load DIAMOND/2.0.15-GCC-11.3.0
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
