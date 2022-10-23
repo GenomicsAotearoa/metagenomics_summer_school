@@ -78,17 +78,15 @@ Example slurm script:
 
 ```bash
 #!/bin/bash -e
+
 #SBATCH -A nesi02659
 #SBATCH -J 6.bin_refinement_mapping
 #SBATCH --time 00:05:00
 #SBATCH --mem 1GB
-#SBATCH --ntasks 1
 #SBATCH --cpus-per-task 10
-#SBATCH -e 6.bin_refinement_mapping.err
-#SBATCH -o 6.bin_refinement_mapping.out
-#SBATCH --export NONE
+#SBATCH --error         6.bin_refinement_mapping.err
+#SBATCH --output        6.bin_refinement_mapping.out
 
-export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
