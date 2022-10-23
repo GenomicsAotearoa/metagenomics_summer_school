@@ -109,6 +109,7 @@ Paste in the script (modifying `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash -e
+
 #SBATCH --account nesi02659
 #SBATCH --job-name prodigal
 #SBATCH --res SummerSchool
