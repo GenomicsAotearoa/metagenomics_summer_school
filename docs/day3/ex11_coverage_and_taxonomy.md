@@ -246,7 +246,8 @@ nano gtdbtk_test.sl
 Paste in the script (replacing `<YOUR FOLDER>`)
 
 ```bash
-#!/bin/bash
+#!/bin/bash -e
+
 #SBATCH --account nesi02659
 #SBATCH --job-name gtdbtk_test
 #SBATCH --res SummerSchool
@@ -255,9 +256,6 @@ Paste in the script (replacing `<YOUR FOLDER>`)
 #SBATCH --cpus-per-task 10
 #SBATCH --error gtdbtk_test.err
 #SBATCH --output gtdbtk_test.out
-#SBATCH --export NONE
-
-export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load GTDB-Tk/1.5.0-gimkl-2020a-Python-3.8.2
