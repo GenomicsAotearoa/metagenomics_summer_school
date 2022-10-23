@@ -118,9 +118,6 @@ Paste in the script (modifying `<YOUR FOLDER>`)
 #SBATCH --cpus-per-task 1
 #SBATCH --error prodigal.err
 #SBATCH --output prodigal.out
-#SBATCH --export NONE
-
-export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load prodigal/2.6.3-GCC-11.3.0
