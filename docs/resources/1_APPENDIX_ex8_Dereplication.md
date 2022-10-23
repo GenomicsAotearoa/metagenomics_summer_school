@@ -96,13 +96,15 @@ Here we simply load the modules required for `dRep`, then execute the command. B
 
 The parameters for `dRep` are as follows:
 
-|Parameter|Function|
-|:---|:---|
-|**dereplicate**|Activate the *dereplicate* workflow from `dRep`|
-|**--genomeInfo ...**|Skip quality checking via `CheckM`, instead use the values in the table provided|
-|**-g ...**|List of MAGs to dereplicate, passed by wildcard|
-|**-p ...**|Number of processors to use|
-|**drep_output/**|Output folder for all outputs|
+!!! abstract ""
+
+    |Parameter|Function|
+    |:---|:---|
+    |**dereplicate**|Activate the *dereplicate* workflow from `dRep`|
+    |**--genomeInfo**|Skip quality checking via `CheckM`, instead use the values in the table provided|
+    |**-g**|List of MAGs to dereplicate, passed by wildcard|
+    |**-p**|Number of processors to use|
+    |**drep_output/**|Output folder for all outputs|
 
 When `dRep` finishes running, there are a few useful outputs to examine:
 
@@ -127,7 +129,7 @@ cd /path/to/viral/contigs/from/multiple/assemblies/
 mkdir -p dedupe
 
 # load BBMap
-module load BBMap/38.81-gimkl-2020a
+module load BBMap/39.01-GCC-11.3.0
 
 # Set infiles
 infiles="assembly_viral_1.fna,assembly_viral_2.fna,assembly_viral_3.fna,assembly_viral_4.fna"
@@ -138,6 +140,8 @@ minidentity=98 exact=f sort=length mergenames=t mergedelimiter=___ overwrite=t \
 out=dedupe/dedupe.fa
 ```
 
-*NOTE: `dedupe.sh` will dereplicate contigs that are duplicates or are fully contained by another contig, but unforunately not those that share a partial overlap (i.e. sharing an overlapping region, but with non-overlapping sections hanging off the ends). `dedupe.sh` does include the functionality to **cluster** these contigs together (via `c` and `mo`) and output as separate fastA files, but not to then merge these sequences together into a single representative (this appears to have been a "to do" item for a number of years). One option in this case could be to develop a method that: outputs all of the clusters, aligns sequences within each cluster, generates a consensus sequence from the alignment (i.e. effectively performing new mini-assemblies on each of the clusters of overlapping contigs), and then adds this back to the deduplicated fasta output from `dedupe.sh` (n.b. this is unfortunately a less trivial process than it sounds...)*
+!!! note "Note"
+
+    `dedupe.sh` will dereplicate contigs that are duplicates or are fully contained by another contig, but unfortunately not those that share a partial overlap (i.e. sharing an overlapping region, but with non-overlapping sections hanging off the ends). `dedupe.sh` does include the functionality to **cluster** these contigs together (via `c` and `mo`) and output as separate fastA files, but not to then merge these sequences together into a single representative (this appears to have been a "to do" item for a number of years). One option in this case could be to develop a method that: outputs all of the clusters, aligns sequences within each cluster, generates a consensus sequence from the alignment (i.e. effectively performing new mini-assemblies on each of the clusters of overlapping contigs), and then adds this back to the deduplicated fasta output from `dedupe.sh` (n.b. this is unfortunately a less trivial process than it sounds...)*
 
 ---
