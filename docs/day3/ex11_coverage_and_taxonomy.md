@@ -248,14 +248,14 @@ Paste in the script (replacing `<YOUR FOLDER>`)
 ```bash
 #!/bin/bash -e
 
-#SBATCH --account nesi02659
-#SBATCH --job-name gtdbtk_test
-#SBATCH --res SummerSchool
-#SBATCH --time 00:30:00
-#SBATCH --mem 140GB
+#SBATCH --account       nesi02659
+#SBATCH --job-name      gtdbtk_test
+#SBATCH --res           SummerSchool
+#SBATCH --time          00:30:00
+#SBATCH --mem           140GB
 #SBATCH --cpus-per-task 10
-#SBATCH --error gtdbtk_test.err
-#SBATCH --output gtdbtk_test.out
+#SBATCH --error         gtdbtk_test.err
+#SBATCH --output        gtdbtk_test.out
 
 module purge
 module load GTDB-Tk/1.5.0-gimkl-2020a-Python-3.8.2
@@ -297,7 +297,8 @@ Even more so than prokaryote taxonomy, establishing a coherent system for viral 
 
 There are a number of approaches that can be used to attempt to predict the taxonomy of the set of putative viral contigs output by programs such as `VIBRANT`, `VirSorter`, and `VirFinder`. [vContact2](https://www.nature.com/articles/s41587-019-0100-8) is one such method that uses 'guilt-by-contig-association' to predict the potential taxonomy of viral genomic sequence data based on relatedness to known viruses within a reference database (such as viral RefSeq). The principle is that, to the extent that the 'unknown' viral contigs cluster closely with known viral genomes, we can then expect that they are closely related enough to be able to predict a shared taxonomic rank. 
 
-*NOTE: Anecdotally, however, in my own experience with this processes I have unfortunately been unable to predict the taxonomy of the vast majority of the viral contigs ouput by `VIBRANT`, `VirSorter`, or `VirFinder` from an environmental metagenomic data set (due to not clustering closely enough with known viruses in the reference database).*
+!!! note "Note"
+    Anecdotally, however, in my own experience with this processes I have unfortunately been unable to predict the taxonomy of the vast majority of the viral contigs ouput by `VIBRANT`, `VirSorter`, or `VirFinder` from an environmental metagenomic data set (due to not clustering closely enough with known viruses in the reference database).
 
 Running `vContact2` can require a considerable amount of computational resources, and so we won't be running this in the workshop today. The required process is outlined for reference in an [Appendix for this exercise](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md), should you wish to experiment with this on your own data in the future. 
 
@@ -313,12 +314,14 @@ less vConTACT2_Results/tax_predict_table.txt
 
 A few notes to consider: 
 
-* You will see that the `genome_by_genome_overview.csv` file contains entries for the full reference database used as well as the input viral contigs (contigs starting with `NODE`). 
-* You can use a command such as `grep "NODE" vConTACT2_Results/genome_by_genome_overview.csv | less` to view only the lines for the input contigs of interest. 
-  * Note also that these lines however will *not* contain taxonomy information. 
-  * See the notes in the [Appendix](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md) for further information about why this might be.
-* As per the notes in the [Appendix](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md), the `tax_predict_table.txt` file contains *predictions* of potential taxonomy (and or taxonom*ies*) of the input viral contigs for order, family, and genus, based on whether they clustered with any viruses in the reference database.
-  * Bear in mind that these may be lists of *multiple* potential taxonomies, in the cases where viral contigs clustered with multiple reference viruses representing more than one taxonomy at the given rank.
-  * *NOTE: The taxonomies are deliberately enclosed in square brackets (`[ ]`) to highlight the fact that these are **predictions**, rather than definitive taxonomy **assignments**.*
+!!! quote ""
 
+    * You will see that the `genome_by_genome_overview.csv` file contains entries for the full reference database used as well as the input viral contigs (contigs starting with `NODE`). 
+    * You can use a command such as `grep "NODE" vConTACT2_Results/genome_by_genome_overview.csv | less` to view only the lines for the input contigs of interest. 
+      * Note also that these lines however will *not* contain taxonomy information. 
+      * See the notes in the [Appendix](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md) for further information about why this might be.
+    * As per the notes in the [Appendix](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md), the `tax_predict_table.txt` file contains *predictions* of potential taxonomy (and or taxonom*ies*) of the input viral contigs for order, family, and genus, based on whether they clustered with any viruses in the reference database.
+      * Bear in mind that these may be lists of *multiple* potential taxonomies, in the cases where viral contigs clustered with multiple reference viruses representing more than one taxonomy at the given rank.
+      * *NOTE: The taxonomies are deliberately enclosed in square brackets (`[ ]`) to highlight the fact that these are **predictions**, rather than definitive taxonomy **assignments**.*
+    
 ---
