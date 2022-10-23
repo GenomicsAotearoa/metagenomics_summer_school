@@ -161,16 +161,18 @@ The program will take 4-4.5 hours to run, so we will submit the jobs and inspect
 
 It is now time to select the goals to investigate the genomes you have been working with. We ask you to select one of the following goals:
 
-1. Denitrification (Nitrate or nitrite to nitrogen)
-2. Ammonia oxidation (Ammonia to nitrite or nitrate)
-3. Anammox (Ammonia and nitrite to nitrogen)
-4. Sulfur oxidation (SOX pathway, thiosulfate to sulfate)
-5. Sulfur reduction (DSR pathway, sulfate to sulfide)
-6. Photosynthetic carbon fixation
-7. Non-photosynthetic carbon fixation (Reverse TCA or Wood-Ljundahl)
-8. Non-polar flagella expression due to a chromosomal deletion
-9. Plasmid-encoded antibiotic resistance
-10. Aerobic (versus anaerobic) metabolism
+!!! quote ""
+
+    1. Denitrification (Nitrate or nitrite to nitrogen)
+    2. Ammonia oxidation (Ammonia to nitrite or nitrate)
+    3. Anammox (Ammonia and nitrite to nitrogen)
+    4. Sulfur oxidation (SOX pathway, thiosulfate to sulfate)
+    5. Sulfur reduction (DSR pathway, sulfate to sulfide)
+    6. Photosynthetic carbon fixation
+    7. Non-photosynthetic carbon fixation (Reverse TCA or Wood-Ljundahl)
+    8. Non-polar flagella expression due to a chromosomal deletion
+    9. Plasmid-encoded antibiotic resistance
+    10. Aerobic (versus anaerobic) metabolism
 
 Depending on what you are looking for, you will either be trying to find gene(s) of relevance to a particular functional pathway, or the omission of genes that might be critical in function. In either case, make sure to use the taxonomy of each MAG to determine whether it is likely to be a worthwhile candidate for exploration, as some of these traits are quite restricted in terms of which organisms carry them.
 
