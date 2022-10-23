@@ -29,7 +29,8 @@ Run `norm_jgi_cov_table.py` for microbial bins data and viral contigs, inputting
 
 This will generate the outputs `normalised_bins_cov_table.txt` and `normalised_viruses_cov_table.txt`. 
 
-*NOTE: If this `python` script is in the directory you are currently in, you can call it simply by adding `./` in front of the script name. If you have saved the script elsewhere, you will need to add the absolute path to the script, or add the script to your bin path.*
+!!! note "Note"
+    If this `python` script is in the directory you are currently in, you can call it simply by adding `./` in front of the script name. If you have saved the script elsewhere, you will need to add the absolute path to the script, or add the script to your bin path.*
 
 ```bash
 module purge
