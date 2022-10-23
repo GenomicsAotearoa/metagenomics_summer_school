@@ -238,7 +238,7 @@ Paste in the script (replacing `<YOUR FOLDER>`)
 export SLURM_EXPORT_ENV=ALL
 
 module purge
-module load Metaxa2/2.1.3-gimkl-2017a
+module load Metaxa2/2.2.3-gimkl-2022a
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction/
 
