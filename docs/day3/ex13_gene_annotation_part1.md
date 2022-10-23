@@ -131,7 +131,7 @@ The standard software for performing HMM-profiling annotation is [hmmer](http://
 As we did with `diamond`, we will also have to modify some parameters to get the desired ouotput. 
 
 ```bash
-module load HMMER/3.1b2-gimkl-2017a
+module load HMMER/3.3.2-GCC-11.3.0
 
 hmmsearch -h 
 
@@ -187,7 +187,7 @@ Paste in the script (update `<YOUR FOLDER>`)
 export SLURM_EXPORT_ENV=ALL
 
 module purge
-module load HMMER/3.1b2-gimkl-2017a
+module load HMMER/3.3.2-GCC-11.3.0
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
 
