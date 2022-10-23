@@ -35,19 +35,19 @@ We will write a single slurm script to run all necessary commands, then analyse 
 ```bash
 #!/bin/bash -e
 
-#SBATCH -A nesi02659
-#SBATCH -J checkm_drep
-#SBATCH --res SummerSchool
-#SBATCH --time 2:00:00
-#SBATCH --mem 80GB
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=10
-#SBATCH -e checkm_drep.err
-#SBATCH -o checkm_drep.out
+#SBATCH --account       nesi02659
+#SBATCH --job-name      checkm_drep
+#SBATCH --res           SummerSchool
+#SBATCH --time          2:00:00
+#SBATCH --mem           80GB
+#SBATCH --cpus-per-task 10
+#SBATCH --error         checkm_drep.err
+#SBATCH --output        checkm_drep.out
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/12.drep_example/
 
 # Step 1
+module purge
 module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
 checkm lineage_wf -t 10 --pplacer_threads 10 -x fa --tab_table -f checkm.txt \
                   input_bins/ checkm_out/
