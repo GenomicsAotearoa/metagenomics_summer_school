@@ -108,8 +108,9 @@ do
 
 done
 ```
+!!! note "Note"
 
-*Note: These settings are appropriate for this workshop's mock data. Full data sets will likely require considerably greater memory and time allocations.*
+    These settings are appropriate for this workshop's mock data. Full data sets will likely require considerably greater memory and time allocations.*
 
 **5. Generate coverage table of subcontigs (contigs fragmented based on 20k length)**
 
