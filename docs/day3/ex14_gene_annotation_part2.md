@@ -126,14 +126,14 @@ Paste in the script (update all of the cases of `<YOUR FOLDER>`)
 ```sh
 #!/bin/bash -e
 
-#SBATCH --account    nesi02659
-#SBATCH --job-name DRAM_annotation
-#SBATCH --res SummerSchool
-#SBATCH --time=5:00:00
-#SBATCH --mem=20Gb
-#SBATCH --cpus-per-task=24
-#SBATCH --error slurm-DRAM_annot.%A-%a.err 
-#SBATCH --output slurm-DRAM_annot.%A-%a.out 
+#SBATCH --account       nesi02659
+#SBATCH --job-name      DRAM_annotation
+#SBATCH --res           SummerSchool
+#SBATCH --time          5:00:00
+#SBATCH --mem           20Gb
+#SBATCH --cpus-per-task 24
+#SBATCH --error         slurm-DRAM_annot.%A-%a.err 
+#SBATCH --output        slurm-DRAM_annot.%A-%a.out 
 
 
 module purge
