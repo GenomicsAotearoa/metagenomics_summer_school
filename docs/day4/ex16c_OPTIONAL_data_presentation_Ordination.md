@@ -27,7 +27,8 @@ In addition to this, a simple mapping file has also been created (`11.data_prese
 
 To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and open a `Notebook` running the `R 4.0.1` module as the kernel (or, outside the context of this workshop, open `RStudio` with the required packages installed (see the [data presentation intro](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16a_data_presentation_Intro.md) docs for more information)).
 
-*NOTE: You will recognise that the first few steps will follow the same process as the previous exercise on [generating coverage heatmaps](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16b_data_presentation_Coverage.md). In practice, these two workflows can be combined to reduce the repititive aspects.*
+!!! note "Note"
+    You will recognise that the first few steps will follow the same process as the previous exercise on [generating coverage heatmaps](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16b_data_presentation_Coverage.md). In practice, these two workflows can be combined to reduce the repititive aspects.
 
 #### 1.1 Set working directory, load *R* libraries, and import data
 
@@ -103,9 +104,11 @@ It is often useful to examine ordinations based on both weighted and unweighted 
 
 Here we will use the functions `vegdist()` and `metaMDS()` from the `R` package `vegan` to generate weighted and unweighted Bray-Curtis dissimilarity matrices and nMDS solutions for the microbial bin data and viral contigs data. 
 
-*NOTE: you may also wish to make use of the `set.seed()` function before each calculation to ensure that you obtain consistent results if the same commands are re-run at a later date.*
+!!! note "Note"
+    You may also wish to make use of the `set.seed()` function before each calculation to ensure that you obtain consistent results if the same commands are re-run at a later date.*
 
-*NOTE: in the `Jupyter` environment, these commands will create long outputs below each code block. If need be, these outputs can be cleared from the screeen via `right-click on the code block > Clear Outputs`.*
+!!! note "Note"
+    In the `Jupyter` environment, these commands will create long outputs below each code block. If need be, these outputs can be cleared from the screeen via `right-click on the code block > Clear Outputs`
 
 ```bash 
 # Bins: weighted Bray-Curtis
@@ -239,7 +242,8 @@ Repeat the steps above (from 3.2 onwards), each time inputting a different data 
 
 ### nMDS figures: example outputs
 
-*NOTE: How informative these types of analyses are depends in part on the number of samples you actually have and the degree of variation between the samples. As you can see in the nMDS plots based on unweighted (binary) Bray-Curtis dissimilarities (especially for the MAGs data) there are not enough differences between any of the samples (in this case, in terms of community membership, rather than relative abundances) for this to result in a particularly meaningful or useful plot in these cases.*
+!!! note "Note"
+    How informative these types of analyses are depends in part on the number of samples you actually have and the degree of variation between the samples. As you can see in the nMDS plots based on unweighted (binary) Bray-Curtis dissimilarities (especially for the MAGs data) there are not enough differences between any of the samples (in this case, in terms of community membership, rather than relative abundances) for this to result in a particularly meaningful or useful plot in these cases.*
 
 <center>
 ![image](../figures/ex15_fig1_nMDS_MAGs_weighted.png){width="600"}
