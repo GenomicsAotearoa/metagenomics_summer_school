@@ -138,10 +138,11 @@ cazy_matrix %>% column_to_rownames('Bin') %>% as.matrix(.) %>% pheatmap(., col =
 
 And there we go. This is a pretty basic heatmap, so there are a number of presentation issues with it. If you have time, try to do the following fixes to the heatmap by exploring the manual for `pheatmap` or other `tidyverse` and `R` functions.
 
-1. Replace the column-wise clustering with alphabetic arrangement of the gene columns
-1. Change the colour palette of the heatmap
-1. Reduce the font size in the column (gene) labels
-1. Remove the `.hmm` extensions from the gene names, and the `.txt` extensions from the bin names
-1. Add colouring to the row (bins), marking bins belonging to the same phyla
+!!! quote ""
+    1. Replace the column-wise clustering with alphabetic arrangement of the gene columns
+    1. Change the colour palette of the heatmap
+    1. Reduce the font size in the column (gene) labels
+    1. Remove the `.hmm` extensions from the gene names, and the `.txt` extensions from the bin names
+    1. Add colouring to the row (bins), marking bins belonging to the same phyla
 
 ---
