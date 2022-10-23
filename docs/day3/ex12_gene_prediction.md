@@ -18,6 +18,7 @@ There are many software tools to predict gene sequences and in this workshop we 
 
 `prodigal` is execellent for the following use cases:
 
+!!! quote ""
 1. Predicting protein-coding genes in draft genomes and metagenomes  
 1. Quick and unsupervised execution, with minimal resource requirements
 1. Ability to handle gaps, scaffolds, and partial genes 
@@ -48,7 +49,7 @@ Before we start runnning `prodigal`, we will take quick look at the parameters.
 
 ```bash
 module purge
-module load Prodigal/2.6.3-GCC-9.2.0
+module load prodigal/2.6.3-GCC-11.3.0
 
 prodigal -h
 
@@ -122,7 +123,7 @@ Paste in the script (modifying `<YOUR FOLDER>`)
 export SLURM_EXPORT_ENV=ALL
 
 module purge
-module load Prodigal/2.6.3-GCC-9.2.0
+module load prodigal/2.6.3-GCC-11.3.0
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction/
 
