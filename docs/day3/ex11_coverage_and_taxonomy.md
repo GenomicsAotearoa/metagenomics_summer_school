@@ -91,7 +91,7 @@ Finally, generate the per-sample coverage table for each contig in each bin via 
 
 ```bash 
 # Load MetaBAT
-module load MetaBAT/2.13-GCC-7.4.0
+module load MetaBAT/2.15-GCC-11.3.0
 
 # calculate coverage table
 jgi_summarize_bam_contig_depths --outputDepth bins_cov_table.txt bin_coverage/sample*.bam
@@ -195,7 +195,7 @@ Finally, generate the per-sample coverage table for each viral contig via `MetaB
 
 ```bash 
 # Load MetaBAT
-module load MetaBAT/2.13-GCC-7.4.0
+module load MetaBAT/2.15-GCC-11.3.0
 
 # calculate coverage table
 jgi_summarize_bam_contig_depths --outputDepth viruses_cov_table.txt viruses_coverage/sample*.bam
