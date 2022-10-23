@@ -79,10 +79,10 @@ Example slurm script:
 ```bash
 #!/bin/bash -e
 
-#SBATCH -A nesi02659
-#SBATCH -J 6.bin_refinement_mapping
-#SBATCH --time 00:05:00
-#SBATCH --mem 1GB
+#SBATCH --account       nesi02659
+#SBATCH --job-name      6.bin_refinement_mapping
+#SBATCH --time          00:05:00
+#SBATCH --mem           1GB
 #SBATCH --cpus-per-task 10
 #SBATCH --error         6.bin_refinement_mapping.err
 #SBATCH --output        6.bin_refinement_mapping.out
