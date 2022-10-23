@@ -173,6 +173,7 @@ Paste in the script (update `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash -e
+
 #SBATCH --account nesi02659
 #SBATCH --job-name annotate_pfam
 #SBATCH --res SummerSchool
@@ -182,9 +183,7 @@ Paste in the script (update `<YOUR FOLDER>`)
 #SBATCH --cpus-per-task 10
 #SBATCH --error annotate_pfam_hmm.err
 #SBATCH --output annotate_pfam_hmm.out
-#SBATCH --export NONE
 
-export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load HMMER/3.3.2-GCC-11.3.0
