@@ -72,14 +72,13 @@ Example slurm script:
 ```bash
 #!/bin/bash -e
 
-#SBATCH -A nesi02659
-#SBATCH -J vcontact2
-#SBATCH --time 02:00:00
-#SBATCH --mem=20GB
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=20
-#SBATCH -e vcontact2.err
-#SBATCH -o vcontact2.out
+#SBATCH --account       nesi02659
+#SBATCH --job-name      vcontact2
+#SBATCH --time          02:00:00
+#SBATCH --mem           20GB
+#SBATCH --cpus-per-task 20
+#SBATCH --error         vcontact2.err
+#SBATCH --output        vcontact2.out
 
 
 # Set up working directories
