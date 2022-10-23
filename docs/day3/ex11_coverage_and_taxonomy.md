@@ -32,7 +32,7 @@ mkdir -p bin_coverage/
 
 # Load Bowtie2
 module purge
-module load Bowtie2/2.3.5-GCC-7.4.0
+module load Bowtie2/2.4.5-GCC-11.3.0
 
 # Build Bowtie2 index
 bowtie2-build filtered_bins.fna bin_coverage/bw_bins
@@ -64,7 +64,7 @@ Paste in the script (replacing `<YOUR FOLDER>`)
 export SLURM_EXPORT_ENV=ALL
 
 module purge
-module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
+module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/
 
@@ -137,7 +137,7 @@ Now build the index for `Bowtie2` using the concatenated viral contig data. We w
 mkdir -p viruses_coverage/
 
 # Load Bowtie2
-module load Bowtie2/2.3.5-GCC-7.4.0
+module load Bowtie2/2.4.5-GCC-11.3.0
 
 # Build Bowtie2 index
 bowtie2-build checkv_combined.fna viruses_coverage/bw_viruses
@@ -168,7 +168,7 @@ Paste in the script (replacing `<YOUR FOLDER>`)
 export SLURM_EXPORT_ENV=ALL
 
 module purge
-module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
+module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/
 
