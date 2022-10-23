@@ -85,6 +85,7 @@ Paste in the script (update `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash -e
+
 #SBATCH --account nesi02659
 #SBATCH --job-name annotate_uniprot
 #SBATCH --res SummerSchool
@@ -94,9 +95,7 @@ Paste in the script (update `<YOUR FOLDER>`)
 #SBATCH --cpus-per-task 20
 #SBATCH --error annotate_uniprot_dmnd.err
 #SBATCH --output annotate_uniprot_dmnd.out
-#SBATCH --export NONE
 
-export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load DIAMOND/2.0.15-GCC-11.3.0
