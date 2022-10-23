@@ -162,9 +162,6 @@ Paste in the script (replacing `<YOUR FOLDER>`)
 #SBATCH --cpus-per-task 10
 #SBATCH --error mapping_filtered_viruses.err
 #SBATCH --output mapping_filtered_viruses.out
-#SBATCH --export NONE
-
-export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
