@@ -1,7 +1,6 @@
 <center>
-
+![image](./theme_images/uoa_ga_nesi_LOGOS.png){width="350"}
 # **Metagenomics Summer School**
-
 </center>
 
 
