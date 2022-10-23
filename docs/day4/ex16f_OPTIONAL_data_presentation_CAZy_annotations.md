@@ -22,12 +22,13 @@ For this exercise, set `11.data_presentation/cazy_heatmap/` as the working direc
 
 The first thing we need to do is import these annotations into `R`. We will do this using the following workflow
 
-1. Import `tidyverse` libraries for manipulating data tables
-1. Create an empty data.frame (master data.frame)
-1. Importing each of the text file into an `R`, then 
-   - Append a new column to the text file, consisting of the name of the bin
-   - Select only the bin name and gene annotation from the imported table
-   - Append the text table to the master data.frame
+!!! quote ""
+    1. Import `tidyverse` libraries for manipulating data tables
+    1. Create an empty data.frame (master data.frame)
+    1. Importing each of the text file into an `R`, then 
+        - Append a new column to the text file, consisting of the name of the bin
+        - Select only the bin name and gene annotation from the imported table
+        - Append the text table to the master data.frame
 
 First, we import our `R` libraries with the `library()` command. For this workflow, we need three libraries from the `tidyverse` package:
 
