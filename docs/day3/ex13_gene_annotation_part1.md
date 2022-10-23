@@ -35,7 +35,7 @@ These exercises will take place in the `10.gene_annotation/` folder.
 
 ### Annotating MAGs against the *UniProt* database with *diamond*
 
-For this exercise we are going to use diamond for performing our annotation. We have chosen to use this tool because it is faster than BLAST, and usearch comes with licencing restrictions that make it hard to work with in a shared computing environment like NeSI.
+For this exercise we are going to use diamond for performing our annotation. We have chosen to use this tool because it is faster than BLAST, and usearch comes with licensing restrictions that make it hard to work with in a shared computing environment like NeSI.
 
 For this exercise we have created a diamond-compatible database from the 2018 release of the UniProt database.
 
