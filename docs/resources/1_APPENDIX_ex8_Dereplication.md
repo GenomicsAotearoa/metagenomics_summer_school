@@ -34,6 +34,7 @@ We will write a single slurm script to run all necessary commands, then analyse 
 
 ```bash
 #!/bin/bash -e
+
 #SBATCH -A nesi02659
 #SBATCH -J checkm_drep
 #SBATCH --res SummerSchool
@@ -43,9 +44,6 @@ We will write a single slurm script to run all necessary commands, then analyse 
 #SBATCH --cpus-per-task=10
 #SBATCH -e checkm_drep.err
 #SBATCH -o checkm_drep.out
-#SBATCH --export NONE
-
-export SLURM_EXPORT_ENV=ALL
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/12.drep_example/
 
