@@ -89,7 +89,7 @@ Example slurm script:
 
 
 module purge
-module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
+module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinement/
 
@@ -117,7 +117,7 @@ Use `MetaBAT`'s `jgi_summarise_bam_contig_depths` to generate a coverage table.
 
 ```bash
 # Load module
-module load MetaBAT/2.13-GCC-7.4.0
+module load MetaBAT/2.15-GCC-11.3.0
 
 # calculate coverage table
 jgi_summarize_bam_contig_depths --outputDepth example_data_20k_cov.txt read_mapping/sample*.bam
