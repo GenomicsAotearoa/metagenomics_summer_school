@@ -65,7 +65,7 @@ Build `Bowtie2` mapping index based on the concatenated chopped bins.
 ```bash
 mkdir -p read_mapping/
 
-module load Bowtie2/2.3.5-GCC-7.4.0
+module load Bowtie2/2.4.5-GCC-11.3.0
 
 bowtie2-build all_bins.fna read_mapping/bw_bins
 ```
