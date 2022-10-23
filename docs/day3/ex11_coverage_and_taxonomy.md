@@ -203,7 +203,8 @@ jgi_summarize_bam_contig_depths --outputDepth viruses_cov_table.txt viruses_cove
 
 The coverage table will be generated as `viruses_cov_table.txt`. As before, the key columns of interest are the `contigName`, and each `sample[1-n].bam` column.
 
-*NOTE: Unlike the prokaryote data, we have not used a binning process on the viral contigs (since many of the binning tools use hallmark characteristics of prokaryotes in the binning process). Here, `viruses_cov_table.txt` is the final coverage table. This can be combined with `CheckV` quality and completeness metrics to, for example, examine the coverage profiles of only those viral contigs considered to be "High-quality" or "Complete".* 
+!!! note "Note"
+    Unlike the prokaryote data, we have not used a binning process on the viral contigs (since many of the binning tools use hallmark characteristics of prokaryotes in the binning process). Here, `viruses_cov_table.txt` is the final coverage table. This can be combined with `CheckV` quality and completeness metrics to, for example, examine the coverage profiles of only those viral contigs considered to be "High-quality" or "Complete".* 
 
 #### Normalising coverage values
 
@@ -224,14 +225,15 @@ It is always valuable to know the taxonomy of our binned MAGs, so that we can li
 
 For this exercise, we will use the last option in the list, making use of the `GTDB-TK` software (available on [github](https://github.com/Ecogenomics/GTDBTk)) to automatically identify a set of highly conserved, single copy marker genes which are diagnostic of the bacterial (120 markers) and archaeal (122 markers) lineages. Briefly, `GTDB-TK` will perform the following steps on a set of bins.
 
-1. Attempt to identify a set of 120 bacterial marker genes, and 122 archaeal marker genes in each MAG.
-1. Based on the recovered numbers, identify which domain is a more likely assignment for each MAG
-1. Create a concatenated alignment of the domain-specific marker genes, spanning approximately 41,000 amino acid positions
-1. Filter the alignment down to approximately 5,000 informative sites
-1. Insert each MAG into a reference tree create from type material and published MAGs
-1. Scale the branch lengths of the resulting tree, as described in [Parks et al.](https://www.ncbi.nlm.nih.gov/pubmed/30148503), to identify an appropriate rank to each branch event in the tree
-1. Calculate ANI and AAI statistics between each MAG and its nearest neighbours in the tree
-1. Report the resulting taxonomic assignment, and gene alignment
+!!! quote ""
+    1. Attempt to identify a set of 120 bacterial marker genes, and 122 archaeal marker genes in each MAG.
+    1. Based on the recovered numbers, identify which domain is a more likely assignment for each MAG
+    1. Create a concatenated alignment of the domain-specific marker genes, spanning approximately 41,000 amino acid positions
+    1. Filter the alignment down to approximately 5,000 informative sites
+    1. Insert each MAG into a reference tree create from type material and published MAGs
+    1. Scale the branch lengths of the resulting tree, as described in [Parks et al.](https://www.ncbi.nlm.nih.gov/pubmed/30148503), to identify an appropriate rank to each branch event in the tree
+    1. Calculate ANI and AAI statistics between each MAG and its nearest neighbours in the tree
+    1. Report the resulting taxonomic assignment, and gene alignment
 
 This can all be achieved in a single command, although it must be performed through a slurm script due to the high memory requirements of the process.
 
