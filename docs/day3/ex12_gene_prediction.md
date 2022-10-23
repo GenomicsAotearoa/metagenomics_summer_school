@@ -110,14 +110,14 @@ Paste in the script (modifying `<YOUR FOLDER>`)
 ```bash
 #!/bin/bash -e
 
-#SBATCH --account nesi02659
-#SBATCH --job-name prodigal
-#SBATCH --res SummerSchool
-#SBATCH --time 00:10:00
-#SBATCH --mem 1GB
+#SBATCH --account       nesi02659
+#SBATCH --job-name      prodigal
+#SBATCH --res           SummerSchool
+#SBATCH --time          00:10:00
+#SBATCH --mem           1GB
 #SBATCH --cpus-per-task 1
-#SBATCH --error prodigal.err
-#SBATCH --output prodigal.out
+#SBATCH --error         prodigal.err
+#SBATCH --output        prodigal.out
 
 module purge
 module load prodigal/2.6.3-GCC-11.3.0
