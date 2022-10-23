@@ -19,12 +19,12 @@ There are many software tools to predict gene sequences and in this workshop we 
 `prodigal` is execellent for the following use cases:
 
 !!! quote ""
-1. Predicting protein-coding genes in draft genomes and metagenomes  
-1. Quick and unsupervised execution, with minimal resource requirements
-1. Ability to handle gaps, scaffolds, and partial genes 
-1. Identification of translation initiation sites 
-1. Multiple output formats, including either straight *fastA* files or the DNA sequence and protein translation for genes, as well as detailed summary statistics for each gene (e.g. contig length, gene length, GC content, GC skew, RBS motifs used, and start and stop codon usage)
-
+    1. Predicting protein-coding genes in draft genomes and metagenomes  
+    1. Quick and unsupervised execution, with minimal resource requirements
+    1. Ability to handle gaps, scaffolds, and partial genes 
+    1. Identification of translation initiation sites 
+    1. Multiple output formats, including either straight *fastA* files or the DNA sequence and protein translation for genes, as well as detailed summary statistics for each gene (e.g. contig length, gene length, GC content, GC skew, RBS motifs used, and start and stop codon usage)
+    
 `prodigal` is not the best tool to use for the following cases:
 
 1. Predicting RNA genes 
