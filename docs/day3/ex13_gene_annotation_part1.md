@@ -132,34 +132,36 @@ As we did with `diamond`, we will also have to modify some parameters to get the
 
 ```bash
 module load HMMER/3.3.2-GCC-11.3.0
-
-hmmsearch -h 
-
-# hmmsearch :: search profile(s) against a sequence database
-# HMMER 3.1b2 (February 2015); http://hmmer.org/
-# Copyright (C) 2015 Howard Hughes Medical Institute.
-# Freely distributed under the GNU General Public License (GPLv3).
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Usage: hmmsearch [options] <hmmfile> <seqdb>
-
-# Basic options:
-#  -h : show brief help on version and usage
-
-# Options directing output:
-# ...
-# --tblout <f>     : save parseable table of per-sequence hits to file <f>
-# ....
-
-# Options controlling reporting thresholds:
-# ...
-# -E <x>     : report sequences <= this E-value threshold in output  [10.0]  (x>0)
-# ...
-
-# Other expert options:
-# ...
-# --cpu <n>     : number of parallel CPU workers to use for multithreads
-# ...
 ```
+
+??? abstract "`hmmsearch -h`" 
+    ```bash
+    # hmmsearch :: search profile(s) against a sequence database
+    # HMMER 3.1b2 (February 2015); http://hmmer.org/
+    # Copyright (C) 2015 Howard Hughes Medical Institute.
+    # Freely distributed under the GNU General Public License (GPLv3).
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Usage: hmmsearch [options] <hmmfile> <seqdb>
+
+    # Basic options:
+    #  -h : show brief help on version and usage
+
+    # Options directing output:
+    # ...
+    # --tblout <f>     : save parseable table of per-sequence hits to file <f>
+    # ....
+
+    # Options controlling reporting thresholds:
+    # ...
+    # -E <x>     : report sequences <= this E-value threshold in output  [10.0]  (x>0)
+    # ...
+
+    # Other expert options:
+    # ...
+    # --cpu <n>     : number of parallel CPU workers to use for multithreads
+    # ...
+    ```
+
 
 We are now going to submit another slurm job to annotate our MAGs using the [Pfam database](https://www.ebi.ac.uk/interpro/download/Pfam/). Pfam used to have a standalone website, but it has recently been integrated into InterPro maintained by the European Bioinformatics Institute (see [announcement](https://xfam.wordpress.com/2022/08/04/pfam-website-decommission/)). Matching sequences to a `Pfam` entry allows us to transfer the functional information from an experimentally characterised sequence to uncharacterised sequences in the same entry. `Pfam` then provides comprehensive annotation for each entry.
 
