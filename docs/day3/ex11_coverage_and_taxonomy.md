@@ -154,14 +154,15 @@ Paste in the script (replacing `<YOUR FOLDER>`)
 
 ```bash 
 #!/bin/bash -e
-#SBATCH --account nesi02659
-#SBATCH --res SummerSchool
-#SBATCH --job-name mapping_filtered_viruses
-#SBATCH --time 00:05:00
-#SBATCH --mem 1GB
+
+#SBATCH --account       nesi02659
+#SBATCH --res           SummerSchool
+#SBATCH --job-name      mapping_filtered_viruses
+#SBATCH --time          00:05:00
+#SBATCH --mem           1GB
 #SBATCH --cpus-per-task 10
-#SBATCH --error mapping_filtered_viruses.err
-#SBATCH --output mapping_filtered_viruses.out
+#SBATCH --error         mapping_filtered_viruses.err
+#SBATCH --output        mapping_filtered_viruses.out
 
 module purge
 module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
