@@ -14,21 +14,19 @@ Example slurm script:
 
 ```bash
 #!/bin/bash -e
-#SBATCH -A nesi02659
-#SBATCH -J prodigal
-#SBATCH --time 00:05:00
-#SBATCH --mem=1GB
-#SBATCH --ntasks=1
+
+#SBATCH --account       nesi02659
+#SBATCH --job-name      prodigal
+#SBATCH --time          00:05:00
+#SBATCH --mem           1GB
 #SBATCH --cpus-per-task=2
 #SBATCH -e prodigal.err
 #SBATCH -o prodigal.out
-#SBATCH --export NONE
 
-export SLURM_EXPORT_ENV=ALL
 
 # Load dependencies
 module purge
-module load Prodigal/2.6.3-GCC-9.2.0
+module load prodigal/2.6.3-GCC-11.3.0
 
 # Set up working directories
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy
