@@ -24,7 +24,7 @@ There are many software tools to predict gene sequences and in this workshop we 
     1. Ability to handle gaps, scaffolds, and partial genes 
     1. Identification of translation initiation sites 
     1. Multiple output formats, including either straight *fastA* files or the DNA sequence and protein translation for genes, as well as detailed summary statistics for each gene (e.g. contig length, gene length, GC content, GC skew, RBS motifs used, and start and stop codon usage)
-    
+
 `prodigal` is not the best tool to use for the following cases:
 
 1. Predicting RNA genes 
@@ -114,7 +114,6 @@ Paste in the script (modifying `<YOUR FOLDER>`)
 #SBATCH --res SummerSchool
 #SBATCH --time 00:10:00
 #SBATCH --mem 1GB
-#SBATCH --ntasks 1
 #SBATCH --cpus-per-task 1
 #SBATCH --error prodigal.err
 #SBATCH --output prodigal.out
