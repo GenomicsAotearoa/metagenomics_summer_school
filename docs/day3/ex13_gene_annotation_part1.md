@@ -174,15 +174,14 @@ Paste in the script (update `<YOUR FOLDER>`)
 ```bash
 #!/bin/bash -e
 
-#SBATCH --account nesi02659
-#SBATCH --job-name annotate_pfam
-#SBATCH --res SummerSchool
-#SBATCH --time 02:00:00
-#SBATCH --mem 5GB
-#SBATCH --ntasks 1
+#SBATCH --account       nesi02659
+#SBATCH --job-name      annotate_pfam
+#SBATCH --res           SummerSchool
+#SBATCH --time          02:00:00
+#SBATCH --mem           5GB
 #SBATCH --cpus-per-task 10
-#SBATCH --error annotate_pfam_hmm.err
-#SBATCH --output annotate_pfam_hmm.out
+#SBATCH --error         annotate_pfam_hmm.err
+#SBATCH --output        annotate_pfam_hmm.out
 
 
 module purge
