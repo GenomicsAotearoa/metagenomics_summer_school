@@ -137,6 +137,7 @@ Paste in the following (updating `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash -e
+
 #SBATCH --account       nesi02659
 #SBATCH --res           SummerSchool
 #SBATCH --job-name      checkv
@@ -149,7 +150,7 @@ Paste in the following (updating `<YOUR FOLDER>`)
 
 # Load the module
 module purge
-module load CheckV/0.7.0-gimkl-2020a-Python-3.8.2
+module load CheckV/1.0.1-gimkl-2022a-Python-3.10.5
 
 # Set up working directories
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/
