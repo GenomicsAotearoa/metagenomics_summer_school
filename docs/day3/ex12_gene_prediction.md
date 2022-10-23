@@ -233,9 +233,7 @@ Paste in the script (replacing `<YOUR FOLDER>`)
 #SBATCH --cpus-per-task 10
 #SBATCH --error metaxa2.err
 #SBATCH --output metaxa2.out
-#SBATCH --export NONE
 
-export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load Metaxa2/2.2.3-gimkl-2022a
