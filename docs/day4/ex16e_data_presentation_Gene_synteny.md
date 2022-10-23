@@ -19,7 +19,7 @@ For this exercise, navigate to the folder `11.data_presentation/gene_synteny/`. 
 
     Refer to [gene_synteny_grab_GOI.md](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex15_gene_synteny_grab_GOI.md) for detailed information on how the `cys.txt` files were produced.*
 
-    Refer to [gene_synteny_Generate_blast_files.md](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex15_gene_synteny_Generate_blast_files.md) for detailed information on how the `blast` files were produced.*
+    Refer to [gene_synteny_Generate_blast_files.md](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex15_gene_synteny_Generate_blast_files.md) for detailed information on how the `blast` files were produced.
 
 #### Part 1 - Parsing files in *bash*
 
@@ -76,10 +76,11 @@ cat bin_4_cys.coords
 
 If you recall from the previous exercise on gene prediction, we have taken the first four entries from each line of the `prodigal` output, which consists of:
 
-1. The gene name, written as [CONTIG]\_[GENE]
-1. The start position of the gene
-1. The stop position of the gene
-1. The orienation of the gene
+!!! quote ""
+    1. The gene name, written as [CONTIG]\_[GENE]
+    1. The start position of the gene
+    1. The stop position of the gene
+    1. The orienation of the gene
 
 We will now use these tables, together with the annotation tables to create the gene synteny view in `R`.
 
@@ -211,7 +212,7 @@ Now we can generate the plot. Running this command in `RStudio` or our `Jupyter 
 
 !!! note "Note"
 
-    The commented-out lines below (the two lines starting with `#`) will not run. Un-comment these if you wish to save the figure to file rather than opening it in the `Jupyter` or `RStudio` viewer. (N.b. alternatives using a similar command are also available other formats, including `tiff` and `png`).*
+    The commented-out lines below (the two lines starting with `#`) will not run. Un-comment these if you wish to save the figure to file rather than opening it in the `Jupyter` or `RStudio` viewer. (N.b. alternatives using a similar command are also available other formats, including `tiff` and `png`).
     
 ```R
 #pdf("genoplot.pdf",colormodel = "cmyk",width = 8,height = 4,paper = 'special')

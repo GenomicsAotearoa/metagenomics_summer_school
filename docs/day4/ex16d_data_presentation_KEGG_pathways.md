@@ -52,8 +52,8 @@ names(bin_list) <- tmp_names
 
 rm(list = ls(pattern = "tmp*"))
 ```
-
-*NOTE: R will print some warning messages about column types. However, we do not need all the columns for this analysis and it is not necessary to reformat them.*
+!!! note "Note" 
+    R will print some warning messages about column types. However, we do not need all the columns for this analysis and it is not necessary to reformat them.
 
 #### Subset the data
 
