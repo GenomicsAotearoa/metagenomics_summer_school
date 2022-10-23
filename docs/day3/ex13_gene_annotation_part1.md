@@ -213,13 +213,14 @@ sbatch annotate_pfam.sl
 
 Determining how trustworthy a gene annotation is can be a very tricky process. How similar do protein sequences need to be to perform the same function? The answer is surprisingly low. A bioinformatic analysis performed in 1999 identified that proteins with as little as 20 - 35% sequence identity can still share the same function ([Rost, 1999](https://doi.org/10.1093/protein/12.2.85)), but this is not a universal occurrence. When evaluating annotations, consider the following questions:
 
-1. What is the amino acid identity along the aligned region?
-1. What is the amino acid *similarity* between the aligned region?
-1. What is the coverage as a percentage or the query and target genes?
-1. If we infer a phylogeny of this query gene with references from the target family, is a stable tree resolved?
-1. Does the inclusion of this gene function make sense in the context of the organism's taxonomy?
-1. Does the gene sit on a long contig that is core to the MAG, or is it a short contig carrying only a single gene?
-1. If we are uncertain of a particular annotation, does the predicted gene occur in an operon? If so, are the other genes present in the annotation?
+!!! quote ""
+    1. What is the amino acid identity along the aligned region?
+    1. What is the amino acid *similarity* between the aligned region?
+    1. What is the coverage as a percentage or the query and target genes?
+    1. If we infer a phylogeny of this query gene with references from the target family, is a stable tree resolved?
+    1. Does the inclusion of this gene function make sense in the context of the organism's taxonomy?
+    1. Does the gene sit on a long contig that is core to the MAG, or is it a short contig carrying only a single gene?
+    1. If we are uncertain of a particular annotation, does the predicted gene occur in an operon? If so, are the other genes present in the annotation?
 
 We must also remain aware of the potential for incorrectly annotated genes in the annotation database and that proteins can perform multiple functions (and may therefore be attributed multiple, inconsistent annotations). Furthermore, it is also important to consider exactly which part of the target gene the alignment is happening across. There are several catalytic centers of enzymes, such as the Fe-S cofactor, which are shared across many different proteins, and if your annotation is only spanning one of these regions then it may simply be the case that you are identifying a generic electron accepting or donating domain.
 
@@ -238,9 +239,10 @@ However, when comparing taxonomic assignments, it is important to be aware of th
 
 This problem exists despite the existance of a formal [Code](https://www.microbiologyresearch.org/content/journal/ijsem/10.1099/ijsem.0.000778) for the naming of bacteria and archaea, because 
 
-1. There are no rules governing how we define the grouping of these names together, other than for type species
-1. Defunct synonyms and basonyms are not correctly purged from taxonomy lists (this is quite noticable with the NCBI taxonomy)
-1. Valid names cannot be assigned for uncultivate organisms, meaning there are many informal placeholder names in the literature. For example, clades like WPS-2, SAR324, and SAUL are widely cited in the literature despite having no official standing
+!!! quote ""
+    1. There are no rules governing how we define the grouping of these names together, other than for type species
+    1. Defunct synonyms and basonyms are not correctly purged from taxonomy lists (this is quite noticable with the NCBI taxonomy)
+    1. Valid names cannot be assigned for uncultivate organisms, meaning there are many informal placeholder names in the literature. For example, clades like WPS-2, SAR324, and SAUL are widely cited in the literature despite having no official standing
 
 It is therefore important to periodically sanity check your taxonomic annotations in order to avoid splitting taxa based on spelling differences or the use of historic names that have since been reclassified.
 
