@@ -126,7 +126,7 @@ Paste in the script (update all of the cases of `<YOUR FOLDER>`)
 ```sh
 #!/bin/bash -e
 
-#SBATCH --account nesi02659
+#SBATCH --account    nesi02659
 #SBATCH --job-name DRAM_annotation
 #SBATCH --res SummerSchool
 #SBATCH --time=5:00:00
@@ -134,9 +134,7 @@ Paste in the script (update all of the cases of `<YOUR FOLDER>`)
 #SBATCH --cpus-per-task=24
 #SBATCH --error slurm-DRAM_annot.%A-%a.err 
 #SBATCH --output slurm-DRAM_annot.%A-%a.out 
-#SBATCH --export NONE
 
-export SLURM_EXPORT_ENV=ALL
 
 module purge
 module load DRAM/1.3.5-Miniconda3
