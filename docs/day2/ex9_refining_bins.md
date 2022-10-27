@@ -184,9 +184,9 @@ To do this, we will generate a table containing each exported "problematic" sub-
 
 For this exercise, a folder of the exported files from `VizBin` for all clusters (`cluster_[1-n].fna`) and problematic sub-contigs (`contigs_[1-n].fna`) has been provided at `vizbin_example_exports/`
 
-We will input these files to the shell script `vizbin_count_table.sh` to generate a count table of the exprted subcontigs across each `VizBin` cluster (`vb_count_table.txt`), as well as a working list of contigs to potentially remove from our final bin data (`vb_omit_contigs_tmp.txt`).
+We will input these files to the shell script `vizbin_count_table.sh` to generate a count table of the exported subcontigs across each `VizBin` cluster (`vb_count_table.txt`), as well as a working list of contigs to potentially remove from our final bin data (`vb_omit_contigs_tmp.txt`).
 
-For future reference, a copy of this script is available for download [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/scripts/).
+For future reference, a copy of this script is available for download [here](../scripts/).
 
 ```bash
 ./vizbin_count_table.sh -i vizbin_example_exports/
