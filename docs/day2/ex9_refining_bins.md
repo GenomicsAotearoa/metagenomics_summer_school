@@ -77,7 +77,7 @@ We can now use these files in `VizBin` to curate the contigs in our bins. We wil
 
 **B. Log in via a standard terminal.** 
 
-* Log into NeSI via a standard terminal (*not* the terminal within `Jupyter hub`) and run the following command (*NOTE: this may return an error if X11 fowarding is not set up for your machine. In this case, proceed with the first option above*).
+* Log into NeSI via a standard terminal (*not* the terminal within `Jupyter hub`) and run the following command (*NOTE: this may return an error if X11 forwarding is not set up for your machine. In this case, proceed with the first option above*).
 
 ```bash
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinement/
