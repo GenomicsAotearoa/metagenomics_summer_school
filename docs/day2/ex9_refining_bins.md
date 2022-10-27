@@ -105,12 +105,12 @@ For now leave all other parameters as default. Click the 'Start' button to begin
 
 #### Contigs coloured by bin
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_bin_only.PNG)
+
 <center>![image](../figures/ex10_bin_only.PNG){width="600"}</center>
 
 #### Contigs coloured by bin, sized by length, shaded by coverage
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_all_ann.PNG)
+
 <center>![image](../figures/ex10_all_ann.PNG){width="600"}</center>
 
 Similar to any other projection technique, we interpret the closeness of points as a proxy for how similar they are, and because of our *.ann* file we can see which contigs belong to the same bin.
