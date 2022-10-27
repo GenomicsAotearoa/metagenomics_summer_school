@@ -264,6 +264,6 @@ When your job completes, we will download the summary file and examine it.
 
 In this workshop, we have generated a set of putative MAGs by binning scaffolds taken from a *single co-assembly*. Alternatively, we may have chosen to generate multiple assemblies (for example, mini-co-assemblies for each sample group, or individual assemblies for each sample). In this case, it would be necessary to work through the binning process for each assembly, and then conduct an additional dereplication step *across* the multiple assemblies to generate a single set of dereplicated bins for all assemblies. 
 
-This is beyond the scope of this workshop (and unnecessary here, since we are working with a single co-assembly). For future reference for your own work, further information about how to dereplicate bins and viral contigs across multiple assemblies via `dRep` and `dedupe` has been provided as an appendix [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex8_Dereplication.md).
+This is beyond the scope of this workshop (and unnecessary here, since we are working with a single co-assembly). For future reference for your own work, further information about how to dereplicate bins and viral contigs across multiple assemblies via `dRep` and `dedupe` has been provided as an appendix [here](../resources/1_APPENDIX_ex8_Dereplication.md).
 
 ---
