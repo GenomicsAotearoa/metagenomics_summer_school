@@ -32,7 +32,7 @@
 
 ### Part 1 - Building a heatmap of MAG coverage per sample
 
-To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and open a `Notebook` running the `R 4.0.1` module as the kernel (or, outside the context of this workshop, open `RStudio` with the required packages installed (see the [data presentation intro](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16a_data_presentation_Intro.md) docs for more information)).
+To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and open a `Notebook` running the `R 4.0.1` module as the kernel (or, outside the context of this workshop, open `RStudio` with the required packages installed (see the [data presentation intro](../day4/ex16a_data_presentation_Intro.md) docs for more information)).
 
 #### 1.1 Set working directory, load *R* libraries, and import data
 
@@ -77,7 +77,7 @@ map.df <- read_tsv("coverage/mapping_file.txt", col_types = "ff")
 
 #### 1.2 wrangle data
 
-As noted during the [coverage and taxonomy](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex11_coverage_and_taxonomy.md) exercises, it is important to remember that we currently have a table of coverage values for all *contigs* contained within each MAG. Since we're aiming to present coverage for each *MAG*, we need to reduce these contig coverages into a single mean coverage value per MAG per sample. 
+As noted during the [coverage and taxonomy](../day3/ex11_coverage_and_taxonomy.md) exercises, it is important to remember that we currently have a table of coverage values for all *contigs* contained within each MAG. Since we're aiming to present coverage for each *MAG*, we need to reduce these contig coverages into a single mean coverage value per MAG per sample. 
 
 In the following code, we first strip the `.bam` extensions off of our sample names. We will then leverage the fact that we added bin IDs to each of the contig headers earlier to re-extract the bin ID for each using `gsub`, use the `group_by()` function to group by `Bin`, and the `summarise()` function to return the per-sample mean coverage of each set of contigs contained within each bin. 
 
