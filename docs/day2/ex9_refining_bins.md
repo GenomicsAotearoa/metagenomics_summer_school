@@ -70,7 +70,7 @@ We can now use these files in `VizBin` to curate the contigs in our bins. We wil
 
 * Download `VizBin-dist.jar` from [here](https://github.com/claczny/VizBin/releases/tag/v1.0.0)
 * You may also need to [install Java locally](https://www.java.com/en/download/manual.jsp) (choose the relevant version for your machine).
-* Download the required files from NeSI to your machine (via `scp`, or right-click > download, from within the `Jupyter hub`), or download the example files from [this link](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/vizbin_files.zip).
+* Download the required files from NeSI to your machine (via `scp`, or right-click > download, from within the `Jupyter hub`), or download the example files from [this link](../resources/vizbin_files.zip).
 * Double-click `VizBin-dist.jar` to open `VizBin`, and then follow the steps below.
 
 **OR**
@@ -91,12 +91,12 @@ If this fails to open on your PC, or if it runs prohibitively slowly, team up wi
 
 Once `VizBin` is open, to get started, simply click the 'Choose...' button then navigate to the *fastA* file.
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_load_fasta.PNG)
+
 <center>![image](../figures/ex10_load_fasta.PNG)</center>
 
 Once this is imported, use the 'Show additional options' button to expose the advanced options, and add your **'bin only'** *.ann* file into the 'Annotation file (optional)' field.
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_load_ann.PNG)
+
 <center>![image](../figures/ex10_load_ann.PNG)</center>
 
 #### Executing the *t-SNE*
