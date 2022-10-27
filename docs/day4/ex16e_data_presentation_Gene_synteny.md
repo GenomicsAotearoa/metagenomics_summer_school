@@ -17,9 +17,9 @@ For this exercise, navigate to the folder `11.data_presentation/gene_synteny/`. 
 
 !!! note "Note"
 
-    Refer to [gene_synteny_grab_GOI.md](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex15_gene_synteny_grab_GOI.md) for detailed information on how the `cys.txt` files were produced.*
+    Refer to [gene_synteny_grab_GOI](../resources/6_APPENDIX_ex15_gene_synteny_grab_GOI.md) for detailed information on how the `cys.txt` files were produced.*
 
-    Refer to [gene_synteny_Generate_blast_files.md](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex15_gene_synteny_Generate_blast_files.md) for detailed information on how the `blast` files were produced.
+    Refer to [gene_synteny_Generate_blast_files](../resources/5_APPENDIX_ex15_gene_synteny_Generate_blast_files.md) for detailed information on how the `blast` files were produced.
 
 #### Part 1 - Parsing files in *bash*
 
