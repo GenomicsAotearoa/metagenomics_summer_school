@@ -19,7 +19,7 @@ In addition to this, a simple mapping file has also been created (`11.data_prese
 
 !!! abstract "Note"
 
-    As discussed in the [coverage and taxonomy exercises](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex11_coverage_and_taxonomy.md), it is usually necessary to normalise coverage values across samples based on equal sequencing depth. This isn't necessary with the mock metagenome data we're working with, but if you include this step in your own work you would read the **normalised** coverage tables into the steps outlined below.*
+    As discussed in the [coverage and taxonomy exercises](../day3/ex11_coverage_and_taxonomy.md), it is usually necessary to normalise coverage values across samples based on equal sequencing depth. This isn't necessary with the mock metagenome data we're working with, but if you include this step in your own work you would read the **normalised** coverage tables into the steps outlined below.*
 
 ---
 
@@ -65,7 +65,7 @@ map.df <- read_tsv("coverage/mapping_file.txt", col_types = "ff")
 
 #### 1.2 wrangle data
 
-As noted during the [coverage and taxonomy](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day3/ex11_coverage_and_taxonomy.md) exercises, for the bin data it is important to remember that we currently have a table of coverage values for all *contigs* contained within each bin (MAG). Since we're aiming to present coverage for each *MAG*, we need to reduce these contig coverages into a single mean coverage value per MAG per sample. 
+As noted during the [coverage and taxonomy](../day3/ex11_coverage_and_taxonomy.md) exercises, for the bin data it is important to remember that we currently have a table of coverage values for all *contigs* contained within each bin (MAG). Since we're aiming to present coverage for each *MAG*, we need to reduce these contig coverages into a single mean coverage value per MAG per sample. 
 
 In the following code, we first strip the `.bam` extensions off of our sample names. For the bin data, we will then leverage the fact that we added bin IDs to each of the contig headers earlier to re-extract the bin ID for each using `gsub`, use the `group_by()` function to group by `Bin`, and the `summarise()` function to return the per-sample mean coverage of each set of contigs contained within each bin (these grouping steps are not necessary for the viral contig data).
 
