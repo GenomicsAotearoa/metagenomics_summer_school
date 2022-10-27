@@ -300,7 +300,7 @@ There are a number of approaches that can be used to attempt to predict the taxo
 !!! note "Note"
     Anecdotally, however, in my own experience with this processes I have unfortunately been unable to predict the taxonomy of the vast majority of the viral contigs ouput by `VIBRANT`, `VirSorter`, or `VirFinder` from an environmental metagenomic data set (due to not clustering closely enough with known viruses in the reference database).
 
-Running `vContact2` can require a considerable amount of computational resources, and so we won't be running this in the workshop today. The required process is outlined for reference in an [Appendix for this exercise](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md), should you wish to experiment with this on your own data in the future. 
+Running `vContact2` can require a considerable amount of computational resources, and so we won't be running this in the workshop today. The required process is outlined for reference in an [Appendix for this exercise](../resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md), should you wish to experiment with this on your own data in the future. 
 
 For today, we have provided the final two output files from this process when applied to our mock metagenome data. These can be viewed in the folder `8.coverage_and_taxonomy/vConTACT2_Results/` via `head` or `less`.
 
