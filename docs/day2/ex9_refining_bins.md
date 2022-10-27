@@ -139,21 +139,21 @@ Try this for one or two clusters. In practice, we would do this for each `VizBin
 
 #### Highlight a cluster to zoom into
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_to_zoom.PNG)
+
 <center>![image](../figures/ex10_select_to_zoom.PNG){width="600"}</center>
 
 #### Select the cluster to export
 
 Left-click several points around the cluster
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_cluster.PNG)
+
 <center>![image](../figures/ex10_select_cluster.PNG){width="600"}</center>
 
 #### Export the cluster
 
 Right-click, 'Selection', 'Export'. Save the output as `cluster_1.fna`. 
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_export.PNG)
+
 <center>![image](../figures/ex10_export.PNG){width="600"}</center>
 
 
