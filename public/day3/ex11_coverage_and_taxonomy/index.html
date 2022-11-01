@@ -1,1160 +1,601 @@
 
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-      
-        <meta name="author" content="Genomics Aotearoa & NeSI">
-      
-      
-        <link rel="canonical" href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day3/ex11_coverage_and_taxonomy/">
-      
-      <link rel="icon" href="../../images/nesi_ga.png">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
-    
-    
-      
-        <title>Per-sample coverage and assigning taxonomy - Metagenomics Summer School</title>
-      
-    
-    
-      <link rel="stylesheet" href="../../assets/stylesheets/main.1d29e8d0.min.css">
-      
-        
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
-        
-      
-      
-    
-    
-    
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Mukta";--md-code-font:"Fira Code"}</style>
-      
-    
-    
-    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-    
-      
+<!DOCTYPE html>
 
-    
-    
-  </head>
-  
-  
-    
-    
-      
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="lime" data-md-color-accent="">
-  
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#per-sample-coverage-and-assigning-taxonomy" class="md-skip">
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Genomics Aotearoa &amp; NeSI" name="author"/>
+<link href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day3/ex11_coverage_and_taxonomy/" rel="canonical"/>
+<link href="../../theme_images/nesi_ga.png" rel="icon"/>
+<meta content="mkdocs-1.4.1, mkdocs-material-8.3.9" name="generator"/>
+<title>Per-sample coverage and assigning taxonomy - Metagenomics Summer School</title>
+<link href="../../assets/stylesheets/main.1d29e8d0.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Mukta";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gdesc-inner { font-size: 0.75rem; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="" data-md-color-primary="indigo" data-md-color-scheme="" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#per-sample-coverage-and-assigning-taxonomy">
           Skip to content
         </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-    
-      
-
-<header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Metagenomics Summer School" class="md-header__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
-      
-  <img src="../../images/nesi_ga.png" alt="logo">
-
-    </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--lifted" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Metagenomics Summer School" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Metagenomics Summer School">
+<img alt="logo" src="../../theme_images/nesi_ga.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
             Metagenomics Summer School
           </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
             
               Per-sample coverage and assigning taxonomy
             
           </span>
-        </div>
-      </div>
-    </div>
-    
-      <form class="md-header__option" data-md-component="palette">
-        
-          
-          
-          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
-          
-            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
-            </label>
-          
-        
-          
-          
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
-          
-            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
-            </label>
-          
-        
-          
-          
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
-          
-            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
-            </label>
-          
-        
-      </form>
-    
-    
-    
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
-        </button>
-      </nav>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="indigo" data-md-color-scheme="" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_3" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"></path></svg>
+</label>
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+</label>
+<input aria-label="Switch to system preference" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_3" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to system preference">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+</label>
+</form>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+<ol class="md-search-result__list"></ol>
 </div>
-    
-    
-      <div class="md-header__source">
-        <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
-  </div>
-  <div class="md-source__repository">
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
     GenomicsAotearoa/metagenomics_summer_school
   </div>
 </a>
-      </div>
-    
-  </nav>
-  
-</header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
-          
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
-            
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Metagenomics Summer School" class="md-nav__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
-      
-  <img src="../../images/nesi_ga.png" alt="logo">
-
+</div>
+</nav>
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+      Home
     </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../day1/ex1_bash_and_scheduler/">
+        Day1
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../day2/ex6_initial_binning/">
+        Day2
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../ex10_viruses/">
+        Day3
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../day4/ex15_gene_annotation_part3/">
+        Day4
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../resources/1_APPENDIX_ex8_Dereplication/">
+        Resources
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Metagenomics Summer School" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Metagenomics Summer School">
+<img alt="logo" src="../../theme_images/nesi_ga.png"/>
+</a>
     Metagenomics Summer School
   </label>
-  
-    <div class="md-nav__source">
-      <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
-  </div>
-  <div class="md-source__repository">
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
     GenomicsAotearoa/metagenomics_summer_school
   </div>
 </a>
-    </div>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
-        Hi!
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+        Home
       </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2">
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2">
           Day1
           <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Day1" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Day1" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
           Day1
         </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day1/ex1_bash_scripting/" class="md-nav__link">
-        Introduction to the command line
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day1/ex1_bash_and_scheduler/">
+        Introduction to shell &amp; HPC Job Scheduler
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day1/ex2_quality_filtering/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day1/ex2_quality_filtering/">
         Quality filtering raw reads
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day1/ex3_assembly/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day1/ex3_assembly/">
         Assembly
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day1/ex4_assembly/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day1/ex4_assembly/">
         Assembly (part 2)
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day1/ex5_evaluating_assemblies/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day1/ex5_evaluating_assemblies/">
         Evaluating the assemblies
       </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3">
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3">
           Day2
           <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Day2" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Day2" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
           Day2
         </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day2/ex6_initial_binning/" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day2/ex6_initial_binning/">
         Introduction to binning
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day2/ex7_initial_binning/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day2/ex7_initial_binning/">
         Introduction to binning
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day2/ex8_bin_dereplication/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day2/ex8_bin_dereplication/">
         Bin dereplication
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day2/ex9_refining_bins/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day2/ex9_refining_bins/">
         Manually refining bins
       </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-    
-  
-  
-    
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_4">
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4">
           Day3
           <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Day3" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
-          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Day3" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
           Day3
         </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ex10_viruses/" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ex10_viruses/">
         Identifying viral contigs in metagenomic data
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
           Per-sample coverage and assigning taxonomy
           <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
         Per-sample coverage and assigning taxonomy
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#objectives" class="md-nav__link">
-    Objectives
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins" class="md-nav__link">
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins">
     Calculate per-sample coverage stats of the filtered prokaryote bins
   </a>
-  
-    <nav class="md-nav" aria-label="Calculate per-sample coverage stats of the filtered prokaryote bins">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#normalising-coverage-values" class="md-nav__link">
+<nav aria-label="Calculate per-sample coverage stats of the filtered prokaryote bins" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#normalising-coverage-values">
     Normalising coverage values
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#calculate-per-sample-coverage-stats-of-viral-contigs" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#calculate-per-sample-coverage-stats-of-viral-contigs">
     Calculate per-sample coverage stats of viral contigs
   </a>
-  
-    <nav class="md-nav" aria-label="Calculate per-sample coverage stats of viral contigs">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#normalising-coverage-values_1" class="md-nav__link">
+<nav aria-label="Calculate per-sample coverage stats of viral contigs" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#normalising-coverage-values_1">
     Normalising coverage values
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#assign-taxonomy-to-the-refined-bins" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#assign-taxonomy-to-the-refined-bins">
     Assign taxonomy to the refined bins
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#introduction-to-vcontact2-for-predicting-taxonomy-of-viral-contigs" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#introduction-to-vcontact2-for-predicting-taxonomy-of-viral-contigs">
     Introduction to vContact2 for predicting taxonomy of viral contigs
   </a>
-  
 </li>
-      
-    </ul>
-  
+</ul>
 </nav>
-      
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ex12_gene_prediction/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ex12_gene_prediction/">
         Gene prediction
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ex13_gene_annotation_part1/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ex13_gene_annotation_part1/">
         Gene annotation (part 1)
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ex14_gene_annotation_part2/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ex14_gene_annotation_part2/">
         Gene annotation (part 2)
       </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5">
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5">
           Day4
           <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Day4" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
-          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Day4" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
           Day4
         </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/ex15_gene_annotation_part3/" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex15_gene_annotation_part3/">
         Gene annotation (part 3)
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/ex16a_data_presentation_Intro/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex16a_data_presentation_Intro/">
         Presentation of data: Introduction
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/ex16b_data_presentation_Coverage/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex16b_data_presentation_Coverage/">
         Presentation of data: Per-sample coverage heatmaps
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/ex16c_OPTIONAL_data_presentation_Ordination/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex16c_OPTIONAL_data_presentation_Ordination/">
         (*Optional*) Presentation of data: Ordinations
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/ex16d_data_presentation_KEGG_pathways/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex16d_data_presentation_KEGG_pathways/">
         Presentation of data: KEGG pathway maps
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/ex16e_data_presentation_Gene_synteny/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex16e_data_presentation_Gene_synteny/">
         Presentation of data: Gene synteny
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations/">
         Presentation of data: *Optional exercise*: CAZy annotations heatmap
       </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_6">
-          Figures
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Figures" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
-          <span class="md-nav__icon md-icon"></span>
-          Figures
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../figures/" class="md-nav__link">
-        Index
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_7">
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
           Resources
           <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Resources" data-md-level="1">
-        <label class="md-nav__title" for="__nav_7">
-          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Resources" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
           Resources
         </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../resources/APPENDIX_ex11_Normalise_coverage_example/" class="md-nav__link">
-        APPENDIX ex11 Normalise coverage example
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/1_APPENDIX_ex8_Dereplication/">
+        APPENDIX (ex8):Dereplicating data from multiple assemblies
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/" class="md-nav__link">
-        APPENDIX ex11 viral taxonomy prediction via vContact2
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/2_APPENDIX_ex9_Generating_input_files_for_VizBin/">
+        APPENDIX (ex9): Generating input files for *VizBin* from *DAS_Tool* curated bins
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../resources/APPENDIX_ex15_gene_synteny_Generate_blast_files/" class="md-nav__link">
-        APPENDIX ex15 gene synteny Generate blast files
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/3_APPENDIX_ex11_Normalise_coverage_example/">
+        APPENDIX (ex11): Normalise per-sample coverage values by average library size (example)
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../resources/APPENDIX_ex15_gene_synteny_grab_GOI/" class="md-nav__link">
-        APPENDIX ex15 gene synteny grab GOI
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/">
+        APPENDIX (ex11) : viral taxonomy prediction via *vContact2*
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../resources/APPENDIX_ex8_Dereplication/" class="md-nav__link">
-        Dereplicating data from multiple assemblies
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/5_APPENDIX_ex15_gene_synteny_Generate_blast_files/">
+        APPENDIX (ex15): How to generate the blast files provided in [ex15_gene_synteny](../day4/ex16e_data_presentation_Gene_synteny.md)
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../resources/APPENDIX_ex9_Generating_input_files_for_VizBin/" class="md-nav__link">
-        APPENDIX ex9 Generating input files for VizBin
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/6_APPENDIX_ex15_gene_synteny_grab_GOI/">
+        APPENDIX (ex15): Grab Gene of Interest (generate the *cys.txt* files provided in [ex15_gene_synteny](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16e_data_presentation_Gene_synteny.md))
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../resources/command_line_shortcuts/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/7_command_line_shortcuts/">
         Useful command line shortcuts
       </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-  </ul>
+</li>
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#objectives" class="md-nav__link">
-    Objectives
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins" class="md-nav__link">
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins">
     Calculate per-sample coverage stats of the filtered prokaryote bins
   </a>
-  
-    <nav class="md-nav" aria-label="Calculate per-sample coverage stats of the filtered prokaryote bins">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#normalising-coverage-values" class="md-nav__link">
+<nav aria-label="Calculate per-sample coverage stats of the filtered prokaryote bins" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#normalising-coverage-values">
     Normalising coverage values
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#calculate-per-sample-coverage-stats-of-viral-contigs" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#calculate-per-sample-coverage-stats-of-viral-contigs">
     Calculate per-sample coverage stats of viral contigs
   </a>
-  
-    <nav class="md-nav" aria-label="Calculate per-sample coverage stats of viral contigs">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#normalising-coverage-values_1" class="md-nav__link">
+<nav aria-label="Calculate per-sample coverage stats of viral contigs" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#normalising-coverage-values_1">
     Normalising coverage values
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#assign-taxonomy-to-the-refined-bins" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#assign-taxonomy-to-the-refined-bins">
     Assign taxonomy to the refined bins
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#introduction-to-vcontact2-for-predicting-taxonomy-of-viral-contigs" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#introduction-to-vcontact2-for-predicting-taxonomy-of-viral-contigs">
     Introduction to vContact2 for predicting taxonomy of viral contigs
   </a>
-  
 </li>
-      
-    </ul>
-  
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-          
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
-                
-  <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/day3/ex11_coverage_and_taxonomy.md" title="Edit this page" class="md-content__button md-icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
-
-
-
-<h1 id="per-sample-coverage-and-assigning-taxonomy">Per-sample coverage and assigning taxonomy<a class="headerlink" href="#per-sample-coverage-and-assigning-taxonomy" title="Permanent link">&para;</a></h1>
-<h3 id="objectives">Objectives<a class="headerlink" href="#objectives" title="Permanent link">&para;</a></h3>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/day3/ex11_coverage_and_taxonomy.md" title="Edit this page">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
+</a>
+<h1 id="per-sample-coverage-and-assigning-taxonomy">Per-sample coverage and assigning taxonomy<a class="headerlink" href="#per-sample-coverage-and-assigning-taxonomy" title="Permanent link">¶</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Objectives</p>
 <ul>
 <li><a href="#calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins">Calculate per-sample coverage stats for the filtered prokaryote bins</a></li>
 <li><a href="#calculate-per-sample-coverage-stats-of-viral-contigs">Calculate per-sample coverage stats for the viral contigs output by <code>VIBRANT</code></a></li>
 <li><a href="#assign-taxonomy-to-the-refined-bins">Assign taxonomy to the refined bins</a></li>
 <li><a href="#introduction-to-vcontact2-for-predicting-taxonomy-of-viral-contigs">Introduction to <code>vContact2</code> for predicting taxonomy of viral contigs</a></li>
 </ul>
-<hr />
-<h3 id="calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins">Calculate per-sample coverage stats of the filtered prokaryote bins<a class="headerlink" href="#calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins" title="Permanent link">&para;</a></h3>
+</div>
+<hr/>
+<h3 id="calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins">Calculate per-sample coverage stats of the filtered prokaryote bins<a class="headerlink" href="#calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins" title="Permanent link">¶</a></h3>
 <p>One of the first questions we often ask when studying the ecology of a system is: What are the pattens of abundance and distribution of taxa across the different samples? With bins of metagenome-assembled genome (MAG) data, we can investigate this by mapping the quality-filtered unassembled reads back to the refined bins to then generate coverage profiles. Genomes in higher abundance in a sample will contribute more genomic sequence to the metagenome, and so the average depth of sequencing coverage for each of the different genomes provides a proxy for abundance in each sample. </p>
 <p>As per the preparation step at the start of the binning process, we can do this using read mapping tools such as <code>Bowtie</code>, <code>Bowtie2</code>, and <code>BBMap</code>. Here we will follow the same steps as before using <code>Bowtie2</code>, <code>samtools</code>, and <code>MetaBAT</code>'s <code>jgi_summarize_bam_contig_depths</code>, but this time inputting our refined filtered bins. </p>
 <p>These exercises will take place in the <code>8.coverage_and_taxonomy/</code> folder. Our final filtered refined bins from the previous bin refinement exercise have been copied to the <code>8.coverage_and_taxonomy/filtered_bins/</code> folder.</p>
 <p>First, concatenate the bin data into a single file to then use to generate an index for the read mapper.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/8.coverage_and_taxonomy/
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>cat filtered_bins/*.fna &gt; filtered_bins.fna
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/8.coverage_and_taxonomy/
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>cat filtered_bins/*.fna &gt; filtered_bins.fna
 </code></pre></div>
 <p>Now build the index for <code>Bowtie2</code> using the concatenated bin data. We will also make a new directory <code>bin_coverage/</code> to store the index and read mapping output into.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mkdir -p bin_coverage/
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># Load Bowtie2</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>module purge
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>module load Bowtie2/2.3.5-GCC-7.4.0
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Build Bowtie2 index</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>bowtie2-build filtered_bins.fna bin_coverage/bw_bins
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>mkdir -p bin_coverage/
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="c1"># Load Bowtie2</span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>module purge
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a>module load Bowtie2/2.4.5-GCC-11.3.0
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a>
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="c1"># Build Bowtie2 index</span>
+<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a>bowtie2-build filtered_bins.fna bin_coverage/bw_bins
 </code></pre></div>
 <p>Map the quality-filtered reads (from <code>../3.assembly/</code>) to the index using <code>Bowtie2</code>, and sort and convert to <code>.bam</code> format via <code>samtools</code>.</p>
 <p>Create a new script</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>nano mapping_bins.sl
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>nano mapping_bins.sl
 </code></pre></div>
 <p>Paste in the script (replacing <code>&lt;YOUR FOLDER&gt;</code>)</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="ch">#!/bin/bash -e</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1">#SBATCH -A nesi02659</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">#SBATCH --res SummerSchool</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1">#SBATCH -J mapping_filtered_bins</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1">#SBATCH --time 00:05:00</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1">#SBATCH --mem 1GB</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1">#SBATCH --ntasks 1</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1">#SBATCH -e mapping_filtered_bins.err</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1">#SBATCH -o mapping_filtered_bins.out</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1">#SBATCH --export NONE</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="nb">export</span> <span class="nv">SLURM_EXPORT_ENV</span><span class="o">=</span>ALL
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>module purge
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/8.coverage_and_taxonomy/
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="c1"># Step 1</span>
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="k">for</span> i <span class="k">in</span> sample1 sample2 sample3 sample4<span class="p">;</span>
-<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="k">do</span>
-<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>
-<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>  <span class="c1"># Step 2</span>
-<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>  bowtie2 --minins <span class="m">200</span> --maxins <span class="m">800</span> --threads <span class="m">10</span> --sensitive <span class="se">\</span>
-<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>          -x bin_coverage/bw_bins <span class="se">\</span>
-<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>          -1 ../3.assembly/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R1.fastq.gz -2 ../3.assembly/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R2.fastq.gz <span class="se">\</span>
-<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>          -S bin_coverage/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sam
-<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>
-<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>  <span class="c1"># Step 3</span>
-<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>  samtools sort -@ <span class="m">10</span> -o bin_coverage/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.bam bin_coverage/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sam
-<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>
-<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="k">done</span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="ch">#!/bin/bash -e</span>
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="c1">#SBATCH --res           SummerSchool</span>
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="c1">#SBATCH --job-name      mapping_filtered_bins</span>
+<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="c1">#SBATCH --time          00:05:00</span>
+<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="c1">#SBATCH --mem           1GB</span>
+<a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
+<a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="c1">#SBATCH --error         mapping_filtered_bins.err</span>
+<a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="c1">#SBATCH --output        mapping_filtered_bins.out</span>
+<a href="#__codelineno-3-11" id="__codelineno-3-11" name="__codelineno-3-11"></a>
+<a href="#__codelineno-3-12" id="__codelineno-3-12" name="__codelineno-3-12"></a>module purge
+<a href="#__codelineno-3-13" id="__codelineno-3-13" name="__codelineno-3-13"></a>module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
+<a href="#__codelineno-3-14" id="__codelineno-3-14" name="__codelineno-3-14"></a>
+<a href="#__codelineno-3-15" id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/8.coverage_and_taxonomy/
+<a href="#__codelineno-3-16" id="__codelineno-3-16" name="__codelineno-3-16"></a>
+<a href="#__codelineno-3-17" id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="c1"># Step 1</span>
+<a href="#__codelineno-3-18" id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="k">for</span> i <span class="k">in</span> sample1 sample2 sample3 sample4<span class="p">;</span>
+<a href="#__codelineno-3-19" id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="k">do</span>
+<a href="#__codelineno-3-20" id="__codelineno-3-20" name="__codelineno-3-20"></a>
+<a href="#__codelineno-3-21" id="__codelineno-3-21" name="__codelineno-3-21"></a>  <span class="c1"># Step 2</span>
+<a href="#__codelineno-3-22" id="__codelineno-3-22" name="__codelineno-3-22"></a>  bowtie2 --minins <span class="m">200</span> --maxins <span class="m">800</span> --threads <span class="m">10</span> --sensitive <span class="se">\</span>
+<a href="#__codelineno-3-23" id="__codelineno-3-23" name="__codelineno-3-23"></a>          -x bin_coverage/bw_bins <span class="se">\</span>
+<a href="#__codelineno-3-24" id="__codelineno-3-24" name="__codelineno-3-24"></a>          -1 ../3.assembly/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R1.fastq.gz -2 ../3.assembly/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R2.fastq.gz <span class="se">\</span>
+<a href="#__codelineno-3-25" id="__codelineno-3-25" name="__codelineno-3-25"></a>          -S bin_coverage/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sam
+<a href="#__codelineno-3-26" id="__codelineno-3-26" name="__codelineno-3-26"></a>
+<a href="#__codelineno-3-27" id="__codelineno-3-27" name="__codelineno-3-27"></a>  <span class="c1"># Step 3</span>
+<a href="#__codelineno-3-28" id="__codelineno-3-28" name="__codelineno-3-28"></a>  samtools sort -@ <span class="m">10</span> -o bin_coverage/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.bam bin_coverage/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sam
+<a href="#__codelineno-3-29" id="__codelineno-3-29" name="__codelineno-3-29"></a>
+<a href="#__codelineno-3-30" id="__codelineno-3-30" name="__codelineno-3-30"></a><span class="k">done</span>
 </code></pre></div>
 <p>Submit the script</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sbatch mapping_bins.sl
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>sbatch mapping_bins.sl
 </code></pre></div>
 <p>Finally, generate the per-sample coverage table for each contig in each bin via <code>MetaBAT</code>'s <code>jgi_summarize_bam_contig_depths</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Load MetaBAT</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>module load MetaBAT/2.13-GCC-7.4.0
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># calculate coverage table</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>jgi_summarize_bam_contig_depths --outputDepth bins_cov_table.txt bin_coverage/sample*.bam
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1"># Load MetaBAT</span>
+<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a>module load MetaBAT/2.15-GCC-11.3.0
+<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a>
+<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1"># calculate coverage table</span>
+<a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a>jgi_summarize_bam_contig_depths --outputDepth bins_cov_table.txt bin_coverage/sample*.bam
 </code></pre></div>
 <p>The coverage table will be generated as <code>bins_cov_table.txt</code>. As before, the key columns of interest are the <code>contigName</code>, and each <code>sample[1-n].bam</code> column.</p>
-<p><em>NOTE: Here we are generating a per-sample table of coverage values for **each contig*</em> within each bin. To get per-sample coverage of <strong>each bin</strong> as a whole, we will need to generate average coverage values based on all contigs contained within each bin. We will do this in <code>R</code> during our data visualisation exercises on day 4 of the workshop, leveraging the fact that we added bin IDs to the sequence headers.*</p>
-<h4 id="normalising-coverage-values">Normalising coverage values<a class="headerlink" href="#normalising-coverage-values" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Here we are generating a per-sample table of coverage values for <strong>each contig</strong> within each bin. To get per-sample coverage of <strong>each bin</strong> as a whole, we will need to generate average coverage values based on all contigs contained within each bin. We will do this in <code>R</code> during our data visualisation exercises on day 4 of the workshop, leveraging the fact that we added bin IDs to the sequence headers.*</p>
+</div>
+<h4 id="normalising-coverage-values">Normalising coverage values<a class="headerlink" href="#normalising-coverage-values" title="Permanent link">¶</a></h4>
 <p>Having generated per-sample coverage values, it is usually necessary to also normalise these values across samples of differing sequencing depth. In this case, the mock metagenome data we have been working with are already of equal depth, and so this is an unnecessary step for the purposes of this workshop. </p>
-<p>For an example of one way in which the <code>cov_table.txt</code> output generated by <code>jgi_summarize_bam_contig_depths</code> above could then be normalised based on average library size, see the <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_Normalise_coverage_example.md">Normalise per-sample coverage Appendix</a>.</p>
-<hr />
-<h3 id="calculate-per-sample-coverage-stats-of-viral-contigs">Calculate per-sample coverage stats of viral contigs<a class="headerlink" href="#calculate-per-sample-coverage-stats-of-viral-contigs" title="Permanent link">&para;</a></h3>
+<p>For an example of one way in which the <code>cov_table.txt</code> output generated by <code>jgi_summarize_bam_contig_depths</code> above could then be normalised based on average library size, see the <a href="https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/3_APPENDIX_ex11_Normalise_coverage_example/">Normalise per-sample coverage Appendix</a>.</p>
+<hr/>
+<h3 id="calculate-per-sample-coverage-stats-of-viral-contigs">Calculate per-sample coverage stats of viral contigs<a class="headerlink" href="#calculate-per-sample-coverage-stats-of-viral-contigs" title="Permanent link">¶</a></h3>
 <p>Here we can follow the same steps as outlined above for the bin data, but with a concatenated <em>fastA</em> file of viral contigs. </p>
 <p>To quickly recap: </p>
 <ul>
@@ -1162,74 +603,78 @@
 <li>We then processed this file using <code>CheckV</code> to generate quality information for each contig, and to further trim any retained (prokaryote) sequence on the ends of prophage contigs. </li>
 </ul>
 <p>The resultant <em>fasta</em> files generated by <code>CheckV</code> (<code>proviruses.fna</code> and <code>viruses.fna</code>) have been copied to to the <code>8.coverage_and_taxonomy/checkv</code> folder for use in this exercise.</p>
-<p><em>NOTE: due to the rapid mutation rates of viruses, with full data sets it will likely be preferable to first further reduce viral contigs down based on a percentage-identity threshold using a tool such as <code>BBMap</code>'s <code>dedupe.sh</code>. This would be a necessary step in cases where you had opted for generating multiple individual assemblies or mini-co-assemblies (and would be comparable to the use of a tool like <code>dRep</code> for prokaryote data), but may still be useful even in the case of single co-assemblies incorporating all samples.</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Due to the rapid mutation rates of viruses, with full data sets it will likely be preferable to first further reduce viral contigs down based on a percentage-identity threshold using a tool such as <code>BBMap</code>'s <code>dedupe.sh</code>. This would be a necessary step in cases where you had opted for generating multiple individual assemblies or mini-co-assemblies (and would be comparable to the use of a tool like <code>dRep</code> for prokaryote data), but may still be useful even in the case of single co-assemblies incorporating all samples.*</p>
+</div>
 <p>We will first need to concatenate these files together.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>cat checkv/proviruses.fna checkv/viruses.fna &gt; checkv_combined.fna
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>cat checkv/proviruses.fna checkv/viruses.fna &gt; checkv_combined.fna
 </code></pre></div>
 <p>Now build the index for <code>Bowtie2</code> using the concatenated viral contig data. We will also make a new directory <code>viruses_coverage/</code> to store the index and read mapping output into.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>mkdir -p viruses_coverage/
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># Load Bowtie2</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>module load Bowtie2/2.3.5-GCC-7.4.0
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1"># Build Bowtie2 index</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>bowtie2-build checkv_combined.fna viruses_coverage/bw_viruses
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a>mkdir -p viruses_coverage/
+<a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a>
+<a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="c1"># Load Bowtie2</span>
+<a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a>module load Bowtie2/2.4.5-GCC-11.3.0
+<a href="#__codelineno-7-5" id="__codelineno-7-5" name="__codelineno-7-5"></a>
+<a href="#__codelineno-7-6" id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="c1"># Build Bowtie2 index</span>
+<a href="#__codelineno-7-7" id="__codelineno-7-7" name="__codelineno-7-7"></a>bowtie2-build checkv_combined.fna viruses_coverage/bw_viruses
 </code></pre></div>
 <p>Map the quality-filtered reads (from <code>../3.assembly/</code>) to the index using <code>Bowtie2</code>, and sort and convert to <code>.bam</code> format via <code>samtools</code>.</p>
 <p>Create a new script</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>nano mapping_viruses.sl
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a>nano mapping_viruses.sl
 </code></pre></div>
 <p>Paste in the script (replacing <code>&lt;YOUR FOLDER&gt;</code>)</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="ch">#!/bin/bash -e</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1">#SBATCH --account nesi02659</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1">#SBATCH --res SummerSchool</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1">#SBATCH --job-name mapping_filtered_viruses</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1">#SBATCH --time 00:05:00</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1">#SBATCH --mem 1GB</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="c1">#SBATCH --error mapping_filtered_viruses.err</span>
-<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="c1">#SBATCH --output mapping_filtered_viruses.out</span>
-<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1">#SBATCH --export NONE</span>
-<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
-<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="nb">export</span> <span class="nv">SLURM_EXPORT_ENV</span><span class="o">=</span>ALL
-<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>
-<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>module purge
-<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>module load Bowtie2/2.3.5-GCC-7.4.0 SAMtools/1.8-gimkl-2018b
-<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>
-<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/8.coverage_and_taxonomy/
-<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>
-<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="c1"># Step 1</span>
-<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="k">for</span> i <span class="k">in</span> sample1 sample2 sample3 sample4<span class="p">;</span>
-<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="k">do</span>
-<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>
-<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>  <span class="c1"># Step 2</span>
-<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>  bowtie2 --minins <span class="m">200</span> --maxins <span class="m">800</span> --threads <span class="m">10</span> --sensitive <span class="se">\</span>
-<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>          -x viruses_coverage/bw_viruses <span class="se">\</span>
-<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a>          -1 ../3.assembly/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R1.fastq.gz -2 ../3.assembly/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R2.fastq.gz <span class="se">\</span>
-<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>          -S viruses_coverage/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sam
-<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>
-<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a>  <span class="c1"># Step 3</span>
-<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a>  samtools sort -@ <span class="m">10</span> -o viruses_coverage/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.bam viruses_coverage/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sam
-<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a>
-<a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a><span class="k">done</span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="ch">#!/bin/bash -e</span>
+<a href="#__codelineno-9-2" id="__codelineno-9-2" name="__codelineno-9-2"></a>
+<a href="#__codelineno-9-3" id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
+<a href="#__codelineno-9-4" id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="c1">#SBATCH --res           SummerSchool</span>
+<a href="#__codelineno-9-5" id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="c1">#SBATCH --job-name      mapping_filtered_viruses</span>
+<a href="#__codelineno-9-6" id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="c1">#SBATCH --time          00:05:00</span>
+<a href="#__codelineno-9-7" id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="c1">#SBATCH --mem           1GB</span>
+<a href="#__codelineno-9-8" id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
+<a href="#__codelineno-9-9" id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="c1">#SBATCH --error         mapping_filtered_viruses.err</span>
+<a href="#__codelineno-9-10" id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="c1">#SBATCH --output        mapping_filtered_viruses.out</span>
+<a href="#__codelineno-9-11" id="__codelineno-9-11" name="__codelineno-9-11"></a>
+<a href="#__codelineno-9-12" id="__codelineno-9-12" name="__codelineno-9-12"></a>module purge
+<a href="#__codelineno-9-13" id="__codelineno-9-13" name="__codelineno-9-13"></a>module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
+<a href="#__codelineno-9-14" id="__codelineno-9-14" name="__codelineno-9-14"></a>
+<a href="#__codelineno-9-15" id="__codelineno-9-15" name="__codelineno-9-15"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/8.coverage_and_taxonomy/
+<a href="#__codelineno-9-16" id="__codelineno-9-16" name="__codelineno-9-16"></a>
+<a href="#__codelineno-9-17" id="__codelineno-9-17" name="__codelineno-9-17"></a><span class="c1"># Step 1</span>
+<a href="#__codelineno-9-18" id="__codelineno-9-18" name="__codelineno-9-18"></a><span class="k">for</span> i <span class="k">in</span> sample1 sample2 sample3 sample4<span class="p">;</span>
+<a href="#__codelineno-9-19" id="__codelineno-9-19" name="__codelineno-9-19"></a><span class="k">do</span>
+<a href="#__codelineno-9-20" id="__codelineno-9-20" name="__codelineno-9-20"></a>
+<a href="#__codelineno-9-21" id="__codelineno-9-21" name="__codelineno-9-21"></a>  <span class="c1"># Step 2</span>
+<a href="#__codelineno-9-22" id="__codelineno-9-22" name="__codelineno-9-22"></a>  bowtie2 --minins <span class="m">200</span> --maxins <span class="m">800</span> --threads <span class="m">10</span> --sensitive <span class="se">\</span>
+<a href="#__codelineno-9-23" id="__codelineno-9-23" name="__codelineno-9-23"></a>          -x viruses_coverage/bw_viruses <span class="se">\</span>
+<a href="#__codelineno-9-24" id="__codelineno-9-24" name="__codelineno-9-24"></a>          -1 ../3.assembly/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R1.fastq.gz -2 ../3.assembly/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R2.fastq.gz <span class="se">\</span>
+<a href="#__codelineno-9-25" id="__codelineno-9-25" name="__codelineno-9-25"></a>          -S viruses_coverage/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sam
+<a href="#__codelineno-9-26" id="__codelineno-9-26" name="__codelineno-9-26"></a>
+<a href="#__codelineno-9-27" id="__codelineno-9-27" name="__codelineno-9-27"></a>  <span class="c1"># Step 3</span>
+<a href="#__codelineno-9-28" id="__codelineno-9-28" name="__codelineno-9-28"></a>  samtools sort -@ <span class="m">10</span> -o viruses_coverage/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.bam viruses_coverage/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sam
+<a href="#__codelineno-9-29" id="__codelineno-9-29" name="__codelineno-9-29"></a>
+<a href="#__codelineno-9-30" id="__codelineno-9-30" name="__codelineno-9-30"></a><span class="k">done</span>
 </code></pre></div>
 <p>Run the script</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sbatch mapping_viruses.sl
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a>sbatch mapping_viruses.sl
 </code></pre></div>
 <p>Finally, generate the per-sample coverage table for each viral contig via <code>MetaBAT</code>'s <code>jgi_summarize_bam_contig_depths</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Load MetaBAT</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>module load MetaBAT/2.13-GCC-7.4.0
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># calculate coverage table</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>jgi_summarize_bam_contig_depths --outputDepth viruses_cov_table.txt viruses_coverage/sample*.bam
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="c1"># Load MetaBAT</span>
+<a href="#__codelineno-11-2" id="__codelineno-11-2" name="__codelineno-11-2"></a>module load MetaBAT/2.15-GCC-11.3.0
+<a href="#__codelineno-11-3" id="__codelineno-11-3" name="__codelineno-11-3"></a>
+<a href="#__codelineno-11-4" id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="c1"># calculate coverage table</span>
+<a href="#__codelineno-11-5" id="__codelineno-11-5" name="__codelineno-11-5"></a>jgi_summarize_bam_contig_depths --outputDepth viruses_cov_table.txt viruses_coverage/sample*.bam
 </code></pre></div>
 <p>The coverage table will be generated as <code>viruses_cov_table.txt</code>. As before, the key columns of interest are the <code>contigName</code>, and each <code>sample[1-n].bam</code> column.</p>
-<p><em>NOTE: Unlike the prokaryote data, we have not used a binning process on the viral contigs (since many of the binning tools use hallmark characteristics of prokaryotes in the binning process). Here, <code>viruses_cov_table.txt</code> is the final coverage table. This can be combined with <code>CheckV</code> quality and completeness metrics to, for example, examine the coverage profiles of only those viral contigs considered to be "High-quality" or "Complete".</em> </p>
-<h4 id="normalising-coverage-values_1">Normalising coverage values<a class="headerlink" href="#normalising-coverage-values_1" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Unlike the prokaryote data, we have not used a binning process on the viral contigs (since many of the binning tools use hallmark characteristics of prokaryotes in the binning process). Here, <code>viruses_cov_table.txt</code> is the final coverage table. This can be combined with <code>CheckV</code> quality and completeness metrics to, for example, examine the coverage profiles of only those viral contigs considered to be "High-quality" or "Complete".* </p>
+</div>
+<h4 id="normalising-coverage-values_1">Normalising coverage values<a class="headerlink" href="#normalising-coverage-values_1" title="Permanent link">¶</a></h4>
 <p>Having generated per-sample coverage values, it is usually necessary to also normalise these values across samples of differing sequencing depth. In this case, the mock metagenome data we have been working with are already of equal depth, and so this is an unnecessary step for the purposes of this workshop. </p>
-<p>For an example of one way in which the <code>cov_table.txt</code> output generated by <code>jgi_summarize_bam_contig_depths</code> above could then be normalised based on average library size, see the <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_Normalise_coverage_example.md">Normalise per-sample coverage Appendix</a>.</p>
-<hr />
-<h3 id="assign-taxonomy-to-the-refined-bins">Assign taxonomy to the refined bins<a class="headerlink" href="#assign-taxonomy-to-the-refined-bins" title="Permanent link">&para;</a></h3>
+<p>For an example of one way in which the <code>cov_table.txt</code> output generated by <code>jgi_summarize_bam_contig_depths</code> above could then be normalised based on average library size, see the <a href="https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/3_APPENDIX_ex11_Normalise_coverage_example/">Normalise per-sample coverage Appendix</a>.</p>
+<hr/>
+<h3 id="assign-taxonomy-to-the-refined-bins">Assign taxonomy to the refined bins<a class="headerlink" href="#assign-taxonomy-to-the-refined-bins" title="Permanent link">¶</a></h3>
 <p>It is always valuable to know the taxonomy of our binned MAGs, so that we can link them to the wider scientific literature. In order to do this, there are a few different options available to us:</p>
 <ol>
 <li>Extract 16S rRNA gene sequences from the MAGs and classify them</li>
@@ -1238,6 +683,7 @@
 <li>Identify a core set of genes in the MAG, and use these to compute a species phylogeny</li>
 </ol>
 <p>For this exercise, we will use the last option in the list, making use of the <code>GTDB-TK</code> software (available on <a href="https://github.com/Ecogenomics/GTDBTk">github</a>) to automatically identify a set of highly conserved, single copy marker genes which are diagnostic of the bacterial (120 markers) and archaeal (122 markers) lineages. Briefly, <code>GTDB-TK</code> will perform the following steps on a set of bins.</p>
+<div class="admonition quote">
 <ol>
 <li>Attempt to identify a set of 120 bacterial marker genes, and 122 archaeal marker genes in each MAG.</li>
 <li>Based on the recovered numbers, identify which domain is a more likely assignment for each MAG</li>
@@ -1248,33 +694,32 @@
 <li>Calculate ANI and AAI statistics between each MAG and its nearest neighbours in the tree</li>
 <li>Report the resulting taxonomic assignment, and gene alignment</li>
 </ol>
+</div>
 <p>This can all be achieved in a single command, although it must be performed through a slurm script due to the high memory requirements of the process.</p>
 <p>Create a new script</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>nano gtdbtk_test.sl
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a>nano gtdbtk_test.sl
 </code></pre></div>
 <p>Paste in the script (replacing <code>&lt;YOUR FOLDER&gt;</code>)</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="ch">#!/bin/bash</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1">#SBATCH --account nesi02659</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1">#SBATCH --job-name gtdbtk_test</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1">#SBATCH --res SummerSchool</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="c1">#SBATCH --time 00:30:00</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="c1">#SBATCH --mem 140GB</span>
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="c1">#SBATCH --error gtdbtk_test.err</span>
-<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="c1">#SBATCH --output gtdbtk_test.out</span>
-<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="c1">#SBATCH --export NONE</span>
-<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>
-<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="nb">export</span> <span class="nv">SLURM_EXPORT_ENV</span><span class="o">=</span>ALL
-<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>
-<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>module purge
-<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>module load GTDB-Tk/1.5.0-gimkl-2020a-Python-3.8.2
-<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>
-<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/8.coverage_and_taxonomy
-<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>
-<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>gtdbtk classify_wf -x fna --cpus <span class="m">10</span> --genome_dir filtered_bins/ --out_dir gtdbtk_out/
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="ch">#!/bin/bash -e</span>
+<a href="#__codelineno-13-2" id="__codelineno-13-2" name="__codelineno-13-2"></a>
+<a href="#__codelineno-13-3" id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
+<a href="#__codelineno-13-4" id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="c1">#SBATCH --job-name      gtdbtk_test</span>
+<a href="#__codelineno-13-5" id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="c1">#SBATCH --res           SummerSchool</span>
+<a href="#__codelineno-13-6" id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="c1">#SBATCH --time          00:30:00</span>
+<a href="#__codelineno-13-7" id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="c1">#SBATCH --mem           140GB</span>
+<a href="#__codelineno-13-8" id="__codelineno-13-8" name="__codelineno-13-8"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
+<a href="#__codelineno-13-9" id="__codelineno-13-9" name="__codelineno-13-9"></a><span class="c1">#SBATCH --error         gtdbtk_test.err</span>
+<a href="#__codelineno-13-10" id="__codelineno-13-10" name="__codelineno-13-10"></a><span class="c1">#SBATCH --output        gtdbtk_test.out</span>
+<a href="#__codelineno-13-11" id="__codelineno-13-11" name="__codelineno-13-11"></a>
+<a href="#__codelineno-13-12" id="__codelineno-13-12" name="__codelineno-13-12"></a>module purge
+<a href="#__codelineno-13-13" id="__codelineno-13-13" name="__codelineno-13-13"></a>module load GTDB-Tk/1.5.0-gimkl-2020a-Python-3.8.2
+<a href="#__codelineno-13-14" id="__codelineno-13-14" name="__codelineno-13-14"></a>
+<a href="#__codelineno-13-15" id="__codelineno-13-15" name="__codelineno-13-15"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/8.coverage_and_taxonomy
+<a href="#__codelineno-13-16" id="__codelineno-13-16" name="__codelineno-13-16"></a>
+<a href="#__codelineno-13-17" id="__codelineno-13-17" name="__codelineno-13-17"></a>gtdbtk classify_wf -x fna --cpus <span class="m">10</span> --genome_dir filtered_bins/ --out_dir gtdbtk_out/
 </code></pre></div>
 <p>Submit the script</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sbatch gtdbtk_test.sl
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-14-1" id="__codelineno-14-1" name="__codelineno-14-1"></a>sbatch gtdbtk_test.sl
 </code></pre></div>
 <p>As usual, lets look at the parameters here</p>
 <table>
@@ -1291,7 +736,7 @@
 </tr>
 <tr>
 <td align="left"><strong>-x ...</strong></td>
-<td align="left">Specify the file extension for MAGs within our input directory.<br>Default is <em>.fna</em>, but it's always good practice to specify it anyway</td>
+<td align="left">Specify the file extension for MAGs within our input directory.<br/>Default is <em>.fna</em>, but it's always good practice to specify it anyway</td>
 </tr>
 <tr>
 <td align="left"><strong>--cpus ...</strong></td>
@@ -1311,18 +756,22 @@
 <p>When the task completes, you will have a number of output files provided. The main ones to look for are <code>gtdbtk.bac120.summary.tsv</code> and <code>gtdbtk.arch122.summary.tsv</code> which report the taoxnomies for your MAGs, split at the domain level. These file are only written if MAGs that fall into the domain were found in your data set, so for this exercise we do not expect to see the <code>gtdbtk.arch122.summary.tsv</code> file.</p>
 <p>If you are interested in performing more detailed phylogenetic analysis of the data, the filtered multiple sequence alignment (MSA) for the data are provided in the <code>gtdbtk.bac120.msa.fasta</code> and <code>gtdbtk.arch122.msa.fasta</code> files.</p>
 <p>Have a look at your resulting taxonomy. The classification of your MAGs will be informative when addressing your research goal for this workshop.</p>
-<hr />
-<h3 id="introduction-to-vcontact2-for-predicting-taxonomy-of-viral-contigs">Introduction to <em>vContact2</em> for predicting taxonomy of viral contigs<a class="headerlink" href="#introduction-to-vcontact2-for-predicting-taxonomy-of-viral-contigs" title="Permanent link">&para;</a></h3>
+<hr/>
+<h3 id="introduction-to-vcontact2-for-predicting-taxonomy-of-viral-contigs">Introduction to <em>vContact2</em> for predicting taxonomy of viral contigs<a class="headerlink" href="#introduction-to-vcontact2-for-predicting-taxonomy-of-viral-contigs" title="Permanent link">¶</a></h3>
 <p>Even more so than prokaryote taxonomy, establishing a coherent system for viral taxonomy is complex and continues to evolve. Just in the last year, the International Committee on Taxonomy of Viruses (<a href="https://talk.ictvonline.org/">ICTV</a>) overhauled the classification code into <a href="https://www.nature.com/articles/s41564-020-0709-x">15 hierarchical ranks</a>. Furthermore, the knowledge gap in databases of known and taxonomically assigned viruses remains substantial, and so identifying the putative taxonomy of viral contigs from environmental metagenomics data remains challenging.</p>
 <p>There are a number of approaches that can be used to attempt to predict the taxonomy of the set of putative viral contigs output by programs such as <code>VIBRANT</code>, <code>VirSorter</code>, and <code>VirFinder</code>. <a href="https://www.nature.com/articles/s41587-019-0100-8">vContact2</a> is one such method that uses 'guilt-by-contig-association' to predict the potential taxonomy of viral genomic sequence data based on relatedness to known viruses within a reference database (such as viral RefSeq). The principle is that, to the extent that the 'unknown' viral contigs cluster closely with known viral genomes, we can then expect that they are closely related enough to be able to predict a shared taxonomic rank. </p>
-<p><em>NOTE: Anecdotally, however, in my own experience with this processes I have unfortunately been unable to predict the taxonomy of the vast majority of the viral contigs ouput by <code>VIBRANT</code>, <code>VirSorter</code>, or <code>VirFinder</code> from an environmental metagenomic data set (due to not clustering closely enough with known viruses in the reference database).</em></p>
-<p>Running <code>vContact2</code> can require a considerable amount of computational resources, and so we won't be running this in the workshop today. The required process is outlined for reference in an <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md">Appendix for this exercise</a>, should you wish to experiment with this on your own data in the future. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Anecdotally, however, in my own experience with this processes I have unfortunately been unable to predict the taxonomy of the vast majority of the viral contigs ouput by <code>VIBRANT</code>, <code>VirSorter</code>, or <code>VirFinder</code> from an environmental metagenomic data set (due to not clustering closely enough with known viruses in the reference database).</p>
+</div>
+<p>Running <code>vContact2</code> can require a considerable amount of computational resources, and so we won't be running this in the workshop today. The required process is outlined for reference in an <a href="../../resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/">Appendix for this exercise</a>, should you wish to experiment with this on your own data in the future. </p>
 <p>For today, we have provided the final two output files from this process when applied to our mock metagenome data. These can be viewed in the folder <code>8.coverage_and_taxonomy/vConTACT2_Results/</code> via <code>head</code> or <code>less</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>less vConTACT2_Results/genome_by_genome_overview.csv
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-15-1" id="__codelineno-15-1" name="__codelineno-15-1"></a>less vConTACT2_Results/genome_by_genome_overview.csv
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>less vConTACT2_Results/tax_predict_table.txt
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-16-1" id="__codelineno-16-1" name="__codelineno-16-1"></a>less vConTACT2_Results/tax_predict_table.txt
 </code></pre></div>
 <p>A few notes to consider: </p>
+<div class="admonition quote">
 <ul>
 <li>You will see that the <code>genome_by_genome_overview.csv</code> file contains entries for the full reference database used as well as the input viral contigs (contigs starting with <code>NODE</code>). </li>
 <li>You can use a command such as <code>grep "NODE" vConTACT2_Results/genome_by_genome_overview.csv | less</code> to view only the lines for the input contigs of interest. </li>
@@ -1332,90 +781,66 @@
 <li>Bear in mind that these may be lists of <em>multiple</em> potential taxonomies, in the cases where viral contigs clustered with multiple reference viruses representing more than one taxonomy at the given rank.</li>
 <li><em>NOTE: The taxonomies are deliberately enclosed in square brackets (<code>[ ]</code>) to highlight the fact that these are **predictions*</em>, rather than definitive taxonomy <strong>assignments</strong>.*</li>
 </ul>
-<hr />
-
-              
-            </article>
-            
-          </div>
-        </div>
-        
-          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+</div>
+<hr/>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
             Back to top
           </a>
-        
-      </main>
-      
-        <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
-      
-        
-        <a href="../ex10_viruses/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Identifying viral contigs in metagenomic data" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: Identifying viral contigs in metagenomic data" class="md-footer__link md-footer__link--prev" href="../ex10_viruses/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
                 Previous
               </span>
               Identifying viral contigs in metagenomic data
             </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../ex12_gene_prediction/" class="md-footer__link md-footer__link--next" aria-label="Next: Gene prediction" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
+</div>
+</a>
+<a aria-label="Next: Gene prediction" class="md-footer__link md-footer__link--next" href="../ex12_gene_prediction/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
                 Next
               </span>
               Gene prediction
             </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
       Material for MkDocs
     </a>
-  
 </div>
-      
-    </div>
-  </div>
+</div>
+</div>
 </footer>
-      
-    </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
-    
-    
-      <script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
-      
-        <script src="../../javascripts/mathjax.js"></script>
-      
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-    
-  </body>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+<script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+<script src="../../javascripts/mathjax.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
 </html>

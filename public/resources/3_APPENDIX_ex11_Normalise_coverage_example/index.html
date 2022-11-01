@@ -6,10 +6,10 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Genomics Aotearoa &amp; NeSI" name="author"/>
-<link href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day2/ex7_initial_binning/" rel="canonical"/>
+<link href="https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/3_APPENDIX_ex11_Normalise_coverage_example/" rel="canonical"/>
 <link href="../../theme_images/nesi_ga.png" rel="icon"/>
 <meta content="mkdocs-1.4.1, mkdocs-material-8.3.9" name="generator"/>
-<title>Introduction to binning - Metagenomics Summer School</title>
+<title>APPENDIX (ex11): Normalise per-sample coverage values by average library size (example) - Metagenomics Summer School</title>
 <link href="../../assets/stylesheets/main.1d29e8d0.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -31,7 +31,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#introduction-to-binning">
+<a class="md-skip" href="#appendix-ex11-normalise-per-sample-coverage-values-by-average-library-size-example">
           Skip to content
         </a>
 </div>
@@ -55,7 +55,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Introduction to binning
+              APPENDIX (ex11): Normalise per-sample coverage values by average library size (example)
             
           </span>
 </div>
@@ -130,7 +130,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="../ex6_initial_binning/">
+<a class="md-tabs__link" href="../../day2/ex6_initial_binning/">
         Day2
       </a>
 </li>
@@ -145,7 +145,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../resources/1_APPENDIX_ex8_Dereplication/">
+<a class="md-tabs__link md-tabs__link--active" href="../1_APPENDIX_ex8_Dereplication/">
         Resources
       </a>
 </li>
@@ -222,8 +222,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
 <label class="md-nav__link" for="__nav_3">
           Day2
           <span class="md-nav__icon md-icon"></span>
@@ -235,50 +235,22 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../ex6_initial_binning/">
+<a class="md-nav__link" href="../../day2/ex6_initial_binning/">
         Introduction to binning
       </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          Introduction to binning
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day2/ex7_initial_binning/">
         Introduction to binning
       </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#overview">
-    Overview
-  </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#metabat">
-    MetaBAT
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#maxbin">
-    MaxBin
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../ex8_bin_dereplication/">
+<a class="md-nav__link" href="../../day2/ex8_bin_dereplication/">
         Bin dereplication
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../ex9_refining_bins/">
+<a class="md-nav__link" href="../../day2/ex9_refining_bins/">
         Manually refining bins
       </a>
 </li>
@@ -375,8 +347,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
 <label class="md-nav__link" for="__nav_6">
           Resources
           <span class="md-nav__icon md-icon"></span>
@@ -388,37 +360,55 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../resources/1_APPENDIX_ex8_Dereplication/">
+<a class="md-nav__link" href="../1_APPENDIX_ex8_Dereplication/">
         APPENDIX (ex8):Dereplicating data from multiple assemblies
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../resources/2_APPENDIX_ex9_Generating_input_files_for_VizBin/">
+<a class="md-nav__link" href="../2_APPENDIX_ex9_Generating_input_files_for_VizBin/">
         APPENDIX (ex9): Generating input files for *VizBin* from *DAS_Tool* curated bins
       </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../resources/3_APPENDIX_ex11_Normalise_coverage_example/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          APPENDIX (ex11): Normalise per-sample coverage values by average library size (example)
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
         APPENDIX (ex11): Normalise per-sample coverage values by average library size (example)
       </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#normalise-to-average-read-depth-via-the-python-script-norm_jgi_cov_tablepy">
+    Normalise to average read depth via the python script norm_jgi_cov_table.py
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/">
+<a class="md-nav__link" href="../4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/">
         APPENDIX (ex11) : viral taxonomy prediction via *vContact2*
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../resources/5_APPENDIX_ex15_gene_synteny_Generate_blast_files/">
+<a class="md-nav__link" href="../5_APPENDIX_ex15_gene_synteny_Generate_blast_files/">
         APPENDIX (ex15): How to generate the blast files provided in [ex15_gene_synteny](../day4/ex16e_data_presentation_Gene_synteny.md)
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../resources/6_APPENDIX_ex15_gene_synteny_grab_GOI/">
+<a class="md-nav__link" href="../6_APPENDIX_ex15_gene_synteny_grab_GOI/">
         APPENDIX (ex15): Grab Gene of Interest (generate the *cys.txt* files provided in [ex15_gene_synteny](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16e_data_presentation_Gene_synteny.md))
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../resources/7_command_line_shortcuts/">
+<a class="md-nav__link" href="../7_command_line_shortcuts/">
         Useful command line shortcuts
       </a>
 </li>
@@ -440,18 +430,8 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#overview">
-    Overview
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#metabat">
-    MetaBAT
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#maxbin">
-    MaxBin
+<a class="md-nav__link" href="#normalise-to-average-read-depth-via-the-python-script-norm_jgi_cov_tablepy">
+    Normalise to average read depth via the python script norm_jgi_cov_table.py
   </a>
 </li>
 </ul>
@@ -461,100 +441,47 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/day2/ex7_initial_binning.md" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/resources/3_APPENDIX_ex11_Normalise_coverage_example.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="introduction-to-binning">Introduction to binning<a class="headerlink" href="#introduction-to-binning" title="Permanent link">¶</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Objectives</p>
+<h1 id="appendix-ex11-normalise-per-sample-coverage-values-by-average-library-size-example">APPENDIX (ex11): Normalise per-sample coverage values by average library size (example)<a class="headerlink" href="#appendix-ex11-normalise-per-sample-coverage-values-by-average-library-size-example" title="Permanent link">¶</a></h1>
+<p>Having generated per-sample coverage values, it is usually necessary to also normalise these values across samples of differing sequencing depth. Commonly, this is done by calculating something like <a href="https://rna-seqblog.com/rpkm-fpkm-and-tpm-clearly-explained/">RPKM</a> to normalise to both library size (sample sequencing depth) and gene length, or simply by normalising to minimum or average library size alone. </p>
+<p>In this case, the mock metagenome data we have been working with are already of equal depth, and so this is an unnecessary step for the purposes of this workshop. The steps below are provided for future reference as an example of one way in which the <code>cov_table.txt</code> output generated by <code>jgi_summarize_bam_contig_depths</code> above could then be normalised based on average library size. </p>
+<h4 id="normalise-to-average-read-depth-via-the-python-script-norm_jgi_cov_tablepy">Normalise to average read depth via the <em>python</em> script <code>norm_jgi_cov_table.py</code><a class="headerlink" href="#normalise-to-average-read-depth-via-the-python-script-norm_jgi_cov_tablepy" title="Permanent link">¶</a></h4>
+<p>The script <code>norm_jgi_cov_table.py</code> is available in the folder <code>8.coverage_and_taxonomy/</code>, and is also available for download for future reference at <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/scripts/norm_jgi_cov_table.py">this link</a>. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This script was developed as a simple example for this workshop. It has not yet been widely tested: it is recommended in early usage to manually check a few values to ensure the conversions in the output file are as expected.*</p>
+</div>
+<p>In brief, this <code>python</code> script leverages the fact that the standard error output from <code>bowtie2</code> includes read counts for each sample. This has been saved in <code>mapping_filtered_bins.err</code>, as per the slurm script that was submitted for the read mapping step. Note that, since we know the order that <code>bowtie2</code> processed the samples (based on the loop we provided to <code>bowtie2</code>: <code>for i in sample1 sample2 sample3 sample4</code>), we know that the read count lines in the output error file will appear in the same order. We can therefore iterate through each of these lines, extracting the individual sample read count each time. These values are then used to calculate the average read depth for all samples. Coverage values (in each of the <code>*.bam</code> columns) are normalised for each sample based on: <code>(coverage / sample_read_depth) * average_read_depth</code>. Finally, this is saved to the new file with the prefix 'normalised_' (e.g. <code>normalised_bins_cov_table.txt</code>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In your own work, if you alternatively chose to use <code>BBMap</code> (and <code>BBMap</code>s <code>covstats</code> output) for the previous coverage calculation step, read counts can similarly be extracted from the <code>scafstats</code> output by searching for the line "Reads Used: ...".*</p>
+</div>
+<p><code>norm_jgi_cov_table.py</code> requires two input arguments, and takes an additional optional output path argument.</p>
+<div class="admonition abstract">
 <ul>
-<li><a href="#overview">Overview</a></li>
-<li><a href="#metabat">Create initial bins using <code>MetaBAT</code></a></li>
-<li><a href="#maxbin">Create initial bins using <code>MaxBin</code></a></li>
+<li><code>-c</code>: Coverage table generated by <code>jgi_summarize_bam_contig_depths</code></li>
+<li><code>-e</code>: Standard error file created by read mapping via <code>bowtie2</code></li>
+<li><code>-o</code>: (Optional) Path to output directory (must already exist) (default is the current directory).</li>
 </ul>
 </div>
-<hr/>
-<h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">¶</a></h3>
-<p>With the mapping information computed in the last exercise, we can now perform binning. There are a multitude of good binning tools currently published, and each have their strengths and weaknesses. As there is no best tool for binning, the current strategy for binning is to use a number of different tools on your data, then use the tool <code>DAS_Tool</code> to evaluate all potential outcomes and define the best set of bins across all tools used.</p>
-<p>In our own workflow, we use the tools <code>MetaBAT</code>, <code>MaxBin</code>, and <code>CONCOCT</code> for binning, but there are many alternatives that are equally viable. In the interests of time, we are only going to demonstrate the first two tools. However, we recommend that you experiement with some of the following tools when conducting your own research.</p>
-<ol>
-<li><a href="http://ecogenomics.github.io/GroopM/">GroopM</a></li>
-<li><a href="https://github.com/tetramerFreqs/Binning">Tetra-ESOM</a></li>
-<li><a href="https://github.com/RasmussenLab/vamb">VAMB</a></li>
-</ol>
-<hr/>
-<h3 id="metabat"><em>MetaBAT</em><a class="headerlink" href="#metabat" title="Permanent link">¶</a></h3>
-<p><code>MetaBAT</code> binning occurs in two steps. First, the <em>bam</em> files from the last exercise are parsed into a tab-delimited table of the average coverage depth and variance per sample mapped. Binning is then performed using this table.</p>
-<p>The <em>.bam</em> files can be passed in via either a user-defined order, or using wildcards.
+<p>Run <code>norm_jgi_cov_table.py</code> for microbial bins data and viral contigs, inputting:</p>
+<ul>
+<li>A. the <code>bins_cov_table.txt</code> and <code>mapping_filtered_bins.err</code> files</li>
+<li>B. the <code>viruses_cov_table.txt</code> and <code>mapping_filtered_viruses.err</code> files. </li>
+</ul>
+<p>This will generate the outputs <code>normalised_bins_cov_table.txt</code> and <code>normalised_viruses_cov_table.txt</code>. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If this <code>python</code> script is in the directory you are currently in, you can call it simply by adding <code>./</code> in front of the script name. If you have saved the script elsewhere, you will need to add the absolute path to the script, or add the script to your bin path.*</p>
+</div>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>module purge
-<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>module load MetaBAT/2.15-GCC-11.3.0
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>module load Python/3.8.2-gimkl-2020a
 <a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>
-<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/5.binning/
-<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a>
-<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="c1"># Manual specification of files</span>
-<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a>jgi_summarize_bam_contig_depths --outputDepth metabat.txt sample1.bam sample2.bam sample3.bam sample4.bam
-<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a>
-<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="c1"># Wildcard</span>
-<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a>jgi_summarize_bam_contig_depths --outputDepth metabat.txt sample*.bam
-</code></pre></div></p>
-<p>Both give the same result, although the sample order may vary.</p>
-<p>We can then pass the table <code>metabat.txt</code> into the <code>MetaBAT</code> binning tool.</p>
-<p>Before we proceed, note that when you run <code>MetaBAT</code> on NeSI you will see the text <code>vGIT-NOTFOUND</code> appear in your command line. This has no impact on the performance of the tool.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>metabat2 -t <span class="m">2</span> -m <span class="m">1500</span> <span class="se">\</span>
-<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>         -i spades_assembly/spades_assembly.m1000.fna <span class="se">\</span>
-<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>         -a metabat.txt <span class="se">\</span>
-<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>         -o metabat/metabat
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a>./norm_jgi_cov_table.py -c bins_cov_table.txt -e mapping_filtered_bins.err
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a>./norm_jgi_cov_table.py -c viruses_cov_table.txt -e mapping_filtered_viruses.err
 </code></pre></div>
-<p>Note here that we are specifying a minimum contig size of 1,500 bp, which is the lower limit allowed by the authors of <code>MetaBAT</code>. This is larger than the minimum threshold of 1,000 bp when we filtered the assembly, which means there are some assembled contigs which cannot be binned. Consider the choice of this parameter and your initial contig filtering carefully when binning your own data.</p>
-<p>When specifying the output file, notice that we pass both a folder path (<em>metabat/</em>) and file name (<em>metabat</em>). The reason I do this is that <code>MetaBAT</code> writes its output files using the pattern</p>
-<p><code>[USER VALUE].[BIN NUMBER].fa</code></p>
-<p>If we only provided the path, without a file name prefix, <code>MetaBAT</code> would create output like the following:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>metabat/.1.fa
-<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>metabat/.2.fa
-<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a>metabat/.3.fa
-</code></pre></div>
-<p>The problem with this is that on Linux systems, prefixing a file or folder name with a '.' character means the the file is hidden. This can lead to a lot of confusion when your binning job completes successfully but no files are visible!</p>
-<hr/>
-<h3 id="maxbin"><em>MaxBin</em><a class="headerlink" href="#maxbin" title="Permanent link">¶</a></h3>
-<p>Like <code>MetaBAT</code>, <code>MaxBin</code> requires a text representation of the coverage information for binning. Luckily, we can be sneaky here and just reformat the <code>metabat.txt</code> file into the format expected by <code>MaxBin</code>. We use <code>cut</code> to select only the columns of interest, which are the <em>contigName</em> and coverage columns, but not the <em>contigLen</em>, <em>totalAvgDepth</em>, or variance columns.</p>
-<p>We can inspect the <code>metabat.txt</code> file with <code>head</code> or <code>less</code> to identify the correct column indices for <code>cut</code>.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>less metabat.txt
-<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>
-<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>cut -f1,4,6,8,10 metabat.txt &gt; maxbin.txt
-</code></pre></div>
-<p>Generally speaking, this pattern of first, fourth, then [n + 2]<sup>th</sup> should work for any number of mapping files, although we always reocmmend that you check and confirm before you continue.</p>
-<p>This table is then passed to <code>MaxBin</code>. Unlike the case with <code>MetaBAT</code>, if we want to direct the output files into a folder, we must create that folder in advance.</p>
-<p>Create a new script to submit as a slurm job</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>nano maxbin_clustering.sl
-</code></pre></div>
-<p>Paste or type in the following. Remember to update <code>&lt;YOUR FOLDER&gt;</code> to your own folder.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="ch">#!/bin/bash -e</span>
-<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a>
-<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
-<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1">#SBATCH --job-name      maxbin_clustering</span>
-<a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="c1">#SBATCH --res           SummerSchool</span>
-<a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="c1">#SBATCH --time          00:05:00</span>
-<a href="#__codelineno-5-7" id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="c1">#SBATCH --mem           10GB</span>
-<a href="#__codelineno-5-8" id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
-<a href="#__codelineno-5-9" id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="c1">#SBATCH --error         maxbin_clustering.err</span>
-<a href="#__codelineno-5-10" id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="c1">#SBATCH --output        maxbin_clustering.out</span>
-<a href="#__codelineno-5-11" id="__codelineno-5-11" name="__codelineno-5-11"></a>
-<a href="#__codelineno-5-12" id="__codelineno-5-12" name="__codelineno-5-12"></a>
-<a href="#__codelineno-5-13" id="__codelineno-5-13" name="__codelineno-5-13"></a>module purge
-<a href="#__codelineno-5-14" id="__codelineno-5-14" name="__codelineno-5-14"></a>module load MaxBin/2.2.7-GCC-11.3.0-Perl-5.34.1
-<a href="#__codelineno-5-15" id="__codelineno-5-15" name="__codelineno-5-15"></a>
-<a href="#__codelineno-5-16" id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/5.binning/
-<a href="#__codelineno-5-17" id="__codelineno-5-17" name="__codelineno-5-17"></a>
-<a href="#__codelineno-5-18" id="__codelineno-5-18" name="__codelineno-5-18"></a>mkdir -p maxbin/
-<a href="#__codelineno-5-19" id="__codelineno-5-19" name="__codelineno-5-19"></a>run_MaxBin.pl -thread <span class="m">10</span> -min_contig_length <span class="m">1500</span> <span class="se">\</span>
-<a href="#__codelineno-5-20" id="__codelineno-5-20" name="__codelineno-5-20"></a>              -contig spades_assembly/spades_assembly.m1000.fna <span class="se">\</span>
-<a href="#__codelineno-5-21" id="__codelineno-5-21" name="__codelineno-5-21"></a>              -abund maxbin.txt <span class="se">\</span>
-<a href="#__codelineno-5-22" id="__codelineno-5-22" name="__codelineno-5-22"></a>              -out maxbin/maxbin
-</code></pre></div>
-<p>Submit the script as a slurm job:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>sbatch maxbin_clustering.sl
-</code></pre></div>
-<p>This will take a bit longer to complete, as <code>MaxBin</code> uses gene prediction tools to identify the ideal contigs to use as the start of each bin.</p>
 <hr/>
 </article>
 </div>
@@ -566,7 +493,7 @@
 </main>
 <footer class="md-footer">
 <nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Previous: Introduction to binning" class="md-footer__link md-footer__link--prev" href="../ex6_initial_binning/" rel="prev">
+<a aria-label="Previous: APPENDIX (ex9): Generating input files for *VizBin* from *DAS_Tool* curated bins" class="md-footer__link md-footer__link--prev" href="../2_APPENDIX_ex9_Generating_input_files_for_VizBin/" rel="prev">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
 </div>
@@ -575,17 +502,17 @@
 <span class="md-footer__direction">
                 Previous
               </span>
-              Introduction to binning
+              APPENDIX (ex9): Generating input files for *VizBin* from *DAS_Tool* curated bins
             </div>
 </div>
 </a>
-<a aria-label="Next: Bin dereplication" class="md-footer__link md-footer__link--next" href="../ex8_bin_dereplication/" rel="next">
+<a aria-label="Next: APPENDIX (ex11) : viral taxonomy prediction via *vContact2*" class="md-footer__link md-footer__link--next" href="../4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/" rel="next">
 <div class="md-footer__title">
 <div class="md-ellipsis">
 <span class="md-footer__direction">
                 Next
               </span>
-              Bin dereplication
+              APPENDIX (ex11) : viral taxonomy prediction via *vContact2*
             </div>
 </div>
 <div class="md-footer__button md-icon">

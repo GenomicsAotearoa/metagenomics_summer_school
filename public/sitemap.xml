@@ -2,152 +2,147 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day1/ex1_bash_scripting/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day1/ex1_bash_and_scheduler/</loc>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day1/ex2_quality_filtering/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day1/ex3_assembly/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day1/ex4_assembly/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day1/ex5_evaluating_assemblies/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day2/ex6_initial_binning/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day2/ex7_initial_binning/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day2/ex8_bin_dereplication/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day2/ex9_refining_bins/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day3/ex10_viruses/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day3/ex11_coverage_and_taxonomy/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day3/ex12_gene_prediction/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day3/ex13_gene_annotation_part1/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day3/ex14_gene_annotation_part2/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day4/ex15_gene_annotation_part3/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day4/ex16a_data_presentation_Intro/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day4/ex16b_data_presentation_Coverage/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day4/ex16c_OPTIONAL_data_presentation_Ordination/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day4/ex16d_data_presentation_KEGG_pathways/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day4/ex16e_data_presentation_Gene_synteny/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/figures/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/1_APPENDIX_ex8_Dereplication/</loc>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/APPENDIX_ex11_Normalise_coverage_example/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/2_APPENDIX_ex9_Generating_input_files_for_VizBin/</loc>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/3_APPENDIX_ex11_Normalise_coverage_example/</loc>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/APPENDIX_ex15_gene_synteny_Generate_blast_files/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/</loc>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/APPENDIX_ex15_gene_synteny_grab_GOI/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/5_APPENDIX_ex15_gene_synteny_Generate_blast_files/</loc>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/APPENDIX_ex8_Dereplication/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/6_APPENDIX_ex15_gene_synteny_grab_GOI/</loc>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/APPENDIX_ex9_Generating_input_files_for_VizBin/</loc>
-         <lastmod>2022-10-19</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/command_line_shortcuts/</loc>
-         <lastmod>2022-10-19</lastmod>
+         <loc>https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/7_command_line_shortcuts/</loc>
+         <lastmod>2022-10-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

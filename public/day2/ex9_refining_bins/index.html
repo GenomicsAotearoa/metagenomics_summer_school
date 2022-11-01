@@ -1,1312 +1,684 @@
 
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-      
-        <meta name="author" content="Genomics Aotearoa & NeSI">
-      
-      
-        <link rel="canonical" href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day2/ex9_refining_bins/">
-      
-      <link rel="icon" href="../../images/nesi_ga.png">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
-    
-    
-      
-        <title>Manually refining bins - Metagenomics Summer School</title>
-      
-    
-    
-      <link rel="stylesheet" href="../../assets/stylesheets/main.1d29e8d0.min.css">
-      
-        
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
-        
-      
-      
-    
-    
-    
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Mukta";--md-code-font:"Fira Code"}</style>
-      
-    
-    
-    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-    
-      
+<!DOCTYPE html>
 
-    
-    
-  </head>
-  
-  
-    
-    
-      
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="lime" data-md-color-accent="">
-  
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#manually-refining-bins" class="md-skip">
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Genomics Aotearoa &amp; NeSI" name="author"/>
+<link href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day2/ex9_refining_bins/" rel="canonical"/>
+<link href="../../theme_images/nesi_ga.png" rel="icon"/>
+<meta content="mkdocs-1.4.1, mkdocs-material-8.3.9" name="generator"/>
+<title>Manually refining bins - Metagenomics Summer School</title>
+<link href="../../assets/stylesheets/main.1d29e8d0.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Mukta";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gdesc-inner { font-size: 0.75rem; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="" data-md-color-primary="indigo" data-md-color-scheme="" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#manually-refining-bins">
           Skip to content
         </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-    
-      
-
-<header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Metagenomics Summer School" class="md-header__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
-      
-  <img src="../../images/nesi_ga.png" alt="logo">
-
-    </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--lifted" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Metagenomics Summer School" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Metagenomics Summer School">
+<img alt="logo" src="../../theme_images/nesi_ga.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
             Metagenomics Summer School
           </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
             
               Manually refining bins
             
           </span>
-        </div>
-      </div>
-    </div>
-    
-      <form class="md-header__option" data-md-component="palette">
-        
-          
-          
-          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
-          
-            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
-            </label>
-          
-        
-          
-          
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
-          
-            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
-            </label>
-          
-        
-          
-          
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="lime" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
-          
-            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
-            </label>
-          
-        
-      </form>
-    
-    
-    
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
-        </button>
-      </nav>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="indigo" data-md-color-scheme="" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_3" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"></path></svg>
+</label>
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+</label>
+<input aria-label="Switch to system preference" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_3" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to system preference">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+</label>
+</form>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+<ol class="md-search-result__list"></ol>
 </div>
-    
-    
-      <div class="md-header__source">
-        <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
-  </div>
-  <div class="md-source__repository">
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
     GenomicsAotearoa/metagenomics_summer_school
   </div>
 </a>
-      </div>
-    
-  </nav>
-  
-</header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
-          
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
-            
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Metagenomics Summer School" class="md-nav__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
-      
-  <img src="../../images/nesi_ga.png" alt="logo">
-
+</div>
+</nav>
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+      Home
     </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../day1/ex1_bash_and_scheduler/">
+        Day1
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../ex6_initial_binning/">
+        Day2
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../day3/ex10_viruses/">
+        Day3
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../day4/ex15_gene_annotation_part3/">
+        Day4
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../resources/1_APPENDIX_ex8_Dereplication/">
+        Resources
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Metagenomics Summer School" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Metagenomics Summer School">
+<img alt="logo" src="../../theme_images/nesi_ga.png"/>
+</a>
     Metagenomics Summer School
   </label>
-  
-    <div class="md-nav__source">
-      <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
-  </div>
-  <div class="md-source__repository">
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
     GenomicsAotearoa/metagenomics_summer_school
   </div>
 </a>
-    </div>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
-        Hi!
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+        Home
       </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2">
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2">
           Day1
           <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Day1" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Day1" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
           Day1
         </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day1/ex1_bash_scripting/" class="md-nav__link">
-        Introduction to the command line
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day1/ex1_bash_and_scheduler/">
+        Introduction to shell &amp; HPC Job Scheduler
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day1/ex2_quality_filtering/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day1/ex2_quality_filtering/">
         Quality filtering raw reads
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day1/ex3_assembly/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day1/ex3_assembly/">
         Assembly
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day1/ex4_assembly/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day1/ex4_assembly/">
         Assembly (part 2)
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day1/ex5_evaluating_assemblies/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day1/ex5_evaluating_assemblies/">
         Evaluating the assemblies
       </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-    
-  
-  
-    
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3">
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3">
           Day2
           <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Day2" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Day2" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
           Day2
         </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ex6_initial_binning/" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ex6_initial_binning/">
         Introduction to binning
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ex7_initial_binning/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ex7_initial_binning/">
         Introduction to binning
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ex8_bin_dereplication/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ex8_bin_dereplication/">
         Bin dereplication
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
           Manually refining bins
           <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
         Manually refining bins
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#objectives" class="md-nav__link">
-    Objectives
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#prepare-input-files-for-vizbin" class="md-nav__link">
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prepare-input-files-for-vizbin">
     Prepare input files for VizBin
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#project-a-t-sne-and-examine-bin-clusters" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#project-a-t-sne-and-examine-bin-clusters">
     Project a t-SNE and examine bin clusters
   </a>
-  
-    <nav class="md-nav" aria-label="Project a t-SNE and examine bin clusters">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#loading-the-input-files" class="md-nav__link">
+<nav aria-label="Project a t-SNE and examine bin clusters" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#loading-the-input-files">
     Loading the input files
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#executing-the-t-sne" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#executing-the-t-sne">
     Executing the t-SNE
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#contigs-coloured-by-bin" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#contigs-coloured-by-bin">
     Contigs coloured by bin
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#contigs-coloured-by-bin-sized-by-length-shaded-by-coverage" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#contigs-coloured-by-bin-sized-by-length-shaded-by-coverage">
     Contigs coloured by bin, sized by length, shaded by coverage
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#picking-refined-bins" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#picking-refined-bins">
     Picking refined bins
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#1-export-vizbin-clusters" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-export-vizbin-clusters">
     1. Export VizBin clusters
   </a>
-  
-    <nav class="md-nav" aria-label="1. Export VizBin clusters">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#highlight-a-cluster-to-zoom-into" class="md-nav__link">
+<nav aria-label="1. Export VizBin clusters" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#highlight-a-cluster-to-zoom-into">
     Highlight a cluster to zoom into
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#select-the-cluster-to-export" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#select-the-cluster-to-export">
     Select the cluster to export
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#export-the-cluster" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#export-the-cluster">
     Export the cluster
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#2-export-potentially-problematic-contigs" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-export-potentially-problematic-contigs">
     2. Export potentially problematic contigs
   </a>
-  
-    <nav class="md-nav" aria-label="2. Export potentially problematic contigs">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#select-problematic-contigs-to-examine" class="md-nav__link">
+<nav aria-label="2. Export potentially problematic contigs" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#select-problematic-contigs-to-examine">
     Select problematic contigs to examine
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-refine-and-filter-problematic-contigs-from-bins" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#optional-refine-and-filter-problematic-contigs-from-bins">
     Optional: Refine and filter problematic contigs from bins
   </a>
-  
-    <nav class="md-nav" aria-label="Optional: Refine and filter problematic contigs from bins">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-a-count-table-of-counts-of-our-problematic-contigs-across-each-bin" class="md-nav__link">
+<nav aria-label="Optional: Refine and filter problematic contigs from bins" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#create-a-count-table-of-counts-of-our-problematic-contigs-across-each-bin">
     Create a count table of counts of our problematic contigs across each bin
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#generate-a-list-of-contigs-to-exclude-from-filtering" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#generate-a-list-of-contigs-to-exclude-from-filtering">
     Generate a list of contigs to exclude from filtering
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#create-final-vb_omit_contigs_filteredtxt-list-of-contigs-to-filter-from-bins" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#create-final-vb_omit_contigs_filteredtxt-list-of-contigs-to-filter-from-bins">
     Create final vb_omit_contigs_filtered.txt list of contigs to filter from bins
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#filter-suspect-contigs-based-on-vizbin-analysis-from-the-bin-data" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#filter-suspect-contigs-based-on-vizbin-analysis-from-the-bin-data">
     Filter suspect contigs (based on VizBin analysis) from the bin data
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-comparing-pre-and-post-filtered-bins-via-checkm" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#optional-comparing-pre-and-post-filtered-bins-via-checkm">
     Optional: Comparing pre- and post-filtered bins via CheckM
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-creating-new-vizbin-profiles-with-different-fragment-lengths" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#optional-creating-new-vizbin-profiles-with-different-fragment-lengths">
     Optional: Creating new VizBin profiles with different fragment lengths
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-scripts-for-processing-data-with-esomana" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#optional-scripts-for-processing-data-with-esomana">
     Optional: Scripts for processing data with ESOMana
   </a>
-  
 </li>
-      
-    </ul>
-  
+</ul>
 </nav>
-      
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_4">
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4">
           Day3
           <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Day3" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
-          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Day3" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
           Day3
         </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day3/ex10_viruses/" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day3/ex10_viruses/">
         Identifying viral contigs in metagenomic data
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day3/ex11_coverage_and_taxonomy/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day3/ex11_coverage_and_taxonomy/">
         Per-sample coverage and assigning taxonomy
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day3/ex12_gene_prediction/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day3/ex12_gene_prediction/">
         Gene prediction
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day3/ex13_gene_annotation_part1/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day3/ex13_gene_annotation_part1/">
         Gene annotation (part 1)
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day3/ex14_gene_annotation_part2/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day3/ex14_gene_annotation_part2/">
         Gene annotation (part 2)
       </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5">
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5">
           Day4
           <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Day4" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
-          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Day4" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
           Day4
         </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/ex15_gene_annotation_part3/" class="md-nav__link">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex15_gene_annotation_part3/">
         Gene annotation (part 3)
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/ex16a_data_presentation_Intro/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex16a_data_presentation_Intro/">
         Presentation of data: Introduction
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/ex16b_data_presentation_Coverage/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex16b_data_presentation_Coverage/">
         Presentation of data: Per-sample coverage heatmaps
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/ex16c_OPTIONAL_data_presentation_Ordination/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex16c_OPTIONAL_data_presentation_Ordination/">
         (*Optional*) Presentation of data: Ordinations
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/ex16d_data_presentation_KEGG_pathways/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex16d_data_presentation_KEGG_pathways/">
         Presentation of data: KEGG pathway maps
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/ex16e_data_presentation_Gene_synteny/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex16e_data_presentation_Gene_synteny/">
         Presentation of data: Gene synteny
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations/">
         Presentation of data: *Optional exercise*: CAZy annotations heatmap
       </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_6">
-          Figures
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Figures" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
-          <span class="md-nav__icon md-icon"></span>
-          Figures
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../figures/" class="md-nav__link">
-        Index
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_7">
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
           Resources
           <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Resources" data-md-level="1">
-        <label class="md-nav__title" for="__nav_7">
-          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Resources" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
           Resources
         </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../resources/APPENDIX_ex11_Normalise_coverage_example/" class="md-nav__link">
-        APPENDIX ex11 Normalise coverage example
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/1_APPENDIX_ex8_Dereplication/">
+        APPENDIX (ex8):Dereplicating data from multiple assemblies
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/" class="md-nav__link">
-        APPENDIX ex11 viral taxonomy prediction via vContact2
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/2_APPENDIX_ex9_Generating_input_files_for_VizBin/">
+        APPENDIX (ex9): Generating input files for *VizBin* from *DAS_Tool* curated bins
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../resources/APPENDIX_ex15_gene_synteny_Generate_blast_files/" class="md-nav__link">
-        APPENDIX ex15 gene synteny Generate blast files
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/3_APPENDIX_ex11_Normalise_coverage_example/">
+        APPENDIX (ex11): Normalise per-sample coverage values by average library size (example)
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../resources/APPENDIX_ex15_gene_synteny_grab_GOI/" class="md-nav__link">
-        APPENDIX ex15 gene synteny grab GOI
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/">
+        APPENDIX (ex11) : viral taxonomy prediction via *vContact2*
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../resources/APPENDIX_ex8_Dereplication/" class="md-nav__link">
-        Dereplicating data from multiple assemblies
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/5_APPENDIX_ex15_gene_synteny_Generate_blast_files/">
+        APPENDIX (ex15): How to generate the blast files provided in [ex15_gene_synteny](../day4/ex16e_data_presentation_Gene_synteny.md)
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../resources/APPENDIX_ex9_Generating_input_files_for_VizBin/" class="md-nav__link">
-        APPENDIX ex9 Generating input files for VizBin
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/6_APPENDIX_ex15_gene_synteny_grab_GOI/">
+        APPENDIX (ex15): Grab Gene of Interest (generate the *cys.txt* files provided in [ex15_gene_synteny](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16e_data_presentation_Gene_synteny.md))
       </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../resources/command_line_shortcuts/" class="md-nav__link">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/7_command_line_shortcuts/">
         Useful command line shortcuts
       </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-  </ul>
+</li>
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#objectives" class="md-nav__link">
-    Objectives
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#prepare-input-files-for-vizbin" class="md-nav__link">
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prepare-input-files-for-vizbin">
     Prepare input files for VizBin
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#project-a-t-sne-and-examine-bin-clusters" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#project-a-t-sne-and-examine-bin-clusters">
     Project a t-SNE and examine bin clusters
   </a>
-  
-    <nav class="md-nav" aria-label="Project a t-SNE and examine bin clusters">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#loading-the-input-files" class="md-nav__link">
+<nav aria-label="Project a t-SNE and examine bin clusters" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#loading-the-input-files">
     Loading the input files
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#executing-the-t-sne" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#executing-the-t-sne">
     Executing the t-SNE
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#contigs-coloured-by-bin" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#contigs-coloured-by-bin">
     Contigs coloured by bin
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#contigs-coloured-by-bin-sized-by-length-shaded-by-coverage" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#contigs-coloured-by-bin-sized-by-length-shaded-by-coverage">
     Contigs coloured by bin, sized by length, shaded by coverage
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#picking-refined-bins" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#picking-refined-bins">
     Picking refined bins
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#1-export-vizbin-clusters" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-export-vizbin-clusters">
     1. Export VizBin clusters
   </a>
-  
-    <nav class="md-nav" aria-label="1. Export VizBin clusters">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#highlight-a-cluster-to-zoom-into" class="md-nav__link">
+<nav aria-label="1. Export VizBin clusters" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#highlight-a-cluster-to-zoom-into">
     Highlight a cluster to zoom into
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#select-the-cluster-to-export" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#select-the-cluster-to-export">
     Select the cluster to export
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#export-the-cluster" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#export-the-cluster">
     Export the cluster
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#2-export-potentially-problematic-contigs" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-export-potentially-problematic-contigs">
     2. Export potentially problematic contigs
   </a>
-  
-    <nav class="md-nav" aria-label="2. Export potentially problematic contigs">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#select-problematic-contigs-to-examine" class="md-nav__link">
+<nav aria-label="2. Export potentially problematic contigs" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#select-problematic-contigs-to-examine">
     Select problematic contigs to examine
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-refine-and-filter-problematic-contigs-from-bins" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#optional-refine-and-filter-problematic-contigs-from-bins">
     Optional: Refine and filter problematic contigs from bins
   </a>
-  
-    <nav class="md-nav" aria-label="Optional: Refine and filter problematic contigs from bins">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-a-count-table-of-counts-of-our-problematic-contigs-across-each-bin" class="md-nav__link">
+<nav aria-label="Optional: Refine and filter problematic contigs from bins" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#create-a-count-table-of-counts-of-our-problematic-contigs-across-each-bin">
     Create a count table of counts of our problematic contigs across each bin
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#generate-a-list-of-contigs-to-exclude-from-filtering" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#generate-a-list-of-contigs-to-exclude-from-filtering">
     Generate a list of contigs to exclude from filtering
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#create-final-vb_omit_contigs_filteredtxt-list-of-contigs-to-filter-from-bins" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#create-final-vb_omit_contigs_filteredtxt-list-of-contigs-to-filter-from-bins">
     Create final vb_omit_contigs_filtered.txt list of contigs to filter from bins
   </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#filter-suspect-contigs-based-on-vizbin-analysis-from-the-bin-data" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#filter-suspect-contigs-based-on-vizbin-analysis-from-the-bin-data">
     Filter suspect contigs (based on VizBin analysis) from the bin data
   </a>
-  
 </li>
-        
-      </ul>
-    </nav>
-  
+</ul>
+</nav>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-comparing-pre-and-post-filtered-bins-via-checkm" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#optional-comparing-pre-and-post-filtered-bins-via-checkm">
     Optional: Comparing pre- and post-filtered bins via CheckM
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-creating-new-vizbin-profiles-with-different-fragment-lengths" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#optional-creating-new-vizbin-profiles-with-different-fragment-lengths">
     Optional: Creating new VizBin profiles with different fragment lengths
   </a>
-  
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-scripts-for-processing-data-with-esomana" class="md-nav__link">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#optional-scripts-for-processing-data-with-esomana">
     Optional: Scripts for processing data with ESOMana
   </a>
-  
 </li>
-      
-    </ul>
-  
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-          
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
-                
-  <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/day2/ex9_refining_bins.md" title="Edit this page" class="md-content__button md-icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
-
-
-
-<h1 id="manually-refining-bins">Manually refining bins<a class="headerlink" href="#manually-refining-bins" title="Permanent link">&para;</a></h1>
-<h3 id="objectives">Objectives<a class="headerlink" href="#objectives" title="Permanent link">&para;</a></h3>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/day2/ex9_refining_bins.md" title="Edit this page">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
+</a>
+<h1 id="manually-refining-bins">Manually refining bins<a class="headerlink" href="#manually-refining-bins" title="Permanent link">¶</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Objectives</p>
 <ul>
 <li><a href="#prepare-input-files-for-vizbin">Prepare input files for <code>VizBin</code></a></li>
 <li><a href="#project-a-t-sne-and-examine-bin-clusters">Project a <em>t-SNE</em> using <code>VizBin</code> and examine bin clusters</a></li>
@@ -1316,8 +688,10 @@
 <li><a href="#optional-creating-new-vizbin-profiles-with-different-fragment-lengths"><em>Optional:</em> Creating new <code>VizBin</code> profiles with different fragment lengths</a></li>
 <li><a href="#optional-scripts-for-processing-data-with-esomana"><em>Optional:</em> Scripts for processing data with <code>ESOMana</code></a></li>
 </ul>
-<hr />
-<h3 id="prepare-input-files-for-vizbin">Prepare input files for <em>VizBin</em><a class="headerlink" href="#prepare-input-files-for-vizbin" title="Permanent link">&para;</a></h3>
+</div>
+<hr/>
+<h3 id="prepare-input-files-for-vizbin">Prepare input files for <em>VizBin</em><a class="headerlink" href="#prepare-input-files-for-vizbin" title="Permanent link">¶</a></h3>
+<div class="admonition quote">
 <p><a href="http://claczny.github.io/VizBin/"><strong>VizBin</strong></a> is a handy, GUI-based tool for creating ordinations of our binning data using the <a href="https://lvdmaaten.github.io/tsne/">t-Distributed Stochastic Neighbor Embedding (t-SNE)</a> algorithm to project high-dimensional data down into a 2D plot that preserves clustering information. There's a really good video on <a href="https://www.youtube.com/watch?v=NEaUSP4YerM">YouTube</a> that explains how the algorithm works in high-level terms, but for our purposes you can really consider it as a similar approach to a PCA or NMDS.</p>
 <p>On its own, <code>VizBin</code> takes a set of contigs and performs the <em>t-SNE</em> projection using compositional data. We can optionally provide it files that annotate contigs as belonging to particular bins and a file that adds coverage data to be considered when clustering. Unfortuantely, at this stage <code>VizBin</code> only allows a single coverage value per contig, which is not ideal. This is because <code>VizBin</code> only uses coverage as a means to modify the visualisation, not the ordination itself. It is possible to create your own <em>t-SNE</em> projection using multiple coverage values, however this is beyond the scope of today's exercise, and here we will be providing <code>VizBin</code> with coverage values for sample1 only. </p>
 <p>The only required input file for <code>VizBin</code> is a single <code>.fna</code> file of the concatenated bins. An additional annotation file containing per-contig coverage values and bin IDs can also be provided. Colouring contigs by bin is a really effective way to spot areas that might need refinement.</p>
@@ -1327,27 +701,28 @@
 <li><code>all_bins.fna</code> is a concatenation of the bins of <em>fragmented</em> sub-contigs (fragmented to 20k)</li>
 <li><code>all_bins.sample1.vizbin.ann</code> is the annotation file containing per-subcontig coverage, label (bin ID), and length values.</li>
 </ul>
-<p>For future reference, and for working with your own data, a step-by-step process for generating these files from the curated bins generated by <code>DAS_Tool</code> has been provided as an <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex9_Generating_input_files_for_VizBin.md">Appendix</a>.</p>
+</div>
+<p>For future reference, and for working with your own data, a step-by-step process for generating these files from the curated bins generated by <code>DAS_Tool</code> has been provided as an <a href="../../resources/2_APPENDIX_ex9_Generating_input_files_for_VizBin/">Appendix</a>.</p>
 <p>Let's first have a quick look at the annotation file. </p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>head -n5 all_bins.sample1.vizbin.ann
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># coverage,label,length</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># 17.6361,bin_0.chopped,20000</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 16.2822,bin_0.chopped,20000</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 17.7862,bin_0.chopped,20000</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># 16.8073,bin_0.chopped,20000</span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>head -n5 all_bins.sample1.vizbin.ann
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="c1"># coverage,label,length</span>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="c1"># 17.6361,bin_0.chopped,20000</span>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="c1"># 16.2822,bin_0.chopped,20000</span>
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="c1"># 17.7862,bin_0.chopped,20000</span>
+<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="c1"># 16.8073,bin_0.chopped,20000</span>
 </code></pre></div>
 <p>This file is a comma-delimited table (csv file) that presents the information in the way that VizBin expects it. The order of rows in this file corresponds to the order of contigs in the concatentated <em>fastA</em> file of our fragmented bins, <code>all_bins.fna</code>.</p>
 <p>Create a few variations of the <em>.ann</em> file with various columns removed, in order to examine the different outputs they can generate.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/6.bin_refinement/
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># Make a few different versions of the .ann file with various columns removed</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">## annotation with bin only (to colour by bin)</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>cut -f2 -d <span class="s1">&#39;,&#39;</span> all_bins.sample1.vizbin.ann &gt; all_bins.sample1.vizbin.bin_only.ann
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1">## no length, but coverage and bin included</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>cut -f1,2 -d <span class="s1">&#39;,&#39;</span> all_bins.sample1.vizbin.ann &gt; all_bins.sample1.vizbin.no_length.ann
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/6.bin_refinement/
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="c1"># Make a few different versions of the .ann file with various columns removed</span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="c1">## annotation with bin only (to colour by bin)</span>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a>cut -f2 -d <span class="s1">','</span> all_bins.sample1.vizbin.ann &gt; all_bins.sample1.vizbin.bin_only.ann
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="c1">## no length, but coverage and bin included</span>
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a>cut -f1,2 -d <span class="s1">','</span> all_bins.sample1.vizbin.ann &gt; all_bins.sample1.vizbin.no_length.ann
 </code></pre></div>
-<hr />
-<h3 id="project-a-t-sne-and-examine-bin-clusters">Project a <em>t-SNE</em> and examine bin clusters<a class="headerlink" href="#project-a-t-sne-and-examine-bin-clusters" title="Permanent link">&para;</a></h3>
+<hr/>
+<h3 id="project-a-t-sne-and-examine-bin-clusters">Project a <em>t-SNE</em> and examine bin clusters<a class="headerlink" href="#project-a-t-sne-and-examine-bin-clusters" title="Permanent link">¶</a></h3>
 <p>We can now use these files in <code>VizBin</code> to curate the contigs in our bins. We will load and view the data in a few different steps.</p>
 <p><em>NOTE: Running <code>VizBin</code> remotely (e.g. within NeSI) can be slow with full data sets. Running a GUI (such as a program like <code>VizBin</code>) remotely can also require additional set up on some PCs. For day-to-day work, we recommend installing <code>VizBin</code> on your local machine and downloading the relevant input files (e.g. via <code>scp ...</code>) to run locally.</em></p>
 <p><code>VizBin</code> cannot be opened within the NeSI <code>Jupyter hub</code>. For today's exercise, open <code>VizBin</code> via either:</p>
@@ -1355,33 +730,33 @@
 <ul>
 <li>Download <code>VizBin-dist.jar</code> from <a href="https://github.com/claczny/VizBin/releases/tag/v1.0.0">here</a></li>
 <li>You may also need to <a href="https://www.java.com/en/download/manual.jsp">install Java locally</a> (choose the relevant version for your machine).</li>
-<li>Download the required files from NeSI to your machine (via <code>scp</code>, or right-click &gt; download, from within the <code>Jupyter hub</code>), or download the example files from <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/vizbin_files.zip">this link</a>.</li>
+<li>Download the required files from NeSI to your machine (via <code>scp</code>, or right-click &gt; download, from within the <code>Jupyter hub</code>), or download the example files from <a href="../../resources/vizbin_files.zip">this link</a>.</li>
 <li>Double-click <code>VizBin-dist.jar</code> to open <code>VizBin</code>, and then follow the steps below.</li>
 </ul>
 <p><strong>OR</strong></p>
 <p><strong>B. Log in via a standard terminal.</strong> </p>
 <ul>
-<li>Log into NeSI via a standard terminal (<em>not</em> the terminal within <code>Jupyter hub</code>) and run the following command (<em>NOTE: this may return an error if X11 fowarding is not set up for your machine. In this case, proceed with the first option above</em>).</li>
+<li>Log into NeSI via a standard terminal (<em>not</em> the terminal within <code>Jupyter hub</code>) and run the following command (<em>NOTE: this may return an error if X11 forwarding is not set up for your machine. In this case, proceed with the first option above</em>).</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/6.bin_refinement/
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>java -jar ../tools/vizbin.jar
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/6.bin_refinement/
+<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a>java -jar ../tools/vizbin.jar
 </code></pre></div>
 <p>If this fails to open on your PC, or if it runs prohibitively slowly, team up with 2-3 others in the workshop to run through this exercise together on one machine.</p>
-<h4 id="loading-the-input-files">Loading the input files<a class="headerlink" href="#loading-the-input-files" title="Permanent link">&para;</a></h4>
+<h4 id="loading-the-input-files">Loading the input files<a class="headerlink" href="#loading-the-input-files" title="Permanent link">¶</a></h4>
 <p>Once <code>VizBin</code> is open, to get started, simply click the 'Choose...' button then navigate to the <em>fastA</em> file.</p>
-<p><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_load_fasta.PNG" /></p>
+<p><center><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../figures/ex10_load_fasta.PNG"><img alt="image" src="../../figures/ex10_load_fasta.PNG"/></a></center></p>
 <p>Once this is imported, use the 'Show additional options' button to expose the advanced options, and add your <strong>'bin only'</strong> <em>.ann</em> file into the 'Annotation file (optional)' field.</p>
-<p><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_load_ann.PNG" /></p>
-<h4 id="executing-the-t-sne">Executing the <em>t-SNE</em><a class="headerlink" href="#executing-the-t-sne" title="Permanent link">&para;</a></h4>
+<p><center><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../figures/ex10_load_ann.PNG"><img alt="image" src="../../figures/ex10_load_ann.PNG"/></a></center></p>
+<h4 id="executing-the-t-sne">Executing the <em>t-SNE</em><a class="headerlink" href="#executing-the-t-sne" title="Permanent link">¶</a></h4>
 <p>For now leave all other parameters as default. Click the 'Start' button to begin building the ordination. When it completes, you should see an output similar to the following:</p>
-<h4 id="contigs-coloured-by-bin">Contigs coloured by bin<a class="headerlink" href="#contigs-coloured-by-bin" title="Permanent link">&para;</a></h4>
-<p><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_bin_only.PNG" /></p>
-<h4 id="contigs-coloured-by-bin-sized-by-length-shaded-by-coverage">Contigs coloured by bin, sized by length, shaded by coverage<a class="headerlink" href="#contigs-coloured-by-bin-sized-by-length-shaded-by-coverage" title="Permanent link">&para;</a></h4>
-<p><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_all_ann.PNG" /></p>
+<h4 id="contigs-coloured-by-bin">Contigs coloured by bin<a class="headerlink" href="#contigs-coloured-by-bin" title="Permanent link">¶</a></h4>
+<p><center><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../figures/ex10_bin_only.PNG"><img alt="image" src="../../figures/ex10_bin_only.PNG" width="600"/></a></center></p>
+<h4 id="contigs-coloured-by-bin-sized-by-length-shaded-by-coverage">Contigs coloured by bin, sized by length, shaded by coverage<a class="headerlink" href="#contigs-coloured-by-bin-sized-by-length-shaded-by-coverage" title="Permanent link">¶</a></h4>
+<p><center><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../figures/ex10_all_ann.PNG"><img alt="image" src="../../figures/ex10_all_ann.PNG" width="600"/></a></center></p>
 <p>Similar to any other projection technique, we interpret the closeness of points as a proxy for how similar they are, and because of our <em>.ann</em> file we can see which contigs belong to the same bin.</p>
-<hr />
-<h3 id="picking-refined-bins">Picking refined bins<a class="headerlink" href="#picking-refined-bins" title="Permanent link">&para;</a></h3>
+<hr/>
+<h3 id="picking-refined-bins">Picking refined bins<a class="headerlink" href="#picking-refined-bins" title="Permanent link">¶</a></h3>
 <p>We can use the interactive GUI to pick the boundaries of new bins, or to identify contigs which we do not believe should be retained in the data. Have a play around with the interface, testing out the following commands:</p>
 <ol>
 <li>Left-click and drag: Highlight an area of the ordination to zoom into</li>
@@ -1392,36 +767,40 @@
 </ol>
 <p>How you proceed in this stage is up to you. You can either select bins based on their boundary, and call these the refined bins. Alternatively, you could select outlier contigs and examine these in more detail to determine whether or not they were correctly placed into the bin. Which way you proceed really depends on how well the ordination resolves your bins, and it might be that both approaches are needed.</p>
 <p>Today, we will run through an example of selecting potentially problematic (sub)contigs, and then deciding whether or not we want to filter these contigs out of our refined bins. We can use a combination of <code>VizBin</code> and <code>seqmagick</code> to remove contigs from bins where we do not trust the placement of the contig. We are aiming to reduce each bin to a trusted set of contigs.</p>
-<h3 id="1-export-vizbin-clusters">1. Export <em>VizBin</em> clusters<a class="headerlink" href="#1-export-vizbin-clusters" title="Permanent link">&para;</a></h3>
+<h3 id="1-export-vizbin-clusters">1. Export <em>VizBin</em> clusters<a class="headerlink" href="#1-export-vizbin-clusters" title="Permanent link">¶</a></h3>
 <p>First, for each <code>VizBin</code> cluster, select the area around the cluster (via multiple left-clicks around the cluster), right-click, 'Selection', 'Export'. Save this output as <code>cluster_1.fna</code>. </p>
 <p>Try this for one or two clusters. In practice, we would do this for each <code>VizBin</code> cluster, saving each as a new <code>cluster_n.fna</code> file.</p>
-<h4 id="highlight-a-cluster-to-zoom-into">Highlight a cluster to zoom into<a class="headerlink" href="#highlight-a-cluster-to-zoom-into" title="Permanent link">&para;</a></h4>
-<p><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_to_zoom.PNG" /></p>
-<h4 id="select-the-cluster-to-export">Select the cluster to export<a class="headerlink" href="#select-the-cluster-to-export" title="Permanent link">&para;</a></h4>
+<h4 id="highlight-a-cluster-to-zoom-into">Highlight a cluster to zoom into<a class="headerlink" href="#highlight-a-cluster-to-zoom-into" title="Permanent link">¶</a></h4>
+<p><center><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../figures/ex10_select_to_zoom.PNG"><img alt="image" src="../../figures/ex10_select_to_zoom.PNG" width="600"/></a></center></p>
+<h4 id="select-the-cluster-to-export">Select the cluster to export<a class="headerlink" href="#select-the-cluster-to-export" title="Permanent link">¶</a></h4>
 <p>Left-click several points around the cluster</p>
-<p><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_cluster.PNG" /></p>
-<h4 id="export-the-cluster">Export the cluster<a class="headerlink" href="#export-the-cluster" title="Permanent link">&para;</a></h4>
+<p><center><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../figures/ex10_select_cluster.PNG"><img alt="image" src="../../figures/ex10_select_cluster.PNG" width="600"/></a></center></p>
+<h4 id="export-the-cluster">Export the cluster<a class="headerlink" href="#export-the-cluster" title="Permanent link">¶</a></h4>
 <p>Right-click, 'Selection', 'Export'. Save the output as <code>cluster_1.fna</code>. </p>
-<p><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_export.PNG" /></p>
-<h3 id="2-export-potentially-problematic-contigs">2. Export potentially problematic contigs<a class="headerlink" href="#2-export-potentially-problematic-contigs" title="Permanent link">&para;</a></h3>
-<h4 id="select-problematic-contigs-to-examine">Select problematic contigs to examine<a class="headerlink" href="#select-problematic-contigs-to-examine" title="Permanent link">&para;</a></h4>
+<p><center><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../figures/ex10_export.PNG"><img alt="image" src="../../figures/ex10_export.PNG" width="600"/></a></center></p>
+<h3 id="2-export-potentially-problematic-contigs">2. Export potentially problematic contigs<a class="headerlink" href="#2-export-potentially-problematic-contigs" title="Permanent link">¶</a></h3>
+<h4 id="select-problematic-contigs-to-examine">Select problematic contigs to examine<a class="headerlink" href="#select-problematic-contigs-to-examine" title="Permanent link">¶</a></h4>
 <p>Zoom in,  make a selection of potentially problematic contigs, and export as above.</p>
-<p><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_outlier.png" /></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_outlier.png"><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_outlier.png"/></a>
+<center><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../figures/ex10_select_outlier.png"><img alt="image" src="../../figures/ex10_select_outlier.png" width="600"/></a></center></p>
 <p>Try this for one or two problematic contigs (or subsets of contigs). In practice, you could repeat this for all potentially problemtic contigs, saving each export as a new <code>contigs_n.fna</code> file.</p>
-<p><em>NOTE: for the subsequent step using <code>vizbin_count_table.sh</code>, all exported cluster files must share a common prefix (e.g. <code>cluster...fna</code>), and all files of problematic contigs must also share a common prefix (e.g. <code>contigs...fna</code>).</em></p>
-<hr />
-<h3 id="optional-refine-and-filter-problematic-contigs-from-bins"><em>Optional:</em> Refine and filter problematic contigs from bins<a class="headerlink" href="#optional-refine-and-filter-problematic-contigs-from-bins" title="Permanent link">&para;</a></h3>
-<h4 id="create-a-count-table-of-counts-of-our-problematic-contigs-across-each-bin">Create a count table of counts of our problematic contigs across each bin<a class="headerlink" href="#create-a-count-table-of-counts-of-our-problematic-contigs-across-each-bin" title="Permanent link">&para;</a></h4>
+<div class="admonition abstract">
+<p class="admonition-title">Note</p>
+<p>For the subsequent step using <code>vizbin_count_table.sh</code>, all exported cluster files must share a common prefix (e.g. <code>cluster...fna</code>), and all files of problematic contigs must also share a common prefix (e.g. <code>contigs...fna</code>).*</p>
+</div>
+<hr/>
+<h3 id="optional-refine-and-filter-problematic-contigs-from-bins"><em>Optional:</em> Refine and filter problematic contigs from bins<a class="headerlink" href="#optional-refine-and-filter-problematic-contigs-from-bins" title="Permanent link">¶</a></h3>
+<h4 id="create-a-count-table-of-counts-of-our-problematic-contigs-across-each-bin">Create a count table of counts of our problematic contigs across each bin<a class="headerlink" href="#create-a-count-table-of-counts-of-our-problematic-contigs-across-each-bin" title="Permanent link">¶</a></h4>
 <p>You'll recall that, prior running <code>VizBin</code>, the contigs in our bins were first cut into fragments to improve the density of the clusters in the <em>t-SNE</em> projection. As such, the problematic contigs we have exported from <code>VizBin</code> are <em>sub-contig</em> fragments, rather than full contigs from our bins. It is entirely possible that different fragments of the original contigs have been placed in different clusters during our <code>VizBin</code> analysis - including cases where most sub-contigs have clustered with the bin we expect, and a small number have been identified as "problematic" (i.e. clustered with other bins). Based on the information from these extracted problematic sub-contigs, we now have to carefully consider whether or not we want to remove the <em>full</em> contig from our bin data.</p>
 <p>To do this, we will generate a table containing each exported "problematic" sub-contig, and counts of how many of its sister sub-contigs (each of the other sub-contig fragments derived from the same original parent contig) fall into each <code>VizBin</code> cluster.</p>
 <p>For this exercise, a folder of the exported files from <code>VizBin</code> for all clusters (<code>cluster_[1-n].fna</code>) and problematic sub-contigs (<code>contigs_[1-n].fna</code>) has been provided at <code>vizbin_example_exports/</code></p>
-<p>We will input these files to the shell script <code>vizbin_count_table.sh</code> to generate a count table of the exprted subcontigs across each <code>VizBin</code> cluster (<code>vb_count_table.txt</code>), as well as a working list of contigs to potentially remove from our final bin data (<code>vb_omit_contigs_tmp.txt</code>).</p>
-<p>For future reference, a copy of this script is available for download <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/scripts/">here</a>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./vizbin_count_table.sh -i vizbin_example_exports/
+<p>We will input these files to the shell script <code>vizbin_count_table.sh</code> to generate a count table of the exported subcontigs across each <code>VizBin</code> cluster (<code>vb_count_table.txt</code>), as well as a working list of contigs to potentially remove from our final bin data (<code>vb_omit_contigs_tmp.txt</code>).</p>
+<p>For future reference, a copy of this script is available for download <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/tree/master/docs/scripts">here</a>.</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>./vizbin_count_table.sh -i vizbin_example_exports/
 </code></pre></div>
 <p>The only required input to <code>vizbin_count_table.sh</code> is the path to the cluster and contigs files exported from <code>VizBin</code>. By default, the script looks for the prefix <code>cluster...</code> for the cluster file names, <code>contig...</code> for the files of problematic sub-contigs, and the file extension <code>.fna</code> for each. The arguments <code>-s &lt;contig_file_prefix&gt; -c &lt;cluster_file_prefix&gt; -e &lt;fasta_file_extension&gt;</code> can optionally be provided if your file name formats differ from the default.</p>
 <p>View the output count table:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>less vb_count_table.txt
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>less vb_count_table.txt
 </code></pre></div>
 <p>Example excerpt:</p>
 <table>
@@ -1491,7 +870,7 @@
 </tbody>
 </table>
 <p>Note that in the case of the third contig from the excerpt above, the 'problematic' contig is only one of 39 sub-contigs, and all other 38 sub-contigs are in the expected cluster. In this case, we likely do <em>not</em> want to remove this contig from the bin.</p>
-<h4 id="generate-a-list-of-contigs-to-exclude-from-filtering">Generate a list of contigs to <em>exclude</em> from filtering<a class="headerlink" href="#generate-a-list-of-contigs-to-exclude-from-filtering" title="Permanent link">&para;</a></h4>
+<h4 id="generate-a-list-of-contigs-to-exclude-from-filtering">Generate a list of contigs to <em>exclude</em> from filtering<a class="headerlink" href="#generate-a-list-of-contigs-to-exclude-from-filtering" title="Permanent link">¶</a></h4>
 <p>Create a list of contigs identified from <code>vb_count_table.txt</code> that are <em>not</em> to be filtered out by seqmagick in the next step. For example, those contigs that have sub-contigs split across multiple vizbin clusters, and for which it's reasonable to actually keep the contig (such as when a flagged selected sub-contig exported from vizbin is in one unexpected cluster, but all other sub-contigs from that parent contig are in the expected cluster; in this case, you likely <em>don't</em> want to filter out the parent contig from the data set moving forward). </p>
 <p>Below is an example. Simply replace the contig IDs between the quotes for as many lines as necessary for your data. </p>
 <p><em>NOTES:</em></p>
@@ -1499,36 +878,38 @@
 <li><em>The first line below must always have only one <code>&gt;</code> character, while all subsequent lines must have two (i.e. <code>&gt;&gt;</code>) to append correctly to the list.</em></li>
 <li><em>We want the original contig ID here, *not</em> the sub-contig, so make sure to remove the <code>.xx</code> fragment number at the end if there is one.*</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">echo</span> <span class="s2">&quot;bin_0_NODE_9_length_392609_cov_1.038712&quot;</span> &gt; vb_keep_contigs.txt
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">echo</span> <span class="s2">&quot;bin_9_NODE_4_length_793571_cov_0.517196&quot;</span> &gt;&gt; vb_keep_contigs.txt
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nb">echo</span> <span class="s2">&quot;bin_1_NODE_182_length_42779_cov_1.585353&quot;</span> &gt;&gt; vb_keep_contigs.txt
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="nb">echo</span> <span class="s2">"bin_0_NODE_9_length_392609_cov_1.038712"</span> &gt; vb_keep_contigs.txt
+<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="nb">echo</span> <span class="s2">"bin_9_NODE_4_length_793571_cov_0.517196"</span> &gt;&gt; vb_keep_contigs.txt
+<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="nb">echo</span> <span class="s2">"bin_1_NODE_182_length_42779_cov_1.585353"</span> &gt;&gt; vb_keep_contigs.txt
 </code></pre></div>
-<h4 id="create-final-vb_omit_contigs_filteredtxt-list-of-contigs-to-filter-from-bins">Create final <em>vb_omit_contigs_filtered.txt</em> list of contigs to filter from bins<a class="headerlink" href="#create-final-vb_omit_contigs_filteredtxt-list-of-contigs-to-filter-from-bins" title="Permanent link">&para;</a></h4>
+<h4 id="create-final-vb_omit_contigs_filteredtxt-list-of-contigs-to-filter-from-bins">Create final <em>vb_omit_contigs_filtered.txt</em> list of contigs to filter from bins<a class="headerlink" href="#create-final-vb_omit_contigs_filteredtxt-list-of-contigs-to-filter-from-bins" title="Permanent link">¶</a></h4>
 <p>Using <code>grep</code>, filter contigs we wish to keep (after assessing <code>vb_count_table.txt</code>) out of the working <code>vb_omit_contigs_tmp.txt</code> list. </p>
 <p>This creates <code>vb_omit_contigs_filtered.txt</code>, which we will then pass to <code>seqmagick</code> to filter these contigs out of our actual bin fasta files.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>grep -v -f vb_keep_contigs.txt vb_omit_contigs_tmp.txt &gt; vb_omit_contigs_filtered.txt
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>grep -v -f vb_keep_contigs.txt vb_omit_contigs_tmp.txt &gt; vb_omit_contigs_filtered.txt
 </code></pre></div>
-<h4 id="filter-suspect-contigs-based-on-vizbin-analysis-from-the-bin-data">Filter suspect contigs (based on <em>VizBin</em> analysis) from the bin data<a class="headerlink" href="#filter-suspect-contigs-based-on-vizbin-analysis-from-the-bin-data" title="Permanent link">&para;</a></h4>
+<h4 id="filter-suspect-contigs-based-on-vizbin-analysis-from-the-bin-data">Filter suspect contigs (based on <em>VizBin</em> analysis) from the bin data<a class="headerlink" href="#filter-suspect-contigs-based-on-vizbin-analysis-from-the-bin-data" title="Permanent link">¶</a></h4>
 <p>Use <code>seqmagick --exclude-from-file ...</code> to filter problematic contigs (those contigs listed in <code>vb_omit_contigs_filtered.txt</code>) out of the initial <em>unchopped</em> bin fasta files, generating final bins for downstream processing.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>mkdir filtered_bins/
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># Load seqmagick</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>module purge
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>module load seqmagick/0.7.0-gimkl-2018b-Python-3.7.3
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># filter problematic contigs out of original bin files</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="k">for</span> bin_file <span class="k">in</span> example_data_unchopped/*.fna<span class="p">;</span> <span class="k">do</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="nv">bin_name</span><span class="o">=</span><span class="k">$(</span>basename <span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span> .fna<span class="k">)</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    seqmagick convert --exclude-from-file vb_omit_contigs_filtered.txt <span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span> filtered_bins/<span class="si">${</span><span class="nv">bin_name</span><span class="si">}</span>.filtered.fna
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="k">done</span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a>mkdir filtered_bins/
+<a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a>
+<a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="c1"># Load seqmagick</span>
+<a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a>module purge
+<a href="#__codelineno-7-5" id="__codelineno-7-5" name="__codelineno-7-5"></a>module load seqmagick/0.8.4-gimkl-2020a-Python-3.8.2
+<a href="#__codelineno-7-6" id="__codelineno-7-6" name="__codelineno-7-6"></a>
+<a href="#__codelineno-7-7" id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="c1"># filter problematic contigs out of original bin files</span>
+<a href="#__codelineno-7-8" id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="k">for</span> bin_file <span class="k">in</span> example_data_unchopped/*.fna<span class="p">;</span> <span class="k">do</span>
+<a href="#__codelineno-7-9" id="__codelineno-7-9" name="__codelineno-7-9"></a>    <span class="nv">bin_name</span><span class="o">=</span><span class="k">$(</span>basename <span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span> .fna<span class="k">)</span>
+<a href="#__codelineno-7-10" id="__codelineno-7-10" name="__codelineno-7-10"></a>    seqmagick convert --exclude-from-file vb_omit_contigs_filtered.txt <span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span> filtered_bins/<span class="si">${</span><span class="nv">bin_name</span><span class="si">}</span>.filtered.fna
+<a href="#__codelineno-7-11" id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="k">done</span>
 </code></pre></div>
 <p>Our filtered bins for downstream use are now in <code>filtered_bins/</code></p>
-<hr />
-<h3 id="optional-comparing-pre-and-post-filtered-bins-via-checkm"><em>Optional:</em> Comparing pre- and post-filtered bins via <em>CheckM</em><a class="headerlink" href="#optional-comparing-pre-and-post-filtered-bins-via-checkm" title="Permanent link">&para;</a></h3>
+<hr/>
+<h3 id="optional-comparing-pre-and-post-filtered-bins-via-checkm"><em>Optional:</em> Comparing pre- and post-filtered bins via <em>CheckM</em><a class="headerlink" href="#optional-comparing-pre-and-post-filtered-bins-via-checkm" title="Permanent link">¶</a></h3>
 <p>The end goal of this process is the generation of a final set of refined bins. Following this, the <code>CheckM</code> procedure should be re-run, this time on the refined <code>filtered_bins/</code>. This provides <code>CheckM</code> metrics for the final actual (filtered) bin set, and also an opportunity to compare between pre- and post-filtering to see if the <code>VizBin</code> bin refinement steps have, for example, improved the degree of contamination in the bins.</p>
 <p>For this exercise, a copy of the output from running <code>CheckM</code> on the <code>filtered_bins/</code> is available at <code>6.bin_refinement/filtered_bins_checkm.txt</code>. View the previous <code>CheckM</code> output and the filtered bins output to compare via <code>cat</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cat filtered_bins_checkm.txt 
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a>cat filtered_bins_checkm.txt 
 </code></pre></div>
+<details class="success">
+<summary>content of filtered_bins_checkm.txt</summary>
 <table>
 <thead>
 <tr>
@@ -1711,8 +1092,11 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>cat ../5.binning/checkm.txt 
+</details>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a>cat ../5.binning/checkm.txt 
 </code></pre></div>
+<details class="success">
+<summary>content of checkm.txt</summary>
 <table>
 <thead>
 <tr>
@@ -1895,151 +1279,125 @@
 </tr>
 </tbody>
 </table>
+</details>
 <p>An example of an updated slurm script to run <code>CheckM</code> on the <code>filtered_bins/</code> is as follows:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="ch">#!/bin/bash -e</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1">#SBATCH --account nesi02659</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c1">#SBATCH --job-name bin_eval_checkm</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1">#SBATCH --res SummerSchool</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1">#SBATCH --time 00:20:00</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="c1">#SBATCH --mem 50GB</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
-<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="c1">#SBATCH --error bin_eval_checkm.err</span>
-<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="c1">#SBATCH --output bin_eval_checkm.out</span>
-<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="c1">#SBATCH --export NONE</span>
-<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
-<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="nb">export</span> <span class="nv">SLURM_EXPORT_ENV</span><span class="o">=</span>ALL
-<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>
-<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>module purge
-<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
-<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>
-<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/6.bin_refinement/
-<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>
-<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>checkm lineage_wf -t <span class="m">10</span> --pplacer_threads <span class="m">10</span> -x fna <span class="se">\</span>
-<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>                  --tab_table -f filtered_bins_checkm.txt <span class="se">\</span>
-<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>                  filtered_bins/ filtered_bins_checkm_out/
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="ch">#!/bin/bash -e</span>
+<a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="c1">#SBATCH --account nesi02659</span>
+<a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="c1">#SBATCH --job-name bin_eval_checkm</span>
+<a href="#__codelineno-10-4" id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="c1">#SBATCH --res SummerSchool</span>
+<a href="#__codelineno-10-5" id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="c1">#SBATCH --time 00:20:00</span>
+<a href="#__codelineno-10-6" id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="c1">#SBATCH --mem 50GB</span>
+<a href="#__codelineno-10-7" id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
+<a href="#__codelineno-10-8" id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="c1">#SBATCH --error bin_eval_checkm.err</span>
+<a href="#__codelineno-10-9" id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="c1">#SBATCH --output bin_eval_checkm.out</span>
+<a href="#__codelineno-10-10" id="__codelineno-10-10" name="__codelineno-10-10"></a>
+<a href="#__codelineno-10-11" id="__codelineno-10-11" name="__codelineno-10-11"></a>
+<a href="#__codelineno-10-12" id="__codelineno-10-12" name="__codelineno-10-12"></a>module purge
+<a href="#__codelineno-10-13" id="__codelineno-10-13" name="__codelineno-10-13"></a>module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
+<a href="#__codelineno-10-14" id="__codelineno-10-14" name="__codelineno-10-14"></a>
+<a href="#__codelineno-10-15" id="__codelineno-10-15" name="__codelineno-10-15"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/6.bin_refinement/
+<a href="#__codelineno-10-16" id="__codelineno-10-16" name="__codelineno-10-16"></a>
+<a href="#__codelineno-10-17" id="__codelineno-10-17" name="__codelineno-10-17"></a>checkm lineage_wf -t <span class="m">10</span> --pplacer_threads <span class="m">10</span> -x fna <span class="se">\</span>
+<a href="#__codelineno-10-18" id="__codelineno-10-18" name="__codelineno-10-18"></a>                  --tab_table -f filtered_bins_checkm.txt <span class="se">\</span>
+<a href="#__codelineno-10-19" id="__codelineno-10-19" name="__codelineno-10-19"></a>                  filtered_bins/ filtered_bins_checkm_out/
 </code></pre></div>
-<hr />
-<h3 id="optional-creating-new-vizbin-profiles-with-different-fragment-lengths"><em>Optional:</em> Creating new <em>VizBin</em> profiles with different fragment lengths<a class="headerlink" href="#optional-creating-new-vizbin-profiles-with-different-fragment-lengths" title="Permanent link">&para;</a></h3>
+<hr/>
+<h3 id="optional-creating-new-vizbin-profiles-with-different-fragment-lengths"><em>Optional:</em> Creating new <em>VizBin</em> profiles with different fragment lengths<a class="headerlink" href="#optional-creating-new-vizbin-profiles-with-different-fragment-lengths" title="Permanent link">¶</a></h3>
 <p>The data you have been working with was created using the <code>cut_up_fasta.py</code> script that comes with the binning tool <code>CONCOCT</code>. It was run to cut contigs into 20k fragments, to better add density to the cluster. If you would like to visualise the data using different contig fragment sizes, you can create these using the following commands (replace <code>YOUR_CONTIG_SIZE</code> with the size of interest, e.g. <code>10000</code>):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>module load CONCOCT/1.0.0-gimkl-2018b-Python-2.7.16
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>mkdir custom_chop/
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1"># Fragment contigs within each bin, outputting to custom_chop/</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="k">for</span> bin_file <span class="k">in</span> example_data_unchopped/*<span class="p">;</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="k">do</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>    <span class="nv">bin_name</span><span class="o">=</span><span class="k">$(</span>basename <span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span> .fna<span class="k">)</span>
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    cut_up_fasta.py -c YOUR_CONTIG_SIZE -o <span class="m">0</span> --merge_last <span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span> &gt; custom_chop/<span class="si">${</span><span class="nv">bin_name</span><span class="si">}</span>.chopped.fna
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="k">done</span>
-<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
-<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="c1"># Concatenate the chopped bins into single .fna</span>
-<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>cat custom_chop/*.fna &gt; all_bins_custom_chop.fna
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a>module load CONCOCT/1.0.0-gimkl-2018b-Python-2.7.16
+<a href="#__codelineno-11-2" id="__codelineno-11-2" name="__codelineno-11-2"></a>
+<a href="#__codelineno-11-3" id="__codelineno-11-3" name="__codelineno-11-3"></a>mkdir custom_chop/
+<a href="#__codelineno-11-4" id="__codelineno-11-4" name="__codelineno-11-4"></a>
+<a href="#__codelineno-11-5" id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="c1"># Fragment contigs within each bin, outputting to custom_chop/</span>
+<a href="#__codelineno-11-6" id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="k">for</span> bin_file <span class="k">in</span> example_data_unchopped/*<span class="p">;</span>
+<a href="#__codelineno-11-7" id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="k">do</span>
+<a href="#__codelineno-11-8" id="__codelineno-11-8" name="__codelineno-11-8"></a>    <span class="nv">bin_name</span><span class="o">=</span><span class="k">$(</span>basename <span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span> .fna<span class="k">)</span>
+<a href="#__codelineno-11-9" id="__codelineno-11-9" name="__codelineno-11-9"></a>    cut_up_fasta.py -c YOUR_CONTIG_SIZE -o <span class="m">0</span> --merge_last <span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span> &gt; custom_chop/<span class="si">${</span><span class="nv">bin_name</span><span class="si">}</span>.chopped.fna
+<a href="#__codelineno-11-10" id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="k">done</span>
+<a href="#__codelineno-11-11" id="__codelineno-11-11" name="__codelineno-11-11"></a>
+<a href="#__codelineno-11-12" id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="c1"># Concatenate the chopped bins into single .fna</span>
+<a href="#__codelineno-11-13" id="__codelineno-11-13" name="__codelineno-11-13"></a>cat custom_chop/*.fna &gt; all_bins_custom_chop.fna
 </code></pre></div>
 <p>You can open <code>all_bins_custom_chop.fna</code> in VizBin to view the clustering with this new fragmentation threshold. </p>
 <p>If you wish to also provide an annotation file to colour by bin, this can be generated with the following:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Set up annotation file headers</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nb">echo</span> <span class="s2">&quot;label&quot;</span> &gt; custom_chop.vizbin.ann
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># loop through custom_chop .fna files</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="k">for</span> bin_file <span class="k">in</span> custom_chop/*.fna<span class="p">;</span> <span class="k">do</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="c1"># extract bin ID</span>
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>    <span class="nv">binID</span><span class="o">=</span><span class="k">$(</span>basename <span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span> .fna<span class="k">)</span>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>    <span class="c1"># loop through each sequence header in bin_file, adding binID to custom_chop.vizbin.ann for each header present</span>
-<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    <span class="k">for</span> header <span class="k">in</span> <span class="sb">`</span>grep <span class="s2">&quot;&gt;&quot;</span> <span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span>
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>        <span class="c1"># Add binID to vizbin.ann for each header present</span>
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>        <span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">binID</span><span class="si">}</span><span class="s2">&quot;</span> &gt;&gt; custom_chop.vizbin.ann
-<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>    <span class="k">done</span>
-<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="k">done</span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1"># Set up annotation file headers</span>
+<a href="#__codelineno-12-2" id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="nb">echo</span> <span class="s2">"label"</span> &gt; custom_chop.vizbin.ann
+<a href="#__codelineno-12-3" id="__codelineno-12-3" name="__codelineno-12-3"></a>
+<a href="#__codelineno-12-4" id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="c1"># loop through custom_chop .fna files</span>
+<a href="#__codelineno-12-5" id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="k">for</span> bin_file <span class="k">in</span> custom_chop/*.fna<span class="p">;</span> <span class="k">do</span>
+<a href="#__codelineno-12-6" id="__codelineno-12-6" name="__codelineno-12-6"></a>    <span class="c1"># extract bin ID</span>
+<a href="#__codelineno-12-7" id="__codelineno-12-7" name="__codelineno-12-7"></a>    <span class="nv">binID</span><span class="o">=</span><span class="k">$(</span>basename <span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span> .fna<span class="k">)</span>
+<a href="#__codelineno-12-8" id="__codelineno-12-8" name="__codelineno-12-8"></a>    <span class="c1"># loop through each sequence header in bin_file, adding binID to custom_chop.vizbin.ann for each header present</span>
+<a href="#__codelineno-12-9" id="__codelineno-12-9" name="__codelineno-12-9"></a>    <span class="k">for</span> header <span class="k">in</span> <span class="sb">`</span>grep <span class="s2">"&gt;"</span> <span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span> <span class="k">do</span>
+<a href="#__codelineno-12-10" id="__codelineno-12-10" name="__codelineno-12-10"></a>        <span class="c1"># Add binID to vizbin.ann for each header present</span>
+<a href="#__codelineno-12-11" id="__codelineno-12-11" name="__codelineno-12-11"></a>        <span class="nb">echo</span> <span class="s2">"</span><span class="si">${</span><span class="nv">binID</span><span class="si">}</span><span class="s2">"</span> &gt;&gt; custom_chop.vizbin.ann
+<a href="#__codelineno-12-12" id="__codelineno-12-12" name="__codelineno-12-12"></a>    <span class="k">done</span>
+<a href="#__codelineno-12-13" id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="k">done</span>
 </code></pre></div>
-<p>If you wish to generate the full annotation file, including coverage and length values, you will need to go through the process outlined in the <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex9_Generating_input_files_for_VizBin.md">Appendix for this exercise</a>.  </p>
-<hr />
-<h3 id="optional-scripts-for-processing-data-with-esomana"><em>Optional:</em> Scripts for processing data with <em>ESOMana</em><a class="headerlink" href="#optional-scripts-for-processing-data-with-esomana" title="Permanent link">&para;</a></h3>
+<p>If you wish to generate the full annotation file, including coverage and length values, you will need to go through the process outlined in the <a href="../../resources/2_APPENDIX_ex9_Generating_input_files_for_VizBin/">Appendix for this exercise</a>.  </p>
+<hr/>
+<h3 id="optional-scripts-for-processing-data-with-esomana"><em>Optional:</em> Scripts for processing data with <em>ESOMana</em><a class="headerlink" href="#optional-scripts-for-processing-data-with-esomana" title="Permanent link">¶</a></h3>
 <p>A suite of tools for creating input files for <code>ESOMana</code> can be found on github <a href="https://github.com/tetramerFreqs/Binning">here</a>.</p>
 <p>The tool <code>ESOMana</code> can be downloaded from <a href="http://databionic-esom.sourceforge.net/">SourceForge</a>.</p>
-<hr />
-
-              
-            </article>
-            
-          </div>
-        </div>
-        
-          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+<hr/>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
             Back to top
           </a>
-        
-      </main>
-      
-        <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
-      
-        
-        <a href="../ex8_bin_dereplication/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Bin dereplication" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: Bin dereplication" class="md-footer__link md-footer__link--prev" href="../ex8_bin_dereplication/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
                 Previous
               </span>
               Bin dereplication
             </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../../day3/ex10_viruses/" class="md-footer__link md-footer__link--next" aria-label="Next: Identifying viral contigs in metagenomic data" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
+</div>
+</a>
+<a aria-label="Next: Identifying viral contigs in metagenomic data" class="md-footer__link md-footer__link--next" href="../../day3/ex10_viruses/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
                 Next
               </span>
               Identifying viral contigs in metagenomic data
             </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
       Material for MkDocs
     </a>
-  
 </div>
-      
-    </div>
-  </div>
+</div>
+</div>
 </footer>
-      
-    </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
-    
-    
-      <script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
-      
-        <script src="../../javascripts/mathjax.js"></script>
-      
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-    
-  </body>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+<script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+<script src="../../javascripts/mathjax.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
 </html>

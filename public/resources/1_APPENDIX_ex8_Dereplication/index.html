@@ -6,10 +6,10 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Genomics Aotearoa &amp; NeSI" name="author"/>
-<link href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day2/ex7_initial_binning/" rel="canonical"/>
+<link href="https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/1_APPENDIX_ex8_Dereplication/" rel="canonical"/>
 <link href="../../theme_images/nesi_ga.png" rel="icon"/>
 <meta content="mkdocs-1.4.1, mkdocs-material-8.3.9" name="generator"/>
-<title>Introduction to binning - Metagenomics Summer School</title>
+<title>APPENDIX (ex8):Dereplicating data from multiple assemblies - Metagenomics Summer School</title>
 <link href="../../assets/stylesheets/main.1d29e8d0.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -31,7 +31,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#introduction-to-binning">
+<a class="md-skip" href="#appendix-ex8dereplicating-data-from-multiple-assemblies">
           Skip to content
         </a>
 </div>
@@ -55,7 +55,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Introduction to binning
+              APPENDIX (ex8):Dereplicating data from multiple assemblies
             
           </span>
 </div>
@@ -130,7 +130,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="../ex6_initial_binning/">
+<a class="md-tabs__link" href="../../day2/ex6_initial_binning/">
         Day2
       </a>
 </li>
@@ -145,7 +145,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../resources/1_APPENDIX_ex8_Dereplication/">
+<a class="md-tabs__link md-tabs__link--active" href="./">
         Resources
       </a>
 </li>
@@ -222,8 +222,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
 <label class="md-nav__link" for="__nav_3">
           Day2
           <span class="md-nav__icon md-icon"></span>
@@ -235,50 +235,22 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../ex6_initial_binning/">
+<a class="md-nav__link" href="../../day2/ex6_initial_binning/">
         Introduction to binning
       </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          Introduction to binning
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day2/ex7_initial_binning/">
         Introduction to binning
       </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#overview">
-    Overview
-  </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#metabat">
-    MetaBAT
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#maxbin">
-    MaxBin
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../ex8_bin_dereplication/">
+<a class="md-nav__link" href="../../day2/ex8_bin_dereplication/">
         Bin dereplication
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../ex9_refining_bins/">
+<a class="md-nav__link" href="../../day2/ex9_refining_bins/">
         Manually refining bins
       </a>
 </li>
@@ -375,8 +347,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
 <label class="md-nav__link" for="__nav_6">
           Resources
           <span class="md-nav__icon md-icon"></span>
@@ -387,38 +359,85 @@
           Resources
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../resources/1_APPENDIX_ex8_Dereplication/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          APPENDIX (ex8):Dereplicating data from multiple assemblies
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
         APPENDIX (ex8):Dereplicating data from multiple assemblies
       </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#using-drep-and-checkm">
+    Using dRep and CheckM
+  </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../resources/2_APPENDIX_ex9_Generating_input_files_for_VizBin/">
+<a class="md-nav__link" href="#use-checkm-and-drep-together-to-dereplicate-a-set-of-mags">
+    Use CheckM and dRep together to dereplicate a set of MAGs
+  </a>
+<nav aria-label="Use CheckM and dRep together to dereplicate a set of MAGs" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-1">
+    Step 1
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-2">
+    Step 2
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-3">
+    Step 3
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#de-duplicate-viral-contigs-using-bbmaps-dedupesh">
+    De-duplicate viral contigs using BBMap's dedupe.sh
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../2_APPENDIX_ex9_Generating_input_files_for_VizBin/">
         APPENDIX (ex9): Generating input files for *VizBin* from *DAS_Tool* curated bins
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../resources/3_APPENDIX_ex11_Normalise_coverage_example/">
+<a class="md-nav__link" href="../3_APPENDIX_ex11_Normalise_coverage_example/">
         APPENDIX (ex11): Normalise per-sample coverage values by average library size (example)
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/">
+<a class="md-nav__link" href="../4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/">
         APPENDIX (ex11) : viral taxonomy prediction via *vContact2*
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../resources/5_APPENDIX_ex15_gene_synteny_Generate_blast_files/">
+<a class="md-nav__link" href="../5_APPENDIX_ex15_gene_synteny_Generate_blast_files/">
         APPENDIX (ex15): How to generate the blast files provided in [ex15_gene_synteny](../day4/ex16e_data_presentation_Gene_synteny.md)
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../resources/6_APPENDIX_ex15_gene_synteny_grab_GOI/">
+<a class="md-nav__link" href="../6_APPENDIX_ex15_gene_synteny_grab_GOI/">
         APPENDIX (ex15): Grab Gene of Interest (generate the *cys.txt* files provided in [ex15_gene_synteny](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16e_data_presentation_Gene_synteny.md))
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../resources/7_command_line_shortcuts/">
+<a class="md-nav__link" href="../7_command_line_shortcuts/">
         Useful command line shortcuts
       </a>
 </li>
@@ -440,18 +459,37 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#overview">
-    Overview
+<a class="md-nav__link" href="#using-drep-and-checkm">
+    Using dRep and CheckM
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#metabat">
-    MetaBAT
+<a class="md-nav__link" href="#use-checkm-and-drep-together-to-dereplicate-a-set-of-mags">
+    Use CheckM and dRep together to dereplicate a set of MAGs
+  </a>
+<nav aria-label="Use CheckM and dRep together to dereplicate a set of MAGs" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-1">
+    Step 1
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#maxbin">
-    MaxBin
+<a class="md-nav__link" href="#step-2">
+    Step 2
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-3">
+    Step 3
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#de-duplicate-viral-contigs-using-bbmaps-dedupesh">
+    De-duplicate viral contigs using BBMap's dedupe.sh
   </a>
 </li>
 </ul>
@@ -461,100 +499,143 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/day2/ex7_initial_binning.md" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/resources/1_APPENDIX_ex8_Dereplication.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="introduction-to-binning">Introduction to binning<a class="headerlink" href="#introduction-to-binning" title="Permanent link">¶</a></h1>
+<h1 id="appendix-ex8dereplicating-data-from-multiple-assemblies">APPENDIX (ex8):Dereplicating data from multiple assemblies<a class="headerlink" href="#appendix-ex8dereplicating-data-from-multiple-assemblies" title="Permanent link">¶</a></h1>
 <div class="admonition info">
 <p class="admonition-title">Objectives</p>
 <ul>
-<li><a href="#overview">Overview</a></li>
-<li><a href="#metabat">Create initial bins using <code>MetaBAT</code></a></li>
-<li><a href="#maxbin">Create initial bins using <code>MaxBin</code></a></li>
+<li>Understand the common issues with using <code>dRep</code> and <code>CheckM</code></li>
+<li>Use <code>CheckM</code> and <code>dRep</code> together to dereplicate a set of genomes</li>
+<li>De-duplicate viral contigs using <code>BBMap</code>'s <code>dedupe.sh</code></li>
 </ul>
 </div>
 <hr/>
-<h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">¶</a></h3>
-<p>With the mapping information computed in the last exercise, we can now perform binning. There are a multitude of good binning tools currently published, and each have their strengths and weaknesses. As there is no best tool for binning, the current strategy for binning is to use a number of different tools on your data, then use the tool <code>DAS_Tool</code> to evaluate all potential outcomes and define the best set of bins across all tools used.</p>
-<p>In our own workflow, we use the tools <code>MetaBAT</code>, <code>MaxBin</code>, and <code>CONCOCT</code> for binning, but there are many alternatives that are equally viable. In the interests of time, we are only going to demonstrate the first two tools. However, we recommend that you experiement with some of the following tools when conducting your own research.</p>
+<h3 id="using-drep-and-checkm">Using <em>dRep</em> and <em>CheckM</em><a class="headerlink" href="#using-drep-and-checkm" title="Permanent link">¶</a></h3>
+<p>Before we begin to use <code>dRep</code>, it is important to understand the workflow that it applies to a data set. The basic idea of <code>dRep</code> is that genomes or MAGs are processed as follows:</p>
 <ol>
-<li><a href="http://ecogenomics.github.io/GroopM/">GroopM</a></li>
-<li><a href="https://github.com/tetramerFreqs/Binning">Tetra-ESOM</a></li>
-<li><a href="https://github.com/RasmussenLab/vamb">VAMB</a></li>
+<li>Genomes are scored for completeness and contamination estimates using <code>CheckM</code></li>
+<li>Genomes are assigned to primary clusters using a quick and rough average nucleotide identidy (ANI) calculation</li>
+<li>Clusters of genomes sharing greater than 90% ANI are grouped together and ANI is calculated using a more sensitive method</li>
+<li>Where groups of genomes sharing &gt;99% ANI are found, the best (determined by completeness and contamination statistics) is picked as a representative of the cluster</li>
 </ol>
+<p>When run on its own, <code>dRep</code> will automatically try to run <code>CheckM</code> in the background. There are two problems with this approach, namely:</p>
+<ol>
+<li><code>dRep</code> is written in version 3.6 of the <code>python</code> language, and the version of <code>CheckM</code> avaiable on NeSI is written in version 2.7. These are not compatible with each other</li>
+<li>There are two parameters in <code>CheckM</code> which speed up the workflow through multithreading, but <code>dRep</code> only has access to one of them</li>
+</ol>
+<p>For these reasons, when working on NeSI we run <code>CheckM</code> on our data set first, and then pass the results directly into <code>dRep</code>, avoiding the need for <code>dRep</code> to try to call <code>CheckM</code>.</p>
 <hr/>
-<h3 id="metabat"><em>MetaBAT</em><a class="headerlink" href="#metabat" title="Permanent link">¶</a></h3>
-<p><code>MetaBAT</code> binning occurs in two steps. First, the <em>bam</em> files from the last exercise are parsed into a tab-delimited table of the average coverage depth and variance per sample mapped. Binning is then performed using this table.</p>
-<p>The <em>.bam</em> files can be passed in via either a user-defined order, or using wildcards.
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>module purge
-<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>module load MetaBAT/2.15-GCC-11.3.0
-<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>
-<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/5.binning/
-<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a>
-<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="c1"># Manual specification of files</span>
-<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a>jgi_summarize_bam_contig_depths --outputDepth metabat.txt sample1.bam sample2.bam sample3.bam sample4.bam
-<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a>
-<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="c1"># Wildcard</span>
-<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a>jgi_summarize_bam_contig_depths --outputDepth metabat.txt sample*.bam
-</code></pre></div></p>
-<p>Both give the same result, although the sample order may vary.</p>
-<p>We can then pass the table <code>metabat.txt</code> into the <code>MetaBAT</code> binning tool.</p>
-<p>Before we proceed, note that when you run <code>MetaBAT</code> on NeSI you will see the text <code>vGIT-NOTFOUND</code> appear in your command line. This has no impact on the performance of the tool.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>metabat2 -t <span class="m">2</span> -m <span class="m">1500</span> <span class="se">\</span>
-<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>         -i spades_assembly/spades_assembly.m1000.fna <span class="se">\</span>
-<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>         -a metabat.txt <span class="se">\</span>
-<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>         -o metabat/metabat
+<h3 id="use-checkm-and-drep-together-to-dereplicate-a-set-of-mags">Use <em>CheckM</em> and <em>dRep</em> together to dereplicate a set of MAGs<a class="headerlink" href="#use-checkm-and-drep-together-to-dereplicate-a-set-of-mags" title="Permanent link">¶</a></h3>
+<p>For this exercise, we will be working with a different set of MAGs to the mock community, as there is not enough strain-level variation in the mock metagenome for <code>dRep</code> to actually remove any MAGs.</p>
+<p>We will write a single slurm script to run all necessary commands, then analyse the content.</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="ch">#!/bin/bash -e</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="c1">#SBATCH --job-name      checkm_drep</span>
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="c1">#SBATCH --res           SummerSchool</span>
+<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="c1">#SBATCH --time          2:00:00</span>
+<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="c1">#SBATCH --mem           80GB</span>
+<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
+<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="c1">#SBATCH --error         checkm_drep.err</span>
+<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="c1">#SBATCH --output        checkm_drep.out</span>
+<a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a>
+<a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/12.drep_example/
+<a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a>
+<a href="#__codelineno-0-14" id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="c1"># Step 1</span>
+<a href="#__codelineno-0-15" id="__codelineno-0-15" name="__codelineno-0-15"></a>module purge
+<a href="#__codelineno-0-16" id="__codelineno-0-16" name="__codelineno-0-16"></a>module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
+<a href="#__codelineno-0-17" id="__codelineno-0-17" name="__codelineno-0-17"></a>checkm lineage_wf -t <span class="m">10</span> --pplacer_threads <span class="m">10</span> -x fa --tab_table -f checkm.txt <span class="se">\</span>
+<a href="#__codelineno-0-18" id="__codelineno-0-18" name="__codelineno-0-18"></a>                  input_bins/ checkm_out/
+<a href="#__codelineno-0-19" id="__codelineno-0-19" name="__codelineno-0-19"></a>
+<a href="#__codelineno-0-20" id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="c1"># Step 2</span>
+<a href="#__codelineno-0-21" id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="nb">echo</span> <span class="s2">"genome,completeness,contamination"</span> &gt; dRep.genomeInfo
+<a href="#__codelineno-0-22" id="__codelineno-0-22" name="__codelineno-0-22"></a>cut -f1,12,13 checkm.txt <span class="p">|</span> sed <span class="s1">'s/\t/.fa\t/'</span> <span class="p">|</span> sed <span class="s1">'s/\t/,/g'</span> <span class="p">|</span> <span class="se">\</span>
+<a href="#__codelineno-0-23" id="__codelineno-0-23" name="__codelineno-0-23"></a>    tail -n+2 &gt;&gt; dRep.genomeInfo
+<a href="#__codelineno-0-24" id="__codelineno-0-24" name="__codelineno-0-24"></a>
+<a href="#__codelineno-0-25" id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="c1"># Step 3</span>
+<a href="#__codelineno-0-26" id="__codelineno-0-26" name="__codelineno-0-26"></a>module purge
+<a href="#__codelineno-0-27" id="__codelineno-0-27" name="__codelineno-0-27"></a>module load drep/2.3.2-gimkl-2017a-Python-3.6.3 MUMmer/3.23-gimkl-2017a
+<a href="#__codelineno-0-28" id="__codelineno-0-28" name="__codelineno-0-28"></a>
+<a href="#__codelineno-0-29" id="__codelineno-0-29" name="__codelineno-0-29"></a>dRep dereplicate --genomeInfo dRep.genomeInfo -g input_bins/*.fa -p <span class="m">10</span> drep_output/
 </code></pre></div>
-<p>Note here that we are specifying a minimum contig size of 1,500 bp, which is the lower limit allowed by the authors of <code>MetaBAT</code>. This is larger than the minimum threshold of 1,000 bp when we filtered the assembly, which means there are some assembled contigs which cannot be binned. Consider the choice of this parameter and your initial contig filtering carefully when binning your own data.</p>
-<p>When specifying the output file, notice that we pass both a folder path (<em>metabat/</em>) and file name (<em>metabat</em>). The reason I do this is that <code>MetaBAT</code> writes its output files using the pattern</p>
-<p><code>[USER VALUE].[BIN NUMBER].fa</code></p>
-<p>If we only provided the path, without a file name prefix, <code>MetaBAT</code> would create output like the following:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>metabat/.1.fa
-<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>metabat/.2.fa
-<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a>metabat/.3.fa
+<p>Walking through this script, step by step, we are performing the following tasks:</p>
+<h5 id="step-1">Step 1<a class="headerlink" href="#step-1" title="Permanent link">¶</a></h5>
+<p>This should look familiar to you. Here we are simply loading <code>CheckM</code>, then running it over a set of MAGs to get the completeness and contamination estimates for our data.</p>
+<h5 id="step-2">Step 2<a class="headerlink" href="#step-2" title="Permanent link">¶</a></h5>
+<p>When running <code>dRep</code>, we have the option to either let <code>dRep</code> execute <code>CheckM</code> in the background, or we can pass a comma-separated file of the MAG name and its statistics. Unfortunately, <code>dRep</code> does not take the <code>CheckM</code> output itself, so we must use some shell commands to reformat the data. To achieve this, we use the following steps:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nb">echo</span> <span class="s2">"genome,completeness,contamination"</span> &gt; dRep.genomeInfo
 </code></pre></div>
-<p>The problem with this is that on Linux systems, prefixing a file or folder name with a '.' character means the the file is hidden. This can lead to a lot of confusion when your binning job completes successfully but no files are visible!</p>
+<p>This line creates the header row for the <code>dRep</code> file, which we are calling <code>dRep.genomeInfo</code>.</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>cut -f1,12,13 checkm.txt <span class="p">|</span> sed <span class="s1">'s/\t/.fa\t/'</span> <span class="p">|</span> sed <span class="s1">'s/\t/,/g'</span> <span class="p">|</span> tail -n+2 &gt;&gt; dRep.genomeInfo
+</code></pre></div>
+<p>This line cuts the columns 1, 12, and 13 from the <code>CheckM</code> output table, which correspond to the MAG name and completeness/contamination estimates. We then redirect these columns using the <code>|</code> character and use them as input in a <code>sed</code> command. Because <code>CheckM</code> reports our MAG names without their <em>fastA</em> file extension, but <code>dRep</code> requires the extension to be present in the MAG name, we add the trailing <code>.fa</code> with our <code>sed</code> command. This also gives us an opportunity to replace the tab-delimiting character from the <code>CheckM</code> output with the comma character that <code>dRep</code> uses for marking columns in the table. We then pass the output into a second <code>sed</code> command to replace the tab between columns 12 and 13 with a comma.</p>
+<p>We then use another redirect (<code>|</code>) to pass the resulting text stream to the <code>tail</code> command. The way we are calling <code>tail</code> here will return every row in the text stream except for the first, which means that we are getting all the MAG rows but not their column names. We remove these names because <code>`dRep</code> uses a different naming convention for specifying columns.</p>
+<p>We append the MAG statistics to the end of the <code>dRep.genomeInfo</code> file, whih contains the correct column names for <code>dRep</code>.</p>
+<h5 id="step-3">Step 3<a class="headerlink" href="#step-3" title="Permanent link">¶</a></h5>
+<p>Here we simply load the modules required for <code>dRep</code>, then execute the command. Because of the compatibility issues between the <code>python</code> version required by <code>CheckM</code> and <code>dRep</code>, we use the <code>module purge</code> command to unload all current modules before loading <code>dRep</code>. This removes the <code>CheckM</code> library, and its <code>python2.7</code> dependency, allowing the <code>dRep</code> and <code>python3.6</code> to load correctly.</p>
+<p>The parameters for <code>dRep</code> are as follows:</p>
+<div class="admonition abstract">
+<table>
+<thead>
+<tr>
+<th align="left">Parameter</th>
+<th align="left">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>dereplicate</strong></td>
+<td align="left">Activate the <em>dereplicate</em> workflow from <code>dRep</code></td>
+</tr>
+<tr>
+<td align="left"><strong>--genomeInfo</strong></td>
+<td align="left">Skip quality checking via <code>CheckM</code>, instead use the values in the table provided</td>
+</tr>
+<tr>
+<td align="left"><strong>-g</strong></td>
+<td align="left">List of MAGs to dereplicate, passed by wildcard</td>
+</tr>
+<tr>
+<td align="left"><strong>-p</strong></td>
+<td align="left">Number of processors to use</td>
+</tr>
+<tr>
+<td align="left"><strong>drep_output/</strong></td>
+<td align="left">Output folder for all outputs</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>When <code>dRep</code> finishes running, there are a few useful outputs to examine:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>drep_output/dereplicated_genomes/   <span class="c1"># The representative set of MAGs</span>
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>drep_output/figures/                <span class="c1"># Dendrograms to visualise the clustering of genomes</span>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>drep_output/data_tables/            <span class="c1"># The primary and secondary clustering of the MAGs, and scoring information</span>
+</code></pre></div>
 <hr/>
-<h3 id="maxbin"><em>MaxBin</em><a class="headerlink" href="#maxbin" title="Permanent link">¶</a></h3>
-<p>Like <code>MetaBAT</code>, <code>MaxBin</code> requires a text representation of the coverage information for binning. Luckily, we can be sneaky here and just reformat the <code>metabat.txt</code> file into the format expected by <code>MaxBin</code>. We use <code>cut</code> to select only the columns of interest, which are the <em>contigName</em> and coverage columns, but not the <em>contigLen</em>, <em>totalAvgDepth</em>, or variance columns.</p>
-<p>We can inspect the <code>metabat.txt</code> file with <code>head</code> or <code>less</code> to identify the correct column indices for <code>cut</code>.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>less metabat.txt
-<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>
-<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>cut -f1,4,6,8,10 metabat.txt &gt; maxbin.txt
+<h3 id="de-duplicate-viral-contigs-using-bbmaps-dedupesh">De-duplicate viral contigs using <em>BBMap</em>'s <em>dedupe.sh</em><a class="headerlink" href="#de-duplicate-viral-contigs-using-bbmaps-dedupesh" title="Permanent link">¶</a></h3>
+<p>Part of the process for <code>dRep</code> includes measures specific to prokaryotes. Hence, the above approach will not be appropriate for dereplicating <em>viral contigs</em> derived from different assemblies. <code>dedupe.sh</code> from the <code>BBMap</code> suite of tools is one alternative to achieve a similar process for these data.</p>
+<p><code>dedupe.sh</code> takes a comma separated list of assembly <em>fastA</em> files as input, and filters out any contigs that are either full <em>duplicates</em> of another contig, or fully <em>contained</em> within another (longer) contig (i.e. matching alignment within another longer contig). <code>minidentity=...</code> sets the minimum identity threshold, and <code>out=...</code> results in a single deduplicated set of contigs as output.</p>
+<p>An example of how <code>dedupe.sh</code> might be run on multiple <em>fastA</em> files of assembled viral contigs (e.g. those output by tools such as <code>VIBRANT</code> or <code>VirSorter</code>) is as follows:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nb">cd</span> /path/to/viral/contigs/from/multiple/assemblies/
+<a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>mkdir -p dedupe
+<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a>
+<a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="c1"># load BBMap</span>
+<a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a>module load BBMap/39.01-GCC-11.3.0
+<a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a>
+<a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="c1"># Set infiles</span>
+<a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="nv">infiles</span><span class="o">=</span><span class="s2">"assembly_viral_1.fna,assembly_viral_2.fna,assembly_viral_3.fna,assembly_viral_4.fna"</span>
+<a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a>
+<a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="c1"># Run main analyses </span>
+<a href="#__codelineno-4-11" id="__codelineno-4-11" name="__codelineno-4-11"></a>dedupe.sh <span class="nv">threads</span><span class="o">=</span><span class="m">1</span> <span class="k">in</span><span class="o">=</span><span class="si">${</span><span class="nv">infiles</span><span class="si">}</span> <span class="se">\</span>
+<a href="#__codelineno-4-12" id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="nv">minidentity</span><span class="o">=</span><span class="m">98</span> <span class="nv">exact</span><span class="o">=</span>f <span class="nv">sort</span><span class="o">=</span>length <span class="nv">mergenames</span><span class="o">=</span>t <span class="nv">mergedelimiter</span><span class="o">=</span>___ <span class="nv">overwrite</span><span class="o">=</span>t <span class="se">\</span>
+<a href="#__codelineno-4-13" id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="nv">out</span><span class="o">=</span>dedupe/dedupe.fa
 </code></pre></div>
-<p>Generally speaking, this pattern of first, fourth, then [n + 2]<sup>th</sup> should work for any number of mapping files, although we always reocmmend that you check and confirm before you continue.</p>
-<p>This table is then passed to <code>MaxBin</code>. Unlike the case with <code>MetaBAT</code>, if we want to direct the output files into a folder, we must create that folder in advance.</p>
-<p>Create a new script to submit as a slurm job</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>nano maxbin_clustering.sl
-</code></pre></div>
-<p>Paste or type in the following. Remember to update <code>&lt;YOUR FOLDER&gt;</code> to your own folder.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="ch">#!/bin/bash -e</span>
-<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a>
-<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
-<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1">#SBATCH --job-name      maxbin_clustering</span>
-<a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="c1">#SBATCH --res           SummerSchool</span>
-<a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="c1">#SBATCH --time          00:05:00</span>
-<a href="#__codelineno-5-7" id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="c1">#SBATCH --mem           10GB</span>
-<a href="#__codelineno-5-8" id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
-<a href="#__codelineno-5-9" id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="c1">#SBATCH --error         maxbin_clustering.err</span>
-<a href="#__codelineno-5-10" id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="c1">#SBATCH --output        maxbin_clustering.out</span>
-<a href="#__codelineno-5-11" id="__codelineno-5-11" name="__codelineno-5-11"></a>
-<a href="#__codelineno-5-12" id="__codelineno-5-12" name="__codelineno-5-12"></a>
-<a href="#__codelineno-5-13" id="__codelineno-5-13" name="__codelineno-5-13"></a>module purge
-<a href="#__codelineno-5-14" id="__codelineno-5-14" name="__codelineno-5-14"></a>module load MaxBin/2.2.7-GCC-11.3.0-Perl-5.34.1
-<a href="#__codelineno-5-15" id="__codelineno-5-15" name="__codelineno-5-15"></a>
-<a href="#__codelineno-5-16" id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/5.binning/
-<a href="#__codelineno-5-17" id="__codelineno-5-17" name="__codelineno-5-17"></a>
-<a href="#__codelineno-5-18" id="__codelineno-5-18" name="__codelineno-5-18"></a>mkdir -p maxbin/
-<a href="#__codelineno-5-19" id="__codelineno-5-19" name="__codelineno-5-19"></a>run_MaxBin.pl -thread <span class="m">10</span> -min_contig_length <span class="m">1500</span> <span class="se">\</span>
-<a href="#__codelineno-5-20" id="__codelineno-5-20" name="__codelineno-5-20"></a>              -contig spades_assembly/spades_assembly.m1000.fna <span class="se">\</span>
-<a href="#__codelineno-5-21" id="__codelineno-5-21" name="__codelineno-5-21"></a>              -abund maxbin.txt <span class="se">\</span>
-<a href="#__codelineno-5-22" id="__codelineno-5-22" name="__codelineno-5-22"></a>              -out maxbin/maxbin
-</code></pre></div>
-<p>Submit the script as a slurm job:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>sbatch maxbin_clustering.sl
-</code></pre></div>
-<p>This will take a bit longer to complete, as <code>MaxBin</code> uses gene prediction tools to identify the ideal contigs to use as the start of each bin.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>dedupe.sh</code> will dereplicate contigs that are duplicates or are fully contained by another contig, but unfortunately not those that share a partial overlap (i.e. sharing an overlapping region, but with non-overlapping sections hanging off the ends). <code>dedupe.sh</code> does include the functionality to <strong>cluster</strong> these contigs together (via <code>c</code> and <code>mo</code>) and output as separate fastA files, but not to then merge these sequences together into a single representative (this appears to have been a "to do" item for a number of years). One option in this case could be to develop a method that: outputs all of the clusters, aligns sequences within each cluster, generates a consensus sequence from the alignment (i.e. effectively performing new mini-assemblies on each of the clusters of overlapping contigs), and then adds this back to the deduplicated fasta output from <code>dedupe.sh</code> (n.b. this is unfortunately a less trivial process than it sounds...)*</p>
+</div>
 <hr/>
 </article>
 </div>
@@ -566,7 +647,7 @@
 </main>
 <footer class="md-footer">
 <nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Previous: Introduction to binning" class="md-footer__link md-footer__link--prev" href="../ex6_initial_binning/" rel="prev">
+<a aria-label="Previous: Presentation of data: *Optional exercise*: CAZy annotations heatmap" class="md-footer__link md-footer__link--prev" href="../../day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations/" rel="prev">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
 </div>
@@ -575,17 +656,17 @@
 <span class="md-footer__direction">
                 Previous
               </span>
-              Introduction to binning
+              Presentation of data: *Optional exercise*: CAZy annotations heatmap
             </div>
 </div>
 </a>
-<a aria-label="Next: Bin dereplication" class="md-footer__link md-footer__link--next" href="../ex8_bin_dereplication/" rel="next">
+<a aria-label="Next: APPENDIX (ex9): Generating input files for *VizBin* from *DAS_Tool* curated bins" class="md-footer__link md-footer__link--next" href="../2_APPENDIX_ex9_Generating_input_files_for_VizBin/" rel="next">
 <div class="md-footer__title">
 <div class="md-ellipsis">
 <span class="md-footer__direction">
                 Next
               </span>
-              Bin dereplication
+              APPENDIX (ex9): Generating input files for *VizBin* from *DAS_Tool* curated bins
             </div>
 </div>
 <div class="md-footer__button md-icon">
