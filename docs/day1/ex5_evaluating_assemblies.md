@@ -179,9 +179,13 @@ However, since we **_do_** know the composition of the original communities used
 ```bash
 module load QUAST/5.2.0-gimkl-2022a
 
-metaquast.py spades_assembly/spades_assembly.fna spades_assembly/spades_assembly.m1000.fna \
-             idbaud_assembly/idbaud_assembly.fna idbaud_assembly/idbaud_assembly.m1000.fna \
-             --references-list ref_genomes.txt --max-ref-number 21 -t 10
+metaquast.py --references-list ref_genomes.txt --max-ref-number 21 -t 10 \
+             --labels SPAdes,SPAdes.m1000,IDBAUD,IDBAUD.m1000 \
+             --output-dir quast_results/
+             spades_assembly/spades_assembly.fna \
+             spades_assembly/spades_assembly.m1000.fna \
+             idbaud_assembly/idbaud_assembly.fna \
+             idbaud_assembly/idbaud_assembly.m1000.fna
 ```
 
 By now, you should be getting familiar enough with the console to understand what most of the parameters here refer to. The one parameter that needs explanation is the `--max-ref-number` flag, which we have set to 21. This caps the maximum number of reference genomes to be downloaded from NCBI which we do in the interest of speed. Since there are 21 names in the file `ref_genomes.txt` (10 prokaryote species and 11 viruses), `MetaQUAST` will download one of each. If we increase the number we will start to get multiple references per name provided which is usually desirable.
