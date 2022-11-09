@@ -181,7 +181,7 @@ module load QUAST/5.2.0-gimkl-2022a
 
 metaquast.py --references-list ref_genomes.txt --max-ref-number 21 -t 10 \
              --labels SPAdes,SPAdes.m1000,IDBAUD,IDBAUD.m1000 \
-             --output-dir quast_results/
+             --output-dir quast_results/ \
              spades_assembly/spades_assembly.fna \
              spades_assembly/spades_assembly.m1000.fna \
              idbaud_assembly/idbaud_assembly.fna \
