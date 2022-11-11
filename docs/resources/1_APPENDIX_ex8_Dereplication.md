@@ -88,7 +88,7 @@ This line cuts the columns 1, 12, and 13 from the `CheckM` output table, which c
 
 We then use another redirect (`|`) to pass the resulting text stream to the `tail` command. The way we are calling `tail` here will return every row in the text stream except for the first, which means that we are getting all the MAG rows but not their column names. We remove these names because ``dRep` uses a different naming convention for specifying columns.
 
-We append the MAG statistics to the end of the `dRep.genomeInfo` file, whih contains the correct column names for `dRep`.
+We append the MAG statistics to the end of the `dRep.genomeInfo` file, which contains the correct column names for `dRep`.
 
 ##### Step 3
 

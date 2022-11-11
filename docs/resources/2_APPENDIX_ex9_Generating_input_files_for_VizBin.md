@@ -4,7 +4,7 @@ The final bins that we obtained in the previous step (output from `DAS_Tool`) ha
 
 **1. Generalise bin naming and add bin IDs to sequence headers**
 
-We will first modify the names of our bins to be simply numbered 1 to n bins. We will use a loop to do this, using the wildcard ( * ) to loop over all files in the _DASTool_bins folder, copying to the new example_data_unchopped/ folder and renaming as bin_[1-n].fna. The sed command then adds the bin ID to the start of sequence headers in each of the new bin files (this will be handy information to have in the sequence headers for downstream processing).
+We will first modify the names of our bins to be simply numbered 1 to n bins. We will use a loop to do this, using the wildcard ( * ) to loop over all files in the `_DASTool_bins` folder, copying to the new `example_data_unchopped/` folder and renaming as `bin_[1-n].fna`. The `sed` command then adds the bin ID to the start of sequence headers in each of the new bin files (this will be handy information to have in the sequence headers for downstream processing).
 
 ```bash
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinement/
