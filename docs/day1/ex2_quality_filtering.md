@@ -278,6 +278,9 @@ Build index reference via `BBMap`. We will do this by submitting the job via slu
 
     See [Preparing an assembly job for slurm](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex3_assembly.md#preparing-an-assembly-job-for-slurm) for more information about how to submit a job via slurm.*
 
+!!! warning "Warning"
+    Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
+
 ```bash
 #!/bin/bash -e
 
@@ -315,6 +318,10 @@ Finally, map the quality-filtered reads to the reference via `BBMap`. Here we wi
 
     Slurm array jobs automatically create a variable `SLURM_ARRAY_TASK_ID` for that job, which contains the array task number (i.e. between 1 and 4 in the case below). We use this to run the command on the sample that matches this array task ID. I.e. array job 3 will run the commands on "sample3" (`sample${SLURM_ARRAY_TASK_ID}` is read in as `sample3`).*
 
+
+!!! warning "Warning"
+    Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
+
 ```bash
 #!/bin/bash -e
 
@@ -340,7 +347,7 @@ module load BBMap/39.01-GCC-11.3.0
 srun bbmap.sh -Xmx27g -t=20 \
 minid=0.95 maxindel=3 bwr=0.16 bw=12 quickmatch fast minhits=2 qtrim=rl trimq=10 untrim \
 in1=../3.assembly/sample${SLURM_ARRAY_TASK_ID}_R1.fastq.gz \
-in2=../3.assembly/sample${SLURM_ARRAY_TASK_ID}_R1.fastq.gz \
+in2=../3.assembly/sample${SLURM_ARRAY_TASK_ID}_R2.fastq.gz \
 path=BBMask_human_reference/ \
 outu1=host_filtered_reads/sample${SLURM_ARRAY_TASK_ID}_R1_hostFilt.fastq \
 outu2=host_filtered_reads/sample${SLURM_ARRAY_TASK_ID}_R2_hostFilt.fastq
