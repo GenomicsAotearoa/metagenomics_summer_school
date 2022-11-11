@@ -58,7 +58,8 @@ Open a new script using nano:
 nano spades_mapping.sl
 ```
 
-Paste in the following script. Remember to replace <YOUR FOLDER> with your own folder.
+!!! warning "Warning"
+    Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
 
 ```bash
 #!/bin/bash -e
@@ -176,6 +177,9 @@ Open a new script using nano:
 nano spades_mapping_array.sl
 ```
 
+!!! warning "Warning"
+    Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
+
 ```bash
 #!/bin/bash -e
 
@@ -194,14 +198,14 @@ module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
 
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 
-srun bowtie2-build spades_assembly/spades_assembly.m1000.fna spades_assembly/bw_spades
+bowtie2-build spades_assembly/spades_assembly.m1000.fna spades_assembly/bw_spades
 
 # Load the sample names into a bash array
 samples=(sample1 sample2 sample3 sample4)
 
 # Activate the srun command, using the SLURM_ARRAY_TASK_ID variable to
 # identify which position in the `samples` array to use
-srun bowtie2 --minins 200 --maxins 800 --threads 10 --sensitive -x spades_assembly/bw_spades \
+bowtie2 --minins 200 --maxins 800 --threads 10 --sensitive -x spades_assembly/bw_spades \
              -1 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R1.fastq.gz \
              -2 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R2.fastq.gz \
              -S ${samples[ $SLURM_ARRAY_TASK_ID ]}.sam

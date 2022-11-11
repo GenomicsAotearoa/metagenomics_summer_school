@@ -6,10 +6,6 @@
         - [Objectives](#objectives)
         - [Bin dereplication using `DAS_Tool` - Creating input tables](#bin-dereplication-using-das_tool---creating-input-tables)
           - [Creating contig/bin tables - *MetaBAT*](#creating-contigbin-tables---metabat)
-              - [Command 1](#command-1)
-              - [Command 2](#command-2)
-              - [Command 3](#command-3)
-              - [Command 4](#command-4)
           - [Creating contig/bin tables - *MaxBin*](#creating-contigbin-tables---maxbin)
             - [Warning for unbinned contigs](#warning-for-unbinned-contigs)
         - [Bin dereplication using *DAS_Tool* - Running the tool](#bin-dereplication-using-das_tool---running-the-tool)
@@ -87,23 +83,25 @@ As we have previously seen, the `basename` command removes the path information 
 
 This next step uses piping between several commands to achieve the desired output.
 
-###### Command 1
+!!! info "Commands"
 
-The `grep` command searches the input file `bin_path` for lines containing the `>` character, which is the *fastA* demarcation for a sequence name.
+    **Command 1**
 
-###### Command 2
+    The `grep` command searches the input file `bin_path` for lines containing the `>` character, which is the *fastA* demarcation for a sequence name.
 
-The `sed` command replaces the `>` character with the empty character `''`, as we do not need this character in the final file.
+    **Command 2**
 
-###### Command 3
+    The `sed` command replaces the `>` character with the empty character `''`, as we do not need this character in the final file.
 
-We now use `sed` again, this time to replace the `$` character. In many command line tools and software environments (including `R` and `python`) the characters `^` and `$` are used as shortcuts for the beginning and ending of a line, respectively. By using the character in this way, we are telling `sed` to replace the end-of-line with the text `\t${bin_name}`. `sed` will parse this text to mean the tab character followed by the content of the `bin_name` variable. The nature of `sed` is that it will automatically insert a new end-of-line.
+    **Command 3**
 
-###### Command 4
+    We now use `sed` again, this time to replace the `$` character. In many command line tools and software environments (including `R` and `python`) the characters `^` and `$` are used as shortcuts for the beginning and ending of a line, respectively. By using the character in this way, we are telling `sed` to replace the end-of-line with the text `\t${bin_name}`. `sed` will parse this text to mean the tab character followed by the content of the `bin_name` variable. The nature of `sed` is that it will automatically insert a new end-of-line.
 
-This is similar to the stdout redirection we have previously used, but the double use of the `>` character means that we are appending our text to the end of the file `metabat_associations.txt`. Because we are looping through several files in this exercise, if we were to use the single `>` character then on each new *fastA* file read, the content of `metabat_associations.txt` would be replaced.
+    **Command 4**
 
-It is important to note that because we are **_appending_** to the file, not **_replacing_** the contents, if you make a mistake in the command and need to re-run it, you will need to explicitly delete the `metabat_associations.txt` file using `rm`, otherwise your new (correct) output will be pasted to the end of your old (incorrect) output.
+    This is similar to the stdout redirection we have previously used, but the double use of the `>` character means that we are appending our text to the end of the file `metabat_associations.txt`. Because we are looping through several files in this exercise, if we were to use the single `>` character then on each new *fastA* file read, the content of `metabat_associations.txt` would be replaced.
+
+    It is important to note that because we are **_appending_** to the file, not **_replacing_** the contents, if you make a mistake in the command and need to re-run it, you will need to explicitly delete the `metabat_associations.txt` file using `rm`, otherwise your new (correct) output will be pasted to the end of your old (incorrect) output.
 
 #### Creating contig/bin tables - *MaxBin*
 

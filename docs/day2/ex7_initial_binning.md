@@ -81,7 +81,7 @@ less metabat.txt
 cut -f1,4,6,8,10 metabat.txt > maxbin.txt
 ```
 
-Generally speaking, this pattern of first, fourth, then [n + 2]<sup>th</sup> should work for any number of mapping files, although we always reocmmend that you check and confirm before you continue.
+Generally speaking, this pattern of first, fourth, then [n + 2]<sup>th</sup> should work for any number of mapping files, although we always recommend that you check and confirm before you continue.
 
 This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we want to direct the output files into a folder, we must create that folder in advance.
 
@@ -91,7 +91,8 @@ Create a new script to submit as a slurm job
 nano maxbin_clustering.sl
 ```
 
-Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
+!!! warning "Warning"
+    Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
 
 ```bash
 #!/bin/bash -e
@@ -123,7 +124,8 @@ Submit the script as a slurm job:
 ```bash
 sbatch maxbin_clustering.sl
 ```
+!!! note "Note"
 
-This will take a bit longer to complete, as `MaxBin` uses gene prediction tools to identify the ideal contigs to use as the start of each bin.
+    This will take a bit longer to complete, as `MaxBin` uses gene prediction tools to identify the ideal contigs to use as the start of each bin.
 
 ---
