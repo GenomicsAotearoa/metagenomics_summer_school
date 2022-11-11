@@ -234,7 +234,7 @@ To save your file, use `Ctrl + O` to save the file, then `Ctrl + X` to exit `nan
     |Slurm parameter|Function|
     |:---|:---|
     |**#!/bin/bash -e**|Header for the file, letting NeSI know how to interpret the following commands. The `-e` flag means that the slurm run will halt at the first failed command (rather than pushing through and trying to execute subsequent ones)|
-    |**--account**|The name of the project account to run the run under. You are provided with this when you create a project on NeSI|
+    |**--account**|The name of the project account to run the job under. You are provided with this when you create a project on NeSI|
     |**--job-name**|The name of the job, to display when using the `squeue` command|
     |**--res**|This is a parameter that we need due to a system reservation for this workshop. For your own work, ignore this flag|
     |**--time**|Maximum run time for the job before it is killed|
@@ -283,7 +283,7 @@ squeue --me
 8744675  dwai012 ga02676 spades_assembly  PD Priority  2019-11-29T16:37:43       0:00 00:30:00      1   16
 ```
 
-We can see here that the job has not yet begun, as NeSI is waiting for resources to come available. At the stage the `START_TIME` is an estimation of when the resources are expected to become available. When they do, the output will change to
+We can see here that the job has not yet begun, as NeSI is waiting for resources to come available. At this stage the `START_TIME` is an estimation of when the resources are expected to become available. When they do, the output will change to
 
 ```bash
   JOBID     USER ACCOUNT            NAME  ST REASON    START_TIME                TIME TIME_LEFT NODES CPUS
