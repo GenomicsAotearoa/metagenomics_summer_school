@@ -165,15 +165,8 @@ As usual, we will break down the parameters:
 |**-c ...**|Path to the assembly used in binning|
 |**-o ..**|Output directory for all files|
 
-When `DAS_Tool` runs, you might see a dump of text looking like
 
-```bash
-which: no diamond in (...)
-/opt/nesi/CS400_centos7_bdw/DAS_Tool/1.1.1-gimkl-2018b-R-3.6.1/DAS_Tool: line 237: diamond: command not found
 
-which: no usearch in (...)
-/opt/nesi/CS400_centos7_bdw/DAS_Tool/1.1.1-gimkl-2018b-R-3.6.1/DAS_Tool: line 241: usearch: command not found
-```
 
 This is not a problem - `DAS_Tool` can use either `BLAST`, `diamond`, or `usearch` for performing its alignment operations. Regardless of which one you specify, it will search to see which ones are available. In this case, it is telling us that `diamond` and `usearch` cannot be found, which doesn't really matter because we have specified `BLAST` as our search engine.
 
@@ -212,7 +205,8 @@ Create a new script
 nano bin_eval_checkm.sl
 ```
 
-Paste in the following script (replacing `<YOUR FOLDER>` with your own folder).
+!!! warning "Warning"
+    Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
 
 ```bash
 #!/bin/bash
