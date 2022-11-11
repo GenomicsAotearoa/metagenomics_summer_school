@@ -184,7 +184,7 @@ metaquast.py spades_assembly/spades_assembly.fna spades_assembly/spades_assembly
              --references-list ref_genomes.txt --max-ref-number 21 -t 10
 ```
 
-By now, you should be getting familiar enough with the console to understand what most of the parameters here refer to. The one parameter that needs explanation is the `--max-ref-number` flag, which we have set to 21. This caps the maximum number of reference genomes to be downloaded from NCBI which we do in the interest of speed. Since there are 21 names in the file `ref_genomes.txt` (10 prokaryote species and 11 viruses), `MetaQUAST` will download one of each. If we increase the number we will start to get multiple references per name provided which is usually desirable.
+By now, you should be getting familiar enough with the console to understand what most of the parameters here refer to. The one parameter that needs explanation is the `--max-ref-number` flag, which we have set to 21. This caps the maximum number of reference genomes to be downloaded from NCBI which we do in the interest of speed. Since there are 21 taxa in the file `ref_genomes.txt` (10 prokaryote species and 11 viruses), `MetaQUAST` will download one reference genome for each. If we increase  the `--max-ref-number` flag we will start to get multiple reference genomes per taxa provided which is usually desirable.
 
 We will now look at a few interesting assembly comparisons.
 
