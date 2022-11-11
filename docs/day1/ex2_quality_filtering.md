@@ -44,7 +44,7 @@ fastqc mock_R1.good.fastq.gz mock_R2.good.fastq.gz
 
 #### Viewing the outputs from *FastQC*
 
-`FastQC` generates output reports in `.html` files that can be viewed in a standard web browser. Unfortunately, these can not be viewed from within the standard NeSI terminal environment. In day-to-day usage, it will be necessary to download the resulting files using `scp` and view them on your computer. 
+`FastQC` generates output reports in `.html` files that can be viewed in a standard web browser. 
 
 Fortunately, if you're currently using the terminal within `Jupyter hub` for today's session, we can open the `.html` files directly from here:
 
@@ -270,13 +270,13 @@ gdown https://drive.google.com/uc?id=0B3llHR93L14wd0pSSnFULUlhcUk
 
 #### Indexing the reference genome and read mapping with *BBMap*
 
-We will cover more about read mapping in [later exercises](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex6_initial_binning.md). For now, it is important to know that it is first necessary to build an index of the reference using the read mapping tool of choice. Here, we will first build a `BBMap` index, and then use `BBMap` to map the quality-filtered reads to that index, ultimately retaining only those reads that do *not* map to the index.
+We will cover more about read mapping in [later exercises](https://genomicsaotearoa.github.io/metagenomics_summer_school/day2/ex6_initial_binning/). For now, it is important to know that it is first necessary to build an index of the reference using the read mapping tool of choice. Here, we will first build a `BBMap` index, and then use `BBMap` to map the quality-filtered reads to that index, ultimately retaining only those reads that do *not* map to the index.
 
 Build index reference via `BBMap`. We will do this by submitting the job via slurm. 
 
 !!! note "Note"
 
-    See [Preparing an assembly job for slurm](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day1/ex3_assembly.md#preparing-an-assembly-job-for-slurm) for more information about how to submit a job via slurm.*
+    See [Preparing an assembly job for slurm](https://genomicsaotearoa.github.io/metagenomics_summer_school/day1/ex3_assembly/) for more information about how to submit a job via slurm.*
 
 !!! warning "Warning"
     Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.

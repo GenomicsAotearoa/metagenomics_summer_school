@@ -427,7 +427,6 @@ An HPC system might have thousands of nodes and thousands of users. How do we de
     | `salloc`       | Submit interactive jobs to the scheduler                                                             |
 
 
-Copy the contents of the `BLAST/` folder to your current directory, using the following command
 
 
 ## Anatomy of a slurm script and submitting first slurm job 🧐
@@ -460,6 +459,7 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
 
 
 ??? question "Exercise"
+    Copy the contents of the `BLAST/` folder to your current directory, using the following command
 
     ```bash
     cp -r /nesi/nobackup/nesi02659/SLURM/BLAST ./
