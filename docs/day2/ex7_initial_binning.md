@@ -1,4 +1,4 @@
-# Introduction to binning
+# Binning in reality
 
 !!! info "Objectives"
 
