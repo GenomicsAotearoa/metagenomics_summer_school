@@ -76,6 +76,9 @@ Map quality filtered reads to the index using `Bowtie2`.
 
 Example slurm script:
 
+!!! warning "Warning"
+    Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
+
 ```bash
 #!/bin/bash -e
 
