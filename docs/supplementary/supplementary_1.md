@@ -1,6 +1,5 @@
-<center>
 # NeSI Setup
-</center>
+
 
 ??? info "S.1.1 : NeSI Mahuika Jupyter login"
 
