@@ -25,10 +25,14 @@
 
      <br>![image](../theme_images/new_Set2FA.png){width="1000"}
 
-??? info "S.1.4 : _Reset_ NeSI HPC Password"
+??? danger "S.1.4 : _Reset_ NeSI HPC Password"
 
      1. Log into [mynesi portal](https://my.nesi.org.nz) with your Institutional credentials (OR Tuakiri Virtual Home) and Reset your **NeSI HPC Second factor** as below
 
      <br>![image](../theme_images/newResetPassword.png){width="1000"}
 
-??? info "S.1.5 : _Reset_ NeSI HPC Second Factor"
+??? danger "S.1.5 : _Reset_ NeSI HPC Second Factor"
+
+     1. Log into [mynesi portal](https://my.nesi.org.nz) with your Institutional credentials (OR Tuakiri Virtual Home) and Reset your **NeSI HPC Second factor** as below
+
+     <br>![image](../theme_images/2faReset.png){width="1000"}
