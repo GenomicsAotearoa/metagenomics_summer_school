@@ -20,3 +20,7 @@
      <br>![image](../theme_images/SetPassword.png){width="1200"}
 
 ??? info "S.1.3 : Set NeSI HPC Second Factor"
+
+     1. Log into [mynesi portal](https://my.nesi.org.nz) with your Institutional credentials (OR Tuakiri Virtual Home) and set your **NeSI HPC Second factor** as below
+
+     <br>![image](../theme_images/new_Set2FA.png){width="1000"}
