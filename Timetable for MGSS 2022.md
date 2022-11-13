@@ -11,8 +11,8 @@
 |11:10 am – 11:40 pm|**TALK:** The metagenomics decision tree|Kim Handley|
 |11:40 am – 12:00 pm|**DISCUSSION** Guided discussions on approaches to metagenomics analyses|Kim Handley|
 |12:00 pm – 12:45 pm|**Break for lunch** (*lunch not provided*)||
-|12:45 pm – 1:45 pm|**TALK:** Quality filtering raw reads<br>**TASK:** Visualisation with *FastQC*<br>**TASK:** Read trimming and adapter removal<br>**TASK:** Diagnosing poor libraries<br>**TALK:** Common issues and best practice<br>**OPTIONAL TASK:** Filtering out host DNA|Annie West|
-|1:45 pm – 3:00 pm|**TASK:** Run IDBA_UD assembly<br>**TALK:** Assembly<br>- Choice of assemblers<br>- Considerations for parameters, and when to stop!<br>**TASK:** Exploring assembler options<br>**TASK:** Submitting jobs to NeSI via slurm<br>**TASK:** Run SPAdes assembly<br>**TASK (*Optional*):** Submitting variant assemblies to NeSI|Kim Handley|
+|12:45 pm – 1:45 pm|**TALK:** Quality filtering raw reads<br>**TASK:** Visualisation with *FastQC*<br>**TASK:** Read trimming and adapter removal<br>**TASK:** Diagnosing poor libraries<br>**TALK:** Common issues and best practice<br>**TASK (*Optional*):** Filtering out host DNA|Annie West|
+|1:45 pm – 3:00 pm|**TALK:** Assembly<br>- Choice of assemblers<br>- Considerations for parameters, and when to stop!<br>**TASK:** Run IDBA_UD assembly<br>**TASK:** Exploring assembler options<br>**TASK:** Submitting jobs to NeSI via slurm<br>**TASK:** Run SPAdes assembly<br>**TASK (*Optional*):** Submitting variant assemblies to NeSI|Kim Handley|
 |3:00 pm – 3:20 pm|**Afternoon tea break** (*Tea, coffee, and snacks provided*)||
 |3:20 pm – 5:00 pm|**TALK:** Future considerations - co-assembly vs. single assemblies<br>**TASK:** Assembly evaluation<br>**TASK:** Short contig removal|Jian Sheng Boey<br> Kim Handley|
 
