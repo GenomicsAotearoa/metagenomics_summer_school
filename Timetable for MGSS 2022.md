@@ -32,14 +32,14 @@
 |2:00 pm - 2:30 pm|**Binning (part 4)**<br>**TALK:** Discuss additional dereplication strategies, such as *dRep*<br>**TALK:** How to work with viral and eukaryotic bins<br>**TALK:** Dealing with organisms which possess minimal genomes<br>|Jian Sheng Boey<br> Annie West|
 |2:30 pm - 3:00 pm|**TALK:** Bin refinement<br>- Refinement strategies| |
 |3:00 pm – 3:20 pm|**Afternoon tea break** (*Tea, coffee, and snacks provided*)||
-|3:20 pm – 5:00 pm|**TASK:** Working with *VizBin*<br>**TASK:** Submit *VIBRANT* job|Jian Sheng Boey<br> Annie West|
+|3:20 pm – 5:00 pm|**TASK:** Working with *VizBin*<br>|Jian Sheng Boey<br> Annie West|
 
 ### Day 3 - 1<sup>st</sup> December 2022
 
 |Time|Event|Session leader|
 |:---|:---|:---|
 |9:00 am – 9:30 am|**Introduction**<br>- Overview of yesterday, questions<br>- Overview of today|Jian Sheng Boey|
-|9:30 am – 10:30 am|**TASK:** Identifying viral contigs (*VIBRANT*)<br>**RECORDED PRESENTATION:** Horizontal gene transfer in groundwater Patescibacteria<br>**TALK:** Identifying viruses from metagenomic data<br>**TASK:** QC of viral contigs (*CheckV*)<br>**TASK:** Coverage calculation (*bowtie*)<br>**TASK:** Taxonomic classification (Bin taxonomy with *GTDB-TK*; viral taxonomy predictions with *vConTACT2*)|<br>Emilie Gios<br>Jian Sheng Boey<br>Annie West<br><br>David Waite|
+|9:30 am – 10:30 am|**RECORDED PRESENTATION:** Horizontal gene transfer in groundwater Patescibacteria<br>**TASK:** Identifying viral contigs (*VIBRANT*)<br>**TALK:** Identifying viruses from metagenomic data<br>**TASK:** QC of viral contigs (*CheckV*)<br>**TASK:** Coverage calculation (*bowtie*)<br>**TASK:** Taxonomic classification (Bin taxonomy with *GTDB-TK*; viral taxonomy predictions with *vConTACT2*)|<br>Emilie Gios<br>Jian Sheng Boey<br>Annie West<br><br>David Waite|
 |10:30 am – 10:50 am|**Morning tea break** (*Tea, coffee, and snacks provided*)||
 |10:50 am – 11:30 am|**TALK:** Gene prediction, using *prodigal*, and other tools (*RNAmer*, *Aragorn*, etc)<br>**TASK:** Predict open reading frames and protein sequences|David Waite|
 |11:30 am – 12:00 pm|**TALK:** Gene annotation (part 1)<br>**TASK:** Gene annotation using *diamond* and *hmmer*<br>**Discussion:** Evaluating the quality of gene assignment<br>**Discussion:** Differences in taxonomies (*GTDB*, *NCBI* etc)|Jian Sheng Boey<br>Cesar Facimoto|
