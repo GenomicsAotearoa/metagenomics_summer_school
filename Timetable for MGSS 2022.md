@@ -29,7 +29,8 @@
 |11:20 am – 12:00 pm|**TALK:** Overview of binning history (*continued*)<br>- Key parameters and strategies for binning|Kim Handley|
 |12:00 pm – 12:45 pm|**Break for lunch** (*lunch not provided*)||
 |12:45 pm – 2:00 pm|**Binning (part 3)**<br>**TASK:** Bin dereplication via *DAS_Tool*<br>**TASK:** Evaluating bins using *CheckM*|Cesar Facimoto|
-|2:00 pm - 3:00 pm|**Binning (part 4) TALK:**<br>- Discuss additional dereplication strategies, such as *dRep*<br>- How to work with viral and eukaryotic bins<br>- Dealing with organisms which possess minimal genomes<br>**TALK:** Bin refinement<br>- Refinement strategies|Jian Sheng Boey<br> Annie West|
+|2:00 pm - 2:30 pm|**Binning (part 4)**<br>**TALK:**Discuss additional dereplication strategies, such as *dRep*<br>**TALK:**How to work with viral and eukaryotic bins<br>**TALK:**Dealing with organisms which possess minimal genomes<br>|Jian Sheng Boey<br> Annie West|
+|2:30 pm - 3:00 pm|**TALK:** Bin refinement<br>- Refinement strategies| |
 |3:00 pm – 3:20 pm|**Afternoon tea break** (*Tea, coffee, and snacks provided*)||
 |3:20 pm – 5:00 pm|**TALK:** Bin refinement<br>- Refinement strategies (cont) - *VizBin* and *ESOMana*<br>**TASK:** Working with *VizBin*<br>**TASK:** Submit *VIBRANT* job|Jian Sheng Boey<br> Annie West|
 
