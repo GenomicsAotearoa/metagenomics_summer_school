@@ -32,7 +32,7 @@
 |2:00 pm - 2:30 pm|**Binning (part 4)**<br>**TALK:** Discuss additional dereplication strategies, such as *dRep*<br>**TALK:** How to work with viral and eukaryotic bins<br>**TALK:** Dealing with organisms which possess minimal genomes<br>|Jian Sheng Boey<br> Annie West|
 |2:30 pm - 3:00 pm|**TALK:** Bin refinement<br>- Refinement strategies| |
 |3:00 pm – 3:20 pm|**Afternoon tea break** (*Tea, coffee, and snacks provided*)||
-|3:20 pm – 5:00 pm|**TALK:** Bin refinement<br>- Refinement strategies (cont) - *VizBin* and *ESOMana*<br>**TASK:** Working with *VizBin*<br>**TASK:** Submit *VIBRANT* job|Jian Sheng Boey<br> Annie West|
+|3:20 pm – 5:00 pm|**TASK:** Working with *VizBin*<br>**TASK:** Submit *VIBRANT* job|Jian Sheng Boey<br> Annie West|
 
 ### Day 3 - 1<sup>st</sup> December 2022
 
