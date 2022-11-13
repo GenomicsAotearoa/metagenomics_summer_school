@@ -39,16 +39,17 @@
 |Time|Event|Session leader|
 |:---|:---|:---|
 |9:00 am – 9:20 am|**Introduction**<br>- Overview of yesterday, questions<br>- Overview of today|Jian Sheng Boey|
-|9:20 am – 10:30 am|**TALK:** Identifying viruses from metagenomic data<br>**TASK:** Identifying viral contigs (*VIBRANT*)<br>**RECORDED PRESENTATION:** Horizontal gene transfer in groundwater Patescibacteria (Emilie Gios)<br>**TASK:** QC of viral contigs (*CheckV*)<br>**TASK:** Coverage calculation (*bowtie2*)<br>**TASK:** Taxonomic classification (viral taxonomy predictions with *vConTACT2*)|Jian Sheng Boey<br>Annie West|
+|9:20 am – 10:30 am|**TALK:** Identifying viruses from metagenomic data<br>**TASK:** Identifying viral contigs (*VIBRANT*)<br>**RECORDED PRESENTATION:** Horizontal gene transfer in groundwater Patescibacteria (Emilie Gios)<br>**TASK:** QC of viral contigs (*CheckV*)<br>**TASK:** Coverage calculation (*bowtie2*)<br>**TASK:** Taxonomic classification of viruses using vContact2|Jian Sheng Boey<br>Annie West<br><br>|
 |10:30 am – 10:50 am|**Morning tea break** (*Tea, coffee, and snacks provided*)||
-|10:50 am – 11:30 am|**TALK:** Gene prediction, using *prodigal*, and other tools (*RNAmer*, *Aragorn*, etc)<br>**TASK:** Predict open reading frames and protein sequences|David Waite|
+|10:50 am – 11:30 am|**TALK:** Gene prediction, using *prodigal*, and other tools (*RNAmer*, *Aragorn*, etc)<br>**TASK:** Predict open reading frames and protein sequences|Jian Sheng Boey <br> Cesar Facimoto|
 |11:30 am – 12:00 pm|**TALK:** Gene annotation<br>**TASK:** Gene annotation using *diamond* and *hmmer*<br>**Discussion:** Evaluating the quality of gene assignment<br>|Jian Sheng Boey<br>Cesar Facimoto|
 |12:00 pm – 12:45 pm|**Break for lunch** (*lunch not provided*)||
-|12:45 pm – 2:00 pm|**TALK:** Using online resources (e.g. *KEGG, BioCyc, MetaCyc, HydDB, PSORT*)<br>**TASK:** View KEGG annotation in KEGG website|Jian Sheng Boey<br>Cesar Facimoto|
-|2:00 pm – 3:00 pm|**TALK:** Bin taxonomic classification<br>- Bin and species determination<br>**TASK:** View phylogenetic trait distribution (*ANNOTREE*)|David Waite|
+|12:45 pm – 2:00 pm|**TALK:** Gene annotation (part 2)<br>- Using online resources (e.g. *KEGG, BioCyc, MetaCyc, HydDB, PSORT*)<br>**TASK:** View KEGG annotation in KEGG website|Jian Sheng Boey<br>Cesar Facimoto|
+|2:00 pm – 3:00 pm|**TALK:** Bin taxonomic classification<br>- Bin and species determination<br>**TASK:** Taxonomic classification using GTDB-Tk<br>**TASK:** View phylogenetic trait distribution (*ANNOTREE*)|David Waite|
 |3:00 pm – 3:20 pm|**Afternoon tea break**||
 |3:20 pm – 4:30 pm|**TASK:** MAG annotation with *DRAM*<br>**TASK:** Introduce group project goals<br>**TASK:** Dividing into working groups / get a group name<br>**TASK:** Select a goal from your project|Annie West<br>Kim Handley|
 |4:30 pm – 5:00 pm|**End of day wrap up**|Kim Handley|
+
 
 ### Day 4 - 2<sup>nd</sup> December 2022
 
