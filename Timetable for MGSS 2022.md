@@ -39,7 +39,7 @@
 |Time|Event|Session leader|
 |:---|:---|:---|
 |9:00 am – 9:20 am|**Introduction**<br>- Overview of yesterday, questions<br>- Overview of today|Jian Sheng Boey|
-|9:20 am – 10:30 am|**TALK:** Identifying viruses from metagenomic data<br>**TASK:** Identifying viral contigs (*VIBRANT*)<br>**RECORDED PRESENTATION:** Horizontal gene transfer in groundwater Patescibacteria (Emilie Gios)<br>**TASK:** QC of viral contigs (*CheckV*)<br>**TASK:** Coverage calculation (*bowtie2*)<br>**TASK:** Taxonomic classification (Bin taxonomy with *GTDB-Tk*; viral taxonomy predictions with *vConTACT2*)|Jian Sheng Boey<br>Annie West<br><br>David Waite|
+|9:20 am – 10:30 am|**TALK:** Identifying viruses from metagenomic data<br>**TASK:** Identifying viral contigs (*VIBRANT*)<br>**RECORDED PRESENTATION:** Horizontal gene transfer in groundwater Patescibacteria (Emilie Gios)<br>**TASK:** QC of viral contigs (*CheckV*)<br>**TASK:** Coverage calculation (*bowtie2*)<br>**TASK:** Taxonomic classification (viral taxonomy predictions with *vConTACT2*)|Jian Sheng Boey<br>Annie West|
 |10:30 am – 10:50 am|**Morning tea break** (*Tea, coffee, and snacks provided*)||
 |10:50 am – 11:30 am|**TALK:** Gene prediction, using *prodigal*, and other tools (*RNAmer*, *Aragorn*, etc)<br>**TASK:** Predict open reading frames and protein sequences|David Waite|
 |11:30 am – 12:00 pm|**TALK:** Gene annotation<br>**TASK:** Gene annotation using *diamond* and *hmmer*<br>**Discussion:** Evaluating the quality of gene assignment<br>|Jian Sheng Boey<br>Cesar Facimoto|
