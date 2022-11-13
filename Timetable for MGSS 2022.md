@@ -42,9 +42,9 @@
 |9:20 am – 10:30 am|**TALK:** Identifying viruses from metagenomic data<br>**TASK:** Identifying viral contigs (*VIBRANT*)<br>**RECORDED PRESENTATION:** Horizontal gene transfer in groundwater Patescibacteria (Emilie Gios)<br>**TASK:** QC of viral contigs (*CheckV*)<br>**TASK:** Coverage calculation (*bowtie2*)<br>**TASK:** Taxonomic classification (Bin taxonomy with *GTDB-Tk*; viral taxonomy predictions with *vConTACT2*)|Jian Sheng Boey<br>Annie West<br><br>David Waite|
 |10:30 am – 10:50 am|**Morning tea break** (*Tea, coffee, and snacks provided*)||
 |10:50 am – 11:30 am|**TALK:** Gene prediction, using *prodigal*, and other tools (*RNAmer*, *Aragorn*, etc)<br>**TASK:** Predict open reading frames and protein sequences|David Waite|
-|11:30 am – 12:00 pm|**TALK:** Gene annotation (part 1)<br>**TASK:** Gene annotation using *diamond* and *hmmer*<br>**Discussion:** Evaluating the quality of gene assignment<br>**Discussion:** Differences in taxonomies (*GTDB*, *NCBI* etc)|Jian Sheng Boey<br>Cesar Facimoto|
+|11:30 am – 12:00 pm|**TALK:** Gene annotation<br>**TASK:** Gene annotation using *diamond* and *hmmer*<br>**Discussion:** Evaluating the quality of gene assignment<br>|Jian Sheng Boey<br>Cesar Facimoto|
 |12:00 pm – 12:45 pm|**Break for lunch** (*lunch not provided*)||
-|12:45 pm – 2:00 pm|**TALK:** Gene annotation (part 2)<br>- Using online resources (e.g. *KEGG, BioCyc, MetaCyc, HydDB, PSORT*)<br>**TASK:** View KEGG annotation in KEGG website|Jian Sheng Boey<br>Cesar Facimoto|
+|12:45 pm – 2:00 pm|**TALK:** Using online resources (e.g. *KEGG, BioCyc, MetaCyc, HydDB, PSORT*)<br>**TASK:** View KEGG annotation in KEGG website|Jian Sheng Boey<br>Cesar Facimoto|
 |2:00 pm – 3:00 pm|**TALK:** Bin taxonomic classification<br>- Bin and species determination<br>**TASK:** View phylogenetic trait distribution (*ANNOTREE*)|David Waite|
 |3:00 pm – 3:20 pm|**Afternoon tea break**||
 |3:20 pm – 4:30 pm|**TASK:** MAG annotation with *DRAM*<br>**TASK:** Introduce group project goals<br>**TASK:** Dividing into working groups / get a group name<br>**TASK:** Select a goal from your project|Annie West<br>Kim Handley|
