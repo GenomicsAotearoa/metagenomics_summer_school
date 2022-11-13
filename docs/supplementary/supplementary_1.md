@@ -1,4 +1,6 @@
-<h1>NeSI Setup</h1>
+<center>
+# NeSI Setup
+</center>
 
 ??? info "S.1.1 : NeSI Mahuika Jupyter login"
 
