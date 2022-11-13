@@ -56,10 +56,10 @@
 |Time|Event|Session leader|
 |:---|:---|:---|
 |9:00 am – 9:15 am|**Introduction**<br>- Overview of yesterday, questions<br>- Overview of today|Jian Sheng Boey|
-|9:15 am – 10:00 am|**TALK:** *DRAM* results overview<br>**TASK:** Explore *DRAM* results|Annie West|
-|10:00 am – 10:30 am|**Presentation of data**<br>**TALK:** Visualising findings (metabolism maps, heatmaps, cell schematics, gene trees, gene maps)<br>**TASK:** Coverage heatmap / Ordination |Kim Handley|
+|9:15 am – 10:00 am|**Presentation of data**<br>**TALK:** *DRAM* results overview<br>**TASK:** Explore *DRAM* results|Annie West|
+|10:00 am – 10:30 am|**Presentation of data (genome distributions)**<br>**TALK:** Visualising findings (metabolism maps, heatmaps, cell schematics, gene trees, gene maps)<br>**TASK:** Coverage heatmap / Ordination |Kim Handley|
 |10:30 am – 10:50 am|**Morning tea break** (*Tea, coffee, and snacks provided*)<br>**TASK:** Workshop survey||
-|10:50 am – 12:00 pm|**Presentation of data (continued)**<br>**TALK:** Visualising findings (metabolism maps, heatmaps, cell schematics, gene trees, gene maps)<br>**TASK:** KEGG metabolic pathways<br>**TASK:** Gene synteny<br>**TASK:** CAZy heatmaps (*Optional*)|Cesar Facimoto<br>Jian Sheng Boey|
+|10:50 am – 12:00 pm|**Presentation of data (metabolism)**<br>**TALK:** Visualising findings (metabolism maps, heatmaps, cell schematics, gene trees, gene maps)<br>**TASK:** KEGG metabolic pathways<br>**TASK:** Gene synteny<br>**TASK:** CAZy heatmaps (*Optional*)|Cesar Facimoto<br>Jian Sheng Boey|
 |12:00 pm – 12:45 pm|**Break for lunch** (*lunch not provided*)||
 |12:45 pm – 2:30 pm|**TASK:** Analyse data for group work<br>**TASK:** Prepare group presentation|Kim Handley|
 |2:30 pm – 3:00 pm|**Present and discuss findings**<br>**TASK:** Each group to give an informal presentation of their data|Kim Handley|
