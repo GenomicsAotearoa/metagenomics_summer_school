@@ -4,24 +4,25 @@
 
     * [Gene prediction and annotation with `DRAM`](#gene-prediction-and-annotation-with-dram-distilled-and-refined-annotation-of-metabolism)
     * [Annotation of the MAGs with `DRAM`](#annotation-of-the-mags-with-dram)
-    * [Calculate per-sample coverage stats for prokaryotic bins and viral contigs](#calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins-and-viral-contigs)
+    * [Calculate per-sample coverage stats for prokaryotic bins](#calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins)
+    * [Calculate per-sample coverage stats for viral contigs](#calculate-per-sample-coverage-stats-of-viral-contigs)
     * [Select initial goal](#select-initial-goal)
 
 ---
 
 ### Gene prediction and annotation with *DRAM* (Distilled and Refined Annotation of Metabolism) 
 
-[DRAM](http://dx.doi.org/10.1093/nar/gkaa621) is a tool designed to profile microbial (meta)genomes for metabolisms known to impact ecosystem functions across biomes. `DRAM` annotates MAGs and viral contigs using KEGG (if provided by user), UniRef90, PFAM, CAZy, dbCAN, RefSeq viral, VOGDB (Virus Orthologous Groups), and the MEROPS peptidase database. It is also highly customizable to other custom user databases. 
+[DRAM](http://dx.doi.org/10.1093/nar/gkaa621) is a tool designed to profile microbial (meta)genomes for metabolisms known to impact ecosystem functions across biomes. `DRAM` annotates MAGs and viral contigs using KEGG (if provided by user), UniRef90, PFAM, CAZy, dbCAN, RefSeq viral, VOGDB (Virus Orthologous Groups), and the MEROPS peptidase database. It is also highly customizable to other custom user databases.
 
 `DRAM` only uses assembly-derived *fastA* files input by the user. These input files may come from unbinned data (metagenome contig or scaffold files) or genome-resolved data from one or many organisms (isolate genomes, single-amplified genome (SAGs), MAGs).
 
-`DRAM` is run in two stages: annotation and distillation. 
+`DRAM` is run in two stages: annotation and distillation.
 
 ![](https://github.com/mcastudillo/MAG-annotation-with-DRAM/blob/main/figures/DRAM_workflow.png)
 
 #### Annotation
 
-The first step in `DRAM` is to annotate genes by assigning database identifiers to genes. Short contigs (default < 2,500 bp) are initially removed. Then, `Prodigal` is used to detect open reading frames (ORFs) and to predict their amino acid sequences. Next, `DRAM` searches all amino acid sequences against multiple databases, providing a single *Raw* output. When gene annotation is complete, all results are merged in a single tab-delimited annotation table, including the best hit for each database for user comparison. 
+The first step in `DRAM` is to annotate genes by assigning database identifiers to genes. Short contigs (default < 2,500 bp) are initially removed. Then, `Prodigal` is used to detect open reading frames (ORFs) and to predict their amino acid sequences. Next, `DRAM` searches all amino acid sequences against multiple databases, providing a single *Raw* output. When gene annotation is complete, all results are merged in a single tab-delimited annotation table, including the best hit for each database for user comparison.
 
 #### Distillation 
 
@@ -158,7 +159,7 @@ sbatch dram_annnotation.sl
 The program will take 4-4.5 hours to run, so we will submit the jobs and inspect the results tomorrow morning.
 
 ---
-### Calculate per-sample coverage stats of the filtered prokaryote bins and viral contigs
+### Calculate per-sample coverage stats of the filtered prokaryote bins
 
 One of the first questions we often ask when studying the ecology of a system is: What are the pattens of abundance and distribution of taxa across the different samples? With bins of metagenome-assembled genome (MAG) data, we can investigate this by mapping the quality-filtered unassembled reads back to the refined bins to then generate coverage profiles. Genomes in higher abundance in a sample will contribute more genomic sequence to the metagenome, and so the average depth of sequencing coverage for each of the different genomes provides a proxy for abundance in each sample. 
 
