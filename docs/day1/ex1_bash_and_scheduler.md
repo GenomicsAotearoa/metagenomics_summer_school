@@ -280,25 +280,30 @@ sed '$d' animals.txt
 
 Loops are a common concept in most programming languages which allow us to execute commands repeatedly with ease. There are three basic loop constructs in `bash` scripting,
 
-* **for** - iterates over a list of items and performs the given set of commands
+!!! info ""
 
-```
-for item in [LIST]
-do
-    [COMMANDS]
-done
-```
-
-* **while** - Performs a given set of commands an unknown number of times as long as the given condition evaluates is true
-
-```
-while [CONDITION]
-do
-    [COMMANDS]
-done
-```
-
-* **until** - Execute a given set of commands as longs as the given condition evaluates to false
+    === "`for` "
+        
+        iterates over a list of items and performs the given set of commands
+        ```
+        for item in [LIST]
+        do
+            [COMMANDS]
+        done
+        ```
+    
+    === "`while`"
+    
+        Performs a given set of commands an unknown number of times as long as the given condition evaluates is true
+        ```
+        while [CONDITION]
+        do
+            [COMMANDS]
+        done
+        ```
+    
+    === "`until`"
+        Execute a given set of commands as longs as the given condition evaluates to false
 
 For most of our uses, a `for loop` is sufficient for our needs, so that is what we will be focusing on for this exercise.
 
