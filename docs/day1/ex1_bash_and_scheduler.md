@@ -16,7 +16,10 @@
 
 ---
 
-!!! pied-piper "Quick recap "
+!!! tip  "Quick recap"
+    This lesson is a quick recap on basic/essential linux commands and will be covered during the pre-summer school sessions. We do recommend reviewing the material on our [Intermediate Shell for Bioinformatics](https://genomicsaotearoa.github.io/shell-for-bioinformatics/) or attending that workshop
+
+!!! pied-piper "Cheat sheet"
 
     === "Key commands for navigating around the filesystem are:"
 
