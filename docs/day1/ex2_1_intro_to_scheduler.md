@@ -1,4 +1,4 @@
-# Working with job scheduler
+# Introduction to HPC job scheduler
 
 <center>![image](../theme_images/scheduler_image.png){width="500"}</center>
 
