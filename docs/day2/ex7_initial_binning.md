@@ -1,4 +1,4 @@
-# Binning in reality
+# Binning (continued)
 
 !!! info "Objectives"
 
