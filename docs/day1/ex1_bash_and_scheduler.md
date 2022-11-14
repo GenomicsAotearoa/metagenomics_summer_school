@@ -16,6 +16,33 @@
 
 ---
 
+!!! example "Quick recap "
+
+    === "Key commands for navigating around the filesystem are:"
+
+        - `ls` - list the contents of the current directory
+        - `ls -l` - list the contents of the current directory in more detail
+        - `pwd` - show the location of the current directory
+        - `cd DIR` - change directory to directory DIR (DIR must be in your current directory - you should see its name when you type `ls` OR you need to specify either a full or relative path to DIR)
+        - `cd -` - change back to the last directory you were in
+        - `cd` (also `cd ~/`) - change to your home directory
+        - `cd ..` - change to the directory one level above
+    
+    ===  "Other useful commands:"
+
+        - `mv` - move files or directories
+        - `cp` - copy files or directories
+        - `rm` - delete files or directories
+        - `mkdir` - create a new directory
+        - `cat` - concatenate and print text files to screen
+        - `more` - show contents of text files on screen
+        - `less` - cooler version of `more`. Allows searching (use `/`)
+        - `tree` - tree view of directory structure
+        - `head` - view lines from the start of a file
+        - `tail` - view lines from the end of a file
+        - `grep` - find patterns within files
+
+
 ### Navigating your file system
 
 Log in to NeSI and find the current location by running the command `pwd` which stands for *print working directory*. At any given time, **current working directory** is current default directory.
@@ -427,7 +454,7 @@ An HPC system might have thousands of nodes and thousands of users. How do we de
     | `salloc`       | Submit interactive jobs to the scheduler                                                             |
 
 
-
+About
 
 ## Anatomy of a slurm script and submitting first slurm job 🧐
 
