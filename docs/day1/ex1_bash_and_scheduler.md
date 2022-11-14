@@ -291,6 +291,29 @@ Loops are a common concept in most programming languages which allow us to execu
             [COMMANDS]
         done
         ```
+        For most of our uses, a `for loop` is sufficient for our needs, so that is what we will be focusing on for this exercise.
+
+        Shell identifies the `for` command and repeats a block of commands once for each item in a list. The for loop will take each item in the list (in order, one after the other), assign that item as the value of a variable, execute the commands between the `do` and `done` keywords, then proceed to the next item in the list and repeat over. The value of a variable is accessed by placing the `$` character in front of the variable name. This will tell the interpreter to access the data stored within the variable, rather than the variable name. For example
+
+        ```bash
+        i="DAVE WAS HERE"
+
+        echo i
+        # i
+        echo $i
+        # DAVE WAS HERE
+        echo ${i}
+        # DAVE WAS HERE
+        ```
+
+        This prevents the shell interpreter from treating `i` as a string or a command. The process is known as *expanding* the variable. We will now write a for loop to print the first two lines of our *fastQ* files:
+
+        ```
+        for filename in *.fastq
+        do
+            head -n 2 ${filename}
+        done
+        ```
     
     === "`while`"
     
@@ -305,29 +328,8 @@ Loops are a common concept in most programming languages which allow us to execu
     === "`until`"
         Execute a given set of commands as longs as the given condition evaluates to false
 
-For most of our uses, a `for loop` is sufficient for our needs, so that is what we will be focusing on for this exercise.
 
-Shell identifies the `for` command and repeats a block of commands once for each item in a list. The for loop will take each item in the list (in order, one after the other), assign that item as the value of a variable, execute the commands between the `do` and `done` keywords, then proceed to the next item in the list and repeat over. The value of a variable is accessed by placing the `$` character in front of the variable name. This will tell the interpreter to access the data stored within the variable, rather than the variable name. For example
 
-```bash
-i="DAVE WAS HERE"
-
-echo i
-# i
-echo $i
-# DAVE WAS HERE
-echo ${i}
-# DAVE WAS HERE
-```
-
-This prevents the shell interpreter from treating `i` as a string or a command. The process is known as *expanding* the variable. We will now write a for loop to print the first two lines of our *fastQ* files:
-
-```
-for filename in *.fastq
-do
-    head -n 2 ${filename}
-done
-```
 
 Another useful command to be used with `for` loops is `basename` which strips directory information and suffixes from file names (i.e. prints the filename name with any leading directory components removed).
 
