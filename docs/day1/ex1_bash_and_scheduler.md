@@ -16,7 +16,7 @@
 
 ---
 
-!!! example "Quick recap "
+!!! pied-piper "Quick recap "
 
     === "Key commands for navigating around the filesystem are:"
 

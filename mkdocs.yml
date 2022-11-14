@@ -117,3 +117,6 @@ plugins:
       zoomable: true
   - search:
       lang: en
+
+extra_css:
+  - stylesheets/extra.css
