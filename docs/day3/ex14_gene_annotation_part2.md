@@ -1,9 +1,11 @@
-# Gene annotation (part 2)
+# Gene annotation (part 2) and coverage calculation
 
 !!! info "Objectives"
 
     * [Gene prediction and annotation with `DRAM`](#gene-prediction-and-annotation-with-dram-distilled-and-refined-annotation-of-metabolism)
     * [Annotation of the MAGs with `DRAM`](#annotation-of-the-mags-with-dram)
+    * [Calculate per-sample coverage stats for prokaryotic bins and viral contigs](#calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins-and-viral-contigs)
+    * [Select initial goal](#select-initial-goal)
 
 ---
 
@@ -153,7 +155,203 @@ Submit the job
 sbatch dram_annnotation.sl
 ```
 
-The program will take 4-4.5 hours to run, so we will submit the jobs and inspect the results tomorrow morning. 
+The program will take 4-4.5 hours to run, so we will submit the jobs and inspect the results tomorrow morning.
+
+---
+### Calculate per-sample coverage stats of the filtered prokaryote bins and viral contigs
+
+One of the first questions we often ask when studying the ecology of a system is: What are the pattens of abundance and distribution of taxa across the different samples? With bins of metagenome-assembled genome (MAG) data, we can investigate this by mapping the quality-filtered unassembled reads back to the refined bins to then generate coverage profiles. Genomes in higher abundance in a sample will contribute more genomic sequence to the metagenome, and so the average depth of sequencing coverage for each of the different genomes provides a proxy for abundance in each sample. 
+
+As per the preparation step at the start of the binning process, we can do this using read mapping tools such as `Bowtie`, `Bowtie2`, and `BBMap`. Here we will follow the same steps as before using `Bowtie2`, `samtools`, and `MetaBAT`'s `jgi_summarize_bam_contig_depths`, but this time inputting our refined filtered bins. 
+
+These exercises will take place in the `8.coverage_and_taxonomy/` folder. Our final filtered refined bins from the previous bin refinement exercise have been copied to the `8.coverage_and_taxonomy/filtered_bins/` folder.
+
+First, concatenate the bin data into a single file to then use to generate an index for the read mapper.
+
+```bash
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/
+
+cat filtered_bins/*.fna > filtered_bins.fna
+```
+
+Now build the index for `Bowtie2` using the concatenated bin data. We will also make a new directory `bin_coverage/` to store the index and read mapping output into.
+
+```bash
+mkdir -p bin_coverage/
+
+# Load Bowtie2
+module purge
+module load Bowtie2/2.4.5-GCC-11.3.0
+
+# Build Bowtie2 index
+bowtie2-build filtered_bins.fna bin_coverage/bw_bins
+```
+
+Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowtie2`, and sort and convert to `.bam` format via `samtools`.
+
+Create a new script
+
+```bash
+nano mapping_bins.sl
+```
+
+Paste in the script (replacing `<YOUR FOLDER>`)
+
+```bash 
+#!/bin/bash -e
+
+#SBATCH --account       nesi02659
+#SBATCH --res           SummerSchool
+#SBATCH --job-name      mapping_filtered_bins
+#SBATCH --time          00:05:00
+#SBATCH --mem           1GB
+#SBATCH --cpus-per-task 10
+#SBATCH --error         mapping_filtered_bins.err
+#SBATCH --output        mapping_filtered_bins.out
+
+module purge
+module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
+
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/
+
+# Step 1
+for i in sample1 sample2 sample3 sample4;
+do
+
+  # Step 2
+  bowtie2 --minins 200 --maxins 800 --threads 10 --sensitive \
+          -x bin_coverage/bw_bins \
+          -1 ../3.assembly/${i}_R1.fastq.gz -2 ../3.assembly/${i}_R2.fastq.gz \
+          -S bin_coverage/${i}.sam
+
+  # Step 3
+  samtools sort -@ 10 -o bin_coverage/${i}.bam bin_coverage/${i}.sam
+
+done
+```
+
+Submit the script
+
+```bash
+sbatch mapping_bins.sl
+```
+
+Finally, generate the per-sample coverage table for each contig in each bin via `MetaBAT`'s `jgi_summarize_bam_contig_depths`.
+
+```bash 
+# Load MetaBAT
+module load MetaBAT/2.15-GCC-11.3.0
+
+# calculate coverage table
+jgi_summarize_bam_contig_depths --outputDepth bins_cov_table.txt bin_coverage/sample*.bam
+```
+
+The coverage table will be generated as `bins_cov_table.txt`. As before, the key columns of interest are the `contigName`, and each `sample[1-n].bam` column.
+
+!!! note "Note"
+    Here we are generating a per-sample table of coverage values for **each contig** within each bin. To get per-sample coverage of **each bin** as a whole, we will need to generate average coverage values based on all contigs contained within each bin. We will do this in `R` during our data visualisation exercises on day 4 of the workshop, leveraging the fact that we added bin IDs to the sequence headers.*
+
+### Calculate per-sample coverage stats of viral contigs
+
+Here we can follow the same steps as outlined above for the bin data, but with a concatenated *fastA* file of viral contigs. 
+
+To quickly recap: 
+
+* In previous exercises, we first used `VIBRANT` to identify viral contigs from the assembled reads, generating a new fasta file of viral contigs: `spades_assembly.m1000.phages_combined.fna` 
+* We then processed this file using `CheckV` to generate quality information for each contig, and to further trim any retained (prokaryote) sequence on the ends of prophage contigs. 
+
+The resultant *fasta* files generated by `CheckV` (`proviruses.fna` and `viruses.fna`) have been copied to to the `8.coverage_and_taxonomy/checkv` folder for use in this exercise.
+
+!!! note "Note"
+    Due to the rapid mutation rates of viruses, with full data sets it will likely be preferable to first further reduce viral contigs down based on a percentage-identity threshold using a tool such as `BBMap`'s `dedupe.sh`. This would be a necessary step in cases where you had opted for generating multiple individual assemblies or mini-co-assemblies (and would be comparable to the use of a tool like `dRep` for prokaryote data), but may still be useful even in the case of single co-assemblies incorporating all samples.*
+
+We will first need to concatenate these files together.
+
+```bash
+cat checkv/proviruses.fna checkv/viruses.fna > checkv_combined.fna
+```
+
+Now build the index for `Bowtie2` using the concatenated viral contig data. We will also make a new directory `viruses_coverage/` to store the index and read mapping output into.
+
+```bash
+mkdir -p viruses_coverage/
+
+# Load Bowtie2
+module load Bowtie2/2.4.5-GCC-11.3.0
+
+# Build Bowtie2 index
+bowtie2-build checkv_combined.fna viruses_coverage/bw_viruses
+```
+
+Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowtie2`, and sort and convert to `.bam` format via `samtools`.
+
+Create a new script
+
+```bash
+nano mapping_viruses.sl
+```
+
+Paste in the script (replacing `<YOUR FOLDER>`)
+
+```bash 
+#!/bin/bash -e
+
+#SBATCH --account       nesi02659
+#SBATCH --res           SummerSchool
+#SBATCH --job-name      mapping_filtered_viruses
+#SBATCH --time          00:05:00
+#SBATCH --mem           1GB
+#SBATCH --cpus-per-task 10
+#SBATCH --error         mapping_filtered_viruses.err
+#SBATCH --output        mapping_filtered_viruses.out
+
+module purge
+module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
+
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/
+
+# Step 1
+for i in sample1 sample2 sample3 sample4;
+do
+
+  # Step 2
+  bowtie2 --minins 200 --maxins 800 --threads 10 --sensitive \
+          -x viruses_coverage/bw_viruses \
+          -1 ../3.assembly/${i}_R1.fastq.gz -2 ../3.assembly/${i}_R2.fastq.gz \
+          -S viruses_coverage/${i}.sam
+
+  # Step 3
+  samtools sort -@ 10 -o viruses_coverage/${i}.bam viruses_coverage/${i}.sam
+
+done
+```
+
+Run the script
+
+```bash
+sbatch mapping_viruses.sl
+```
+
+Finally, generate the per-sample coverage table for each viral contig via `MetaBAT`'s `jgi_summarize_bam_contig_depths`.
+
+```bash 
+# Load MetaBAT
+module load MetaBAT/2.15-GCC-11.3.0
+
+# calculate coverage table
+jgi_summarize_bam_contig_depths --outputDepth viruses_cov_table.txt viruses_coverage/sample*.bam
+```
+
+The coverage table will be generated as `viruses_cov_table.txt`. As before, the key columns of interest are the `contigName`, and each `sample[1-n].bam` column.
+
+!!! note "Note"
+    Unlike the prokaryote data, we have not used a binning process on the viral contigs (since many of the binning tools use hallmark characteristics of prokaryotes in the binning process). Here, `viruses_cov_table.txt` is the final coverage table. This can be combined with `CheckV` quality and completeness metrics to, for example, examine the coverage profiles of only those viral contigs considered to be "High-quality" or "Complete".* 
+
+#### Normalising coverage values
+
+Having generated per-sample coverage values, it is usually necessary to also normalise these values across samples of differing sequencing depth. In this case, the mock metagenome data we have been working with are already of equal depth, and so this is an unnecessary step for the purposes of this workshop. 
+
+For an example of one way in which the `cov_table.txt` output generated by `jgi_summarize_bam_contig_depths` above could then be normalised based on average library size, see the [Normalise per-sample coverage Appendix](https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/3_APPENDIX_ex11_Normalise_coverage_example/).
 
 ---
 
