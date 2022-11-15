@@ -116,25 +116,29 @@ Paste in the script (modifying `<YOUR FOLDER>`)
 #SBATCH --time          00:10:00
 #SBATCH --mem           1GB
 #SBATCH --cpus-per-task 1
-#SBATCH --error         prodigal.err
-#SBATCH --output        prodigal.out
+#SBATCH --array         0-9
+#SBATCH --error         %x_%A_%a.err
+#SBATCH --output        %x_%A_%a.out
 
+# Load modules
 module purge
-module load prodigal/2.6.3-GCC-11.3.0
+module load prodigal/2.6.3-GCCcore-7.4.0
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction/
+# Working directory
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction
 
+# Output directory
 mkdir -p predictions/
 
-for bin_file in filtered_bins/*.fna;
-do
-    pred_file=$(basename ${bin_file} .fna)
+# Variables
+bin_file=filtered_bins/bin_${SLURM_ARRAY_TASK_ID}.filtered.fna
+pred_file=$(basename ${bin_file} .fna)
 
-    prodigal -i ${bin_file} -p meta \
-             -d predictions/${pred_file}.genes.fna \
-             -a predictions/${pred_file}.genes.faa \
-             -o predictions/${pred_file}.genes.gbk
-done
+# Run prodigal
+prodigal -i ${bin_file} -p meta \
+         -d predictions/${pred_file}.genes.fna \
+         -a predictions/${pred_file}.genes.faa \
+         -o predictions/${pred_file}.genes.gbk
 ```
 
 Submit the script
