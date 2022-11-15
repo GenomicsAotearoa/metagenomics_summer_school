@@ -75,6 +75,7 @@ As usual, lets look at the parameters here
 |**classify_wf**|Specifies the sub-workflow from `GTDB-TK` that we wish to use|
 |**-x ...**|Specify the file extension for MAGs within our input directory.<br>Default is *.fna*, but it's always good practice to specify it anyway|
 |**--cpus ...**|Number of CPUs to use when finding marker genes, and performing tree insertion operations|
+|**--keep_intermediates**|Keep intermediate outputs|
 |**--genome_dir ...**|Input directory containing MAGs as individual *fastA* files|
 |**--out_dir ...**|Output directory to write the final set of files|
 
