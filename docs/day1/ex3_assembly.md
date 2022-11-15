@@ -271,7 +271,7 @@ spades.py --meta -k 33,55,77,99,121 -t $SLURM_CPUS_PER_TASK \
 
 To save your file, use `Ctrl + O` to save the file, then `Ctrl + X` to exit `nano`. Going through those lines one by one;
 
-??? abstract "Review above submission script :Slurm parameters and their functions"
+??? abstract "Review above submission script: Slurm parameters and their functions"
 
     |Slurm parameter|Function|
     |:---|:---|
