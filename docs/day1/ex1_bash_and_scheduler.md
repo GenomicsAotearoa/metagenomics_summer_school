@@ -18,7 +18,7 @@
 
 !!! tip  "Quick recap"
     * Log into the NeSI Jupyter service as per **S.1.1 : NeSI Mahuika Jupyter login** in [NeSI Setup Supplementary material](http://127.0.0.1:8000/metagenomics_summer_school/supplementary/supplementary_1/)
-    * Then open a Jupyter **Terminal**Session 
+    * Then open a Jupyter **Terminal** Session 
     * We do recommend referring to [NeSI File system,..Symlinks Supplementary material first](http://127.0.0.1:8000/metagenomics_summer_school/supplementary/supplementary_2/) 
     * This lesson is a quick recap on basic/essential linux commands and will be covered during the pre-summer school sessions. 
     * If you would like to follow through and learn a bit more on this topic, refer to  [Intermediate Shell for Bioinformatics](https://genomicsaotearoa.github.io/shell-for-bioinformatics/) material (or welcome to attend that workshop which will be offered two or three times per year)
@@ -27,34 +27,36 @@
 
 ### Navigating your file system
 
-!!! info 
+!!! info ""
+    
+    * Check the current *working directory*.(terminal session  will be land on `/home` directory)
 
+    ```bash
+    pwd
+    # /home/UserName/
+    ```
 
+    * Switch to individual working directory on nobackup ( below )
 
-```bash
-pwd
-# /home/UserName/
-```
+    ```bash
+    cd /nesi/nobackup/nesi02659/MGSS_U/$USER
+    ```
 
-We can see what files and subdirectories are in this directory by running `ls`, which stands for "listing".
+    * OR you can navigate to above by using the symlink created as per instructions on  [Supplementary material](http://127.0.0.1:8000/metagenomics_summer_school/supplementary/supplementary_2/#symlinks-shortcuts) with just `cd ~/mgss`
 
-```bash
-ls
-```
+    * Change the directory to `MGSS_Intro`
 
-Navigating to the `MGSS_Intro/` directory can be done with the `cd` command which stands for *change directory*.
+    ```bash
+    cd MGSS_Intro/
+    ```
 
-```bash
-cd MGSS_Intro/
-```
+    * Run the `ls` command to list the contents of the current directory. Check whether there are two *.fastq* files.
 
-Run the `ls` command to list the contents of the current directory. Check whether there are two *.fastq* files.
+    * The `mkdir` command (*make directory*) is used to make a directory. Enter `mkdir` followed by a space, then the directory name you want to create
 
-The `mkdir` command (*make directory*) is used to make a directory. Enter `mkdir` followed by a space, then the directory name you want to create
-
-```bash
-mkdir backup/
-```
+    ```bash
+    mkdir backup/
+    ```
 
 ---
 
