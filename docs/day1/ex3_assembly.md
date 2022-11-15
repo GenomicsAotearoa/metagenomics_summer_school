@@ -351,16 +351,22 @@ Paste or type in the following:
 #SBATCH --account       nesi02659
 #SBATCH --job-name      idbaud_assembly
 #SBATCH --res           SummerSchool
-#SBATCH --time          00:35:00
+#SBATCH --time          00:20:00
 #SBATCH --mem           4GB
-#SBATCH --cpus-per-task 8
-#SBATCH --error         idbaud_assembly.err
-#SBATCH --output        idbaud_assembly.out
+#SBATCH --cpus-per-task 12
+#SBATCH --error         %x_%j.err
+#SBATCH --output        %x_%j.out
 
+# Prepare modules
 module purge
 module load IDBA-UD/1.1.3-GCC-11.3.0
 
-idba_ud --num_threads 8 --mink 33 --maxk 99 --step 22 -r for_idba.fna -o idbaud_assembly/
+# Working directory
+cd ./3.assembly
+
+# Run IDBA-UD
+idba_ud --num_threads $SLURM_CPUS_PER_TASK --mink 33 --maxk 99 --step 22 \
+        -r for_idba.fna -o idbaud_assembly/
 ```
 
 And submit the script as a slurm job:
@@ -369,6 +375,6 @@ And submit the script as a slurm job:
 sbatch idbaud_assembly.sl
 ```
 
-Remember to record your job identification number.
+When your job starts running, files with suffixes `.err` and `.out` will be created in the directory from where you submitted your job. These files will have have your job name and job identification number as file names.
 
 ---
