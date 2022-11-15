@@ -206,7 +206,7 @@ samples=(sample1 sample2 sample3 sample4)
 
 # Activate the srun command, using the SLURM_ARRAY_TASK_ID variable to
 # identify which position in the `samples` array to use
-bowtie2 --minins 200 --maxins 800 --threads 10 --sensitive \
+bowtie2 --minins 200 --maxins 800 --threads $SLURM_CPUS_PER_TASK --sensitive \
         -x spades_assembly/bw_spades \
         -1 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R1.fastq.gz \
         -2 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R2.fastq.gz \
