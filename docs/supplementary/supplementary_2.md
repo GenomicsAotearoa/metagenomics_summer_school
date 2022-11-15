@@ -7,5 +7,7 @@ Directories are like places — at any time while we are using the shell, we are
 !!! pied-piper "NeSI Filesystem (For Researchers)"
 
     All HPC platforms have custom File Systems for the purpose of **general use** and **admin**. 
-
+    
+    <center>
     ![image](../theme_images/nesi_filesystem.png){width="450"}
+    </center>
