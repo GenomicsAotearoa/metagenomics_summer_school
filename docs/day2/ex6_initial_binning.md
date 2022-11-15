@@ -194,17 +194,20 @@ nano spades_mapping_array.sl
 #SBATCH --error         %x_%A_%a.err
 #SBATCH --output        %x_%A_%a.out
 
+# Load modules
 module purge
 module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
 
+# Working directory
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 
+# Build index
 bowtie2-build spades_assembly/spades_assembly.m1000.fna spades_assembly/bw_spades
 
 # Load the sample names into a bash array
 samples=(sample1 sample2 sample3 sample4)
 
-# Activate the srun command, using the SLURM_ARRAY_TASK_ID variable to
+# Run Bowtie2 and SAMTools, using the SLURM_ARRAY_TASK_ID variable to
 # identify which position in the `samples` array to use
 bowtie2 --minins 200 --maxins 800 --threads $SLURM_CPUS_PER_TASK --sensitive \
         -x spades_assembly/bw_spades \
