@@ -36,58 +36,19 @@ Beyond annotation, `DRAM` aims to be a data compiler. For that reason, output fi
 
 #### *DRAM* input files
 
-For these exercises, we have copied the relevant input files into the folder `10.gene_annotation/DRAM_input_files/`. `gtdbtk.bac120.classification_pplacer.tsv` was taken from the earlier `8.coverage_and_taxonomy/gtdbtk_out/` outputs, and `checkm.txt` from the result of re-running `CheckM` on the final refined filtered bins in `6.bin_refinement/filtered_bins`.
+For these exercises, we have copied the relevant input files into the folder `10.gene_annotation_and_coverage/DRAM_input_files/`. `gtdbtk.bac120.summary.tsv` was taken from the earlier `8.prokaryotic_taxonomy/gtdbtk_out/` outputs, and `filtered_bins_checkm.txt` from the result of re-running `CheckM` on the final refined filtered bins in `6.bin_refinement/filtered_bins`.
 
-Navigate to the `10.gene_annotation/` folder
-
-```bash
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
-```
-
-The `CheckM` output file (`checkm.txt`) can be input as it is. However, in order to use the file with the `gtdb_tk` taxonomy (`gtdbtk.bac120.classification_pplacer.tsv`) we should modify it first to include column headers 'bin_id' and 'classification'
-
-First, take a quick look at the current format of the taxonomy file using `less`
+Navigate to the `10.gene_annotation_and_coverage/` folder
 
 ```bash
-less DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv
-
-#bin_3.filtered  d__Bacteria;p__Firmicutes;c__Bacilli;o__Staphylococcales;f__Staphylococcaceae;g__Staphylococcus;s__
-#bin_8.filtered  d__Bacteria;p__Cyanobacteria;c__Cyanobacteriia;o__Synechococcales;f__Cyanobiaceae;g__Prochlorococcus_C;s__
-#bin_2.filtered  d__Bacteria;p__Planctomycetota;c__Brocadiae;o__Brocadiales;f__Brocadiaceae;g__;s__
-#bin_5.filtered  d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Pseudomonadales;f__Pseudomonadaceae;g__Pseudomonas;s__
-#bin_9.filtered  d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Vibrionaceae;g__Vibrio;s__
-#bin_4.filtered  d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Burkholderiales;f__Nitrosomonadaceae;g__Nitrosomonas;s__
-#bin_7.filtered  d__Bacteria;p__Proteobacteria;c__Alphaproteobacteria;o__Rhizobiales;f__Xanthobacteraceae;g__Nitrobacter;s__
-#bin_0.filtered  d__Bacteria;p__Campylobacterota;c__Campylobacteria;o__Campylobacterales;f__Arcobacteraceae;g__Arcobacter;s__
-#bin_1.filtered  d__Bacteria;p__Campylobacterota;c__Campylobacteria;o__Nautiliales;f__Nautiliaceae;g__;s__
-#bin_6.filtered  d__Bacteria;p__Desulfobacterota_A;c__Desulfovibrionia;o__Desulfovibrionales;f__Desulfovibrionaceae;g__Desulfovibrio;s__
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage/
 ```
 
-Now, use `sed` to add the headers as a new line. The `^` character indicates to make the additions at the start of the line (in this case, the first line). `\t` and `\n` represent a tab space and a newline character, respectively.
-
-```bash
-sed -i '1s/^/bin_id\tclassification\n/' DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv
-
-
-less DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv
-
-#bin_id  classification
-#bin_3.filtered  d__Bacteria;p__Firmicutes;c__Bacilli;o__Staphylococcales;f__Staphylococcaceae;g__Staphylococcus;s__
-#bin_8.filtered  d__Bacteria;p__Cyanobacteria;c__Cyanobacteriia;o__Synechococcales;f__Cyanobiaceae;g__Prochlorococcus_C;s__
-#bin_2.filtered  d__Bacteria;p__Planctomycetota;c__Brocadiae;o__Brocadiales;f__Brocadiaceae;g__;s__
-#bin_5.filtered  d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Pseudomonadales;f__Pseudomonadaceae;g__Pseudomonas;s__
-#bin_9.filtered  d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Vibrionaceae;g__Vibrio;s__
-#bin_4.filtered  d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Burkholderiales;f__Nitrosomonadaceae;g__Nitrosomonas;s__
-#bin_7.filtered  d__Bacteria;p__Proteobacteria;c__Alphaproteobacteria;o__Rhizobiales;f__Xanthobacteraceae;g__Nitrobacter;s__
-#bin_0.filtered  d__Bacteria;p__Campylobacterota;c__Campylobacteria;o__Campylobacterales;f__Arcobacteraceae;g__Arcobacter;s__
-#bin_1.filtered  d__Bacteria;p__Campylobacterota;c__Campylobacteria;o__Nautiliales;f__Nautiliaceae;g__;s__
-#bin_6.filtered  d__Bacteria;p__Desulfobacterota_A;c__Desulfovibrionia;o__Desulfovibrionales;f__Desulfovibrionaceae;g__Desulfovibrio;s__
-
-```
+Along with our filtered bins, the `CheckM` output file (`checkm.txt`) and `GTDB-Tk` summary output `gtdbtk.bac120.summary.tsv` are used as inputs as is.
 
 #### *DRAM* annotation
 
-In default annotation mode, `DRAM` only requires as input the directory containing all the bins we would like to annotate in *fastA* format (either .fa or .fna). There are few parameters that can be modified if not using the default mode. Once the annotation step is complete, the mode `distill` is used to summarise the obtained results. 
+In default annotation mode, `DRAM` only requires as input the directory containing all the bins we would like to annotate in *fastA* format (either .fa or .fna). There are few parameters that can be modified if not using the default mode. Once the annotation step is complete, the mode `distill` is used to summarise the obtained results.
 
 *NOTE: due to the increased memory requirements, UniRef90 database is not default and the flag `–use_uniref` should be specified in order to search amino acid sequences against UniRef90. In this exercise, due to memory and time constraints, we won't be using the UniRef90 database.*
 
@@ -121,39 +82,41 @@ To run this exercise we first need to set up a slurm job. We will use the result
 Create a new script
 
 ```bash
-nano dram_annnotation.sl
+nano annotate_dram.sl
 ```
 
 Paste in the script (update all of the cases of `<YOUR FOLDER>`)
 
-```sh
+```bash
 #!/bin/bash -e
 
 #SBATCH --account       nesi02659
-#SBATCH --job-name      DRAM_annotation
+#SBATCH --job-name      annotate_DRAM
 #SBATCH --res           SummerSchool
 #SBATCH --time          5:00:00
-#SBATCH --mem           20Gb
+#SBATCH --mem           30Gb
 #SBATCH --cpus-per-task 24
-#SBATCH --error         slurm-DRAM_annot.%A-%a.err 
-#SBATCH --output        slurm-DRAM_annot.%A-%a.out 
+#SBATCH --error         %x_%A_%a.err
+#SBATCH --output        %x_%A_%a.out
 
-
+# Load modules
 module purge
 module load DRAM/1.3.5-Miniconda3
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
+# Working directory
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
 
-DRAM.py annotate -i 'predictions/*.filtered.fna' \
---checkm_quality DRAM_input_files/checkm.txt \
---gtdb_taxonomy DRAM_input_files/gtdbtk.bac120.classification_pplacer.tsv \
--o annotation_dram --threads $SLURM_CPUS_PER_TASK
+# Run DRAM
+DRAM.py annotate -i 'filtered_bins/*.filtered.fna' \
+                 --checkm_quality DRAM_input_files/filtered_bins_checkm.txt \
+                 --gtdb_taxonomy DRAM_input_files/gtdbtk.bac120.summary.tsv \
+                 -o dram_annotations --threads $SLURM_CPUS_PER_TASK
 ```
 
 Submit the job
 
 ```bash
-sbatch dram_annnotation.sl
+sbatch annotate_dram.sl
 ```
 
 The program will take 4-4.5 hours to run, so we will submit the jobs and inspect the results tomorrow morning.
@@ -165,12 +128,12 @@ One of the first questions we often ask when studying the ecology of a system is
 
 As per the preparation step at the start of the binning process, we can do this using read mapping tools such as `Bowtie`, `Bowtie2`, and `BBMap`. Here we will follow the same steps as before using `Bowtie2`, `samtools`, and `MetaBAT`'s `jgi_summarize_bam_contig_depths`, but this time inputting our refined filtered bins. 
 
-These exercises will take place in the `8.coverage_and_taxonomy/` folder. Our final filtered refined bins from the previous bin refinement exercise have been copied to the `8.coverage_and_taxonomy/filtered_bins/` folder.
+These exercises will take place in the `10.gene_annotation_and_coverage/` folder. Our final filtered refined bins from the previous bin refinement exercise have been copied to the `10.gene_annotation_and_coverage/filtered_bins/` folder.
 
 First, concatenate the bin data into a single file to then use to generate an index for the read mapper.
 
 ```bash
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage/
 
 cat filtered_bins/*.fna > filtered_bins.fna
 ```
@@ -193,48 +156,45 @@ Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowti
 Create a new script
 
 ```bash
-nano mapping_bins.sl
+nano mapping_filtered_bins.sl
 ```
 
 Paste in the script (replacing `<YOUR FOLDER>`)
 
-```bash 
+```bash
 #!/bin/bash -e
 
 #SBATCH --account       nesi02659
-#SBATCH --res           SummerSchool
 #SBATCH --job-name      mapping_filtered_bins
+#SBATCH --res           SummerSchool
 #SBATCH --time          00:05:00
 #SBATCH --mem           1GB
 #SBATCH --cpus-per-task 10
-#SBATCH --error         mapping_filtered_bins.err
-#SBATCH --output        mapping_filtered_bins.out
+#SBATCH --error         %x_%j.err
+#SBATCH --output        %x_%j.out
 
+# Load modules
 module purge
 module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/
+# Working directory
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
 
-# Step 1
-for i in sample1 sample2 sample3 sample4;
-do
-
-  # Step 2
-  bowtie2 --minins 200 --maxins 800 --threads 10 --sensitive \
-          -x bin_coverage/bw_bins \
-          -1 ../3.assembly/${i}_R1.fastq.gz -2 ../3.assembly/${i}_R2.fastq.gz \
-          -S bin_coverage/${i}.sam
-
-  # Step 3
-  samtools sort -@ 10 -o bin_coverage/${i}.bam bin_coverage/${i}.sam
-
+# Run Bowtie2
+for i in {1..4}; do
+    bowtie2 --minins 200 --maxins 800 --threads $SLURM_CPUS_PER_TASK --sensitive \
+            -x bin_coverage/bw_bins \
+            -1 ../3.assembly/sample${i}_R1.fastq.gz \
+            -2 ../3.assembly/sample${i}_R2.fastq.gz \
+            -S bin_coverage/sample${i}.sam
+    samtools sort -@ $SLURM_CPUS_PER_TASK -o bin_coverage/sample${i}.bam bin_coverage/sample${i}.sam
 done
 ```
 
 Submit the script
 
 ```bash
-sbatch mapping_bins.sl
+sbatch mapping_filtered_bins.sl
 ```
 
 Finally, generate the per-sample coverage table for each contig in each bin via `MetaBAT`'s `jgi_summarize_bam_contig_depths`.
@@ -261,7 +221,7 @@ To quickly recap:
 * In previous exercises, we first used `VIBRANT` to identify viral contigs from the assembled reads, generating a new fasta file of viral contigs: `spades_assembly.m1000.phages_combined.fna` 
 * We then processed this file using `CheckV` to generate quality information for each contig, and to further trim any retained (prokaryote) sequence on the ends of prophage contigs. 
 
-The resultant *fasta* files generated by `CheckV` (`proviruses.fna` and `viruses.fna`) have been copied to to the `8.coverage_and_taxonomy/checkv` folder for use in this exercise.
+The resultant *fasta* files generated by `CheckV` (`proviruses.fna` and `viruses.fna`) have been copied to to the `10.gene_annotation_and_coverage/checkv` folder for use in this exercise.
 
 !!! note "Note"
     Due to the rapid mutation rates of viruses, with full data sets it will likely be preferable to first further reduce viral contigs down based on a percentage-identity threshold using a tool such as `BBMap`'s `dedupe.sh`. This would be a necessary step in cases where you had opted for generating multiple individual assemblies or mini-co-assemblies (and would be comparable to the use of a tool like `dRep` for prokaryote data), but may still be useful even in the case of single co-assemblies incorporating all samples.*
@@ -294,36 +254,33 @@ nano mapping_viruses.sl
 
 Paste in the script (replacing `<YOUR FOLDER>`)
 
-```bash 
+```bash
 #!/bin/bash -e
 
 #SBATCH --account       nesi02659
+#SBATCH --job-name      mapping_viruses
 #SBATCH --res           SummerSchool
-#SBATCH --job-name      mapping_filtered_viruses
 #SBATCH --time          00:05:00
 #SBATCH --mem           1GB
 #SBATCH --cpus-per-task 10
-#SBATCH --error         mapping_filtered_viruses.err
-#SBATCH --output        mapping_filtered_viruses.out
+#SBATCH --error         %x_%j.err
+#SBATCH --output        %x_%j.out
 
+# Load modules
 module purge
 module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/
+# Working directory
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
 
-# Step 1
-for i in sample1 sample2 sample3 sample4;
-do
-
-  # Step 2
-  bowtie2 --minins 200 --maxins 800 --threads 10 --sensitive \
-          -x viruses_coverage/bw_viruses \
-          -1 ../3.assembly/${i}_R1.fastq.gz -2 ../3.assembly/${i}_R2.fastq.gz \
-          -S viruses_coverage/${i}.sam
-
-  # Step 3
-  samtools sort -@ 10 -o viruses_coverage/${i}.bam viruses_coverage/${i}.sam
-
+# Run Bowtie2
+for i in {1..4}; do
+  bowtie2 --minins 200 --maxins 800 --threads $SLURM_CPUS_PER_TASK --sensitive \
+            -x viruses_coverage/bw_viruses \
+            -1 ../3.assembly/sample${i}_R1.fastq.gz \
+            -2 ../3.assembly/sample${i}_R2.fastq.gz \
+            -S viruses_coverage/sample${i}.sam
+  samtools sort -@ $SLURM_CPUS_PER_TASK -o viruses_coverage/sample${i}.bam viruses_coverage/sample${i}.sam
 done
 ```
 
@@ -375,6 +332,6 @@ It is now time to select the goals to investigate the genomes you have been work
 
 Depending on what you are looking for, you will either be trying to find gene(s) of relevance to a particular functional pathway, or the omission of genes that might be critical in function. In either case, make sure to use the taxonomy of each MAG to determine whether it is likely to be a worthwhile candidate for exploration, as some of these traits are quite restricted in terms of which organisms carry them.
 
-To conduct this exersise, you should use the information generated with ```DRAM``` as well as the annotation files we created previously that will be available in the directory ```10.gene_annotation/gene_annotations```. 
+To conduct this exersise, you should use the information generated with ```DRAM``` as well as the annotation files we created previously that will be available in the directory ```10.gene_annotation_and_coverage/gene_annotations```. 
 
-Please note that we have also provided further annotation files within the directory ```10.gene_annotation/example_annotation_tables``` that contain information obtained after annotating the MAGs against additional databases (UniProt, UniRef100, KEGG, PFAM and TIGRfam). These example files can also be downloaded from [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/example_annotation_tables.zip). These files were created by using an in-house python script designed to aggregate different annotations and as part of the environmental metagenomics worflow followed in Handley's lab. Information about using this script as well as the script is available [here](https://github.com/GenomicsAotearoa/environmental_metagenomics/blob/master/metagenomic_annotation/3.aggregation.md)  
+Please note that we have also provided further annotation files within the directory ```10.gene_annotation_and_coverage/example_annotation_tables``` that contain information obtained after annotating the MAGs against additional databases (UniProt, UniRef100, KEGG, PFAM and TIGRfam). These example files can also be downloaded from [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/example_annotation_tables.zip). These files were created by using an in-house python script designed to aggregate different annotations and as part of the environmental metagenomics worflow followed in Handley's lab. Information about using this script as well as the script is available [here](https://github.com/GenomicsAotearoa/environmental_metagenomics/blob/master/metagenomic_annotation/3.aggregation.md)  
