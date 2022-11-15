@@ -30,14 +30,12 @@
 !!! info ""
     
     * Check the current *working directory*.(terminal session  will be land on `/home` directory)
-
     ```bash
     pwd
     # /home/UserName/
     ```
 
     * Switch to individual working directory on nobackup ( below )
-
     ```bash
     cd /nesi/nobackup/nesi02659/MGSS_U/$USER
     ```
@@ -45,7 +43,6 @@
     * OR you can navigate to above by using the symlink created as per instructions on  [Supplementary material](http://127.0.0.1:8000/metagenomics_summer_school/supplementary/supplementary_2/#symlinks-shortcuts) with just `cd ~/mgss`
 
     * Change the directory to `MGSS_Intro`
-
     ```bash
     cd MGSS_Intro/
     ```
@@ -53,7 +50,6 @@
     * Run the `ls` command to list the contents of the current directory. Check whether there are two *.fastq* files.
 
     * The `mkdir` command (*make directory*) is used to make a directory. Enter `mkdir` followed by a space, then the directory name you want to create
-
     ```bash
     mkdir backup/
     ```
@@ -62,72 +58,74 @@
 
 ### Copying, Moving, Renaming and Removing files
 
-Make a second copy of `SRR097977.fastq` and rename it as `Test_1_backup.fastq`.  Then move that file to `backup/` directory.
+!!! info ""
 
-```bash
-cp SRR097977.fastq Test_1_backup.fastq
+    * Make a second copy of `SRR097977.fastq` and rename it as `Test_1_backup.fastq`.  
+    ```bash
+    cp SRR097977.fastq Test_1_backup.fastq
+    ```
 
-mv Test_1_backup.fastq backup
-```
+    * Then move that file to `backup/` directory.
+    ```
+    mv Test_1_backup.fastq backup
+    ```
 
-Navigate to `backup/` directory and use `mv` command to rename and move `Test_1_backup.fastq` as `Test_1_copy.fastq` to the directory immediately above.
+    * Navigate to `backup/` directory and use `mv` command to rename and move `Test_1_backup.fastq` as `Test_1_copy.fastq` to the directory immediately above.
+    ```bash
+    cd backup/
+    ```
+    ```
+    mv Test_1_backup.fastq ../Test_1_copy.fastq
+    ```
 
-```bash
-cd backup/
+    * Return to the directory immediately above, check whether the `Test_1_copy.fastq` was moved and renamed as instructed and remove it by using the `rm` command.
+    ```bash
+    cd ..
 
-mv Test_1_backup.fastq ../Test_1_copy.fastq
-```
+    rm Test_1_copy.fastq
+    ```
 
-Return to the directory immediately above, check whether the `Test_1_copy.fastq` was moved and renamed as instructed and remove it by using the `rm` command.
+    * See whether you can remove the `backup/` directory by using the `rm` command as well. 
+    ```bash
+    rm backup/
+    # rm : can not remove 'backup/': Is a directory
+    ```
 
-```bash
-cd ..
-
-rm Test_1_copy.fastq
-```
-
-See whether you can remove the `backup/` directory by using the `rm` command as well. 
-
-```bash
-rm backup/
-# rm : can not remove 'backup/': Is a directory
-```
-
-By default, `rm` will not delete directories. This can be done by using `-r` (recursive) option.
-
-```bash
-rm -r backup
-```
+    * By default, `rm` will not delete directories. This can be done by using `-r` (recursive) option.
+    ```bash
+    rm -r backup
+    ```
 
 ---
 
 ### Examining file contents
 
-There are a number of ways to examine the content of a file. `cat` and `less` are two commonly used programs for a quick look. Check the content of `SRR097977.fastq` by using these commands. Take a note of the differences. 
+!!! info ""
 
-```
-cat SRR097977.fastq
-# less SRR097977.fastq
-```
+    * There are a number of ways to examine the content of a file. `cat` and `less` are two commonly used programs for a quick look. Check the content of `SRR097977.fastq` by using these commands. Take a note of the differences. 
+    ```
+    cat SRR097977.fastq
+    # less SRR097977.fastq
+    ```
 
-A few useful shortcuts for navigating in `less`
+    * A few useful shortcuts for navigating in `less`
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex1_less_shortcuts.jpg) 
+    ![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex1_less_shortcuts.jpg) 
 
-There are ways to take a look at parts of a file. For example, the `head` and `tail` commands will scan the beginning and end of a file, respectively. 
+    There are ways to take a look at parts of a file. For example, the `head` and `tail` commands will scan the beginning and end of a file, respectively. 
 
-```bash
-head SRR097977.fastq
+    ```bash
+    head SRR097977.fastq
 
-tail SRR097977.fastq
-```
+    tail SRR097977.fastq
+    ```
 
-Adding `-n` option to either of these commands will print the first or last *n* lines of a file.
+    Adding `-n` option to either of these commands will print the first or last *n* lines of a file.
 
-```bash
-head -n 1 SRR097977.fastq
-# @SRR097977.1 209DTAAXX_Lenski2_1_7:8:3:710:178 length=36
-```
+    ```bash
+    head -n 1 SRR097977.fastq
+    # @SRR097977.1 209DTAAXX_Lenski2_1_7:8:3:710:178 length=36
+    ```
 
 ---
 
