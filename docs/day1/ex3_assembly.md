@@ -250,16 +250,23 @@ Into this file, either write or copy/paste the following commands:
 #SBATCH --account       nesi02659
 #SBATCH --job-name      spades_assembly
 #SBATCH --res           SummerSchool
-#SBATCH --time          00:50:00
+#SBATCH --time          00:30:00
 #SBATCH --mem           10GB
 #SBATCH --cpus-per-task 12
-#SBATCH --error         spades_assembly.err
-#SBATCH --output        spades_assembly.out
+#SBATCH --error         %x_%j.err
+#SBATCH --output        %x_%j.out
 
+# Load modules
 module purge
 module load SPAdes/3.15.4-gimkl-2022a-Python-3.10.5
 
-spades.py --meta -k 33,55,77,99,121 -t 12 -1 for_spades_R1.fq.gz -2 for_spades_R2.fq.gz -o spades_assembly/
+# Working directory
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly
+
+# Run SPAdes
+spades.py --meta -k 33,55,77,99,121 -t $SLURM_CPUS_PER_TASK \
+          -1 for_spades_R1.fq.gz -2 for_spades_R2.fq.gz \
+          -o spades_assembly/
 ```
 
 To save your file, use `Ctrl + O` to save the file, then `Ctrl + X` to exit `nano`. Going through those lines one by one;
@@ -289,6 +296,7 @@ The `module load` command needs to be invoked within your slurm script. It is al
     |:---|:---|
     |**--meta**|Activate metagenome assembly mode. Default is to assemble your metagenome using single genome assembly assumptions|
     |**-k**|*k*-mer sizes for assembly. These choices will provide the output we will use in the **Binning** session, but feel free to experiment with these to see if you can improve the assembly|
+    |**-t**|Number of threads/cpus (see [above](#specifying-the-number-of-threads)). Here, we use a special SLURM environment variables $SLURM_CPUS_PER_TASK to specify the programme to use the same number of CPUs allocated for this job via `--cpus-per-task`.| 
     |**-1**|Forward reads, matched to their reverse partners|
     |**-2**|Reverse reads, matched to their forward partners|
     |**-o**|Output directory for all files|
