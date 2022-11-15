@@ -70,12 +70,13 @@ nano spades_mapping.sl
 #SBATCH --time          00:05:00
 #SBATCH --mem           1GB
 #SBATCH --cpus-per-task 10
-#SBATCH --error         spades_mapping.err
-#SBATCH --output        spades_mapping.out
+#SBATCH --error         %x_%j.err
+#SBATCH --output        %x_%j.out
 
 module purge
 module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
 
+# Working directory
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 
 # Step 1
@@ -83,13 +84,13 @@ for i in sample1 sample2 sample3 sample4;
 do
 
   # Step 2
-  bowtie2 --minins 200 --maxins 800 --threads 10 --sensitive \
+  bowtie2 --minins 200 --maxins 800 --threads $SLURM_CPUS_PER_TASK --sensitive \
           -x spades_assembly/bw_spades \
           -1 ../3.assembly/${i}_R1.fastq.gz -2 ../3.assembly/${i}_R2.fastq.gz \
           -S ${i}.sam
 
   # Step 3
-  samtools sort -@ 10 -o ${i}.bam ${i}.sam
+  samtools sort -@ $SLURM_CPUS_PER_TASK -o ${i}.bam ${i}.sam
 
 done
 ```
@@ -169,7 +170,7 @@ samtools view -bS sample1.sam | samtools sort -o sample1.bam
 
 ### *Optional: Read mapping using an array*
 
-If you have a large number of files to process, it might be worth using a slurm array to distribute you individual mapping jobs across many separate nodes. An example script for how to perform this is given below, although it will not be covered in this workshop.
+If you have a large number of files to process, it might be worth using a slurm array to distribute your individual mapping jobs across many separate nodes. An example script for how to perform this is given below. We do not need to use an array for read mapping in this workshop, but we will revisit array jobs in further lessons.
 
 Open a new script using nano:
 
@@ -190,8 +191,8 @@ nano spades_mapping_array.sl
 #SBATCH --mem           20GB
 #SBATCH --array         0-3
 #SBATCH --cpus-per-task 10
-#SBATCH --error         spades_mapping_array.%j.err
-#SBATCH --output        spades_mapping_array.%j.out
+#SBATCH --error         %x_%A_%a.err
+#SBATCH --output        %x_%A_%a.out
 
 module purge
 module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
@@ -205,15 +206,18 @@ samples=(sample1 sample2 sample3 sample4)
 
 # Activate the srun command, using the SLURM_ARRAY_TASK_ID variable to
 # identify which position in the `samples` array to use
-bowtie2 --minins 200 --maxins 800 --threads 10 --sensitive -x spades_assembly/bw_spades \
-             -1 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R1.fastq.gz \
-             -2 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R2.fastq.gz \
-             -S ${samples[ $SLURM_ARRAY_TASK_ID ]}.sam
+bowtie2 --minins 200 --maxins 800 --threads 10 --sensitive \
+        -x spades_assembly/bw_spades \
+        -1 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R1.fastq.gz \
+        -2 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R2.fastq.gz \
+        -S ${samples[ $SLURM_ARRAY_TASK_ID ]}.sam
 
-srun samtools sort -o ${samples[ $SLURM_ARRAY_TASK_ID ]}.bam ${samples[ $SLURM_ARRAY_TASK_ID ]}.sam
+samtools sort -@ $SLURM_CPUS_PER_TASK \
+              -o ${samples[ $SLURM_ARRAY_TASK_ID ]}.bam \
+              ${samples[ $SLURM_ARRAY_TASK_ID ]}.sam
 ```
 
-submit the job to slurm
+Submit the job to slurm
 
 ```bash
 sbatch spades_mapping_array.sl
