@@ -22,22 +22,57 @@ module load SPAdes/3.15.4-gimkl-2022a-Python-3.10.5
     ```bash
     spades.py -h
     # ...
-    #Input data:
-    #-1      <filename>      file with forward paired-end reads
-    #-2      <filename>      file with reverse paired-end reads
-    #-s      <filename>      file with unpaired reads
-    #--mp<#>-1       <filename>      file with forward reads for mate-pair library number <#> (<#> = 1,2,..,9)
-    #--mp<#>-2       <filename>      file with reverse reads for mate-pair library number <#> (<#> = 1,2,..,9)
-    #--hqmp<#>-1     <filename>      file with forward reads for high-quality mate-pair library number <#> (<#> = 1,2,..,9)
-    #--hqmp<#>-2     <filename>      file with reverse reads for high-quality mate-pair library number <#> (<#> = 1,2,..,9)
-    #--nxmate<#>-1   <filename>      file with forward reads for Lucigen NxMate library number <#> (<#> = 1,2,..,9)
-    #--nxmate<#>-2   <filename>      file with reverse reads for Lucigen NxMate library number <#> (<#> = 1,2,..,9)
-    #--sanger        <filename>      file with Sanger reads
-    #--pacbio        <filename>      file with PacBio reads
-    #--nanopore      <filename>      file with Nanopore reads
-    #--tslr  <filename>      file with TSLR-contigs
-    #--trusted-contigs       <filename>      file with trusted contigs
-    #--untrusted-contigs     <filename>      file with untrusted contigs
+    # Input data:
+    #   --12 <filename>             file with interlaced forward and reverse paired-end reads
+    #   -1 <filename>               file with forward paired-end reads
+    #   -2 <filename>               file with reverse paired-end reads
+    #   -s <filename>               file with unpaired reads
+    #   --merged <filename>         file with merged forward and reverse paired-end reads
+    #   --pe-12 <#> <filename>      file with interlaced reads for paired-end library number <#>.
+    #                               Older deprecated syntax is -pe<#>-12 <filename>
+    #   --pe-1 <#> <filename>       file with forward reads for paired-end library number <#>.
+    #                               Older deprecated syntax is -pe<#>-1 <filename>
+    #   --pe-2 <#> <filename>       file with reverse reads for paired-end library number <#>.
+    #                               Older deprecated syntax is -pe<#>-2 <filename>
+    #   --pe-s <#> <filename>       file with unpaired reads for paired-end library number <#>.
+    #                               Older deprecated syntax is -pe<#>-s <filename>
+    #   --pe-m <#> <filename>       file with merged reads for paired-end library number <#>.
+    #                               Older deprecated syntax is -pe<#>-m <filename>
+    #   --pe-or <#> <or>            orientation of reads for paired-end library number <#>
+    #                               (<or> = fr, rf, ff).
+    #                               Older deprecated syntax is -pe<#>-<or>
+    #   --s <#> <filename>          file with unpaired reads for single reads library number <#>.
+    #                               Older deprecated syntax is --s<#> <filename>
+    #   --mp-12 <#> <filename>      file with interlaced reads for mate-pair library number <#>.
+    #                               Older deprecated syntax is -mp<#>-12 <filename>
+    #   --mp-1 <#> <filename>       file with forward reads for mate-pair library number <#>.
+    #                               Older deprecated syntax is -mp<#>-1 <filename>
+    #   --mp-2 <#> <filename>       file with reverse reads for mate-pair library number <#>.
+    #                               Older deprecated syntax is -mp<#>-2 <filename>
+    #   --mp-s <#> <filename>       file with unpaired reads for mate-pair library number <#>.
+    #                               Older deprecated syntax is -mp<#>-s <filename>
+    #   --mp-or <#> <or>            orientation of reads for mate-pair library number <#>
+    #                               (<or> = fr, rf, ff).
+    #                               Older deprecated syntax is -mp<#>-<or>
+    #   --hqmp-12 <#> <filename>    file with interlaced reads for high-quality mate-pair library number <#>.
+    #                               Older deprecated syntax is -hqmp<#>-12 <filename>
+    #   --hqmp-1 <#> <filename>     file with forward reads for high-quality mate-pair library number <#>.
+    #                               Older deprecated syntax is -hqmp<#>-1 <filename>
+    #   --hqmp-2 <#> <filename>     file with reverse reads for high-quality mate-pair library number <#>.
+    #                               Older deprecated syntax is -hqmp<#>-2 <filename>
+    #   --hqmp-s <#> <filename>     file with unpaired reads for high-quality mate-pair library number <#>.
+    #                               Older deprecated syntax is -hqmp<#>-s <filename>
+    #   --hqmp-or <#> <or>          orientation of reads for high-quality mate-pair library number <#>
+    #                               (<or> = fr, rf, ff).
+    #                               Older deprecated syntax is -hqmp<#>-<or>
+    #   --sanger <filename>         file with Sanger reads
+    #   --pacbio <filename>         file with PacBio reads
+    #   --nanopore <filename>       file with Nanopore reads
+    #   --trusted-contigs <filename>
+    #                               file with trusted contigs
+    #   --untrusted-contigs <filename>
+    #                               file with untrusted contigs
+    # ...
     ```
 
 At a glance, you could provide any of the following data types to `SPAdes` and have it perform an assembly:
