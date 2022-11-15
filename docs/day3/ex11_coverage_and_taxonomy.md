@@ -32,7 +32,7 @@ This can all be achieved in a single command, although it must be performed thro
 Create a new script
 
 ```bash
-nano gtdbtk_test.sl
+nano gtdbtk.sl
 ```
 
 Paste in the script (replacing `<YOUR FOLDER>`)
@@ -41,26 +41,31 @@ Paste in the script (replacing `<YOUR FOLDER>`)
 #!/bin/bash -e
 
 #SBATCH --account       nesi02659
-#SBATCH --job-name      gtdbtk_test
-#SBATCH --res           SummerSchool
-#SBATCH --time          00:30:00
+#SBATCH --job-name      gtdbtk
+#SBATCH --time          01:00:00
 #SBATCH --mem           140GB
-#SBATCH --cpus-per-task 10
-#SBATCH --error         gtdbtk_test.err
-#SBATCH --output        gtdbtk_test.out
+#SBATCH --cpus-per-task 24
+#SBATCH --error         %x_%j.err
+#SBATCH --output        %x_%j.out
 
+# Load modules
 module purge
-module load GTDB-Tk/1.5.0-gimkl-2020a-Python-3.8.2
+module load GTDB-Tk/2.1.0-gimkl-2020a-Python-3.9.9
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy
+# Working directory
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.prokaryotic_taxonomy
 
-gtdbtk classify_wf -x fna --cpus 10 --genome_dir filtered_bins/ --out_dir gtdbtk_out/
+# Run GTDB-Tk
+gtdbtk classify_wf -x fna --cpus $SLURM_CPUS_PER_TASK \
+                   --keep_intermediates \
+                   --genome_dir filtered_bins/ \
+                   --out_dir gtdbtk_out/
 ```
 
 Submit the script
 
 ```bash
-sbatch gtdbtk_test.sl
+sbatch gtdbtk.sl
 ```
 
 As usual, lets look at the parameters here
