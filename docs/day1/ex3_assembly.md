@@ -239,7 +239,7 @@ To begin, we need to open a text file using the `nano` text editor.
 ```bash
 cd 3.assembly/
 
-nano assembly_spades.sl
+nano spades_assembly.sl
 ```
 
 Into this file, either write or copy/paste the following commands:
@@ -310,7 +310,7 @@ It is a good idea to match your number of threads request in the slurm script wi
 Once you are happy with your slurm script, execute the job by navigating to the location of your script and entering the command
 
 ```bash
-sbatch assembly_spades.sl
+sbatch spades_assembly.sl
 ```
 
 You will receive a message telling you the job identifier for your assembly. Record this number, as we will use it in the next exercise.
