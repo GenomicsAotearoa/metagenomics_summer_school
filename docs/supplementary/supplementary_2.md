@@ -14,7 +14,7 @@ Directories are like places — at any time while we are using the shell, we are
 
     This may look a bit obscure but thing of them as different labels for some familiar names such as Desktop, Downloads, Documents
 
-    * **`/home/username`** is for user-specific files such as configuration files, environment setup, source code, etc.
+    * **`/home/username`** is for user-specific files such as configuration files, environment setup, source code, etc. This will be the default landing file system during a login
     * **`/nesi/project/projectcode`** is for persistent project-related data, project-related software, etc
     * **`/nesi/nobackup/projectode`** is a 'scratch space', for data you don't need to keep long term. Old data is periodically deleted from nobackup
 
@@ -26,4 +26,21 @@ Directories are like places — at any time while we are using the shell, we are
     * **`/nesi/nobackup/nesi02659`**
 
 ## Symlinks (shortcuts ?) 
+
+All of the SummerSchool material will be hosted on `/nesi/nobackup/nesi02659` file system as it is the largest and fastest filesystem. Also, each one of the attendee has an individual working space in `/nesi/nobackup/nesi02659/MGSS_U/`. Although this is great in everyway, having to type the full path to access this particular path (or having to remember it) from the default login site (`/home` filesystem) can be a tedious task. Therefore, we recommend creating a **Symbolic link** to your individual working directory from `/home` Think of it as a shortcut from your Desktop 🙂
+
+!!! hint ""
+
+    * Let's call the symlink (shortcut) `mgss`
+    * Following command will create the `mgss` symlink from your `/home` directory to individual working directory in `/nesi/nobackup/nesi02659/MGSS_U/`
+
+    ```bash
+    ln -s /nesi/nobackup/nesi02659/MGSS_U/$USER ~/mgss
+    ```
+
+    * Now, you can access your working directory with 
+    
+    ```
+    cd ~/mgss
+    ```
 
