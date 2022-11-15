@@ -296,7 +296,7 @@ The `module load` command needs to be invoked within your slurm script. It is al
     |:---|:---|
     |**--meta**|Activate metagenome assembly mode. Default is to assemble your metagenome using single genome assembly assumptions|
     |**-k**|*k*-mer sizes for assembly. These choices will provide the output we will use in the **Binning** session, but feel free to experiment with these to see if you can improve the assembly|
-    |**-t**|Number of threads/cpus (see [above](#specifying-the-number-of-threads)). Here, we use a special SLURM environment variables $SLURM_CPUS_PER_TASK to specify the programme to use the same number of CPUs allocated for this job via `--cpus-per-task`.| 
+    |**-t**|Number of threads (see [above](#specifying-the-number-of-threads)). Here, we use a special SLURM environment variable: `$SLURM_CPUS_PER_TASK` to tell the programme to use the same number of threads allocated for this job via `--cpus-per-task`.| 
     |**-1**|Forward reads, matched to their reverse partners|
     |**-2**|Reverse reads, matched to their forward partners|
     |**-o**|Output directory for all files|
