@@ -54,3 +54,6 @@ All of the SummerSchool material will be hosted on `/nesi/nobackup/nesi02659` fi
     ```bash
     realpath .
     ```
+    * **Summary**
+
+    <center>![image](../theme_images/terminalsymlink_filex.png)</center>
