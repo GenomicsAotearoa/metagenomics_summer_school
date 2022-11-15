@@ -57,3 +57,11 @@ All of the SummerSchool material will be hosted on `/nesi/nobackup/nesi02659` fi
     * **Summary**
 
     <center>![image](../theme_images/terminalsymlink_filex.png)</center>
+
+## Jupyter File explorer
+
+!!! hint ""
+
+    Jupyter terminal and file explorer (on left) operate independently of each other. Therefore, changing the directory via terminal to your individual directory will not change the default working directory in explorer. Changing it to your individual directories can be done will couple of click 
+
+    <center>![image](../theme_images/jupyter_fileexplorer.png)</center>
