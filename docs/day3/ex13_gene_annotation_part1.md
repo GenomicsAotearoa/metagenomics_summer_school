@@ -137,9 +137,9 @@ module load HMMER/3.3.2-GCC-11.3.0
 ??? abstract "`hmmsearch -h`" 
     ```bash
     # hmmsearch :: search profile(s) against a sequence database
-    # HMMER 3.1b2 (February 2015); http://hmmer.org/
-    # Copyright (C) 2015 Howard Hughes Medical Institute.
-    # Freely distributed under the GNU General Public License (GPLv3).
+    # HMMER 3.3.2 (Nov 2020); http://hmmer.org/
+    # Copyright (C) 2020 Howard Hughes Medical Institute.
+    # Freely distributed under the BSD open source license.
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # Usage: hmmsearch [options] <hmmfile> <seqdb>
 
@@ -179,26 +179,29 @@ Paste in the script (update `<YOUR FOLDER>`)
 #SBATCH --account       nesi02659
 #SBATCH --job-name      annotate_pfam
 #SBATCH --res           SummerSchool
-#SBATCH --time          02:00:00
+#SBATCH --time          00:20:00
 #SBATCH --mem           5GB
 #SBATCH --cpus-per-task 10
-#SBATCH --error         annotate_pfam_hmm.err
-#SBATCH --output        annotate_pfam_hmm.out
+#SBATCH --array         0-9
+#SBATCH --error         %x_%A_%a.err
+#SBATCH --output        %x_%A_%a.out
 
-
+# Load modules
 module purge
 module load HMMER/3.3.2-GCC-11.3.0
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
+# Working directory
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
 
-for prot_file in predictions/*.genes.no_metadata.faa;
-do
-  out_file=$(basename ${prot_file} .faa)
+# Variables
+prot_file=predictions/bin_${SLURM_ARRAY_TASK_ID}.filtered.genes.no_metadata.faa
+out_file=$(basename ${prot_file} .faa)
+db=/nesi/nobackup/nesi02659/MGSS_resources_2022/databases/Pfam-A.hmm
 
-  hmmsearch --tblout gene_annotations/${out_file}.pfam.txt -E 1e-3 --cpu 10 /nesi/nobackup/nesi02659/MGSS_resources_2020/databases/Pfam-A.hmm ${prot_file}
-  
-done
-
+# Run HMMER
+hmmsearch --tblout gene_annotations/${out_file}.pfam.txt -E 0.001 \
+          --cpu $SLURM_CPUS_PER_TASK \
+          ${db} ${prot_file}
 ```
 
 Submit the script
