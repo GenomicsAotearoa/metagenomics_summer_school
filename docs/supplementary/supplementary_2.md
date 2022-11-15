@@ -20,7 +20,7 @@ Directories are like places — at any time while we are using the shell, we are
 
     **`projectode`** for this event is `nesi02659`. If you are to open a NeSI project for your own research, it will have a unique project code with a prefix to represent your affiliated institute and a five digit number (randomly generated). 
 
-    >Therefore, full path to persistent and nobackup/scratch space will be in the format of 
+    >Therefore, full path to persistent and nobackup/scratch file systems will be in the format of 
 
     * **`/nesi/project/nesi02659`**
     * **`/nesi/nobackup/nesi02659`**
