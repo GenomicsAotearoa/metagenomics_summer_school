@@ -24,3 +24,6 @@ Directories are like places — at any time while we are using the shell, we are
 
     * **`/nesi/project/nesi02659`**
     * **`/nesi/nobackup/nesi02659`**
+
+## Symlinks (shortcuts ?) 
+
