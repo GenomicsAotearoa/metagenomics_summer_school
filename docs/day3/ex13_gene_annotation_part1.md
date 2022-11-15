@@ -48,9 +48,9 @@ module purge
 module load DIAMOND/2.0.15-GCC-11.3.0
 
 diamond help
-# diamond v0.9.25.126 | by Benjamin Buchfink <buchfink@gmail.com>
-# Licensed under the GNU GPL <https://www.gnu.org/licenses/gpl.txt>
-# Check http://github.com/bbuchfink/diamond for updates.
+# diamond v2.0.15.153 (C) Max Planck Society for the Advancement of Science
+# Documentation, support and updates available at http://www.diamondsearch.org
+# Please cite: http://dx.doi.org/10.1038/s41592-021-01101-x Nature Methods (2021)
 
 # Syntax: diamond COMMAND [OPTIONS]
 
@@ -89,29 +89,29 @@ Paste in the script (update `<YOUR FOLDER>`)
 #SBATCH --account       nesi02659
 #SBATCH --job-name      annotate_uniprot
 #SBATCH --res           SummerSchool
-#SBATCH --time          02:00:00
+#SBATCH --time          01:00:00
 #SBATCH --mem           20GB
 #SBATCH --cpus-per-task 20
-#SBATCH --error         annotate_uniprot_dmnd.err
-#SBATCH --output        annotate_uniprot_dmnd.out
+#SBATCH --array         0-9
+#SBATCH --error         %x_%A_%a.err
+#SBATCH --output        %x_%A_%a.out
 
-
+# Load modules
 module purge
 module load DIAMOND/2.0.15-GCC-11.3.0
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
+# Working directory
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
 
-mkdir -p gene_annotations/
+# Variables
+prot_file=predictions/bin_${SLURM_ARRAY_TASK_ID}.filtered.genes.no_metadata.faa
+out_file=$(basename ${prot_file} .faa)
+db=/nesi/nobackup/nesi02659/MGSS_resources_2022/databases/uniprot.20181026.dmnd
 
-for prot_file in predictions/*.genes.no_metadata.faa;
-do
-  out_file=$(basename ${prot_file} .faa)
-
-  diamond blastp -p 20 --max-target-seqs 5 --evalue 0.001 \
-        --db /nesi/nobackup/nesi02659/MGSS_resources_2020/databases/uniprot_nr_200213.diamond \
-        -q ${prot_file} --outfmt 6 -o gene_annotations/${out_file}.uniprot.txt
-done
-
+# Run DIAMOND
+diamond blastp --threads $SLURM_CPUS_PER_TASK --max-target-seqs 5 --evalue 0.001 \
+               --db $db --query ${prot_file} --outfmt 6 \
+               --out gene_annotations/${out_file}.uniprot.txt
 ```
 
 Submit the script
