@@ -202,7 +202,7 @@ We will need to run `CheckM` under a slurm script. This is because the tree plac
 Create a new script
 
 ```bash
-nano bin_eval_checkm.sl
+nano checkm.sl
 ```
 
 !!! warning "Warning"
@@ -235,7 +235,7 @@ checkm lineage_wf -t $SLURM_CPUS_PER_TASK --pplacer_threads $SLURM_CPUS_PER_TASK
 Submit the script as a slurm job
 
 ```
-sbatch bin_eval_checkm.sl
+sbatch checkm.sl
 ```
 
 The breakdown of parameters is as follows
