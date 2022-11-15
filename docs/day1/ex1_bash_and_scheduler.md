@@ -261,7 +261,7 @@ There are a number of handy command line tools for working with text files and p
 
 Loops are a common concept in most programming languages which allow us to execute commands repeatedly with ease. There are three basic loop constructs in `bash` scripting,
 
-!!! info ""
+??? info "Types of Loops"
 
     === "`for` "
         
@@ -277,14 +277,14 @@ Loops are a common concept in most programming languages which allow us to execu
         Shell identifies the `for` command and repeats a block of commands once for each item in a list. The for loop will take each item in the list (in order, one after the other), assign that item as the value of a variable, execute the commands between the `do` and `done` keywords, then proceed to the next item in the list and repeat over. The value of a variable is accessed by placing the `$` character in front of the variable name. This will tell the interpreter to access the data stored within the variable, rather than the variable name. For example
 
         ```bash
-        i="DAVE WAS HERE"
+        i="MG Summer School"
 
         echo i
         # i
         echo $i
-        # DAVE WAS HERE
+        # MG Summer School
         echo ${i}
-        # DAVE WAS HERE
+        # MG Summer School
         ```
 
         This prevents the shell interpreter from treating `i` as a string or a command. The process is known as *expanding* the variable. We will now write a for loop to print the first two lines of our *fastQ* files:
@@ -293,6 +293,21 @@ Loops are a common concept in most programming languages which allow us to execu
         for filename in *.fastq
         do
             head -n 2 ${filename}
+        done
+        ```
+        Another useful command to be used with `for` loops is `basename` which strips directory information and suffixes from file names (i.e. prints the filename name with any leading directory components removed).
+
+        ```
+        basename SRR097977.fastq .fastq
+        ```
+
+        `basename` is rather a powerful tool when used in a for loop. It enables the user to access just the file prefix which can be use to name things
+
+        ```
+        for filename in *.fastq
+        do
+            name=$(basename ${filename} .fastq)
+            echo ${name}
         done
         ```
     
@@ -312,84 +327,72 @@ Loops are a common concept in most programming languages which allow us to execu
 
 
 
-Another useful command to be used with `for` loops is `basename` which strips directory information and suffixes from file names (i.e. prints the filename name with any leading directory components removed).
 
-```
-basename SRR097977.fastq .fastq
-```
-
-`basename` is rather a powerful tool when used in a for loop. It enables the user to access just the file prefix which can be use to name things
-
-```
-for filename in *.fastq
-do
-    name=$(basename ${filename} .fastq)
-    echo ${name}
-done
-```
 
 ---
 
 ### Scripts
 
-Executing operations that contain multiple lines/tasks or steps such as for loops via command line is rather inconvenient. For an example, imagine fixing a simple spelling mistake made somewhere in the middle of a for loop that was directly executed on the terminal.
+!!! success ""
 
-The solution for this is the use of shell scripts, which are essentially a set of commands that you write into a text file and then run as a single command. In UNIX-like operating systems, inbuilt text editors such as `nano`, `emacs`, and `vi` provide the platforms to write scripts. For this workshop we will use `nano` to create a file named `ForLoop.sh`.
+    Executing operations that contain multiple lines/tasks or steps such as for loops via command line is rather inconvenient. For an example, imagine fixing a simple spelling mistake made somewhere in the middle of a for loop that was directly executed on the terminal.
 
-```
-nano ForLoop.sh
-```
+    The solution for this is the use of shell scripts, which are essentially a set of commands that you write into a text file and then run as a single command. In UNIX-like operating systems, inbuilt text editors such as `nano`, `emacs`, and `vi` provide the platforms to write scripts. For this workshop we will use `nano` to create a file named `ForLoop.sh`.
 
-Add the following for-loop to the script (note the header `#!/bin/bash`).
+    ```
+    nano ForLoop.sh
+    ```
 
-```bash
-#!/bin/bash
+    Add the following for-loop to the script (note the header `#!/bin/bash`).
 
-for filename in *.fastq
-do
-    head -n 2 ${filename}
-done
-```
+    ```bash
+    #!/bin/bash
 
-Because `nano` is designed to work without a mouse for input, all commands you pass into the editor are done via keyboard shortcuts. You can save your changes by pressing `Ctrl + O`, then exit `nano` using `Ctrl + X`. If you try to exit without saving changes, you will get a prompt confirming whether or not you want to save before exiting, just like you would if you were working in **Notepad** or **Word**.
+    for filename in *.fastq
+    do
+        head -n 2 ${filename}
+    done
+    ```
 
-Now that you have saved your file, see if you can run the file by just typing the name of it (as you would for any command run off the terminal). You will notice the command written in the file will not be executed. The solution for this is to tell the machine what program to use to run the script. 
+    Because `nano` is designed to work without a mouse for input, all commands you pass into the editor are done via keyboard shortcuts. You can save your changes by pressing `Ctrl + O`, then exit `nano` using `Ctrl + X`. If you try to exit without saving changes, you will get a prompt confirming whether or not you want to save before exiting, just like you would if you were working in **Notepad** or **Word**.
 
-```bash
-bash ForLoop.sh
-```
+    Now that you have saved your file, see if you can run the file by just typing the name of it (as you would for any command run off the terminal). You will notice the command written in the file will not be executed. The solution for this is to tell the machine what program to use to run the script. 
 
-Although the file contains enough information to be considered as a program itself, the operating system can not recognise it as a program. This is due to it's lacking "executable" permissions to be executed without the assistance of a third party. Run the `ls -l ForLoop.sh` command and evaluate the first part of the output
+    ```bash
+    bash ForLoop.sh
+    ```
 
-```bash
-ls -l ForLoop.sh 
-# -rw-rw-r-- 1 user user 88 Dec  6 19:52 ForLoop.sh
-```
+    Although the file contains enough information to be considered as a program itself, the operating system can not recognise it as a program. This is due to it's lacking "executable" permissions to be executed without the assistance of a third party. Run the `ls -l ForLoop.sh` command and evaluate the first part of the output
 
-There are three file permission flags that a file we create on NeSI can possess. Two of these, the read (`r`) and write (`w`) are marked for the `ForLoop.sh` file .The third flag, executable (`x`) is not set. We want to change these permissions so that the file can be executed as a program. This can be done by using `chmod` command. Add the executable permissions (`+x`) to `ForLoop.sh` and run `ls` again to see what has changed.
+    ```bash
+    ls -l ForLoop.sh 
+    # -rw-rw-r-- 1 user user 88 Dec  6 19:52 ForLoop.sh
+    ```
 
-```bash
-chmod +x ForLoop.sh
-ls -l ForLoop.sh 
-# -rwxrwxr-x 1 user user 88 Dec  6 19:52 ForLoop.sh
-```
+    There are three file permission flags that a file we create on NeSI can possess. Two of these, the read (`r`) and write (`w`) are marked for the `ForLoop.sh` file .The third flag, executable (`x`) is not set. We want to change these permissions so that the file can be executed as a program. This can be done by using `chmod` command. Add the executable permissions (`+x`) to `ForLoop.sh` and run `ls` again to see what has changed.
 
-Re-open the file in `nano` and append the output to **TwoLines.txt**, save and exit
+    ```bash
+    chmod +x ForLoop.sh
+    ls -l ForLoop.sh 
+    # -rwxrwxr-x 1 user user 88 Dec  6 19:52 ForLoop.sh
+    ```
 
-```bash
-#!/bin/bash
+    Re-open the file in `nano` and append the output to **TwoLines.txt**, save and exit
 
-for filename in *.fastq
-do
-    head -n 2 ${filename} >> TwoLines.txt
-done
-```
+    ```bash
+    #!/bin/bash
 
-Execute the file `ForLoop.sh`. We'll need to put `./` at the beginning so the computer knows to look here in this directory for the program.
+    for filename in *.fastq
+    do
+        head -n 2 ${filename} >> TwoLines.txt
+    done
+    ```
 
-```bash
-./ForLoop.sh
-```
+    Execute the file `ForLoop.sh`. We'll need to put `./` at the beginning so the computer knows to look here in this directory for the program.
+
+    ```bash
+    ./ForLoop.sh
+    ```
 
 ---
 
