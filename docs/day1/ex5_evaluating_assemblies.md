@@ -179,7 +179,7 @@ However, since we **_do_** know the composition of the original communities used
 ```bash
 module load QUAST/5.2.0-gimkl-2022a
 
-metaquast.py --references-list ref_genomes.txt --max-ref-number 21 -t 10 \
+metaquast.py --references-list ref_genomes.txt --max-ref-number 21 -t 4 \
              --labels SPAdes,SPAdes.m1000,IDBAUD,IDBAUD.m1000 \
              --output-dir quast_results/ \
              spades_assembly/spades_assembly.fna \
