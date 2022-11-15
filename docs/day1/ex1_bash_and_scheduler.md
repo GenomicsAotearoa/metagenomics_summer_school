@@ -180,72 +180,80 @@ There are a number of handy command line tools for working with text files and p
 
 #### Cut
 
-The `cut` command prints selected parts of lines from each file to standard output. It is basically a tool for selecting columns of text, delimited by a particular character. The tab character is the default delimiter that `cut` uses to determine what constitutes a field. If the columns in your file are delimited by another character, you can specify this using the `-d` parameter.
+!!! info ""
 
-See what results you get from the file `names.txt`.
+    The `cut` command prints selected parts of lines from each file to standard output. It is basically a tool for selecting columns of text, delimited by a particular character. The tab character is the default delimiter that `cut` uses to determine what constitutes a field. If the columns in your file are delimited by another character, you can specify this using the `-d` parameter.
 
-```bash
-cat names.txt
+    See what results you get from the file `names.txt`.
 
-cut -d " " -f 1 names.txt
-cut -d " " -f 1-3 names.txt
-cut -d " " -f 1,3 names.txt
-```
+    ```bash
+    cat names.txt
+
+    cut -d " " -f 1 names.txt
+    cut -d " " -f 1-3 names.txt
+    cut -d " " -f 1,3 names.txt
+    ```
 
 #### basename
 
-`basename` is a function in UNIX that is helpful for removing a uniform part of a name from a list of files. In this case, we will use `basename` to remove the .fastq extension from the files that we've been working with.
+!!! info ""
 
-```bash
-basename SRR097977.fastq .fastq
-```
+    `basename` is a function in UNIX that is helpful for removing a uniform part of a name from a list of files. In this case, we will use `basename` to remove the .fastq extension from the files that we've been working with.
+
+    ```bash
+    basename SRR097977.fastq .fastq
+    ```
 
 #### sed
 
 `sed` is a stream editor. A stream editor is used to perform basic text transformations on an input stream (a file, or input from a pipeline) like, searching, find and replace, insertion or deletion. The most common use of the `sed` command in UNIX is for substitution or for find and replace. By using `sed` you can edit files even without opening them, which is extremely important when working with large files.
 
-View the contents of the `animals.txt` file using `cat`.
+!!! success ""
 
-```bash
-cat animals.txt
-```
+    * Some find and replace examples
 
-We will now use `sed` to make some replacements to the text in this file. 
+    Find and replace all `chr` to `chromosome` in the example.bed file and append the the edit to a new file names example_chromosome.bed
 
-##### Example - Replacing/substituting a string
+    ```bash
+    sed 's/chr/chromosome/g' example.bed > example_chromosome.bed
+    ```
+    Find and replace `chr` to `chromosome`, only if you also find **40** in the line
 
-`sed` is mostly used to replace the text in a file. In the following example, `sed` replaces the word 'dogs' with 'cats' in the file.
+    ```bash
+    sed '/40/s/chr/chromosome/g' example.bed > example_40.bed
+    ```
+    Find and replace directly on the input, but save an old version too
 
-```bash
-sed 's/dogs/cats/' animals.txt
-```
+    ```bash
+    sed -i.old 's/chr/chromosome/g' example.bed
+    ```
+    !!! info ""
+        `-i` to edit files in-place instead of printing to standard output
 
-Here the `s` specifies the substitution operation. The `/` characters are delimiters. The `dogs` is the search pattern and the `cats` is the replacement string.
+    * Print specific lines of the file
 
-By default, the `sed` command replaces the first occurrence of the pattern in each line and it won't replace additional occurrences in the line.
+    To print a specific line you can use the address function. Note that by default, `sed` will stream the entire file, so when you are interested in specific lines only, you will have to suppress this feature using the option `-n` 
 
-##### Example - Replacing all occurrences
+    !!! info ""
+        `-n`, `--quiet`, `--silent` = suppress automatic printing of pattern space
 
-The substitute flag `g` (global replacement) can be added to the command to replace all the occurrences of the string in the line.
+    print 5th line of example.bed
 
-```bash
-sed 's/dogs/cats/g' animals.txt
-```
+    ```bash
+    sed -n '5p' example.bed
+    ```
 
-##### Example - Deleting a line
+    We can provide any number of additional lines to print using `-e` option. Let's print line 2 and 5, 
 
-To delete a particular line, we can specify the line number followed by the `d` character. For example
+    ```bash
+    sed -n -e '2p' -e '5p' example.bed
+    ```
 
-```bash
-sed '1d' animals.txt
-# Delete the first line
+    It also accepts range, using `,`. Let's print line 2-6,
 
-sed '2d' animals.txt
-# Delete the second line
-
-sed '$d' animals.txt
-# Delete the last line
-```
+    ```bash
+    sed -n '2,6p' example.bed
+    ```
 
 ---
 
