@@ -10,7 +10,7 @@
 
 ### Overview of *DRAM.py annotate* output
 
-The submitted job from the previous session should now be completed. If we examine the output directory `10.gene_annotation/annotation_dram/` we will see the following files:
+The submitted job from the previous session should now be completed. If we examine the output directory `10.gene_annotation_and_coverage/dram_annotations/` we will see the following files:
 
 |File name | Description|
 |:--- | :--- | 
@@ -24,9 +24,9 @@ The submitted job from the previous session should now be completed. If we exami
 If we inspect the head of the annotation file we will see the following
 
 ```bash
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage/
 
-head annotation_dram/annotation.tsv
+head dram_annotations/annotation.tsv
 
 #fasta	scaffold	gene_position	start_position	end_position	strandedness	rank	kegg_id	kegg_hit	uniref_id	uniref_hit	uniref_taxonomy	uniref_RBH	uniref_identity	uniref_bitScore	uniref_eVal	peptidase_id	peptidase_family	peptidase_hit	peptidase_RBH	peptidase_identity	peptidase_bitScore	peptidase_eVal	pfam_hits	cazy_hits	vogdb_description	vogdb_categories	heme_regulatory_motif_count
 #bin_0_1f9359e86e6a75bcff340e6a8b60ef98_1	bin_0	1f9359e86e6a75bcff340e6a8b60ef98	1	205	1371	1	B	K02338	DNA polymerase III subunit beta [EC:2.7.7.7]	Q7V9E7_PROMM	UniRef90_Q7V9E7 Beta sliding clamp n=10 Tax=Prochlorococcus TaxID=1218 RepID=Q7V9E7_PROMM	Prochlorococcus	True	0.8959999999999999	726.0	1.5509999999999984e-233								DNA polymerase III beta subunit, C-terminal domain [PF02768.16]; DNA polymerase III beta subunit, N-terminal domain [PF00712.20]; DNA polymerase III beta subunit, central domain [PF02767.17]		sp|P9WNU1|DPO3B_MYCTU Beta sliding clamp; XhXr	Xr;Xh	0
@@ -48,12 +48,9 @@ After the annotation is finished, we will summarise and visualise these annotati
 module purge
 module load DRAM/1.3.5-Miniconda3
 
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage/
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation/
-
-DRAM.py distill -i annotation_dram/annotations.tsv -o dram_distillation --trna_path annotation_dram/trnas.tsv --rrna_path annotation_dram/rrnas.tsv
-
-conda deactivate
+DRAM.py distill -i dram_annotations/annotations.tsv -o dram_distillation --trna_path dram_annotations/trnas.tsv --rrna_path dram_annotations/rrnas.tsv
 ```
 
 
@@ -123,8 +120,8 @@ You were tasked with identifying one of the following.
 
 Depending on what you are looking for, you will either be trying to find gene(s) of relevance to a particular functional pathway, or the omission of genes that might be critical in function. In either case, make sure to use the taxonomy of each MAG to determine whether it is likely to be a worthwhile candidate for exploration, as some of these traits are quite restricted in terms of which organisms carry them.
 
-To conduct this exersise, you should use the information generated with ```DRAM``` as well as the annotation files we created yesterday and that are available in the directory ```10.gene_annotation/gene_annotations```. 
+To conduct this exersise, you should use the information generated with `DRAM` as well as the annotation files we created yesterday and that are available in the directory `10.gene_annotation_and_coverage/gene_annotations`. 
 
-Please note that we have also provided further annotation files within the directory ```10.gene_annotation/example_annotation_tables``` that contain information obtained after annotating the MAGs against additional databases (UniProt, UniRef100, KEGG, PFAM and TIGRfam). These example files can also be downloaded from [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/example_annotation_tables.zip). 
+Please note that we have also provided further annotation files within the directory `10.gene_annotation_and_coverage/example_annotation_tables` that contain information obtained after annotating the MAGs against additional databases (UniProt, UniRef100, KEGG, PFAM and TIGRfam). These example files can also be downloaded from [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/example_annotation_tables.zip). 
 
 ---

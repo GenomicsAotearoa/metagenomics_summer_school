@@ -22,22 +22,57 @@ module load SPAdes/3.15.4-gimkl-2022a-Python-3.10.5
     ```bash
     spades.py -h
     # ...
-    #Input data:
-    #-1      <filename>      file with forward paired-end reads
-    #-2      <filename>      file with reverse paired-end reads
-    #-s      <filename>      file with unpaired reads
-    #--mp<#>-1       <filename>      file with forward reads for mate-pair library number <#> (<#> = 1,2,..,9)
-    #--mp<#>-2       <filename>      file with reverse reads for mate-pair library number <#> (<#> = 1,2,..,9)
-    #--hqmp<#>-1     <filename>      file with forward reads for high-quality mate-pair library number <#> (<#> = 1,2,..,9)
-    #--hqmp<#>-2     <filename>      file with reverse reads for high-quality mate-pair library number <#> (<#> = 1,2,..,9)
-    #--nxmate<#>-1   <filename>      file with forward reads for Lucigen NxMate library number <#> (<#> = 1,2,..,9)
-    #--nxmate<#>-2   <filename>      file with reverse reads for Lucigen NxMate library number <#> (<#> = 1,2,..,9)
-    #--sanger        <filename>      file with Sanger reads
-    #--pacbio        <filename>      file with PacBio reads
-    #--nanopore      <filename>      file with Nanopore reads
-    #--tslr  <filename>      file with TSLR-contigs
-    #--trusted-contigs       <filename>      file with trusted contigs
-    #--untrusted-contigs     <filename>      file with untrusted contigs
+    # Input data:
+    #   --12 <filename>             file with interlaced forward and reverse paired-end reads
+    #   -1 <filename>               file with forward paired-end reads
+    #   -2 <filename>               file with reverse paired-end reads
+    #   -s <filename>               file with unpaired reads
+    #   --merged <filename>         file with merged forward and reverse paired-end reads
+    #   --pe-12 <#> <filename>      file with interlaced reads for paired-end library number <#>.
+    #                               Older deprecated syntax is -pe<#>-12 <filename>
+    #   --pe-1 <#> <filename>       file with forward reads for paired-end library number <#>.
+    #                               Older deprecated syntax is -pe<#>-1 <filename>
+    #   --pe-2 <#> <filename>       file with reverse reads for paired-end library number <#>.
+    #                               Older deprecated syntax is -pe<#>-2 <filename>
+    #   --pe-s <#> <filename>       file with unpaired reads for paired-end library number <#>.
+    #                               Older deprecated syntax is -pe<#>-s <filename>
+    #   --pe-m <#> <filename>       file with merged reads for paired-end library number <#>.
+    #                               Older deprecated syntax is -pe<#>-m <filename>
+    #   --pe-or <#> <or>            orientation of reads for paired-end library number <#>
+    #                               (<or> = fr, rf, ff).
+    #                               Older deprecated syntax is -pe<#>-<or>
+    #   --s <#> <filename>          file with unpaired reads for single reads library number <#>.
+    #                               Older deprecated syntax is --s<#> <filename>
+    #   --mp-12 <#> <filename>      file with interlaced reads for mate-pair library number <#>.
+    #                               Older deprecated syntax is -mp<#>-12 <filename>
+    #   --mp-1 <#> <filename>       file with forward reads for mate-pair library number <#>.
+    #                               Older deprecated syntax is -mp<#>-1 <filename>
+    #   --mp-2 <#> <filename>       file with reverse reads for mate-pair library number <#>.
+    #                               Older deprecated syntax is -mp<#>-2 <filename>
+    #   --mp-s <#> <filename>       file with unpaired reads for mate-pair library number <#>.
+    #                               Older deprecated syntax is -mp<#>-s <filename>
+    #   --mp-or <#> <or>            orientation of reads for mate-pair library number <#>
+    #                               (<or> = fr, rf, ff).
+    #                               Older deprecated syntax is -mp<#>-<or>
+    #   --hqmp-12 <#> <filename>    file with interlaced reads for high-quality mate-pair library number <#>.
+    #                               Older deprecated syntax is -hqmp<#>-12 <filename>
+    #   --hqmp-1 <#> <filename>     file with forward reads for high-quality mate-pair library number <#>.
+    #                               Older deprecated syntax is -hqmp<#>-1 <filename>
+    #   --hqmp-2 <#> <filename>     file with reverse reads for high-quality mate-pair library number <#>.
+    #                               Older deprecated syntax is -hqmp<#>-2 <filename>
+    #   --hqmp-s <#> <filename>     file with unpaired reads for high-quality mate-pair library number <#>.
+    #                               Older deprecated syntax is -hqmp<#>-s <filename>
+    #   --hqmp-or <#> <or>          orientation of reads for high-quality mate-pair library number <#>
+    #                               (<or> = fr, rf, ff).
+    #                               Older deprecated syntax is -hqmp<#>-<or>
+    #   --sanger <filename>         file with Sanger reads
+    #   --pacbio <filename>         file with PacBio reads
+    #   --nanopore <filename>       file with Nanopore reads
+    #   --trusted-contigs <filename>
+    #                               file with trusted contigs
+    #   --untrusted-contigs <filename>
+    #                               file with untrusted contigs
+    # ...
     ```
 
 At a glance, you could provide any of the following data types to `SPAdes` and have it perform an assembly:
@@ -204,7 +239,7 @@ To begin, we need to open a text file using the `nano` text editor.
 ```bash
 cd 3.assembly/
 
-nano assembly_spades.sl
+nano spades_assembly.sl
 ```
 
 Into this file, either write or copy/paste the following commands:
@@ -215,21 +250,28 @@ Into this file, either write or copy/paste the following commands:
 #SBATCH --account       nesi02659
 #SBATCH --job-name      spades_assembly
 #SBATCH --res           SummerSchool
-#SBATCH --time          00:50:00
+#SBATCH --time          00:30:00
 #SBATCH --mem           10GB
 #SBATCH --cpus-per-task 12
-#SBATCH --error         spades_assembly.err
-#SBATCH --output        spades_assembly.out
+#SBATCH --error         %x_%j.err
+#SBATCH --output        %x_%j.out
 
+# Load modules
 module purge
 module load SPAdes/3.15.4-gimkl-2022a-Python-3.10.5
 
-spades.py --meta -k 33,55,77,99,121 -t 12 -1 for_spades_R1.fq.gz -2 for_spades_R2.fq.gz -o spades_assembly/
+# Working directory
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly
+
+# Run SPAdes
+spades.py --meta -k 33,55,77,99,121 -t $SLURM_CPUS_PER_TASK \
+          -1 for_spades_R1.fq.gz -2 for_spades_R2.fq.gz \
+          -o spades_assembly/
 ```
 
 To save your file, use `Ctrl + O` to save the file, then `Ctrl + X` to exit `nano`. Going through those lines one by one;
 
-??? abstract "Review above submission script :Slurm parameters and their functions"
+??? abstract "Review above submission script: Slurm parameters and their functions"
 
     |Slurm parameter|Function|
     |:---|:---|
@@ -254,6 +296,7 @@ The `module load` command needs to be invoked within your slurm script. It is al
     |:---|:---|
     |**--meta**|Activate metagenome assembly mode. Default is to assemble your metagenome using single genome assembly assumptions|
     |**-k**|*k*-mer sizes for assembly. These choices will provide the output we will use in the **Binning** session, but feel free to experiment with these to see if you can improve the assembly|
+    |**-t**|Number of threads (see [above](#specifying-the-number-of-threads)). Here, we use a special SLURM environment variable: `$SLURM_CPUS_PER_TASK` to tell the programme to use the same number of threads allocated for this job via `--cpus-per-task`.| 
     |**-1**|Forward reads, matched to their reverse partners|
     |**-2**|Reverse reads, matched to their forward partners|
     |**-o**|Output directory for all files|
@@ -267,7 +310,7 @@ It is a good idea to match your number of threads request in the slurm script wi
 Once you are happy with your slurm script, execute the job by navigating to the location of your script and entering the command
 
 ```bash
-sbatch assembly_spades.sl
+sbatch spades_assembly.sl
 ```
 
 You will receive a message telling you the job identifier for your assembly. Record this number, as we will use it in the next exercise.
@@ -308,16 +351,22 @@ Paste or type in the following:
 #SBATCH --account       nesi02659
 #SBATCH --job-name      idbaud_assembly
 #SBATCH --res           SummerSchool
-#SBATCH --time          00:35:00
+#SBATCH --time          00:20:00
 #SBATCH --mem           4GB
-#SBATCH --cpus-per-task 8
-#SBATCH --error         idbaud_assembly.err
-#SBATCH --output        idbaud_assembly.out
+#SBATCH --cpus-per-task 12
+#SBATCH --error         %x_%j.err
+#SBATCH --output        %x_%j.out
 
+# Prepare modules
 module purge
 module load IDBA-UD/1.1.3-GCC-11.3.0
 
-idba_ud --num_threads 8 --mink 33 --maxk 99 --step 22 -r for_idba.fna -o idbaud_assembly/
+# Working directory
+cd ./3.assembly
+
+# Run IDBA-UD
+idba_ud --num_threads $SLURM_CPUS_PER_TASK --mink 33 --maxk 99 --step 22 \
+        -r for_idba.fna -o idbaud_assembly/
 ```
 
 And submit the script as a slurm job:
@@ -326,6 +375,6 @@ And submit the script as a slurm job:
 sbatch idbaud_assembly.sl
 ```
 
-Remember to record your job identification number.
+When your job starts running, files with suffixes `.err` and `.out` will be created in the directory from where you submitted your job. These files will have have your job name and job identification number as file names.
 
 ---

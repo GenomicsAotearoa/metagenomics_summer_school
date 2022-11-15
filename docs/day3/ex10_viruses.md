@@ -68,31 +68,30 @@ Paste in the following (updating `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash -e
-#SBATCH --account nesi02659
-#SBATCH --res SummerSchool
-#SBATCH --job-name vibrant
-#SBATCH --time 00:30:00
-#SBATCH --mem=4GB
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=16
-#SBATCH --error vibrant.err
-#SBATCH --output vibrant.out
-#SBATCH --profile=task
+#SBATCH --account       nesi02659
+#SBATCH --job-name      vibrant
+#SBATCH --res           SummerSchool
+#SBATCH --time          00:40:00
+#SBATCH --mem           4GB
+#SBATCH --cpus-per-task 16
+#SBATCH --error         %x_%j.err
+#SBATCH --output        %x_%j.out
 
-
-# Load VIBRANT module
+# Load modules
 module purge
 module load VIBRANT/1.2.1-gimkl-2020a
 
-# Set up working directories
+# Working directory
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/
+
+# Output directory
 mkdir -p vibrant
 
 # Run VIBRANT
-srun VIBRANT_run.py -t 16 \
--i spades_assembly/spades_assembly.m1000.fna \
--d $DB_PATH \
--folder vibrant/
+VIBRANT_run.py -t $SLURM_CPUS_PER_TASK \
+               -i spades_assembly/spades_assembly.m1000.fna \
+               -d $DB_PATH \
+               -folder vibrant/
 ```
 
 Submit the script as a slurm job
@@ -140,27 +139,28 @@ Paste in the following (updating `<YOUR FOLDER>`)
 #!/bin/bash -e
 
 #SBATCH --account       nesi02659
+#SBATCH --job-name      CheckV
 #SBATCH --res           SummerSchool
-#SBATCH --job-name      checkv
 #SBATCH --time          00:10:00
 #SBATCH --mem           3GB
 #SBATCH --cpus-per-task 10
-#SBATCH --error         checkv.err
-#SBATCH --output        checkv.out
+#SBATCH --error         %x_%j.err
+#SBATCH --output        %x_%j.out
 
-
-# Load the module
+# Load modules
 module purge
 module load CheckV/1.0.1-gimkl-2022a-Python-3.10.5
 
-# Set up working directories
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/
+# Working directory
+cd ./7.viruses
+
+# Output directory
 mkdir -p checkv_out
 
-# Run main analyses 
+# Run CheckV
 checkv_in="vibrant/VIBRANT_spades_assembly.m1000/VIBRANT_phages_spades_assembly.m1000/spades_assembly.m1000.phages_combined.fna"
 
-srun checkv end_to_end ${checkv_in} checkv_out -t 10 --quiet
+checkv end_to_end $checkv_in checkv_out/ -t $SLURM_CPUS_PER_TASK
 ```
 
 Submit the script as a slurm job

@@ -116,25 +116,29 @@ Paste in the script (modifying `<YOUR FOLDER>`)
 #SBATCH --time          00:10:00
 #SBATCH --mem           1GB
 #SBATCH --cpus-per-task 1
-#SBATCH --error         prodigal.err
-#SBATCH --output        prodigal.out
+#SBATCH --array         0-9
+#SBATCH --error         %x_%A_%a.err
+#SBATCH --output        %x_%A_%a.out
 
+# Load modules
 module purge
-module load prodigal/2.6.3-GCC-11.3.0
+module load prodigal/2.6.3-GCCcore-7.4.0
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction/
+# Working directory
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction
 
+# Output directory
 mkdir -p predictions/
 
-for bin_file in filtered_bins/*.fna;
-do
-    pred_file=$(basename ${bin_file} .fna)
+# Variables
+bin_file=filtered_bins/bin_${SLURM_ARRAY_TASK_ID}.filtered.fna
+pred_file=$(basename ${bin_file} .fna)
 
-    prodigal -i ${bin_file} -p meta \
-             -d predictions/${pred_file}.genes.fna \
-             -a predictions/${pred_file}.genes.faa \
-             -o predictions/${pred_file}.genes.gbk
-done
+# Run prodigal
+prodigal -i ${bin_file} -p meta \
+         -d predictions/${pred_file}.genes.fna \
+         -a predictions/${pred_file}.genes.faa \
+         -o predictions/${pred_file}.genes.gbk
 ```
 
 Submit the script
@@ -230,24 +234,29 @@ Paste in the script (replacing `<YOUR FOLDER>`)
 #SBATCH --res           SummerSchool
 #SBATCH --time          00:05:00
 #SBATCH --mem           1GB
-#SBATCH --cpus-per-task 10
-#SBATCH --error         metaxa2.err
-#SBATCH --output        metaxa2.out
+#SBATCH --cpus-per-task 4
+#SBATCH --array         0-9
+#SBATCH --error         %x_%A_%a.err
+#SBATCH --output        %x_%A_%a.out
 
-
+# Load modules
 module purge
 module load Metaxa2/2.2.3-gimkl-2022a
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction/
+# Working directory
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction
 
+# Output directory
 mkdir -p ribosomes/
 
-for bin_file in filtered_bins/*.fna;
-do
-    pred_file=$(basename ${bin_file} .fna)
-  
-    metaxa2 --cpu 10 -g ssu -i ${bin_file} -o ribosomes/${pred_file}.ssu
-    metaxa2 --cpu 10 -g lsu -i ${bin_file} -o ribosomes/${pred_file}.lsu
+# Variables
+bin_file=filtered_bins/bin_${SLURM_ARRAY_TASK_ID}.filtered.fna
+pred_file=$(basename ${bin_file} .fna)
+
+# Run Metaxa2
+for ribosome_type in ssu lsu; do
+  metaxa2 --cpu $SLURM_CPUS_PER_TASK -g ${ribosome_type} --mode genome \
+          -i ${bin_file} -o ribosomes/${pred_file}.${ribosome_type}
 done
 ```
 

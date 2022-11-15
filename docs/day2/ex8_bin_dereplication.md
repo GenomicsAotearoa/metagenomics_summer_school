@@ -202,37 +202,40 @@ We will need to run `CheckM` under a slurm script. This is because the tree plac
 Create a new script
 
 ```bash
-nano bin_eval_checkm.sl
+nano checkm.sl
 ```
 
 !!! warning "Warning"
     Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
 
 ```bash
-#!/bin/bash
+#!/bin/bash -e
 #SBATCH --account       nesi02659
-#SBATCH --job-name      bin_eval_checkm
+#SBATCH --job-name      CheckM
 #SBATCH --res           SummerSchool
 #SBATCH --time          00:20:00
 #SBATCH --mem           50GB
 #SBATCH --cpus-per-task 10
-#SBATCH --error         bin_eval_checkm.err
-#SBATCH --output        bin_eval_checkm.out
+#SBATCH --error         %x_%j.err
+#SBATCH --output        %x_%j.out
 
+# Load modules
 module purge
-module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
+module load CheckM/1.2.1-gimkl-2022a-Python-3.10.5
 
+# Working directory
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 
-checkm lineage_wf -t 10 --pplacer_threads 10 -x fa \
-                  --tab_table -f checkm.txt \
+# Run CheckM
+checkm lineage_wf -t $SLURM_CPUS_PER_TASK --pplacer_threads $SLURM_CPUS_PER_TASK \
+                  -x fa --tab_table -f checkm.txt \
                   dastool_out/_DASTool_bins/ checkm_out/
 ```
 
 Submit the script as a slurm job
 
 ```
-sbatch bin_eval_checkm.sl
+sbatch checkm.sl
 ```
 
 The breakdown of parameters is as follows
