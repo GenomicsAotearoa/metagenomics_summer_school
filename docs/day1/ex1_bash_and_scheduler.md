@@ -1,4 +1,7 @@
-# Introduction to shell
+# Introduction to shell 
+( covered/referred during pre-Summer School sessions)
+
+
 
 ---
 
@@ -17,9 +20,9 @@
 ---
 
 !!! tip  "Quick recap"
-    * Log into the NeSI Jupyter service as per **S.1.1 : NeSI Mahuika Jupyter login** in [NeSI Setup Supplementary material](http://127.0.0.1:8000/metagenomics_summer_school/supplementary/supplementary_1/)
+    * Log into the NeSI Jupyter service as per **S.1.1 : NeSI Mahuika Jupyter login** in [NeSI Setup Supplementary material](https://genomicsaotearoa.github.io/metagenomics_summer_school/supplementary/supplementary_1/)
     * Then open a Jupyter **Terminal** Session 
-    * We do recommend referring to [NeSI File system,..Symlinks Supplementary material first](http://127.0.0.1:8000/metagenomics_summer_school/supplementary/supplementary_2/) 
+    * We do recommend referring to [NeSI File system,..Symlinks Supplementary material first](https://genomicsaotearoa.github.io/metagenomics_summer_school/supplementary/supplementary_2/) 
     * This lesson is a quick recap on basic/essential linux commands and will be covered during the pre-summer school sessions. 
     * If you would like to follow through and learn a bit more on this topic, refer to  [Intermediate Shell for Bioinformatics](https://genomicsaotearoa.github.io/shell-for-bioinformatics/) material (or welcome to attend that workshop which will be offered two or three times per year)
 
