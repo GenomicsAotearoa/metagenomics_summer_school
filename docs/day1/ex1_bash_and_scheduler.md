@@ -215,7 +215,7 @@ There are a number of handy command line tools for working with text files and p
 
     * Some find and replace examples
 
-    Find and replace all `chr` to `chromosome` in the example.bed file and append the the edit to a new file names example_chromosome.bed
+    Find and replace all `chr` to `chromosome` in the example.bed file and append the the edit to a new file named example_chromosome.bed
 
     ```bash
     sed 's/chr/chromosome/g' example.bed > example_chromosome.bed
