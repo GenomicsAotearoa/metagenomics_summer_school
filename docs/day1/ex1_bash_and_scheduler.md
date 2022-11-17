@@ -1,5 +1,7 @@
 # Introduction to shell 
-( covered/referred during pre-Summer School sessions)
+
+!!! warning ""
+    This lesson will be covered/referred during pre-Summer School sessions. We will start **Day 1** with [Introduction to HPC & HPC job scheduler](https://genomicsaotearoa.github.io/metagenomics_summer_school/day1/ex2_1_intro_to_scheduler/)
 
 
 
