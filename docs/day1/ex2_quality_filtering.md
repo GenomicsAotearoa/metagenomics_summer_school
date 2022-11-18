@@ -8,6 +8,9 @@
     * [Understand common issues and best practices](#understand-common-issues-and-best-practices)
     * [*Optional*: Filtering out host DNA with `BBMap`](#optional-filtering-out-host-dna)
 
+<center>
+![image](../theme_images/qc_image.png){width="350"}
+</center>
 ---
 
 ### Visualising raw reads
