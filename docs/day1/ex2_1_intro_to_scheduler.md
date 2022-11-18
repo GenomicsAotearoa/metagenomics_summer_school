@@ -1,5 +1,7 @@
 # Introduction to HPC & HPC job scheduler
 
+<center>![image](../theme_images/scaling.png){width="300"}</center>
+
 ### Defining high-performance computing
 
 The simplest way of defining high-performance computing is by saying that it is the using of high-performance computers (HPC). However, this leads to our next question what is a HPC .
