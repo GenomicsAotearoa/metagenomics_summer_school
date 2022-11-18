@@ -115,6 +115,10 @@ Which of the previous fields we examined are now flagged as problematic? How doe
 
 ### Read trimming and adapter removal with *trimmomatic*
 
+<center>
+![image](../theme_images/cleaning_reads.png){width="300"}
+</center>
+
 There are a multitude of programs which can be used to quality trim sequence data and remove adapter sequence. For this exercise we are going to use `trimmomatic`, but this should in no way be interpreted as an endorsement of `trimmomatic` over equivalent tools like `BBMap`, `sickle`, `cutadapt` or any other.
 
 For a first run with `trimmomatic`, type the following commands into your console:
