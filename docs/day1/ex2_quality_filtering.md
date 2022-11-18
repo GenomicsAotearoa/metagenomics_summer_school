@@ -113,7 +113,7 @@ Which of the previous fields we examined are now flagged as problematic? How doe
 
 ---
 
-### Read trimming and adapter removal with *trimmomatic*
+### **Read trimming and adapter removal with *trimmomatic***
 
 <center>
 ![image](../theme_images/cleaning_reads.png){width="300"}
@@ -275,7 +275,7 @@ export PATH="/home/<your_username>/.local/bin:$PATH"
 gdown https://drive.google.com/uc?id=0B3llHR93L14wd0pSSnFULUlhcUk
 ```
 
-#### Indexing the reference genome and read mapping with *BBMap*
+#### **Indexing the reference genome and read mapping with *BBMap***
 
 We will cover more about read mapping in [later exercises](https://genomicsaotearoa.github.io/metagenomics_summer_school/day2/ex6_initial_binning/). For now, it is important to know that it is first necessary to build an index of the reference using the read mapping tool of choice. Here, we will first build a `BBMap` index, and then use `BBMap` to map the quality-filtered reads to that index, ultimately retaining only those reads that do *not* map to the index.
 
