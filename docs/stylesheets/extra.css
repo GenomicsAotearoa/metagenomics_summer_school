@@ -109,21 +109,21 @@
 }
 
 :root {
-  --md-admonition-icon--file: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/></svg>')
+  --md-admonition-icon--folder-open: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M572.6 270.3l-96 192C471.2 473.2 460.1 480 447.1 480H64c-35.35 0-64-28.66-64-64V96c0-35.34 28.65-64 64-64h117.5c16.97 0 33.25 6.742 45.26 18.75L275.9 96H416c35.35 0 64 28.66 64 64v32h-48V160c0-8.824-7.178-16-16-16H256L192.8 84.69C189.8 81.66 185.8 80 181.5 80H64C55.18 80 48 87.18 48 96v288l71.16-142.3C124.6 230.8 135.7 224 147.8 224h396.2C567.7 224 583.2 249 572.6 270.3z"/></svg>')
 }
-.md-typeset .admonition.file,
-.md-typeset details.file {
+.md-typeset .admonition.folder-open,
+.md-typeset details.folder-open {
   border-color: rgb(0,100,0,0.1);
 }
-.md-typeset .file > .admonition-title,
-.md-typeset .file > summary {
+.md-typeset .folder-open > .admonition-title,
+.md-typeset .folder-open > summary {
   background-color: rgba(0,100,0,0.1);
 }
-.md-typeset .file > .admonition-title::before,
-.md-typeset .file > summary::before {
+.md-typeset .folder-open > .admonition-title::before,
+.md-typeset .folder-open > summary::before {
   background-color: rgb(112,128,144);
-  -webkit-mask-image: var(--md-admonition-icon--file);
-          mask-image: var(--md-admonition-icon--file);
+  -webkit-mask-image: var(--md-admonition-icon--folder-open);
+          mask-image: var(--md-admonition-icon--folder-open);
 }
 
 
