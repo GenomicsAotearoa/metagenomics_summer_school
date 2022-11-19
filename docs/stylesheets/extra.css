@@ -103,7 +103,7 @@
 }
 .md-typeset .database > .admonition-title::before,
 .md-typeset .database > summary::before {
-  background-color: rgb(255,215,0);
+  background-color: rgb(112,128,144);
   -webkit-mask-image: var(--md-admonition-icon--database);
           mask-image: var(--md-admonition-icon--database);
 }
