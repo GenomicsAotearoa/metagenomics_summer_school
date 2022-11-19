@@ -55,6 +55,6 @@
 
 
 
-!!! magnifying-glass "testing new admonition"
+!!! microscope "testing new admonition"
 
     testing new admonition
