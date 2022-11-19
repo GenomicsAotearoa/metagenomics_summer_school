@@ -22,15 +22,15 @@
 }
 .md-typeset .admonition.desktop-download-24,
 .md-typeset details.desktop-download-24 {
-  border-color: rgb(43, 155, 70);
+  border-color: rgb(70,130,180);
 }
 .md-typeset .desktop-download-24 > .admonition-title,
 .md-typeset .desktop-download-24 > summary {
-  background-color: rgba(43, 155, 70, 0.1);
+  background-color: rgba(70,130,180, 0.1);
 }
 .md-typeset .desktop-download-24 > .admonition-title::before,
 .md-typeset .desktop-download-24 > summary::before {
-  background-color: rgb(43, 155, 70);
+  background-color: rgb(70,130,180);
   -webkit-mask-image: var(--md-admonition-icon--desktop-download-24);
           mask-image: var(--md-admonition-icon--desktop-download-24);
 }
