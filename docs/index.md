@@ -55,6 +55,3 @@
 
 
 
-!!! microscope "testing new admonition"
-
-    testing new admonition
