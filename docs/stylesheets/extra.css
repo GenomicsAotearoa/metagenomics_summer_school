@@ -117,7 +117,7 @@
 }
 .md-typeset .file > .admonition-title,
 .md-typeset .file > summary {
-  background-color: rgba(173,255,47);
+  background-color: rgba(173,255,47,0.1);
 }
 .md-typeset .file > .admonition-title::before,
 .md-typeset .file > summary::before {

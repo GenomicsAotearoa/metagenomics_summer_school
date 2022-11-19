@@ -29,7 +29,7 @@ Directories are like places — at any time while we are using the shell, we are
 
 All of the SummerSchool material will be hosted on `/nesi/nobackup/nesi02659` file system as it is the largest and fastest filesystem. Also, each one of the attendee has an individual working space in `/nesi/nobackup/nesi02659/MGSS_U/`. Although this is great in everyway, having to type the full path to access this particular path (or having to remember it) from the default login site (`/home` filesystem) can be a tedious task. Therefore, we recommend creating a **Symbolic link** to your individual working directory from `/home` Think of it as a shortcut from your Desktop 🙂
 
-!!! hint ""
+!!! file "Creating a symlink from `/home/$USER` to nobackup(scratch)"
     * Log into the NeSI Jupyter service as per **S.1.1 : NeSI Mahuika Jupyter login** in [NeSI Setup Supplementary material](http://127.0.0.1:8000/metagenomics_summer_school/supplementary/supplementary_1/) and open a terminal session
     * Let's call the symlink (shortcut) `mgss`
     * Following command will create the `mgss` symlink from your `/home` directory to individual working directory in `/nesi/nobackup/nesi02659/MGSS_U/`
