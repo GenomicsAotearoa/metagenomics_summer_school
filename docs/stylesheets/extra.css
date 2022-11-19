@@ -95,7 +95,7 @@
 }
 .md-typeset .admonition.database,
 .md-typeset details.database {
-  border-color: rgb(255,215,0);
+  border-color: rgb(255,215,0,0.1);
 }
 .md-typeset .database > .admonition-title,
 .md-typeset .database > summary {
