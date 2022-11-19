@@ -55,4 +55,6 @@
 
 
 
-!!! desktop-download-24 "testing new admonition"
+!!! magnifying-glass "testing new admonition"
+
+    testing new admonition
