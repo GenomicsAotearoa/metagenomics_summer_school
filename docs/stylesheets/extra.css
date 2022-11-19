@@ -155,7 +155,7 @@
 }
 .md-typeset .jupyter > .admonition-title,
 .md-typeset .jupyter > summary {
-  background-color: rgba(47,79,79);
+  background-color: rgba(47,79,79,0.1);
 }
 .md-typeset .jupyter > .admonition-title::before,
 .md-typeset .jupyter > summary::before {

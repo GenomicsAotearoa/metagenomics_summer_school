@@ -1,7 +1,7 @@
 # NeSI Setup
 
 
-??? info "S.1.1 : NeSI Mahuika Jupyter login"
+??? jupyter "S.1.1 : NeSI Mahuika Jupyter login"
 
 
      1. <p>Follow [https://jupyter.nesi.org.nz/hub/login](https://jupyter.nesi.org.nz/hub/login)</p>
