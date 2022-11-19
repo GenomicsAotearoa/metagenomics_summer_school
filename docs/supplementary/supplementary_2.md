@@ -60,7 +60,7 @@ All of the SummerSchool material will be hosted on `/nesi/nobackup/nesi02659` fi
 
 ## Jupyter File explorer
 
-!!! hint ""
+!!! file  "Guide  File Explorer to correct working directory"
 
     Jupyter terminal and file explorer (on left) operate independently of each other. Therefore, changing the directory via terminal to your individual directory will not change the default working directory in explorer. Changing it to your individual directories can be done will couple of click 
 
