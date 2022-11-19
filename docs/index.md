@@ -51,3 +51,8 @@
     * [Input files for VizBin](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/docs/resources/vizbin_files.zip)
     * [Tables of gene annotations](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/docs/resources/example_annotation_tables.zip)
     * [DRAM output files](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/docs/resources/DRAM_results.zip)
+
+
+
+
+!!! desktop-download-24 "testing new admonition"
