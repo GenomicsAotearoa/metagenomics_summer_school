@@ -295,7 +295,7 @@ legend("bottomright",
 ![image](../figures/ex15_MAGs_heatmap.png){width="600"}
 </center>
 
-!!! tip
+!!! vial-virus "Quick recap"
 
     Some quick take-aways from looking at this plot:
 
