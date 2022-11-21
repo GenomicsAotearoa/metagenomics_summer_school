@@ -71,46 +71,44 @@ Use `vContact2`'s `vcontact2_gene2genome` script to generate the required mappin
 
 Example slurm script:
 
-*NOTE: update `/path/to/conda/envs/vContact2/bin` and `/path/to/conda/envs/vContact2/bin/cluster_one-1.0.jar` in the below script to the appropraite paths.*
+!!! terminal "code"
 
-```bash
-#!/bin/bash -e
-
-#SBATCH --account       nesi02659
-#SBATCH --job-name      vcontact2
-#SBATCH --time          02:00:00
-#SBATCH --mem           20GB
-#SBATCH --cpus-per-task 20
-#SBATCH --error         vcontact2.err
-#SBATCH --output        vcontact2.out
-
-
-# Set up working directories
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/viral_taxonomy/
-
-# activate vcontact2 conda environment
-module purge
-module load Miniconda3
-source activate vContact2
-
-# Load dependencies
-export PATH="/path/to/conda/envs/vContact2/bin:$PATH"
-module load DIAMOND/0.9.32-GCC-9.2.0
-module load MCL/14.137-gimkl-2020a
-
-# Run vcontact2
-srun vcontact2 \
--t 20 \
---raw-proteins checkv_combined.faa \
---rel-mode Diamond \
---proteins-fp viral_genomes_g2g.csv \
---db 'ProkaryoticViralRefSeq201-Merged' \
---c1-bin /path/to/conda/envs/vContact2/bin/cluster_one-1.0.jar \
---output-dir vConTACT2_Results
-
-# deactivate conda environment
-conda deactivate
-```
+    ```bash
+    #!/bin/bash -e
+    
+    #SBATCH --account       uow03498
+    #SBATCH --job-name      vcontact2_test
+    #SBATCH --time          02:00:00
+    #SBATCH --mem           20GB
+    #SBATCH --cpus-per-task 10
+    #SBATCH --partition     milan
+    #SBATCH --error         vcontact2_%j.err
+    #SBATCH --output        vcontact2_%j.out
+    
+    
+    # activate vcontact2 conda environment
+    module purge
+    module unload XALT
+    module load Singularity
+    
+    container=/opt/nesi/containers
+    
+    # Bind external filesystem paths to container image
+    export SINGULARITY_BIND="$PWD,$container,/nesi/nobackup/nesi02659/MGSS_U"
+    
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/viral_taxonomy/
+    
+    
+    # Run vcontact2
+    singularity run $container/vcontact2.simg vcontact2 \
+    -t $SLURM_CPUS_PER_TASK \
+    --raw-proteins checkv_combined.faa \
+    --rel-mode Diamond \
+    --proteins-fp viral_genomes_g2g.csv \
+    --db 'ProkaryoticViralRefSeq201-Merged' \
+    --c1-bin /opt/conda/bin/cluster_one-1.0.jar \
+    --output-dir vConTACT2_Results
+    ```
 
 **4. Predict taxonomy of viral contigs based on ouput of `vContact2`**
 
