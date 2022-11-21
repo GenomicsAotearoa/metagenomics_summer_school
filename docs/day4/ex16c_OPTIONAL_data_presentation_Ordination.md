@@ -28,244 +28,249 @@ In addition to this, a simple mapping file has also been created (`11.data_prese
 To get started, open `RStudio` and start a new document.
 
 !!! note "Note"
-    You will recognise that the first few steps will follow the same process as the previous exercise on [generating coverage heatmaps](../day4/ex16b_data_presentation_Coverage.md). In practice, these two workflows can be combined to reduce the repititive aspects.
+    You will recognise that the first few steps will follow the same process as the previous exercise on [generating coverage heatmaps](../day4/ex16b_data_presentation_Coverage.md). In practice, these two workflows can be combined to reduce the repetitive aspects.
 
-#### 1.1 Set working directory, load *R* libraries, and import data
+#### 1.1 Prepare environment
 
 First, set the working directory and load the required libraries.
 
 ```R
+# Set working directory
 setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/')
 
-# tidyverse libraries 
-library(dplyr)
+# Load libraries ----
+# Tidyverse libraries
 library(readr)
+library(dplyr)
+library(tidyr)
 library(stringr)
+library(tibble)
+library(purrr)
 library(ggplot2)
 
-# Other libraries
+# Ecological analyses
 library(vegan)
 ```
 
-Import the coverage tables and mapping file. When importing the files, we will select only the information of use here and will do a few basic first data wrangling steps. From the coverage table, we will select the `contigName` column and each of the columns of coverage values (columns `sample[1-4].bam`). 
+Import coverage tables and mapping file.
 
 ```R
-# bins coverage table
-cov_MAG <- read_tsv("coverage/bins_cov_table.txt") %>% 
-  select(c('contigName', ends_with('.bam'))) 
-
-# viruses coverage table
-cov_vir <- read_tsv("coverage/viruses_cov_table.txt") %>% 
-  mutate(Contig = contigName) %>%
-  select(c('Contig', ends_with('.bam'))) 
-
-# mapping file (import both columns as factors: col_types set to factor, factor)
-map.df <- read_tsv("coverage/mapping_file.txt", col_types = "ff")
+# Read files ----
+contig_cov <- read_tsv("bins_cov_table.txt") # Bin contig coverage table
+virus_cov <- read_tsv("viruses_cov_table.txt") # Viral contig coverage table
+metadata <- read_tsv("mapping_file.txt") # Metadata/mapping file of environmental parameters
 ```
 
-#### 1.2 wrangle data
+#### 1.2 Wrangle data
 
-As noted during the [coverage and taxonomy](../day3/ex11_coverage_and_taxonomy.md) exercises, for the bin data it is important to remember that we currently have a table of coverage values for all *contigs* contained within each bin (MAG). Since we're aiming to present coverage for each *MAG*, we need to reduce these contig coverages into a single mean coverage value per MAG per sample. 
-
-In the following code, we first strip the `.bam` extensions off of our sample names. For the bin data, we will then leverage the fact that we added bin IDs to each of the contig headers earlier to re-extract the bin ID for each using `gsub`, use the `group_by()` function to group by `Bin`, and the `summarise()` function to return the per-sample mean coverage of each set of contigs contained within each bin (these grouping steps are not necessary for the viral contig data).
+As before in [coverage exercise](../day4/ex16b_data_presentation_Coverage.md), we need to obtain per MAG and sample average coverage values. We begin by selecting relavent columns and renaming them.
 
 ```R
-# Bins data: Extract BinID, group by Bin, calculate mean coverages for each set of contigs per Bin
-cov_MAG <- cov_MAG %>%
-  rename_at(
-    vars(contains("sample")),
-    list(~ str_replace(., ".bam", ""))
-  ) %>%
-  mutate(Bin = gsub("(.*)_NODE.*", "\\1", .$contigName)) %>% 
-  group_by(Bin) %>% 
-  summarise(across(where(is.numeric), mean))
+## Select relevant columns and rename them
+contig_cov <- contig_cov %>%
+  select(contigName, ends_with(".bam")) %>%
+  rename_with(
+    .fn = function(sample_name) str_remove(sample_name, ".bam"),
+    .cols = everything()
+  )
 
-# Viral contigs data: Strip .bam from sample names
-cov_vir <- cov_vir %>%
-  rename_at(
-    vars(contains("sample")),
-    list(~ str_replace(., ".bam", ""))
+virus_cov <- virus_cov %>%
+  select(contigName, ends_with(".bam")) %>%
+  rename_with(
+    .fn = function(sample_name) str_remove(sample_name, ".bam"),
+    .cols = everything()
+  )
+
+## Calculate average bin coverage based on contig coverage
+MAG_cov <- contig_cov %>%
+  mutate(
+    binID = str_replace(contigName, "(.*)_NODE_.*", "\\1")
+  ) %>%
+  group_by(binID) %>%
+  summarise(
+    across(
+      -contigName,
+      .fns = function(coverage) mean(coverage)
+    )
   )
 ```
 
-Finally, generate a data.frame in the format required to calculate the Bray-Curtis dissimilarities via the `vegan` function `vegdist`. Here we are selecting only the coverage columns (`contains("sample")`), and then transposing so that each sample is a row and variables (bins or viral contigs) are in columns.  
+### Calculate weighted and unweighted dissimilarities
+
+It is often useful to examine ordinations based on both weighted and unweighted (binary) dissimilarity (or distance) metrics. Weighted metrics take into account the proportions or abundances of each variable (in our case, the coverage value of each bin or viral contig). This can be particularly useful for visualising broad shifts in overall community structure (while the membership of the community may remain relatively unchanged). Unweighted metrics are based on presence/absence alone, and can be useful for highlighting cases where the actual membership of communities differs (ignoring their relative proportions within the communities).
+
+Here we will use the functions `vegdist()` and `metaMDS()` from the `R` package `vegan` to generate weighted and unweighted Bray-Curtis dissimilarity matrices and nMDS solutions for the microbial bin data and viral contigs data.
+
+!!! note "Note"
+    You may also wish to make use of the `set.seed()` function before each calculation to ensure that you obtain consistent results if the same commands are re-run at a later date.
 
 ```R
-# Make data.frame for nMDS: MAGS
-coverage.nmds.data.MAG <- t(as.data.frame(select(cov_MAG, contains("sample"))))
+# Calculate dissimilarities ----
+## Unweighted dissimilarities (presence/absence)
+MAG_binary_bray <- MAG_cov %>%
+  # Convert "binID" column into rownames
+  # (vegan prefers to work on numeric matrices)
+  column_to_rownames("binID") %>%
+  # Transpose the data frame
+  t() %>%
+  # Calculate dissimilarities
+  vegdist(x = ., method = "bray", binary = T)
 
-# Make data.frame for nMDS: viruses
-coverage.nmds.data.vir <- t(as.data.frame(select(cov_vir, contains("sample"))))
+virus_binary_bray <- virus_cov %>%
+  column_to_rownames("contigName") %>%
+  t() %>%
+  vegdist(x = ., method = "bray", binary = T)
+
+## Weighted dissimilarities
+MAG_bray <- MAG_cov %>%
+  column_to_rownames("binID") %>%
+  t() %>%
+  vegdist(x = ., method = "bray")
+
+virus_bray <- virus_cov %>%
+  column_to_rownames("contigName") %>%
+  t() %>%
+  vegdist(x = ., method = "bray")
 ```
 
-### 2. Calculate weighted and unweighted Bray-Curtis dissimilarity and nMDS using *R*
+From here on out, we will process the data using the same functions/commands. We can make our code less redundant by compiling all necessary inputs as a list, then processing them together. This is achieved by using the `map(...)` family of functions from the `purrr` package.
 
-It is often useful to examine ordinations based on both weighted and unweighted (binary) dissimilarity (or distance) metrics. Weighted metrics take into account the proportions or abundances of each variable (in our case, the coverage value of each bin or viral contig). This can be particularly useful for visualising broad shifts in overall community structure (while the membership of the community may remain relatively unchanged). Unweighted metrics are based on presence/absence alone, and can be useful for highlighting cases where the actual membership of communities differs (ignoring their relative proportions within the communities). 
-
-Here we will use the functions `vegdist()` and `metaMDS()` from the `R` package `vegan` to generate weighted and unweighted Bray-Curtis dissimilarity matrices and nMDS solutions for the microbial bin data and viral contigs data. 
-
-!!! note "Note"
-    You may also wish to make use of the `set.seed()` function before each calculation to ensure that you obtain consistent results if the same commands are re-run at a later date.*
-
-!!! note "Note"
-    In the `Jupyter` environment, these commands will create long outputs below each code block. If need be, these outputs can be cleared from the screeen via `right-click on the code block > Clear Outputs`
-
-```bash 
-# Bins: weighted Bray-Curtis
-cov.bray.MAG <- vegdist(coverage.nmds.data.MAG, method="bray", binary=FALSE, diag=FALSE, upper=FALSE, na.rm=FALSE)
-cov.bray.sol.MAG <- metaMDS(cov.bray.MAG, k=2, trymax=999)
+```R
+# Collect dissimilarities into a list for collective processing ----
+bray_list <- list(
+  "MAG_binary_bray" = MAG_binary_bray,
+  "MAG_bray" = MAG_bray,
+  "virus_binary_bray" = virus_binary_bray,
+  "virus_bray" = virus_bray
+)
 ```
 
-```bash
-# Bins: unweighted (binary) Bray-Curtis
-cov.bray.binary.MAG <- vegdist(coverage.nmds.data.MAG, method="bray", binary=TRUE, diag=FALSE, upper=FALSE, na.rm=FALSE)
-cov.bray.binary.sol.MAG <- metaMDS(cov.bray.binary.MAG, k=2, trymax=999)
+### 3. Generate ordination
+
+We now generate and visualise all ordinations in 4 panels them using native plotting methods.
+
+```R
+# Perform non-metric multidimensional scaling (nMDS) ----
+nmds_list <- map(bray_list, function(bray) metaMDS(bray, trymax = 999))
+
+## Check nMDS plot natively
+par(mfrow = c(2, 2)) # Sets panels
+map2(nmds_list, names(nmds_list), function(nmds, lbl) {
+  ordiplot(nmds, main = lbl, type = "t", display = "sites")
+})
 ```
 
-```bash
-# Viruses: weighted Bray-Curtis
-cov.bray.vir <- vegdist(coverage.nmds.data.vir, method="bray", binary=FALSE, diag=FALSE, upper=FALSE, na.rm=FALSE)
-cov.bray.sol.vir <- metaMDS(cov.bray.vir, k=2, trymax=999)
+![image](../figures/day4_coverage.09.nmds_native.png)
+
+Plotting via this method is a quick and easy way to look at what your ordination looks like. However, this method is often tedious to modify to achieve publication quality figures. In the following section, we will use `ggplot2` to generate a polished and panelled figure.
+
+!!! info "[The `map(...)` function](https://raw.githubusercontent.com/rstudio/cheatsheets/main/purrr.pdf)"
+
+    The `map(...)` function iterates through a list and applies the same set of commands/functions to each of them. For `map2(...)`, two lists are iterated concurrently and one output is generated based on inputs from both lists. The base `R` equivalent is the `apply(...)` family of functions. Here, we need to perform the same analyses on similar data types (dissimilarities of different kinds and organisms). These are powerful functions that can make your workflow more efficient, less repetitive, and more readable. However, this is not a panacea and there will be times where `for` loops or brute coding is necessary.
+
+### 4. Extract data from ordination
+
+Before proceeding to plotting using `ggplot2`. We need to extract the X and Y coordinates from the ordination result using `scores()`. We then also need to "flatten" the list to a single data frame as well as extract other relevant statistics (e.g. [stress values](https://www.researchgate.net/post/What_is_the_importanceexplanation_of_stress_values_in_NMDS_Plots)).
+
+```R
+# Extract data from nMDS ----
+## Obtain coordinates
+scrs_list <- map(nmds_list, function(nmds) {
+  scores(nmds, display = "sites") %>%
+    as.data.frame() %>%
+    rownames_to_column("sample")
+})
+
+## Collect nMDS scores in a single data frame
+scrs_all <- bind_rows(scrs_list, .id = "data_type")
+
+## Collect nMDS statistics (stress values)
+stress_values <- map(nmds_list, function(nmds) {
+  data.frame("label" = paste("Stress =", nmds$stress))
+}) %>%
+  bind_rows(.id = "data_type")
 ```
 
-```bash
-# Viruses: unweighted (binary) Bray-Curtis
-cov.bray.binary.vir <- vegdist(coverage.nmds.data.vir, method="bray", binary=TRUE, diag=FALSE, upper=FALSE, na.rm=FALSE)
-cov.bray.binary.sol.vir <- metaMDS(cov.bray.binary.vir, k=2, trymax=999)
-```
+If you click on `scrs_all` in the 'Environment' pane (top right), you will see that it is a data frame with the columns:
 
----
+* `data_type`: Label for data output (weighted MAG coverage; unweighted MAG coverage, ...)
+* `sample`: Sample names
+* `NMDS1` and `NMDS2`: X and Y coordinates for each plot
 
-### 3. Build nMDS plots in *R* using the *ggplot2* package
+### 5. Build the ordination plot
 
-#### 3.1 Set the *ggplot* plot theme and sample groups colour palette
+After obtaining the coordinates (and associated statistics), we can use it as input to `ggplot()` (the function is `ggplot()` from the package called `ggplot2`). As before, we will set our colour palette first. We will also generate a vector of panel headers.
 
-We will build the nMDS plot using the [ggplot2](https://ggplot2.tidyverse.org/) package. Note that `ggplot`s are based on the principle of layering various aspects of a plot on top of each other in sequential calls. Getting familair with the functionality of `ggplot`s is incredibly useful for visualising many different types of data sets in a variety of different formats. 
+```R
+# Plot nMDS using ggplot2 ----
+## Set up colours
+metadata <- metadata %>%
+  mutate(
+    Group = as.factor(Group)
+  )
 
-First, set the plot theme elements (via the `theme()` function), and the colour palette for the sample grouping. 
+group_colour <- palette.colors(n = length(levels(metadata$Group)),
+                               palette = "Okabe-Ito") %>%
+  setNames(., levels(metadata$Group))
 
-```
-theme_Ordination <- theme(
-  axis.text = element_text(size=7),
-  axis.title = element_text(size=7),
-  axis.line = element_line(color="grey40", size=0.3, linetype=1),
-  axis.ticks = element_line(color="grey40", size=0.3, linetype=1),
-  legend.text = element_text(size=7),
-  legend.title = element_blank(),
-  legend.key = element_blank(),
-  legend.position="bottom",
-  panel.grid.major = element_blank(),
-  panel.grid.minor = element_blank(),
-  panel.background = element_rect(fill="white", colour="grey40", size=0.3, linetype=1),
-  plot.title = element_text(size=7, face="bold"),
-  strip.background = element_rect(fill="grey90", colour="grey40", size=0.3, linetype=0),
-  strip.text.x = element_text(size=7),
-  panel.spacing = unit(0.2, "lines"),
-  plot.margin=unit(c(5, 5, 5, 5), "points")
+## Append sample grouping to scores
+scrs_all <- left_join(scrs_all, metadata, by = c("sample" = "SampleID"))
+
+## Create panel headers
+panel_labels <- c(
+  "MAG_binary_bray" = "MAG coverage\n(unweighted Bray-Curtis)",
+  "MAG_bray" = "MAG coverage\n(weighted Bray-Curtis)",
+  "virus_binary_bray" = "Virus coverage\n(unweighted Bray-Curtis)",
+  "virus_bray" = "Virus coverage\n(weighted Bray-Curtis)"
 )
 
-group.cols = c('#71dfdf', '#3690b8', '#00429d')
+## Call ggplot
+ggplot(data = scrs_all, aes(x = NMDS1, y = NMDS2, colour = Group)) +
+  # Plot scatterplot
+  geom_point(size = 0.5) +
+  # Designate sample group colours
+  scale_colour_manual(values = group_colour, name = "Sample group") +
+  # Split plots based on "data_type"
+  facet_wrap(~ data_type, labeller = labeller(data_type = panel_labels)) +
+  # Add text annotations
+  geom_text(data = stress_values, aes(label = label), inherit.aes = F,
+            x = 0.4, y = 0.4, vjust = 0, hjust = 0,
+            size = 1.2) +
+  # Set general theme
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(), # remove grid lines
+    legend.position = "bottom", # set legend position at the bottom
+    text = element_text(size = 5), # All text size should be 5 points
+    rect = element_rect(size = 0.25), # All edges of boxes should be 0.25 wide
+    line = element_line(size = 0.25) # 
+  )
 ```
 
-#### 3.2 Select the data set
+The code above can be summarised to the following:
 
-From here, the process is identical for each of the different analyses calculated above (based on weighted and unweighted Bray-Curtis for both microbial bin (MAG) data and viral contig data). 
+1. Call `ggplot()` which initiates an empty plot. It reads in the data frame `scrs_all` as the main source of data and sets `NMDS1` and `NMDS1` as `x` and `y` coordinates, as well as designates colour based on the `Group` column.
+2. `geom_point` specifies that we want to plot points (i.e. a scatterplot), and we also set a size for all points.
+3. `scale_colour_manual` specifies our preferred colour palette and names our colour legend.
+4. `facet_wrap` specifies that we want to panel our figure based on the `data_type` column and that the labels/headers (a.k.a. `labellers`) should be printed according to the `panel_label` object.
+5. We also add text annotations using `geom_text`, but that it should read data from the `stress_values` data frame and do not use data arguments (via `inherit.aes = F`) specified above in `ggplot()`. Text adjustments were made using `size`, `vjust` and `hjust`.
+6. `theme_bw` specifies the application of a general, monochromatic theme.
+7. Elements of the monochromatic theme were modified based on arguments within `theme()`
 
-In this first step, we are simply setting up which data set we are wishing to plot (bin or viral data, weighted or unweighted Bray-Curtis dissimilarity). The same process can then be re-run for each data set by changing *both* of the data.frames being read into these `bray.dist` and `bray.sol` variables (copy the relevant data.frame names from the section above, or un-comment the relevant lines below).
+You should try and modify any of the arguments above to see what changes: Change sizes, colours, labels, etc...
 
-```bash
-bray.dist <- cov.bray.MAG
-bray.sol <- cov.bray.sol.MAG
+`ggplot2` implements extremely flexible plotting methods. It uses the concept of layers where each line after `+` adds another layer that modifies the plot. Each geometric layer (the actual plotted data) can also read different inputs. Nearly all aspects of a figure can be modified provided one knows which layer to modify. To start out, it is recommended that you take a glance at the [cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf).
 
-#bray.dist <- cov.bray.binary.MAG
-#bray.sol <- cov.bray.binary.sol.MAG
-
-#bray.dist <- cov.bray.vir
-#bray.sol <- cov.bray.sol.vir
-
-#bray.dist <- cov.bray.binary.vir
-#bray.sol <- cov.bray.binary.sol.vir
-```
-
-#### 3.3 Create the nMDS data.frame
-
-Now, create a data.frame that includes each of the nMDS X and Y points (NMDS1 and NMDS2 scores) for each sample, and merge with the mapping file to add the sample group information (i.e. whether samples are from *GroupA*, *GroupB*, or *GroupC*).
-
-```bash
-sol.scrs <- data.frame(
-  SampleID = dimnames(bray.sol$points)[[1]],
-  NMDS1 = bray.sol$point[,1],
-  NMDS2 = bray.sol$point[,2]
-) %>%
-merge(., map.df, by = "SampleID", type = "full") 
-```
-
-#### 3.4 build the plot
-
-Finally, build the plot using `ggplot`. In this function, we:
-
-!!! tip ""
-
-    * load the data into `ggplot()`, setting `x` and `y` axes data as the `NMDS1` and `NMDS2` columns from the `sol.scrs` data.frame
-    * plot the sample points using the `geom_point()` function, and also set the colour aesthetic to be based on the sample group (`Group`) from the mapping file information
-    * set `coord_fixed()` to ensure the the scales of the x- and y-axes are kept consistent
-    * use the `geom_text` function to add a text label of the [stress value](https://www.researchgate.net/post/What_is_the_importanceexplanation_of_stress_values_in_NMDS_Plots) for this ordination (extracted from `bray.sol$stress`) to the top right corner of the plot
-    * set the colours for the sample groups using the `scale_colour_manual()` function. Here we will pass the `group.cols` variable generated above (which is set to have a consistent colour scheme with the figures generated in the previous exercise on coverage heatmaps).
-    * Add x- and y-axis labels
-    * Modify various visual aspects of the plot using the `theme()` function (as set in the `theme_Ordination` variable above)
-    * Save this into the variable `NMDS.plot`
-    * *NOTE: here we are also surrounding the entire call in parentheses (`(...)`). This tells `R` to both save the plot in the variable `NMDS.plot` and **also** output the plot to the visualisation pane in `RStudio` or the `Jupyter Notebook`. Omitting the parentheses would result in saving to `NMDS.plot` but not viewing the plot.* 
-
-```bash
-(NMDS.plot <- ggplot(sol.scrs, aes(NMDS1, NMDS2)) +
-    geom_point(size = 2.5, aes(col = Group)) +
-    coord_fixed() +
-    geom_text(data=NULL, x=Inf, y =Inf, vjust=2.4, hjust=1.2, size=2.5, colour="black", fontface="italic", label=paste("Stress =", round(bray.sol$stress, digits=4))) +
-    scale_color_manual(values = group.cols) +
-    ylab("nMDS2") + xlab("nMDS1") +
-    theme_Ordination)
-```
-
-#### 3.4 Save the plot to file
-
-*NOTE: change the file output name in the first line below for each different data set run through the above commands*
-
-```bash
-png("nMDS_MAGs_weighted.png", width=17, height=17, units="cm", res=300)
-NMDS.plot
-dev.off()
-```
-
-Repeat the steps above (from 3.2 onwards), each time inputting a different data set (bin or viral data, weighted or unweighted Bray-Curtis dissimilarity) into the `bray.dist` and `bray.sol` variables in the section "**3.2 Select the data set**".
-
----
-
-### nMDS figures: example outputs
+![image](../figures/day4_coverage.10.nmds_ggplot2.png)
 
 !!! note "Note"
-    How informative these types of analyses are depends in part on the number of samples you actually have and the degree of variation between the samples. As you can see in the nMDS plots based on unweighted (binary) Bray-Curtis dissimilarities (especially for the MAGs data) there are not enough differences between any of the samples (in this case, in terms of community membership, rather than relative abundances) for this to result in a particularly meaningful or useful plot in these cases.*
-
-<center>
-![image](../figures/ex15_fig1_nMDS_MAGs_weighted.png){width="600"}
-</center>
-
-<center>
-![image](../figures/ex15_fig2_nMDS_MAGs_unweighted.png){width="600"}
-</center>
-
-<center>
-![image](../figures/ex15_fig3_nMDS_Vir_weighted.png){width="600"}
-</center>
-
-<center>
-![image](../figures/ex15_fig4_nMDS_Vir_unweighted.png){width="600"}
-</center>
+    How informative these types of analyses are depends in part on the number of samples you actually have and the degree of variation between the samples. As you can see in the nMDS plots based on unweighted (binary) Bray-Curtis dissimilarities (especially for the MAGs data) there are not enough differences between any of the samples (in this case, in terms of community membership, rather than relative abundances) for this to result in a particularly meaningful or useful plot in these cases.
 
 ---
 
 ### Follow-up analyses
 
-It is often valuable to follow these visualisations up with tests for beta-dispersion (whether or not sample groups have a comparable *spread* to one another) and, provided that beta-dispersion is not significantly different between groups, PERMANOVA tests (the extent to which the variation in the data can be explained by a given variable (such as sample groups or other environmental factors, based on differences between the *centroids* of each group). 
+It is often valuable to follow these visualisations up with tests for beta-dispersion (whether or not sample groups have a comparable *spread* to one another, i.e. is one group of communities more heterogeneous than another?) and, provided that beta-dispersion is not significantly different between groups, PERMANOVA tests (the extent to which the variation in the data can be explained by a given variable (such as sample groups or other environmental factors, based on differences between the *centroids* of each group).
 
 Beta-dispersion can be calculated using the  `betadisper()` function from the `vegan` package (passing the `bray.dist` data and the `map$Group` variable to group by), followed by `anova()`, `permutest()`, or `TukeyHSD()` tests of differences between the groups (by inputting the generated `betadisper` output). PERMANOVA tests can be conducted via the `adonis()` function from the `vegan` package (for example, via: `adonis(bray.dist ~ Group, data=map, permutations=999, method="bray")`.
 
