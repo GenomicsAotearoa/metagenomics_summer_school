@@ -33,12 +33,14 @@ This will generate the outputs `normalised_bins_cov_table.txt` and `normalised_v
 !!! note "Note"
     If this `python` script is in the directory you are currently in, you can call it simply by adding `./` in front of the script name. If you have saved the script elsewhere, you will need to add the absolute path to the script, or add the script to your bin path.*
 
-```bash
-module purge
-module load Python/3.8.2-gimkl-2020a
+!!! terminal "code"
 
-./norm_jgi_cov_table.py -c bins_cov_table.txt -e mapping_filtered_bins.err
-./norm_jgi_cov_table.py -c viruses_cov_table.txt -e mapping_filtered_viruses.err
-```
+    ```bash
+    module purge
+    module load Python/3.8.2-gimkl-2020a
+    
+    ./norm_jgi_cov_table.py -c bins_cov_table.txt -e mapping_filtered_bins.err
+    ./norm_jgi_cov_table.py -c viruses_cov_table.txt -e mapping_filtered_viruses.err
+    ```
 
 ---
