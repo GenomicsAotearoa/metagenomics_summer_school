@@ -170,11 +170,12 @@
 }
 .md-typeset .admonition.terminal,
 .md-typeset details.terminal {
-  border-color: rgb(0,0,0);
+  border-color: rgb(105,105,105);
 }
 .md-typeset .terminal > .admonition-title,
 .md-typeset .terminal > summary {
-  background-color: rgba(0,0,0);
+  color:rgb(105,105,105);
+  background-color: rgba(105,105,105);
 }
 .md-typeset .terminal > .admonition-title::before,
 .md-typeset .terminal > summary::before {

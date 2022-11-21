@@ -288,6 +288,8 @@ Build index reference via `BBMap`. We will do this by submitting the job via slu
 !!! warning "Warning"
     Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
 
+
+
 ```bash
 #!/bin/bash -e
 
@@ -329,37 +331,39 @@ Finally, map the quality-filtered reads to the reference via `BBMap`. Here we wi
 !!! warning "Warning"
     Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
 
-```bash
-#!/bin/bash -e
+!!! terminal "code"
 
-#SBATCH --account       nesi02659
-#SBATCH --job-name      host_filt_bbmap_map
-#SBATCH --res           SummerSchool
-#SBATCH --time          01:00:00
-#SBATCH --mem           27GB
-#SBATCH --array         1-4
-#SBATCH --cpus-per-task 20
-#SBATCH --error         host_filt_bbmap_map_%a.err
-#SBATCH --output        host_filt_bbmap_map_%a.out
+    ```bash
+    #!/bin/bash -e
 
-# Set up working directories
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/
-mkdir -p host_filtered_reads/
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      host_filt_bbmap_map
+    #SBATCH --res           SummerSchool
+    #SBATCH --time          01:00:00
+    #SBATCH --mem           27GB
+    #SBATCH --array         1-4
+    #SBATCH --cpus-per-task 20
+    #SBATCH --error         host_filt_bbmap_map_%a.err
+    #SBATCH --output        host_filt_bbmap_map_%a.out
 
-# Load BBMap module
-module purge
-module load BBMap/39.01-GCC-11.3.0
+    # Set up working directories
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/
+    mkdir -p host_filtered_reads/
 
-# Run bbmap
-srun bbmap.sh -Xmx27g -t=20 \
-minid=0.95 maxindel=3 bwr=0.16 bw=12 quickmatch fast minhits=2 qtrim=rl trimq=10 untrim \
-in1=../3.assembly/sample${SLURM_ARRAY_TASK_ID}_R1.fastq.gz \
-in2=../3.assembly/sample${SLURM_ARRAY_TASK_ID}_R2.fastq.gz \
-path=BBMask_human_reference/ \
-outu1=host_filtered_reads/sample${SLURM_ARRAY_TASK_ID}_R1_hostFilt.fastq \
-outu2=host_filtered_reads/sample${SLURM_ARRAY_TASK_ID}_R2_hostFilt.fastq
+    # Load BBMap module
+    module purge
+    module load BBMap/39.01-GCC-11.3.0
 
-```
+    # Run bbmap
+    srun bbmap.sh -Xmx27g -t=20 \
+    minid=0.95 maxindel=3 bwr=0.16 bw=12 quickmatch fast minhits=2 qtrim=rl trimq=10 untrim \
+    in1=../3.assembly/sample${SLURM_ARRAY_TASK_ID}_R1.fastq.gz \
+    in2=../3.assembly/sample${SLURM_ARRAY_TASK_ID}_R2.fastq.gz \
+    path=BBMask_human_reference/ \
+    outu1=host_filtered_reads/sample${SLURM_ARRAY_TASK_ID}_R1_hostFilt.fastq \
+    outu2=host_filtered_reads/sample${SLURM_ARRAY_TASK_ID}_R2_hostFilt.fastq
+
+    ```
 
 The filtered reads are now available in `host_filtered_reads/` for downstream use.
 
