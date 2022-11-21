@@ -12,210 +12,296 @@
 
 ### Build a KEGG pathway map using *R*
 
-In this exercise, we will generate KEGG a pathways map from genome annotations to visualize potential pathways present in our assembled, binned genome sequences. 
+In this exercise, we will generate KEGG a pathways map from genome annotations to visualize potential pathways present in our assembled, binned genome sequences.
 
-The key package used here is [pathview](https://academic.oup.com/bioinformatics/article/29/14/1830/232698), available from `Bioconductor` (for installation on your local version of `RStudio`, see the previous [Intro to data presentation](../day4/ex16a_data_presentation_Intro.md) section). `pathview` is mainly used in transcriptomic analyses but can be adapted for any downstream analyses that utilise the KEGG database. For this exercise, we are interested in visualising the prevalence of genes that we have annotated in a pathway of interest.
+The key package used here is [pathview](https://academic.oup.com/bioinformatics/article/29/14/1830/232698), available from `Bioconductor` (for installation on your local version of `RStudio`, see the previous [intro to data presentation](../day4/ex16a_data_presentation_Intro.md) section). `pathview` is mainly used in transcriptomic analyses but can be adapted for any downstream analyses that utilise the KEGG database. For this exercise, we are interested in visualising the prevalence of genes that we have annotated in a pathway of interest.
 
-To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and open a `Notebook` running the `R 4.0.1` module as the kernel (or, outside the context of this workshop, open `RStudio` with the required packages installed (see the [data presentation intro](../day4/ex16a_data_presentation_Intro.md) docs for more information)).
+To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and open `RStudio`.
 
-#### Set the working directory and load packages and files into *R*
+#### 1. Prepare environment
 
-Set the working directory and load the required packages
+Set the working directory, load the required packages, and import data.
 
 ```R
+# Set working directories ----
 setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/kegg_map')
 
+# Load libraries ----
+# Tidyverse packages
+library(dplyr)
+library(purrr)
+library(tidyr)
+library(readr)
+library(stringr)
+library(tibble)
+
+# Colour package
+library(viridis)
+
+# KEGG maps
 library(pathview)
 library(KEGGREST)
-
-# tidyverse libraries
-library(readr)
-library(tibble)
-library(dplyr)
-library(tidyr)
-library(purrr)
-library(stringr)
 ```
 
-Load your files into R. Here, we are loading them into a list. Given that there are ten files, it is easier to load, clean, and analyze the data using list methods available in tidyverse.
+Load your files into R. Here, we are loading them into a list. Given that there are ten files, it is easier to load, clean, and analyze the data using list methods available in `tidyverse`.
 
 ```R
-tmp_files <- dir(pattern = "*.aa")
-tmp_names <- str_replace(tmp_files, "(.*).annotation.aa", "\\1")
-bin_list <- as.list(tmp_files) %>%
-  map(
-    function(x) {
-      read_delim(file = x, delim = "\t")
-    }
-  )
-names(bin_list) <- tmp_names
-
-rm(list = ls(pattern = "tmp*"))
-```
-!!! note "Note" 
-    R will print some warning messages about column types. However, we do not need all the columns for this analysis and it is not necessary to reformat them.
-
-#### Subset the data
-
-For this section, we only require the KEGG orthology IDs (KO numbers). Use the code below to subset your data based on these IDs.
-
-Check data headers to determine which columns to subset:
-
-```R
-names(bin_list$bin_0)
+filenames <- list.files(pattern = ".*.aa")
+bin_ids <- str_extract(filenames, "bin_\\d+")
+annotations <- map(filenames, function(file) read_tsv(file)) %>% 
+  setNames(., bin_ids)
 ```
 
-We can see that the headers related to KEGG annotations are in columns 22 to 27. We will subset the relevant columns and concatenate the rows.
+!!! note "Note"
+    R will print some messages about column types and renaming columns. However, we do not need all the columns for this analysis and it is not necessary to reformat them.
+
+#### 2. Subset the data
+
+For this exercise, we really only require the KEGG orthology IDs (KO numbers) for each bin. There are many columns in the table with annotations pulled from many databases. Lets begin by finding out which columns correspond to each predicted gene and relevant KEGG annotations in the unified annotations table. We will use annotations for `bin_0` as an example.
 
 ```R
-kegg_annotations <- map(
-  bin_list,
-  function(x) {
-    x[, 22:27]
-  }
-) %>%
-  bind_rows(.id = "bin")
+# Find out what columns are in the table.
+names(annotations$bin_0)
+
+# names(annotations$bin_0)
+#  [1] "Query Gene"              "GC%"                     "Contig name"             "Start position"         
+#  [5] "Stop position"           "Orientation"             "Query sequence"          "Signalling"             
+#  [9] "Signal confidence"       "Target gene (UniProt)"   "Identity...11"           "Coverage...12"          
+# [13] "E-value...13"            "Description...14"        "Taxonomy...15"           "Target gene (UniRef100)"
+# [17] "Identity...17"           "Coverage...18"           "E-value...19"            "Description...20"       
+# [21] "Taxonomy...21"           "Target gene (KEGG)"      "Identity...23"           "Coverage...24"          
+# [25] "E-value...25"            "Description...26"        "Taxonomy...27"           "Target gene (Pfam)"     
+# [29] "E-value...29"            "Description...30"        "Target gene (TIGRfam)"   "E-value...32"           
+# [33] "Description...33"
 ```
 
-We also need the KO numbers. Here, we will create a column with that information where available (it is in the column Description_2). Note that some annotations do not have KO numbers attached to them. In these cases, we will filter these data out.
+We can see that the headers related to KEGG annotations are in columns 22 to 27, with column headers `Target gene (KEGG)`, `Identity...23`, `Coverage...24`, `E-value...25`, `Description...26`, and `Taxonomy...27`. However, lets be surgical and only get columns that match the pattern of a KO number. All KO numbers start with K and are followed by 5 digits. We can use this pattern to find the required column.
 
 ```R
-kegg_annotations <- kegg_annotations %>%
-  mutate(
-    "KO" = str_replace(Description_2, "([^:]+):.*", "\\1")
-  )
+map(annotations$bin_0, function(column) {
+  any(str_detect(column, "K\\d{5}"))
+}) %>% 
+  keep(isTRUE)
 
-kegg_filtered_annotations <- kegg_annotations %>%
-  filter(
-    str_detect(KO, "^K\\d+")
-  )
+# $Description...26
+# [1] TRUE
 ```
 
-Check if each query was only annotated with a single KO number. The length of KO numbers are 6 (K followed by 5 numbers). Multiple annotations are possible and will need to be separated into individual rows. For this exercise, we are only interested in identifying the genomic potential for pathways. You can choose to perform further refinement of the annotations later. Let's check for any cases where the `$KO` variable is longer than six characters long:
+The code above goes through each column in the annotation table of bin 0, then detects if any string in the column contains the KO pattern. We then follow through by keeping only those columns that report `TRUE` in detecting the requisite pattern.
+
+We can move on by only selecting for the gene ID (here, `Query Gene`) and the column where KO numbers are. The code below also creates a separate column `KO` that contains only string that matches the KO pattern.
 
 ```R
-length(which(str_length(kegg_filtered_annotations$KO) > 6))
+KEGG_annotations <- map(annotations, function(data) {
+  data %>% 
+    # Select columns for gene ID and KEGG annotations
+    select(`Query Gene`, `Description...26`) %>% 
+    # Create a column for KO numbers
+    mutate(
+      KO = str_extract_all(`Description...26`, "K\\d{5}")
+    )
+})
 ```
 
-We can see that there are a total of 66 genes with multiple annotations. We will split them into their own rows. 
+#### 3. Summarise KO per bin
+
+Here, we are interested in the available KO in each bin. Thus, we can summarise the data by the bin to generate a list of KO per bin. Note that some annotations do not have KO numbers attached to them. In these cases, we will filter these data out.
+
+!!! info "Multiple KOs per bin"
+
+    Multiple annotations per bin is possible and not entirely rare, even if you did filter by E-value/bitscore. Some genes may just be very difficult to tell apart based on pairwise sequence alignment annotations. In this case, we are looking for overall trends. Our question here is: Does this MAG have this pathway? We can further refine annotations by comparing domains and/or gene trees to known, characterised gene sequences if gene annotations look suspicious.
 
 ```R
-kegg_filtered_annotations <- kegg_filtered_annotations %>%
-  separate_rows(KO, sep = ",")
+KO_bins <- map(annotations, function(data) {
+  data %>% 
+    # Selecting the relevant columns
+    select(`Query Gene`, KO)
+}) %>% 
+  # Concatenate data frames into one big data frame
+  bind_rows(.id = "bin_id") %>% 
+  # Separate multiple KO per row into their own row
+  unnest(KO) %>% 
+  # Tally hits by KO and MAG
+  group_by(KO, bin_id) %>% 
+  tally(name = "hits") %>% 
+  # Filter tallies that are not based on KO numbers (some KEGG annotations do
+  # not have an assigned KO number)
+  filter(str_detect(KO, "K\\d{5}")) %>% 
+  # Arrange columns by MAG/bin ID and KO numbers (aesthetic purposes)
+  arrange(bin_id, KO)
+```
+
+#### Identifying pathway maps of interest
+
+Before moving on, we must first identify the pathway map ID of our pathway of interest. Lets say, for this exercise, we are interested in the TCA cycle. Here, we will use `KEGGREST` to access the KEGG database and query it with a search term. 
+
+`KEGGREST` can also help you identify other information stored in the KEGG database. For more information, the `KEGGREST` vignette can be viewed using the `vignette` function in `R`: `vignette("KEGGREST-vignette")`
+
+```R
+keggFind(database = "pathway", query = "TCA cycle")
+#               path:map00020 
+# "Citrate cycle (TCA cycle)"
+
+# We find the map ID is 00020 and assign it to an object.
+tca_map_id <- "00020"
 ```
 
 #### Reshaping the data for input into pathview
 
 `pathview` needs the data as a numeric matrix with IDs as row names and samples/experiments/bins as column names. Here, we will reshape the data into a matrix of counts per KO number in each bin.
 
-We first create a data frame of counts of KO in each bin.
-
 ```R
-kegg_tally <- kegg_filtered_annotations %>%
-  select(bin, KO) %>%
-  group_by(bin, KO) %>%
-  tally()
-```
-
-Turn the tally into a numeric matrix with KO numbers as row names. Do not worry about NAs, `pathview` can deal with that.
-
-```R
-kegg_matrix <- kegg_tally %>%
-  pivot_wider(names_from = "bin", values_from = "n") %>%
-  column_to_rownames("KO") %>%
+KO_matrix <- pivot_wider(
+  KO_bins,
+  names_from = "bin_id", 
+  values_from = "hits", 
+  values_fill = NA
+) %>% 
+  column_to_rownames("KO") %>% 
   as.matrix()
 ```
 
-#### Creating pathway map of genes related to nitrogen metabolism
+If you click on `KO_matrix` in the Environment pane, you can see that it is now a matrix of counts per KO per bin. Bins that do not possess a particular KO number is given NA. Do not worry about that as `pathview` can deal with that.
 
-Now we can generate images of the KEGG pathway maps using the matrix we just made. For this section, we will try to find genes related nitrogen metabolism. 
+#### Creating pathway map of genes related to TCA cycle
 
-We need to first identify the KEGG pathway ID. This is where `KEGGREST` comes in handy. `KEGGREST` can also help you identify other information stored in the KEGG database. For more information, the `KEGGREST` vignette can be viewed using the `vignette` function in `R`: `vignette("KEGGREST-vignette")`
-
-Use the `keggFind` function to identify the pathway ID for nitrogen metabolism:
-
-```R
-keggFind(database = "pathway", query = "nitrogen")
-```
-
-The result tells us that the nitrogen metabolism pathway ID is **00910**.
-
-First, let's generate a map using just the *bin_0* data. The output will be a png image file in your working directory.
+Now we can generate images of the KEGG pathway maps using the matrix we just made. For this section, we will try to find genes invovled in the TCA cycle.
 
 ```R
 pv_bin_0 <- pathview(
-  gene.data = kegg_matrix[, colnames(kegg_matrix) == "bin_0"], 
-  pathway.id = "00910", 
-  species = "ko", 
-  kegg.native = T, 
+  gene.data = KO_matrix[, "bin_0"],
+  pathway.id = tca_map_id,
+  species = "ko",
+  out.suffix = "pv_bin_0"
+)
+```
+
+There is no plot output for this command as it automatically writes the results into the current working directory. By default, it names the file as `<species><mapID>.<out.suffix>.png`. If this is the first time this is run, it will also write the pathway map's original image file `<species><mapID>.png` and the `<species><mapID>.xml` with information about how the pathway is connected.
+
+Lets take a look at our first output.
+
+![image](../figures/day4_keggmap.ko00020.pv_bin_0.png)
+
+Boxes highlighted in red means that our MAG has this gene. However, the colour scale is a little strange seeing as there cannot be negative gene annotation hits (its either NA or larger than 0). Also, we know that there are definitely bins with more than 1 of some KO, but the colour highlights do not show that. Lets tweak the code further and perhaps pick better colours. For the latter, we will use the `viridis` colour package that is good for showing a gradient.
+
+```R
+# Set colours
+path_colours <- viridis(n = 3, begin = 0.65, end = 1, direction = 1)
+
+# For more information on the viridis package: 
+# vignette("intro-to-viridis")
+
+# Plot pathway
+pv_bin_0.2 <- pathview(
+  gene.data = KO_matrix[, "bin_0"],
+  pathway.id = tca_map_id,
+  species = "ko",
+  # Lets make an arbitrary assumption that 5 copies is a lot
   limit = list(
-    gene = c(0, max(kegg_matrix[, 1], na.rm = T)),
-    cpd = c(0, max(kegg_matrix[, 1], na.rm = T))
-  ), 
+    gene = c(1, 5),
+    cpd = c(1, 5)
+  ),
   bins = list(
     gene = 4,
     cpd = 4
   ),
-  both.dirs = list(
-    gene = F, 
-    cpd = F
-  ), 
-  out.suffix = "nitrogen_metabolism.bin_0",
-  na.col = "white",
-  low ='#ffdfdc',
-  mid = '#d57c69',
-  high = '#980000'
+  # We are plotting number of hits, so specify TRUE for this
+  # If plotting, say, gene/transcript abundance, set this to FALSE
+  discrete = list(
+    gene = TRUE,
+    cpd = TRUE
+  ),
+  # Tally colours
+  low = path_colours[1],
+  mid = path_colours[2],
+  high = path_colours[3],
+  out.suffix = "pv_bin_0.2"
 )
 ```
 
-You can modify the bins and limit arguments to make it look more sensible for your data. In the meantime, here we've just set it from zero to the maximum of the data.
+![image](../figures/day4_keggmap.ko00020.pv_bin_0.2.png)
 
-We can create maps for all bins at the same time using `R`'s implementation of a `for` loop, looping over all of the entries in our `kegg_matrix` `R` object (where each column relates to one of the bins).
+This plot looks much better. We can see that some genes do have more hits than others. Now, lets propagate this using `map(...)` based on our bin IDs.
 
 ```R
-pv_all_bins <- list()
-for (i in 1:ncol(kegg_matrix)) {
-  out.suffix <- paste0("nitrogen_metabolism.", colnames(kegg_matrix)[i])
-  pv_all_bins[[colnames(kegg_matrix)[i]]] <- pathview(
-    gene.data = kegg_matrix[, i], 
-    pathway.id = "00910", 
-    species = "ko", 
-    kegg.native = T, 
+pv_bin_all <- map(bin_ids, function(bin) {
+  # Get column with correct bin ID
+  bin_data <- KO_matrix[, bin]
+  # Prepare output suffix
+  out.suffix = paste0("TCA.", bin)
+  # Plot
+  pathview(
+    gene.data = bin_data,
+    pathway.id = tca_map_id,
+    species = "ko",
+    # Lets make an arbitrary assumption that 5 copies is a lot
     limit = list(
-      gene = c(0, max(kegg_matrix, na.rm = T)),
-      cpd = c(0, max(kegg_matrix, na.rm = T))
-    ), 
+      gene = c(1, 5),
+      cpd = c(1, 5)
+    ),
     bins = list(
       gene = 4,
       cpd = 4
     ),
-    both.dirs = list(
-      gene = F, 
-      cpd = F
-    ), 
-    out.suffix = out.suffix,
-    na.col = "white",
-    low ='#ffdfdc',
-    mid = '#d57c69',
-    high = '#980000'
+    # We are plotting number of hits, so specify TRUE for this
+    # If plotting, say, gene/transcript abundance, set this to FALSE
+    discrete = list(
+      gene = TRUE,
+      cpd = TRUE
+    ),
+    # Tally colours
+    low = path_colours[1],
+    mid = path_colours[2],
+    high = path_colours[3],
+    out.suffix = out.suffix
   )
-  rm(i, out.suffix)
-}
+})
 ```
 
-The above code will generate one png image file per bin, and will save it to the current working directory. The list `pv_all_bins` in the first line contains some plotting information. Importantly, it has the KO numbers it used to match the data provided to the pathway. If you wish to, you can subset your original data to only obtain those KO numbers related to the pathway that you have plotted for further analyses with other annotations.
+!!! success "Results"
+    
+    === "Bin 0"
 
-A few example outputs for bins 3 and 5:
+        ![image](../figures/day4_keggmap.ko00020.TCA.bin_0.png)
 
-#### Bin 3 nitrogen metabolism KEGG map
+    === "Bin 1"
 
-<center>
-![image](../figures/ex15_KEGG_maps_ko00910_bin_3.png){width="700"}
-</center>
+        ![image](../figures/day4_keggmap.ko00020.TCA.bin_1.png)
 
-#### Bin 5 nitrogen metabolism KEGG map
+    === "Bin 2"
 
-<center>
-![image](../figures/ex15_KEGG_maps_ko00910_bin_5.png){width="700"}
-</center>
+        ![image](../figures/day4_keggmap.ko00020.TCA.bin_2.png)
+
+    === "Bin 3"
+
+        ![image](../figures/day4_keggmap.ko00020.TCA.bin_3.png)
+        
+    === "Bin 4"
+
+        ![image](../figures/day4_keggmap.ko00020.TCA.bin_4.png)
+
+    === "Bin 5"
+
+        ![image](../figures/day4_keggmap.ko00020.TCA.bin_5.png)
+
+    === "Bin 6"
+
+        ![image](../figures/day4_keggmap.ko00020.TCA.bin_6.png)
+
+    === "Bin 7"
+
+        ![image](../figures/day4_keggmap.ko00020.TCA.bin_7.png)
+
+    === "Bin 8"
+
+        ![image](../figures/day4_keggmap.ko00020.TCA.bin_8.png)
+
+    === "Bin 9"
+
+        ![image](../figures/day4_keggmap.ko00020.TCA.bin_9.png)
+
+Based on the plots, it seems that not all bins have a complete TCA cycle. Bins 4, 6, and 7 have a substantially truncated cycle.
+
+Now that you know how to make pathway maps, try it using different pathways of interest!
+
 ---
