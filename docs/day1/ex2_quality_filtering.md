@@ -288,30 +288,30 @@ Build index reference via `BBMap`. We will do this by submitting the job via slu
 !!! warning "Warning"
     Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
 
+!!! terminal "code"
 
-
-```bash
-#!/bin/bash -e
-
-#SBATCH --account       nesi02659
-#SBATCH --res           SummerSchool
-#SBATCH --job-name      2.qc_bbmap_ref
-#SBATCH --time          00:20:00
-#SBATCH --mem           23GB
-#SBATCH --cpus-per-task 1
-#SBATCH --error         host_filt_bbmap_index.err
-#SBATCH --output        host_filt_bbmap_index.out
-
-
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/BBMask_human_reference/
-
-# Load BBMap module
-module purge
-module load BBMap/39.01-GCC-11.3.0
-
-# Build indexed reference file via BBMap
-srun bbmap.sh ref=hg19_main_mask_ribo_animal_allplant_allfungus.fa.gz -Xmx23g
-```
+    ```bash
+    #!/bin/bash -e
+    
+    #SBATCH --account       nesi02659
+    #SBATCH --res           SummerSchool
+    #SBATCH --job-name      2.qc_bbmap_ref
+    #SBATCH --time          00:20:00
+    #SBATCH --mem           23GB
+    #SBATCH --cpus-per-task 1
+    #SBATCH --error         host_filt_bbmap_index.err
+    #SBATCH --output        host_filt_bbmap_index.out
+    
+    
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/BBMask_human_reference/
+    
+    # Load BBMap module
+    module purge
+    module load BBMap/39.01-GCC-11.3.0
+    
+    # Build indexed reference file via BBMap
+    srun bbmap.sh ref=hg19_main_mask_ribo_animal_allplant_allfungus.fa.gz -Xmx23g
+    ```
 
 Finally, map the quality-filtered reads to the reference via `BBMap`. Here we will submit the job as a slurm array, with one array job per sample. Breaking down this command a little:
 
