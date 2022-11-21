@@ -87,31 +87,33 @@ nano annotate_dram.sl
 
 Paste in the script (update all of the cases of `<YOUR FOLDER>`)
 
-```bash
-#!/bin/bash -e
+!!! terminal "code"
 
-#SBATCH --account       nesi02659
-#SBATCH --job-name      annotate_DRAM
-#SBATCH --res           SummerSchool
-#SBATCH --time          5:00:00
-#SBATCH --mem           30Gb
-#SBATCH --cpus-per-task 24
-#SBATCH --error         %x_%A_%a.err
-#SBATCH --output        %x_%A_%a.out
+    ```bash
+    #!/bin/bash -e
 
-# Load modules
-module purge
-module load DRAM/1.3.5-Miniconda3
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      annotate_DRAM
+    #SBATCH --res           SummerSchool
+    #SBATCH --time          5:00:00
+    #SBATCH --mem           30Gb
+    #SBATCH --cpus-per-task 24
+    #SBATCH --error         %x_%A_%a.err
+    #SBATCH --output        %x_%A_%a.out
 
-# Working directory
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
+    # Load modules
+    module purge
+    module load DRAM/1.3.5-Miniconda3
 
-# Run DRAM
-DRAM.py annotate -i 'filtered_bins/*.filtered.fna' \
-                 --checkm_quality DRAM_input_files/filtered_bins_checkm.txt \
-                 --gtdb_taxonomy DRAM_input_files/gtdbtk.bac120.summary.tsv \
-                 -o dram_annotations --threads $SLURM_CPUS_PER_TASK
-```
+    # Working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
+
+    # Run DRAM
+    DRAM.py annotate -i 'filtered_bins/*.filtered.fna' \
+                     --checkm_quality DRAM_input_files/filtered_bins_checkm.txt \
+                     --gtdb_taxonomy DRAM_input_files/gtdbtk.bac120.summary.tsv \
+                     -o dram_annotations --threads $SLURM_CPUS_PER_TASK
+    ```
 
 Submit the job
 
@@ -161,35 +163,37 @@ nano mapping_filtered_bins.sl
 
 Paste in the script (replacing `<YOUR FOLDER>`)
 
-```bash
-#!/bin/bash -e
+!!! terminal "code"
 
-#SBATCH --account       nesi02659
-#SBATCH --job-name      mapping_filtered_bins
-#SBATCH --res           SummerSchool
-#SBATCH --time          00:05:00
-#SBATCH --mem           1GB
-#SBATCH --cpus-per-task 10
-#SBATCH --error         %x_%j.err
-#SBATCH --output        %x_%j.out
-
-# Load modules
-module purge
-module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
-
-# Working directory
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
-
-# Run Bowtie2
-for i in {1..4}; do
-    bowtie2 --minins 200 --maxins 800 --threads $SLURM_CPUS_PER_TASK --sensitive \
-            -x bin_coverage/bw_bins \
-            -1 ../3.assembly/sample${i}_R1.fastq.gz \
-            -2 ../3.assembly/sample${i}_R2.fastq.gz \
-            -S bin_coverage/sample${i}.sam
-    samtools sort -@ $SLURM_CPUS_PER_TASK -o bin_coverage/sample${i}.bam bin_coverage/sample${i}.sam
-done
-```
+    ```bash
+    #!/bin/bash -e
+    
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      mapping_filtered_bins
+    #SBATCH --res           SummerSchool
+    #SBATCH --time          00:05:00
+    #SBATCH --mem           1GB
+    #SBATCH --cpus-per-task 10
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
+    
+    # Load modules
+    module purge
+    module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
+    
+    # Working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
+    
+    # Run Bowtie2
+    for i in {1..4}; do
+        bowtie2 --minins 200 --maxins 800 --threads $SLURM_CPUS_PER_TASK --sensitive \
+                -x bin_coverage/bw_bins \
+                -1 ../3.assembly/sample${i}_R1.fastq.gz \
+                -2 ../3.assembly/sample${i}_R2.fastq.gz \
+                -S bin_coverage/sample${i}.sam
+        samtools sort -@ $SLURM_CPUS_PER_TASK -o bin_coverage/sample${i}.bam bin_coverage/sample${i}.sam
+    done
+    ```
 
 Submit the script
 
