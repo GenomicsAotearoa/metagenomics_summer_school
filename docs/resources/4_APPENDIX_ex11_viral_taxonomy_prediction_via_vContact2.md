@@ -12,32 +12,34 @@ cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy
 
 Example slurm script:
 
-```bash
-#!/bin/bash -e
+!!! terminal "code"
 
-#SBATCH --account       nesi02659
-#SBATCH --job-name      prodigal
-#SBATCH --time          00:05:00
-#SBATCH --mem           1GB
-#SBATCH --cpus-per-task 2
-#SBATCH --error         prodigal.err
-#SBATCH --output        prodigal.out
+    ```bash
+    #!/bin/bash -e
+
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      prodigal
+    #SBATCH --time          00:05:00
+    #SBATCH --mem           1GB
+    #SBATCH --cpus-per-task 2
+    #SBATCH --error         prodigal.err
+    #SBATCH --output        prodigal.out
 
 
-# Load dependencies
-module purge
-module load prodigal/2.6.3-GCC-11.3.0
+    # Load dependencies
+    module purge
+    module load prodigal/2.6.3-GCC-11.3.0
 
-# Set up working directories
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy
+    # Set up working directories
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy
 
-mkdir -p viral_taxonomy
+    mkdir -p viral_taxonomy
 
-# Run main analyses 
-srun prodigal -p meta -q \
--i checkv_combined.fna \
--a viral_taxonomy/checkv_combined.faa 
-```
+    # Run main analyses 
+    srun prodigal -p meta -q \
+    -i checkv_combined.fna \
+    -a viral_taxonomy/checkv_combined.faa 
+    ```
 
 **2. Generate required mapping file for `vContact2`**
 
@@ -45,23 +47,25 @@ Use `vContact2`'s `vcontact2_gene2genome` script to generate the required mappin
 
 *NOTE: update `/path/to/conda/envs/vContact2/bin` in the below script to the appropraite path.*
 
-```bash
-# activate vcontact2 conda environment
-module purge
-module load Miniconda3
-source activate vContact2
+!!! terminal "code"
 
-# Load dependencies
-export PATH="/path/to/conda/envs/vContact2/bin:$PATH"
-module load DIAMOND/0.9.32-GCC-9.2.0
-module load MCL/14.137-gimkl-2020a
+    ```bash
+    # activate vcontact2 conda environment
+    module purge
+    module load Miniconda3
+    source activate vContact2
 
-# run vcontact2_gene2genome
-vcontact2_gene2genome -p viral_taxonomy/checkv_combined.faa -o viral_taxonomy/viral_genomes_g2g.csv -s 'Prodigal-FAA'
+    # Load dependencies
+    export PATH="/path/to/conda/envs/vContact2/bin:$PATH"
+    module load DIAMOND/0.9.32-GCC-9.2.0
+    module load MCL/14.137-gimkl-2020a
 
-# deactivate conda environment
-conda deactivate
-```
+    # run vcontact2_gene2genome
+    vcontact2_gene2genome -p viral_taxonomy/checkv_combined.faa -o viral_taxonomy/viral_genomes_g2g.csv -s 'Prodigal-FAA'
+
+    # deactivate conda environment
+    conda deactivate
+    ```
 
 **3. Run `vContact2`**
 
@@ -126,15 +130,17 @@ The following `python` script is effectively an automated version of this for al
 
 For future reference, a copy of this script is available for download [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/scripts/vcontact2_tax_predict.py)
 
-```bash
-module purge
-module load Python/3.8.2-gimkl-2020a
+!!! terminal "code"
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/
-
-./vcontact2_tax_predict.py \
--i viral_taxonomy/vConTACT2_Results/genome_by_genome_overview.csv \
--o viral_taxonomy/
-```
+    ```bash
+    module purge
+    module load Python/3.8.2-gimkl-2020a
+    
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/
+    
+    ./vcontact2_tax_predict.py \
+    -i viral_taxonomy/vConTACT2_Results/genome_by_genome_overview.csv \
+    -o viral_taxonomy/
+    ```
 
 ---
