@@ -1,8 +1,5 @@
 # APPENDIX (ex11) : viral taxonomy prediction via *vContact2*
 
-*NOTE: these steps are based on having `vContact2` set up as a `conda` environment. This documentation will be updated should `vContact2` become available as a NeSI module.*
-
-Further information for installing and running of vContact2 can also be found [here](https://bitbucket.org/MAVERICLab/vcontact2/src/master/).
 
 **1. Predict genes via `prodigal`**
 
