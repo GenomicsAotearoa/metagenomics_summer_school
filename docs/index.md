@@ -55,5 +55,3 @@
 
 
 
-!!! terminal "check admonition"
-    check admonition 
