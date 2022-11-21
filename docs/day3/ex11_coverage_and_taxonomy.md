@@ -37,30 +37,32 @@ nano gtdbtk.sl
 
 Paste in the script (replacing `<YOUR FOLDER>`)
 
-```bash
-#!/bin/bash -e
+!!! terminal "code"
 
-#SBATCH --account       nesi02659
-#SBATCH --job-name      gtdbtk
-#SBATCH --time          01:00:00
-#SBATCH --mem           140GB
-#SBATCH --cpus-per-task 24
-#SBATCH --error         %x_%j.err
-#SBATCH --output        %x_%j.out
-
-# Load modules
-module purge
-module load GTDB-Tk/2.1.0-gimkl-2020a-Python-3.9.9
-
-# Working directory
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.prokaryotic_taxonomy
-
-# Run GTDB-Tk
-gtdbtk classify_wf -x fna --cpus $SLURM_CPUS_PER_TASK \
-                   --keep_intermediates \
-                   --genome_dir filtered_bins/ \
-                   --out_dir gtdbtk_out/
-```
+    ```bash
+    #!/bin/bash -e
+    
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      gtdbtk
+    #SBATCH --time          01:00:00
+    #SBATCH --mem           140GB
+    #SBATCH --cpus-per-task 24
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
+    
+    # Load modules
+    module purge
+    module load GTDB-Tk/2.1.0-gimkl-2020a-Python-3.9.9
+    
+    # Working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.prokaryotic_taxonomy
+    
+    # Run GTDB-Tk
+    gtdbtk classify_wf -x fna --cpus $SLURM_CPUS_PER_TASK \
+                       --keep_intermediates \
+                       --genome_dir filtered_bins/ \
+                       --out_dir gtdbtk_out/
+    ```
 
 Submit the script
 
