@@ -344,7 +344,7 @@ legend(
 ![image](../figures/day4_coverage.04.heatmap.MAG.png)
 </center>
 
-!!! tip "Results at a glance"
+!!! vial-virus "Results at a glance"
 
     The heatmap shows us that:
     

@@ -8,6 +8,10 @@
 
 ---
 
+<center>
+![image](../theme_images/eval_assembly.png){width="450"}
+</center>
+
 ### Evaluate the resource consumption of various assemblies
 
 Check to see if your assembly jobs have completed. If you have multiple jobs running or queued, the easiest way to check this is to simply run the `squeue` command.

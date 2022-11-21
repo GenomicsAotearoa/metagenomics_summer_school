@@ -67,7 +67,7 @@ The distillation step generates the following files that can be found within the
 First, let's have a look at the ```genome_stats.tsv``` file to check the assembly quality of our bins by double-clicking the file within the `Jupyter` environment, viewing from the terminal via `less` or `cat`, or downloading the files from [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/DRAM_results.zip) and opening locally (e.g. via excel).
 
 
-??? success "content of genome_stats.tsv"
+??? magnifying-glass "content of genome_stats.tsv"
 
     |genome|number of scaffolds|taxonomy|completeness score|contamination score|5S rRNA|16S rRNA|23S rRNA|tRNA count|assembly quality|
     |:--- | :--- |:--- | :--- |:--- | :--- |:--- | :--- |:--- | :--- |

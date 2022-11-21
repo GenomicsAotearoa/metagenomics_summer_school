@@ -6,6 +6,10 @@
     * [Understand the basic parameters that should be modified when using these assemblers](#basic-assembly-parameters)
     * [Prepare an assembly job to run under slurm](#preparing-an-assembly-job-for-slurm)
 
+<center>
+![image](../theme_images/genome_assembly.png){width="450"}
+</center>
+
 All work for this exercise will occur in the `3.assembly/` directory.
 
 ---

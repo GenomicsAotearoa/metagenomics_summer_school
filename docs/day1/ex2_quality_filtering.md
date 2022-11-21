@@ -8,6 +8,9 @@
     * [Understand common issues and best practices](#understand-common-issues-and-best-practices)
     * [*Optional*: Filtering out host DNA with `BBMap`](#optional-filtering-out-host-dna)
 
+<center>
+![image](../theme_images/qc_image.png){width="350"}
+</center>
 ---
 
 ### Visualising raw reads
@@ -110,7 +113,11 @@ Which of the previous fields we examined are now flagged as problematic? How doe
 
 ---
 
-### Read trimming and adapter removal with *trimmomatic*
+### **Read trimming and adapter removal with *trimmomatic***
+
+<center>
+![image](../theme_images/cleaning_reads.png){width="300"}
+</center>
 
 There are a multitude of programs which can be used to quality trim sequence data and remove adapter sequence. For this exercise we are going to use `trimmomatic`, but this should in no way be interpreted as an endorsement of `trimmomatic` over equivalent tools like `BBMap`, `sickle`, `cutadapt` or any other.
 
@@ -268,7 +275,7 @@ export PATH="/home/<your_username>/.local/bin:$PATH"
 gdown https://drive.google.com/uc?id=0B3llHR93L14wd0pSSnFULUlhcUk
 ```
 
-#### Indexing the reference genome and read mapping with *BBMap*
+#### **Indexing the reference genome and read mapping with *BBMap***
 
 We will cover more about read mapping in [later exercises](https://genomicsaotearoa.github.io/metagenomics_summer_school/day2/ex6_initial_binning/). For now, it is important to know that it is first necessary to build an index of the reference using the read mapping tool of choice. Here, we will first build a `BBMap` index, and then use `BBMap` to map the quality-filtered reads to that index, ultimately retaining only those reads that do *not* map to the index.
 
