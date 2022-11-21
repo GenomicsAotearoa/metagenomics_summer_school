@@ -22,26 +22,28 @@ To get started, if you're not already, log back in to NeSI's [Jupyter hub](https
 
 Set the working directory, load the required packages, and import data.
 
-```R
-# Set working directories ----
-setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/kegg_map')
+!!! r-project "code"
 
-# Load libraries ----
-# Tidyverse packages
-library(dplyr)
-library(purrr)
-library(tidyr)
-library(readr)
-library(stringr)
-library(tibble)
+    ```R
+    # Set working directories ----
+    setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/kegg_map')
 
-# Colour package
-library(viridis)
+    # Load libraries ----
+    # Tidyverse packages
+    library(dplyr)
+    library(purrr)
+    library(tidyr)
+    library(readr)
+    library(stringr)
+    library(tibble)
 
-# KEGG maps
-library(pathview)
-library(KEGGREST)
-```
+    # Colour package
+    library(viridis)
+
+    # KEGG maps
+    library(pathview)
+    library(KEGGREST)
+    ```
 
 Load your files into R. Here, we are loading them into a list. Given that there are ten files, it is easier to load, clean, and analyze the data using list methods available in `tidyverse`.
 
@@ -111,25 +113,27 @@ Here, we are interested in the available KO in each bin. Thus, we can summarise 
 
     Multiple annotations per bin is possible and not entirely rare, even if you did filter by E-value/bitscore. Some genes may just be very difficult to tell apart based on pairwise sequence alignment annotations. In this case, we are looking for overall trends. Our question here is: Does this MAG have this pathway? We can further refine annotations by comparing domains and/or gene trees to known, characterised gene sequences if gene annotations look suspicious.
 
-```R
-KO_bins <- map(annotations, function(data) {
-  data %>% 
-    # Selecting the relevant columns
-    select(`Query Gene`, KO)
-}) %>% 
-  # Concatenate data frames into one big data frame
-  bind_rows(.id = "bin_id") %>% 
-  # Separate multiple KO per row into their own row
-  unnest(KO) %>% 
-  # Tally hits by KO and MAG
-  group_by(KO, bin_id) %>% 
-  tally(name = "hits") %>% 
-  # Filter tallies that are not based on KO numbers (some KEGG annotations do
-  # not have an assigned KO number)
-  filter(str_detect(KO, "K\\d{5}")) %>% 
-  # Arrange columns by MAG/bin ID and KO numbers (aesthetic purposes)
-  arrange(bin_id, KO)
-```
+!!! r-project "code"
+
+    ```R
+    KO_bins <- map(annotations, function(data) {
+      data %>% 
+        # Selecting the relevant columns
+        select(`Query Gene`, KO)
+    }) %>% 
+      # Concatenate data frames into one big data frame
+      bind_rows(.id = "bin_id") %>% 
+      # Separate multiple KO per row into their own row
+      unnest(KO) %>% 
+      # Tally hits by KO and MAG
+      group_by(KO, bin_id) %>% 
+      tally(name = "hits") %>% 
+      # Filter tallies that are not based on KO numbers (some KEGG annotations do
+      # not have an assigned KO number)
+      filter(str_detect(KO, "K\\d{5}")) %>% 
+      # Arrange columns by MAG/bin ID and KO numbers (aesthetic purposes)
+      arrange(bin_id, KO)
+    ```
 
 #### Identifying pathway maps of interest
 
@@ -184,79 +188,83 @@ Lets take a look at our first output.
 
 Boxes highlighted in red means that our MAG has this gene. However, the colour scale is a little strange seeing as there cannot be negative gene annotation hits (its either NA or larger than 0). Also, we know that there are definitely bins with more than 1 of some KO, but the colour highlights do not show that. Lets tweak the code further and perhaps pick better colours. For the latter, we will use the `viridis` colour package that is good for showing a gradient.
 
-```R
-# Set colours
-path_colours <- viridis(n = 3, begin = 0.65, end = 1, direction = 1)
+!!! r-project "code"
 
-# For more information on the viridis package: 
-# vignette("intro-to-viridis")
+    ```R
+    # Set colours
+    path_colours <- viridis(n = 3, begin = 0.65, end = 1, direction = 1)
 
-# Plot pathway
-pv_bin_0.2 <- pathview(
-  gene.data = KO_matrix[, "bin_0"],
-  pathway.id = tca_map_id,
-  species = "ko",
-  # Lets make an arbitrary assumption that 5 copies is a lot
-  limit = list(
-    gene = c(1, 5),
-    cpd = c(1, 5)
-  ),
-  bins = list(
-    gene = 4,
-    cpd = 4
-  ),
-  # We are plotting number of hits, so specify TRUE for this
-  # If plotting, say, gene/transcript abundance, set this to FALSE
-  discrete = list(
-    gene = TRUE,
-    cpd = TRUE
-  ),
-  # Tally colours
-  low = path_colours[1],
-  mid = path_colours[2],
-  high = path_colours[3],
-  out.suffix = "pv_bin_0.2"
-)
-```
+    # For more information on the viridis package: 
+    # vignette("intro-to-viridis")
+
+    # Plot pathway
+    pv_bin_0.2 <- pathview(
+      gene.data = KO_matrix[, "bin_0"],
+      pathway.id = tca_map_id,
+      species = "ko",
+      # Lets make an arbitrary assumption that 5 copies is a lot
+      limit = list(
+        gene = c(1, 5),
+        cpd = c(1, 5)
+      ),
+      bins = list(
+        gene = 4,
+        cpd = 4
+      ),
+      # We are plotting number of hits, so specify TRUE for this
+      # If plotting, say, gene/transcript abundance, set this to FALSE
+      discrete = list(
+        gene = TRUE,
+        cpd = TRUE
+      ),
+      # Tally colours
+      low = path_colours[1],
+      mid = path_colours[2],
+      high = path_colours[3],
+      out.suffix = "pv_bin_0.2"
+    )
+    ```
 
 ![image](../figures/day4_keggmap.ko00020.pv_bin_0.2.png)
 
 This plot looks much better. We can see that some genes do have more hits than others. Now, lets propagate this using `map(...)` based on our bin IDs.
 
-```R
-pv_bin_all <- map(bin_ids, function(bin) {
-  # Get column with correct bin ID
-  bin_data <- KO_matrix[, bin]
-  # Prepare output suffix
-  out.suffix = paste0("TCA.", bin)
-  # Plot
-  pathview(
-    gene.data = bin_data,
-    pathway.id = tca_map_id,
-    species = "ko",
-    # Lets make an arbitrary assumption that 5 copies is a lot
-    limit = list(
-      gene = c(1, 5),
-      cpd = c(1, 5)
-    ),
-    bins = list(
-      gene = 4,
-      cpd = 4
-    ),
-    # We are plotting number of hits, so specify TRUE for this
-    # If plotting, say, gene/transcript abundance, set this to FALSE
-    discrete = list(
-      gene = TRUE,
-      cpd = TRUE
-    ),
-    # Tally colours
-    low = path_colours[1],
-    mid = path_colours[2],
-    high = path_colours[3],
-    out.suffix = out.suffix
-  )
-})
-```
+!!! r-project "code"
+
+    ```R
+    pv_bin_all <- map(bin_ids, function(bin) {
+      # Get column with correct bin ID
+      bin_data <- KO_matrix[, bin]
+      # Prepare output suffix
+      out.suffix = paste0("TCA.", bin)
+      # Plot
+      pathview(
+        gene.data = bin_data,
+        pathway.id = tca_map_id,
+        species = "ko",
+        # Lets make an arbitrary assumption that 5 copies is a lot
+        limit = list(
+          gene = c(1, 5),
+          cpd = c(1, 5)
+        ),
+        bins = list(
+          gene = 4,
+          cpd = 4
+        ),
+        # We are plotting number of hits, so specify TRUE for this
+        # If plotting, say, gene/transcript abundance, set this to FALSE
+        discrete = list(
+          gene = TRUE,
+          cpd = TRUE
+        ),
+        # Tally colours
+        low = path_colours[1],
+        mid = path_colours[2],
+        high = path_colours[3],
+        out.suffix = out.suffix
+      )
+    })
+    ```
 
 !!! success "Results"
     
