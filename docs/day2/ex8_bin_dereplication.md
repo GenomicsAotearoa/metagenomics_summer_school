@@ -208,29 +208,31 @@ nano checkm.sl
 !!! warning "Warning"
     Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
 
-```bash
-#!/bin/bash -e
-#SBATCH --account       nesi02659
-#SBATCH --job-name      CheckM
-#SBATCH --res           SummerSchool
-#SBATCH --time          00:20:00
-#SBATCH --mem           50GB
-#SBATCH --cpus-per-task 10
-#SBATCH --error         %x_%j.err
-#SBATCH --output        %x_%j.out
+!!! terminal "code"
 
-# Load modules
-module purge
-module load CheckM/1.2.1-gimkl-2022a-Python-3.10.5
-
-# Working directory
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
-
-# Run CheckM
-checkm lineage_wf -t $SLURM_CPUS_PER_TASK --pplacer_threads $SLURM_CPUS_PER_TASK \
-                  -x fa --tab_table -f checkm.txt \
-                  dastool_out/_DASTool_bins/ checkm_out/
-```
+    ```bash
+    #!/bin/bash -e
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      CheckM
+    #SBATCH --res           SummerSchool
+    #SBATCH --time          00:20:00
+    #SBATCH --mem           50GB
+    #SBATCH --cpus-per-task 10
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
+    
+    # Load modules
+    module purge
+    module load CheckM/1.2.1-gimkl-2022a-Python-3.10.5
+    
+    # Working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
+    
+    # Run CheckM
+    checkm lineage_wf -t $SLURM_CPUS_PER_TASK --pplacer_threads $SLURM_CPUS_PER_TASK \
+                      -x fa --tab_table -f checkm.txt \
+                      dastool_out/_DASTool_bins/ checkm_out/
+    ```
 
 Submit the script as a slurm job
 
