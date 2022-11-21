@@ -32,37 +32,39 @@ For this exercise, we will be working with a different set of MAGs to the mock c
 
 We will write a single slurm script to run all necessary commands, then analyse the content.
 
-```bash
-#!/bin/bash -e
+!!! terminal "code"
 
-#SBATCH --account       nesi02659
-#SBATCH --job-name      checkm_drep
-#SBATCH --res           SummerSchool
-#SBATCH --time          2:00:00
-#SBATCH --mem           80GB
-#SBATCH --cpus-per-task 10
-#SBATCH --error         checkm_drep.err
-#SBATCH --output        checkm_drep.out
+    ```bash
+    #!/bin/bash -e
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/12.drep_example/
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      checkm_drep
+    #SBATCH --res           SummerSchool
+    #SBATCH --time          2:00:00
+    #SBATCH --mem           80GB
+    #SBATCH --cpus-per-task 10
+    #SBATCH --error         checkm_drep.err
+    #SBATCH --output        checkm_drep.out
 
-# Step 1
-module purge
-module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
-checkm lineage_wf -t 10 --pplacer_threads 10 -x fa --tab_table -f checkm.txt \
-                  input_bins/ checkm_out/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/12.drep_example/
 
-# Step 2
-echo "genome,completeness,contamination" > dRep.genomeInfo
-cut -f1,12,13 checkm.txt | sed 's/\t/.fa\t/' | sed 's/\t/,/g' | \
-    tail -n+2 >> dRep.genomeInfo
+    # Step 1
+    module purge
+    module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
+    checkm lineage_wf -t 10 --pplacer_threads 10 -x fa --tab_table -f checkm.txt \
+                      input_bins/ checkm_out/
 
-# Step 3
-module purge
-module load drep/2.3.2-gimkl-2017a-Python-3.6.3 MUMmer/3.23-gimkl-2017a
+    # Step 2
+    echo "genome,completeness,contamination" > dRep.genomeInfo
+    cut -f1,12,13 checkm.txt | sed 's/\t/.fa\t/' | sed 's/\t/,/g' | \
+        tail -n+2 >> dRep.genomeInfo
 
-dRep dereplicate --genomeInfo dRep.genomeInfo -g input_bins/*.fa -p 10 drep_output/
-```
+    # Step 3
+    module purge
+    module load drep/2.3.2-gimkl-2017a-Python-3.6.3 MUMmer/3.23-gimkl-2017a
+
+    dRep dereplicate --genomeInfo dRep.genomeInfo -g input_bins/*.fa -p 10 drep_output/
+    ```
 
 Walking through this script, step by step, we are performing the following tasks:
 
@@ -124,21 +126,23 @@ Part of the process for `dRep` includes measures specific to prokaryotes. Hence,
 
 An example of how `dedupe.sh` might be run on multiple *fastA* files of assembled viral contigs (e.g. those output by tools such as `VIBRANT` or `VirSorter`) is as follows:
 
-```bash
-cd /path/to/viral/contigs/from/multiple/assemblies/
-mkdir -p dedupe
+!!! terminal ""
 
-# load BBMap
-module load BBMap/39.01-GCC-11.3.0
-
-# Set infiles
-infiles="assembly_viral_1.fna,assembly_viral_2.fna,assembly_viral_3.fna,assembly_viral_4.fna"
-
-# Run main analyses 
-dedupe.sh threads=1 in=${infiles} \
-minidentity=98 exact=f sort=length mergenames=t mergedelimiter=___ overwrite=t \
-out=dedupe/dedupe.fa
-```
+    ```bash
+    cd /path/to/viral/contigs/from/multiple/assemblies/
+    mkdir -p dedupe
+    
+    # load BBMap
+    module load BBMap/39.01-GCC-11.3.0
+    
+    # Set infiles
+    infiles="assembly_viral_1.fna,assembly_viral_2.fna,assembly_viral_3.fna,assembly_viral_4.fna"
+    
+    # Run main analyses 
+    dedupe.sh threads=1 in=${infiles} \
+    minidentity=98 exact=f sort=length mergenames=t mergedelimiter=___ overwrite=t \
+    out=dedupe/dedupe.fa
+    ```
 
 !!! note "Note"
 
