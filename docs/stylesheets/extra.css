@@ -163,3 +163,24 @@
   -webkit-mask-image: var(--md-admonition-icon--jupyter);
           mask-image: var(--md-admonition-icon--jupyter);
 }
+
+
+:root {
+  --md-admonition-icon--terminal: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 41.4 86.6zM288 416H576c17.7 0 32 14.3 32 32s-14.3 32-32 32H288c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>')
+}
+.md-typeset .admonition.terminal,
+.md-typeset details.terminal {
+  border-color: rgb(47,79,79);
+}
+.md-typeset .terminal > .admonition-title,
+.md-typeset .terminal > summary {
+  background-color: rgba(47,79,79,0.1);
+}
+.md-typeset .terminal > .admonition-title::before,
+.md-typeset .terminal > summary::before {
+  background-color: rgb(255,140,0);
+  -webkit-mask-image: var(--md-admonition-icon--terminal);
+          mask-image: var(--md-admonition-icon--terminal);
+}
+
+
