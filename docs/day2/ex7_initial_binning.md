@@ -94,34 +94,36 @@ nano maxbin_clustering.sl
 !!! warning "Warning"
     Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
 
-```bash
-#!/bin/bash -e
+!!! terminal "code"
 
-#SBATCH --account       nesi02659
-#SBATCH --job-name      maxbin_clustering
-#SBATCH --res           SummerSchool
-#SBATCH --time          00:05:00
-#SBATCH --mem           10GB
-#SBATCH --cpus-per-task 10
-#SBATCH --error         %x_%j.err
-#SBATCH --output        %x_%j.out
-
-# Load modules
-module purge
-module load MaxBin/2.2.7-GCC-11.3.0-Perl-5.34.1
-
-# Working directory
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
-
-# Output directory
-mkdir -p maxbin/
-
-# Run MaxBin
-run_MaxBin.pl -thread $SLURM_CPUS_PER_TASK -min_contig_length 1500 \
-              -contig spades_assembly/spades_assembly.m1000.fna \
-              -abund maxbin.txt \
-              -out maxbin/maxbin
-```
+    ```bash
+    #!/bin/bash -e
+    
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      maxbin_clustering
+    #SBATCH --res           SummerSchool
+    #SBATCH --time          00:05:00
+    #SBATCH --mem           10GB
+    #SBATCH --cpus-per-task 10
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
+    
+    # Load modules
+    module purge
+    module load MaxBin/2.2.7-GCC-11.3.0-Perl-5.34.1
+    
+    # Working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
+    
+    # Output directory
+    mkdir -p maxbin/
+    
+    # Run MaxBin
+    run_MaxBin.pl -thread $SLURM_CPUS_PER_TASK -min_contig_length 1500 \
+                  -contig spades_assembly/spades_assembly.m1000.fna \
+                  -abund maxbin.txt \
+                  -out maxbin/maxbin
+    ```
 
 Submit the script as a slurm job:
 
