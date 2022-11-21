@@ -6,7 +6,7 @@ In this case, the mock metagenome data we have been working with are already of 
 
 #### Normalise to average read depth via the *python* script `norm_jgi_cov_table.py`
 
-The script `norm_jgi_cov_table.py` is available in the folder `8.coverage_and_taxonomy/`, and is also available for download for future reference at [this link](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/scripts/norm_jgi_cov_table.py). 
+The script `norm_jgi_cov_table.py` is available in the folder `8.coverage_and_taxonomy/`, and is also available for download for future reference at [this link](../scripts/norm_jgi_cov_table.py). 
 
 !!! note "Note"
     This script was developed as a simple example for this workshop. It has not yet been widely tested: it is recommended in early usage to manually check a few values to ensure the conversions in the output file are as expected.*
@@ -33,12 +33,14 @@ This will generate the outputs `normalised_bins_cov_table.txt` and `normalised_v
 !!! note "Note"
     If this `python` script is in the directory you are currently in, you can call it simply by adding `./` in front of the script name. If you have saved the script elsewhere, you will need to add the absolute path to the script, or add the script to your bin path.*
 
-```bash
-module purge
-module load Python/3.8.2-gimkl-2020a
+!!! terminal "code"
 
-./norm_jgi_cov_table.py -c bins_cov_table.txt -e mapping_filtered_bins.err
-./norm_jgi_cov_table.py -c viruses_cov_table.txt -e mapping_filtered_viruses.err
-```
+    ```bash
+    module purge
+    module load Python/3.8.2-gimkl-2020a
+    
+    ./norm_jgi_cov_table.py -c bins_cov_table.txt -e mapping_filtered_bins.err
+    ./norm_jgi_cov_table.py -c viruses_cov_table.txt -e mapping_filtered_viruses.err
+    ```
 
 ---

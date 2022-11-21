@@ -6,45 +6,49 @@ The final bins that we obtained in the previous step (output from `DAS_Tool`) ha
 
 We will first modify the names of our bins to be simply numbered 1 to n bins. We will use a loop to do this, using the wildcard ( * ) to loop over all files in the `_DASTool_bins` folder, copying to the new `example_data_unchopped/` folder and renaming as `bin_[1-n].fna`. The `sed` command then adds the bin ID to the start of sequence headers in each of the new bin files (this will be handy information to have in the sequence headers for downstream processing).
 
-```bash
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinement/
+!!! terminal "code"
 
-# Make a new directory the renamed bins
-mkdir example_data_unchopped/
+    ```bash
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinement/
 
-# Copy and rename bins into generic <bin_[0-n].fna> filenames
-i=0
-for file in dastool_out/_DASTool_bins/*;
-do
-    # Copy and rename bin file
-    cp ${file} example_data_unchopped/bin_${i}.fna
-    # extract bin ID
-    binID=$(basename example_data_unchopped/bin_${i}.fna .fna)
-    # Add bin ID to sequence headers
-    sed -i -e "s/>/>${binID}_/g" example_data_unchopped/bin_${i}.fna
-    # Increment i
-    ((i+=1))
-done
-```
+    # Make a new directory the renamed bins
+    mkdir example_data_unchopped/
+
+    # Copy and rename bins into generic <bin_[0-n].fna> filenames
+    i=0
+    for file in dastool_out/_DASTool_bins/*;
+    do
+        # Copy and rename bin file
+        cp ${file} example_data_unchopped/bin_${i}.fna
+        # extract bin ID
+        binID=$(basename example_data_unchopped/bin_${i}.fna .fna)
+        # Add bin ID to sequence headers
+        sed -i -e "s/>/>${binID}_/g" example_data_unchopped/bin_${i}.fna
+        # Increment i
+        ((i+=1))
+    done
+    ```
 
 **2. Fragment contigs**
 
 Using the `cut_up_fasta.py` script that comes with the binning tool `CONCOCT`, cut contigs into 20k fragments to add better density to the cluster.
 
-```bash
-# Load CONCONCT module
-module load CONCOCT/1.0.0-gimkl-2018b-Python-2.7.16
+!!! terminal "code:
 
-# Make directory to add chopped bin data into
-mkdir example_data_20k/
+    ```bash
+    # Load CONCONCT module
+    module load CONCOCT/1.0.0-gimkl-2018b-Python-2.7.16
 
-# loop over .fna files to generate chopped (fragmented) files using CONCONT's cut_up_fasta.py
-for bin_file in example_data_unchopped/*;
-do
-    bin_name=$(basename ${bin_file} .fna)
-    cut_up_fasta.py -c 20000 -o 0 --merge_last ${bin_file} > example_data_20k/${bin_name}.chopped.fna
-done
-```
+    # Make directory to add chopped bin data into
+    mkdir example_data_20k/
+
+    # loop over .fna files to generate chopped (fragmented) files using CONCONT's cut_up_fasta.py
+    for bin_file in example_data_unchopped/*;
+    do
+        bin_name=$(basename ${bin_file} .fna)
+        cut_up_fasta.py -c 20000 -o 0 --merge_last ${bin_file} > example_data_20k/${bin_name}.chopped.fna
+    done
+    ```
 
 **3. Concatenate fragmented bins**
 
@@ -79,38 +83,40 @@ Example slurm script:
 !!! warning "Warning"
     Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
 
-```bash
-#!/bin/bash -e
+!!! terminal "code"
 
-#SBATCH --account       nesi02659
-#SBATCH --job-name      6.bin_refinement_mapping
-#SBATCH --time          00:05:00
-#SBATCH --mem           1GB
-#SBATCH --cpus-per-task 10
-#SBATCH --error         6.bin_refinement_mapping.err
-#SBATCH --output        6.bin_refinement_mapping.out
+    ```bash
+    #!/bin/bash -e
+
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      6.bin_refinement_mapping
+    #SBATCH --time          00:05:00
+    #SBATCH --mem           1GB
+    #SBATCH --cpus-per-task 10
+    #SBATCH --error         6.bin_refinement_mapping.err
+    #SBATCH --output        6.bin_refinement_mapping.out
 
 
-module purge
-module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
+    module purge
+    module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinement/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinement/
 
-# Step 1
-for i in sample1 sample2 sample3 sample4;
-do
+    # Step 1
+    for i in sample1 sample2 sample3 sample4;
+    do
 
-  # Step 2
-  bowtie2 --minins 200 --maxins 800 --threads 10 --sensitive \
-          -x read_mapping/bw_bins \
-          -1 ../3.assembly/${i}_R1.fastq.gz -2 ../3.assembly/${i}_R2.fastq.gz \
-          -S read_mapping/${i}.sam
+      # Step 2
+      bowtie2 --minins 200 --maxins 800 --threads 10 --sensitive \
+              -x read_mapping/bw_bins \
+              -1 ../3.assembly/${i}_R1.fastq.gz -2 ../3.assembly/${i}_R2.fastq.gz \
+              -S read_mapping/${i}.sam
 
-  # Step 3
-  samtools sort -@ 10 -o read_mapping/${i}.bam read_mapping/${i}.sam
+      # Step 3
+      samtools sort -@ 10 -o read_mapping/${i}.bam read_mapping/${i}.sam
 
-done
-```
+    done
+    ```
 !!! note "Note"
 
     These settings are appropriate for this workshop's mock data. Full data sets will likely require considerably greater memory and time allocations.*
@@ -133,25 +139,27 @@ Using the chopped bin files (`example_data_20k/`) and the coverage table generat
 
 What this script is doing is taking each fasta file and picking out the names of the contigs found in that file (bin). It is then looking for any coverage information for sample1 which is associated with that contig in the `example_data_20k_cov.txt` file, and adding that as a new column to the file. (If you wished to instead look based on sample2, you would need to modify the `cut` command in the line `sample1_cov=$(grep -P "${contigID}\t" example_data_20k_cov.txt | cut -f4)` accordingly (e.g. `cut -f6`).
 
-```bash
-# Set up annotation file headers
-echo "coverage,label,length" > all_bins.sample1.vizbin.ann
+!!! terminal "code"
 
-# loop through bin .fna files
-for bin_file in example_data_20k/*.fna; do
-    # extract bin ID
-    binID=$(basename ${bin_file} .fna)
-    # loop through each sequence header in bin_file
-    for header in `grep ">" ${bin_file}`; do
-        contigID=$(echo ${header} | sed 's/>//g')
-        # identify this line from the coverage table (example_data_20k_cov.txt), and extract contigLen (column 2) and coverage for sample1.bam (column 4)
-        contigLen=$(grep -P "${contigID}\t" example_data_20k_cov.txt | cut -f2)
-        sample1_cov=$(grep -P "${contigID}\t" example_data_20k_cov.txt | cut -f4)
-        # Add to vizbin.ann file
-        echo "${sample1_cov},${binID},${contigLen}" >> all_bins.sample1.vizbin.ann
+    ```bash
+    # Set up annotation file headers
+    echo "coverage,label,length" > all_bins.sample1.vizbin.ann
+    
+    # loop through bin .fna files
+    for bin_file in example_data_20k/*.fna; do
+        # extract bin ID
+        binID=$(basename ${bin_file} .fna)
+        # loop through each sequence header in bin_file
+        for header in `grep ">" ${bin_file}`; do
+            contigID=$(echo ${header} | sed 's/>//g')
+            # identify this line from the coverage table (example_data_20k_cov.txt), and extract contigLen (column 2) and coverage for sample1.bam (column 4)
+            contigLen=$(grep -P "${contigID}\t" example_data_20k_cov.txt | cut -f2)
+            sample1_cov=$(grep -P "${contigID}\t" example_data_20k_cov.txt | cut -f4)
+            # Add to vizbin.ann file
+            echo "${sample1_cov},${binID},${contigLen}" >> all_bins.sample1.vizbin.ann
+        done
     done
-done
-```
+    ```
 
 We now have the `all_bins.fna` and `all_bins.sample1.vizbin.ann` files that were provided at the [start of the VizBin exercise](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex9_refining_bins.md#prepare-input-files-for-vizbin).
 
