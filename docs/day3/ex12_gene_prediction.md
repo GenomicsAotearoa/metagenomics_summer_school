@@ -107,39 +107,41 @@ nano prodigal.sl
 
 Paste in the script (modifying `<YOUR FOLDER>`)
 
-```bash
-#!/bin/bash -e
+!!! terminal "code"
 
-#SBATCH --account       nesi02659
-#SBATCH --job-name      prodigal
-#SBATCH --res           SummerSchool
-#SBATCH --time          00:10:00
-#SBATCH --mem           1GB
-#SBATCH --cpus-per-task 1
-#SBATCH --array         0-9
-#SBATCH --error         %x_%A_%a.err
-#SBATCH --output        %x_%A_%a.out
+    ```bash
+    #!/bin/bash -e
 
-# Load modules
-module purge
-module load prodigal/2.6.3-GCCcore-7.4.0
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      prodigal
+    #SBATCH --res           SummerSchool
+    #SBATCH --time          00:10:00
+    #SBATCH --mem           1GB
+    #SBATCH --cpus-per-task 1
+    #SBATCH --array         0-9
+    #SBATCH --error         %x_%A_%a.err
+    #SBATCH --output        %x_%A_%a.out
 
-# Working directory
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction
+    # Load modules
+    module purge
+    module load prodigal/2.6.3-GCCcore-7.4.0
 
-# Output directory
-mkdir -p predictions/
+    # Working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction
 
-# Variables
-bin_file=filtered_bins/bin_${SLURM_ARRAY_TASK_ID}.filtered.fna
-pred_file=$(basename ${bin_file} .fna)
+    # Output directory
+    mkdir -p predictions/
 
-# Run prodigal
-prodigal -i ${bin_file} -p meta \
-         -d predictions/${pred_file}.genes.fna \
-         -a predictions/${pred_file}.genes.faa \
-         -o predictions/${pred_file}.genes.gbk
-```
+    # Variables
+    bin_file=filtered_bins/bin_${SLURM_ARRAY_TASK_ID}.filtered.fna
+    pred_file=$(basename ${bin_file} .fna)
+
+    # Run prodigal
+    prodigal -i ${bin_file} -p meta \
+             -d predictions/${pred_file}.genes.fna \
+             -a predictions/${pred_file}.genes.faa \
+             -o predictions/${pred_file}.genes.gbk
+    ```
 
 Submit the script
 
@@ -226,39 +228,41 @@ nano metaxa2.sl
 
 Paste in the script (replacing `<YOUR FOLDER>`)
 
-```bash
-#!/bin/bash -e
+!!! terminal "code"
 
-#SBATCH --account       nesi02659
-#SBATCH --job-name      metaxa2
-#SBATCH --res           SummerSchool
-#SBATCH --time          00:05:00
-#SBATCH --mem           1GB
-#SBATCH --cpus-per-task 4
-#SBATCH --array         0-9
-#SBATCH --error         %x_%A_%a.err
-#SBATCH --output        %x_%A_%a.out
-
-# Load modules
-module purge
-module load Metaxa2/2.2.3-gimkl-2022a
-
-# Working directory
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction
-
-# Output directory
-mkdir -p ribosomes/
-
-# Variables
-bin_file=filtered_bins/bin_${SLURM_ARRAY_TASK_ID}.filtered.fna
-pred_file=$(basename ${bin_file} .fna)
-
-# Run Metaxa2
-for ribosome_type in ssu lsu; do
-  metaxa2 --cpu $SLURM_CPUS_PER_TASK -g ${ribosome_type} --mode genome \
-          -i ${bin_file} -o ribosomes/${pred_file}.${ribosome_type}
-done
-```
+    ```bash
+    #!/bin/bash -e
+    
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      metaxa2
+    #SBATCH --res           SummerSchool
+    #SBATCH --time          00:05:00
+    #SBATCH --mem           1GB
+    #SBATCH --cpus-per-task 4
+    #SBATCH --array         0-9
+    #SBATCH --error         %x_%A_%a.err
+    #SBATCH --output        %x_%A_%a.out
+    
+    # Load modules
+    module purge
+    module load Metaxa2/2.2.3-gimkl-2022a
+    
+    # Working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction
+    
+    # Output directory
+    mkdir -p ribosomes/
+    
+    # Variables
+    bin_file=filtered_bins/bin_${SLURM_ARRAY_TASK_ID}.filtered.fna
+    pred_file=$(basename ${bin_file} .fna)
+    
+    # Run Metaxa2
+    for ribosome_type in ssu lsu; do
+      metaxa2 --cpu $SLURM_CPUS_PER_TASK -g ${ribosome_type} --mode genome \
+              -i ${bin_file} -o ribosomes/${pred_file}.${ribosome_type}
+    done
+    ```
 
 Submit the script
 
