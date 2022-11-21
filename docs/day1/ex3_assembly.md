@@ -248,30 +248,32 @@ nano spades_assembly.sl
 
 Into this file, either write or copy/paste the following commands:
 
-```bash
-#!/bin/bash -e
+!!! terminal "code"
 
-#SBATCH --account       nesi02659
-#SBATCH --job-name      spades_assembly
-#SBATCH --res           SummerSchool
-#SBATCH --time          00:30:00
-#SBATCH --mem           10GB
-#SBATCH --cpus-per-task 12
-#SBATCH --error         %x_%j.err
-#SBATCH --output        %x_%j.out
+    ```bash
+    #!/bin/bash -e
 
-# Load modules
-module purge
-module load SPAdes/3.15.4-gimkl-2022a-Python-3.10.5
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      spades_assembly
+    #SBATCH --res           SummerSchool
+    #SBATCH --time          00:30:00
+    #SBATCH --mem           10GB
+    #SBATCH --cpus-per-task 12
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
 
-# Working directory
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly
+    # Load modules
+    module purge
+    module load SPAdes/3.15.4-gimkl-2022a-Python-3.10.5
 
-# Run SPAdes
-spades.py --meta -k 33,55,77,99,121 -t $SLURM_CPUS_PER_TASK \
-          -1 for_spades_R1.fq.gz -2 for_spades_R2.fq.gz \
-          -o spades_assembly/
-```
+    # Working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly
+
+    # Run SPAdes
+    spades.py --meta -k 33,55,77,99,121 -t $SLURM_CPUS_PER_TASK \
+              -1 for_spades_R1.fq.gz -2 for_spades_R2.fq.gz \
+              -o spades_assembly/
+    ```
 
 To save your file, use `Ctrl + O` to save the file, then `Ctrl + X` to exit `nano`. Going through those lines one by one;
 
@@ -349,29 +351,31 @@ nano idbaud_assembly.sl
 
 Paste or type in the following:
 
-```bash
-#!/bin/bash -e
+!!! terminal "code"
 
-#SBATCH --account       nesi02659
-#SBATCH --job-name      idbaud_assembly
-#SBATCH --res           SummerSchool
-#SBATCH --time          00:20:00
-#SBATCH --mem           4GB
-#SBATCH --cpus-per-task 12
-#SBATCH --error         %x_%j.err
-#SBATCH --output        %x_%j.out
-
-# Prepare modules
-module purge
-module load IDBA-UD/1.1.3-GCC-11.3.0
-
-# Working directory
-cd ./3.assembly
-
-# Run IDBA-UD
-idba_ud --num_threads $SLURM_CPUS_PER_TASK --mink 33 --maxk 99 --step 22 \
-        -r for_idba.fna -o idbaud_assembly/
-```
+    ```bash
+    #!/bin/bash -e
+    
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      idbaud_assembly
+    #SBATCH --res           SummerSchool
+    #SBATCH --time          00:20:00
+    #SBATCH --mem           4GB
+    #SBATCH --cpus-per-task 12
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
+    
+    # Prepare modules
+    module purge
+    module load IDBA-UD/1.1.3-GCC-11.3.0
+    
+    # Working directory
+    cd ./3.assembly
+    
+    # Run IDBA-UD
+    idba_ud --num_threads $SLURM_CPUS_PER_TASK --mink 33 --maxk 99 --step 22 \
+            -r for_idba.fna -o idbaud_assembly/
+    ```
 
 And submit the script as a slurm job:
 
