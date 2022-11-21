@@ -305,28 +305,30 @@ cat ../5.binning/checkm.txt
 
 An example of an updated slurm script to run `CheckM` on the `filtered_bins/` is as follows:
 
-```bash
-#!/bin/bash -e
-#SBATCH --account nesi02659
-#SBATCH --job-name bin_eval_checkm
-#SBATCH --res SummerSchool
-#SBATCH --time 00:20:00
-#SBATCH --mem 50GB
-#SBATCH --cpus-per-task 10
-#SBATCH --error bin_eval_checkm.err
-#SBATCH --output bin_eval_checkm.out
+!!! terminal "code"
+
+    ```bash
+    #!/bin/bash -e
+    #SBATCH --account nesi02659
+    #SBATCH --job-name bin_eval_checkm
+    #SBATCH --res SummerSchool
+    #SBATCH --time 00:20:00
+    #SBATCH --mem 50GB
+    #SBATCH --cpus-per-task 10
+    #SBATCH --error bin_eval_checkm.err
+    #SBATCH --output bin_eval_checkm.out
 
 
-module purge
-module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
+    module purge
+    module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinement/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinement/
 
-checkm lineage_wf -t 10 --pplacer_threads 10 -x fna \
-                  --tab_table -f filtered_bins_checkm.txt \
-                  filtered_bins/ filtered_bins_checkm_out/
-                  
-```
+    checkm lineage_wf -t 10 --pplacer_threads 10 -x fna \
+                      --tab_table -f filtered_bins_checkm.txt \
+                      filtered_bins/ filtered_bins_checkm_out/
+
+    ```
 
 ---
 
