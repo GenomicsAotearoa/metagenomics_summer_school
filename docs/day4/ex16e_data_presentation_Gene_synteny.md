@@ -11,9 +11,11 @@
 
 ### Build a sulfur assimilation gene alignment figure to investigate gene synteny using `R`
 
-When investigating the evolution of genomes, we sometimes want to consider not only the presence/absence of genes in a genome, but also how they are arranged in an operon. For this exercise, we are going to visualise several sulfur assimilation genes from bin_4, bin_5 and bin_7, comparing their arrangement among the organisms.
+When investigating the evolution of genomes, we sometimes want to consider not only the presence/absence of genes in a genome, but also how they are arranged in an operon. For this exercise, we are going to visualise several sulfur assimilation genes from our MAGs and compare their arrangements.
 
-For this exercise, navigate to the folder `11.data_presentation/gene_synteny/`. You have been provided with a copy of the `prodigal` gene predictions for each of the bins (`.faa` files), an annotation output table using multiple databases (`.aa` files), a small table of the annotation of some key genes of interest (`cys.txt` files), and blastn output (`blast*.txt`) comparing the genes of interest from these organisms. The annotation files were created by manually searching the annotations obtained in the previous exercises.
+This exercise involves the use of commands in `bash` and `R`. In the first part, we will need to find and parse gene coordinates in `bash`. This is followed by data wrangling and plot generation in `R`.
+
+For this exercise, navigate to the directory `11.data_presentation/gene_synteny/`. You have been provided with a copy of the `prodigal` gene predictions for each of the bins (`.faa` files), an annotation output table using multiple databases (`.aa` files), a small table of the annotation of some key genes of interest (`cys.txt` files), and tBLASTx output (`blast*.txt`) comparing the genes of interest from these organisms. The annotation files were created by manually searching the annotations obtained in the previous exercises.
 
 !!! note "Note"
 
@@ -29,248 +31,333 @@ For these `bash` steps, we will need to return to our logged in NeSI terminal. S
 
 Navigate to the `11.data_presentation/gene_synteny/` folder, and then perform the `cut` and `tail` steps outlined above.
 
-```bash
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/gene_synteny/
+!!! terminal "code"
 
-cut -f3 bin_4_cys.txt | tail -n+2 > bin_4_cys.genes
-cut -f3 bin_5_cys.txt | tail -n+2 > bin_5_cys.genes
-cut -f3 bin_7_cys.txt | tail -n+2 > bin_7_cys.genes
-```
+    ```bash
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/gene_synteny/
+    
+    for bin_file in *_cys.txt; do
+      bin=$(basename ${bin_file} _cys.txt)
+      cut -f1 ${bin_file} | tail -n+2 > ${bin}_cys.genes
+    done
+    ```
 
-We now have three new files, ending with the `.genes` suffix which are simply a list of the genes that we wish to extract from the `prodigal` files. We can then use each of these files as input for `grep` to pull out the *fastA* entries that correspond to these genes.
+We now have three new files, ending with the `.genes` suffix which are simply a list of the genes that we wish to extract from the `prodigal` files. We can then use each of these files as input for `grep` to pull out the FASTA entries that correspond to these genes.
 
-```bash
-grep -f bin_4_cys.genes bin_4.filtered.genes.faa | cut -f1,2,3,4 -d "#" | sed 's/>//g' | sed 's/#/\t/g' > bin_4_cys.coords
-grep -f bin_5_cys.genes bin_5.filtered.genes.faa | cut -f1,2,3,4 -d "#" | sed 's/>//g' | sed 's/#/\t/g' > bin_5_cys.coords
-grep -f bin_7_cys.genes bin_7.filtered.genes.faa | cut -f1,2,3,4 -d "#" | sed 's/>//g' | sed 's/#/\t/g' > bin_7_cys.coords
-```
+!!! terminal "code"
+    
+    ```bash
+    for gene_list in *.genes; do
+      bin=$(basename ${gene_list} _cys.genes)
+      grep -f ${gene_list} ${bin}.filtered.genes.faa \
+        | sed -e 's/ # /\t/g' -e 's/>//g' \
+        | cut -f 1-4 > ${bin}_cys.coords
+    done
+    ```
 
 As previously, we will quickly go through the steps of this command:
 
-```bash
-grep -f bin_4_cys.genes bin_4.filtered.genes.faa | cut -f1,2,3,4 -d "#" | sed 's/>//g' | sed 's/#/\t/g' > bin_4_cys.coords
-|                                     |                      |              |                |
-|                                     |                      |              |                Write the output
-|                                     |                      |              |
-|                                     |                      |              Replace each '#' character with tab
-|                                     |                      |
-|                                     |                      For each line, replace the '>' with empty text
-|                                     |
-|                                     Split the results into columns delimited by the # character,
-|                                     then take columns 1 - 4.
-| Select the lines of the bin_4_cys.faa file that contain entries found in the bin_4_cys.genes file.
-```
+* `grep -f ${gene_list} ${bin}.filtered.genes.faa` searches the `prodigal` FASTA amino acid sequence output for headers that match those in our `.genes` file
+* `sed -e 's/ # /\t/g' -e 's/>//g'` replaces the default `prodigal` header line delimiter " # " with a tab, then removes `>` from the header.
+* `cut -f 1-4` selects the first 4 columns delimited by a tab (default for `cut`).
 
 Check the content of the `.coords` files now. You should see something like the following:
 
-```bash
-cat bin_4_cys.coords
-# bin_4_NODE_55_length_158395_cov_1.135272_128     135928          136935          1
-# bin_4_NODE_55_length_158395_cov_1.135272_129     136994          137299          1
-# bin_4_NODE_55_length_158395_cov_1.135272_130     137411          138322          1
-# bin_4_NODE_55_length_158395_cov_1.135272_131     138413          139201          1
-# bin_4_NODE_55_length_158395_cov_1.135272_132     139267          140100          1
-# bin_4_NODE_55_length_158395_cov_1.135272_133     140110          140988          1
-# bin_4_NODE_55_length_158395_cov_1.135272_134     140985          142073          1
-```
+!!! terminal "code"
+    ```bash
+    cat bin_3_cys.coords
+    bin_3_NODE_53_length_158395_cov_1.135272_128    135928  136935  1
+    bin_3_NODE_53_length_158395_cov_1.135272_129    136994  137299  1
+    bin_3_NODE_53_length_158395_cov_1.135272_130    137411  138322  1
+    bin_3_NODE_53_length_158395_cov_1.135272_131    138413  139201  1
+    bin_3_NODE_53_length_158395_cov_1.135272_132    139267  140100  1
+    bin_3_NODE_53_length_158395_cov_1.135272_133    140110  140988  1
+    bin_3_NODE_53_length_158395_cov_1.135272_134    140985  142073  1
+    ```
 
 If you recall from the previous exercise on gene prediction, we have taken the first four entries from each line of the `prodigal` output, which consists of:
 
 !!! quote ""
     1. The gene name, written as [CONTIG]\_[GENE]
-    1. The start position of the gene
-    1. The stop position of the gene
-    1. The orienation of the gene
+    2. The start position of the gene
+    3. The stop position of the gene
+    4. The orienation of the gene
 
 We will now use these tables, together with the annotation tables to create the gene synteny view in `R`.
 
 #### Part 2 - Producing the figure in *R*
 
-First, move back to the [Jupyter hub Notebook](https://jupyter.nesi.org.nz/hub/login) pane where we have `R` running as the kernel (or relaunch a new `R 4.0.1` Notebook). (Outside the context of this workshop, open `RStudio` with the required packages installed (see the [data presentation intro](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16a_data_presentation_Intro.md) docs for more information)).
+First, move back to the [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) pane and start an `RStudio` session
 
-There are two `R` libaries we need to load for this exercise.
+##### 2.1 Prepare environment
 
-##### Set working directory and load *R* libraries
+Similar to previous sessions, we will begin by preparing the environment by setting our working directory and loading required libraries.
 
-```R
-setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/gene_synteny/')
+!!! r-project "code"
+    
+    ```R
+    # Set working directory
+    setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/gene_synteny/')
+    
+    # Load libraries
+    # Tidyverse packages
+    library(dplyr)
+    library(readr)
+    library(purrr)
+    library(stringr)
+    library(tidyr)
+    
+    # Gene synteny
+    library(genoPlotR)
+    ```
 
-library(dplyr)
-library(genoPlotR)
-```
+##### 2.2 Import files
 
-##### Part 2.1 - Load coordinate files
+Using genoPlotR requires files with 3 different types of information:
 
-We can now begin importing the data. First, we will import the `.coords` files, and set column names to the files.
+* Gene coordinates (from `prodigal`)
+* Gene annotations (from our annotation workflows)
+* Contig comparisons (from tBLASTx output)
 
+First, we will import the `.coords` files, and set column names to the files.
 
-```R
-bin_4_coords = read.table('bin_4_cys.coords', header=F, sep='\t', stringsAsFactors=F)
-colnames(bin_4_coords) = c('name', 'start', 'end', 'strand')
-bin_5_coords = read.table('bin_5_cys.coords', header=F, sep='\t', stringsAsFactors=F)
-colnames(bin_5_coords) = c('name', 'start', 'end', 'strand')
-bin_7_coords = read.table('bin_7_cys.coords', header=F, sep='\t', stringsAsFactors=F)
-colnames(bin_7_coords) = c('name', 'start', 'end', 'strand')
-```
+!!! r-project "code"
+    
+    ```R
+    # Gene coordinates
+    coords_files <- list.files(pattern = ".coords")
+    coords_header <- c("name", "start", "end", "strand")
+    coords_list <- map(coords_files, function(file) {
+      read_tsv(file, col_names = coords_header)
+    }) %>%
+      setNames(., str_remove(coords_files, "cys."))
+    ```
 
 Take a look at the content of each of these data.frames, by entering their names into the terminal. You should notice that the coordinates occur at quite different positions between the genomes. If we were looking at complete genomes, this would indicate their position relative to the *origin of replication*, but as these are unclosed genomes obtained from MAGs, they reflect the coordinates upon their particular *contig*.
 
-We now parse these data.frames into the *dna_seg* data class, which is defined by the `genoPlotR` library.
+Lets continue to import the other files
 
-
-```R
-bin_4_ds = dna_seg(bin_4_coords)
-bin_5_ds = dna_seg(bin_5_coords)
-bin_7_ds = dna_seg(bin_7_coords)
-bin_5_ds
-```
-
-
-<table>
-<caption>A dna_seg: 4 × 11</caption>
-<thead>
-	<tr><th scope=col>name</th><th scope=col>start</th><th scope=col>end</th><th scope=col>strand</th><th scope=col>col</th><th scope=col>fill</th><th scope=col>lty</th><th scope=col>lwd</th><th scope=col>pch</th><th scope=col>cex</th><th scope=col>gene_type</th></tr>
-	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><td>bin_5_NODE_95_length_91726_cov_0.379357_18 </td><td>16268</td><td>17257</td><td>-1</td><td>blue</td><td>blue</td><td>1</td><td>1</td><td>8</td><td>1</td><td>arrows</td></tr>
-	<tr><td>bin_5_NODE_95_length_91726_cov_0.379357_19 </td><td>17261</td><td>18130</td><td>-1</td><td>blue</td><td>blue</td><td>1</td><td>1</td><td>8</td><td>1</td><td>arrows</td></tr>
-	<tr><td>bin_5_NODE_95_length_91726_cov_0.379357_20 </td><td>18141</td><td>18959</td><td>-1</td><td>blue</td><td>blue</td><td>1</td><td>1</td><td>8</td><td>1</td><td>arrows</td></tr>
-	<tr><td>bin_5_NODE_95_length_91726_cov_0.379357_21 </td><td>19121</td><td>20119</td><td>-1</td><td>blue</td><td>blue</td><td>1</td><td>1</td><td>8</td><td>1</td><td>arrows</td></tr>
-</tbody>
-</table>
-
-
-By looking at the table, we can see that the genes in bin_5 are in reversed order (strand -1), so we might want to change the color of the gene to make sure they are different than bin_4 and bin_7.
-
-
-```R
-bin_5_ds$col = "#1a535c"
-bin_5_ds$fill = "#1a535c"
-```
-
-##### Part 2.2 - Load annotation tables
-
-Then, we can load the annotation tables we have into `R` and take a look at them.
-
-
-```R
-bin_4_ann = read.table('bin_4_cys.txt', header=T, sep='\t', stringsAsFactors=F) %>%
-cbind(., bin_4_coords) %>%
-select(Annotation, start1=start, end1=end, strand1=strand)
-bin_5_ann = read.table('bin_5_cys.txt', header=T, sep='\t', stringsAsFactors=F) %>%
-cbind(., bin_5_coords) %>%
-select(Annotation, start1=start, end1=end, strand1=strand)
-bin_7_ann = read.table('bin_7_cys.txt', header=T, sep='\t', stringsAsFactors=F) %>%
-cbind(., bin_7_coords) %>%
-select(Annotation, start1=start, end1=end, strand1=strand)
-bin_5_ann
-```
-
-<table>
-<caption>A data.frame: 4 × 4</caption>
-<thead>
-	<tr><th scope=col>Annotation</th><th scope=col>start1</th><th scope=col>end1</th><th scope=col>strand1</th></tr>
-	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><td> sbp; sulfate-binding protein                                      </td><td>16268</td><td>17257</td><td>-1</td></tr>
-	<tr><td> cysT; sulfate transporter CysT                                    </td><td>17261</td><td>18130</td><td>-1</td></tr>
-	<tr><td> cysW; sulfate transporter CysW                                    </td><td>18141</td><td>18959</td><td>-1</td></tr>
-	<tr><td> cysA; sulfate.thiosulfate ABC transporter ATP-binding protein CysA</td><td>19121</td><td>20119</td><td>-1</td></tr>
-</tbody>
-</table>
-
-
-We need to create one more table with descriptive information. This is an *annotation* object, which contains the name of each gene in the figure along with the coordinates to write the name. x1 = starts of the gene, x2 = end of the gene
-
-
-```R
-annot1 <- annotation(x1 = c(bin_4_ds$start[1], bin_4_ds$start[2],bin_4_ds$start[5],bin_4_ds$start[6],bin_4_ds$start[7]),
-                    x2 = c(bin_4_ds$end[1], bin_4_ds$end[4], bin_4_ds$end[5], bin_4_ds$end[6], bin_4_ds$end[7]),
-                    text =  c("sbp", "unknown domain", "cysU", "cysW", "cysA"),
-                    rot = 0, col = "black")
-annot2 <- annotation(x1 = c(bin_7_ds$start[1], bin_7_ds$start[2],bin_7_ds$start[3],bin_7_ds$start[4]),
-                    x2 = c(bin_7_ds$end[1], bin_7_ds$end[2], bin_7_ds$end[3], bin_7_ds$end[4]),
-                    text = c("sbp", "cysT","cysW","cysA"),
-                    rot = 0, col = "black")
-```
-
-##### Part 2.3 - Creating a comparison table and building the plot in *R*
-
-Then, we can parse the blast output as comparison file among the genomes. genoPlotR can read tabular files, either user-generated tab files (read_comparison_from_tab), or from BLAST output (read_comparison_from_blast). To produce files that are readable by genoPlotR, the -m 8 or 9 option should be used in blastall, or -outfmt 6 or 7 with the BLAST+ suite.
-
-
-```R
-blast1 = read_comparison_from_blast("blast_bin4_bin5.txt")
-blast2 = read_comparison_from_blast("blast_bin5_bin7.txt")
-```
-
-What it does here is to set the line color according to the direction of the gene match and the color gradient is based on the percent identity of the matches. Lighter color indicates weaker match and darker color indicates strong match.
-
-Now we can generate the plot. Running this command in `RStudio` or our `Jupyter Notebook` running the `R` kernel interactively loads the figure. 
-
-!!! note "Note"
-
-    The commented-out lines below (the two lines starting with `#`) will not run. Un-comment these if you wish to save the figure to file rather than opening it in the `Jupyter` or `RStudio` viewer. (N.b. alternatives using a similar command are also available other formats, including `tiff` and `png`).
+!!! r-project "code"
     
-```R
-#pdf("genoplot.pdf",colormodel = "cmyk",width = 8,height = 4,paper = 'special')
-plot_gene_map(dna_segs = list(bin_4_ds,bin_5_ds,bin_7_ds), 
-              gene_type = "arrows", dna_seg_labels = c("bin_4", "bin_5","bin_7"), 
-              comparisons = list(blast1,blast2), dna_seg_scale = TRUE, 
-              override_color_schemes=FALSE,annotations=list(annot1,NULL,annot2),
-              annotation_height=1.7, dna_seg_label_cex = 1,main = "Sulfur assimilation")
-#dev.off()
-```
-<center>
-![image](../figures/ex15_gene_synteny_fig1.png){width="700"}
-</center>
+    ```R
+    # Gene annotations
+    annot_files <- list.files(pattern = "^bin_.*.txt")
+    annot_list <- map(annot_files, function(file) {
+      read_tsv(file, col_names = TRUE)
+    }) %>%
+      setNames(., str_replace(annot_files, "cys.txt", "annot"))
+    
+    # BLAST outputs
+    blast_files <- list.files(pattern = "^blast_.*.txt")
+    blast_list <- map(blast_files, function(file) {
+      read_comparison_from_blast(file)
+    }) %>%
+      setNames(., str_remove(blast_files, ".txt"))
+    ```
 
-!!! note "Note"
+Notice that the file reading function for BLAST files are different (`read_comparison_from_blast()` versus `read_tsv()`). This is a function specific to `genoPlotR` for parsing BLAST outputs. If you have some custom comparison pipeline, `genoPlotR` can also read tab-delimited files via `read_comparison_from_tab()`
 
-    While we do have control over the colours of the arrows via setting the `bin_n_ds$col` and `bin_n_ds$fill` parameters for each contig (as above), unfortunately there appears to be little flexibility within the `plot_gene_map()` function for setting the colours of the segments joining the arrows (the current options are limited to 'red_blue', 'blue_red', and 'grey').*
+##### 2.3 Wrangle data
 
-    Careful analysis would be needed to determine whether this is a genuine rearrangement relative to the rest of the genome, as these are draft genomes and contig orientation can either be forward or reverse. In this case, you can see that genes in bin_5 are in reversed order relative to the other bin contigs, hence, we can manually rotate the contig.
+We now need to do the following:
 
-##### Rotate the contig and update the annotation
+* Parse coordinate data into a format genoPlotR can use
+* Tidy up annotation tables so they will show the correct labels
 
-Rotate the orientation of the contig from bin_5:
+We start by converting our coordinate data into a `dna_seg` (DNA segment) data class, then check what is in one of the objects in the list.
 
-```R
-blast1 = mutate(blast1, direction = 1)
-blast2 = mutate(blast2, direction = 1)
+!!! r-project "code"
+    
+    ```R
+    # Transform coordinate tables into "dna_seg" objects
+    ds_list <- map(coords_list, dna_seg)
 
-#annot3 <- annotation(x1 = c(bin_4_ds$start[1], bin_4_ds$start[2],bin_4_ds$start[3],bin_4_ds$start[4],bin_4_ds$start[7]),
-#                    x2 = c(bin_4_ds$end[1], bin_4_ds$end[2], bin_4_ds$end[3], bin_4_ds$end[6], bin_4_ds$end[7]),
-#                    text = c("cysA","cysW","cysU","unknown domain" ,"sbp"),
-#                    rot = 0, col = "black")
+    ds_list$bin_5_coords
+    ```
 
-#edit the color
-bin_5_ds$col = "blue"
-bin_5_ds$fill = "blue"
-```
+|                                       name | start |   end | strand |  col | fill | lty | lwd | pch | cex | gene_type |
+|-------------------------------------------:|------:|------:|-------:|-----:|-----:|----:|----:|----:|----:|----------:|
+| bin_5_NODE_95_length_91726_cov_0.379302_67 | 71608 | 72606 |      1 | blue | blue |   1 |   1 |   8 |   1 |    arrows |
+| bin_5_NODE_95_length_91726_cov_0.379302_68 | 72768 | 73586 |      1 | blue | blue |   1 |   1 |   8 |   1 |    arrows |
+| bin_5_NODE_95_length_91726_cov_0.379302_69 | 73597 | 74466 |      1 | blue | blue |   1 |   1 |   8 |   1 |    arrows |
+| bin_5_NODE_95_length_91726_cov_0.379302_70 | 74470 | 75459 |      1 | blue | blue |   1 |   1 |   8 |   1 |    arrows |
 
-Regenerate the figure:
+Now we tidy our annotations table and create a joint coordinate-annotation table. But first, lets take a look at our annotation tables to get a feel for what needs to change.
 
-```R
-#AFTER ROTATING
-#pdf("genoplot_rotated.pdf",colormodel = "cmyk",width = 8, height = 4, paper = 'special')
-plot_gene_map(dna_segs = list(bin_4_ds,bin_5_ds,bin_7_ds), 
-              gene_type = "arrows", dna_seg_labels = c("bin_4", "bin_5","bin_7"), 
-              comparisons = list(blast1,blast2), dna_seg_scale = TRUE, 
-              override_color_schemes=TRUE,annotations=list(annot1,NULL,annot2),
-              annotation_height=1.7, dna_seg_label_cex = 1,xlims=list(NULL, c(Inf, -Inf), NULL),main = "Sulfur assimilation")
-#dev.off()
-```
+!!! r-project "code"
 
-<center>
-![image](../figures/ex15_gene_synteny_fig2.png){width="700"}
-</center>
+    ```R
+    annot_list
+    # $bin_3_annot
+    # # A tibble: 7 × 3
+    #   `Query gene`                                 KO                                      Annotation                                 
+    #   <chr>                                        <chr>                                   <chr>                                      
+    # 1 bin_3_NODE_53_length_158395_cov_1.135272_128 K02048                                  sbp1; Prokaryotic sulfate-/thiosulfate-bin…
+    # 2 bin_3_NODE_53_length_158395_cov_1.135272_129 possible predicted diverged CheY-domain possible predicted diverged CheY-domain    
+    # 3 bin_3_NODE_53_length_158395_cov_1.135272_130 Domain of unknown function 2            Domain of unknown function 2               
+    # 4 bin_3_NODE_53_length_158395_cov_1.135272_131 Domain of unknown function 2            Domain of unknown function 2               
+    # 5 bin_3_NODE_53_length_158395_cov_1.135272_132 K02046                                  cysU; cysU; sulfate transport ABC transpor…
+    # 6 bin_3_NODE_53_length_158395_cov_1.135272_133 K02047                                  cysW; cysW; sulfate transport ABC transpor…
+    # 7 bin_3_NODE_53_length_158395_cov_1.135272_134 K02045                                  cysA; cysA; sulfate transport ATP-binding …
+    # 
+    # $bin_5_annot
+    # # A tibble: 4 × 3
+    #   `Query gene`                               KO     Annotation                                                        
+    #   <chr>                                      <chr>  <chr>                                                             
+    # 1 bin_5_NODE_95_length_91726_cov_0.379302_67 K02048 sbp; sulfate-binding protein                                      
+    # 2 bin_5_NODE_95_length_91726_cov_0.379302_68 K02046 cysT; sulfate transporter CysT                                    
+    # 3 bin_5_NODE_95_length_91726_cov_0.379302_69 K02047 cysW; sulfate transporter CysW                                    
+    # 4 bin_5_NODE_95_length_91726_cov_0.379302_70 K02045 cysA; sulfate.thiosulfate ABC transporter ATP-binding protein CysA
+    # 
+    # $bin_8_annot
+    # # A tibble: 4 × 3
+    #   `Query gene`                                KO     Annotation                                    
+    #   <chr>                                       <chr>  <chr>                                         
+    # 1 bin_8_NODE_60_length_149231_cov_0.651774_55 K02048 Thiosulphate-binding protein                  
+    # 2 bin_8_NODE_60_length_149231_cov_0.651774_56 K02046 sulfate ABC transporter permease subunit CysT 
+    # 3 bin_8_NODE_60_length_149231_cov_0.651774_57 K02047 Sulfate ABC transporter, permease protein CysW
+    # 4 bin_8_NODE_60_length_149231_cov_0.651774_58 K02045 sulphate transport system permease protein 1  
+    # 
+    # $bin_9_annot
+    # # A tibble: 4 × 3
+    #   `Query gene`                                 KO     Annotation                                           
+    #   <chr>                                        <chr>  <chr>                                                
+    # 1 bin_9_NODE_12_length_355673_cov_0.516990_147 K02048 thiosulfate ABC transporter substrate-binding protein
+    # 2 bin_9_NODE_12_length_355673_cov_0.516990_148 K02046 sulfate ABC transporter permease                     
+    # 3 bin_9_NODE_12_length_355673_cov_0.516990_149 K02047 sulfate ABC transporter permease                     
+    # 4 bin_9_NODE_12_length_355673_cov_0.516990_150 K02045 sulfate ABC transporter ATP-binding protein   
+    ```
 
-All done! We can see here that compared to bin_5 and bin_7 the following differences are apparent in the gene operon for bin_4:
+Immediately, we can see that there are some inconsistencies in the annotations. 
 
-1. Three genes with unknown domain/function present in bin_4 in between *cysU* and *SBP*
-2. *cysW* and *cysA* are highly conserved among the genomes and have higher similarity compared to *cysU* and *SBP*.
+* In the annotations for bin 3, there are repeat gene names in the same annotation line.
+* Annotationss for the same KO number is inconsistent across tables. For instance, K02046 is cysU in bin 3 and cysT in bins 5 and 8.
+* There is a complete lack of gene names in bin 9 annotations. 
 
----
+We need to remedy this by having a consistent label system. First, create a data frame of labels you want to show in your synteny plot.
+
+!!! r-project "code"
+    
+    ```R
+    KO_genes <- data.frame(
+      "KO" = paste0("K0204", 5:8),
+      "gene_name" = c("cysA", "cysU", "cysW", "sbp1")
+    )
+
+    # Check what we have created
+    KO_genes
+    #       KO gene_name
+    # 1 K02045      cysA
+    # 2 K02046      cysU
+    # 3 K02047      cysW
+    # 4 K02048      sbp1
+    ```
+
+Then, we join the KO_genes, annotation, and coordinate tables. We also replace rows that contain `NA` with `"Unknown domain"`.
+
+!!! r-project "code"
+
+    ```R
+    ann_coords_list <- map2(annot_list, coords_list, function(ann, coord) {
+      left_join(ann, coord, by = c('Query gene' = 'name')) %>%
+        left_join(KO_genes) %>%
+        mutate(
+          gene_name = replace_na(gene_name, "Unknown domain")
+        )
+    })
+
+    # Check one of the tables
+    View(ann_coords_list$bin_3_annot) # In RStudio, View() will open a data viewing tab on the top left pane!
+    ```
+
+Much better! We can use the `gene_name` column as our annotation on our gene synteny plot.
+
+We also need to convert the tidy annotation table into something that `genoPlotR` can use (i.e. an `annotations` class object).
+
+!!! r-project "code"
+
+    ```R
+    annotations_list <- map(ann_coords_list, function(data) {
+      annotation(
+        x1 = data$start, # Where each gene starts
+        x2 = data$end, # Gene end coordinate
+        text = data$gene_name # Labels to show
+      )
+    })
+
+    # Check one of the annotations_list objects
+    annotations_list$bin_5_annot
+    #      x1    x2 text color rot
+    # 1 71608 72606 sbp1 black   0
+    # 2 72768 73586 cysU black   0
+    # 3 73597 74466 cysW black   0
+    # 4 74470 75459 cysA black   0
+    ```
+
+##### 2.4 Plot data
+
+Lets plot our data to see what it looks like and if it need tweaking.
+
+!!! r-project "code"
+
+    ```R
+    plot_gene_map(
+      dna_segs = ds_list,
+      comparisons = filt_blast_list,
+      annotations = annotations_list,
+      dna_seg_labels = str_remove(names(ds_list), "_coords"),
+      dna_seg_scale = TRUE,
+      gene_type = "arrows"
+    )
+    ```
+
+![image](../figures/day4_synteny.01.synteny_all.png)
+
+We have a plot! However, it is rather cluttered and could be further improved:
+
+* Remove gene names in the middle tracks
+* Concatenate the "Unknown domain" portion into a single annotation
+* Showing only the best tBLASTx hits, reducing short alignments
+
+!!! r-project "code"
+
+    ```R
+    # Filter BLAST results
+    filt_blast_list <- map(blast_list, function(data) {
+      data %>%
+        group_by(name1, name2) %>%
+        filter(e_value == min(e_value)) %>% 
+        ungroup() %>%
+        as.comparison()
+    })
+
+    # Concatenate "Unknown domain" in bin 3
+    annotations_bin_3_mod <- annotations_list$bin_3_annot %>%
+      filter(text != "Unknown domain") %>%
+      add_row(
+        x1 = 136994, x2 = 139201, text = "Unknown domain", color = "black", rot = 0
+      )
+
+    # Remove gene names in middle tracks
+    plot_gene_map(
+      dna_segs = ds_list,
+      comparisons = filt_blast_list,
+      annotations = list(annotations_bin_3_mod, NULL, NULL, annotations_list[[4]]),
+      dna_seg_labels = str_remove(names(ds_list), "_coords"),
+      dna_seg_scale = TRUE,
+      gene_type = "arrows"
+    )
+    ```
+
+![image](../figures/day4_synteny.03.synteny_final.png)
+
+This looks much cleaner!
+
+!!! success "Results at a glance"
+
+    From the last plot, we see that:
+    
+    * The arrangement sulfur assimilation genes are well conserved
+    * Gene sequences of sbp1, cysW, and cysA are very conserved between bins 3, 5, and 8
+    * Bin 3 has 3 unknown domains between its sulfur binding protein and the other sulfur assimilation genes
+    * cysW in bin 9 shows some sequence homology with cysW from bin 8
