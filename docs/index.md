@@ -54,5 +54,3 @@
 
 
 
-!!! r-project "R"
-    sdcsd
