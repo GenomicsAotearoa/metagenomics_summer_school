@@ -184,6 +184,7 @@ nano spades_mapping_array.sl
     Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
 
 !!! terminal "code"
+
     ```bash
     #!/bin/bash -e
     
