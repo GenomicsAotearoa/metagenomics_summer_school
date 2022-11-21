@@ -83,36 +83,38 @@ nano annotate_uniprot.sl
 
 Paste in the script (update `<YOUR FOLDER>`)
 
-```bash
-#!/bin/bash -e
+!!! terminal "code"
 
-#SBATCH --account       nesi02659
-#SBATCH --job-name      annotate_uniprot
-#SBATCH --res           SummerSchool
-#SBATCH --time          01:00:00
-#SBATCH --mem           20GB
-#SBATCH --cpus-per-task 20
-#SBATCH --array         0-9
-#SBATCH --error         %x_%A_%a.err
-#SBATCH --output        %x_%A_%a.out
+    ```bash
+    #!/bin/bash -e
 
-# Load modules
-module purge
-module load DIAMOND/2.0.15-GCC-11.3.0
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      annotate_uniprot
+    #SBATCH --res           SummerSchool
+    #SBATCH --time          01:00:00
+    #SBATCH --mem           20GB
+    #SBATCH --cpus-per-task 20
+    #SBATCH --array         0-9
+    #SBATCH --error         %x_%A_%a.err
+    #SBATCH --output        %x_%A_%a.out
 
-# Working directory
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
+    # Load modules
+    module purge
+    module load DIAMOND/2.0.15-GCC-11.3.0
 
-# Variables
-prot_file=predictions/bin_${SLURM_ARRAY_TASK_ID}.filtered.genes.no_metadata.faa
-out_file=$(basename ${prot_file} .faa)
-db=/nesi/nobackup/nesi02659/MGSS_resources_2022/databases/uniprot.20181026.dmnd
+    # Working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
 
-# Run DIAMOND
-diamond blastp --threads $SLURM_CPUS_PER_TASK --max-target-seqs 5 --evalue 0.001 \
-               --db $db --query ${prot_file} --outfmt 6 \
-               --out gene_annotations/${out_file}.uniprot.txt
-```
+    # Variables
+    prot_file=predictions/bin_${SLURM_ARRAY_TASK_ID}.filtered.genes.no_metadata.faa
+    out_file=$(basename ${prot_file} .faa)
+    db=/nesi/nobackup/nesi02659/MGSS_resources_2022/databases/uniprot.20181026.dmnd
+
+    # Run DIAMOND
+    diamond blastp --threads $SLURM_CPUS_PER_TASK --max-target-seqs 5 --evalue 0.001 \
+                   --db $db --query ${prot_file} --outfmt 6 \
+                   --out gene_annotations/${out_file}.uniprot.txt
+    ```
 
 Submit the script
 
@@ -173,36 +175,38 @@ nano annotate_pfam.sl
 
 Paste in the script (update `<YOUR FOLDER>`)
 
-```bash
-#!/bin/bash -e
+!!! terminal "code"
 
-#SBATCH --account       nesi02659
-#SBATCH --job-name      annotate_pfam
-#SBATCH --res           SummerSchool
-#SBATCH --time          00:20:00
-#SBATCH --mem           5GB
-#SBATCH --cpus-per-task 10
-#SBATCH --array         0-9
-#SBATCH --error         %x_%A_%a.err
-#SBATCH --output        %x_%A_%a.out
-
-# Load modules
-module purge
-module load HMMER/3.3.2-GCC-11.3.0
-
-# Working directory
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
-
-# Variables
-prot_file=predictions/bin_${SLURM_ARRAY_TASK_ID}.filtered.genes.no_metadata.faa
-out_file=$(basename ${prot_file} .faa)
-db=/nesi/nobackup/nesi02659/MGSS_resources_2022/databases/Pfam-A.hmm
-
-# Run HMMER
-hmmsearch --tblout gene_annotations/${out_file}.pfam.txt -E 0.001 \
-          --cpu $SLURM_CPUS_PER_TASK \
-          ${db} ${prot_file}
-```
+    ```bash
+    #!/bin/bash -e
+    
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      annotate_pfam
+    #SBATCH --res           SummerSchool
+    #SBATCH --time          00:20:00
+    #SBATCH --mem           5GB
+    #SBATCH --cpus-per-task 10
+    #SBATCH --array         0-9
+    #SBATCH --error         %x_%A_%a.err
+    #SBATCH --output        %x_%A_%a.out
+    
+    # Load modules
+    module purge
+    module load HMMER/3.3.2-GCC-11.3.0
+    
+    # Working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
+    
+    # Variables
+    prot_file=predictions/bin_${SLURM_ARRAY_TASK_ID}.filtered.genes.no_metadata.faa
+    out_file=$(basename ${prot_file} .faa)
+    db=/nesi/nobackup/nesi02659/MGSS_resources_2022/databases/Pfam-A.hmm
+    
+    # Run HMMER
+    hmmsearch --tblout gene_annotations/${out_file}.pfam.txt -E 0.001 \
+              --cpu $SLURM_CPUS_PER_TASK \
+              ${db} ${prot_file}
+    ```
 
 Submit the script
 
