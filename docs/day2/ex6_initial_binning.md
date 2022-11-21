@@ -61,39 +61,41 @@ nano spades_mapping.sl
 !!! warning "Warning"
     Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
 
-```bash
-#!/bin/bash -e
+!!! terminal "code"
 
-#SBATCH --account       nesi02659
-#SBATCH --job-name      spades_mapping
-#SBATCH --res           SummerSchool
-#SBATCH --time          00:05:00
-#SBATCH --mem           1GB
-#SBATCH --cpus-per-task 10
-#SBATCH --error         %x_%j.err
-#SBATCH --output        %x_%j.out
+    ```bash
+    #!/bin/bash -e
 
-module purge
-module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      spades_mapping
+    #SBATCH --res           SummerSchool
+    #SBATCH --time          00:05:00
+    #SBATCH --mem           1GB
+    #SBATCH --cpus-per-task 10
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
 
-# Working directory
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
+    module purge
+    module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
 
-# Step 1
-for i in sample1 sample2 sample3 sample4;
-do
+    # Working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 
-  # Step 2
-  bowtie2 --minins 200 --maxins 800 --threads $SLURM_CPUS_PER_TASK --sensitive \
-          -x spades_assembly/bw_spades \
-          -1 ../3.assembly/${i}_R1.fastq.gz -2 ../3.assembly/${i}_R2.fastq.gz \
-          -S ${i}.sam
+    # Step 1
+    for i in sample1 sample2 sample3 sample4;
+    do
 
-  # Step 3
-  samtools sort -@ $SLURM_CPUS_PER_TASK -o ${i}.bam ${i}.sam
+      # Step 2
+      bowtie2 --minins 200 --maxins 800 --threads $SLURM_CPUS_PER_TASK --sensitive \
+              -x spades_assembly/bw_spades \
+              -1 ../3.assembly/${i}_R1.fastq.gz -2 ../3.assembly/${i}_R2.fastq.gz \
+              -S ${i}.sam
 
-done
-```
+      # Step 3
+      samtools sort -@ $SLURM_CPUS_PER_TASK -o ${i}.bam ${i}.sam
+
+    done
+    ```
 
 Now run the script using `sbatch`
 
@@ -181,45 +183,46 @@ nano spades_mapping_array.sl
 !!! warning "Warning"
     Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
 
-```bash
-#!/bin/bash -e
-
-#SBATCH --account       nesi02659
-#SBATCH --job-name      spades_mapping_array
-#SBATCH --res           SummerSchool
-#SBATCH --time          00:20:00
-#SBATCH --mem           20GB
-#SBATCH --array         0-3
-#SBATCH --cpus-per-task 10
-#SBATCH --error         %x_%A_%a.err
-#SBATCH --output        %x_%A_%a.out
-
-# Load modules
-module purge
-module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
-
-# Working directory
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
-
-# Build index
-bowtie2-build spades_assembly/spades_assembly.m1000.fna spades_assembly/bw_spades
-
-# Load the sample names into a bash array
-samples=(sample1 sample2 sample3 sample4)
-
-# Run Bowtie2 and SAMTools, using the SLURM_ARRAY_TASK_ID variable to
-# identify which position in the `samples` array to use
-bowtie2 --minins 200 --maxins 800 --threads $SLURM_CPUS_PER_TASK --sensitive \
-        -x spades_assembly/bw_spades \
-        -1 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R1.fastq.gz \
-        -2 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R2.fastq.gz \
-        -S ${samples[ $SLURM_ARRAY_TASK_ID ]}.sam
-
-samtools sort -@ $SLURM_CPUS_PER_TASK \
-              -o ${samples[ $SLURM_ARRAY_TASK_ID ]}.bam \
-              ${samples[ $SLURM_ARRAY_TASK_ID ]}.sam
-```
-
+!!! terminal "code"
+    ```bash
+    #!/bin/bash -e
+    
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      spades_mapping_array
+    #SBATCH --res           SummerSchool
+    #SBATCH --time          00:20:00
+    #SBATCH --mem           20GB
+    #SBATCH --array         0-3
+    #SBATCH --cpus-per-task 10
+    #SBATCH --error         %x_%A_%a.err
+    #SBATCH --output        %x_%A_%a.out
+    
+    # Load modules
+    module purge
+    module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
+    
+    # Working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
+    
+    # Build index
+    bowtie2-build spades_assembly/spades_assembly.m1000.fna spades_assembly/bw_spades
+    
+    # Load the sample names into a bash array
+    samples=(sample1 sample2 sample3 sample4)
+    
+    # Run Bowtie2 and SAMTools, using the SLURM_ARRAY_TASK_ID variable to
+    # identify which position in the `samples` array to use
+    bowtie2 --minins 200 --maxins 800 --threads $SLURM_CPUS_PER_TASK --sensitive \
+            -x spades_assembly/bw_spades \
+            -1 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R1.fastq.gz \
+            -2 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R2.fastq.gz \
+            -S ${samples[ $SLURM_ARRAY_TASK_ID ]}.sam
+    
+    samtools sort -@ $SLURM_CPUS_PER_TASK \
+                  -o ${samples[ $SLURM_ARRAY_TASK_ID ]}.bam \
+                  ${samples[ $SLURM_ARRAY_TASK_ID ]}.sam
+    ```
+    
 Submit the job to slurm
 
 ```bash
