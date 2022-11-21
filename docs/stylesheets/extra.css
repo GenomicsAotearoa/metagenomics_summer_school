@@ -170,15 +170,15 @@
 }
 .md-typeset .admonition.terminal,
 .md-typeset details.terminal {
-  border-color: rgb(47,79,79);
+  border-color: rgb(0,0,0);
 }
 .md-typeset .terminal > .admonition-title,
 .md-typeset .terminal > summary {
-  background-color: rgba(47,79,79,0.1);
+  background-color: rgba(0,0,0);
 }
 .md-typeset .terminal > .admonition-title::before,
 .md-typeset .terminal > summary::before {
-  background-color: rgb(255,140,0);
+  background-color: rgb(124,252,0);
   -webkit-mask-image: var(--md-admonition-icon--terminal);
           mask-image: var(--md-admonition-icon--terminal);
 }
