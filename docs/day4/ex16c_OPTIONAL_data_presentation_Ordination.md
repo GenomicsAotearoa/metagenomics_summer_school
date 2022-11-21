@@ -34,23 +34,25 @@ To get started, open `RStudio` and start a new document.
 
 First, set the working directory and load the required libraries.
 
-```R
-# Set working directory
-setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/')
+!!! r-project "code"
 
-# Load libraries ----
-# Tidyverse libraries
-library(readr)
-library(dplyr)
-library(tidyr)
-library(stringr)
-library(tibble)
-library(purrr)
-library(ggplot2)
-
-# Ecological analyses
-library(vegan)
-```
+    ```R
+    # Set working directory
+    setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/')
+    
+    # Load libraries ----
+    # Tidyverse libraries
+    library(readr)
+    library(dplyr)
+    library(tidyr)
+    library(stringr)
+    library(tibble)
+    library(purrr)
+    library(ggplot2)
+    
+    # Ecological analyses
+    library(vegan)
+    ```
 
 Import coverage tables and mapping file.
 
@@ -65,35 +67,37 @@ metadata <- read_tsv("mapping_file.txt") # Metadata/mapping file of environmenta
 
 As before in [coverage exercise](../day4/ex16b_data_presentation_Coverage.md), we need to obtain per MAG and sample average coverage values. We begin by selecting relavent columns and renaming them.
 
-```R
-## Select relevant columns and rename them
-contig_cov <- contig_cov %>%
-  select(contigName, ends_with(".bam")) %>%
-  rename_with(
-    .fn = function(sample_name) str_remove(sample_name, ".bam"),
-    .cols = everything()
-  )
+!!! r-project ""
 
-virus_cov <- virus_cov %>%
-  select(contigName, ends_with(".bam")) %>%
-  rename_with(
-    .fn = function(sample_name) str_remove(sample_name, ".bam"),
-    .cols = everything()
-  )
+    ```R
+    ## Select relevant columns and rename them
+    contig_cov <- contig_cov %>%
+      select(contigName, ends_with(".bam")) %>%
+      rename_with(
+        .fn = function(sample_name) str_remove(sample_name, ".bam"),
+        .cols = everything()
+      )
 
-## Calculate average bin coverage based on contig coverage
-MAG_cov <- contig_cov %>%
-  mutate(
-    binID = str_replace(contigName, "(.*)_NODE_.*", "\\1")
-  ) %>%
-  group_by(binID) %>%
-  summarise(
-    across(
-      -contigName,
-      .fns = function(coverage) mean(coverage)
-    )
-  )
-```
+    virus_cov <- virus_cov %>%
+      select(contigName, ends_with(".bam")) %>%
+      rename_with(
+        .fn = function(sample_name) str_remove(sample_name, ".bam"),
+        .cols = everything()
+      )
+
+    ## Calculate average bin coverage based on contig coverage
+    MAG_cov <- contig_cov %>%
+      mutate(
+        binID = str_replace(contigName, "(.*)_NODE_.*", "\\1")
+      ) %>%
+      group_by(binID) %>%
+      summarise(
+        across(
+          -contigName,
+          .fns = function(coverage) mean(coverage)
+        )
+      )
+    ```
 
 ### Calculate weighted and unweighted dissimilarities
 
@@ -104,34 +108,36 @@ Here we will use the functions `vegdist()` and `metaMDS()` from the `R` package 
 !!! note "Note"
     You may also wish to make use of the `set.seed()` function before each calculation to ensure that you obtain consistent results if the same commands are re-run at a later date.
 
-```R
-# Calculate dissimilarities ----
-## Unweighted dissimilarities (presence/absence)
-MAG_binary_bray <- MAG_cov %>%
-  # Convert "binID" column into rownames
-  # (vegan prefers to work on numeric matrices)
-  column_to_rownames("binID") %>%
-  # Transpose the data frame
-  t() %>%
-  # Calculate dissimilarities
-  vegdist(x = ., method = "bray", binary = T)
+!!! r-project "code"
 
-virus_binary_bray <- virus_cov %>%
-  column_to_rownames("contigName") %>%
-  t() %>%
-  vegdist(x = ., method = "bray", binary = T)
+    ```R
+    # Calculate dissimilarities ----
+    ## Unweighted dissimilarities (presence/absence)
+    MAG_binary_bray <- MAG_cov %>%
+      # Convert "binID" column into rownames
+      # (vegan prefers to work on numeric matrices)
+      column_to_rownames("binID") %>%
+      # Transpose the data frame
+      t() %>%
+      # Calculate dissimilarities
+      vegdist(x = ., method = "bray", binary = T)
 
-## Weighted dissimilarities
-MAG_bray <- MAG_cov %>%
-  column_to_rownames("binID") %>%
-  t() %>%
-  vegdist(x = ., method = "bray")
+    virus_binary_bray <- virus_cov %>%
+      column_to_rownames("contigName") %>%
+      t() %>%
+      vegdist(x = ., method = "bray", binary = T)
 
-virus_bray <- virus_cov %>%
-  column_to_rownames("contigName") %>%
-  t() %>%
-  vegdist(x = ., method = "bray")
-```
+    ## Weighted dissimilarities
+    MAG_bray <- MAG_cov %>%
+      column_to_rownames("binID") %>%
+      t() %>%
+      vegdist(x = ., method = "bray")
+
+    virus_bray <- virus_cov %>%
+      column_to_rownames("contigName") %>%
+      t() %>%
+      vegdist(x = ., method = "bray")
+    ```
 
 From here on out, we will process the data using the same functions/commands. We can make our code less redundant by compiling all necessary inputs as a list, then processing them together. This is achieved by using the `map(...)` family of functions from the `purrr` package.
 
@@ -172,24 +178,26 @@ Plotting via this method is a quick and easy way to look at what your ordination
 
 Before proceeding to plotting using `ggplot2`. We need to extract the X and Y coordinates from the ordination result using `scores()`. We then also need to "flatten" the list to a single data frame as well as extract other relevant statistics (e.g. [stress values](https://www.researchgate.net/post/What_is_the_importanceexplanation_of_stress_values_in_NMDS_Plots)).
 
-```R
-# Extract data from nMDS ----
-## Obtain coordinates
-scrs_list <- map(nmds_list, function(nmds) {
-  scores(nmds, display = "sites") %>%
-    as.data.frame() %>%
-    rownames_to_column("sample")
-})
+!!! r-project "code"
 
-## Collect nMDS scores in a single data frame
-scrs_all <- bind_rows(scrs_list, .id = "data_type")
+    ```R
+    # Extract data from nMDS ----
+    ## Obtain coordinates
+    scrs_list <- map(nmds_list, function(nmds) {
+      scores(nmds, display = "sites") %>%
+        as.data.frame() %>%
+        rownames_to_column("sample")
+    })
 
-## Collect nMDS statistics (stress values)
-stress_values <- map(nmds_list, function(nmds) {
-  data.frame("label" = paste("Stress =", nmds$stress))
-}) %>%
-  bind_rows(.id = "data_type")
-```
+    ## Collect nMDS scores in a single data frame
+    scrs_all <- bind_rows(scrs_list, .id = "data_type")
+
+    ## Collect nMDS statistics (stress values)
+    stress_values <- map(nmds_list, function(nmds) {
+      data.frame("label" = paste("Stress =", nmds$stress))
+    }) %>%
+      bind_rows(.id = "data_type")
+    ```
 
 If you click on `scrs_all` in the 'Environment' pane (top right), you will see that it is a data frame with the columns:
 
@@ -201,51 +209,53 @@ If you click on `scrs_all` in the 'Environment' pane (top right), you will see t
 
 After obtaining the coordinates (and associated statistics), we can use it as input to `ggplot()` (the function is `ggplot()` from the package called `ggplot2`). As before, we will set our colour palette first. We will also generate a vector of panel headers.
 
-```R
-# Plot nMDS using ggplot2 ----
-## Set up colours
-metadata <- metadata %>%
-  mutate(
-    Group = as.factor(Group)
-  )
+!!! r-project "code"
 
-group_colour <- palette.colors(n = length(levels(metadata$Group)),
-                               palette = "Okabe-Ito") %>%
-  setNames(., levels(metadata$Group))
+    ```R
+    # Plot nMDS using ggplot2 ----
+    ## Set up colours
+    metadata <- metadata %>%
+      mutate(
+        Group = as.factor(Group)
+      )
 
-## Append sample grouping to scores
-scrs_all <- left_join(scrs_all, metadata, by = c("sample" = "SampleID"))
+    group_colour <- palette.colors(n = length(levels(metadata$Group)),
+                                   palette = "Okabe-Ito") %>%
+      setNames(., levels(metadata$Group))
 
-## Create panel headers
-panel_labels <- c(
-  "MAG_binary_bray" = "MAG coverage\n(unweighted Bray-Curtis)",
-  "MAG_bray" = "MAG coverage\n(weighted Bray-Curtis)",
-  "virus_binary_bray" = "Virus coverage\n(unweighted Bray-Curtis)",
-  "virus_bray" = "Virus coverage\n(weighted Bray-Curtis)"
-)
+    ## Append sample grouping to scores
+    scrs_all <- left_join(scrs_all, metadata, by = c("sample" = "SampleID"))
 
-## Call ggplot
-ggplot(data = scrs_all, aes(x = NMDS1, y = NMDS2, colour = Group)) +
-  # Plot scatterplot
-  geom_point(size = 0.5) +
-  # Designate sample group colours
-  scale_colour_manual(values = group_colour, name = "Sample group") +
-  # Split plots based on "data_type"
-  facet_wrap(~ data_type, labeller = labeller(data_type = panel_labels)) +
-  # Add text annotations
-  geom_text(data = stress_values, aes(label = label), inherit.aes = F,
-            x = 0.4, y = 0.4, vjust = 0, hjust = 0,
-            size = 1.2) +
-  # Set general theme
-  theme_bw() +
-  theme(
-    panel.grid = element_blank(), # remove grid lines
-    legend.position = "bottom", # set legend position at the bottom
-    text = element_text(size = 5), # All text size should be 5 points
-    rect = element_rect(size = 0.25), # All edges of boxes should be 0.25 wide
-    line = element_line(size = 0.25) # 
-  )
-```
+    ## Create panel headers
+    panel_labels <- c(
+      "MAG_binary_bray" = "MAG coverage\n(unweighted Bray-Curtis)",
+      "MAG_bray" = "MAG coverage\n(weighted Bray-Curtis)",
+      "virus_binary_bray" = "Virus coverage\n(unweighted Bray-Curtis)",
+      "virus_bray" = "Virus coverage\n(weighted Bray-Curtis)"
+    )
+
+    ## Call ggplot
+    ggplot(data = scrs_all, aes(x = NMDS1, y = NMDS2, colour = Group)) +
+      # Plot scatterplot
+      geom_point(size = 0.5) +
+      # Designate sample group colours
+      scale_colour_manual(values = group_colour, name = "Sample group") +
+      # Split plots based on "data_type"
+      facet_wrap(~ data_type, labeller = labeller(data_type = panel_labels)) +
+      # Add text annotations
+      geom_text(data = stress_values, aes(label = label), inherit.aes = F,
+                x = 0.4, y = 0.4, vjust = 0, hjust = 0,
+                size = 1.2) +
+      # Set general theme
+      theme_bw() +
+      theme(
+        panel.grid = element_blank(), # remove grid lines
+        legend.position = "bottom", # set legend position at the bottom
+        text = element_text(size = 5), # All text size should be 5 points
+        rect = element_rect(size = 0.25), # All edges of boxes should be 0.25 wide
+        line = element_line(size = 0.25) # 
+      )
+    ```
 
 The code above can be summarised to the following:
 
