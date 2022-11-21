@@ -42,28 +42,30 @@ Within the `Jupyter` launcher, click on the `RStudio` button to start a session.
 
 All of the required packages for these exercises are already installed. If you need to install these on your local `R` or `RStudio`, this can be done via the `install.packages()` command within `R` or `RStudio`:
 
-```R
-install.packages('ade4')
-install.packages('genoPlotR')
-install.packages('pheatmap')
-install.packages('gplots')
-install.packages('vegan')
+!!! r-project "code"
 
-# Install 'tidyverse' (includes: ggplot2, tibble, tidyr, readr, purrr, dplyr, string4, forcats)
-install.packages('tidyverse')
-
-# Install 'pathview' package (part of Bioconductor)
-if (!require(BiocManager)) {
-  install.packages("BiocManager")
-  BiocManager::install("pathview", update = FALSE)
-}
-
-# Install 'KEGGREST' package (part of Bioconductor)
-if (!require(BiocManager)) {
-  install.packages("BiocManager")
-  BiocManager::install("KEGGREST", update = FALSE)
-}
-```
+    ```R
+    install.packages('ade4')
+    install.packages('genoPlotR')
+    install.packages('pheatmap')
+    install.packages('gplots')
+    install.packages('vegan')
+    
+    # Install 'tidyverse' (includes: ggplot2, tibble, tidyr, readr, purrr, dplyr, string4, forcats)
+    install.packages('tidyverse')
+    
+    # Install 'pathview' package (part of Bioconductor)
+    if (!require(BiocManager)) {
+      install.packages("BiocManager")
+      BiocManager::install("pathview", update = FALSE)
+    }
+    
+    # Install 'KEGGREST' package (part of Bioconductor)
+    if (!require(BiocManager)) {
+      install.packages("BiocManager")
+      BiocManager::install("KEGGREST", update = FALSE)
+    }
+    ```
 
 If you are new to `RStudio`, spend a few minutes familiarising yourself with the environment (also known as the "workspace"). There is a pane for the `R` console on the left that prints information on the `R` version you are using on start-up. On the top right pane, there are 2 important tabs to note: `Environment` (where you can explore your data) and `History` (all code that you have run). The bottom right pane has tabs for `Files` (where you can navigate the directory structure), `Plots` (where your plots appear), `Packages` (available packages), `Help` (all help pages and manual are shown here), and `Viewer` (some packages output interactive content and it will show up here). At the very top, there are two toolbars: the first leads to other settings and options (you can explore this on your own time), the second one has icons for (starting from the far left and hover mouse pointer to see description):
 
