@@ -28,10 +28,13 @@ If we inspect the head of the annotation file we will see the following
     ```bash
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage/
 
-    head dram_annotations/annotation.tsv
-
-    #fasta	scaffold	gene_position	start_position	end_position	strandedness	rank	kegg_id	kegg_hit	uniref_id	uniref_hit	uniref_taxonomy	uniref_RBH	uniref_identity	uniref_bitScore	uniref_eVal	peptidase_id	peptidase_family	peptidase_hit	peptidase_RBH	peptidase_identity	peptidase_bitScore	peptidase_eVal	pfam_hits	cazy_hits	vogdb_description	vogdb_categories	heme_regulatory_motif_count
-    #bin_0_1f9359e86e6a75bcff340e6a8b60ef98_1	bin_0	1f9359e86e6a75bcff340e6a8b60ef98	1	205	1371	1	B	K02338	DNA polymerase III subunit beta [EC:2.7.7.7]	Q7V9E7_PROMM	UniRef90_Q7V9E7 Beta sliding clamp n=10 Tax=Prochlorococcus TaxID=1218 RepID=Q7V9E7_PROMM	Prochlorococcus	True	0.8959999999999999	726.0	1.5509999999999984e-233								DNA polymerase III beta subunit, C-terminal domain [PF02768.16]; DNA polymerase III beta subunit, N-terminal domain [PF00712.20]; DNA polymerase III beta subunit, central domain [PF02767.17]		sp|P9WNU1|DPO3B_MYCTU Beta sliding clamp; XhXr	Xr;Xh	0
+    head -n 5 dram_annotations/annotations.tsv 
+    
+    #    fasta   scaffold        gene_position   start_position  end_position    strandedness    rank    ko_id   kegg_hit        peptidase_id    peptidase_family        peptidase_hit    peptidase_RBH   peptidase_identity      peptidase_bitScore      peptidase_eVal  pfam_hits       cazy_id cazy_hits       heme_regulatory_motif_count     bin_taxonomy    bin_completeness bin_contamination
+    # bin_0.filtered_bin_0_NODE_11_length_361162_cov_0.994424_1       bin_0.filtered  bin_0_NODE_11_length_361162_cov_0.994424        1       2       277     -1      D               Fumarate hydratase (Fumerase) [PF05681.17]                       0       d__Bacteria;p__Campylobacterota;c__Campylobacteria;o__Campylobacterales;f__Arcobacteraceae;g__Arcobacter;s__Arcobacter nitrofigilis      99.59   3.79
+    # bin_0.filtered_bin_0_NODE_11_length_361162_cov_0.994424_2       bin_0.filtered  bin_0_NODE_11_length_361162_cov_0.994424        2       474     764     1       E               0d__Bacteria;p__Campylobacterota;c__Campylobacteria;o__Campylobacterales;f__Arcobacteraceae;g__Arcobacter;s__Arcobacter nitrofigilis     99.59   3.79
+    # bin_0.filtered_bin_0_NODE_11_length_361162_cov_0.994424_3       bin_0.filtered  bin_0_NODE_11_length_361162_cov_0.994424        3       775     1452    1       D               Response regulator receiver domain [PF00072.27]; Transcriptional regulatory protein, C terminal [PF00486.31]                     0       d__Bacteria;p__Campylobacterota;c__Campylobacteria;o__Campylobacterales;f__Arcobacteraceae;g__Arcobacter;s__Arcobacter nitrofigilis      99.59   3.79
+    # bin_0.filtered_bin_0_NODE_11_length_361162_cov_0.994424_4       bin_0.filtered  bin_0_NODE_11_length_361162_cov_0.994424        4       1449    2696    1       D               GHKL domain [PF14501.9]                  0       d__Bacteria;p__Campylobacterota;c__Campylobacteria;o__Campylobacterales;f__Arcobacteraceae;g__Arcobacter;s__Arcobacter nitrofigilis      99.59   3.79
 
     ```
 
@@ -90,16 +93,23 @@ First, let's have a look at the ```genome_stats.tsv``` file to check the assembl
 
 To finish, we visualize the *Product*, an .HTML file produced in the Distillation step, by double-clicking on it in our *Jupyter* lab notebook or downloading from [here](../resources/dram_distillation.zip). The *Product* has three primary parts:
 
-1. **Modules.** Central metabolism pathways coverage. Completion of pathways is based on the structure of KEGG modules, with the pathway coverage calculated as the percent of steps with at least one gene present.<center>![image](../figures/ex15_fig1_DRAM_product_met.png)</center>
+1. **Modules.** Central metabolism pathways coverage. Completion of pathways is based on the structure of KEGG modules, with the pathway coverage calculated as the percent of steps with at least one gene present.
 
-2. **ETC Complexes.** Electron Transport Chain component completion<center>![image](../figures/ex15_fig2_DRAM_product_ETC.png)</center>
+<center>
+![image](../figures/ex15_fig1_DRAM_product_met_2022.png)
+</center>
 
-3. Presence of specific functions, including CAZy, Nitrogen metabolism, Sulfur metabolism and Photosynthesis. Note that the taxonomic classification of each of the bins is also shown in the first figure 
+2. **ETC Complexes.** Electron Transport Chain component completion
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_fig3_DRAM_product.png)
-<center>![image](../figures/ex15_fig3_DRAM_product.png)</center>
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex15_fig4_DRAM_product.png)
+<center>
+![image](../figures/ex15_fig2_DRAM_product_ETC_2022.png)
+</center>
 
+3. Presence of specific functions, including CAZy, Nitrogen metabolism, Sulfur metabolism and Photosynthesis. Note that the taxonomic classification of each of the bins is also shown in the first figure
+
+<center>
+![image](../figures/ex15_fig3_DRAM_product_2022.png)
+</center>
 
 ---
 

@@ -18,7 +18,7 @@
 
 `DRAM` is run in two stages: annotation and distillation.
 
-![](https://github.com/mcastudillo/MAG-annotation-with-DRAM/blob/main/figures/DRAM_workflow.png)
+![image](../figures/DRAM_overview.jpeg)
 
 #### Annotation
 
