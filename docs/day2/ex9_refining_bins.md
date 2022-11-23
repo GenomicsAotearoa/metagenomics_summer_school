@@ -34,12 +34,13 @@ For future reference, and for working with your own data, a step-by-step process
 Let's first have a quick look at the annotation file. 
 
 ```bash
-head -n5 all_bins.sample1.vizbin.ann
+head -n 5 all_bins.sample1.vizbin.ann
+
 # coverage,label,length
-# 17.6361,bin_0.chopped,20000
-# 16.2822,bin_0.chopped,20000
-# 17.7862,bin_0.chopped,20000
-# 16.8073,bin_0.chopped,20000
+# 16.5255,bin_0.chopped,20000
+# 17.8777,bin_0.chopped,20000
+# 17.6983,bin_0.chopped,20000
+# 16.7296,bin_0.chopped,20000
 ```
 
 This file is a comma-delimited table (csv file) that presents the information in the way that VizBin expects it. The order of rows in this file corresponds to the order of contigs in the concatentated *fastA* file of our fragmented bins, `all_bins.fna`.

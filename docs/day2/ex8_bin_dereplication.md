@@ -38,8 +38,7 @@ This can be done with a bit of `bash` scripting. There's quite a bit going on he
 ```bash
 cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 
-for bin_path in metabat/*.fa;
-do
+for bin_path in metabat/*.fa; do
     bin_name=$(basename ${bin_path} .fa)
 
     grep ">" ${bin_path} | sed 's/>//g' | sed "s/$/\t${bin_name}/g" >> metabat_associations.txt
@@ -49,19 +48,18 @@ done
 You can check the contents of this file using `less` or `head`, and you should be something like:
 
 ```bash
-head -n5 metabat_associations.txt
-# NODE_14_length_365935_cov_2.017800      metabat.10
-# NODE_17_length_326226_cov_2.043974      metabat.10
-# NODE_22_length_261683_cov_2.059748      metabat.10
-# NODE_24_length_257182_cov_2.023572      metabat.10
-# NODE_25_length_256074_cov_2.059912      metabat.10
+head -n 5 metabat_associations.txt
+# NODE_44_length_186282_cov_0.255381      metabat.10
+# NODE_51_length_159085_cov_0.252240      metabat.10
+# NODE_68_length_132434_cov_0.251275      metabat.10
+# NODE_71_length_129650_cov_0.256954      metabat.10
+# NODE_73_length_121437_cov_0.254006      metabat.10
 ```
 
 We will now walk through the content of the command above, breaking apart each individual step.
 
 ```bash
-for bin_path in metabat/*.fa;
-do
+for bin_path in metabat/*.fa; do
 ```
 
 This is the initial loop, returning each file in the `metabat/` folder that ends with the file extension *.fa*.
