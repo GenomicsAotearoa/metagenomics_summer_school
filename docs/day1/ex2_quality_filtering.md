@@ -56,7 +56,7 @@ Fortunately, if you're currently using the terminal within `Jupyter hub` for tod
 * Click through `MGSS_U`, into your folder, and then into the `2.fastqc/` folder. 
 * Double click on the output `...fastqc.html` files to open them in the a new tab within the `Jupyter hub`.
 
-Examples of the output files are also available for download [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/fastqc_results.zip).
+Examples of the output files are also available for download [here](../resources/fastqc_results.zip).
 
 Note that `FastQC` does not load the forward and reverse pairs of a library in the same window, so you need to be mindful of how your samples relate to each other. 
 
@@ -66,8 +66,8 @@ Note that `FastQC` does not load the forward and reverse pairs of a library in t
 At a first glance, we can see the follow statistics:
 
 1. The data is stored in Sanger / Illumina 1.9 encoding. *This will be important to remember when read trimming.*
-1. There are 100,000 reads in the file
-1. The maximum sequence length is 251 base pairs. *This is good to check, since the data were generated using Illumina
+2. There are 100,000 reads in the file
+3. The maximum sequence length is 251 base pairs. *This is good to check, since the data were generated using Illumina
 2x250 bp sequencing.*
 
 Have a quick look through the left hand columns. As you can see, the data has passed most of the basic parameters.
