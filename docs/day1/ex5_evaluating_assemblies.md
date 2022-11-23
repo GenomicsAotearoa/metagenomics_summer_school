@@ -198,7 +198,7 @@ We will now look at a few interesting assembly comparisons.
 
  If you are working from the NeSI `Jupyter hub` environment today, the html viewer *within* the NeSI `Jupyter hub` does not currently support this (even if the browser you are running it in does). To view a basic version of the report, download the report file by navigating to the `4.evaluation/quast_results/` folder, right-click `report.html/` and select download. The downloaded file will then open within a new tab in the browser. (*NOTE: rendering the full report requires the other folders from within `latest/` to also be downloaded and available in the same directory as `report.html`. Unfortunately, the `Jupyter hub` environment does not appear to currently support downloading entire folders using this method.*)
 
-An example of the `MetaQUAST` output files are also available for download [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/quast_results.zip).
+An example of the `MetaQUAST` output files are also available for download. You will need to download both [references](../resources/quast_references.zip) and [results](../resources/quast_results_sans_reference.zip). Unzip both within the same directory.
 
 #### Brief summary of assemblies
 
