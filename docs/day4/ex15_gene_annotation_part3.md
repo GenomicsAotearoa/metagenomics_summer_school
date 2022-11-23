@@ -68,7 +68,7 @@ The distillation step generates the following files that can be found within the
 |**product.tsv**| Data table with product.html information |
 
 
-First, let's have a look at the ```genome_stats.tsv``` file to check the assembly quality of our bins by double-clicking the file within the `Jupyter` environment, viewing from the terminal via `less` or `cat`, or downloading the files from [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/DRAM_results.zip) and opening locally (e.g. via excel).
+First, let's have a look at the ```genome_stats.tsv``` file to check the assembly quality of our bins by double-clicking the file within the `Jupyter` environment, viewing from the terminal via `less` or `cat`, or downloading the files from [here](../resources/dram_distillation.zip) and opening locally (e.g. via excel).
 
 
 ??? magnifying-glass "content of genome_stats.tsv"
@@ -88,7 +88,7 @@ First, let's have a look at the ```genome_stats.tsv``` file to check the assembl
 
 ---
 
-To finish, we visualize the *Product*, an .HTML file produced in the Distillation step, by double-clicking on it in our *Jupyter* lab notebook or downloading from [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/DRAM_results.zip). The *Product* has three primary parts:
+To finish, we visualize the *Product*, an .HTML file produced in the Distillation step, by double-clicking on it in our *Jupyter* lab notebook or downloading from [here](../resources/dram_distillation.zip). The *Product* has three primary parts:
 
 1. **Modules.** Central metabolism pathways coverage. Completion of pathways is based on the structure of KEGG modules, with the pathway coverage calculated as the percent of steps with at least one gene present.<center>![image](../figures/ex15_fig1_DRAM_product_met.png)</center>
 
