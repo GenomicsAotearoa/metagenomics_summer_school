@@ -46,11 +46,11 @@
 
     If you are having trouble downloading files using `scp`, we are providing exemplar output files, which you can download through your browser, [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/tree/master/docs/resources), or via the following links: 
     
-    * [FastQC results](../resources/fastqc_results.zip)
-    * [Quast results](../docs/resources/quast_results_sans_reference.zip) and [required references](../docs/resources/quast_references.zip)
-    * [Input files for VizBin](../resources/vizbin_files.zip)
-    * [Gene annotation tables](../resources/example_annotation_tables.zip)
-    * [DRAM output files](../resources/DRAM_results.zip)
+    * [FastQC results](./resources/fastqc_results.zip)
+    * [Quast results](./resources/quast_results_sans_reference.zip) and [required references](./resources/quast_references.zip)
+    * [Input files for VizBin](./resources/vizbin_files.zip)
+    * [Gene annotation tables](./resources/example_annotation_tables.zip)
+    * [DRAM output files](./resources/dram_distillation.zip)
 
 
 

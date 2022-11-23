@@ -328,15 +328,17 @@ You can view the status of your current jobs using the command
 ```bash
 squeue --me
 
-  JOBID     USER ACCOUNT            NAME  ST REASON    START_TIME                TIME TIME_LEFT NODES CPUS
-8744675  dwai012 ga02676 spades_assembly  PD Priority  2019-11-29T16:37:43       0:00 00:30:00      1   16
+JOBID         USER     ACCOUNT   NAME        CPUS MIN_MEM PARTITI START_TIME     TIME_LEFT STATE    NODELIST(REASON)    
+31491555      jboe440  nesi02659 spawner-jupy   2      4G infill  2022-11-23T1     7:44:15 RUNNING  wbl001              
+31491999      jboe440  nesi02659 spades_assem  12     10G large   2022-11-23T1       30:00 PENDING  wbn069  
 ```
 
 We can see here that the job has not yet begun, as NeSI is waiting for resources to come available. At this stage the `START_TIME` is an estimation of when the resources are expected to become available. When they do, the output will change to
 
 ```bash
-  JOBID     USER ACCOUNT            NAME  ST REASON    START_TIME                TIME TIME_LEFT NODES CPUS
-8744675  dwai012 ga02676 spades_assembly   R None      2019-11-29T16:40:00       1:20 00:28:40      1   16
+JOBID         USER     ACCOUNT   NAME        CPUS MIN_MEM PARTITI START_TIME     TIME_LEFT STATE    NODELIST(REASON)    
+31491555      jboe440  nesi02659 spawner-jupy   2      4G infill  2022-11-23T1     7:44:15 RUNNING  wbl001              
+31491999      jboe440  nesi02659 spades_assem  12     10G large   2022-11-23T1       29:58 RUNNING  wbn069          
 ```
 
 Which allows us to track how far into our run we are, and see the remaining time for the job. The `START_TIME` column now reports the time the job actually began.
