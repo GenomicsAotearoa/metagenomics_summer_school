@@ -19,47 +19,50 @@ Check to see if your assembly jobs have completed. If you have multiple jobs run
 ```bash
 squeue --me
 
-#  JOBID     USER ACCOUNT            NAME  ST REASON    START_TIME                TIME TIME_LEFT NODES CPUS
+# JOBID         USER     ACCOUNT   NAME        CPUS MIN_MEM PARTITI START_TIME     TIME_LEFT STATE    NODELIST(REASON)    
+# 31491555      jboe440  nesi02659 spawner-jupy   2      4G infill  2022-11-23T1     7:14:40 RUNNING  wbl001          
 ```
 
-If there are no jobs listed, either everything running has completed or failed. To get a list of all jobs we have run in the last day, we can use the `sacct` command. By default this will report all jobs for the day but we can add a parameter to tell the command to report all jobs run since the date we are specifying.
+If there are no jobs besides your Jupyter session listed, either everything running has completed or failed. To get a list of all jobs we have run in the last day, we can use the `sacct` command. By default this will report all jobs for the day but we can add a parameter to tell the command to report all jobs run since the date we are specifying.
 
 ```bash
-sacct -S 2020-11-16
+sacct -S 2022-11-23
 
-#         JobID         JobName     Elapsed     TotalCPU Alloc   MaxRSS      State
-#-------------- --------------- ----------- ------------ ----- -------- ----------
-#8744675        spades_assembly    00:15:16     01:41:43    10          COMPLETED
-#8744675.batch  batch              00:15:16    00:00.547    10    3908K COMPLETED
-#8744675.extern extern             00:15:16     00:00:00    10        0 COMPLETED
-#8744675.0      spades.py          00:15:15     01:41:42    10 6260072K COMPLETED
-#8744677        idbaud_assembly    00:11:06     01:27:42    10          COMPLETED
-#8744677.batch  batch              00:11:06    00:00.477    10    3760K COMPLETED
-#8744677.extern extern             00:11:06     00:00:00    10        0 COMPLETED
-#8744677.0      idba_ud            00:11:05     01:27:42    10 2541868K COMPLETED
+# JobID           JobName          Alloc     Elapsed     TotalCPU  ReqMem   MaxRSS State      
+# --------------- ---------------- ----- ----------- ------------ ------- -------- ---------- 
+# 31491555        spawner-jupyter+     2    00:45:50     00:00:00      4G          RUNNING    
+# 31491555.batch  batch                2    00:45:50     00:00:00                  RUNNING    
+# 31491555.extern extern               2    00:45:50     00:00:00                  RUNNING    
+# 31491999        spades_assembly     12    00:12:00     01:37:43     10G          COMPLETED  
+# 31491999.batch  batch               12    00:12:00     01:37:43         9564240K COMPLETED  
+# 31491999.extern extern              12    00:12:00    00:00.001                0 COMPLETED
 ```
 
-Each job has been broken up into several lines, but the main ones to keep an eye on are the base JobID values, and the values suffixed with *.0*. The first of these references the complete job. The later (and any subsequent suffixes like *.1*, *.2*) are the individual steps in the script that were called with the `srun` command.
+Each job has been broken up into several lines, but the main ones to keep an eye on are the base JobID values. 
+
+??? info "Using `srun`"
+
+    If you use `srun`, the JobID will have values suffixed with *.0*. The first of these references the complete job. The later (and any subsequent suffixes like *.1*, *.2*) are the individual steps in the script that were called with the `srun` command.
 
 We can see here the time elapsed for each job, and the number of CPU hours used during the run. If we want a more detailed breakdown of the job we can use the `seff` command
 
 ```bash
-seff 8744675
+seff 31491999
 
-#Job ID: 8744675
-#Cluster: mahuika
-#User/Group: dwai012/dwai012
-#State: COMPLETED (exit code 0)
-#Nodes: 1
-#Cores per node: 10
-#CPU Utilized: 01:41:44
-#CPU Efficiency: 66.64% of 02:32:40 core-walltime
-#Job Wall-clock time: 00:15:16
-#Memory Utilized: 5.97 GB
-#Memory Efficiency: 29.85% of 20.00 GB
+# Job ID: 31491999
+# Cluster: mahuika
+# User/Group: jboe440/jboe440
+# State: COMPLETED (exit code 0)
+# Nodes: 1
+# Cores per node: 12
+# CPU Utilized: 01:37:43
+# CPU Efficiency: 67.86% of 02:24:00 core-walltime
+# Job Wall-clock time: 00:12:00
+# Memory Utilized: 9.12 GB
+# Memory Efficiency: 91.21% of 10.00 GB
 ```
 
-Here we see some of the same information, but we also get some information regarding how well our job used the resources we allocated to it. You can see here that my CPU and memory usage was not particularly efficient. (Note that for this particular job, 1 hr and 20 GB RAM were requested.) In hindsight I could have request a lot less time and RAM and still had the job run to completion.
+Here we see some of the same information, but we also get some information regarding how well our job used the resources we allocated to it. You can see here that my CPU and memory usage was somewhat efficient but had high memory efficiency. In the future, I can request less time and retain the same RAM and still had the job run to completion.
 
 CPU efficiency is harder to interpret as it can be impacted by the behaviour of the program. For example, mapping tools like `bowtie` and `BBMap` can more or less use all of their threads, all of the time and achieve nearly 100% efficiency. More complicated processes, like those performed in `SPAdes` go through periods of multi-thread processing and periods of single-thread processing, drawing the average efficiency down.
 
@@ -115,40 +118,40 @@ This gives quite a verbose output:
 
 ```bash
 A       C       G       T       N       IUPAC   Other   GC      GC_stdev
-0.2537	0.2465	0.2462	0.2536	0.0018	0.0000	0.0000	0.4928	0.0956
+0.2536  0.2466  0.2462  0.2536  0.0019  0.0000  0.0000  0.4928  0.0960
 
-Main genome scaffold total:         	  945
-Main genome contig total:           	  2713
-Main genome scaffold sequence total:	  34.296 MB
-Main genome contig sequence total:  	  34.233 MB  	0.184% gap
-Main genome scaffold N/L50:         	  54/160.826 KB
-Main genome contig N/L50:           	  106/72.909 KB
-Main genome scaffold N/L90:         	  306/15.236 KB
-Main genome contig N/L90:           	  817/4.63 KB
-Max scaffold length:                	  1.044 MB
-Max contig length:                  	  1.044 MB
-Number of scaffolds > 50 KB:        	  152
-% main genome in scaffolds > 50 KB: 	  76.69%
+Main genome scaffold total:             933
+Main genome contig total:               2710
+Main genome scaffold sequence total:    34.300 MB
+Main genome contig sequence total:      34.236 MB       0.186% gap
+Main genome scaffold N/L50:             52/158.668 KB
+Main genome contig N/L50:               107/72.463 KB
+Main genome scaffold N/L90:             302/15.818 KB
+Main genome contig N/L90:               816/4.654 KB
+Max scaffold length:                    1.221 MB
+Max contig length:                      1.045 MB
+Number of scaffolds > 50 KB:            151
+% main genome in scaffolds > 50 KB:     76.76%
 
 
-Minimum 	Number        	Number        	Total         	Total         	Scaffold
-Scaffold	of            	of            	Scaffold      	Contig        	Contig  
-Length  	Scaffolds     	Contigs       	Length        	Length        	Coverage
---------	--------------	--------------	--------------	--------------	--------
-    All 	           945	         2,713	    34,296,303	    34,233,142	  99.82%
-   1 KB 	           945	         2,713	    34,296,303	    34,233,142	  99.82%
- 2.5 KB 	           750	         2,453	    33,961,961	    33,903,372	  99.83%
-   5 KB 	           586	         2,136	    33,371,126	    33,318,361	  99.84%
-  10 KB 	           396	         1,590	    32,000,574	    31,962,900	  99.88%
-  25 KB 	           237	           929	    29,506,913	    29,487,807	  99.94%
-  50 KB 	           152	           587	    26,301,390	    26,289,386	  99.95%
- 100 KB 	            92	           408	    22,108,408	    22,099,623	  99.96%
- 250 KB 	            30	           138	    12,250,722	    12,247,681	  99.98%
- 500 KB 	             6	            28	     4,735,549	     4,735,329	 100.00%
-   1 MB 	             1	             1	     1,043,932	     1,043,932	 100.00%
+Minimum         Number          Number          Total           Total           Scaffold
+Scaffold        of              of              Scaffold        Contig          Contig  
+Length          Scaffolds       Contigs         Length          Length          Coverage
+--------        --------------  --------------  --------------  --------------  --------
+    All                    933           2,710      34,299,647      34,235,702    99.81%
+   1 KB                    933           2,710      34,299,647      34,235,702    99.81%
+ 2.5 KB                    745           2,458      33,980,511      33,921,524    99.83%
+   5 KB                    579           2,142      33,383,109      33,329,777    99.84%
+  10 KB                    396           1,605      32,059,731      32,022,009    99.88%
+  25 KB                    237             936      29,559,828      29,540,698    99.94%
+  50 KB                    151             593      26,330,017      26,317,988    99.95%
+ 100 KB                     91             411      22,108,846      22,100,263    99.96%
+ 250 KB                     29             141      12,338,782      12,335,701    99.98%
+ 500 KB                      7              38       5,611,200       5,610,890    99.99%
+   1 MB                      1               2       1,221,431       1,221,421   100.00%
 ```
 
-But what we can highlight here is that the statistics for the `SPAdes` assembly, with short contigs removed, yielded an N50 of 106 kbp at the contig level. We will now compute those same statistics from the other assembly options
+But what we can highlight here is that the statistics for the `SPAdes` assembly, with short contigs removed, yielded an N50 of 72.5 kbp at the contig level. We will now compute those same statistics from the other assembly options.
 
 ```bash
 stats.sh in=spades_assembly/spades_assembly.fna
@@ -159,10 +162,10 @@ stats.sh in=idbaud_assembly/idbaud_assembly.fna
 
 |Assembly|N50 (contig)|L50 (contig)|
 |:---|:---:|:---:|
-|**SPAdes** (filtered)|106 kbp|73 |
-|**SPAdes** (unfiltered)|107 kbp|72 |
-|**IDBA-UD** (filtered)|82 kbp|104 |
-|**IDBA-UD** (unfiltered)|88 kbp|97 |
+|**SPAdes** (filtered)|72.5 kbp|107 |
+|**SPAdes** (unfiltered)|72.1 kbp|108 |
+|**IDBA-UD** (filtered)|103.9 kbp|82 |
+|**IDBA-UD** (unfiltered)|96.6 kbp|88 |
 
 #### *Optional:* Evaluating assemblies using *MetaQUAST*
 
@@ -181,7 +184,7 @@ A good summary and comparison of these tools (and more) was recently published b
 However, since we **_do_** know the composition of the original communities used to build this mock metagenome, `MetaQUAST` will work very well for us today. In your `4.evaluation/` directory you will find a file called `ref_genomes.txt`. This file contains the names of the genomes used to build these mock metagenomes. We will provide these as the reference input for `MetaQUAST`.
 
 ```bash
-module load QUAST/5.2.0-gimkl-2022a
+module load QUAST/5.0.2-gimkl-2018b
 
 metaquast.py --references-list ref_genomes.txt --max-ref-number 21 -t 4 \
              --labels SPAdes,SPAdes.m1000,IDBAUD,IDBAUD.m1000 \
@@ -196,28 +199,28 @@ By now, you should be getting familiar enough with the console to understand wha
 
 We will now look at a few interesting assembly comparisons.
 
- If you are working from the NeSI `Jupyter hub` environment today, the html viewer *within* the NeSI `Jupyter hub` does not currently support this (even if the browser you are running it in does). To view a basic version of the report, download the report file by navigating to the `4.evaluation/quast_results/` folder, right-click `report.html/` and select download. The downloaded file will then open within a new tab in the browser. (*NOTE: rendering the full report requires the other folders from within `latest/` to also be downloaded and available in the same directory as `report.html`. Unfortunately, the `Jupyter hub` environment does not appear to currently support downloading entire folders using this method.*)
+ If you are working from the NeSI `Jupyter hub` environment today, the html viewer *within* the NeSI `Jupyter hub` does not currently support this (even if the browser you are running it in does). To view a basic version of the report, download the report file by navigating to the `4.evaluation/quast_results/` folder, right-click `report.html/` and select download. The downloaded file will then open within a new tab in the browser. (*NOTE: rendering the full report requires the other folders from within `quast_results/` to also be downloaded and available in the same directory as `report.html`. Unfortunately, the `Jupyter hub` environment does not appear to currently support downloading entire folders using this method.*)
 
 An example of the `MetaQUAST` output files are also available for download. You will need to download both [references](../resources/quast_references.zip) and [results](../resources/quast_results_sans_reference.zip). Unzip both within the same directory.
 
 #### Brief summary of assemblies
 
 
-![image](../figures/ex5_fig1_shortsummary.png)
+![image](../figures/ex5_fig1_shortsummary_2022.png)
 
 #### Comparison of NGA50 between assemblies
 
 
-![image](../figures/ex5_fig2_nga50.png)
+![image](../figures/ex5_fig2_nga50_2022.png)
 
 #### Comparison of aligned contigs
 
 
-![image](../figures/ex5_fig3_contigsmatched.png)
+![image](../figures/ex5_fig3_contigsmatched_2022.png)
 
 #### Inspection of unaligned contigs
 
 
-![image](../figures/ex5_fig4_contigsunmatched.PNG)
+![image](../figures/ex5_fig4_contigsunmatched_2022.png)
 
 ---
