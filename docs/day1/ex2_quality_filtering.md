@@ -320,7 +320,7 @@ Finally, map the quality-filtered reads to the reference via `BBMap`. Here we wi
 
     - We pass the path to the `ref` file (the reference we just built) to `path=...`.
     - Provide quality-filtered reads as input (i.e. output of the `trimmomatic` process above). In this case, we will provide the *fastq* files located in `../3.assembly/` which have been processed via `trimmomatic` in the same manner as the exercise above. These are four sets of paired reads (representing metagenome data from four 'samples') that the remainder of the workshop exercises will be working with.
-    - The flags `-Xmx27g` and `-t=20` set the max memory and threads allocations, and must match the `--mem` and `--cpus_per_task` allocations in the slurm headers at the top of the script.
+    - The flags `-Xmx27g` and `-t=$SLURM_CPUS_PER_TASK` set the max memory and threads allocations, and must match the `--mem` and `--cpus_per_task` allocations in the slurm headers at the top of the script.
     - The rest of the settings in the `BBMap` call here are as per the recommendations found within [this thread](http://seqanswers.com/forums/showthread.php?t=42552) about processing data to remove host reads.
     - Finally, the filtered output *fastq* files for downstream use are output to the `host_filtered_reads/` folder (taken from the outputs `outu1=` and `otu2=`, which include only those reads that did not map to the host reference genome).
 
