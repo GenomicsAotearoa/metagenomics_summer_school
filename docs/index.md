@@ -16,7 +16,7 @@
 |[  Day 3  ](""){ .md-button .md-button--primary }   |[1. Identifying viral contigs in metagenomic data](./day3/ex10_viruses.md)<br>[2. Assigning taxonomy to refined prokaryotic bins](./day3/ex11_coverage_and_taxonomy.md)</br><br>[3. Gene prediction](./day3/ex12_gene_prediction.md)</br><br>[4. Gene annotation (part 1)](./day3/ex12_gene_prediction.md)</br><br>[5. Gene annotation (part 2) and coverage calculation](./day3/ex14_gene_annotation_part2.md)</br>                                     |
 |[  Day 4  ](""){ .md-button .md-button--primary }   |[1. Gene annotation (part 3)](./day4/ex15_gene_annotation_part3.md)<br>[2. Presentation of data - Intro](./day4/ex16a_data_presentation_Intro.md)</br><br>[3. Presentation of data: Per-sample coverage heatmaps](./day4/ex16b_data_presentation_Coverage.md)</br><br>[4. Presentation of data: Ordinations](./day4/ex16c_OPTIONAL_data_presentation_Ordination.md)</br><br>[5. Presentation of data: KEGG pathway maps](./day4/ex16d_data_presentation_KEGG_pathways.md)</br><br>[6. Presentation of data: Gene synteny](./day4/ex16e_data_presentation_Gene_synteny.md)</br><br>[7. Presentation of data: CAZY annotations heatmap](./day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations.md)</br>                                        |
 
-!!! note "Timetable"
+!!! note "Timetable 2022"
     The timetable of daily events can be found [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/Timetable%20for%20MGSS%202022.md)
 
 ??? example "Appendices"
