@@ -294,15 +294,15 @@ Build index reference via `BBMap`. We will do this by submitting the job via slu
     #!/bin/bash -e
     
     #SBATCH --account       nesi02659
+    #SBATCH --job-name      host_filt_bbmap_index
     #SBATCH --res           SummerSchool
-    #SBATCH --job-name      2.qc_bbmap_ref
     #SBATCH --time          00:20:00
-    #SBATCH --mem           23GB
-    #SBATCH --cpus-per-task 1
-    #SBATCH --error         host_filt_bbmap_index.err
-    #SBATCH --output        host_filt_bbmap_index.out
+    #SBATCH --mem           32GB
+    #SBATCH --cpus-per-task 12
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
     
-    
+    # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/BBMask_human_reference/
     
     # Load BBMap module
@@ -310,7 +310,8 @@ Build index reference via `BBMap`. We will do this by submitting the job via slu
     module load BBMap/39.01-GCC-11.3.0
     
     # Build indexed reference file via BBMap
-    srun bbmap.sh ref=hg19_main_mask_ribo_animal_allplant_allfungus.fa.gz -Xmx23g
+    bbmap.sh ref=hg19_main_mask_ribo_animal_allplant_allfungus.fa.gz
+    
     ```
 
 Finally, map the quality-filtered reads to the reference via `BBMap`. Here we will submit the job as a slurm array, with one array job per sample. Breaking down this command a little:
@@ -343,8 +344,8 @@ Finally, map the quality-filtered reads to the reference via `BBMap`. Here we wi
     #SBATCH --mem           27GB
     #SBATCH --array         1-4
     #SBATCH --cpus-per-task 20
-    #SBATCH --error         host_filt_bbmap_map_%a.err
-    #SBATCH --output        host_filt_bbmap_map_%a.out
+    #SBATCH --error         %x_%A_%a.err
+    #SBATCH --output        %x_%A_%a.out
 
     # Set up working directories
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/
@@ -355,7 +356,7 @@ Finally, map the quality-filtered reads to the reference via `BBMap`. Here we wi
     module load BBMap/39.01-GCC-11.3.0
 
     # Run bbmap
-    srun bbmap.sh -Xmx27g -t=20 \
+    srun bbmap.sh -Xmx27g -t=$SLURM_CPUS_PER_TASK \
     minid=0.95 maxindel=3 bwr=0.16 bw=12 quickmatch fast minhits=2 qtrim=rl trimq=10 untrim \
     in1=../3.assembly/sample${SLURM_ARRAY_TASK_ID}_R1.fastq.gz \
     in2=../3.assembly/sample${SLURM_ARRAY_TASK_ID}_R2.fastq.gz \
