@@ -22,7 +22,7 @@
 |Time|Event|Session leader|
 |:---|:---|:---|
 |9:00 am – 9:15 am|**Introduction**<br>- Overview of yesterday, questions<br>- Overview of today|Annie West|
-|9:15 am – 9:30 am|**RECORDED PRESENTATION:** Acidithiobacillus and thermophilic adaptations (Chanenath Sriaporn)|<br> Kim Handley|
+|9:15 am – 9:30 am|**RECORDED PRESENTATION:** Genomic adaptations enabling *Acidithiobacillus* distribution across wide ranging hot spring temperatures and pHs (Chanenath Sriaporn)|<br> Kim Handley|
 |9:30 am – 10:30 am|**Binning (part 1)**<br>**TALK:** Overview of binning history<br>- Key parameters and strategies for binning<br>**TASK:** Read mapping|Kim Handley|
 |10:30 am – 10:50 am|**Morning tea break** (*Tea, coffee, and snacks provided*)||
 |10:50 am – 11:20 am|**Binning (part 2)**<br>**TASK:** Multi-binning strategy (*Metabat* and *Maxbin*)|Cesar Facimoto|
