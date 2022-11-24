@@ -45,11 +45,11 @@
     cd /nesi/nobackup/nesi02659/MGSS_U/$USER
     ```
 
-    * OR you can navigate to above by using the symlink created as per instructions on  [Supplementary material](http://127.0.0.1:8000/metagenomics_summer_school/supplementary/supplementary_2/#symlinks-shortcuts) with just `cd ~/mgss`
+    * OR you can navigate to above by using the symlink created as per instructions on  [Supplementary material](../supplementary/supplementary_2.md#symlinks-shortcuts) with just `cd ~/mgss`
 
-    * Change the directory to `MGSS_Intro`
+    * Change the directory to `1.MGSS_Intro`
     ```bash
-    cd MGSS_Intro/
+    cd 1.MGSS_Intro/
     ```
 
     * Run the `ls` command to list the contents of the current directory. Check whether there are two *.fastq* files.
