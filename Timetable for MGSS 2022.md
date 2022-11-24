@@ -39,7 +39,7 @@
 |Time|Event|Session leader|
 |:---|:---|:---|
 |9:00 am – 9:20 am|**Introduction**<br>- Overview of yesterday, questions<br>- Overview of today|Jian Sheng Boey|
-|9:20 am – 10:30 am|**TALK:** Identifying viruses from metagenomic data<br>**TASK:** Identifying viral contigs using *VIBRANT*<br>**RECORDED PRESENTATION:** Horizontal gene transfer in groundwater Patescibacteria (Emilie Gios)<br>**TASK:** QC of viral contigs using *CheckV*<br>**TASK:** Taxonomic classification of viruses using *vContact2*|Jian Sheng Boey<br>Annie West<br><br>|
+|9:20 am – 10:30 am|**TALK:** Identifying viruses from metagenomic data<br>**TASK:** Identifying viral contigs using *VIBRANT*<br>**RECORDED PRESENTATION:** Genetic exchange in ultra-small Patescibacteria (Emilie Gios)<br>**TASK:** QC of viral contigs using *CheckV*<br>**TASK:** Taxonomic classification of viruses using *vContact2*|Jian Sheng Boey<br>Annie West<br><br>|
 |10:30 am – 10:50 am|**Morning tea break** (*Tea, coffee, and snacks provided*)||
 |10:50 am – 12:00 pm|**TALK:** Bin taxonomic classification<br>- Bin and species determination<br>**TASK:** Taxonomic classification using GTDB-Tk<br>**TASK:** View phylogenetic trait distribution using *ANNOTREE*|David Waite|
 |12:00 pm – 12:45 pm|**Break for lunch** (*lunch not provided*)||
