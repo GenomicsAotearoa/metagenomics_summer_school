@@ -87,7 +87,7 @@ fi
 ## 2. extract sequence headers
 ## 3. trim sub-contig trailing numbers to retain only parent contig IDs
 ## 4. sort and retain only unique entries
-cat ${inpath}/${contig_prefix}*.${extension} | grep ">" | sed -E -e "s/(cov_[0-9]+\.[0-9]+)\.[0-9]+$/\1/g" -e "s/>//g" | sort -u > vb_omit_contigs_tmp.txt
+cat ${inpath}/${contig_prefix}*.${extension} | grep ">" | sed -E -e "s/(cov_[0-9]+\.[0-9]+)\..*/\1/g" -e "s/>//g" | sort -u > vb_omit_contigs_tmp.txt
 
 # Set up headers of vb_count_table.txt
 echo -e -n "Subcontig_ID\tSubcontig_vb_cluster" > vb_count_table.txt
@@ -117,7 +117,7 @@ while read -r line ; do
         fi
     done
     # Strip sub-contig header back to parent contig ID
-    parent=$(echo ${line} | sed -E "s/(cov_[0-9]+\.[0-9]+)\.[0-9]+$/\1/g")
+    parent=$(echo ${line} | sed -E "s/(cov_[0-9]+\.[0-9]+)\..*/\1/g")
     # count number of times it occurs in each vb_cluster
     total_count=0
     for vb_cluster in ${inpath}/${cluster_prefix}*.${extension}; do
