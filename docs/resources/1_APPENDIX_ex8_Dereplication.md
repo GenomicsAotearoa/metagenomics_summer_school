@@ -39,7 +39,6 @@ We will write a single slurm script to run all necessary commands, then analyse 
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      checkm_drep
-    #SBATCH --res           SummerSchool
     #SBATCH --time          2:00:00
     #SBATCH --mem           80GB
     #SBATCH --cpus-per-task 10
