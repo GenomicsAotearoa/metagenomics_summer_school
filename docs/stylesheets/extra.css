@@ -212,12 +212,12 @@
 }
 .md-typeset .calendar-days > .admonition-title,
 .md-typeset .calendar-days > summary {
-  color:rgb(135,206,235);
+  color:rgb(25,25,112);
   background-color: rgba(135,206,235);
 }
 .md-typeset .calendar-days > .admonition-title::before,
 .md-typeset .calendar-days > summary::before {
-  background-color: rgb(25,25,112);
+  background-color: rgb(25,25,11225,25,112);
   -webkit-mask-image: var(--md-admonition-icon--calendar-days);
           mask-image: var(--md-admonition-icon--calendar-days);
 }
