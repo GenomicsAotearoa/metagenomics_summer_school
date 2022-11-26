@@ -78,7 +78,6 @@ Example slurm script:
     #SBATCH --time          02:00:00
     #SBATCH --mem           20GB
     #SBATCH --cpus-per-task 10
-    #SBATCH --partition     milan
     #SBATCH --error         vcontact2_%j.err
     #SBATCH --output        vcontact2_%j.out
     
