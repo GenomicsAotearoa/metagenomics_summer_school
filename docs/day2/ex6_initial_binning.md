@@ -38,8 +38,8 @@ If you look inside the `spades_assembly/` folder you will now see the following:
 
 ```bash
 ls spades_assembly/
-# bw_spades.1.bt2  bw_spades.3.bt2  bw_spades.rev.1.bt2  spades_assembly.fna
-# bw_spades.2.bt2  bw_spades.4.bt2  bw_spades.rev.2.bt2  spades_assembly.m1000.fna
+# bw_spades.1.bt2  bw_spades.3.bt2  bw_spades.rev.1.bt2  spades_assembly.m1000.fna
+# bw_spades.2.bt2  bw_spades.4.bt2  bw_spades.rev.2.bt2
 ```
 
 These files ending in *.bt2* are the index files for `bowtie2`, and are specific to this tool. If you wish to map using an alternate tool (for example `bowtie` or `BBMap`) you will need to create index/database files using these programs.
