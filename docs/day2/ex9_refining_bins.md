@@ -43,7 +43,7 @@ head -n 5 all_bins.sample1.vizbin.ann
 # 16.7296,bin_0.chopped,20000
 ```
 
-This file is a comma-delimited table (csv file) that presents the information in the way that VizBin expects it. The order of rows in this file corresponds to the order of contigs in the concatentated *fastA* file of our fragmented bins, `all_bins.fna`.
+This file is a comma-delimited table (csv file) that presents the information in the way that VizBin expects it. The order of rows in this file corresponds to the order of contigs in the concatenated *fastA* file of our fragmented bins, `all_bins.fna`.
 
 Create a few variations of the *.ann* file with various columns removed, in order to examine the different outputs they can generate.
 
@@ -332,8 +332,7 @@ An example of an updated slurm script to run `CheckM` on the `filtered_bins/` is
     ```
 
 ---
-
-### *Optional:* Creating new *VizBin* profiles with different fragment lengths
+    #SBATCH --res SummerSchoolfragment lengths
 
 The data you have been working with was created using the `cut_up_fasta.py` script that comes with the binning tool `CONCOCT`. It was run to cut contigs into 20k fragments, to better add density to the cluster. If you would like to visualise the data using different contig fragment sizes, you can create these using the following commands (replace `YOUR_CONTIG_SIZE` with the size of interest, e.g. `10000`):
 
