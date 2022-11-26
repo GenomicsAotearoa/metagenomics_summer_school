@@ -186,17 +186,36 @@ A good summary and comparison of these tools (and more) was recently published b
 
 However, since we **_do_** know the composition of the original communities used to build this mock metagenome, `MetaQUAST` will work very well for us today. In your `4.evaluation/` directory you will find a file called `ref_genomes.txt`. This file contains the names of the genomes used to build these mock metagenomes. We will provide these as the reference input for `MetaQUAST`.
 
-```bash
-module load QUAST/5.0.2-gimkl-2018b
+!!! terminal "code"
+    ```bash
+    #!/bin/bash -e
 
-metaquast.py --references-list ref_genomes.txt --max-ref-number 21 -t 4 \
-             --labels SPAdes,SPAdes.m1000,IDBAUD,IDBAUD.m1000 \
-             --output-dir quast_results/ \
-             spades_assembly/spades_assembly.fna \
-             spades_assembly/spades_assembly.m1000.fna \
-             idbaud_assembly/idbaud_assembly.fna \
-             idbaud_assembly/idbaud_assembly.m1000.fna
-```
+    #SBATCH --account       nesi02659
+    #SBATCH --res           SummerSchool
+    #SBATCH --job-name      metaquast
+    #SBATCH --time          00:15:00
+    #SBATCH --mem           4GB
+    #SBATCH --cpus-per-task 10
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
+
+    # Load module
+    module purge
+    module load QUAST/5.0.2-gimkl-2018b
+
+    # Working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.evaluation
+
+    # Run metaquast    
+    metaquast.py --references-list ref_genomes.txt --max-ref-number 21 \
+                 -t $SLURM_CPUS_PER_TASK \
+                 --labels SPAdes,SPAdes.m1000,IDBAUD,IDBAUD.m1000 \
+                 --output-dir quast_results/ \
+                 spades_assembly/spades_assembly.fna \
+                 spades_assembly/spades_assembly.m1000.fna \
+                 idbaud_assembly/idbaud_assembly.fna \
+                 idbaud_assembly/idbaud_assembly.m1000.fna
+    ```
 
 By now, you should be getting familiar enough with the console to understand what most of the parameters here refer to. The one parameter that needs explanation is the `--max-ref-number` flag, which we have set to 21. This caps the maximum number of reference genomes to be downloaded from NCBI which we do in the interest of speed. Since there are 21 taxa in the file `ref_genomes.txt` (10 prokaryote species and 11 viruses), `MetaQUAST` will download one reference genome for each. If we increase  the `--max-ref-number` flag we will start to get multiple reference genomes per taxa provided which is usually desirable.
 
