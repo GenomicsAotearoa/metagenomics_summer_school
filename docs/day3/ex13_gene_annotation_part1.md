@@ -29,19 +29,19 @@ The original tool for performing this kind of analysis was the `BLAST` tool. Whi
 
 An alternate method for attributing function to query sequences it to consider them as a collection of independently functioning protein folding domains. This is the approach used in the [HMMer](http://hmmer.org/) software, and the *Pfam*, *TIGRfam*, and *PANTHER* databases. In these analyses, the database consists not of individual sequences, but of Hidden Markov models built from a collection of proteins that share a common domain. These profiles build out a statistical map of the amino acid transitions (from position to position), variations (differences at a position), and insertions/deletions between positions in the domain across the different observations in the training database and apply these maps to the query data.
 
-These exercises will take place in the `10.gene_annotation_and_coverage/` folder.
+These exercises will take place in the `10.gene_annotation_and_coverage/` folder. 
 
 ---
 
 ### Annotating MAGs against the *UniProt* database with *diamond*
 
-For this exercise we are going to use diamond for performing our annotation. We have chosen to use this tool because it is faster than BLAST, and usearch comes with licensing restrictions that make it hard to work with in a shared computing environment like NeSI.
+For this exercise we are going to use `diamond` for performing our annotation. We have chosen to use this tool because it is faster than BLAST, and `usearch` comes with licensing restrictions that make it hard to work with in a shared computing environment like NeSI.
 
 For this exercise we have created a diamond-compatible database from the 2018 release of the UniProt database.
 
 For input files, the `predictions/` results from the previous gene prediction exercise have been copied over to `10.gene_annotation_and_coverage/predictions/`.
 
-In general, diamond takes a simple pair of input files - the protein coding sequences we wish to annotate and the database we will use for this purpose. There are a few parameters that need to be tweaked for obtaining a useful output file, however.
+In general, `diamond` takes a pair of input files - the protein coding sequences we wish to annotate and the database we will use for this purpose. There are a few parameters that need to be tweaked for obtaining a useful output file, however.
 
 ```bash
 module purge
@@ -73,7 +73,13 @@ Awkwardly, `diamond` does not provide the headers for what the columns in the ou
 
 From here we can view important stastics for each query/target pairing such as the number of identify residues between sequences and the aligned length between query and target.
 
-Lets set up a slurm job to annotate each of our MAGs. 
+Before we begin, we need to create an directory for outputs.
+
+```bash
+mkdir -p gene_annotations
+```
+
+Now, lets set up a slurm job to annotate each of our MAGs. 
 
 Create a new script
 
