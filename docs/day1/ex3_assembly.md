@@ -255,7 +255,6 @@ Into this file, either write or copy/paste the following commands:
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      spades_assembly
-    #SBATCH --res           SummerSchool
     #SBATCH --time          00:30:00
     #SBATCH --mem           10GB
     #SBATCH --cpus-per-task 12
