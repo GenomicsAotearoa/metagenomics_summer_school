@@ -360,7 +360,6 @@ Paste or type in the following:
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      idbaud_assembly
-    #SBATCH --res           SummerSchool
     #SBATCH --time          00:20:00
     #SBATCH --mem           4GB
     #SBATCH --cpus-per-task 12
