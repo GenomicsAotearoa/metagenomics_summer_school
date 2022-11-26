@@ -205,9 +205,6 @@ nano spades_mapping_array.sl
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
     
-    # Build index
-    bowtie2-build spades_assembly/spades_assembly.m1000.fna spades_assembly/bw_spades
-    
     # Load the sample names into a bash array
     samples=(sample1 sample2 sample3 sample4)
     
@@ -217,11 +214,11 @@ nano spades_mapping_array.sl
             -x spades_assembly/bw_spades \
             -1 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R1.fastq.gz \
             -2 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R2.fastq.gz \
-            -S ${samples[ $SLURM_ARRAY_TASK_ID ]}.sam
+            -S ${samples[ $SLURM_ARRAY_TASK_ID ]}_a.sam
     
     samtools sort -@ $SLURM_CPUS_PER_TASK \
-                  -o ${samples[ $SLURM_ARRAY_TASK_ID ]}.bam \
-                  ${samples[ $SLURM_ARRAY_TASK_ID ]}.sam
+                  -o ${samples[ $SLURM_ARRAY_TASK_ID ]}_a.bam \
+                  ${samples[ $SLURM_ARRAY_TASK_ID ]}_a.sam
     ```
     
 Submit the job to slurm
