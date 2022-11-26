@@ -6,7 +6,7 @@ In this case, the mock metagenome data we have been working with are already of 
 
 #### Normalise to average read depth via the *python* script `norm_jgi_cov_table.py`
 
-The script `norm_jgi_cov_table.py` is available in the folder `8.coverage_and_taxonomy/`, and is also available for download for future reference at [this link](../scripts/norm_jgi_cov_table.py). 
+The script `norm_jgi_cov_table.py` is available in the folder `10.gene_annotation_and_coverage/`, and is also available for download for future reference at [this link](../scripts/norm_jgi_cov_table.py). 
 
 !!! note "Note"
     This script was developed as a simple example for this workshop. It has not yet been widely tested: it is recommended in early usage to manually check a few values to ensure the conversions in the output file are as expected.*
