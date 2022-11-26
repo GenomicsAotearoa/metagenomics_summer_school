@@ -170,7 +170,6 @@ Paste in the script (replacing `<YOUR FOLDER>`)
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      mapping_filtered_bins
-    #SBATCH --res           SummerSchool
     #SBATCH --time          00:05:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 10
@@ -263,7 +262,6 @@ Paste in the script (replacing `<YOUR FOLDER>`)
 
 #SBATCH --account       nesi02659
 #SBATCH --job-name      mapping_viruses
-#SBATCH --res           SummerSchool
 #SBATCH --time          00:05:00
 #SBATCH --mem           1GB
 #SBATCH --cpus-per-task 10
