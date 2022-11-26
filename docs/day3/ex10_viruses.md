@@ -144,7 +144,6 @@ Paste in the following (updating `<YOUR FOLDER>`)
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      CheckV
-    #SBATCH --res           SummerSchool
     #SBATCH --time          00:10:00
     #SBATCH --mem           3GB
     #SBATCH --cpus-per-task 10
