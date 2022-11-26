@@ -156,7 +156,7 @@ Paste in the following (updating `<YOUR FOLDER>`)
     module load CheckV/1.0.1-gimkl-2022a-Python-3.10.5
 
     # Working directory
-    cd ./7.viruses
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/
 
     # Output directory
     mkdir -p checkv_out
