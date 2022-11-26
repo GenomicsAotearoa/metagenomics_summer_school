@@ -187,11 +187,11 @@ A good summary and comparison of these tools (and more) was recently published b
 However, since we **_do_** know the composition of the original communities used to build this mock metagenome, `MetaQUAST` will work very well for us today. In your `4.evaluation/` directory you will find a file called `ref_genomes.txt`. This file contains the names of the genomes used to build these mock metagenomes. We will provide these as the reference input for `MetaQUAST`.
 
 !!! terminal "code"
+
     ```bash
     #!/bin/bash -e
 
     #SBATCH --account       nesi02659
-    #SBATCH --res           SummerSchool
     #SBATCH --job-name      metaquast
     #SBATCH --time          00:15:00
     #SBATCH --mem           4GB
