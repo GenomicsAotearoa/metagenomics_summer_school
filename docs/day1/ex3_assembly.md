@@ -372,7 +372,7 @@ Paste or type in the following:
     module load IDBA-UD/1.1.3-GCC-11.3.0
     
     # Working directory
-    cd ./3.assembly
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly
     
     # Run IDBA-UD
     idba_ud --num_threads $SLURM_CPUS_PER_TASK --mink 33 --maxk 99 --step 22 \
