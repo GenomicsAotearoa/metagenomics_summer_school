@@ -29,6 +29,8 @@ For this exercise, we will use the last option in the list, making use of the `G
 
 This can all be achieved in a single command, although it must be performed through a slurm script due to the high memory requirements of the process.
 
+For the following exercises, we will be working in `8.prokaryotic_taxonomy/`.
+
 Create a new script
 
 ```bash
@@ -43,6 +45,7 @@ Paste in the script (replacing `<YOUR FOLDER>`)
     #!/bin/bash -e
     
     #SBATCH --account       nesi02659
+    #SBATCH --res           SummerSchool
     #SBATCH --job-name      gtdbtk
     #SBATCH --time          01:00:00
     #SBATCH --mem           140GB
