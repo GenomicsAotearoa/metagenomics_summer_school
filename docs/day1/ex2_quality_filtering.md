@@ -295,7 +295,6 @@ Build index reference via `BBMap`. We will do this by submitting the job via slu
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      host_filt_bbmap_index
-    #SBATCH --res           SummerSchool
     #SBATCH --time          00:20:00
     #SBATCH --mem           32GB
     #SBATCH --cpus-per-task 12
