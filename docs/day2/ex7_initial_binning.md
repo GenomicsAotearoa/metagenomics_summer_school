@@ -101,7 +101,6 @@ nano maxbin_clustering.sl
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      maxbin_clustering
-    #SBATCH --res           SummerSchool
     #SBATCH --time          00:05:00
     #SBATCH --mem           10GB
     #SBATCH --cpus-per-task 10
