@@ -338,7 +338,6 @@ Finally, map the quality-filtered reads to the reference via `BBMap`. Here we wi
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      host_filt_bbmap_map
-    #SBATCH --res           SummerSchool
     #SBATCH --time          01:00:00
     #SBATCH --mem           27GB
     #SBATCH --array         1-4
