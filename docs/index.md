@@ -86,6 +86,8 @@
     |3:20 pm – 3:40 pm|**Present and discuss findings (continued)**<br>**TASK:** Each group to give an informal presentation of their data|Annie West|
     |3:40 pm – 4:00 pm|**End of day wrap up**<br>- Final discussion|Kim Handley<br>Jian Sheng Boey|
 
+<br>
+
 
 ??? example "Appendices"
 
