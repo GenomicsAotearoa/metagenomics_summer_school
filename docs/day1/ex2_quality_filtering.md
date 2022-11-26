@@ -264,7 +264,7 @@ module load Python/3.10.5-gimkl-2022a
 pip install --user gdown
 ```
 
-Nest, download the reference. It will also be necessary to first add your local `bin` location to the `PATH` variable via the `export PATH=...` command, as this is where `gdown` is located (modify `<your_username>` before running the code below).
+Next, download the reference. It will also be necessary to first add your local `bin` location to the `PATH` variable via the `export PATH=...` command, as this is where `gdown` is located (modify `<your_username>` before running the code below).
 
 ```bash
 mkdir BBMask_human_reference/
