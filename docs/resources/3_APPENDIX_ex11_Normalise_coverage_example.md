@@ -11,7 +11,7 @@ The script `norm_jgi_cov_table.py` is available in the folder `10.gene_annotatio
 !!! note "Note"
     This script was developed as a simple example for this workshop. It has not yet been widely tested: it is recommended in early usage to manually check a few values to ensure the conversions in the output file are as expected.*
 
-In brief, this `python` script leverages the fact that the standard error output from `bowtie2` includes read counts for each sample. This has been saved in `mapping_filtered_bins.err`, as per the slurm script that was submitted for the read mapping step. Note that, since we know the order that `bowtie2` processed the samples (based on the loop we provided to `bowtie2`: `for i in sample1 sample2 sample3 sample4`), we know that the read count lines in the output error file will appear in the same order. We can therefore iterate through each of these lines, extracting the individual sample read count each time. These values are then used to calculate the average read depth for all samples. Coverage values (in each of the `*.bam` columns) are normalised for each sample based on: `(coverage / sample_read_depth) * average_read_depth`. Finally, this is saved to the new file with the prefix 'normalised_' (e.g. `normalised_bins_cov_table.txt`).
+In brief, this `python` script leverages the fact that the standard error output from `bowtie2` includes read counts for each sample. This has been saved in `mapping_filtered_bins_<ADD JOB ID>.err`, as per the slurm script that was submitted for the read mapping step. Note that, since we know the order that `bowtie2` processed the samples (based on the loop we provided to `bowtie2`: `for i in sample1 sample2 sample3 sample4`), we know that the read count lines in the output error file will appear in the same order. We can therefore iterate through each of these lines, extracting the individual sample read count each time. These values are then used to calculate the average read depth for all samples. Coverage values (in each of the `*.bam` columns) are normalised for each sample based on: `(coverage / sample_read_depth) * average_read_depth`. Finally, this is saved to the new file with the prefix 'normalised_' (e.g. `normalised_bins_cov_table.txt`).
 
 !!! note "Note"
     In your own work, if you alternatively chose to use `BBMap` (and `BBMap`s `covstats` output) for the previous coverage calculation step, read counts can similarly be extracted from the `scafstats` output by searching for the line "Reads Used: ...".*
@@ -25,8 +25,8 @@ In brief, this `python` script leverages the fact that the standard error output
 
 Run `norm_jgi_cov_table.py` for microbial bins data and viral contigs, inputting:
 
-* A. the `bins_cov_table.txt` and `mapping_filtered_bins.err` files
-* B. the `viruses_cov_table.txt` and `mapping_filtered_viruses.err` files. 
+* A. the `bins_cov_table.txt` and `mapping_filtered_bins_<ADD JOB ID>.err` files
+* B. the `viruses_cov_table.txt` and `mapping_viruses_<ADD JOB ID>.err` files. 
 
 This will generate the outputs `normalised_bins_cov_table.txt` and `normalised_viruses_cov_table.txt`. 
 
@@ -39,8 +39,8 @@ This will generate the outputs `normalised_bins_cov_table.txt` and `normalised_v
     module purge
     module load Python/3.8.2-gimkl-2020a
     
-    ./norm_jgi_cov_table.py -c bins_cov_table.txt -e mapping_filtered_bins.err
-    ./norm_jgi_cov_table.py -c viruses_cov_table.txt -e mapping_filtered_viruses.err
+    ./norm_jgi_cov_table.py -c bins_cov_table.txt -e mapping_filtered_bins_<ADD JOB ID>.err
+    ./norm_jgi_cov_table.py -c viruses_cov_table.txt -e mapping_filtered_viruses_<ADD JOB ID>.err
     ```
 
 ---
