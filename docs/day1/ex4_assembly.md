@@ -37,4 +37,7 @@ Make variants of your `IDBA-UD` assembly script and change some parameters. Some
 
 Submit two or three jobs per variation.
 
+!!! warning "Outputs per variant job"
+    For all variations of your assemblies, please remember to modify `-o` argument from `-o spades_assembly/` and `-o idbaud_assembly/` in your slurm scripts to another name (e.g. `-o spades_assembly_var_kmer/`)
+
 ---
