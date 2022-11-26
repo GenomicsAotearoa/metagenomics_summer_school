@@ -268,7 +268,7 @@ sbatch metaxa2.sl
 
 The parameters here are fairly self-explanatory, so we won't discuss them in detail. Briefly, `--cpu` tells the program how many CPUs to use in sequence prediction, and the `-g` flag determines whether we are using the training data set for SSU or LSU regions. the `-i` and `-o` flags denote the input file and output prefix.
 
-The only other parameter that can be helpful is the `-A` flag. By default, `MeTaxa2` will search your genome for the following ribosomal signatures:
+The only other parameter that can be helpful is the `-t` flag to indicate taxa type (`b`, bacteria, `a`, archaea, `e`, eukaryota, `m`, mitochondrial, `c`, chloroplast, `A`, all, `o`, other). By default, `MeTaxa2` will search your genome for the following ribosomal signatures:
 
 1. Bacteria
 1. Archaea
@@ -276,7 +276,7 @@ The only other parameter that can be helpful is the `-A` flag. By default, `MeTa
 1. Mitochondira
 1. Eukaryote
 
-It is usually worth letting it search for all options as detecting multiple rRNAs from different lineages can be a good sign of binning contamination. However, if you want to restrict the search or provide a custom training set this can be set with the `-A` flag.
+It is usually worth letting it search for all options as detecting multiple rRNAs from different lineages can be a good sign of binning contamination. However, if you want to restrict the search or provide a custom training set this can be set with the `-t` flag.
 
 #### Predicting tRNA and tmRNA sequences
 
