@@ -243,7 +243,7 @@ There are several approaches that can be used to achieve this. The general princ
 
 !!! note "Note"
 
-    This process may be more complicated if a reference genome for your host taxa is not readily available. In this case an alternative method would need to be employed (for example: predicting taxonomy via Kraken2 and then filtering out all reads that map to the pylum or kingdom of your host taxa).*
+    This process may be more complicated if a reference genome for your host taxa is not readily available. In this case an alternative method would need to be employed (for example: predicting taxonomy via Kraken2 and then filtering out all reads that map to the phylum or kingdom of your host taxa).*
 
 This exercise provides an example using **BBMap** to map against a masked human reference genome and retain only those reads that do *not* map to the reference. Here we are mapping the quality-filtered reads against a pre-prepared human genome that has been processed to mask sections of the genome, including those that: are presumed microbial contaminant in the reference; have high homology to microbial genes/genomes (e.g. ribosomes); or those that are of low complexity. This ensures that reads that would normally map to these sections of the human genome are *not* removed from the dataset (as genuine microbial reads that we wish to retain might also map to these regions), while all reads mapping to the rest of the human genome are removed.
 
