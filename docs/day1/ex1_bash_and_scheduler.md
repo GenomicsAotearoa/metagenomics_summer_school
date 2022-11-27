@@ -47,9 +47,9 @@
 
     * OR you can navigate to above by using the symlink created as per instructions on  [Supplementary material](../supplementary/supplementary_2.md#symlinks-shortcuts) with just `cd ~/mgss`
 
-    * Change the directory to `1.MGSS_Intro`
+    * Change the directory to `MGSS_Intro`
     ```bash
-    cd 1.MGSS_Intro/
+    cd MGSS_Intro/
     ```
 
     * Run the `ls` command to list the contents of the current directory. Check whether there are two *.fastq* files.
