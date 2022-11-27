@@ -125,7 +125,7 @@ Part of the process for `dRep` includes measures specific to prokaryotes. Hence,
 
 An example of how `dedupe.sh` might be run on multiple *fastA* files of assembled viral contigs (e.g. those output by tools such as `VIBRANT` or `VirSorter`) is as follows:
 
-!!! terminal ""
+!!! terminal "code"
 
     ```bash
     cd /path/to/viral/contigs/from/multiple/assemblies/
