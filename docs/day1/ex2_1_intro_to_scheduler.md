@@ -154,7 +154,7 @@ An HPC system might have thousands of nodes and thousands of users. How do we de
     * To ensure the machine is utilised as fully as possible
     * To ensure all users get a fair chance to use compute resources (demand usually exceeds supply)
     * To track usage - for accounting and budget control
-    * To mediate access to other resources e.g. software licences
+    * To mediate access to other resources e.g. software licenses
 
     **Commonly used schedulers**
 
