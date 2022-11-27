@@ -68,7 +68,6 @@ nano spades_mapping.sl
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      spades_mapping
-    #SBATCH --res           SummerSchool
     #SBATCH --time          00:05:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 10
@@ -190,7 +189,6 @@ nano spades_mapping_array.sl
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      spades_mapping_array
-    #SBATCH --res           SummerSchool
     #SBATCH --time          00:20:00
     #SBATCH --mem           20GB
     #SBATCH --array         0-3

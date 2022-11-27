@@ -212,7 +212,6 @@ nano checkm.sl
     #!/bin/bash -e
     #SBATCH --account       nesi02659
     #SBATCH --job-name      CheckM
-    #SBATCH --res           SummerSchool
     #SBATCH --time          00:20:00
     #SBATCH --mem           50GB
     #SBATCH --cpus-per-task 10

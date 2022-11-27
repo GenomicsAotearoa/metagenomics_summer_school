@@ -96,7 +96,6 @@ Paste in the script (update `<YOUR FOLDER>`)
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      annotate_uniprot
-    #SBATCH --res           SummerSchool
     #SBATCH --time          01:00:00
     #SBATCH --mem           20GB
     #SBATCH --cpus-per-task 20
@@ -188,7 +187,6 @@ Paste in the script (update `<YOUR FOLDER>`)
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      annotate_pfam
-    #SBATCH --res           SummerSchool
     #SBATCH --time          00:20:00
     #SBATCH --mem           5GB
     #SBATCH --cpus-per-task 10

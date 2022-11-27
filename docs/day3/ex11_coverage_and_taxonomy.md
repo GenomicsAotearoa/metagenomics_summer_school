@@ -45,7 +45,6 @@ Paste in the script (replacing `<YOUR FOLDER>`)
     #!/bin/bash -e
     
     #SBATCH --account       nesi02659
-    #SBATCH --res           SummerSchool
     #SBATCH --job-name      gtdbtk
     #SBATCH --time          01:00:00
     #SBATCH --mem           140GB

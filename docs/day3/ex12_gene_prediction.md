@@ -231,7 +231,6 @@ Paste in the script (replacing `<YOUR FOLDER>`)
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      metaxa2
-    #SBATCH --res           SummerSchool
     #SBATCH --time          00:05:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 4
