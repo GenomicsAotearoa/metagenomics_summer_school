@@ -231,7 +231,7 @@ Now we tidy our annotations table and create a joint coordinate-annotation table
 Immediately, we can see that there are some inconsistencies in the annotations. 
 
 * In the annotations for bin 3, there are repeat gene names in the same annotation line.
-* Annotationss for the same KO number is inconsistent across tables. For instance, K02046 is cysU in bin 3 and cysT in bins 5 and 8.
+* Annotations for the same KO number is inconsistent across tables. For instance, K02046 is cysU in bin 3 and cysT in bins 5 and 8.
 * There is a complete lack of gene names in bin 9 annotations. 
 
 We need to remedy this by having a consistent label system. First, create a data frame of labels you want to show in your synteny plot.
@@ -303,7 +303,7 @@ Lets plot our data to see what it looks like and if it need tweaking.
     ```R
     plot_gene_map(
       dna_segs = ds_list,
-      comparisons = filt_blast_list,
+      comparisons = blast_list,
       annotations = annotations_list,
       dna_seg_labels = str_remove(names(ds_list), "_coords"),
       dna_seg_scale = TRUE,
