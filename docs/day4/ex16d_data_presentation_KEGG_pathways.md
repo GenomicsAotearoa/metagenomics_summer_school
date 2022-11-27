@@ -116,7 +116,7 @@ Here, we are interested in the available KO in each bin. Thus, we can summarise 
 !!! r-project "code"
 
     ```R
-    KO_bins <- map(annotations, function(data) {
+    KO_bins <- map(KEGG_annotations, function(data) {
       data %>% 
         # Selecting the relevant columns
         select(`Query Gene`, KO)
