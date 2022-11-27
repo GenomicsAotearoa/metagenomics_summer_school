@@ -51,7 +51,7 @@ cazy_df = data.frame()
 for( cazy_file in cazy_files ) {
     df = read.table(cazy_file, sep='\t', stringsAsFactors=F, header=F) %>% 
          mutate('Bin' = cazy_file) %>%
-         select(CAZy=V3, Bin)
+         select(CAZy=V1, Bin)
     cazy_df = rbind(cazy_df, df)
 }
 ```
@@ -60,21 +60,22 @@ We can inspect the final data.frame using the `head` command:
 
 ```R
 head(cazy_df)
-#         CAZy       Bin
-# 1    AA3.hmm bin_0.txt
-# 2 GH13_9.hmm bin_0.txt
-# 3  GH104.hmm bin_0.txt
-# 4    GT5.hmm bin_0.txt
-# 5  GH116.hmm bin_0.txt
-# 6   GT41.hmm bin_0.txt
+#                      CAZy                 Bin
+# 1                 AA3.hmm bin_0_parsed.domtbl
+# 2                 AA4.hmm bin_0_parsed.domtbl
+# 3 GT2_Glycos_transf_2.hmm bin_0_parsed.domtbl
+# 4                 CE1.hmm bin_0_parsed.domtbl
+# 5                GH23.hmm bin_0_parsed.domtbl
+# 6                 GT8.hmm bin_0_parsed.domtbl
 ```
 
 We can also confirm that we have imported all of the text files by looking at the unique entries in the `Bin` column:
 
 ```R
 unique(cazy_df$Bin)
-# [1] "bin_0.txt" "bin_1.txt" "bin_2.txt" "bin_3.txt" "bin_4.txt" "bin_5.txt"
-# [7] "bin_6.txt" "bin_7.txt" "bin_8.txt" "bin_9.txt"
+#  [1] "bin_0_parsed.domtbl" "bin_1_parsed.domtbl" "bin_2_parsed.domtbl" "bin_3_parsed.domtbl"
+#  [5] "bin_4_parsed.domtbl" "bin_5_parsed.domtbl" "bin_6_parsed.domtbl" "bin_7_parsed.domtbl"
+#  [9] "bin_8_parsed.domtbl" "bin_9_parsed.domtbl"
 ```
 
 We will now perform a summarising step, aggregating instances of multiple genes with the same annotation into a single count for each genome. We do this by
@@ -91,21 +92,21 @@ This process is done using the `group_by` and `tally` functions from `dplyr`, ag
 cazy_counts = cazy_df %>% group_by(Bin, CAZy) %>% tally()
 
 cazy_counts
-# A tibble: 253 x 3
+# A tibble: 402 × 3
 # Groups:   Bin [10]
-#   Bin       CAZy            n
-#   <chr>     <chr>       <int>
-# 1 bin_0.txt AA3.hmm         1
-# 2 bin_0.txt AA7.hmm         1
-# 3 bin_0.txt CE11.hmm        1
-# 4 bin_0.txt CE9.hmm         1
-# 5 bin_0.txt GH100.hmm       1
-# 6 bin_0.txt GH104.hmm       1
-# 7 bin_0.txt GH116.hmm       1
-# 8 bin_0.txt GH13_11.hmm     1
-# 9 bin_0.txt GH13_20.hmm     1
-#10 bin_0.txt GH13_9.hmm      1
-# … with 243 more rows
+#    Bin                 CAZy          n
+#    <chr>               <chr>     <int>
+#  1 bin_0_parsed.domtbl AA3.hmm       1
+#  2 bin_0_parsed.domtbl AA4.hmm       1
+#  3 bin_0_parsed.domtbl AA6.hmm       2
+#  4 bin_0_parsed.domtbl CBM12.hmm     1
+#  5 bin_0_parsed.domtbl CBM50.hmm     2
+#  6 bin_0_parsed.domtbl CBM78.hmm     2
+#  7 bin_0_parsed.domtbl CE1.hmm       3
+#  8 bin_0_parsed.domtbl CE11.hmm      1
+#  9 bin_0_parsed.domtbl CE3.hmm       1
+# 10 bin_0_parsed.domtbl CE4.hmm       1
+# … with 392 more rows
 ```
 
 We now have a data.frame-like object (a [tibble](https://tibble.tidyverse.org/)) with three columns. We can convert this into a gene matrix using the `pivot_wider` function from the `tidyr` library to create a genome x gene matrix in the following form:
