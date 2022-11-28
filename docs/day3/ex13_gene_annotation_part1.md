@@ -71,7 +71,7 @@ There are two output formats we can chose from which are useful for our analysis
 
 Awkwardly, `diamond` does not provide the headers for what the columns in the output table mean. [This table](http://www.metagenomics.wiki/tools/blast/blastn-output-format-6) is a handy reference for how to interpret the output.
 
-From here we can view important stastics for each query/target pairing such as the number of identify residues between sequences and the aligned length between query and target.
+From here we can view important stastics for each query/target pairing such as the number of identical residues between sequences and the aligned length between query and target.
 
 Before we begin, we need to create an directory for outputs.
 
