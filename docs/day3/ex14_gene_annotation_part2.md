@@ -52,7 +52,7 @@ In default annotation mode, `DRAM` only requires as input the directory containi
 
 *NOTE: due to the increased memory requirements, UniRef90 database is not default and the flag `–use_uniref` should be specified in order to search amino acid sequences against UniRef90. In this exercise, due to memory and time constraints, we won't be using the UniRef90 database.*
 
-We will start by making sure `DRAM` is loaded properly.
+We will start by glancing at some of the options for `DRAM`.
 
 ```sh
 module purge
@@ -73,6 +73,15 @@ DRAM.py --help
 # 
 # options:
 #   -h, --help            show this help message and exit
+```
+
+To look at some of the arguments in each command, type the following:
+
+```sh
+# DRAM.py <command> --help
+
+# For example:
+DRAM.py annotate --help
 ```
 
 #### Submitting *DRAM* annotation as a slurm job

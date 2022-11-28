@@ -45,7 +45,7 @@ cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction/
 
 #### Examining the *prodigal* parameters
 
-Before we start runnning `prodigal`, we will take quick look at the parameters.
+Before we start runnning `prodigal`, we will take a quick look at the parameters.
 
 ```bash
 module purge
@@ -79,7 +79,7 @@ There are a few parameters that are worth considering in advance.
 
 ##### Output files
 
-When running `prodigal` the default behaviour is to create a *gbk* file from your genome and write it to the stdout of your interface. This can either be captured using a redirect, or the output can instead be placed into a file using the `-o` flag. You can also change the format of the file using the `-f` flag.
+When running `prodigal` the default behaviour is to create a *gbk* file (this is a Genbank-like feature table, see [here](https://github.com/hyattpd/prodigal/wiki/understanding-the-prodigal-output) for more information) from your genome and write it to the stdout of your interface. This can either be captured using a redirect, or the output can instead be placed into a file using the `-o` flag. You can also change the format of the file using the `-f` flag.
 
 Since we often want to go straight from gene prediction to annotation, `prodigal` also has the option to create *fastA* files of the gene prediction (`-d`) and protein translation (`-a`) at the same time. This is an extremely helpful feature, and it is worth running all three outputs at the same time. **_Generally_** speaking, you will probably find that the amino acid sequence for your genes is all you need for most practical purposes, but having the corresponding nucleotide sequence can sometimes be useful if we want to mine other data sets.
 
@@ -97,7 +97,7 @@ Anecdotally, when applied to a MAG or genome, anonymous mode (`-p meta`) will id
 
 #### Executing *prodigal*
 
-We will now run `prodigal` over the 10 bins in *anonymous* mode. As usual, we can use a loop to get the predictions for all of our bins.
+We will now run `prodigal` over the 10 bins in *anonymous* mode using an array.
 
 Create a new script
 
