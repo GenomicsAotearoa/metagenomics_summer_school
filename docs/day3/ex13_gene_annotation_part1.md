@@ -227,7 +227,7 @@ Determining how trustworthy a gene annotation is can be a very tricky process. H
 !!! quote ""
     1. What is the amino acid identity along the aligned region?
     1. What is the amino acid *similarity* between the aligned region?
-    1. What is the coverage as a percentage or the query and target genes?
+    1. What is the coverage as a percentage of the query and target genes?
     1. If we infer a phylogeny of this query gene with references from the target family, is a stable tree resolved?
     1. Does the inclusion of this gene function make sense in the context of the organism's taxonomy?
     1. Does the gene sit on a long contig that is core to the MAG, or is it a short contig carrying only a single gene?
@@ -239,7 +239,7 @@ We must also remain aware of the potential for incorrectly annotated genes in th
 
 ### Differences in taxonomies
 
-Another way to determine if a annotation 'belongs' in the MAG of interest is to consider the predicted taxonomy of the query gene with that of the MAG itself. For example, if you detect a *Desulfovibrio*-like *dsrA* seuqence in a bin that has been classified as belonging to the genus *Desulfovibrio* then it is probably a safe bet that the annotation is correct.
+Another way to determine if an annotation 'belongs' in the MAG of interest is to consider the predicted taxonomy of the query gene with that of the MAG itself. For example, if you detect a *Desulfovibrio*-like *dsrA* seuqence in a bin that has been classified as belonging to the genus *Desulfovibrio* then it is probably a safe bet that the annotation is correct.
 
 However, when comparing taxonomic assignments, it is important to be aware of the differing taxonomic schemas that are circulating in the microbiological and bioinformatic literature and to know how to reconcile their differences. Similar to how the 16S rRNA gene taxonomies provided by *SILVA*, *Greengenes*, and *RDP* taxonomies all differ in some aspects, there are multiple competing taxonomies in protein databases.
 

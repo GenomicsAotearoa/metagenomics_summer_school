@@ -3,7 +3,7 @@
 !!! info "Objectives"
 
     * [Overview of `DRAM.py annotate` output](#overview-of-drampy-annotate-output)
-    * [`DRAM` Distillation step and visualization of results](#dram-distillation-of-the-results)
+    * [`DRAM` distillation step and visualization of results](#dram-distillation-of-the-results)
     * [Tie findings to your initial goal](#tie-findings-to-your-initial-goal)
 
 ---
@@ -47,7 +47,7 @@ For each gene annotated, `DRAM` provides a summary rank (from A to E), represent
 
 ### *DRAM* distillation of the results
 
-After the annotation is finished, we will summarise and visualise these annotations with the so-called *Distillation* step. We do so by running the following command directly in the terminal. This will generate the distillate and liquor files.
+After the annotation is finished, we will summarise and visualise these annotations with the so-called *distillation* step. We do so by running the following command directly in the terminal. This will generate the distillate and liquor files.
 
 !!! terminal "code"
 
@@ -66,9 +66,9 @@ The distillation step generates the following files that can be found within the
 |File name | Description|
 |:--- | :--- |
 |**genome_stats.tsv**| Genome quality information required for [MIMAG](https://www.nature.com/articles/nbt.3893) |
-|**metabolism_summary.xlsx**| Summarise metabolism table containing number of genes with specific metabolic function identifiers |
+|**metabolism_summary.xlsx**| Summarised metabolism table containing number of genes with specific metabolic function identifiers |
 |**product.html**| HTML file displaying a heatmap summarising pathway coverage, electron transport chain component completion, and presence/absence of specific functions |
-|**product.tsv**| Data table with product.html information |
+|**product.tsv**| Data table visualised in product.html |
 
 
 First, let's have a look at the ```genome_stats.tsv``` file to check the assembly quality of our bins by double-clicking the file within the `Jupyter` environment, viewing from the terminal via `less` or `cat`, or downloading the files from [here](../resources/dram_distillation.zip) and opening locally (e.g. via excel).
@@ -91,7 +91,7 @@ First, let's have a look at the ```genome_stats.tsv``` file to check the assembl
 
 ---
 
-To finish, we visualize the *Product*, an .HTML file produced in the Distillation step, by double-clicking on it in our *Jupyter* lab notebook or downloading from [here](../resources/dram_distillation.zip). The *Product* has three primary parts:
+To finish, we visualize the *Product*, an .HTML file produced in the distillation step, by double-clicking on it in our *Jupyter* lab notebook or downloading from [here](../resources/dram_distillation.zip). The *Product* has three primary parts:
 
 1. **Modules.** Central metabolism pathways coverage. Completion of pathways is based on the structure of KEGG modules, with the pathway coverage calculated as the percent of steps with at least one gene present.
 
