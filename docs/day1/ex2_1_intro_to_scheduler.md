@@ -220,6 +220,13 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
     |                 | `#SBATCH --mail-type=TIME_LIMIT_80` |Will send message at 80% walltime.                    |
 
 
+!!! bell "Assigning values to Slurm variables"
+
+    <center>![image](../theme_images/sbtach_def_1.png)</center>
+
+    <center>![image](../theme_images/sbatch_def_2.png)</center>
+
+
 ??? question "Exercise"
     Copy the contents of the `BLAST/` folder to your current directory, using the following command
 
