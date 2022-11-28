@@ -228,24 +228,10 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
 
 
 ??? question "Exercise"
-    Copy the contents of the `BLAST/` folder to your current directory, using the following command
 
-    ```bash
-    cp -r /nesi/nobackup/nesi02659/SLURM/BLAST ./
-    ```
+    * Make sure you are in **your** working directory 
+    * There is a `Slurm_Intro` directory which has the following directory structure 
 
-    We will then navigate into this directory with the `cd` command, and inspect the text of the file `blast-test.sh` using `less` or `nano`.
+    <center>![image](../theme_images/slurm_intro_struc.png){width="500"}</center>
 
-    ```bash
-    cd BLAST/
-
-    less blast-test.sh
-    ```
-
-    Evaluate the contents of the `blast-test.sh` script. Take a note of the basic slurm variables, path variables, etc. We will revisit these in the afternoon, when you create your own slurm scripts.
-
-    Submit the script to the job queue as below.
-
-    ```
-    sbatch blast-test.sh
-    ```
+    * We will work from **1.** to **4.** . Objective is to review, submit and *review* Slurm jobs. 
