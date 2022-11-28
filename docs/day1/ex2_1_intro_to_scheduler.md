@@ -219,6 +219,7 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
     |--mail-type 	  | `#SBATCH --mail-type=ALL` 	        |Will send a mail notification at BEGIN END FAIL.      |
     |                 | `#SBATCH --mail-type=TIME_LIMIT_80` |Will send message at 80% walltime.                    |
 
+<br>
 
 !!! bell "Assigning values to Slurm variables"
 
@@ -226,6 +227,7 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
 
     <center>![image](../theme_images/sbatch_def_2.png)</center>
 
+<br>
 
 ??? question "Exercise"
 
@@ -234,4 +236,6 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
 
     <center>![image](../theme_images/slurm_intro_struc.png){width="500"}</center>
 
-    * We will work from **1.** to **4.** . Objective is to review, submit and *review* Slurm jobs. 
+    * We will work from **1.** to **4.** . Objective is to review, submit, check and *review* Slurm jobs. 
+
+    <center>![image](../theme_images/slurm_cycle_mini.png)</center>
