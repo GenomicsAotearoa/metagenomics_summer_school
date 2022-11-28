@@ -45,7 +45,7 @@ cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction/
 
 #### Examining the *prodigal* parameters
 
-Before we start runnning `prodigal`, we will take quick look at the parameters.
+Before we start runnning `prodigal`, we will take a quick look at the parameters.
 
 ```bash
 module purge
