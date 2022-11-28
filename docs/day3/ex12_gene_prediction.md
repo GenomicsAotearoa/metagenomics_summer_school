@@ -97,7 +97,7 @@ Anecdotally, when applied to a MAG or genome, anonymous mode (`-p meta`) will id
 
 #### Executing *prodigal*
 
-We will now run `prodigal` over the 10 bins in *anonymous* mode. As usual, we can use a loop to get the predictions for all of our bins.
+We will now run `prodigal` over the 10 bins in *anonymous* mode using an array.
 
 Create a new script
 
