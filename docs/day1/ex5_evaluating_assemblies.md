@@ -210,7 +210,7 @@ However, since we **_do_** know the composition of the original communities used
     metaquast.py --references-list ref_genomes.txt --max-ref-number 21 \
                  -t $SLURM_CPUS_PER_TASK \
                  --labels SPAdes,SPAdes.m1000,IDBAUD,IDBAUD.m1000 \
-                 --output-dir quast_results/ \
+                 --output-dir metaquast_results/ \
                  spades_assembly/spades_assembly.fna \
                  spades_assembly/spades_assembly.m1000.fna \
                  idbaud_assembly/idbaud_assembly.fna \
