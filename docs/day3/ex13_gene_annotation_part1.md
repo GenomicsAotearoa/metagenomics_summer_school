@@ -87,7 +87,9 @@ Create a new script
 nano annotate_uniprot.sl
 ```
 
-Paste in the script (update `<YOUR FOLDER>`)
+!!! warning "Warning"
+
+    Paste in the script (update `<YOUR FOLDER>`)
 
 !!! terminal "code"
 
@@ -177,8 +179,9 @@ Create a new script
 ```bash
 nano annotate_pfam.sl
 ```
+!!! warning "Warning"
 
-Paste in the script (update `<YOUR FOLDER>`)
+    Paste in the script (update `<YOUR FOLDER>`)
 
 !!! terminal "code"
 

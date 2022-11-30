@@ -105,7 +105,9 @@ Create a new script
 nano prodigal.sl
 ```
 
-Paste in the script (modifying `<YOUR FOLDER>`)
+!!! warning "Warning"
+
+    Paste in the script (modifying `<YOUR FOLDER>`)
 
 !!! terminal "code"
 
@@ -222,7 +224,9 @@ Create a new script
 nano metaxa2.sl
 ```
 
-Paste in the script (replacing `<YOUR FOLDER>`)
+!!! warning "Warning"
+
+    Paste in the script (replacing `<YOUR FOLDER>`)
 
 !!! terminal "code"
 
