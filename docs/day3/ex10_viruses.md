@@ -73,7 +73,6 @@ nano vibrant.sl
     #!/bin/bash -e
     #SBATCH --account       nesi02659
     #SBATCH --job-name      vibrant
-    #SBATCH --res           SummerSchool
     #SBATCH --time          00:40:00
     #SBATCH --mem           4GB
     #SBATCH --cpus-per-task 16
