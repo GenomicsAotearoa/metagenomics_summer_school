@@ -63,8 +63,9 @@ Create a new script
 ```bash
 nano vibrant.sl
 ```
+!!! warning "Warning"
 
-Paste in the following (updating `<YOUR FOLDER>`)
+    Paste in the following (updating `<YOUR FOLDER>`)
 
 !!! terminal "code"
 
@@ -134,8 +135,9 @@ Create a new script
 ```bash
 nano checkv.sl
 ```
+!!! warning "Warning"
 
-Paste in the following (updating `<YOUR FOLDER>`)
+    Paste in the following (updating `<YOUR FOLDER>`)
 
 !!! terminal "code"
 
