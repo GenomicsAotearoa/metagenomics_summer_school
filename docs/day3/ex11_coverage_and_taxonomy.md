@@ -36,8 +36,9 @@ Create a new script
 ```bash
 nano gtdbtk.sl
 ```
+!!! warning "Warning"
 
-Paste in the script (replacing `<YOUR FOLDER>`)
+    Paste in the script (replacing `<YOUR FOLDER>`)
 
 !!! terminal "code"
 
