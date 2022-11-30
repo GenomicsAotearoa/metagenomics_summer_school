@@ -93,8 +93,9 @@ Create a new script
 ```bash
 nano annotate_dram.sl
 ```
+!!! warning "Warning"
 
-Paste in the script (update all of the cases of `<YOUR FOLDER>`)
+    Paste in the script (update all of the cases of `<YOUR FOLDER>`)
 
 !!! terminal "code"
 
@@ -169,8 +170,9 @@ Create a new script
 ```bash
 nano mapping_filtered_bins.sl
 ```
+!!! warning "Warning"
 
-Paste in the script (replacing `<YOUR FOLDER>`)
+    Paste in the script (replacing `<YOUR FOLDER>`)
 
 !!! terminal "code"
 
@@ -263,8 +265,9 @@ Create a new script
 ```bash
 nano mapping_viruses.sl
 ```
+!!! warning "Warning"
 
-Paste in the script (replacing `<YOUR FOLDER>`)
+    Paste in the script (replacing `<YOUR FOLDER>`)
 
 ```bash
 #!/bin/bash -e
