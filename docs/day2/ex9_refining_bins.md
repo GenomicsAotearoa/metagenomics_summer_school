@@ -331,9 +331,6 @@ An example of an updated slurm script to run `CheckM` on the `filtered_bins/` is
 
     ```
 
----
-    #SBATCH --res SummerSchoolfragment lengths
-
 The data you have been working with was created using the `cut_up_fasta.py` script that comes with the binning tool `CONCOCT`. It was run to cut contigs into 20k fragments, to better add density to the cluster. If you would like to visualise the data using different contig fragment sizes, you can create these using the following commands (replace `YOUR_CONTIG_SIZE` with the size of interest, e.g. `10000`):
 
 ```bash
