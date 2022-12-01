@@ -104,12 +104,11 @@ nano annotate_dram.sl
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      annotate_DRAM
-    #SBATCH --res           SummerSchool
     #SBATCH --time          5:00:00
     #SBATCH --mem           30Gb
     #SBATCH --cpus-per-task 24
-    #SBATCH --error         %x_%A_%a.err
-    #SBATCH --output        %x_%A_%a.out
+    #SBATCH --error         %x_%A.err
+    #SBATCH --output        %x_%A.out
 
     # Load modules
     module purge
