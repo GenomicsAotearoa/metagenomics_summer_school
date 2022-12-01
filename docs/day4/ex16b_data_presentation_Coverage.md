@@ -269,7 +269,7 @@ The penultimate step before building our heatmap is to set the colours that will
     # (Requires the "scales" package)
     scales::show_col(
       palette.colors(palette = "Okabe-Ito")
-    )
+    ))
     ```
     ![image](../figures/day4_coverage.03.show_col.Okabe-Ito.png)
 
