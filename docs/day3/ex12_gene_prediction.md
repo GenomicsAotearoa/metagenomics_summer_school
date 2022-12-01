@@ -199,8 +199,8 @@ done
 ```
 !!! magnifying-glass "`cut` flags"
 
-    `-f` argument is how we specify which columns to keep. It can be used to specify a range as well
-    `-d-` **delimiter** : `cut` uses tab as a default field delimiter but can also work with other delimiter by using `-d` option
+    * `-f` argument is how we specify which columns to keep. It can be used to specify a range as well
+    * `-d-` **delimiter** : `cut` uses tab as a default field delimiter but can also work with other delimiter by using `-d` option
 
 ```bash
 head -n 5 predictions/bin_0.filtered.genes.no_metadata.faa
