@@ -174,7 +174,7 @@ Try this for one or two problematic contigs (or subsets of contigs). In practice
 
 !!! abstract "Note"
 
-    For the subsequent step using `vizbin_count_table.sh`, all exported cluster files must share a common prefix (e.g. `cluster...fna`), and all files of problematic contigs must also share a common prefix (e.g. `contigs...fna`).*
+    For the subsequent step using `vizbin_count_table_2022.sh`, all exported cluster files must share a common prefix (e.g. `cluster...fna`), and all files of problematic contigs must also share a common prefix (e.g. `contigs...fna`).*
 
 ---
 
@@ -188,15 +188,15 @@ To do this, we will generate a table containing each exported "problematic" sub-
 
 For this exercise, a folder of the exported files from `VizBin` for all clusters (`cluster_[1-n].fna`) and problematic sub-contigs (`contigs_[1-n].fna`) has been provided at `vizbin_example_exports/`
 
-We will input these files to the shell script `vizbin_count_table.sh` to generate a count table of the exported subcontigs across each `VizBin` cluster (`vb_count_table.txt`), as well as a working list of contigs to potentially remove from our final bin data (`vb_omit_contigs_tmp.txt`).
+We will input these files to the shell script `vizbin_count_table_2022.sh` to generate a count table of the exported subcontigs across each `VizBin` cluster (`vb_count_table.txt`), as well as a working list of contigs to potentially remove from our final bin data (`vb_omit_contigs_tmp.txt`).
 
 For future reference, a copy of this script is available for download [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/tree/master/docs/scripts).
 
 ```bash
-./vizbin_count_table.sh -i vizbin_example_exports/
+./vizbin_count_table_2022.sh -i vizbin_example_exports/
 ```
 
-The only required input to `vizbin_count_table.sh` is the path to the cluster and contigs files exported from `VizBin`. By default, the script looks for the prefix `cluster...` for the cluster file names, `contig...` for the files of problematic sub-contigs, and the file extension `.fna` for each. The arguments `-s <contig_file_prefix> -c <cluster_file_prefix> -e <fasta_file_extension>` can optionally be provided if your file name formats differ from the default.
+The only required input to `vizbin_count_table_2022.sh` is the path to the cluster and contigs files exported from `VizBin`. By default, the script looks for the prefix `cluster...` for the cluster file names, `contig...` for the files of problematic sub-contigs, and the file extension `.fna` for each. The arguments `-s <contig_file_prefix> -c <cluster_file_prefix> -e <fasta_file_extension>` can optionally be provided if your file name formats differ from the default.
 
 View the output count table:
 
