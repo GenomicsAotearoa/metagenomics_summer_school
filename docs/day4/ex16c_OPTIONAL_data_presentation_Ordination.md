@@ -38,7 +38,7 @@ First, set the working directory and load the required libraries.
 
     ```R
     # Set working directory
-    setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/')
+    setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/coverage')
     
     # Load libraries ----
     # Tidyverse libraries
