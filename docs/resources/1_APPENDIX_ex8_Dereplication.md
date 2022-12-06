@@ -39,30 +39,37 @@ We will write a single slurm script to run all necessary commands, then analyse 
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      checkm_drep
-    #SBATCH --time          2:00:00
+    #SBATCH --time          30:00
     #SBATCH --mem           80GB
-    #SBATCH --cpus-per-task 10
-    #SBATCH --error         checkm_drep.err
-    #SBATCH --output        checkm_drep.out
+    #SBATCH --cpus-per-task 16
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
 
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/12.drep_example/
 
     # Step 1
     module purge
-    module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
-    checkm lineage_wf -t 10 --pplacer_threads 10 -x fa --tab_table -f checkm.txt \
+    module load CheckM/1.2.1-gimkl-2022a-Python-3.10.5
+    checkm lineage_wf -t $SLURM_CPUS_PER_TASK \
+                      --pplacer_threads $SLURM_CPUS_PER_TASK \
+                      -x fa --tab_table -f checkm.txt \
                       input_bins/ checkm_out/
 
     # Step 2
     echo "genome,completeness,contamination" > dRep.genomeInfo
-    cut -f1,12,13 checkm.txt | sed 's/\t/.fa\t/' | sed 's/\t/,/g' | \
-        tail -n+2 >> dRep.genomeInfo
+    cut -f1,12,13 checkm.txt \
+      | sed 's/\t/.fa\t/' \
+      | sed 's/\t/,/g' \
+      | tail -n+2 >> dRep.genomeInfo
 
     # Step 3
     module purge
-    module load drep/2.3.2-gimkl-2017a-Python-3.6.3 MUMmer/3.23-gimkl-2017a
+    module load drep/2.3.2-gimkl-2018b-Python-3.7.3
 
-    dRep dereplicate --genomeInfo dRep.genomeInfo -g input_bins/*.fa -p 10 drep_output/
+    dRep dereplicate --genomeInfo dRep.genomeInfo \
+                     -g input_bins/*.fa \
+                     -p $SLURM_CPUS_PER_TASK \
+                     drep_output/
     ```
 
 Walking through this script, step by step, we are performing the following tasks:
