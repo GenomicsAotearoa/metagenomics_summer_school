@@ -33,7 +33,7 @@ We will first modify the names of our bins to be simply numbered 1 to n bins. We
 
 Using the `cut_up_fasta.py` script that comes with the binning tool `CONCOCT`, cut contigs into 20k fragments to add better density to the cluster.
 
-!!! terminal "code:
+!!! terminal "code"
 
     ```bash
     # Load CONCONCT module
