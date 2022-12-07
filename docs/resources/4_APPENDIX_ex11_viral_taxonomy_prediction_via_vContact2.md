@@ -4,7 +4,11 @@
 **1. Predict genes via `prodigal`**
 
 ```bash
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy
+# Navigate to working directory
+cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses
+
+# Create output directory
+mkdir -p viral_taxonomy
 ```
 
 Example slurm script:
@@ -19,8 +23,8 @@ Example slurm script:
     #SBATCH --time          00:05:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 2
-    #SBATCH --error         prodigal.err
-    #SBATCH --output        prodigal.out
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
 
 
     # Load dependencies
@@ -28,11 +32,9 @@ Example slurm script:
     module load prodigal/2.6.3-GCC-11.3.0
 
     # Set up working directories
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses
 
-    mkdir -p viral_taxonomy
-
-    # Run main analyses 
+    # Run Prodigal to predict genes 
     srun prodigal -p meta -q \
     -i checkv_combined.fna \
     -a viral_taxonomy/checkv_combined.faa 
@@ -42,68 +44,64 @@ Example slurm script:
 
 Use `vContact2`'s `vcontact2_gene2genome` script to generate the required mapping file from the output of `prodigal`.
 
-*NOTE: update `/path/to/conda/envs/vContact2/bin` in the below script to the appropraite path.*
-
 !!! terminal "code"
 
     ```bash
-    # activate vcontact2 conda environment
+    # Ensure you are in the correct working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses
+    
+    # Load modules
     module purge
-    module load Miniconda3
-    source activate vContact2
-
-    # Load dependencies
-    export PATH="/path/to/conda/envs/vContact2/bin:$PATH"
-    module load DIAMOND/0.9.32-GCC-9.2.0
-    module load MCL/14.137-gimkl-2020a
-
-    # run vcontact2_gene2genome
-    vcontact2_gene2genome -p viral_taxonomy/checkv_combined.faa -o viral_taxonomy/viral_genomes_g2g.csv -s 'Prodigal-FAA'
-
-    # deactivate conda environment
-    conda deactivate
+    module unload XALT
+    module load Singularity/3.10.3 DIAMOND/2.0.15-GCC-11.3.0 MCL/14.137-gimkl-2020a
+    
+    # Bind path to Singularity container
+    export SINGULARITY_BIND="$PWD"
+    container=/opt/nesi/containers/vContact2
+    
+    # Run script
+    singularity run $container/vcontact2.simg \
+    vcontact2_gene2genome --proteins viral_taxonomy/checkv_combined.faa \
+                          --output viral_taxonomy/viral_genomes_g2g.csv \
+                          -s 'Prodigal-FAA'
     ```
 
 **3. Run `vContact2`**
-
-Example slurm script:
 
 !!! terminal "code"
 
     ```bash
     #!/bin/bash -e
     
-    #SBATCH --account       uow03498
-    #SBATCH --job-name      vcontact2_test
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      vConTACT2
     #SBATCH --time          02:00:00
     #SBATCH --mem           20GB
-    #SBATCH --cpus-per-task 10
-    #SBATCH --error         vcontact2_%j.err
-    #SBATCH --output        vcontact2_%j.out
+    #SBATCH --cpus-per-task 16
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
     
-    
-    # activate vcontact2 conda environment
+    # Working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses
+
+    # Load modules
     module purge
     module unload XALT
-    module load Singularity
-    
-    container=/opt/nesi/containers
-    
-    # Bind external filesystem paths to container image
-    export SINGULARITY_BIND="$PWD,$container,/nesi/nobackup/nesi02659/MGSS_U"
-    
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/viral_taxonomy/
-    
-    
-    # Run vcontact2
-    singularity run $container/vcontact2.simg vcontact2 \
-    -t $SLURM_CPUS_PER_TASK \
-    --raw-proteins checkv_combined.faa \
-    --rel-mode Diamond \
-    --proteins-fp viral_genomes_g2g.csv \
-    --db 'ProkaryoticViralRefSeq201-Merged' \
-    --c1-bin /opt/conda/bin/cluster_one-1.0.jar \
-    --output-dir vConTACT2_Results
+    module load Singularity/3.10.3 MCL/14.137-gimkl-2020a BLAST/2.13.0-GCC-11.3.0
+
+    # Bind paths
+    export SINGULARITY_BIND="$PWD"
+    container=/opt/nesi/containers/vContact2
+
+    # Run vConTACT2
+    singularity run $container/vcontact2.simg \
+    vcontact2 --raw-proteins viral_taxonomy/checkv_combined.faa \
+              --rel-mode BLASTP \
+              --threads $SLURM_CPUS_PER_TASK \
+              --proteins-fp viral_taxonomy/viral_genomes_g2g.csv \
+              --db 'ProkaryoticViralRefSeq201-Merged' \
+              --c1-bin /opt/conda/bin/cluster_one-1.0.jar \
+              --output-dir vConTACT2_Results
     ```
 
 **4. Predict taxonomy of viral contigs based on ouput of `vContact2`**
