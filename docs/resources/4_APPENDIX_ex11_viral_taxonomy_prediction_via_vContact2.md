@@ -35,9 +35,9 @@ Example slurm script:
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses
 
     # Run Prodigal to predict genes 
-    srun prodigal -p meta -q \
-    -i checkv_combined.fna \
-    -a viral_taxonomy/checkv_combined.faa 
+    prodigal -p meta -q \
+             -i checkv_combined.fna \
+             -a viral_taxonomy/checkv_combined.faa 
     ```
 
 **2. Generate required mapping file for `vContact2`**
