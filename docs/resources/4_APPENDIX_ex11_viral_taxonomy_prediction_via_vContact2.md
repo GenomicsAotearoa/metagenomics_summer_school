@@ -128,7 +128,7 @@ For future reference, a copy of this script is available for download [here](htt
     module purge
     module load Python/3.8.2-gimkl-2020a
     
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.coverage_and_taxonomy/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/
     
     ./vcontact2_tax_predict.py \
     -i viral_taxonomy/vConTACT2_Results/genome_by_genome_overview.csv \
