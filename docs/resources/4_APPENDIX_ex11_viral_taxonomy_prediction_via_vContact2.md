@@ -96,7 +96,7 @@ Use `vContact2`'s `vcontact2_gene2genome` script to generate the required mappin
     # Run vConTACT2
     singularity run $container/vcontact2.simg \
     vcontact2 --raw-proteins viral_taxonomy/checkv_combined.faa \
-              --rel-mode BLASTP \
+              --rel-mode Diamond \
               --threads $SLURM_CPUS_PER_TASK \
               --proteins-fp viral_taxonomy/viral_genomes_g2g.csv \
               --db 'ProkaryoticViralRefSeq201-Merged' \
