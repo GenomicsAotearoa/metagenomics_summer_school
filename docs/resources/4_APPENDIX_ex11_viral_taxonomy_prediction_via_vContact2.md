@@ -87,7 +87,7 @@ Use `vContact2`'s `vcontact2_gene2genome` script to generate the required mappin
     # Load modules
     module purge
     module unload XALT
-    module load Singularity/3.10.3 MCL/14.137-gimkl-2020a BLAST/2.13.0-GCC-11.3.0
+    module load Singularity/3.10.3 MCL/14.137-gimkl-2020a DIAMOND/2.0.15-GCC-11.3.0
 
     # Bind paths
     export SINGULARITY_BIND="$PWD"
