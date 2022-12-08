@@ -51,16 +51,18 @@ You can still normalise your data even with BAM files alone. But this will invol
 #### 1. Obtain library size information
 We can extract this based on the output from `SAMtools` `flagstat` command.
 
-```bash
-module purge
-module load SAMtools/1.15.1-GCC-11.3.0
+!!! terminal "code"
 
-for i in bin_coverage/*.bam; do
-  filename=$(basename $i)
-  libsize=$(($(samtools flagstat $i | head -n 1 | cut -f 1 -d ' ')/2))
-  printf "%s\t%d\n" $filename $libsize >> libsize.txt
-done
-```
+    ```bash
+    module purge
+    module load SAMtools/1.15.1-GCC-11.3.0
+    
+    for i in bin_coverage/*.bam; do
+      filename=$(basename $i)
+      libsize=$(($(samtools flagstat $i | head -n 1 | cut -f 1 -d ' ')/2))
+      printf "%s\t%d\n" $filename $libsize >> libsize.txt
+    done
+    ```
 
 Most of the commands in the above code block should be familiar to you. Here, we use a loop to go through all the BAM files (mapping outputs from `bowtie2`). Something that might be new here is `$(($(samtools flagstat sample1.bam | head -n 1 | cut -f 1 -d ' ')/2))`. Let's go through the code chunk by chunk, starting inside and moving our way outwards:
 
@@ -92,12 +94,14 @@ Altogether, we generate, for each BAM file, the output of flagstat, take the fir
 #### 2. Normalise and scale contig coverage
 We then use the coverage table and library size files as inputs for a custom R script (you can also find it [here](../scripts/normalise_jgi_cov.r)). We can call this script via the command line like so:
 
-```bash
-module purge
-module load R/4.2.1-gimkl-2022a
+!!! terminal "code"
 
-./normalise_jgi_cov.r bins_cov_table.txt libsize.txt
-```
+    ```bash
+    module purge
+    module load R/4.2.1-gimkl-2022a
+    
+    ./normalise_jgi_cov.r bins_cov_table.txt libsize.txt
+    ```
 
 This script will generate an output in the current directory with the `normalised_` prefix before the coverage table file name. It will also inform you if there are unequal or unmatched sample names.
 
