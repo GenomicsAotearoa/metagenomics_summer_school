@@ -19,9 +19,7 @@ For this exercise, navigate to the directory `11.data_presentation/gene_synteny/
 
 !!! note "Note"
 
-    Refer to [gene_synteny_grab_GOI](../resources/6_APPENDIX_ex15_gene_synteny_grab_GOI.md) for detailed information on how the `cys.txt` files were produced.*
-
-    Refer to [gene_synteny_Generate_blast_files](../resources/5_APPENDIX_ex15_gene_synteny_Generate_blast_files.md) for detailed information on how the `blast` files were produced.
+    Refer to [this appendix](../resources/5_APPENDIX_ex15_Prepare_gene_synteny_inputs.md) for detailed information on how to generate input data.
 
 #### Part 1 - Parsing files in *bash*
 
