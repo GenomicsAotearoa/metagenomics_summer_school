@@ -90,7 +90,7 @@ Most of the commands in the above code block should be familiar to you. Here, we
 Altogether, we generate, for each BAM file, the output of flagstat, take the first number and divide it by 2. This is our library size (written out to a file as `libsize.txt`). 
 
 #### 2. Normalise and scale contig coverage
-We then use the coverage table and library size files as inputs for a custom R script (you can also find it [here]()). We can call this script via the command line like so:
+We then use the coverage table and library size files as inputs for a custom R script (you can also find it [here](../scripts/normalise_jgi_cov.r)). We can call this script via the command line like so:
 
 ```bash
 module purge
