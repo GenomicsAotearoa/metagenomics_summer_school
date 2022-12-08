@@ -1,4 +1,4 @@
-# APPENDIX (ex11) : viral taxonomy prediction via *vContact2*
+# APPENDIX (ex11) : Viral taxonomy prediction via *vContact2*
 
 
 **1. Predict genes via `prodigal`**
