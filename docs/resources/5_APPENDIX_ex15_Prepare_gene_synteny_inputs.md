@@ -236,7 +236,7 @@ Now we have gene annotations that are contiguous and continuous. Lets clean up t
     | `print` | Return/print out all lines |
 
 ### 3. Create comparison tables
-After obtaining relevant annotations for our genes of interest, we need to align the sequences against each other in order to identify sequence homology and directionality across our genes of interest. This can be achieved via pairwise sequence alignment using BLAST (or BLAST-like algorithms). Here, we will use `tBLASTx` to obtain requisite comparison tables. This is a 2 step process:
+After obtaining relevant annotations for our genes of interest, we need to align the sequences against each other in order to identify sequence homology and directionality across our genes of interest. This can be achieved via pairwise sequence alignment using BLAST (or BLAST-like algorithms). Here, we will use `tBLASTx` to obtain requisite comparison tables. Here, we will do this using the command line. However, you can also use online BLAST as [outlined here](./5_APPENDIX_ex15_gene_synteny_Generate_blast_files.md). This is a 2 step process:
 
 1. Obtain nucleotide sequences for relevant contigs in each bin
 1. Run (sequentially) a pairwise `tBLASTx` between each bin
