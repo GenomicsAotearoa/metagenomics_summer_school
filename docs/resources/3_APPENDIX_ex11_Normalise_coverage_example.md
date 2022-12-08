@@ -66,22 +66,22 @@ Most of the commands in the above code block should be familiar to you. Here, we
 
 - `samtools flagstat $i`: This calls the flagstat subcommand which provides some stats about our mapping.If you were to run it on sample1.bam, the results would look like the following (notice in the first line that the first number is double that of read 1 or read 2):
 ```bash
-1099984 + 0 in total (QC-passed reads + QC-failed reads)
-1099984 + 0 primary
-0 + 0 secondary
-0 + 0 supplementary
-0 + 0 duplicates
-0 + 0 primary duplicates
-1002053 + 0 mapped (91.10% : N/A)
-1002053 + 0 primary mapped (91.10% : N/A)
-1099984 + 0 paired in sequencing
-549992 + 0 read1
-549992 + 0 read2
-549784 + 0 properly paired (49.98% : N/A)
-998676 + 0 with itself and mate mapped
-3377 + 0 singletons (0.31% : N/A)
-6466 + 0 with mate mapped to a different chr
-6267 + 0 with mate mapped to a different chr (mapQ>=5)
+# 1099984 + 0 in total (QC-passed reads + QC-failed reads)
+# 1099984 + 0 primary
+# 0 + 0 secondary
+# 0 + 0 supplementary
+# 0 + 0 duplicates
+# 0 + 0 primary duplicates
+# 1002053 + 0 mapped (91.10% : N/A)
+# 1002053 + 0 primary mapped (91.10% : N/A)
+# 1099984 + 0 paired in sequencing
+# 549992 + 0 read1
+# 549992 + 0 read2
+# 549784 + 0 properly paired (49.98% : N/A)
+# 998676 + 0 with itself and mate mapped
+# 3377 + 0 singletons (0.31% : N/A)
+# 6466 + 0 with mate mapped to a different chr
+# 6267 + 0 with mate mapped to a different chr (mapQ>=5)
 ``` 
 - `head -n 1`: We only want the first line of this output.
 - `cut -f 1 -d ' '`: We only want the first column (first number) in the line that is space delimited.
