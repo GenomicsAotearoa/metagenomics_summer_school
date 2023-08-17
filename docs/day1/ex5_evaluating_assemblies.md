@@ -85,8 +85,8 @@ cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.evaluation/
 seqmagick convert --min-length 1000 spades_assembly/spades_assembly.fna \
                                     spades_assembly/spades_assembly.m1000.fna
 grep -c '>' spades_assembly/spades_assembly.fna spades_assembly/spades_assembly.m1000.fna
-# spades_assembly/spades_assembly.fna:1343
-# spades_assembly/spades_assembly.m1000.fna:945
+# spades_assembly/spades_assembly.fna:1318
+# spades_assembly/spades_assembly.m1000.fna:933
 
 seqmagick convert --min-length 1000 idbaud_assembly/idbaud_assembly.fna \
                                     idbaud_assembly/idbaud_assembly.m1000.fna
