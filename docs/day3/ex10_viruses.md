@@ -198,7 +198,7 @@ There are a number of approaches that can be used to attempt to predict the taxo
 
 Running `vContact2` can require a considerable amount of computational resources, and so we won't be running this in the workshop today. The required process is outlined for reference in an [Appendix for this exercise](../resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md), should you wish to experiment with this on your own data in the future. 
 
-For today, we have provided the final two output files from this process when applied to our mock metagenome data. These can be viewed in the folder `8.coverage_and_taxonomy/vConTACT2_Results/` via `head` or `less`.
+For today, we have provided the final two output files from this process when applied to our mock metagenome data. These can be viewed in the folder `7.viruses/vConTACT2_Results/` via `head` or `less`.
 
 ```bash
 less vConTACT2_Results/genome_by_genome_overview.csv
