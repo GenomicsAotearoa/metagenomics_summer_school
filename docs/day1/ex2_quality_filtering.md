@@ -149,6 +149,16 @@ There is a lot going on in this command, so here is a breakdown of the parameter
     |SLIDINGWINDOW:4:30|*positional*|Quality filtering command. Analyses each sequence in a 4 base pair sliding window, truncating if the average quality drops below Q30|
     |MINLEN:80|*positional*|Length filtering command, discard sequences that are shorter than 80 base pairs after trimming|
 
+
+!!! success "Terminal output"
+
+    ```
+    TrimmomaticPE: Started with arguments:
+     -threads 10 -phred33 mock_R1.adapter_decay.fastq.gz mock_R2.adapter_decay.fastq.gz mock_R1.qc.fastq.gz mock_s1.qc.fastq.gz mock_R2.qc.fastq.gz mock_s2.qc.fastq.gz HEADCROP:10 SLIDINGWINDOW:4:30 MINLEN:80
+    Input Read Pairs: 100000 Both Surviving: 75684 (75.68%) Forward Only Surviving: 12783 (12.78%) Reverse Only Surviving: 2311 (2.31%) Dropped: 9222 (9.22%)
+    TrimmomaticPE: Completed successfully
+    ```
+
 Running the trimmed files back through `FastQC`, we can see that this signifcantly improves the output.
 
 ##### Quality of reads
