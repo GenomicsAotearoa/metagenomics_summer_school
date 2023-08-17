@@ -116,7 +116,6 @@ nano prodigal.sl
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      prodigal
-    #SBATCH --res           SummerSchool
     #SBATCH --time          00:10:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 1
