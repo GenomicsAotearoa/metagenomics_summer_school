@@ -263,7 +263,7 @@ This exercise provides an example using **BBMap** to map against a masked human 
 
 #### Downloading the masked human reference genome
 
-The masked reference genome is available via [Google drive](https://drive.google.com/file/d/0B3llHR93L14wd0pSSnFULUlhcUk/edit?usp=sharing) and [Zenodo](https://zenodo.org/record/1208052). For this workshop, we have provided you with the file.
+The masked reference genome is available via [Google drive](https://drive.google.com/file/d/0B3llHR93L14wd0pSSnFULUlhcUk/edit?usp=sharing) and [Zenodo](https://zenodo.org/record/1208052). For this workshop, we have provided you with the file within the `4.evaluation/BBMask_human_reference/` directory.
 
 ??? note "Downloading your own copy of the masked genome"
 
