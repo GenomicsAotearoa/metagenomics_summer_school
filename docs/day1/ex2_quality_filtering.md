@@ -263,27 +263,31 @@ This exercise provides an example using **BBMap** to map against a masked human 
 
 #### Downloading the masked human reference genome
 
-The masked reference genome is available via a google drive link. We can use `gdown` to download this file from google drive via the command line.
+The masked reference genome is available via [Google drive](https://drive.google.com/file/d/0B3llHR93L14wd0pSSnFULUlhcUk/edit?usp=sharing) and [Zenodo](https://zenodo.org/record/1208052). For this workshop, we have provided you with the file.
 
-To install `gdown`, we can use `pip`. 
+??? note "Downloading your own copy of the masked genome"
 
-```bash
-# Install gdown (for downloading from google drive)
-module purge
-module load Python/3.10.5-gimkl-2022a
-pip install --user gdown
-```
+    We can use `gdown` to download this file from Google drive via the command line.
 
-Next, download the reference. It will also be necessary to first add your local `bin` location to the `PATH` variable via the `export PATH=...` command, as this is where `gdown` is located (modify `<your_username>` before running the code below).
+    To install `gdown`, we can use `pip`. 
 
-```bash
-mkdir BBMask_human_reference/
-cd BBMask_human_reference/
+    ```bash
+    # Install gdown (for downloading from google drive)
+    module purge
+    module load Python/3.10.5-gimkl-2022a
+    pip install --user gdown
+    ```
 
-export PATH="/home/<your_username>/.local/bin:$PATH"
+    Next, download the reference. It will also be necessary to first add your local `bin` location to the `PATH` variable via the `export PATH=...` command, as this is where `gdown` is located (modify `<your_username>` before running the code below).
 
-gdown https://drive.google.com/uc?id=0B3llHR93L14wd0pSSnFULUlhcUk
-```
+    ```bash
+    mkdir BBMask_human_reference/
+    cd BBMask_human_reference/
+
+    export PATH="/home/<your_username>/.local/bin:$PATH"
+
+    gdown https://drive.google.com/uc?id=0B3llHR93L14wd0pSSnFULUlhcUk
+    ```
 
 #### **Indexing the reference genome and read mapping with *BBMap***
 
