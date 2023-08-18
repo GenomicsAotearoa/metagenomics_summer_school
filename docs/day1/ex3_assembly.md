@@ -94,7 +94,7 @@ cat sample1_R1.fastq.gz sample2_R1.fastq.gz sample3_R1.fastq.gz sample4_R1.fastq
 cat sample1_R2.fastq.gz sample2_R2.fastq.gz sample3_R2.fastq.gz sample4_R2.fastq.gz > for_spades_R2.fq.gz
 ```
 
-Note that these *fastQ* files are compressed, yet we can concatenate them together with the `cat` command regardless. This is a nice feature of *.gz* files that is handy to remember.
+Note that these FASTQ files are compressed, yet we can concatenate them together with the `cat` command regardless. This is a nice feature of `.gz` files that is handy to remember.
 
 By contrast, what does `IDBA-UD` accept?
 
@@ -134,8 +134,7 @@ module load IDBA-UD/1.1.3-GCC-11.3.0
           --pre_correction                   perform pre-correction before assembly
     ```
 
-
-'Short' or 'long' reads, and only a single file for each. This means that if we want to assemble our community data using `IDBA-UD` we will need to pool the paired-end data into a single, interleaved *fastA* file. Interleaved means that instead of having a pair of files that contain the separate forward and reverse sequences, the read pairs are in a single file in alternating order. For example
+'Short' or 'long' reads, and only a single file for each. This means that if we want to assemble our community data using `IDBA-UD` we will need to pool the paired-end data into a single, interleaved FASTA file. Interleaved means that instead of having a pair of files that contain the separate forward and reverse sequences, the read pairs are in a single file in alternating order. For example
 
 ```bash
 # Paired-end file, forward
@@ -172,8 +171,7 @@ do
   fq2fa --merge ${i}_R1.fastq ${i}_R2.fastq ${i}.fna
 done
 
-cat sample1.fna sample2.fna sample3.fna sample4.fna > for_idba.fna
-    
+cat sample1.fna sample2.fna sample3.fna sample4.fna > for_idba.fna    
 ```
 
 ---
@@ -206,7 +204,7 @@ The first command lets us specify the *k*-mers ourselves, or we are letting `SPA
 idba_ud --mink 21 --maxk 121 --step 22
 ```
 
-Unlike `SPAdes`, we do not have fine-scale control over the *k*-mer sizes used in the assembly. We instead provide `IDBA-UD` with the first and last *k*-mer size to use, then specify the increment to use between these. In either case, it is important that we are always assembling using a *k*-mer of uneven (odd) length in order to avoid the creation of palindromic *k*-mers.
+Unlike `SPAdes`, we do not have fine-scale control over the *k*-mer sizes used in the assembly. We instead provide `IDBA-UD` with the first and last *k*-mer size to use, then specify the increment to use between these. In either case, it is important that we are always assembling using a *k*-mer of odd lengths in order to avoid the creation of palindromic *k*-mers.
 
 #### Specifying the number of threads
 
@@ -237,7 +235,7 @@ No such parameter exists in `IDBA-UD`, but it requires far less RAM than `SPAdes
 NeSI does not allow users to execute large jobs interactively on the terminal. Instead, the node that we have logged in to (*lander02*) has only a small fraction of the computing resources that NeSI houses. The *lander* node is used to write small command scripts, which are then deployed to the large compute nodes by a system called **slurm**. The ins and outs of working in slurm are well beyond the scope of this workshop (and may not be relevant if your institution uses a different resource allocation system). In this workshop, we will therefore only be showing you how to write minimal slurm scripts sufficient to achieve our goals. By the end of the workshop, you should have built up a small collection of slurm scripts for performing the necessary stages of our workflow and with experience you will be able to modify these to suit your own needs.
 
 #### Submitting a *SPAdes* job to NeSI using slurm
-...
+
 To begin, we need to open a text file using the `nano` text editor. 
 
 ```bash
