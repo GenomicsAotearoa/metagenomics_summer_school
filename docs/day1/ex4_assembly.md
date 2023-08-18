@@ -10,7 +10,7 @@ All work for this exercise will occur in the `3.assembly/` directory.
 
 ### Examine the effect of changing assembly parameters
 
-For this exercise, there is no real structure. Make a few copies of your initial slurm scripts and tweak a few of the asembly parameters. You will have a chance to compare the effects of these changes tomorrow.
+For this exercise, there is no real structure. Make a few copies of your initial slurm scripts and tweak a few of the assembly parameters. You will have a chance to compare the effects of these changes tomorrow.
 
 #### *SPAdes* parameters
 
@@ -25,7 +25,7 @@ Change a few of the parameters for run time. Some potential options include
 1. Change the *k*-mer sizes to either a different specification, or change to the `auto` option
 1. Disable error correction
 1. Assemble without the `--meta` flag
-1. Employ a coverage cutoff for assembling
+1. Employ a coverage cut-off for assembling
 
 #### *IDBA-UD* parameters
 
