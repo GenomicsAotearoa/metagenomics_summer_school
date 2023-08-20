@@ -2,15 +2,15 @@
 
 !!! info "Objectives"
 
-    * [Overview of `DRAM.py annotate` output](#overview-of-drampy-annotate-output)
-    * [`DRAM` distillation step and visualization of results](#dram-distillation-of-the-results)
+    * [Overview of `DRAM.py annotate` and `DRAM-v.py annotate` output](#overview-of-drampy-annotate-and-dramvpy-annotate-output)
+    * [*DRAM* and *DRAM-v* distillation step and visualization of results](#dram-and-dramv-distillation-of-the-results)
     * [Tie findings to your initial goal](#tie-findings-to-your-initial-goal)
 
 ---
 
 ### Overview of *DRAM.py annotate* output
 
-The submitted job from the previous session should now be completed. If we examine the output directory `10.gene_annotation_and_coverage/dram_annotations/` we will see the following files:
+The submitted jobs from the previous session should now be completed. If we examine the output directory `10.gene_annotation_and_coverage/dram_annotations/` we will see the following files:
 
 |File name | Description|
 |:--- | :--- | 
@@ -42,12 +42,17 @@ For each gene annotated, `DRAM` provides a summary rank (from A to E), represent
 
 <center>![image](../figures/ex14_DRAM_annotation_rank.png){width="500"}</center>
 
+### Overview of *DRAM-v.py annotate* output
+
+*DRAM-v* generates the same output files as *DRAM* but this time for the viral contigs. These files can be viewed in the output directory `10.gene_annotation_and_coverage/dram_annotations/`. In this case, `annotations.tsv` also includes some viral specific columns, including viral gene database matches (`vogdb`), and categories that are used by *DRAM-v.py distill* to identify putative auxiliary metabolic genes (AMGs) (`virsorter_category`, `auxiliary_score`,  `is_transposon`, `amg_flags`)
 
 ---
 
-### *DRAM* distillation of the results
+### *DRAM* and *DRAM-v* distillation of the results
 
-After the annotation is finished, we will summarise and visualise these annotations with the so-called *distillation* step. We do so by running the following command directly in the terminal. This will generate the distillate and liquor files.
+After the annotation is finished, we will summarise and visualise these annotations with the so-called *distillation* step. We do so by running the following commands directly in the terminal. This will generate the distillate and liquor files for each dataset.
+
+For the viral annotations, we will also include the parameters `--remove_transposons` ("Do not consider genes on scaffolds with transposons as potential AMGs") and `--remove_fs` ("Do not consider genes near ends of scaffolds as potential AMGs") to filter out some potential false positives for auxilliary metabolic gene identification.
 
 !!! terminal "code"
 
@@ -57,11 +62,18 @@ After the annotation is finished, we will summarise and visualise these annotati
     
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage/
     
+    # Prokaryote annotations
     DRAM.py distill -i dram_annotations/annotations.tsv -o dram_distillation --trna_path dram_annotations/trnas.tsv --rrna_path dram_annotations/rrnas.tsv
+    
+    # viral annotations
+    DRAM-v.py distill --remove_transposons --remove_fs \
+    -i dramv_annotations/annotations.tsv \
+    -o dramv_distillation
     ```
 
+### *DRAM.py distill* output files 
 
-The distillation step generates the following files that can be found within the ```dram_distillation``` directory :
+The *DRAM* distillation step generates the following files that can be found within the ```dram_distillation``` directory :
 
 |File name | Description|
 |:--- | :--- |
@@ -89,8 +101,6 @@ First, let's have a look at the ```genome_stats.tsv``` file to check the assembl
     |bin_8|19|d__Bacteria;p__Desulfobacterota_A;c__Desulfovibrionia;o__Desulfovibrionales;f__Desulfovibrionaceae;g__Desulfovibrio;s__|99.41|0|2 present|bin_8, (3744, 5289)|bin_8, (379, 3300)|57|med|
     |bin_9|1|d__Bacteria;p__Planctomycetota;c__Brocadiae;o__Brocadiales;f__Brocadiaceae;g__;s__|97.8|1.65|bin_9, (1066028, 1066130)|bin_9, (1069811, 1071397)|bin_9, (1066309, 1069302)|46|high|
 
----
-
 To finish, we visualize the *Product*, an .HTML file produced in the distillation step, by double-clicking on it in our *Jupyter* lab notebook or downloading from [here](../resources/dram_distillation.zip). The *Product* has three primary parts:
 
 1. **Modules.** Central metabolism pathways coverage. Completion of pathways is based on the structure of KEGG modules, with the pathway coverage calculated as the percent of steps with at least one gene present.
@@ -110,6 +120,41 @@ To finish, we visualize the *Product*, an .HTML file produced in the distillatio
 <center>
 ![image](../figures/ex15_fig3_DRAM_product_2022.png)
 </center>
+
+### *DRAM-v.py distill* output files 
+
+The *DRAM-v* distillation step for the viral contigs generates the following files that can be found within the ```dramv_distillation/``` directory :
+
+|File name | Description|
+|:--- | :--- |
+|**vMAG_stats.tsv**| "Genome" (in this case viral contigs of varying completeness) information including: total gene counts, viral vs host gene counts, and counts of genes related to viral replication, structure, and those with presumed viral or host benefits |
+|**amg_summary.tsv**| Genes identified as putative auxiliary metabolic genes (AMGs) and various columns for metabolic characterisation of each gene |
+|**product.html**| HTML file displaying a heatmap summarising AMG counts and presence/absence for different broad metabolic categories for each viral contig |
+
+### OPTIONAL Exercise: Examine viral output files from *VirSorter2*, *CheckV*, and *DRAM-v*
+
+*VirSorter2*, *CheckV*, and *DRAM-v* provide a number of different output files that are important for identifying and understanding the viruses present in your data. Explore through the following files: 
+
+- `7.viruses/VirSorter2/mgss-final-viral-score.tsv`
+- `7.viruses/checkv_out/quality_summary.tsv/`
+- `10.gene_annotation_and_coverage/dramv_annotations/annotations.tsv`
+- `10.gene_annotation_and_coverage/dramv_distillation/amg_summary.tsv`
+
+When viewing these files, see if you can find the following information:
+
+!!! quote ""
+
+    * How many viral contigs did *VirSorter2* identify?
+    * Of these, how many did *VirSorter2* identify as prophage?
+    * What are some annotations of interest within the output annotations file? 
+  
+        !!! note ""
+      
+            The *VirSorter2* annotations file includes multiple columns for both **prokaryote** and **viral** protein predictions. Be careful as to which column you are looking at (as well as its associated confidence score) when assessing viral annotations vs. AMGs.
+
+    * Among these annotations, how many were flagged as AMGs by *DRAM-v*?
+    * What broad metabolic categories did the AMGs fall into? 
+    * Discussion point: How might we investigate whether identified putative AMGs are actually *within* the viral genomes, rather than residual contaminating host genomic sequence attached to the end of integrated prophage (but incompletely trimmed off in the excision process)?
 
 ---
 
