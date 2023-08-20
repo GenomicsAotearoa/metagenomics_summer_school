@@ -147,7 +147,11 @@ When viewing these files, see if you can find the following information:
     * How many viral contigs did *VirSorter2* identify?
     * Of these, how many did *VirSorter2* identify as prophage?
     * What are some annotations of interest within the output annotations file? 
-      * *NOTE: the *VirSorter2* annotations file includes multiple columns for both **prokaryote** and **viral** protein predictions. Be careful as to which column you are looking at (as well as its associated confidence score) when assessing viral annotations vs. AMGs*.
+  
+        !!! note ""
+      
+            The *VirSorter2* annotations file includes multiple columns for both **prokaryote** and **viral** protein predictions. Be careful as to which column you are looking at (as well as its associated confidence score) when assessing viral annotations vs. AMGs.
+
     * Among these annotations, how many were flagged as AMGs by *DRAM-v*?
     * What broad metabolic categories did the AMGs fall into? 
     * Discussion point: How might we investigate whether identified putative AMGs are actually *within* the viral genomes, rather than residual contaminating host genomic sequence attached to the end of integrated prophage (but incompletely trimmed off in the excision process)?
