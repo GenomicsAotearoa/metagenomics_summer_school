@@ -136,11 +136,11 @@
 }
 .md-typeset .backward > .admonition-title,
 .md-typeset .backward > summary {
-  background-color: rgba(216,191,216);
+  background-color: rgba(151, 186, 250, 0.808);
 }
 .md-typeset .backward > .admonition-title::before,
 .md-typeset .backward > summary::before {
-  background-color: rgb(112,128,144);
+  background-color: rgb(28, 26, 116);
   -webkit-mask-image: var(--md-admonition-icon--backward);
           mask-image: var(--md-admonition-icon--backward);
 }
