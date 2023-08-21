@@ -63,7 +63,27 @@ cut -f1,2 -d ',' all_bins.sample1.vizbin.ann > all_bins.sample1.vizbin.no_length
 
 We can now use these files in `VizBin` to curate the contigs in our bins. We will load and view the data in a few different steps.
 
-*NOTE: Running `VizBin` remotely (e.g. within NeSI) can be slow with full data sets. Running a GUI (such as a program like `VizBin`) remotely can also require additional set up on some PCs. For day-to-day work, we recommend installing `VizBin` on your local machine and downloading the relevant input files (e.g. via `scp ...`) to run locally.*
+For this exercise, we will be using the *Virtual Desktop* on NeSI which allows us to use programmes with graphical user interfaces (GUI) within the NeSI computing environment.
+
+#### Initiate the Virtual Desktop
+
+1. Click on <kbd>File</kbd> on the top left corner of the Jupyter Hub, and then select <kbd>New Launcher</kbd>. You can also click on the small <kbd>+</kbd> on the tabbed bar next to your terminal tab.
+2. Look for the Virtual Desktop icon and then click on centre of the icon.
+    <center>
+    ![virtual desktop icon](../figures/VirtualDesktop.PNG)
+    </center>
+3. A new browser tab named 'TurboVNC:...' should appear and the Virtual Desktop should load.
+4. A successful instance of the Virtual Desktop should look like a desktop environment.
+
+<center>
+![virtual desktop environment](../figures/VirtualDesktopInitiated.PNG){width=600px}
+</center>
+
+!!! note "Running VizBin: local vs remote" 
+
+    Running `VizBin` remotely (e.g. within NeSI) can be slow with full data sets. Running a GUI (such as a program like `VizBin`) remotely can also require additional set up on some PCs. For day-to-day work, we recommend installing `VizBin` on your local machine and downloading the relevant input files (e.g. via `scp ...`) to run locally.
+
+<!--
 
 `VizBin` cannot be opened within the NeSI `Jupyter hub`. For today's exercise, open `VizBin` via either:
 
@@ -87,6 +107,46 @@ java -jar ../tools/vizbin.jar
 ```
 
 If this fails to open on your PC, or if it runs prohibitively slowly, team up with 2-3 others in the workshop to run through this exercise together on one machine.
+
+-->
+
+#### Initiate VizBin within the Virtual Desktop environment
+
+1. In the Virtual Desktop, click on the terminal icon.
+    <center>
+    ![terminal emulator](../figures/TerminalEmulator.PNG)
+    </center>
+2. VizBin is a Java programme, therefore we will need to load the Java module for it to work. In the terminal, type the following to load the Java module
+    ```bash
+    module load Java/17
+    ```
+3. In the terminal, navigate to your directory where the Java file resides
+    
+    !!! warning "Replace path"
+
+        Remember to replace `YOUR FOLDER` with your user name.
+
+    ```bash
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinement/
+
+    ls
+    ```
+
+    !!! success ""
+
+        ```
+        all_bins.fna  all_bins.sample1.vizbin.ann  vizbin_count_table_2022.sh  VizBin-dist.jar  vizbin_example_exports
+        ```
+
+4. Type the following into your Virtual Desktop terminal to initiate VizBin.
+   ```bash
+   java -jar VizBin-dist.jar
+   ```
+5. A successful launch of VizBin will look like the following:
+   <center>
+   ![vizbin launch](../figures/SuccessVizBin.PNG)
+   </center>
+
 
 #### Loading the input files
 
