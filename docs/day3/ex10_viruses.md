@@ -17,23 +17,31 @@ Currently, the most commonly used methods are [VirSorter2](https://microbiomejou
 
 !!! info ""
 
-    === "[VirSorter2](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00990-y)"
+    === "VirSorter2"
 
         Uses a predicted protein homology reference database-based approach, together with searching for a number of pre-defined metrics based on known viral genomic features. `VirSorter2` includes dsDNAphage, ssDNA, and RNA viruses, and the viral groups Nucleocytoviricota and lavidaviridae.* 
 
-        **More info** [github.com/jiarong/VirSorter2](https://github.com/jiarong/VirSorter2)
+        **More info** 
 
-    === "[VIBRANT](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0)"
+        - [VirSorter2 GitHub](https://github.com/jiarong/VirSorter2)
+        - [Guo *et al.* (2021) VirSorter2: a multi-classifier, expert-guided approach to detect diverse DNA and RNA viruses](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00990-y)
+
+    === "VIBRANT"
 
         Uses a machine learning approach based on protein similarity (non-reference-based similarity searches with multiple HMM sets), and is in principle applicable to bacterial and archaeal DNA and RNA viruses, integrated proviruses (which are excised from contigs by `VIBRANT`), and eukaryotic viruses. 
 
-        **More info** [github.com/AnantharamanLab/VIBRANT](https://github.com/AnantharamanLab/VIBRANT)
+        **More info** 
+        
+        - [VIBRANT GitHub](https://github.com/AnantharamanLab/VIBRANT)
+        - [Kieft, Zhou, and Anantharaman (2020) VIBRANT: automated recovery, annotation and curation of microbial viruses, and evaluation of viral community function from genomic sequences](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0)
 
-    === "[DeepVirFinder](https://github.com/jessieren/DeepVirFinder)"
+    === "DeepVirFinder"
 
         Uses a machine learning based approach based on *k*-mer frequencies. Having developed a database of the differences in *k*-mer frequencies between prokaryote and viral genomes, *VirFinder* examines assembled contigs and identifies whether their *k*-mer frequencies are comparable to known viruses in the database, using this to predict viral genomic sequence. This method has some limitations based on the viruses that were included when building the database (bacterial DNA viruses, but very few archaeal viruses, and, at least in some versions of the software, no eukaryotic viruses). However, tools are also provided to build your own database should you wish to develop an expanded one. Due to its distinctive *k*-mer frequency-based approach, *VirFinder* may also have the capability of identifying some novel viruses overlooked by tools such as *VIBRANT* or *VirSorter*.
 
-        **More info** [github.com/jessieren/DeepVirFinder](https://github.com/jessieren/DeepVirFinder)
+        **More info** 
+
+        - [DeepVirFinder GitHub](https://github.com/jessieren/DeepVirFinder)
 
 
 ---
@@ -82,38 +90,42 @@ nano VirSorter2_and_checkv.sl
     #SBATCH --job-name      VirSorter2_and_checkv
     #SBATCH --time          05:00:00
     #SBATCH --mem           2GB
-    #SBATCH --cpus-per-task 32
+    #SBATCH --cpus-per-task 28
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
 
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/
     
-    ## VirSorter2
-    # Load modules
+    # VirSorter2
+    ## Load modules
     module purge
     module unload XALT
     module load VirSorter/2.2.3-gimkl-2020a-Python-3.8.2
-    # Output directory
-    mkdir -p VirSorter2
-    # Run VirSorter2
-    srun virsorter run -j $SLURM_CPUS_PER_TASK \
-    -i spades_assembly/spades_assembly.m1000.fna \
-    -d /nesi/project/nesi02659/MGSS_2023/resources/virsorter2_20210909/ \
-    --min-score 0.7 --include-groups dsDNAphage,NCLDV,RNA,ssDNA,lavidaviridae \
-    --prep-for-dramv \
-    -l mgss -w VirSorter2 \
-    --tmpdir ${SLURM_JOB_ID}.tmp --rm-tmpdir \
-    all \
-    --config LOCAL_SCRATCH=${TMPDIR:-/tmp}
 
-    ## CheckV
-    # Load module
+    ## Output directory
+    mkdir -p VirSorter2
+
+    ## Run VirSorter2
+    virsorter run -j $SLURM_CPUS_PER_TASK \
+      -i spades_assembly/spades_assembly.m1000.fna \
+      -d /nesi/project/nesi02659/MGSS_2023/resources/virsorter2_20210909/ \
+      --min-score 0.7 --include-groups dsDNAphage,NCLDV,RNA,ssDNA,lavidaviridae \
+      --prep-for-dramv \
+      -l mgss -w VirSorter2 \
+      --tmpdir ${SLURM_JOB_ID}.tmp --rm-tmpdir \
+      all \
+      --config LOCAL_SCRATCH=${TMPDIR:-/tmp}
+
+    # CheckV
+    ## Load module
     module purge
     module load CheckV/1.0.1-gimkl-2022a-Python-3.10.5
-    # Output directory
+    
+    ## Output directory
     mkdir -p checkv_out
-    # Run CheckV
+    
+    ## Run CheckV
     checkv end_to_end VirSorter2/mgss-final-viral-combined.fa checkv_out/ -t $SLURM_CPUS_PER_TASK
     ```
 
@@ -127,7 +139,7 @@ sbatch VirSorter2_and_checkv.sl
 
 Key outputs from *VirSorter2* include:
 
-- `mgss-final-viral-combined.fa`: fasta file of identified viral sequences
+- `mgss-final-viral-combined.fa`: FASTA file of identified viral sequences
 - `mgss-final-viral-score.tsv`: table with score of each viral sequences across groups and a few more key features, which can also be used for further filtering
 - `mgss-for-dramv/`: files to be used as input to *DRAM-v* for gene prediction and annotation (we will be running *DRAM-v* later today during the gene annotation session)
 
@@ -162,11 +174,15 @@ A few notes to consider:
 
     * You will see that the `genome_by_genome_overview.csv` file contains entries for the full reference database used as well as the input viral contigs (contigs starting with `NODE`). 
     * You can use a command such as `grep "NODE" vConTACT2_Results/genome_by_genome_overview.csv | less` to view only the lines for the input contigs of interest. 
-      * Note also that these lines however will *not* contain taxonomy information. 
-      * See the notes in the [Appendix](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md) for further information about why this might be.
-    * As per the notes in the [Appendix](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md), the `tax_predict_table.txt` file contains *predictions* of potential taxonomy (and or taxonom*ies*) of the input viral contigs for order, family, and genus, based on whether they clustered with any viruses in the reference database.
-      * Note that these may be lists of *multiple* potential taxonomies, in the cases where viral contigs clustered with multiple reference viruses representing more than one taxonomy at the given rank.
-      * *NOTE: The taxonomies are deliberately enclosed in square brackets (`[ ]`) to highlight the fact that these are **predictions**, rather than definitive taxonomy **assignments**.*
+        * Note also that these lines however will *not* contain taxonomy information. 
+        * See the notes in the [Appendix](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md) for further information about why this might be.
+        
+    * As per the notes in the [Appendix](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md), the `tax_predict_table.txt` file contains *predictions* of potential taxonomy (and or *taxonomies*) of the input viral contigs for order, family, and genus, based on whether they clustered with any viruses in the reference database.
+        * Note that these may be lists of *multiple* potential taxonomies, in the cases where viral contigs clustered with multiple reference viruses representing more than one taxonomy at the given rank.
+  
+        !!! note "" 
+            
+            The taxonomies are deliberately enclosed in square brackets (`[ ]`) to highlight the fact that these are **predictions**, rather than definitive taxonomy **assignments**.
     
 ---
 
@@ -174,7 +190,9 @@ A few notes to consider:
 
 We can visualise the gene-sharing network generated by *vContact2* (`c1.ntw `) using the software *Cytoscape*. *Cytoscape* runs as a GUI (graphical user interface), so we will need to either download and install this software or open *Cytoscape* using NeSI's Virtual Desktop. To open in the Virtual Desktop, click *New Laucher* in Jupyterhub and lauch *Virtual Desktop*. This will open a new tab. In the new desktop, open a terminal, and then load and run the *Cytoscape* module as per below.
 
-*NOTE: You may not be able to copy/paste into the Virtual Desktop, in which case you will need to manually type these commands.*
+!!! warning "Copy/paste in the Virtual Desktop"
+
+    You may not be able to copy/paste into the Virtual Desktop, in which case you will need to manually type these commands.
 
 ```bash
 # Load the module
@@ -184,24 +202,41 @@ module load Cytoscape/3.9.1
 Cytoscape
 ```
 
-*NOTE: A dialog box will appear telling you about a new version of Cytoscape. **Click "discard"**, as we will not be installing any new versions today!*
+!!! warning "Do not update Cytoscape!" 
+    
+    A dialog box will appear telling you about a new version of Cytoscape. **Click "discard"**, as we will not be installing any new versions today!
 
 In *Cytoscape*, we can load the gene-sharing network by clicking `File/Import/Network from file`, and then opening the `c1.ntw` file (You may need to click the `Home` button and then navigate to the relevant directory when `c1.ntw` is located (i.e. in `/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/vConTACT2_Results/`)). 
 
 In the "Import Network From Table" pop-up box: 
 
-- Click *Advanced Options*, select *SPACE* as the delimiter, uncheck the *Use first line as column names* box, and click *OK*
-- In the dropdown menu for "Column 1", select the green dot (source node); for Column 2 select the red target (Target node) and then click *OK*
+- Click *Advanced Options*:
+    1. Select *SPACE* as the delimiter
+    2. Uncheck the *Use first line as column names* box
+    3. Click *OK*
+
+- In the dropdown menu for "Column 1": 
+    1. Select the green dot (source node) 
+    2. For Column 2 select the red target (Target node)
+    3. Click *OK*
 
 It will now ask if you want to create a view for your large networks now. Click *OK*. This may take a minute to generate the network visualisation. 
 
 There are many ways to modify and inspect this visualisation. One basic addition that will help us interpret the results here is to colour code the viral genomes based on reference (RefSeq) genomes and the viral contigs recovered from our dataset. We can do this by loading the `genome_by_genome_overview.csv` file. 
 
-*NOTE: for the purposes of this workshop, we have added the additional column `Dataset` to the `genome_by_genome_overview.csv` file stating whether each viral sequence originated from either the reference database (`RefSeq`) or our own data (`Our_data`). This column is not generated by vConTACT2, but you can open the file in Excel to add any additional columns you would like to colour code the nodes by.*
+!!! note "`Dataset` column" 
+
+    For the purposes of this workshop, we have added the additional column `Dataset` to the `genome_by_genome_overview.csv` file stating whether each viral sequence originated from either the reference database (`RefSeq`) or our own data (`Our_data`). This column is not generated by vConTACT2, but you can open the file in Excel to add any additional columns you would like to colour code the nodes by.
 
 Click `File/Import/Table from file` and select the `genome_by_genome_overview.csv` file to open. In the pop-up box, leave the settings as default and click *OK*. This will add a bunch of metadata to your network table. We can now use this to colour code the nodes in the network.
 
-To colour code the nodes by genome source (`Refseq` or `Our_data`): click the `Style` tab on the far left; select the dropdown arrow by `Fill Color`; next to `Column` click on *-- select value--* and select `Dataset`. For `Mapping Type`, select `Discrete Mapping`. Then for each of `Refseq` and `Our_data`, click the three dots in the empty box to the right of the label and select a colour for that dataset.
+To colour code the nodes by genome source (`Refseq` or `Our_data`): 
+
+1. Click the `Style` tab on the far left
+2. Select the dropdown arrow by `Fill Color`
+3. Next to `Column` click on *--select value--* and select `Dataset` 
+4. For `Mapping Type`, select `Discrete Mapping`. 
+5. Then for each of `Refseq` and `Our_data`, click the three dots in the empty box to the right of the label and select a colour for that dataset.
 
 You can now zoom in on the network and select viral contigs from your own dataset, and examine which reference viruses may be the most closely related. This can give an indication of the possible taxonomy of your own viruses based on their gene-sharing relatedness to the known reference genomes.
 

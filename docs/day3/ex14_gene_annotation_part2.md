@@ -337,34 +337,36 @@ nano mapping_viruses.sl
 
     Paste in the script (replacing `<YOUR FOLDER>`)
 
-```bash
-#!/bin/bash -e
+!!! terminal "code"
 
-#SBATCH --account       nesi02659
-#SBATCH --job-name      mapping_viruses
-#SBATCH --time          00:05:00
-#SBATCH --mem           1GB
-#SBATCH --cpus-per-task 10
-#SBATCH --error         %x_%j.err
-#SBATCH --output        %x_%j.out
-
-# Load modules
-module purge
-module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
-
-# Working directory
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
-
-# Run Bowtie2
-for i in {1..4}; do
-  bowtie2 --minins 200 --maxins 800 --threads $SLURM_CPUS_PER_TASK --sensitive \
-            -x viruses_coverage/bw_viruses \
-            -1 ../3.assembly/sample${i}_R1.fastq.gz \
-            -2 ../3.assembly/sample${i}_R2.fastq.gz \
-            -S viruses_coverage/sample${i}.sam
-  samtools sort -@ $SLURM_CPUS_PER_TASK -o viruses_coverage/sample${i}.bam viruses_coverage/sample${i}.sam
-done
-```
+    ```bash
+    #!/bin/bash -e
+    
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      mapping_viruses
+    #SBATCH --time          00:05:00
+    #SBATCH --mem           1GB
+    #SBATCH --cpus-per-task 10
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
+    
+    # Load modules
+    module purge
+    module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
+    
+    # Working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
+    
+    # Run Bowtie2
+    for i in {1..4}; do
+      bowtie2 --minins 200 --maxins 800 --threads $SLURM_CPUS_PER_TASK --sensitive \
+                -x viruses_coverage/bw_viruses \
+                -1 ../3.assembly/sample${i}_R1.fastq.gz \
+                -2 ../3.assembly/sample${i}_R2.fastq.gz \
+                -S viruses_coverage/sample${i}.sam
+      samtools sort -@ $SLURM_CPUS_PER_TASK -o viruses_coverage/sample${i}.bam viruses_coverage/sample${i}.sam
+    done
+    ```
 
 Run the script
 
