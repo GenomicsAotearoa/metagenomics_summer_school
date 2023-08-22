@@ -44,7 +44,7 @@ For each gene annotated, `DRAM` provides a summary rank (from A to E), represent
 
 ### Overview of *DRAM-v.py annotate* output
 
-*DRAM-v* generates the same output files as *DRAM* but this time for the viral contigs. These files can be viewed in the output directory `10.gene_annotation_and_coverage/dram_annotations/`. In this case, `annotations.tsv` also includes some viral specific columns, including viral gene database matches (`vogdb`), and categories that are used by *DRAM-v.py distill* to identify putative auxiliary metabolic genes (AMGs) (`virsorter_category`, `auxiliary_score`,  `is_transposon`, `amg_flags`)
+*DRAM-v* generates the same output files as *DRAM*, but this time for the viral contigs. These files can be viewed in the output directory `10.gene_annotation_and_coverage/dramv_annotations/`. In this case, `annotations.tsv` also includes some viral-specific columns, including viral gene database matches (`vogdb`), and categories that are used by *DRAM-v.py distill* to identify putative auxiliary metabolic genes (AMGs) (`virsorter_category`, `auxiliary_score`,  `is_transposon`, `amg_flags`)
 
 ---
 
@@ -131,27 +131,12 @@ The *DRAM-v* distillation step for the viral contigs generates the following fil
 |**amg_summary.tsv**| Genes identified as putative auxiliary metabolic genes (AMGs) and various columns for metabolic characterisation of each gene |
 |**product.html**| HTML file displaying a heatmap summarising AMG counts and presence/absence for different broad metabolic categories for each viral contig |
 
-### OPTIONAL Exercise: Examine viral output files from *VirSorter2*, *CheckV*, and *DRAM-v*
-
-*VirSorter2*, *CheckV*, and *DRAM-v* provide a number of different output files that are important for identifying and understanding the viruses present in your data. Explore through the following files: 
-
-- `7.viruses/VirSorter2/mgss-final-viral-score.tsv`
-- `7.viruses/checkv_out/quality_summary.tsv/`
-- `10.gene_annotation_and_coverage/dramv_annotations/annotations.tsv`
-- `10.gene_annotation_and_coverage/dramv_distillation/amg_summary.tsv`
-
 When viewing these files, see if you can find the following information:
 
 !!! quote ""
 
-    * How many viral contigs did *VirSorter2* identify?
-    * Of these, how many did *VirSorter2* identify as prophage?
     * What are some annotations of interest within the output annotations file? 
-  
-        !!! note ""
-      
-            The *VirSorter2* annotations file includes multiple columns for both **prokaryote** and **viral** protein predictions. Be careful as to which column you are looking at (as well as its associated confidence score) when assessing viral annotations vs. AMGs.
-
+      * *NOTE: the *VirSorter2* annotations file includes multiple columns for both **prokaryote** and **viral** protein predictions. Be careful as to which column you are looking at (as well as its associated confidence score) when assessing viral annotations vs. AMGs*.
     * Among these annotations, how many were flagged as AMGs by *DRAM-v*?
     * What broad metabolic categories did the AMGs fall into? 
     * Discussion point: How might we investigate whether identified putative AMGs are actually *within* the viral genomes, rather than residual contaminating host genomic sequence attached to the end of integrated prophage (but incompletely trimmed off in the excision process)?
