@@ -145,6 +145,23 @@ Key outputs from *VirSorter2* include:
 
 *CheckV* provides summary outputs for contamination, completeness, repeats, and an overall quality summary. Later today we will have a brief look at some examples of the information you can draw from these *CheckV* outputs. 
 
+### Exercise: Examine viral output files from *VirSorter2* and *CheckV*
+
+*VirSorter2* and *CheckV* provide several of different output files that are important for identifying and understanding the viruses present in your data. Explore through the following files: 
+
+- `7.viruses/VirSorter2/mgss-final-viral-score.tsv`
+- `7.viruses/checkv_out/quality_summary.tsv`
+
+When viewing these files, see if you can find the following information:
+
+!!! quote ""
+
+    * How many viral contigs did *VirSorter2* identify?
+    * How many viral contigs meet the "High-quality" (MIUViG) standard?
+    * How many might we consider "complete" genomes based on *CheckV*'s completeness estimation?
+    * Are any of the identified viral contigs complete *cirular* genomes (based on identifying direct terminal repeat regions on both ends of the genome)? If not, think about why this might be the case for this dataset (hint: the workshop materials are a manufactured "metagenome" data set based on compiling several individual genomes)
+    * Are there any suspicious contigs that you might want to flag for closer examination (and/or careful consideration in downstream analyses)? (Note that standard practice would be to use these *CheckV* results as one basis for filtering to remove potential false positives)
+
 ---
 
 ### Introduction to *vContact2* for predicting taxonomy of viral contigs
