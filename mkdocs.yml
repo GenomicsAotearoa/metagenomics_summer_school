@@ -104,6 +104,7 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
   - pymdownx.snippets
+  - markdown_grid_tables
 
 extra_javascript:
   - javascripts/mathjax.js

@@ -4,93 +4,123 @@
 <style>h1 {text-align: center;}</style>
 <h1><b>Metagenomics Summer School</b></h1>
 
-
-
-
 - - - 
 
-|<div style="width:350px"> **Day**</div>                                         | **Lesson overview**                           | 
-|:---------------------------------------------------|:---------------------------------------|
-|[  Day 1  ](""){ .md-button .md-button--primary }   | [1. Intro Session I (pre-summer school): Shell ](./day1/ex1_bash_and_scheduler.md)<br>[2. Intro Session II. : HPC and HPC Job Scheduler](./day1/ex2_1_intro_to_scheduler.md)</br><br>[3. Quality filtering raw reads](./day1/ex2_quality_filtering.md)</br><br>[4. Assembly](./day1/ex3_assembly.md)</br><br>[5. Assembly (part 2)](./day1/ex4_assembly.md)</br><br>[6. Evaluating the assemblies](./day1/ex5_evaluating_assemblies.md)</br>                                       |
-|[  Day 2  ](""){ .md-button .md-button--primary }   | [1. Introduction to binning](./day2/ex6_initial_binning.md)<br>[2. Binning (continued)](./day2/ex7_initial_binning.md)</br><br>[3. Bin dereplication](./day2/ex8_bin_dereplication.md)</br><br>[4. Manually refining bins](./day2/ex9_refining_bins.md)</br>                                        |
-|[  Day 3  ](""){ .md-button .md-button--primary }   |[1. Identifying viral contigs in metagenomic data](./day3/ex10_viruses.md)<br>[2. Assigning taxonomy to refined prokaryotic bins](./day3/ex11_coverage_and_taxonomy.md)</br><br>[3. Gene prediction](./day3/ex12_gene_prediction.md)</br><br>[4. Gene annotation (part 1)](./day3/ex12_gene_prediction.md)</br><br>[5. Gene annotation (part 2) and coverage calculation](./day3/ex14_gene_annotation_part2.md)</br>                                     |
-|[  Day 4  ](""){ .md-button .md-button--primary }   |[1. Gene annotation (part 3)](./day4/ex15_gene_annotation_part3.md)<br>[2. Presentation of data - Intro](./day4/ex16a_data_presentation_Intro.md)</br><br>[3. Presentation of data: Per-sample coverage heatmaps](./day4/ex16b_data_presentation_Coverage.md)</br><br>[4. Presentation of data: Ordinations](./day4/ex16c_OPTIONAL_data_presentation_Ordination.md)</br><br>[5. Presentation of data: KEGG pathway maps](./day4/ex16d_data_presentation_KEGG_pathways.md)</br><br>[6. Presentation of data: Gene synteny](./day4/ex16e_data_presentation_Gene_synteny.md)</br><br>[7. Presentation of data: CAZY annotations heatmap](./day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations.md)</br>                                        |
+<!--
+| <div style="width:300px">**Day**</div>  | <div style="width:400px">**Lesson topic**</div> |
+| :-: | :----------- |
+| [Day 1](#){ .md-button .md-button--primary } | [1. (Pre-Summer School) Introduction I: Shell](./day1/ex1_bash_and_scheduler.md)<br>[2. Introduction II: HPC and job scheduler](./day1/ex2_1_intro_to_scheduler.md)<br>[3. Filter raw reads by quality](./day1/ex2_quality_filtering.md)<br>[4. Assembly I: Assembling contigs](./day1/ex3_assembly.md)<br>[5. Assembly II: Variable parameters](./day1/ex4_assembly.md)<br>[6. Assembly evaluation](./day1/ex5_evaluating_assemblies.md) |
+| [Day 2](#){ .md-button .md-button--primary } | [1. Introduction to binning](./day2/ex6_initial_binning.md)<br>[2. Binning with multiple tools](./day2/ex7_initial_binning.md)<br>[3. Bin dereplication](./day2/ex8_bin_dereplication.md)<br>[4. Manual bin refinement](./day2/ex9_refining_bins.md) |
+| [Day 3](#){ .md-button .md-button--primary } | [1. Assigning taxonomy to refined prokaryotic bins](./day3/ex11_coverage_and_taxonomy.md)<br>[2. Identifying viral contigs in metagenomic data](./day3/ex10_viruses.md)<br>[3. Gene prediction](./day3/ex12_gene_prediction.md)<br>[4. Gene annotation I: BLAST-like and HMM](./day3/ex13_gene_annotation_part1.md)<br>[5. Gene annotation II: DRAM and coverage calculation](./day3/ex14_gene_annotation_part2.md) |
+| [Day 4](#){ .md-button .md-button--primary } | [1. Gene annotation III](./day4/ex15_gene_annotation_part3.md)<br>[2. Introduction to data presentation](./day4/ex16a_data_presentation_Intro.md)<br>[3. Coverage heatmaps](./day4/ex16b_data_presentation_Coverage.md)<br>[4. Ordinations](./day4/ex16c_OPTIONAL_data_presentation_Ordination.md)<br>[5. KEGG pathway maps](./day4/ex16d_data_presentation_KEGG_pathways.md)<br>[6. Gene synteny](./day4/ex16e_data_presentation_Gene_synteny.md)<br>[7. CAZy heatmaps (optional)](./day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations.md) |
+-->
+
++-------------------------------------------------------------+-----------------------------------------------------------------------------------------------+
+|           <div style="width:150px">**Day**</div>            |                        <div style="width:400px">**Lesson topic**</div>                        |
++=============================================================+===============================================================================================+
+| [Day 1: Assembly](#){ .md-button .md-button--primary }      | [1. (Pre-Summer School) Introduction I: Shell](./day1/ex1_bash_and_scheduler.md)<br>          |
+|                                                             | [2. Introduction II: HPC and job scheduler](./day1/ex2_1_intro_to_scheduler.md)<br>           |
+|                                                             | [3. Filter raw reads by quality](./day1/ex2_quality_filtering.md)<br>                         |
+|                                                             | [4. Assembly I: Assembling contigs](./day1/ex3_assembly.md)<br>                               |
+|                                                             | [5. Assembly II: Variable parameters](./day1/ex4_assembly.md)<br>                             |
+|                                                             | [6. Assembly evaluation](./day1/ex5_evaluating_assemblies.md)                                 |
++-------------------------------------------------------------+-----------------------------------------------------------------------------------------------+
+| [Day 2: Binning](#){ .md-button .md-button--primary }       | [1. Introduction to binning](./day2/ex6_initial_binning.md)<br>                               |
+|                                                             | [2. Binning with multiple tools](./day2/ex7_initial_binning.md)<br>                           |
+|                                                             | [3. Bin dereplication](./day2/ex8_bin_dereplication.md)<br>                                   |
+|                                                             | [4. Manual bin refinement](./day2/ex9_refining_bins.md)                                       |
++-------------------------------------------------------------+-----------------------------------------------------------------------------------------------+
+| [Day 3: Annotation](#){ .md-button .md-button--primary }    | [1. Assigning taxonomy to refined prokaryotic bins](./day3/ex11_coverage_and_taxonomy.md)<br> |
+|                                                             | [2. Identifying viral contigs in metagenomic data](./day3/ex10_viruses.md)<br>                |
+|                                                             | [3. Gene prediction](./day3/ex12_gene_prediction.md)<br>                                      |
+|                                                             | [4. Gene annotation I: BLAST-like and HMM](./day3/ex13_gene_annotation_part1.md)<br>          |
+|                                                             | [5. Gene annotation II: DRAM and coverage calculation](./day3/ex14_gene_annotation_part2.md)  |
++-------------------------------------------------------------+-----------------------------------------------------------------------------------------------+
+| [Day 4: Visualisation](#){ .md-button .md-button--primary } | [1. Gene annotation III: DRAM distillation](./day4/ex15_gene_annotation_part3.md)<br>         |
+|                                                             | [2. Introduction to data presentation](./day4/ex16a_data_presentation_Intro.md)<br>           |
+|                                                             | [3. Coverage heatmaps](./day4/ex16b_data_presentation_Coverage.md)<br>                        |
+|                                                             | [4. Ordinations](./day4/ex16c_OPTIONAL_data_presentation_Ordination.md)<br>                   |
+|                                                             | [5. KEGG pathway maps](./day4/ex16d_data_presentation_KEGG_pathways.md)<br>                   |
+|                                                             | [6. Gene synteny](./day4/ex16e_data_presentation_Gene_synteny.md)<br>                         |
+|                                                             | [7. CAZy heatmaps](./day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations.md)               |
++-------------------------------------------------------------+-----------------------------------------------------------------------------------------------+
 
 <br>
 
-??? calendar-days "Timetable 2022"
-    
+??? calendar-days "Timetable 2023"
 
-    === "Day 1 : 29<sup>th</sup> Nov"
+    === "Day 1: Tuesday, 5<sup>th</sup> Sep"
 
-        |Time|Event|Session leader|
-        |:---|:---|:---|
-        |9:00 am – 9:30 am|**Introduction**<br>- Welcome<br>- Logging into NeSI|Jian Sheng Boey|
-        |9:30 am – 10:30 am|**TASK:** Bash scripting and introduction to Slurm scheduler|Dinindu Senanayake|
-        |10:30 am – 10:50 am|**Morning tea break**||
-        |10:50 am – 11:10 am|**TASK:** Bash scripting (continued)|Dinindu Senanayake|
-        |11:10 am – 11:40 pm|**TALK:** The metagenomics decision tree|Kim Handley|
-        |11:40 am – 12:00 pm|**DISCUSSION** Guided discussions on approaches to metagenomics analyses|Kim Handley|
-        |12:00 pm – 12:45 pm|**Break for lunch** (*lunch not provided*)||
-        |12:45 pm – 1:45 pm|**TALK:** Quality filtering raw reads<br>**TASK:** Visualisation with *FastQC*<br>**TASK:** Read trimming and adapter removal<br>**TASK:** Diagnosing poor libraries<br>**TALK:** Common issues and best practice<br>**TASK (*Optional*):** Filtering out host DNA|Annie West|
-        |1:45 pm – 3:00 pm|**TALK:** Assembly<br>- Choice of assemblers<br>- Considerations for parameters, and when to stop!<br>**TASK:** Prepare data for assembly<br>**TASK:** Exploring assembler options<br>**TASK:** Submitting jobs to NeSI via slurm<br>**TASK:** Run SPAdes and IDBA-UD assembly<br>**TASK (*Optional*):** Submitting variant assemblies to NeSI|Kim Handley|
-        |3:00 pm – 3:20 pm|**Afternoon tea break** (*Tea, coffee, and snacks provided*)||
-        |3:20 pm – 5:00 pm|**TALK:** Future considerations - co-assembly vs. single assemblies<br>**TASK:** Assembly evaluation<br>**TASK:** Short contig removal|Jian Sheng Boey<br> Kim Handley|
+        | <div style="width:100px">Time</div> | <div style="width:350px">Event</div> | <div style="width:125px">Session leader</div> |
+        | --- | --- | --- |
+        | 09:00 &ndash; 09:30 | **Introductions**<br>Welcome<br>Overview <br>Login to NeSI via [Jupyter Hub](https://jupyter.nesi.org.nz/) | Jian Sheng Boey |
+        | 09:30 &ndash; 10:30 | :fontawesome-solid-laptop-code: **TASK** Bash scripting and Slurm scheduler I | Dinindu Senanayake |
+        | 10:30 &ndash; 10:50 | :material-tea: *Morning tea* | |
+        | 10:50 &ndash; 11:10 | :fontawesome-solid-laptop-code: **TASK** Bash scripting and Slurm scheduler II | Dinindu Senanayake |
+        | 11:10 &ndash; 11:45 | :fontawesome-solid-microphone-lines: **TALK** Metagenomics decision tree | Kim Handley |
+        | 11:45 &ndash; 12:00 | :fontawesome-solid-microphone-lines: **TALK** Project introduction and description | Kim Handley |
+        | 12:00 &ndash; 12:45 | :material-silverware-fork-knife: *Lunch* | |
+        | 12:45 &ndash; 13:45 | **Read QC**<br>:fontawesome-solid-microphone-lines: **TALK** Quality filtering raw reads<br>:fontawesome-solid-laptop-code: **TASK** Visualisation with *FastQC*<br>:fontawesome-solid-laptop-code: **TASK** Read trimming & adapter removal<br>:fontawesome-solid-laptop-code: **TASK** Diagnosing poor libraries<br>:fontawesome-solid-microphone-lines: **TALK** Common issues & best practices<br>:fontawesome-solid-laptop-code: **TASK (Optional)** Filter out host DNA | Annie West |
+        | 13:45 &ndash; 15:00 | **Assembly**<br>:fontawesome-solid-microphone-lines: **TALK** Choice of assemblers, parameter considerations, and when to stop!<br>:fontawesome-solid-laptop-code: **TASK** Prepare data for assembly<br>:fontawesome-solid-laptop-code: **TASK** Exploring assembler options<br>:fontawesome-solid-laptop-code: **TASK** Submit assembly jobs to NeSI via Slurm<br>:fontawesome-solid-laptop-code: **TASK (Optional)** Submit variant assembly jobs | Kim Handley |
+        | 15:00 &ndash; 15:20 | :material-tea: *Afternoon tea* | |
+        | 15:20 &ndash; 17:00 | **Assembly**<br>:fontawesome-solid-microphone-lines: **TALK** Future considerations: co-assembly vs. single assemblies<br>:fontawesome-solid-laptop-code: **TASK** Assembly evaluation<br>:fontawesome-solid-laptop-code: **TASK** Short contig removal | Mike Hoggard |
 
+    === "Day 2: Wednesday, 6<sup>th</sup> Sep"
 
-    === "Day 2 : 30<sup>th</sup> Nov"
+        | <div style="width:100px">Time</div> | <div style="width:350px">Event</div> | <div style="width:125px">Session leader</div> |
+        | --- | --- | --- |
+        | 09:00 &ndash; 09:15 | **Introductions**<br>Recap of day 1<br>Overview of the day | Annie West |
+        | 09:15 &ndash; 10:15 | **Binning I**<br>:fontawesome-solid-microphone-lines: **TALK** Overview of binning history, key parameters, and strategies I<br>:fontawesome-solid-laptop-code: **TASK** Read mapping | Kim Handley |
+        | 10:15 &ndash; 10:45 | **Binning II**<br>:fontawesome-solid-laptop-code: **TASK** Multi-binning strategy with MetaBat and MaxBin | Mike Hoggard |
+        | 10:45 &ndash; 11:00 | :material-tea: *Morning tea* | |
+        | 11:00 &ndash; 11:40 | **Binning II (continued)**<br>:fontawesome-solid-microphone-lines: **TALK** Overview of binning history, key parameters, and strategies II | Kim Handley |
+        | 11:40 &ndash; 12:00 | :octicons-comment-discussion-16: **DISCUSSION** Binning strategies<br>:fontawesome-solid-laptop-code: **TASK** Compare and contrast outputs of binning tools | Annie West |
+        | 12:00 &ndash; 12:45 | :material-silverware-fork-knife: *Lunch* | |
+        | 12:45 &ndash; 14:00 | **Binning III**<br>:fontawesome-solid-laptop-code: **TASK** Bin dereplication using DAS_Tool<br>:fontawesome-solid-laptop-code: **TASK** Evaluate bins using CheckM | Kim Handley |
+        | 14:00 &ndash; 14:30 | **Binning IV**<br>:fontawesome-solid-microphone-lines: **TALK** Additional dereplication strategies such as dRep<br>:fontawesome-solid-microphone-lines: **TALK** Working with viral and eukaryotic bins<br>:fontawesome-solid-microphone-lines: **TALK** Organisms possessing minimal genomes | Mike Hoggard<br>Kim Handley |
+        | 14:30 &ndash; 15:00 | :fontawesome-solid-microphone-lines: **TALK** Bin refinement: Strategies | Mike Hoggard<br>Kim Handley |
+        | 15:00 &ndash; 15:20 | :material-tea: *Afternoon tea* | |
+        | 15:20 &ndash; 16:00 | :fontawesome-solid-laptop-code: **TASK** Bin refinement: VizBin | Jian Sheng Boey<br>Mike Hoggard |
+        | 16:00 &ndash; 16:15 | :material-presentation-play: **PRESENTATION** Emilie Gios - Genetic exchange in ultra-small Patescibacteria | Kim Handley |
+        | 16:15 &ndash; 17:00 | **Wrap up**<br>:fontawesome-solid-laptop-code: **TASK** Submit jobs for VirSorter2 and CheckV<br>Summary of the day | Mike Hoggard<br>Kim Handley |
 
-        |Time|Event|Session leader|
-        |:---|:---|:---|
-        |9:00 am – 9:15 am|**Introduction**<br>- Overview of yesterday, questions<br>- Overview of today|Annie West|
-        |9:15 am – 9:30 am|**RECORDED PRESENTATION:** Genomic adaptations enabling *Acidithiobacillus* distribution across wide ranging hot spring temperatures and pHs (Chanenath Sriaporn)|<br> Kim Handley|
-        |9:30 am – 10:30 am|**Binning (part 1)**<br>**TALK:** Overview of binning history<br>- Key parameters and strategies for binning<br>**TASK:** Read mapping|Kim Handley|
-        |10:30 am – 10:50 am|**Morning tea break** (*Tea, coffee, and snacks provided*)||
-        |10:50 am – 11:20 am|**Binning (part 2)**<br>**TASK:** Multi-binning strategy (*Metabat* and *Maxbin*)|Cesar Facimoto|
-        |11:20 am – 12:00 pm|**TALK:** Overview of binning history (*continued*)<br>- Key parameters and strategies for binning|Kim Handley|
-        |12:00 pm – 12:45 pm|**Break for lunch** (*lunch not provided*)||
-        |12:45 pm – 2:00 pm|**Binning (part 3)**<br>**TASK:** Bin dereplication via *DAS_Tool*<br>**TASK:** Evaluating bins using *CheckM*|Cesar Facimoto|
-        |2:00 pm - 2:30 pm|**Binning (part 4)**<br>**TALK:** Discuss additional dereplication strategies, such as *dRep*<br>**TALK:** How to work with viral and eukaryotic bins<br>**TALK:** Dealing with organisms which possess minimal genomes<br>|Jian Sheng Boey<br> Annie West|
-        |2:30 pm - 3:00 pm|**TALK:** Bin refinement<br>- Refinement strategies| |
-        |3:00 pm – 3:20 pm|**Afternoon tea break** (*Tea, coffee, and snacks provided*)||
-        |3:20 pm – 5:00 pm|**TASK:** Working with *VizBin*<br>|Jian Sheng Boey<br> Annie West|
+    === "Day 3: Thursday, 7<sup>th</sup> Sep"
 
-    === "Day 3 : 1<sup>st</sup> Dec"
+        | <div style="width:100px">Time</div> | <div style="width:350px">Event</div> | <div style="width:125px">Session leader</div> |
+        | --- | --- | --- |
+        | 09:00 &ndash; 09:20 | **Introductions**<br>Recap of day 2<br>Recap of binning outputs<br>Overview of the day | Jian Sheng Boey |
+        | 09:20 &ndash; 10:30 | **Taxonomic annotation of prokaryotic bins**<br>:fontawesome-solid-microphone-lines: **TALK** Taxonomic classification: Bin and species determination<br>:fontawesome-solid-laptop-code: **TASK** Taxonomic classification using GTDB-Tk<br>:fontawesome-solid-laptop-code: **TASK** View phylogenetic trait distribution using ANNOTREE | David Waite |
+        | 10:30 &ndash; 10:50 | :material-tea: *Morning tea* | |
+        | 10:50 &ndash; 11:20 | **Phylogenomics**<br>:fontawesome-solid-microphone-lines: **TALK** Primer to phylogenetic analyses<br>:fontawesome-solid-laptop-code: **TASK** Build a phylogenetic tree using FASTTREE<br>:fontawesome-solid-laptop-code: **TASK** Visualise tree using iTOL | Valter Almeida |
+        | 11:20 &ndash; 12:00 | **Viruses**<br>:fontawesome-solid-microphone-lines: **TALK** Identifying viruses from metagenomic data<br>:fontawesome-solid-laptop-code: **TASK** Identify viral contigs using VirSorter2<br>:fontawesome-solid-laptop-code: **TASK** QC of viral contigs using CheckV<br>:fontawesome-solid-microphone-lines: **TALK** Predicting viral taxonomy using vConTACT2<br>:fontawesome-solid-laptop-code: **TASK (Optional)** Visualise vConTACT2 viral gene sharing network in Cytoscape | Mike Hoggard |
+        | 12:00 &ndash; 12:45 | :material-silverware-fork-knife: *Lunch* | |
+        | 12:45 &ndash; 13:30 | **Gene prediction**<br>:fontawesome-solid-microphone-lines: **TALK** Tools for predicting genes: Prodigal, RNAmer, Aragorn, etc.<br>:fontawesome-solid-laptop-code: **TASK** Predict ORFs and protein sequences using Prodigal | David Waite |
+        | 13:30 &ndash; 14:00 | **Gene annotation I**<br>:fontawesome-solid-microphone-lines: **TALK** Primer on annotation method<br>:fontawesome-solid-laptop-code: **TASK** Annotate predicted genes using DIAMOND and HMMER3<br>:octicons-comment-discussion-16: **DISCUSSION** Evaluate the quality of gene assignments | Jian Sheng Boey |
+        | 14:00 &ndash; 15:00 | **Gene annotation II**<br>:fontawesome-solid-microphone-lines: **TALK** Using online resources (KEGG, BioCyc, MetaCyc, HydDB, PSORT)<br>:fontawesome-solid-laptop-code: **TASK** View KEGG annotations online | Jian Sheng Boey |
+        | 15:00 &ndash; 15:20 | :material-tea: *Afternoon tea* | |
+        | 15:20 &ndash; 15:35 | :material-presentation-play: **PRESENTATION** Kitty Sriaporn - Genomic adaptations enabling *Acidithiobacillus* distribution across wide-ranging hot spring temperatures and pHs | Kim Handley |
+        | 15:35 &ndash; 16:15 | **Gene annotation III**<br>:fontawesome-solid-laptop-code: **TASK** MAG annotation with DRAM<br>:fontawesome-solid-laptop-code: **TASK** Coverage calculation using Bowtie2 | Annie West<br>Mike Hoggard |
+        | 16:15 &ndash; 16:30 | **Group project**<br>:fontawesome-solid-laptop-code: **TASK** Group formation<br>:fontawesome-solid-laptop-code: **TASK** Topic selection | Kim Handley |
+        | 16:30 &ndash; 17:00 | **Wrap up**<br>Summary of the day | Jian Sheng Boey |
 
-        |Time|Event|Session leader|
-        |:---|:---|:---|
-        |9:00 am – 9:20 am|**Introduction**<br>- Overview of yesterday, questions<br>- Overview of today|Jian Sheng Boey|
-        |9:20 am – 10:30 am|**TALK:** Bin taxonomic classification<br>- Bin and species determination<br>**TASK:** Taxonomic classification using GTDB-Tk<br>**TASK:** View phylogenetic trait distribution using *ANNOTREE*|David Waite|
-        |10:30 am – 10:50 am|**Morning tea break** (*Tea, coffee, and snacks provided*)||
-        |10:50 am – 12:00 pm|**TALK:** Identifying viruses from metagenomic data<br>**TASK:** Identifying viral contigs using *VIBRANT*<br>**RECORDED PRESENTATION:** Genetic exchange in ultra-small Patescibacteria (Emilie Gios)<br>**TASK:** QC of viral contigs using *CheckV*<br>**TASK:** Taxonomic classification of viruses using *vContact2*|Jian Sheng Boey<br>Annie West<br><br>|
-        |12:00 pm – 12:45 pm|**Break for lunch** (*lunch not provided*)||
-        |12:45 pm - 1:30 pm|**TALK:** Gene prediction using *prodigal* and other tools (*RNAmer*, *Aragorn*, etc)<br>**TASK:** Predict open reading frames and protein sequences|Jian Sheng Boey <br> Cesar Facimoto|
-        |1:30 pm - 2:00 pm|**TALK:** Gene annotation (part 1)<br> - Methods<br>**TASK:** Gene annotation using *DIAMOND* and *HMMER3*<br>**Discussion:** Evaluating the quality of gene assignment<br>|Jian Sheng Boey<br>Cesar Facimoto|
-        |2:00 pm – 3:00 pm|**TALK:** Gene annotation (part 2)<br>- Using online resources (e.g. *KEGG, BioCyc, MetaCyc, HydDB, PSORT*)<br>**TASK:** View KEGG annotation in KEGG website|Jian Sheng Boey<br>Cesar Facimoto|
-        |3:00 pm – 3:20 pm|**Afternoon tea break**||
-        |3:20 pm – 4:30 pm|**TASK:** MAG annotation with *DRAM*<br>**TASK:** Coverage calculation using *Bowtie2*<br>**TASK:** Introduce group project goals<br>**TASK:** Dividing into working groups / get a group name<br>**TASK:** Select a goal from your project|Annie West<br>Kim Handley|
-        |4:30 pm – 5:00 pm|**End of day wrap up**|Kim Handley|
+    === "Day 4: Friday, 8<sup>th</sup> Sep"
 
-
-    === "Day 4 : 2<sup>nd</sup> Dec"
-
-        |Time|Event|Session leader|
-        |:---|:---|:---|
-        |9:00 am – 9:15 am|**Introduction**<br>- Overview of yesterday, questions<br>- Overview of today|Jian Sheng Boey|
-        |9:15 am – 10:00 am|**Presentation of data**<br>**TALK:** *DRAM* results overview<br>**TASK:** Explore *DRAM* results|Annie West|
-        |10:00 am – 10:30 am|**Presentation of data (genome distributions)**<br>**TALK:** Visualising findings (environmental distribution)<br>**TASK:** Coverage heatmap and nMDS ordination |Kim Handley|
-        |10:30 am – 10:50 am|**Morning tea break** (*Tea, coffee, and snacks provided*)<br>**TASK:** Workshop survey||
-        |10:50 am – 12:00 pm|**Presentation of data (metabolism)**<br>**TALK:** Visualising findings (metabolic maps, genome features, metabolic schematics, and gene trees)<br>**TASK:** KEGG metabolic pathways<br>**TASK:** Gene synteny<br>**TASK:** CAZy heatmaps|Cesar Facimoto<br>Jian Sheng Boey|
-        |12:00 pm – 12:45 pm|**Break for lunch** (*lunch not provided*)||
-        |12:45 pm – 2:30 pm|**TASK:** Analyse data for group work<br>**TASK:** Prepare group presentation|Kim Handley|
-        |2:30 pm – 3:00 pm|**Present and discuss findings**<br>**TASK:** Each group to give an informal presentation of their data|Kim Handley|
-        |3:00 pm – 3:20 pm|**Afternoon tea break** (*Tea, coffee, and snacks provided*)||
-        |3:20 pm – 3:40 pm|**Present and discuss findings (continued)**<br>**TASK:** Each group to give an informal presentation of their data|Annie West|
-        |3:40 pm – 4:00 pm|**End of day wrap up**<br>- Final discussion|Kim Handley<br>Jian Sheng Boey|
+        | <div style="width:100px">Time</div> | <div style="width:350px">Event</div> | <div style="width:125px">Session leader</div> |
+        | --- | --- | --- |
+        | 09:00 &ndash; 09:15 | **Introductions**<br>Recap of day 3<br>Overview of the day | Jian Sheng Boey |
+        | 09:15 &ndash; 10:00 | **DRAM outputs**<br>:fontawesome-solid-microphone-lines: **TALK** Overview of DRAM results<br>:fontawesome-solid-laptop-code: **TASK** Explore DRAM results | Annie West |
+        | 10:00 &ndash; 10:30 | **Environmental distribution**<br>:fontawesome-solid-microphone-lines: **TALK** Visualising findings<br>:fontawesome-solid-laptop-code: **TASK** Coverage heatmap and nMDS ordination | Mike Hoggard |
+        | 10:30 &ndash; 10:50 | :material-tea: *Morning tea* | |
+        | 10:50 &ndash; 11:00 | :fontawesome-solid-laptop-code: **TASK** Workshop survey | |
+        | 11:00 &ndash; 12:00 | **Genomic features and metabolism**<br>:fontawesome-solid-microphone-lines: **TALK** Visualising findings<br>:fontawesome-solid-laptop-code: **TASK** KEGG metabolic maps<br>:fontawesome-solid-laptop-code: **TASK** Gene synteny | Jian Sheng Boey<br>Annie West |
+        | 12:00 &ndash; 12:45 | :material-silverware-fork-knife: *Lunch* | |
+        | 12:45 &ndash; 14:30 | **Group work**<br>:fontawesome-solid-laptop-code: **TASK** Analyse data<br>:fontawesome-solid-laptop-code: **TASK** Prepare presentations | Kim Handley<br>Mike Hoggard<br>David Waite |
+        | 14:30 &ndash; 15:00 | **Group work**<br>:fontawesome-solid-laptop-code: **TASK** Informal group presentations | Kim Handley<br>Mike Hoggard<br>David Waite |
+        | 15:00 &ndash; 15:20 | :material-tea: *Afternoon tea* | |
+        | 15:20 &ndash; 15:40 | **Group work**<br>:fontawesome-solid-laptop-code: **TASK** Informal group presentations | Kim Handley<br>Mike Hoggard<br>David Waite |
+        | 15:40 &ndash; 16:00 | **Wrap up**<br>Final discussions | |
 
 <br>
-
-
 
 ??? example "Appendices"
 
@@ -101,17 +131,18 @@
     |[Appendix 3](""){ .md-button    }| [Normalise per-sample coverage values by average library size](./resources/3_APPENDIX_ex11_Normalise_coverage_example.md) |
     |[Appendix 4](""){ .md-button    } | [Viral taxonomy prediction via vContact2](./resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md) |
     |[Appendix 5](""){ .md-button } | [Preparing input files for visualising gene synteny](./resources/5_APPENDIX_ex15_Prepare_gene_synteny_inputs.md) |
+
 <br>
 
 !!! comment-dots "Post-workshop survey"
     
-    Thank you for attending Metagenomics Summer School 2022! We would like your feedback on how we have done and what we can improve on. You can provide feedback [here](https://auckland.au1.qualtrics.com/jfe/form/SV_3W4gkA3XZ0qK2do).
+    Thank you for attending Metagenomics Summer School 2023! We would like your feedback on how we have done and what we can improve on. You can provide feedback [here](https://auckland.au1.qualtrics.com/jfe/form/SV_3W4gkA3XZ0qK2do).
 
 <br>
 
 !!! note "License"
 
-    Genomics Aotearoa / New Zealand eScience Infrastructure/ University of Auckland **Metagenomics Summer School** material is licensed under the **GNU General Public License v3.0, 29 June 2007** . ([Follow this link for more information](https://github.com/GenomicsAotearoa/shell-for-bioinformatics/blob/main/LICENSE))
+    Genomics Aotearoa / New Zealand eScience Infrastructure / University of Auckland **Metagenomics Summer School** material is licensed under the **GNU General Public License v3.0, 29 June 2007**. ([Follow this link for more information](https://github.com/GenomicsAotearoa/shell-for-bioinformatics/blob/main/LICENSE))
 
 <br>
 
@@ -130,6 +161,3 @@
     * [Input files for VizBin](./resources/vizbin_files.zip)
     * [Gene annotation tables](./resources/example_annotation_tables.zip)
     * [DRAM output files](./resources/dram_distillation.zip)
-
-
-
