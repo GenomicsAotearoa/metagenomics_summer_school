@@ -16,6 +16,7 @@ jobs:
           python-version: 3.x
       - run: pip install mkdocs-material 
              pip install mkdocs-glightbox
+             pip install markdown-grid-tables
 
 
       - run: mkdocs gh-deploy --force
