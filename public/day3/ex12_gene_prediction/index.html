@@ -7,25 +7,31 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Genomics Aotearoa &amp; NeSI" name="author"/>
 <link href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day3/ex12_gene_prediction/" rel="canonical"/>
+<link href="../ex11_coverage_and_taxonomy/" rel="prev"/>
+<link href="../ex13_gene_annotation_part1/" rel="next"/>
 <link href="../../theme_images/nesi_ga.png" rel="icon"/>
-<meta content="mkdocs-1.4.1, mkdocs-material-8.3.9" name="generator"/>
+<meta content="mkdocs-1.4.3, mkdocs-material-9.1.15" name="generator"/>
 <title>Gene prediction - Metagenomics Summer School</title>
-<link href="../../assets/stylesheets/main.1d29e8d0.min.css" rel="stylesheet"/>
-<link href="../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/main.26e3688c.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.ecc896b0.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Mukta";--md-code-font:"Roboto Mono"}</style>
-<script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../stylesheets/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
             html.glightbox-open { overflow: initial; height: 100%; }
-            .gdesc-inner { font-size: 0.75rem; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
             .gslide-image img { background: white; }
             
                 .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
                 </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
-<body data-md-color-accent="" data-md-color-primary="indigo" data-md-color-scheme="" dir="ltr">
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
 <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -37,7 +43,7 @@
 </div>
 <div data-md-component="announce">
 </div>
-<header class="md-header md-header--lifted" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
 <a aria-label="Metagenomics Summer School" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Metagenomics Summer School">
 <img alt="logo" src="../../theme_images/nesi_ga.png"/>
@@ -62,15 +68,15 @@
 </div>
 </div>
 <form class="md-header__option" data-md-component="palette">
-<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="indigo" data-md-color-scheme="" id="__palette_1" name="__palette" type="radio"/>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
 <label class="md-header__button md-icon" for="__palette_3" hidden="" title="Switch to light mode">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"></path></svg>
 </label>
-<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_2" name="__palette" type="radio"/>
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_2" name="__palette" type="radio"/>
 <label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
 </label>
-<input aria-label="Switch to system preference" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_3" name="__palette" type="radio"/>
+<input aria-label="Switch to system preference" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_3" name="__palette" type="radio"/>
 <label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to system preference">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
 </label>
@@ -88,7 +94,7 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
 </label>
 <nav aria-label="Search" class="md-search__options">
-<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" type="reset">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
 </button>
 </nav>
@@ -99,7 +105,7 @@
 <div class="md-search-result__meta">
             Initializing search
           </div>
-<ol class="md-search-result__list"></ol>
+<ol class="md-search-result__list" role="presentation"></ol>
 </div>
 </div>
 </div>
@@ -108,7 +114,7 @@
 <div class="md-header__source">
 <a class="md-source" data-md-component="source" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository">
 <div class="md-source__icon md-icon">
-<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
 </div>
 <div class="md-source__repository">
     GenomicsAotearoa/metagenomics_summer_school
@@ -117,7 +123,7 @@
 </div>
 </nav>
 <nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
-<div class="md-tabs__inner md-grid">
+<div class="md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
 <a class="md-tabs__link" href="../..">
@@ -149,6 +155,11 @@
         Resources
       </a>
 </li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../supplementary/supplementary_1/">
+        Supplementary
+      </a>
+</li>
 </ul>
 </div>
 </nav>
@@ -169,7 +180,7 @@
 <div class="md-nav__source">
 <a class="md-source" data-md-component="source" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository">
 <div class="md-source__icon md-icon">
-<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
 </div>
 <div class="md-source__repository">
     GenomicsAotearoa/metagenomics_summer_school
@@ -183,12 +194,12 @@
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_2">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
           Day1
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-label="Day1" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
           Day1
@@ -196,7 +207,12 @@
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day1/ex1_bash_and_scheduler/">
-        Introduction to shell &amp; HPC Job Scheduler
+        Introduction to shell
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day1/ex2_1_intro_to_scheduler/">
+        Introduction to HPC &amp; HPC job scheduler
       </a>
 </li>
 <li class="md-nav__item">
@@ -223,12 +239,12 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
-<label class="md-nav__link" for="__nav_3">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
           Day2
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-label="Day2" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
           Day2
@@ -241,7 +257,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day2/ex7_initial_binning/">
-        Introduction to binning
+        Binning (continued)
       </a>
 </li>
 <li class="md-nav__item">
@@ -258,12 +274,12 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
-<label class="md-nav__link" for="__nav_4">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
           Day3
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-label="Day3" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
           Day3
@@ -276,11 +292,11 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../ex11_coverage_and_taxonomy/">
-        Per-sample coverage and assigning taxonomy
+        Assigning taxonomy to refined prokaryotic bins
       </a>
 </li>
 <li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
           Gene prediction
           <span class="md-nav__icon md-icon"></span>
@@ -370,19 +386,19 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../ex14_gene_annotation_part2/">
-        Gene annotation (part 2)
+        Gene annotation (part 2) and coverage calculation
       </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
           Day4
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-label="Day4" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_5">
 <span class="md-nav__icon md-icon"></span>
           Day4
@@ -405,7 +421,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex16c_OPTIONAL_data_presentation_Ordination/">
-        (*Optional*) Presentation of data: Ordinations
+        Presentation of data: Ordinations
       </a>
 </li>
 <li class="md-nav__item">
@@ -420,19 +436,19 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations/">
-        Presentation of data: *Optional exercise*: CAZy annotations heatmap
+        Presentation of data: CAZy annotations heatmap
       </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
-<label class="md-nav__link" for="__nav_6">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
           Resources
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-label="Resources" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
           Resources
@@ -440,7 +456,7 @@
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../resources/1_APPENDIX_ex8_Dereplication/">
-        APPENDIX (ex8):Dereplicating data from multiple assemblies
+        APPENDIX (ex8): Dereplicating data from multiple assemblies
       </a>
 </li>
 <li class="md-nav__item">
@@ -455,22 +471,47 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/">
-        APPENDIX (ex11) : viral taxonomy prediction via *vContact2*
+        APPENDIX (ex11) : Viral taxonomy prediction via *vContact2*
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/5_APPENDIX_ex15_Prepare_gene_synteny_inputs/">
+        APPENDIX (ex15): Prepare input for gene synteny visualisation
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../resources/5_APPENDIX_ex15_gene_synteny_Generate_blast_files/">
-        APPENDIX (ex15): How to generate the blast files provided in [ex15_gene_synteny](../day4/ex16e_data_presentation_Gene_synteny.md)
-      </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../resources/6_APPENDIX_ex15_gene_synteny_grab_GOI/">
-        APPENDIX (ex15): Grab Gene of Interest (generate the *cys.txt* files provided in [ex15_gene_synteny](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16e_data_presentation_Gene_synteny.md))
+        APPENDIX (ex15): Generating pairwise contig comparisons using online BLAST
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../resources/7_command_line_shortcuts/">
         Useful command line shortcuts
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          Supplementary
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+          Supplementary
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../supplementary/supplementary_1/">
+        NeSI Setup
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../supplementary/supplementary_2/">
+        NeSI File system, Working directory and Symlinks
       </a>
 </li>
 </ul>
@@ -563,9 +604,6 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/day3/ex12_gene_prediction.md" title="Edit this page">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
-</a>
 <h1 id="gene-prediction">Gene prediction<a class="headerlink" href="#gene-prediction" title="Permanent link">¶</a></h1>
 <div class="admonition info">
 <p class="admonition-title">Objectives</p>
@@ -600,14 +638,14 @@
 <hr/>
 <h3 id="predicting-protein-coding-sequences-in-mags">Predicting protein coding sequences in MAGs<a class="headerlink" href="#predicting-protein-coding-sequences-in-mags" title="Permanent link">¶</a></h3>
 <p>To get started, move into the exercise directory.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/9.gene_prediction/
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/9.gene_prediction/
 </code></pre></div>
 <h4 id="examining-the-prodigal-parameters">Examining the <em>prodigal</em> parameters<a class="headerlink" href="#examining-the-prodigal-parameters" title="Permanent link">¶</a></h4>
-<p>Before we start runnning <code>prodigal</code>, we will take quick look at the parameters.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>module purge
-<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>module load prodigal/2.6.3-GCC-11.3.0
+<p>Before we start runnning <code>prodigal</code>, we will take a quick look at the parameters.</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>module<span class="w"> </span>purge
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>module<span class="w"> </span>load<span class="w"> </span>prodigal/2.6.3-GCC-11.3.0
 <a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>
-<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>prodigal -h
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>prodigal<span class="w"> </span>-h
 <a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a>
 <a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="c1"># Usage:  prodigal [-a trans_file] [-c] [-d nuc_file] [-f output_type]</span>
 <a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="c1">#                  [-g tr_table] [-h] [-i input_file] [-m] [-n] [-o output_file]</span>
@@ -632,7 +670,7 @@
 </code></pre></div>
 <p>There are a few parameters that are worth considering in advance.</p>
 <h5 id="output-files">Output files<a class="headerlink" href="#output-files" title="Permanent link">¶</a></h5>
-<p>When running <code>prodigal</code> the default behaviour is to create a <em>gbk</em> file from your genome and write it to the stdout of your interface. This can either be captured using a redirect, or the output can instead be placed into a file using the <code>-o</code> flag. You can also change the format of the file using the <code>-f</code> flag.</p>
+<p>When running <code>prodigal</code> the default behaviour is to create a <em>gbk</em> file (this is a Genbank-like feature table, see <a href="https://github.com/hyattpd/prodigal/wiki/understanding-the-prodigal-output">here</a> for more information) from your genome and write it to the stdout of your interface. This can either be captured using a redirect, or the output can instead be placed into a file using the <code>-o</code> flag. You can also change the format of the file using the <code>-f</code> flag.</p>
 <p>Since we often want to go straight from gene prediction to annotation, <code>prodigal</code> also has the option to create <em>fastA</em> files of the gene prediction (<code>-d</code>) and protein translation (<code>-a</code>) at the same time. This is an extremely helpful feature, and it is worth running all three outputs at the same time. <strong><em>Generally</em></strong> speaking, you will probably find that the amino acid sequence for your genes is all you need for most practical purposes, but having the corresponding nucleotide sequence can sometimes be useful if we want to mine other data sets.</p>
 <h5 id="modes-of-gene-prediction">Modes of gene prediction<a class="headerlink" href="#modes-of-gene-prediction" title="Permanent link">¶</a></h5>
 <p>As mentioned in the introduction to this exercise, <code>prodigal</code> uses the profiles of genes it detects in your data set to better tune its prediction models and improve coding sequence recovery. It has three algorithms for how the training is performed which you must determine in advance:</p>
@@ -664,86 +702,98 @@
 </table>
 <p>Anecdotally, when applied to a MAG or genome, anonymous mode (<code>-p meta</code>) will identify slightly fewer genes than normal mode (<code>-p single</code>). However, single mode can miss laterally transfered elements. There is not necesarily a best choice for which version to use and this is at the users discretion.</p>
 <h4 id="executing-prodigal">Executing <em>prodigal</em><a class="headerlink" href="#executing-prodigal" title="Permanent link">¶</a></h4>
-<p>We will now run <code>prodigal</code> over the 10 bins in <em>anonymous</em> mode. As usual, we can use a loop to get the predictions for all of our bins.</p>
+<p>We will now run <code>prodigal</code> over the 10 bins in <em>anonymous</em> mode using an array.</p>
 <p>Create a new script</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>nano prodigal.sl
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>nano<span class="w"> </span>prodigal.sl
 </code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>Paste in the script (modifying <code>&lt;YOUR FOLDER&gt;</code>)</p>
+</div>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="ch">#!/bin/bash -e</span>
 <a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>
 <a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
 <a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="c1">#SBATCH --job-name      prodigal</span>
-<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="c1">#SBATCH --res           SummerSchool</span>
-<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="c1">#SBATCH --time          00:10:00</span>
-<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="c1">#SBATCH --mem           1GB</span>
-<a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="c1">#SBATCH --cpus-per-task 1</span>
-<a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="c1">#SBATCH --error         prodigal.err</span>
-<a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="c1">#SBATCH --output        prodigal.out</span>
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="c1">#SBATCH --time          00:10:00</span>
+<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="c1">#SBATCH --mem           1GB</span>
+<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="c1">#SBATCH --cpus-per-task 1</span>
+<a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="c1">#SBATCH --array         0-9</span>
+<a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="c1">#SBATCH --error         %x_%A_%a.err</span>
+<a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="c1">#SBATCH --output        %x_%A_%a.out</span>
 <a href="#__codelineno-3-11" id="__codelineno-3-11" name="__codelineno-3-11"></a>
-<a href="#__codelineno-3-12" id="__codelineno-3-12" name="__codelineno-3-12"></a>module purge
-<a href="#__codelineno-3-13" id="__codelineno-3-13" name="__codelineno-3-13"></a>module load prodigal/2.6.3-GCC-11.3.0
-<a href="#__codelineno-3-14" id="__codelineno-3-14" name="__codelineno-3-14"></a>
-<a href="#__codelineno-3-15" id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/9.gene_prediction/
-<a href="#__codelineno-3-16" id="__codelineno-3-16" name="__codelineno-3-16"></a>
-<a href="#__codelineno-3-17" id="__codelineno-3-17" name="__codelineno-3-17"></a>mkdir -p predictions/
+<a href="#__codelineno-3-12" id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="c1"># Load modules</span>
+<a href="#__codelineno-3-13" id="__codelineno-3-13" name="__codelineno-3-13"></a>module<span class="w"> </span>purge
+<a href="#__codelineno-3-14" id="__codelineno-3-14" name="__codelineno-3-14"></a>module<span class="w"> </span>load<span class="w"> </span>prodigal/2.6.3-GCCcore-7.4.0
+<a href="#__codelineno-3-15" id="__codelineno-3-15" name="__codelineno-3-15"></a>
+<a href="#__codelineno-3-16" id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="c1"># Working directory</span>
+<a href="#__codelineno-3-17" id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/9.gene_prediction
 <a href="#__codelineno-3-18" id="__codelineno-3-18" name="__codelineno-3-18"></a>
-<a href="#__codelineno-3-19" id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="k">for</span> bin_file <span class="k">in</span> filtered_bins/*.fna<span class="p">;</span>
-<a href="#__codelineno-3-20" id="__codelineno-3-20" name="__codelineno-3-20"></a><span class="k">do</span>
-<a href="#__codelineno-3-21" id="__codelineno-3-21" name="__codelineno-3-21"></a>    <span class="nv">pred_file</span><span class="o">=</span><span class="k">$(</span>basename <span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span> .fna<span class="k">)</span>
-<a href="#__codelineno-3-22" id="__codelineno-3-22" name="__codelineno-3-22"></a>
-<a href="#__codelineno-3-23" id="__codelineno-3-23" name="__codelineno-3-23"></a>    prodigal -i <span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span> -p meta <span class="se">\</span>
-<a href="#__codelineno-3-24" id="__codelineno-3-24" name="__codelineno-3-24"></a>             -d predictions/<span class="si">${</span><span class="nv">pred_file</span><span class="si">}</span>.genes.fna <span class="se">\</span>
-<a href="#__codelineno-3-25" id="__codelineno-3-25" name="__codelineno-3-25"></a>             -a predictions/<span class="si">${</span><span class="nv">pred_file</span><span class="si">}</span>.genes.faa <span class="se">\</span>
-<a href="#__codelineno-3-26" id="__codelineno-3-26" name="__codelineno-3-26"></a>             -o predictions/<span class="si">${</span><span class="nv">pred_file</span><span class="si">}</span>.genes.gbk
-<a href="#__codelineno-3-27" id="__codelineno-3-27" name="__codelineno-3-27"></a><span class="k">done</span>
+<a href="#__codelineno-3-19" id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="c1"># Output directory</span>
+<a href="#__codelineno-3-20" id="__codelineno-3-20" name="__codelineno-3-20"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>predictions/
+<a href="#__codelineno-3-21" id="__codelineno-3-21" name="__codelineno-3-21"></a>
+<a href="#__codelineno-3-22" id="__codelineno-3-22" name="__codelineno-3-22"></a><span class="c1"># Variables</span>
+<a href="#__codelineno-3-23" id="__codelineno-3-23" name="__codelineno-3-23"></a><span class="nv">bin_file</span><span class="o">=</span>filtered_bins/bin_<span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>.filtered.fna
+<a href="#__codelineno-3-24" id="__codelineno-3-24" name="__codelineno-3-24"></a><span class="nv">pred_file</span><span class="o">=</span><span class="k">$(</span>basename<span class="w"> </span><span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span><span class="w"> </span>.fna<span class="k">)</span>
+<a href="#__codelineno-3-25" id="__codelineno-3-25" name="__codelineno-3-25"></a>
+<a href="#__codelineno-3-26" id="__codelineno-3-26" name="__codelineno-3-26"></a><span class="c1"># Run prodigal</span>
+<a href="#__codelineno-3-27" id="__codelineno-3-27" name="__codelineno-3-27"></a>prodigal<span class="w"> </span>-i<span class="w"> </span><span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span><span class="w"> </span>-p<span class="w"> </span>meta<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-3-28" id="__codelineno-3-28" name="__codelineno-3-28"></a><span class="w">         </span>-d<span class="w"> </span>predictions/<span class="si">${</span><span class="nv">pred_file</span><span class="si">}</span>.genes.fna<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-3-29" id="__codelineno-3-29" name="__codelineno-3-29"></a><span class="w">         </span>-a<span class="w"> </span>predictions/<span class="si">${</span><span class="nv">pred_file</span><span class="si">}</span>.genes.faa<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-3-30" id="__codelineno-3-30" name="__codelineno-3-30"></a><span class="w">         </span>-o<span class="w"> </span>predictions/<span class="si">${</span><span class="nv">pred_file</span><span class="si">}</span>.genes.gbk
 </code></pre></div>
+</div>
 <p>Submit the script</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>sbatch prodigal.sl
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>sbatch<span class="w"> </span>prodigal.sl
 </code></pre></div>
 <p>Once <code>prodigal</code> has completed, let's check one of the output files:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>head -n8 predictions/bin_0.filtered.genes.faa
-<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="c1"># &gt;bin_0_NODE_5_length_607162_cov_1.000802_1 # 1 # 1503 # 1 # ID=1_1;partial=10;start_type=Edge;rbs_motif=None;rbs_spacer=None;gc_cont=0.322</span>
-<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="c1"># RYLIMKKITEEDIIESIADACQYISFYHPEDFVKGMVEAYNVEKGEAAKNAIGQILINSK</span>
-<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1"># MCAMGHRPLCQDTGSVNIFVKVGLNAPLDIKKELVDLLNEGVAKGYTDPDNTLRYSVVAD</span>
-<a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="c1"># PAGKRVNTKNNTPAVIHVSVDNSDEIDITVAAKGGGSENKSKFAVLNPSDSIYDWVMENV</span>
-<a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="c1"># RNMGAGWCPPGILGIGIGGNPEKSMLLAKESLMSHVDIHELKARGPKNALEELRLKLYED</span>
-<a href="#__codelineno-5-7" id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="c1"># INKVGIGAQGLGGITTVLDVKILDYPCHAASLPVAMIPNCAATRHIHFKLKGDGPAVFNK</span>
-<a href="#__codelineno-5-8" id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="c1"># PDLDLWPDIELPMDTIKRVNIEDLTKENLSQFKSGDTLLLSGKILTARDAAHKKIVEYKN</span>
-<a href="#__codelineno-5-9" id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="c1"># AGKDLPNGVKLEDRFIYYVGPVDPVRDEAVGPAGPTTSTRMDKFTKDMMEIGIMGMIGKA</span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>predictions/bin_0.filtered.genes.faa
+<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a>
+<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="c1"># &gt;bin_0_NODE_6_length_607162_cov_1.000759_1 # 2 # 667 # -1 # ID=1_1;partial=10;start_type=ATG;rbs_motif=AGGAG;rbs_spacer=5-10bp;gc_cont=0.321</span>
+<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1"># MIKSNGILFTGKKFVMGAVVSALLATSGIAADYTLKFSHVVSPNTPKGKAADFFAKRLEE</span>
+<a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="c1"># LSGGKIDVQVYPSSQLYNDSAVLKALRLDSVQMAAPSFSKFGKIVPQLALFNLPFLFKDI</span>
+<a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="c1"># DQLHRVQDGPVGEKLKSLVTAKGFVALNFWDNGFKQLSSSKEPLLMPKDAEGQKFRIMSS</span>
+<a href="#__codelineno-5-7" id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="c1"># KVLEAQFKAVGANPQMMPFSEVYSGLQQGVIDAAENPFSNIY</span>
 </code></pre></div>
 <p>There are a few thing to unpack here. First lets look at the first line of the <em>fastA</em> file:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>&gt;bin_0_NODE_5_length_607162_cov_1.000802_1 <span class="c1"># 1 # 1503 # 1 # ID=1_1;partial=10;start_type=Edge;rbs_motif=None;rbs_spacer=None;gc_cont=0.322</span>
-<a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a> <span class="p">|</span>                                       <span class="p">|</span>   <span class="p">|</span>   <span class="p">|</span>      <span class="p">|</span>   <span class="p">|</span>      <span class="p">|</span>
-<a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a> <span class="p">|</span>                                       <span class="p">|</span>   <span class="p">|</span>   <span class="p">|</span>      <span class="p">|</span>   <span class="p">|</span>      Are the gene boundaries <span class="nb">complete</span> or not
-<a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a> <span class="p">|</span>                                       <span class="p">|</span>   <span class="p">|</span>   <span class="p">|</span>      <span class="p">|</span>   Unique gene ID
-<a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a> <span class="p">|</span>                                       <span class="p">|</span>   <span class="p">|</span>   <span class="p">|</span>      Orientation
-<a href="#__codelineno-6-6" id="__codelineno-6-6" name="__codelineno-6-6"></a> <span class="p">|</span>                                       <span class="p">|</span>   <span class="p">|</span>   Stop position
-<a href="#__codelineno-6-7" id="__codelineno-6-7" name="__codelineno-6-7"></a> <span class="p">|</span>                                       <span class="p">|</span>   Start position
-<a href="#__codelineno-6-8" id="__codelineno-6-8" name="__codelineno-6-8"></a> <span class="p">|</span>                                       Gene suffix
-<a href="#__codelineno-6-9" id="__codelineno-6-9" name="__codelineno-6-9"></a> Contig name  
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>&gt;bin_0_NODE_6_length_607162_cov_1.000759_1<span class="w"> </span><span class="c1"># 2 # 667 # -1 # ID=1_1;partial=10;start_type=ATG;rbs_motif=AGGAG;rbs_spacer=5-10bp;gc_cont=0.321</span>
+<a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="w"> </span><span class="p">|</span><span class="w">                                       </span><span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">      </span><span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">      </span><span class="p">|</span>
+<a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w"> </span><span class="p">|</span><span class="w">                                       </span><span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">      </span><span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">      </span>Are<span class="w"> </span>the<span class="w"> </span>gene<span class="w"> </span>boundaries<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>or<span class="w"> </span>not
+<a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w"> </span><span class="p">|</span><span class="w">                                       </span><span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">      </span><span class="p">|</span><span class="w">   </span>Unique<span class="w"> </span>gene<span class="w"> </span>ID
+<a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w"> </span><span class="p">|</span><span class="w">                                       </span><span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">      </span>Orientation
+<a href="#__codelineno-6-6" id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w"> </span><span class="p">|</span><span class="w">                                       </span><span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">   </span>Stop<span class="w"> </span>position
+<a href="#__codelineno-6-7" id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="w"> </span><span class="p">|</span><span class="w">                                       </span><span class="p">|</span><span class="w">   </span>Start<span class="w"> </span>position
+<a href="#__codelineno-6-8" id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w"> </span><span class="p">|</span><span class="w">                                       </span>Gene<span class="w"> </span>suffix
+<a href="#__codelineno-6-9" id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="w"> </span>Contig<span class="w"> </span>name<span class="w">  </span>
 </code></pre></div>
 <p>Here are the first few pieces of information in the <em>fastA</em> header identified by what they mean. <code>prodigal</code> names genes using the contig name followed by an underscore then the number of the gene along the contig. The next two pieces of information are the start and stop coordinates of the gene. Next, a 1 is report for a gene that is in the forward orientation (relative to the start of the contig) and a -1 for genes that are in reverse orientation.</p>
 <p>There is also a unique gene ID provided although this may not be necessary. As long as your contig names are unique, then all gene names generated from them will also be unique.</p>
 <p>The last option that is important to check is the <em>partial</em> parameter. This is reported as two digits which correspond to the start and end of the gene and report whether or not the gene has the expected amino acids for the start (M) and end of a gene (* in the protein file). A 0 indicates a complete gene edge, and 1 means partial. In this case, we have '10' which indicates the gene runs off the left edge of the contig. Alternate outcomes for this field are '00', '01', or '11'.</p>
 <h5 id="stripping-metadata">Stripping metadata<a class="headerlink" href="#stripping-metadata" title="Permanent link">¶</a></h5>
 <p>While this header information can be very informative, its presence in the <em>fastA</em> files can lead to some downstream issues. The <em>fastA</em> file format specifies that the sequence name for each entry runs from the '&gt;' character to the first space, and everything after the space is metadata. Some bioinformatic programs are aware of this convention and will strip the metadata when producing their outputs, but some tools do not do this. It's really easy to end up in situtations where your gene names are failing to match between analyses because of this inconsistency, so we recommend creating new <em>fastA</em> files with the metadata removed to preempt this problem.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">for</span> pred_file <span class="k">in</span> predictions/*.fna<span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">for</span><span class="w"> </span>pred_file<span class="w"> </span><span class="k">in</span><span class="w"> </span>predictions/*.fna<span class="p">;</span>
 <a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="k">do</span>
-<a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a>    <span class="nv">file_base</span><span class="o">=</span><span class="k">$(</span>basename <span class="si">${</span><span class="nv">pred_file</span><span class="si">}</span> .fna<span class="k">)</span>
+<a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="nv">file_base</span><span class="o">=</span><span class="k">$(</span>basename<span class="w"> </span><span class="si">${</span><span class="nv">pred_file</span><span class="si">}</span><span class="w"> </span>.fna<span class="k">)</span>
 <a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a>
-<a href="#__codelineno-7-5" id="__codelineno-7-5" name="__codelineno-7-5"></a>    cut -f1 -d <span class="s1">' '</span> predictions/<span class="si">${</span><span class="nv">file_base</span><span class="si">}</span>.fna &gt; predictions/<span class="si">${</span><span class="nv">file_base</span><span class="si">}</span>.no_metadata.fna
-<a href="#__codelineno-7-6" id="__codelineno-7-6" name="__codelineno-7-6"></a>    cut -f1 -d <span class="s1">' '</span> predictions/<span class="si">${</span><span class="nv">file_base</span><span class="si">}</span>.faa &gt; predictions/<span class="si">${</span><span class="nv">file_base</span><span class="si">}</span>.no_metadata.faa
+<a href="#__codelineno-7-5" id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">    </span>cut<span class="w"> </span>-f1<span class="w"> </span>-d<span class="w"> </span><span class="s1">' '</span><span class="w"> </span>predictions/<span class="si">${</span><span class="nv">file_base</span><span class="si">}</span>.fna<span class="w"> </span>&gt;<span class="w"> </span>predictions/<span class="si">${</span><span class="nv">file_base</span><span class="si">}</span>.no_metadata.fna
+<a href="#__codelineno-7-6" id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">    </span>cut<span class="w"> </span>-f1<span class="w"> </span>-d<span class="w"> </span><span class="s1">' '</span><span class="w"> </span>predictions/<span class="si">${</span><span class="nv">file_base</span><span class="si">}</span>.faa<span class="w"> </span>&gt;<span class="w"> </span>predictions/<span class="si">${</span><span class="nv">file_base</span><span class="si">}</span>.no_metadata.faa
 <a href="#__codelineno-7-7" id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="k">done</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a>head -n8 predictions/bin_0.filtered.genes.no_metadata.faa
-<a href="#__codelineno-8-2" id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="c1"># &gt;bin_0_NODE_5_length_607162_cov_1.000802_1</span>
-<a href="#__codelineno-8-3" id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="c1"># RYLIMKKITEEDIIESIADACQYISFYHPEDFVKGMVEAYNVEKGEAAKNAIGQILINSK</span>
-<a href="#__codelineno-8-4" id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="c1"># MCAMGHRPLCQDTGSVNIFVKVGLNAPLDIKKELVDLLNEGVAKGYTDPDNTLRYSVVAD</span>
-<a href="#__codelineno-8-5" id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="c1"># PAGKRVNTKNNTPAVIHVSVDNSDEIDITVAAKGGGSENKSKFAVLNPSDSIYDWVMENV</span>
-<a href="#__codelineno-8-6" id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="c1"># RNMGAGWCPPGILGIGIGGNPEKSMLLAKESLMSHVDIHELKARGPKNALEELRLKLYED</span>
-<a href="#__codelineno-8-7" id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="c1"># INKVGIGAQGLGGITTVLDVKILDYPCHAASLPVAMIPNCAATRHIHFKLKGDGPAVFNK</span>
-<a href="#__codelineno-8-8" id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="c1"># PDLDLWPDIELPMDTIKRVNIEDLTKENLSQFKSGDTLLLSGKILTARDAAHKKIVEYKN</span>
-<a href="#__codelineno-8-9" id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="c1"># AGKDLPNGVKLEDRFIYYVGPVDPVRDEAVGPAGPTTSTRMDKFTKDMMEIGIMGMIGKA</span>
+<div class="admonition magnifying-glass">
+<p class="admonition-title"><code>cut</code> flags</p>
+<ul>
+<li><code>-f</code> argument is how we specify which columns to keep. It can be used to specify a range as well</li>
+<li><code>-d-</code> <strong>delimiter</strong> : <code>cut</code> uses tab as a default field delimiter but can also work with other delimiter by using <code>-d</code> option</li>
+</ul>
+</div>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>predictions/bin_0.filtered.genes.no_metadata.faa
+<a href="#__codelineno-8-2" id="__codelineno-8-2" name="__codelineno-8-2"></a>
+<a href="#__codelineno-8-3" id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="c1"># &gt;bin_0_NODE_6_length_607162_cov_1.000759_1</span>
+<a href="#__codelineno-8-4" id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="c1"># MIKSNGILFTGKKFVMGAVVSALLATSGIAADYTLKFSHVVSPNTPKGKAADFFAKRLEE</span>
+<a href="#__codelineno-8-5" id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="c1"># LSGGKIDVQVYPSSQLYNDSAVLKALRLDSVQMAAPSFSKFGKIVPQLALFNLPFLFKDI</span>
+<a href="#__codelineno-8-6" id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="c1"># DQLHRVQDGPVGEKLKSLVTAKGFVALNFWDNGFKQLSSSKEPLLMPKDAEGQKFRIMSS</span>
+<a href="#__codelineno-8-7" id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="c1"># KVLEAQFKAVGANPQMMPFSEVYSGLQQGVIDAAENPFSNIY</span>
 </code></pre></div>
 <hr/>
 <h3 id="predicting-rna-features-and-non-coding-regions">Predicting RNA features and non-coding regions<a class="headerlink" href="#predicting-rna-features-and-non-coding-regions" title="Permanent link">¶</a></h3>
@@ -751,41 +801,51 @@
 <p>While they will not be covered in great detail here, there are a few other prediction tools that are useful when working with metagenomic data. The first of these is <code>MeTaxa2</code>, which can be used to predict ribosomal RNA sequences in a genome. Detection of these is a handy way to link your MAGs to the scientific literature and taxonomy, although recovery of ribosomal sequences like the 16S rRNA subunit is often not successful.</p>
 <p>To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits in our data, use the following commands.</p>
 <p>Create a new script</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a>nano metaxa2.sl
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a>nano<span class="w"> </span>metaxa2.sl
 </code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>Paste in the script (replacing <code>&lt;YOUR FOLDER&gt;</code>)</p>
+</div>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="ch">#!/bin/bash -e</span>
 <a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a>
 <a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
 <a href="#__codelineno-10-4" id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="c1">#SBATCH --job-name      metaxa2</span>
-<a href="#__codelineno-10-5" id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="c1">#SBATCH --res           SummerSchool</span>
-<a href="#__codelineno-10-6" id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="c1">#SBATCH --time          00:05:00</span>
-<a href="#__codelineno-10-7" id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="c1">#SBATCH --mem           1GB</span>
-<a href="#__codelineno-10-8" id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
-<a href="#__codelineno-10-9" id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="c1">#SBATCH --error         metaxa2.err</span>
-<a href="#__codelineno-10-10" id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="c1">#SBATCH --output        metaxa2.out</span>
+<a href="#__codelineno-10-5" id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="c1">#SBATCH --time          00:05:00</span>
+<a href="#__codelineno-10-6" id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="c1">#SBATCH --mem           1GB</span>
+<a href="#__codelineno-10-7" id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="c1">#SBATCH --cpus-per-task 4</span>
+<a href="#__codelineno-10-8" id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="c1">#SBATCH --array         0-9</span>
+<a href="#__codelineno-10-9" id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="c1">#SBATCH --error         %x_%A_%a.err</span>
+<a href="#__codelineno-10-10" id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="c1">#SBATCH --output        %x_%A_%a.out</span>
 <a href="#__codelineno-10-11" id="__codelineno-10-11" name="__codelineno-10-11"></a>
-<a href="#__codelineno-10-12" id="__codelineno-10-12" name="__codelineno-10-12"></a>
-<a href="#__codelineno-10-13" id="__codelineno-10-13" name="__codelineno-10-13"></a>module purge
-<a href="#__codelineno-10-14" id="__codelineno-10-14" name="__codelineno-10-14"></a>module load Metaxa2/2.2.3-gimkl-2022a
+<a href="#__codelineno-10-12" id="__codelineno-10-12" name="__codelineno-10-12"></a><span class="c1"># Load modules</span>
+<a href="#__codelineno-10-13" id="__codelineno-10-13" name="__codelineno-10-13"></a>module<span class="w"> </span>purge
+<a href="#__codelineno-10-14" id="__codelineno-10-14" name="__codelineno-10-14"></a>module<span class="w"> </span>load<span class="w"> </span>Metaxa2/2.2.3-gimkl-2022a
 <a href="#__codelineno-10-15" id="__codelineno-10-15" name="__codelineno-10-15"></a>
-<a href="#__codelineno-10-16" id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/9.gene_prediction/
-<a href="#__codelineno-10-17" id="__codelineno-10-17" name="__codelineno-10-17"></a>
-<a href="#__codelineno-10-18" id="__codelineno-10-18" name="__codelineno-10-18"></a>mkdir -p ribosomes/
-<a href="#__codelineno-10-19" id="__codelineno-10-19" name="__codelineno-10-19"></a>
-<a href="#__codelineno-10-20" id="__codelineno-10-20" name="__codelineno-10-20"></a><span class="k">for</span> bin_file <span class="k">in</span> filtered_bins/*.fna<span class="p">;</span>
-<a href="#__codelineno-10-21" id="__codelineno-10-21" name="__codelineno-10-21"></a><span class="k">do</span>
-<a href="#__codelineno-10-22" id="__codelineno-10-22" name="__codelineno-10-22"></a>    <span class="nv">pred_file</span><span class="o">=</span><span class="k">$(</span>basename <span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span> .fna<span class="k">)</span>
-<a href="#__codelineno-10-23" id="__codelineno-10-23" name="__codelineno-10-23"></a>
-<a href="#__codelineno-10-24" id="__codelineno-10-24" name="__codelineno-10-24"></a>    metaxa2 --cpu <span class="m">10</span> -g ssu -i <span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span> -o ribosomes/<span class="si">${</span><span class="nv">pred_file</span><span class="si">}</span>.ssu
-<a href="#__codelineno-10-25" id="__codelineno-10-25" name="__codelineno-10-25"></a>    metaxa2 --cpu <span class="m">10</span> -g lsu -i <span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span> -o ribosomes/<span class="si">${</span><span class="nv">pred_file</span><span class="si">}</span>.lsu
-<a href="#__codelineno-10-26" id="__codelineno-10-26" name="__codelineno-10-26"></a><span class="k">done</span>
+<a href="#__codelineno-10-16" id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="c1"># Working directory</span>
+<a href="#__codelineno-10-17" id="__codelineno-10-17" name="__codelineno-10-17"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/9.gene_prediction
+<a href="#__codelineno-10-18" id="__codelineno-10-18" name="__codelineno-10-18"></a>
+<a href="#__codelineno-10-19" id="__codelineno-10-19" name="__codelineno-10-19"></a><span class="c1"># Output directory</span>
+<a href="#__codelineno-10-20" id="__codelineno-10-20" name="__codelineno-10-20"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>ribosomes/
+<a href="#__codelineno-10-21" id="__codelineno-10-21" name="__codelineno-10-21"></a>
+<a href="#__codelineno-10-22" id="__codelineno-10-22" name="__codelineno-10-22"></a><span class="c1"># Variables</span>
+<a href="#__codelineno-10-23" id="__codelineno-10-23" name="__codelineno-10-23"></a><span class="nv">bin_file</span><span class="o">=</span>filtered_bins/bin_<span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>.filtered.fna
+<a href="#__codelineno-10-24" id="__codelineno-10-24" name="__codelineno-10-24"></a><span class="nv">pred_file</span><span class="o">=</span><span class="k">$(</span>basename<span class="w"> </span><span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span><span class="w"> </span>.fna<span class="k">)</span>
+<a href="#__codelineno-10-25" id="__codelineno-10-25" name="__codelineno-10-25"></a>
+<a href="#__codelineno-10-26" id="__codelineno-10-26" name="__codelineno-10-26"></a><span class="c1"># Run Metaxa2</span>
+<a href="#__codelineno-10-27" id="__codelineno-10-27" name="__codelineno-10-27"></a><span class="k">for</span><span class="w"> </span>ribosome_type<span class="w"> </span><span class="k">in</span><span class="w"> </span>ssu<span class="w"> </span>lsu<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a href="#__codelineno-10-28" id="__codelineno-10-28" name="__codelineno-10-28"></a><span class="w">  </span>metaxa2<span class="w"> </span>--cpu<span class="w"> </span><span class="nv">$SLURM_CPUS_PER_TASK</span><span class="w"> </span>-g<span class="w"> </span><span class="si">${</span><span class="nv">ribosome_type</span><span class="si">}</span><span class="w"> </span>--mode<span class="w"> </span>genome<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-10-29" id="__codelineno-10-29" name="__codelineno-10-29"></a><span class="w">          </span>-i<span class="w"> </span><span class="si">${</span><span class="nv">bin_file</span><span class="si">}</span><span class="w"> </span>-o<span class="w"> </span>ribosomes/<span class="si">${</span><span class="nv">pred_file</span><span class="si">}</span>.<span class="si">${</span><span class="nv">ribosome_type</span><span class="si">}</span>
+<a href="#__codelineno-10-30" id="__codelineno-10-30" name="__codelineno-10-30"></a><span class="k">done</span>
 </code></pre></div>
+</div>
 <p>Submit the script</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a>sbatch metaxa2.sl
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a>sbatch<span class="w"> </span>metaxa2.sl
 </code></pre></div>
 <p>The parameters here are fairly self-explanatory, so we won't discuss them in detail. Briefly, <code>--cpu</code> tells the program how many CPUs to use in sequence prediction, and the <code>-g</code> flag determines whether we are using the training data set for SSU or LSU regions. the <code>-i</code> and <code>-o</code> flags denote the input file and output prefix.</p>
-<p>The only other parameter that can be helpful is the <code>-A</code> flag. By default, <code>MeTaxa2</code> will search your genome for the following ribosomal signatures:</p>
+<p>The only other parameter that can be helpful is the <code>-t</code> flag to indicate taxa type (<code>b</code>, bacteria, <code>a</code>, archaea, <code>e</code>, eukaryota, <code>m</code>, mitochondrial, <code>c</code>, chloroplast, <code>A</code>, all, <code>o</code>, other). By default, <code>MeTaxa2</code> will search your genome for the following ribosomal signatures:</p>
 <ol>
 <li>Bacteria</li>
 <li>Archaea</li>
@@ -793,49 +853,21 @@
 <li>Mitochondira</li>
 <li>Eukaryote</li>
 </ol>
-<p>It is usually worth letting it search for all options as detecting multiple rRNAs from different lineages can be a good sign of binning contamination. However, if you want to restrict the search or provide a custom training set this can be set with the <code>-A</code> flag.</p>
+<p>It is usually worth letting it search for all options as detecting multiple rRNAs from different lineages can be a good sign of binning contamination. However, if you want to restrict the search or provide a custom training set this can be set with the <code>-t</code> flag.</p>
 <h4 id="predicting-trna-and-tmrna-sequences">Predicting tRNA and tmRNA sequences<a class="headerlink" href="#predicting-trna-and-tmrna-sequences" title="Permanent link">¶</a></h4>
 <p>The <a href="https://www.ncbi.nlm.nih.gov/pubmed/28787424">MIMAG</a> standard specifies that in order to reach particular quality criteria, a MAG must contain a certain number or tRNA sequences. We can search a MAG or genome for these using <code>Aragorn</code> (<a href="http://130.235.244.92/ARAGORN/">link here</a>).</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex11_aragorn.PNG"><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex11_aragorn.PNG"/></a>
-<a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../figures/ex11_aragorn.PNG"><img alt="image" src="../../figures/ex11_aragorn.PNG"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex11_aragorn.PNG"><img alt="" src="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex11_aragorn.PNG"/></a>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../figures/ex11_aragorn.PNG"><img alt="image" src="../../figures/ex11_aragorn.PNG"/></a></p>
 <hr/>
 </article>
 </div>
 </div>
-<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
             Back to top
-          </a>
+          </button>
 </main>
 <footer class="md-footer">
-<nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Previous: Per-sample coverage and assigning taxonomy" class="md-footer__link md-footer__link--prev" href="../ex11_coverage_and_taxonomy/" rel="prev">
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
-</div>
-<div class="md-footer__title">
-<div class="md-ellipsis">
-<span class="md-footer__direction">
-                Previous
-              </span>
-              Per-sample coverage and assigning taxonomy
-            </div>
-</div>
-</a>
-<a aria-label="Next: Gene annotation (part 1)" class="md-footer__link md-footer__link--next" href="../ex13_gene_annotation_part1/" rel="next">
-<div class="md-footer__title">
-<div class="md-ellipsis">
-<span class="md-footer__direction">
-                Next
-              </span>
-              Gene annotation (part 1)
-            </div>
-</div>
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
-</div>
-</a>
-</nav>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-copyright">
@@ -853,10 +885,10 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
-<script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../assets/javascripts/bundle.b4d07000.min.js"></script>
 <script src="../../javascripts/mathjax.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>

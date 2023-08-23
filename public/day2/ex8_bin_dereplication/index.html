@@ -7,25 +7,31 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Genomics Aotearoa &amp; NeSI" name="author"/>
 <link href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day2/ex8_bin_dereplication/" rel="canonical"/>
+<link href="../ex7_initial_binning/" rel="prev"/>
+<link href="../ex9_refining_bins/" rel="next"/>
 <link href="../../theme_images/nesi_ga.png" rel="icon"/>
-<meta content="mkdocs-1.4.1, mkdocs-material-8.3.9" name="generator"/>
+<meta content="mkdocs-1.4.3, mkdocs-material-9.1.15" name="generator"/>
 <title>Bin dereplication - Metagenomics Summer School</title>
-<link href="../../assets/stylesheets/main.1d29e8d0.min.css" rel="stylesheet"/>
-<link href="../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/main.26e3688c.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.ecc896b0.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Mukta";--md-code-font:"Roboto Mono"}</style>
-<script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../stylesheets/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
             html.glightbox-open { overflow: initial; height: 100%; }
-            .gdesc-inner { font-size: 0.75rem; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
             .gslide-image img { background: white; }
             
                 .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
                 </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
-<body data-md-color-accent="" data-md-color-primary="indigo" data-md-color-scheme="" dir="ltr">
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
 <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -37,7 +43,7 @@
 </div>
 <div data-md-component="announce">
 </div>
-<header class="md-header md-header--lifted" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
 <a aria-label="Metagenomics Summer School" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Metagenomics Summer School">
 <img alt="logo" src="../../theme_images/nesi_ga.png"/>
@@ -62,15 +68,15 @@
 </div>
 </div>
 <form class="md-header__option" data-md-component="palette">
-<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="indigo" data-md-color-scheme="" id="__palette_1" name="__palette" type="radio"/>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
 <label class="md-header__button md-icon" for="__palette_3" hidden="" title="Switch to light mode">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"></path></svg>
 </label>
-<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_2" name="__palette" type="radio"/>
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_2" name="__palette" type="radio"/>
 <label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
 </label>
-<input aria-label="Switch to system preference" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_3" name="__palette" type="radio"/>
+<input aria-label="Switch to system preference" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_3" name="__palette" type="radio"/>
 <label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to system preference">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
 </label>
@@ -88,7 +94,7 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
 </label>
 <nav aria-label="Search" class="md-search__options">
-<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" type="reset">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
 </button>
 </nav>
@@ -99,7 +105,7 @@
 <div class="md-search-result__meta">
             Initializing search
           </div>
-<ol class="md-search-result__list"></ol>
+<ol class="md-search-result__list" role="presentation"></ol>
 </div>
 </div>
 </div>
@@ -108,7 +114,7 @@
 <div class="md-header__source">
 <a class="md-source" data-md-component="source" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository">
 <div class="md-source__icon md-icon">
-<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
 </div>
 <div class="md-source__repository">
     GenomicsAotearoa/metagenomics_summer_school
@@ -117,7 +123,7 @@
 </div>
 </nav>
 <nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
-<div class="md-tabs__inner md-grid">
+<div class="md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
 <a class="md-tabs__link" href="../..">
@@ -149,6 +155,11 @@
         Resources
       </a>
 </li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../supplementary/supplementary_1/">
+        Supplementary
+      </a>
+</li>
 </ul>
 </div>
 </nav>
@@ -169,7 +180,7 @@
 <div class="md-nav__source">
 <a class="md-source" data-md-component="source" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository">
 <div class="md-source__icon md-icon">
-<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
 </div>
 <div class="md-source__repository">
     GenomicsAotearoa/metagenomics_summer_school
@@ -183,12 +194,12 @@
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_2">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
           Day1
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-label="Day1" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
           Day1
@@ -196,7 +207,12 @@
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day1/ex1_bash_and_scheduler/">
-        Introduction to shell &amp; HPC Job Scheduler
+        Introduction to shell
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day1/ex2_1_intro_to_scheduler/">
+        Introduction to HPC &amp; HPC job scheduler
       </a>
 </li>
 <li class="md-nav__item">
@@ -223,12 +239,12 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
-<label class="md-nav__link" for="__nav_3">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
           Day2
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-label="Day2" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
           Day2
@@ -241,11 +257,11 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../ex7_initial_binning/">
-        Introduction to binning
+        Binning (continued)
       </a>
 </li>
 <li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
           Bin dereplication
           <span class="md-nav__icon md-icon"></span>
@@ -269,30 +285,6 @@
 <a class="md-nav__link" href="#creating-contigbin-tables-metabat">
     Creating contig/bin tables - MetaBAT
   </a>
-<nav aria-label="Creating contig/bin tables - MetaBAT" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#command-1">
-    Command 1
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#command-2">
-    Command 2
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#command-3">
-    Command 3
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#command-4">
-    Command 4
-  </a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#creating-contigbin-tables-maxbin">
@@ -357,12 +349,12 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
-<label class="md-nav__link" for="__nav_4">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
           Day3
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-label="Day3" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
           Day3
@@ -375,7 +367,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day3/ex11_coverage_and_taxonomy/">
-        Per-sample coverage and assigning taxonomy
+        Assigning taxonomy to refined prokaryotic bins
       </a>
 </li>
 <li class="md-nav__item">
@@ -390,19 +382,19 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day3/ex14_gene_annotation_part2/">
-        Gene annotation (part 2)
+        Gene annotation (part 2) and coverage calculation
       </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
           Day4
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-label="Day4" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_5">
 <span class="md-nav__icon md-icon"></span>
           Day4
@@ -425,7 +417,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex16c_OPTIONAL_data_presentation_Ordination/">
-        (*Optional*) Presentation of data: Ordinations
+        Presentation of data: Ordinations
       </a>
 </li>
 <li class="md-nav__item">
@@ -440,19 +432,19 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations/">
-        Presentation of data: *Optional exercise*: CAZy annotations heatmap
+        Presentation of data: CAZy annotations heatmap
       </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
-<label class="md-nav__link" for="__nav_6">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
           Resources
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-label="Resources" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
           Resources
@@ -460,7 +452,7 @@
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../resources/1_APPENDIX_ex8_Dereplication/">
-        APPENDIX (ex8):Dereplicating data from multiple assemblies
+        APPENDIX (ex8): Dereplicating data from multiple assemblies
       </a>
 </li>
 <li class="md-nav__item">
@@ -475,22 +467,47 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/">
-        APPENDIX (ex11) : viral taxonomy prediction via *vContact2*
+        APPENDIX (ex11) : Viral taxonomy prediction via *vContact2*
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/5_APPENDIX_ex15_Prepare_gene_synteny_inputs/">
+        APPENDIX (ex15): Prepare input for gene synteny visualisation
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../resources/5_APPENDIX_ex15_gene_synteny_Generate_blast_files/">
-        APPENDIX (ex15): How to generate the blast files provided in [ex15_gene_synteny](../day4/ex16e_data_presentation_Gene_synteny.md)
-      </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../resources/6_APPENDIX_ex15_gene_synteny_grab_GOI/">
-        APPENDIX (ex15): Grab Gene of Interest (generate the *cys.txt* files provided in [ex15_gene_synteny](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16e_data_presentation_Gene_synteny.md))
+        APPENDIX (ex15): Generating pairwise contig comparisons using online BLAST
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../resources/7_command_line_shortcuts/">
         Useful command line shortcuts
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          Supplementary
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+          Supplementary
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../supplementary/supplementary_1/">
+        NeSI Setup
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../supplementary/supplementary_2/">
+        NeSI File system, Working directory and Symlinks
       </a>
 </li>
 </ul>
@@ -520,30 +537,6 @@
 <a class="md-nav__link" href="#creating-contigbin-tables-metabat">
     Creating contig/bin tables - MetaBAT
   </a>
-<nav aria-label="Creating contig/bin tables - MetaBAT" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#command-1">
-    Command 1
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#command-2">
-    Command 2
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#command-3">
-    Command 3
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#command-4">
-    Command 4
-  </a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#creating-contigbin-tables-maxbin">
@@ -603,9 +596,6 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/day2/ex8_bin_dereplication.md" title="Edit this page">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
-</a>
 <h1 id="bin-dereplication">Bin dereplication<a class="headerlink" href="#bin-dereplication" title="Permanent link">¶</a></h1>
 <div class="admonition info">
 <p class="admonition-title">Objectives</p>
@@ -613,13 +603,7 @@
 <li><a href="#bin-dereplication">Bin dereplication</a><ul>
 <li><a href="#objectives">Objectives</a></li>
 <li><a href="#bin-dereplication-using-das_tool---creating-input-tables">Bin dereplication using <code>DAS_Tool</code> - Creating input tables</a></li>
-<li><a href="#creating-contigbin-tables---metabat">Creating contig/bin tables - <em>MetaBAT</em></a><ul>
-<li><a href="#command-1">Command 1</a></li>
-<li><a href="#command-2">Command 2</a></li>
-<li><a href="#command-3">Command 3</a></li>
-<li><a href="#command-4">Command 4</a></li>
-</ul>
-</li>
+<li><a href="#creating-contigbin-tables---metabat">Creating contig/bin tables - <em>MetaBAT</em></a></li>
 <li><a href="#creating-contigbin-tables---maxbin">Creating contig/bin tables - <em>MaxBin</em></a><ul>
 <li><a href="#warning-for-unbinned-contigs">Warning for unbinned contigs</a></li>
 </ul>
@@ -646,54 +630,55 @@
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>Contig<span class="o">[</span>tab<span class="o">]</span>Bin
 </code></pre></div>
 <p>This can be done with a bit of <code>bash</code> scripting. There's quite a bit going on here, so we'll provide the full command, and then a step-by-step explanation of what's happening.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/5.binning/
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/5.binning/
 <a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>
-<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">for</span> bin_path <span class="k">in</span> metabat/*.fa<span class="p">;</span>
-<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="k">do</span>
-<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a>    <span class="nv">bin_name</span><span class="o">=</span><span class="k">$(</span>basename <span class="si">${</span><span class="nv">bin_path</span><span class="si">}</span> .fa<span class="k">)</span>
-<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a>
-<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a>    grep <span class="s2">"&gt;"</span> <span class="si">${</span><span class="nv">bin_path</span><span class="si">}</span> <span class="p">|</span> sed <span class="s1">'s/&gt;//g'</span> <span class="p">|</span> sed <span class="s2">"s/</span>$<span class="s2">/\t</span><span class="si">${</span><span class="nv">bin_name</span><span class="si">}</span><span class="s2">/g"</span> &gt;&gt; metabat_associations.txt
-<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="k">done</span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">for</span><span class="w"> </span>bin_path<span class="w"> </span><span class="k">in</span><span class="w"> </span>metabat/*.fa<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="nv">bin_name</span><span class="o">=</span><span class="k">$(</span>basename<span class="w"> </span><span class="si">${</span><span class="nv">bin_path</span><span class="si">}</span><span class="w"> </span>.fa<span class="k">)</span>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a>
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span>grep<span class="w"> </span><span class="s2">"&gt;"</span><span class="w"> </span><span class="si">${</span><span class="nv">bin_path</span><span class="si">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">'s/&gt;//g'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s2">"s/</span>$<span class="s2">/\t</span><span class="si">${</span><span class="nv">bin_name</span><span class="si">}</span><span class="s2">/g"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>metabat_associations.txt
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="k">done</span>
 </code></pre></div>
 <p>You can check the contents of this file using <code>less</code> or <code>head</code>, and you should be something like:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>head -n5 metabat_associations.txt
-<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="c1"># NODE_14_length_365935_cov_2.017800      metabat.10</span>
-<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="c1"># NODE_17_length_326226_cov_2.043974      metabat.10</span>
-<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1"># NODE_22_length_261683_cov_2.059748      metabat.10</span>
-<a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="c1"># NODE_24_length_257182_cov_2.023572      metabat.10</span>
-<a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="c1"># NODE_25_length_256074_cov_2.059912      metabat.10</span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>metabat_associations.txt
+<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="c1"># NODE_44_length_186282_cov_0.255381      metabat.10</span>
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="c1"># NODE_51_length_159085_cov_0.252240      metabat.10</span>
+<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1"># NODE_68_length_132434_cov_0.251275      metabat.10</span>
+<a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="c1"># NODE_71_length_129650_cov_0.256954      metabat.10</span>
+<a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="c1"># NODE_73_length_121437_cov_0.254006      metabat.10</span>
 </code></pre></div>
 <p>We will now walk through the content of the command above, breaking apart each individual step.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">for</span> bin_path <span class="k">in</span> metabat/*.fa<span class="p">;</span>
-<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">do</span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">for</span><span class="w"> </span>bin_path<span class="w"> </span><span class="k">in</span><span class="w"> </span>metabat/*.fa<span class="p">;</span><span class="w"> </span><span class="k">do</span>
 </code></pre></div>
 <p>This is the initial loop, returning each file in the <code>metabat/</code> folder that ends with the file extension <em>.fa</em>.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>    <span class="nv">bin_name</span><span class="o">=</span><span class="k">$(</span>basename <span class="si">${</span><span class="nv">bin_path</span><span class="si">}</span> .fa<span class="k">)</span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="w">    </span><span class="nv">bin_name</span><span class="o">=</span><span class="k">$(</span>basename<span class="w"> </span><span class="si">${</span><span class="nv">bin_path</span><span class="si">}</span><span class="w"> </span>.fa<span class="k">)</span>
 </code></pre></div>
 <p>As we have previously seen, the <code>basename</code> command removes the path information from the input variable <code>bin_path</code> (i.e. - <code>metabat/metabat.1.fa</code> becomes <code>metabat.1.fa</code>) and assigns it to a new variable, <code>bin_name</code>. As an optional additional parameter, we can pass extra pieces of text to be removed from the variable, in this case the <em>.fa</em> extension.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>    grep <span class="s2">"&gt;"</span> <span class="si">${</span><span class="nv">bin_path</span><span class="si">}</span> <span class="p">|</span> sed <span class="s1">'s/&gt;//g'</span> <span class="p">|</span> sed <span class="s2">"s/</span>$<span class="s2">/\t</span><span class="si">${</span><span class="nv">bin_name</span><span class="si">}</span><span class="s2">/g"</span> &gt;&gt; metabat_associations.txt
-<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a>    <span class="p">|</span>                      <span class="p">|</span>              <span class="p">|</span>                         <span class="p">|</span>
-<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a>    <span class="p">|</span>                      <span class="p">|</span>              <span class="p">|</span>                         Command <span class="m">4</span>
-<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a>    <span class="p">|</span>                      <span class="p">|</span>              Command <span class="m">3</span>
-<a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a>    <span class="p">|</span>                      Command <span class="m">2</span>
-<a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a>    Command <span class="m">1</span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="w">    </span>grep<span class="w"> </span><span class="s2">"&gt;"</span><span class="w"> </span><span class="si">${</span><span class="nv">bin_path</span><span class="si">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">'s/&gt;//g'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s2">"s/</span>$<span class="s2">/\t</span><span class="si">${</span><span class="nv">bin_name</span><span class="si">}</span><span class="s2">/g"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>metabat_associations.txt
+<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="w">    </span><span class="p">|</span><span class="w">                      </span><span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">                         </span><span class="p">|</span>
+<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">    </span><span class="p">|</span><span class="w">                      </span><span class="p">|</span><span class="w">              </span><span class="p">|</span><span class="w">                         </span>Command<span class="w"> </span><span class="m">4</span>
+<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="p">|</span><span class="w">                      </span><span class="p">|</span><span class="w">              </span>Command<span class="w"> </span><span class="m">3</span>
+<a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">    </span><span class="p">|</span><span class="w">                      </span>Command<span class="w"> </span><span class="m">2</span>
+<a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">    </span>Command<span class="w"> </span><span class="m">1</span>
 </code></pre></div>
 <p>This next step uses piping between several commands to achieve the desired output.</p>
-<h6 id="command-1">Command 1<a class="headerlink" href="#command-1" title="Permanent link">¶</a></h6>
+<div class="admonition info">
+<p class="admonition-title">Commands</p>
+<p><strong>Command 1</strong></p>
 <p>The <code>grep</code> command searches the input file <code>bin_path</code> for lines containing the <code>&gt;</code> character, which is the <em>fastA</em> demarcation for a sequence name.</p>
-<h6 id="command-2">Command 2<a class="headerlink" href="#command-2" title="Permanent link">¶</a></h6>
+<p><strong>Command 2</strong></p>
 <p>The <code>sed</code> command replaces the <code>&gt;</code> character with the empty character <code>''</code>, as we do not need this character in the final file.</p>
-<h6 id="command-3">Command 3<a class="headerlink" href="#command-3" title="Permanent link">¶</a></h6>
+<p><strong>Command 3</strong></p>
 <p>We now use <code>sed</code> again, this time to replace the <code>$</code> character. In many command line tools and software environments (including <code>R</code> and <code>python</code>) the characters <code>^</code> and <code>$</code> are used as shortcuts for the beginning and ending of a line, respectively. By using the character in this way, we are telling <code>sed</code> to replace the end-of-line with the text <code>\t${bin_name}</code>. <code>sed</code> will parse this text to mean the tab character followed by the content of the <code>bin_name</code> variable. The nature of <code>sed</code> is that it will automatically insert a new end-of-line.</p>
-<h6 id="command-4">Command 4<a class="headerlink" href="#command-4" title="Permanent link">¶</a></h6>
+<p><strong>Command 4</strong></p>
 <p>This is similar to the stdout redirection we have previously used, but the double use of the <code>&gt;</code> character means that we are appending our text to the end of the file <code>metabat_associations.txt</code>. Because we are looping through several files in this exercise, if we were to use the single <code>&gt;</code> character then on each new <em>fastA</em> file read, the content of <code>metabat_associations.txt</code> would be replaced.</p>
 <p>It is important to note that because we are <strong><em>appending</em></strong> to the file, not <strong><em>replacing</em></strong> the contents, if you make a mistake in the command and need to re-run it, you will need to explicitly delete the <code>metabat_associations.txt</code> file using <code>rm</code>, otherwise your new (correct) output will be pasted to the end of your old (incorrect) output.</p>
+</div>
 <h4 id="creating-contigbin-tables-maxbin">Creating contig/bin tables - <em>MaxBin</em><a class="headerlink" href="#creating-contigbin-tables-maxbin" title="Permanent link">¶</a></h4>
 <p>The process for creating the <code>MaxBin</code> table is basically the same, we just need to change the file extension, as <code>MaxBin</code> writes outputs using the <em>.fasta</em> suffix rather than the <em>.fa</em> one.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">for</span> bin_path <span class="k">in</span> maxbin/*.fasta<span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">for</span><span class="w"> </span>bin_path<span class="w"> </span><span class="k">in</span><span class="w"> </span>maxbin/*.fasta<span class="p">;</span>
 <a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="k">do</span>
-<a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a>    <span class="nv">bin_name</span><span class="o">=</span><span class="k">$(</span>basename <span class="si">${</span><span class="nv">bin_path</span><span class="si">}</span> .fasta<span class="k">)</span>
-<a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a>    grep <span class="s2">"&gt;"</span> <span class="si">${</span><span class="nv">bin_path</span><span class="si">}</span> <span class="p">|</span> sed <span class="s1">'s/&gt;//g'</span> <span class="p">|</span> sed <span class="s2">"s/</span>$<span class="s2">/\t</span><span class="si">${</span><span class="nv">bin_name</span><span class="si">}</span><span class="s2">/g"</span> &gt;&gt; maxbin_associations.txt
+<a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">    </span><span class="nv">bin_name</span><span class="o">=</span><span class="k">$(</span>basename<span class="w"> </span><span class="si">${</span><span class="nv">bin_path</span><span class="si">}</span><span class="w"> </span>.fasta<span class="k">)</span>
+<a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">    </span>grep<span class="w"> </span><span class="s2">"&gt;"</span><span class="w"> </span><span class="si">${</span><span class="nv">bin_path</span><span class="si">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">'s/&gt;//g'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s2">"s/</span>$<span class="s2">/\t</span><span class="si">${</span><span class="nv">bin_name</span><span class="si">}</span><span class="s2">/g"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>maxbin_associations.txt
 <a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="k">done</span>
 </code></pre></div>
 <h5 id="warning-for-unbinned-contigs">Warning for unbinned contigs<a class="headerlink" href="#warning-for-unbinned-contigs" title="Permanent link">¶</a></h5>
@@ -701,25 +686,25 @@
 <hr/>
 <h3 id="bin-dereplication-using-das_tool-running-the-tool">Bin dereplication using <em>DAS_Tool</em> - Running the tool<a class="headerlink" href="#bin-dereplication-using-das_tool-running-the-tool" title="Permanent link">¶</a></h3>
 <p>We are now ready to run <code>DAS_Tool</code>. This can be done from the command line, as it does not take a particularly long time to run for this data set. Start by loading <code>DAS_Tool</code>.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a>module load DAS_Tool/1.1.5-gimkl-2022a-R-4.2.1
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a>module<span class="w"> </span>load<span class="w"> </span>DAS_Tool/1.1.5-gimkl-2022a-R-4.2.1
 </code></pre></div>
 <p>Depending on whether or not your session has been continued from previous exercises, you may encounter an error performing this module load. This is because some of the tools we have used in previous exercises have dependencies which conflict with the dependencies in <code>DAS_Tool</code>. If this is the case for you, you can unload all previous module loads with the following:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a>module purge
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a>module<span class="w"> </span>purge
 <a href="#__codelineno-8-2" id="__codelineno-8-2" name="__codelineno-8-2"></a>
-<a href="#__codelineno-8-3" id="__codelineno-8-3" name="__codelineno-8-3"></a>module load DAS_Tool/1.1.5-gimkl-2022a-R-4.2.1
-<a href="#__codelineno-8-4" id="__codelineno-8-4" name="__codelineno-8-4"></a>module load DIAMOND/2.0.15-GCC-11.3.0
-<a href="#__codelineno-8-5" id="__codelineno-8-5" name="__codelineno-8-5"></a>module load USEARCH/11.0.667-i86linux32
+<a href="#__codelineno-8-3" id="__codelineno-8-3" name="__codelineno-8-3"></a>module<span class="w"> </span>load<span class="w"> </span>DAS_Tool/1.1.5-gimkl-2022a-R-4.2.1
+<a href="#__codelineno-8-4" id="__codelineno-8-4" name="__codelineno-8-4"></a>module<span class="w"> </span>load<span class="w"> </span>DIAMOND/2.0.15-GCC-11.3.0
+<a href="#__codelineno-8-5" id="__codelineno-8-5" name="__codelineno-8-5"></a>module<span class="w"> </span>load<span class="w"> </span>USEARCH/11.0.667-i86linux32
 </code></pre></div>
 <p><code>DAS_Tool</code> should now load without issue. With 2 threads, <code>DAS_Tool</code> should take 10 - 15 minutes to complete.</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="c1"># Create DAS_Tool output directory</span>
-<a href="#__codelineno-9-2" id="__codelineno-9-2" name="__codelineno-9-2"></a>mkdir -p dastool_out/
+<a href="#__codelineno-9-2" id="__codelineno-9-2" name="__codelineno-9-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>dastool_out/
 <a href="#__codelineno-9-3" id="__codelineno-9-3" name="__codelineno-9-3"></a>
 <a href="#__codelineno-9-4" id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="c1"># Run DAS_Tool</span>
-<a href="#__codelineno-9-5" id="__codelineno-9-5" name="__codelineno-9-5"></a>DAS_Tool -i metabat_associations.txt,maxbin_associations.txt <span class="se">\</span>
-<a href="#__codelineno-9-6" id="__codelineno-9-6" name="__codelineno-9-6"></a>         -l MetaBAT,MaxBin <span class="se">\</span>
-<a href="#__codelineno-9-7" id="__codelineno-9-7" name="__codelineno-9-7"></a>         -t <span class="m">2</span> --write_bins --search_engine blastp <span class="se">\</span>
-<a href="#__codelineno-9-8" id="__codelineno-9-8" name="__codelineno-9-8"></a>         -c spades_assembly/spades_assembly.m1000.fna <span class="se">\</span>
-<a href="#__codelineno-9-9" id="__codelineno-9-9" name="__codelineno-9-9"></a>         -o dastool_out/
+<a href="#__codelineno-9-5" id="__codelineno-9-5" name="__codelineno-9-5"></a>DAS_Tool<span class="w"> </span>-i<span class="w"> </span>metabat_associations.txt,maxbin_associations.txt<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-9-6" id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="w">         </span>-l<span class="w"> </span>MetaBAT,MaxBin<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-9-7" id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="w">         </span>-t<span class="w"> </span><span class="m">2</span><span class="w"> </span>--write_bins<span class="w"> </span>--search_engine<span class="w"> </span>blastp<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-9-8" id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="w">         </span>-c<span class="w"> </span>spades_assembly/spades_assembly.m1000.fna<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-9-9" id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="w">         </span>-o<span class="w"> </span>dastool_out/
 </code></pre></div>
 <p>As usual, we will break down the parameters:</p>
 <table>
@@ -760,13 +745,6 @@
 </tr>
 </tbody>
 </table>
-<p>When <code>DAS_Tool</code> runs, you might see a dump of text looking like</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a>which: no diamond <span class="k">in</span> <span class="o">(</span>...<span class="o">)</span>
-<a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a>/opt/nesi/CS400_centos7_bdw/DAS_Tool/1.1.1-gimkl-2018b-R-3.6.1/DAS_Tool: line <span class="m">237</span>: diamond: <span class="nb">command</span> not found
-<a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a>
-<a href="#__codelineno-10-4" id="__codelineno-10-4" name="__codelineno-10-4"></a>which: no usearch <span class="k">in</span> <span class="o">(</span>...<span class="o">)</span>
-<a href="#__codelineno-10-5" id="__codelineno-10-5" name="__codelineno-10-5"></a>/opt/nesi/CS400_centos7_bdw/DAS_Tool/1.1.1-gimkl-2018b-R-3.6.1/DAS_Tool: line <span class="m">241</span>: usearch: <span class="nb">command</span> not found
-</code></pre></div>
 <p>This is not a problem - <code>DAS_Tool</code> can use either <code>BLAST</code>, <code>diamond</code>, or <code>usearch</code> for performing its alignment operations. Regardless of which one you specify, it will search to see which ones are available. In this case, it is telling us that <code>diamond</code> and <code>usearch</code> cannot be found, which doesn't really matter because we have specified <code>BLAST</code> as our search engine.</p>
 <p>When <code>DAS_Tool</code> has completed, we will have a final set of bins located in the folder path <code>dastool_out/_DASTool_bins</code>. Have a look at the output and see which bins made it to the final selection. Did a single binning tool pick the best bins, or are the results a split between <code>MetaBAT</code> and <code>MaxBin</code>?</p>
 <hr/>
@@ -786,30 +764,38 @@
 <p>This process isn't perfect, however, and we will discuss some times when you might need to create your own marker set in the next session.</p>
 <p>We will need to run <code>CheckM</code> under a slurm script. This is because the tree placement process requires a large amount of memory to perform, independently of the size of your data set. A basic script for submitting a <code>CheckM</code> job would be as follows:</p>
 <p>Create a new script</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a>nano bin_eval_checkm.sl
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a>nano<span class="w"> </span>checkm.sl
 </code></pre></div>
-<p>Paste in the following script (replacing <code>&lt;YOUR FOLDER&gt;</code> with your own folder).</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="ch">#!/bin/bash</span>
-<a href="#__codelineno-12-2" id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="c1">#SBATCH --account       nesi02659</span>
-<a href="#__codelineno-12-3" id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="c1">#SBATCH --job-name      bin_eval_checkm</span>
-<a href="#__codelineno-12-4" id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="c1">#SBATCH --res           SummerSchool</span>
-<a href="#__codelineno-12-5" id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="c1">#SBATCH --time          00:20:00</span>
-<a href="#__codelineno-12-6" id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="c1">#SBATCH --mem           50GB</span>
-<a href="#__codelineno-12-7" id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
-<a href="#__codelineno-12-8" id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="c1">#SBATCH --error         bin_eval_checkm.err</span>
-<a href="#__codelineno-12-9" id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="c1">#SBATCH --output        bin_eval_checkm.out</span>
-<a href="#__codelineno-12-10" id="__codelineno-12-10" name="__codelineno-12-10"></a>
-<a href="#__codelineno-12-11" id="__codelineno-12-11" name="__codelineno-12-11"></a>module purge
-<a href="#__codelineno-12-12" id="__codelineno-12-12" name="__codelineno-12-12"></a>module load CheckM/1.0.13-gimkl-2018b-Python-2.7.16
-<a href="#__codelineno-12-13" id="__codelineno-12-13" name="__codelineno-12-13"></a>
-<a href="#__codelineno-12-14" id="__codelineno-12-14" name="__codelineno-12-14"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/5.binning/
-<a href="#__codelineno-12-15" id="__codelineno-12-15" name="__codelineno-12-15"></a>
-<a href="#__codelineno-12-16" id="__codelineno-12-16" name="__codelineno-12-16"></a>checkm lineage_wf -t <span class="m">10</span> --pplacer_threads <span class="m">10</span> -x fa <span class="se">\</span>
-<a href="#__codelineno-12-17" id="__codelineno-12-17" name="__codelineno-12-17"></a>                  --tab_table -f checkm.txt <span class="se">\</span>
-<a href="#__codelineno-12-18" id="__codelineno-12-18" name="__codelineno-12-18"></a>                  dastool_out/_DASTool_bins/ checkm_out/
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Paste or type in the following. Remember to update <code>&lt;YOUR FOLDER&gt;</code> to your own folder.</p>
+</div>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="ch">#!/bin/bash -e</span>
+<a href="#__codelineno-11-2" id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="c1">#SBATCH --account       nesi02659</span>
+<a href="#__codelineno-11-3" id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="c1">#SBATCH --job-name      CheckM</span>
+<a href="#__codelineno-11-4" id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="c1">#SBATCH --time          00:20:00</span>
+<a href="#__codelineno-11-5" id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="c1">#SBATCH --mem           50GB</span>
+<a href="#__codelineno-11-6" id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
+<a href="#__codelineno-11-7" id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="c1">#SBATCH --error         %x_%j.err</span>
+<a href="#__codelineno-11-8" id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="c1">#SBATCH --output        %x_%j.out</span>
+<a href="#__codelineno-11-9" id="__codelineno-11-9" name="__codelineno-11-9"></a>
+<a href="#__codelineno-11-10" id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="c1"># Load modules</span>
+<a href="#__codelineno-11-11" id="__codelineno-11-11" name="__codelineno-11-11"></a>module<span class="w"> </span>purge
+<a href="#__codelineno-11-12" id="__codelineno-11-12" name="__codelineno-11-12"></a>module<span class="w"> </span>load<span class="w"> </span>CheckM/1.2.1-gimkl-2022a-Python-3.10.5
+<a href="#__codelineno-11-13" id="__codelineno-11-13" name="__codelineno-11-13"></a>
+<a href="#__codelineno-11-14" id="__codelineno-11-14" name="__codelineno-11-14"></a><span class="c1"># Working directory</span>
+<a href="#__codelineno-11-15" id="__codelineno-11-15" name="__codelineno-11-15"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/5.binning/
+<a href="#__codelineno-11-16" id="__codelineno-11-16" name="__codelineno-11-16"></a>
+<a href="#__codelineno-11-17" id="__codelineno-11-17" name="__codelineno-11-17"></a><span class="c1"># Run CheckM</span>
+<a href="#__codelineno-11-18" id="__codelineno-11-18" name="__codelineno-11-18"></a>checkm<span class="w"> </span>lineage_wf<span class="w"> </span>-t<span class="w"> </span><span class="nv">$SLURM_CPUS_PER_TASK</span><span class="w"> </span>--pplacer_threads<span class="w"> </span><span class="nv">$SLURM_CPUS_PER_TASK</span><span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-11-19" id="__codelineno-11-19" name="__codelineno-11-19"></a><span class="w">                  </span>-x<span class="w"> </span>fa<span class="w"> </span>--tab_table<span class="w"> </span>-f<span class="w"> </span>checkm.txt<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-11-20" id="__codelineno-11-20" name="__codelineno-11-20"></a><span class="w">                  </span>dastool_out/_DASTool_bins/<span class="w"> </span>checkm_out/
 </code></pre></div>
+</div>
 <p>Submit the script as a slurm job</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a>sbatch bin_eval_checkm.sl
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a>sbatch checkm.sl
 </code></pre></div>
 <p>The breakdown of parameters is as follows</p>
 <table>
@@ -863,40 +849,12 @@
 </article>
 </div>
 </div>
-<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
             Back to top
-          </a>
+          </button>
 </main>
 <footer class="md-footer">
-<nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Previous: Introduction to binning" class="md-footer__link md-footer__link--prev" href="../ex7_initial_binning/" rel="prev">
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
-</div>
-<div class="md-footer__title">
-<div class="md-ellipsis">
-<span class="md-footer__direction">
-                Previous
-              </span>
-              Introduction to binning
-            </div>
-</div>
-</a>
-<a aria-label="Next: Manually refining bins" class="md-footer__link md-footer__link--next" href="../ex9_refining_bins/" rel="next">
-<div class="md-footer__title">
-<div class="md-ellipsis">
-<span class="md-footer__direction">
-                Next
-              </span>
-              Manually refining bins
-            </div>
-</div>
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
-</div>
-</a>
-</nav>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-copyright">
@@ -914,10 +872,10 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
-<script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../assets/javascripts/bundle.b4d07000.min.js"></script>
 <script src="../../javascripts/mathjax.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>

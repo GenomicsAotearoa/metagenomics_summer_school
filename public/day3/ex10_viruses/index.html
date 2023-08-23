@@ -7,25 +7,31 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Genomics Aotearoa &amp; NeSI" name="author"/>
 <link href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day3/ex10_viruses/" rel="canonical"/>
+<link href="../../day2/ex9_refining_bins/" rel="prev"/>
+<link href="../ex11_coverage_and_taxonomy/" rel="next"/>
 <link href="../../theme_images/nesi_ga.png" rel="icon"/>
-<meta content="mkdocs-1.4.1, mkdocs-material-8.3.9" name="generator"/>
+<meta content="mkdocs-1.4.3, mkdocs-material-9.1.15" name="generator"/>
 <title>Identifying viral contigs in metagenomic data - Metagenomics Summer School</title>
-<link href="../../assets/stylesheets/main.1d29e8d0.min.css" rel="stylesheet"/>
-<link href="../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/main.26e3688c.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.ecc896b0.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Mukta";--md-code-font:"Roboto Mono"}</style>
-<script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../stylesheets/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
             html.glightbox-open { overflow: initial; height: 100%; }
-            .gdesc-inner { font-size: 0.75rem; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
             .gslide-image img { background: white; }
             
                 .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
                 </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
-<body data-md-color-accent="" data-md-color-primary="indigo" data-md-color-scheme="" dir="ltr">
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
 <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -37,7 +43,7 @@
 </div>
 <div data-md-component="announce">
 </div>
-<header class="md-header md-header--lifted" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
 <a aria-label="Metagenomics Summer School" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Metagenomics Summer School">
 <img alt="logo" src="../../theme_images/nesi_ga.png"/>
@@ -62,15 +68,15 @@
 </div>
 </div>
 <form class="md-header__option" data-md-component="palette">
-<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="indigo" data-md-color-scheme="" id="__palette_1" name="__palette" type="radio"/>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
 <label class="md-header__button md-icon" for="__palette_3" hidden="" title="Switch to light mode">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"></path></svg>
 </label>
-<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_2" name="__palette" type="radio"/>
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_2" name="__palette" type="radio"/>
 <label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
 </label>
-<input aria-label="Switch to system preference" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_3" name="__palette" type="radio"/>
+<input aria-label="Switch to system preference" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_3" name="__palette" type="radio"/>
 <label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to system preference">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
 </label>
@@ -88,7 +94,7 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
 </label>
 <nav aria-label="Search" class="md-search__options">
-<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" type="reset">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
 </button>
 </nav>
@@ -99,7 +105,7 @@
 <div class="md-search-result__meta">
             Initializing search
           </div>
-<ol class="md-search-result__list"></ol>
+<ol class="md-search-result__list" role="presentation"></ol>
 </div>
 </div>
 </div>
@@ -108,7 +114,7 @@
 <div class="md-header__source">
 <a class="md-source" data-md-component="source" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository">
 <div class="md-source__icon md-icon">
-<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
 </div>
 <div class="md-source__repository">
     GenomicsAotearoa/metagenomics_summer_school
@@ -117,7 +123,7 @@
 </div>
 </nav>
 <nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
-<div class="md-tabs__inner md-grid">
+<div class="md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
 <a class="md-tabs__link" href="../..">
@@ -149,6 +155,11 @@
         Resources
       </a>
 </li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../supplementary/supplementary_1/">
+        Supplementary
+      </a>
+</li>
 </ul>
 </div>
 </nav>
@@ -169,7 +180,7 @@
 <div class="md-nav__source">
 <a class="md-source" data-md-component="source" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository">
 <div class="md-source__icon md-icon">
-<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
 </div>
 <div class="md-source__repository">
     GenomicsAotearoa/metagenomics_summer_school
@@ -183,12 +194,12 @@
       </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_2">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
           Day1
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-label="Day1" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
           Day1
@@ -196,7 +207,12 @@
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day1/ex1_bash_and_scheduler/">
-        Introduction to shell &amp; HPC Job Scheduler
+        Introduction to shell
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day1/ex2_1_intro_to_scheduler/">
+        Introduction to HPC &amp; HPC job scheduler
       </a>
 </li>
 <li class="md-nav__item">
@@ -223,12 +239,12 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
-<label class="md-nav__link" for="__nav_3">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
           Day2
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-label="Day2" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
           Day2
@@ -241,7 +257,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day2/ex7_initial_binning/">
-        Introduction to binning
+        Binning (continued)
       </a>
 </li>
 <li class="md-nav__item">
@@ -258,19 +274,19 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
-<label class="md-nav__link" for="__nav_4">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
           Day3
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-label="Day3" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
           Day3
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
           Identifying viral contigs in metagenomic data
           <span class="md-nav__icon md-icon"></span>
@@ -290,23 +306,9 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#identifying-viral-contigs-using-vibrant">
-    Identifying viral contigs using VIBRANT
+<a class="md-nav__link" href="#identifying-viral-contigs-using-virsorter2">
+    Identifying viral contigs using VirSorter2
   </a>
-<nav aria-label="Identifying viral contigs using VIBRANT" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#run-vibrant">
-    Run Vibrant
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#examine-outputs-of-vibrant">
-    Examine outputs of VIBRANT
-  </a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#check-quality-and-estimate-completeness-of-the-viral-contigs-via-checkv">
@@ -315,24 +317,39 @@
 <nav aria-label="Check quality and estimate completeness of the viral contigs via CheckV" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#run-checkv">
-    Run CheckV
+<a class="md-nav__link" href="#run-virsorter2-and-checkv">
+    Run VirSorter2 and CheckV
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#examine-outputs-of-checkv">
-    Examine outputs of CheckV
+<a class="md-nav__link" href="#outputs-of-virsorter2-and-checkv">
+    Outputs of VirSorter2 and CheckV
   </a>
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exercise-examine-viral-output-files-from-virsorter2-and-checkv">
+    Exercise: Examine viral output files from VirSorter2 and CheckV
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#introduction-to-vcontact2-for-predicting-taxonomy-of-viral-contigs">
+    Introduction to vContact2 for predicting taxonomy of viral contigs
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#optional-visualise-the-vcontact2-gene-sharing-network-in-cytoscape">
+    OPTIONAL: Visualise the vContact2 gene-sharing network in cytoscape
+  </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../ex11_coverage_and_taxonomy/">
-        Per-sample coverage and assigning taxonomy
+        Assigning taxonomy to refined prokaryotic bins
       </a>
 </li>
 <li class="md-nav__item">
@@ -347,19 +364,19 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../ex14_gene_annotation_part2/">
-        Gene annotation (part 2)
+        Gene annotation (part 2) and coverage calculation
       </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
           Day4
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-label="Day4" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_5">
 <span class="md-nav__icon md-icon"></span>
           Day4
@@ -382,7 +399,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex16c_OPTIONAL_data_presentation_Ordination/">
-        (*Optional*) Presentation of data: Ordinations
+        Presentation of data: Ordinations
       </a>
 </li>
 <li class="md-nav__item">
@@ -397,19 +414,19 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations/">
-        Presentation of data: *Optional exercise*: CAZy annotations heatmap
+        Presentation of data: CAZy annotations heatmap
       </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
-<label class="md-nav__link" for="__nav_6">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
           Resources
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-label="Resources" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
           Resources
@@ -417,7 +434,7 @@
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../resources/1_APPENDIX_ex8_Dereplication/">
-        APPENDIX (ex8):Dereplicating data from multiple assemblies
+        APPENDIX (ex8): Dereplicating data from multiple assemblies
       </a>
 </li>
 <li class="md-nav__item">
@@ -432,22 +449,47 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/">
-        APPENDIX (ex11) : viral taxonomy prediction via *vContact2*
+        APPENDIX (ex11) : Viral taxonomy prediction via *vContact2*
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/5_APPENDIX_ex15_Prepare_gene_synteny_inputs/">
+        APPENDIX (ex15): Prepare input for gene synteny visualisation
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../resources/5_APPENDIX_ex15_gene_synteny_Generate_blast_files/">
-        APPENDIX (ex15): How to generate the blast files provided in [ex15_gene_synteny](../day4/ex16e_data_presentation_Gene_synteny.md)
-      </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../resources/6_APPENDIX_ex15_gene_synteny_grab_GOI/">
-        APPENDIX (ex15): Grab Gene of Interest (generate the *cys.txt* files provided in [ex15_gene_synteny](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day4/ex16e_data_presentation_Gene_synteny.md))
+        APPENDIX (ex15): Generating pairwise contig comparisons using online BLAST
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../resources/7_command_line_shortcuts/">
         Useful command line shortcuts
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          Supplementary
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+          Supplementary
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../supplementary/supplementary_1/">
+        NeSI Setup
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../supplementary/supplementary_2/">
+        NeSI File system, Working directory and Symlinks
       </a>
 </li>
 </ul>
@@ -473,23 +515,9 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#identifying-viral-contigs-using-vibrant">
-    Identifying viral contigs using VIBRANT
+<a class="md-nav__link" href="#identifying-viral-contigs-using-virsorter2">
+    Identifying viral contigs using VirSorter2
   </a>
-<nav aria-label="Identifying viral contigs using VIBRANT" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#run-vibrant">
-    Run Vibrant
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#examine-outputs-of-vibrant">
-    Examine outputs of VIBRANT
-  </a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#check-quality-and-estimate-completeness-of-the-viral-contigs-via-checkv">
@@ -498,17 +526,32 @@
 <nav aria-label="Check quality and estimate completeness of the viral contigs via CheckV" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#run-checkv">
-    Run CheckV
+<a class="md-nav__link" href="#run-virsorter2-and-checkv">
+    Run VirSorter2 and CheckV
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#examine-outputs-of-checkv">
-    Examine outputs of CheckV
+<a class="md-nav__link" href="#outputs-of-virsorter2-and-checkv">
+    Outputs of VirSorter2 and CheckV
   </a>
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exercise-examine-viral-output-files-from-virsorter2-and-checkv">
+    Exercise: Examine viral output files from VirSorter2 and CheckV
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#introduction-to-vcontact2-for-predicting-taxonomy-of-viral-contigs">
+    Introduction to vContact2 for predicting taxonomy of viral contigs
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#optional-visualise-the-vcontact2-gene-sharing-network-in-cytoscape">
+    OPTIONAL: Visualise the vContact2 gene-sharing network in cytoscape
+  </a>
 </li>
 </ul>
 </nav>
@@ -517,189 +560,242 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/edit/master/docs/day3/ex10_viruses.md" title="Edit this page">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
-</a>
 <h1 id="identifying-viral-contigs-in-metagenomic-data">Identifying viral contigs in metagenomic data<a class="headerlink" href="#identifying-viral-contigs-in-metagenomic-data" title="Permanent link">¶</a></h1>
 <div class="admonition info">
 <p class="admonition-title">Objectives</p>
 <ul>
-<li><a href="#identifying-viral-contigs-using-vibrant">Identifying viral contigs using <code>VIBRANT</code></a></li>
-<li><a href="#examine-outputs-of-vibrant">Examine prophage identified by <code>VIBRANT</code></a></li>
-<li><a href="#examine-outputs-of-vibrant">Examine viral metabolism and auxiliary metabolic genes (AMGs) outputs from <code>VIBRANT</code></a></li>
-<li><a href="#check-quality-and-estimate-completeness-of-the-viral-contigs-via-checkv">Check quality and estimate completeness of the viral contigs via <code>CheckV</code></a></li>
+<li><a href="#identifying-viral-contigs-using-VirSorter2">Identifying viral contigs using <em>VirSorter2</em></a></li>
+<li><a href="#check-quality-and-estimate-completeness-of-the-viral-contigs-via-checkv">Check quality and estimate completeness of the viral contigs via <em>CheckV</em></a></li>
+<li><a href="#introduction-to-vcontact2-for-predicting-taxonomy-of-viral-contigs">Introduction to <em>vContact2</em> for predicting taxonomy of viral contigs</a></li>
+<li><a href="#optional-visualise-the-vcontact2-gene-sharing-network-in-cytoscape">OPTIONAL: Visualise the vcontact2 gene-sharing network in <em>Cytoscape</em></a></li>
 </ul>
 </div>
 <hr/>
 <h3 id="identifying-viral-contigs">Identifying viral contigs<a class="headerlink" href="#identifying-viral-contigs" title="Permanent link">¶</a></h3>
 <p>Viral metagenomics is a rapidly progressing field, and new software are constantly being developed and released each year that aim to better identify and characterise viral genomic sequences from assembled metagenomic sequence reads. </p>
-<p>Currently, the most commonly used methods are <a href="https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0">VIBRANT</a>, <a href="https://peerj.com/articles/985/">VirSorter</a>, and <a href="https://link.springer.com/epdf/10.1186/s40168-017-0283-5?author_access_token=YQgkTWibFIFPtRICkTjZF2_BpE1tBhCbnbw3BuzI2RMCpVMGldKV8DA9scozc7Z-db3ufPFz9-pswHsYVHyEsCrziBuECllLPOgZ6ANHsMeKF5KejrdDKdeASyDkxB5wfFDq523QSd01cnqxCLqCiQ%3D%3D">VirFinder</a> (or the machine learning implementation of this, <a href="https://github.com/jessieren/DeepVirFinder">DeepVirFinder</a>). A number of recent studies use either one of these tools, or a combination of several at once.</p>
+<p>Currently, the most commonly used methods are <a href="https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00990-y">VirSorter2</a>, <a href="https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0">VIBRANT</a>, and <a href="https://link.springer.com/epdf/10.1186/s40168-017-0283-5?author_access_token=YQgkTWibFIFPtRICkTjZF2_BpE1tBhCbnbw3BuzI2RMCpVMGldKV8DA9scozc7Z-db3ufPFz9-pswHsYVHyEsCrziBuECllLPOgZ6ANHsMeKF5KejrdDKdeASyDkxB5wfFDq523QSd01cnqxCLqCiQ%3D%3D">VirFinder</a> (or the machine learning implementation of this, <a href="https://github.com/jessieren/DeepVirFinder">DeepVirFinder</a>). A number of recent studies use one of these tools or a combination of several at once.</p>
 <div class="admonition info">
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1"><a href="https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0">VIBRANT</a></label><label for="__tabbed_1_2"><a href="https://peerj.com/articles/985/">VirSorter</a></label><label for="__tabbed_1_3"><a href="https://github.com/jessieren/DeepVirFinder">DeepVirFinder</a></label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">VirSorter2</label><label for="__tabbed_1_2">VIBRANT</label><label for="__tabbed_1_3">DeepVirFinder</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>Uses a machine learning approach based on protein similarity (non-reference-based similarity searches with multiple HMM sets), and is in principle applicable to bacterial and archaeal DNA and RNA viruses, integrated proviruses (which are excised from contigs by <code>VIBRANT</code>), and eukaryotic viruses. </p>
-<p><strong>More info</strong> <a href="https://github.com/AnantharamanLab/VIBRANT">github.com/AnantharamanLab/VIBRANT</a></p>
-</div>
-<div class="tabbed-block">
-<p>Uses a predicted protein homology reference database-based approach, together with searching for a number of pre-defined metrics based on known viral genomic features. The authors note that <code>VirSorter</code> is currently best applied to DNA viruses (including prophage, which are also excised from contigs by <code>VirSorter</code>), but is likely poor with RNA viruses (from metatranscriptome data) and is also poor with eukaryotic viruses (as the database currently lacks eukaryotic viruses, and the genomic features incorporated were developed based on viruses of prokaryotes). </p>
+<p>Uses a predicted protein homology reference database-based approach, together with searching for a number of pre-defined metrics based on known viral genomic features. <code>VirSorter2</code> includes dsDNAphage, ssDNA, and RNA viruses, and the viral groups Nucleocytoviricota and lavidaviridae.* </p>
+<p><strong>More info</strong> </p>
 <ul>
-<li><em>Hot off the press: an early test version of <code>VirSorter2</code> was recently released, which expands <code>VirSorter</code>'s target viruses to now include dsDNAphage, ssDNA and RNA viruses, and the viral groups Nucleocytoviricota and lavidaviridae.</em> </li>
+<li><a href="https://github.com/jiarong/VirSorter2">VirSorter2 GitHub</a></li>
+<li><a href="https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00990-y">Guo <em>et al.</em> (2021) VirSorter2: a multi-classifier, expert-guided approach to detect diverse DNA and RNA viruses</a></li>
 </ul>
-<p><strong>More info</strong> <a href="https://github.com/simroux/VirSorter">github.com/simroux/VirSorter</a></p>
 </div>
 <div class="tabbed-block">
-<p>Uses a machine learning based approach based on <em>k</em>-mer frequencies. Having developed a database of the differences in <em>k</em>-mer frequencies between prokaryote and viral genomes, <code>VirFinder</code> examines assembled contigs and identifies whether their <em>k</em>-mer frequencies are comparable to known viruses in the database, using this to predict viral genomic sequence. This method has some limitation based on the viruses that were included when building the database (bacterial DNA viruses, but very few archaeal viruses, and, at least in some versions of the software, no eukaryotic viruses). However, tools are also provided to build your own database should you wish to develop an expanded one. Due to its distinctive <em>k</em>-mer frequency-based approach, <code>VirFinder</code> may also have the capability of identifying some novel viruses overlooked by tools such as <code>VIBRANT</code> or <code>VirSorter</code>.</p>
-<p><strong>More info</strong> <a href="https://github.com/jessieren/DeepVirFinder">github.com/jessieren/DeepVirFinder</a></p>
+<p>Uses a machine learning approach based on protein similarity (non-reference-based similarity searches with multiple HMM sets), and is in principle applicable to bacterial and archaeal DNA and RNA viruses, integrated proviruses (which are excised from contigs by <code>VIBRANT</code>), and eukaryotic viruses. </p>
+<p><strong>More info</strong> </p>
+<ul>
+<li><a href="https://github.com/AnantharamanLab/VIBRANT">VIBRANT GitHub</a></li>
+<li><a href="https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0">Kieft, Zhou, and Anantharaman (2020) VIBRANT: automated recovery, annotation and curation of microbial viruses, and evaluation of viral community function from genomic sequences</a></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>Uses a machine learning based approach based on <em>k</em>-mer frequencies. Having developed a database of the differences in <em>k</em>-mer frequencies between prokaryote and viral genomes, <em>VirFinder</em> examines assembled contigs and identifies whether their <em>k</em>-mer frequencies are comparable to known viruses in the database, using this to predict viral genomic sequence. This method has some limitations based on the viruses that were included when building the database (bacterial DNA viruses, but very few archaeal viruses, and, at least in some versions of the software, no eukaryotic viruses). However, tools are also provided to build your own database should you wish to develop an expanded one. Due to its distinctive <em>k</em>-mer frequency-based approach, <em>VirFinder</em> may also have the capability of identifying some novel viruses overlooked by tools such as <em>VIBRANT</em> or <em>VirSorter</em>.</p>
+<p><strong>More info</strong> </p>
+<ul>
+<li><a href="https://github.com/jessieren/DeepVirFinder">DeepVirFinder GitHub</a></li>
+</ul>
 </div>
 </div>
 </input></input></input></div>
 </div>
 <hr/>
-<h3 id="identifying-viral-contigs-using-vibrant">Identifying viral contigs using <code>VIBRANT</code><a class="headerlink" href="#identifying-viral-contigs-using-vibrant" title="Permanent link">¶</a></h3>
-<p>For this exercise, we will use <code>VIBRANT</code> to identify viral contigs from our assembled contigs. As an added bonus, <code>VIBRANT</code> also provides outputs for gene and protein predictions, identified integrated prophage, and metabolism (including viral metabolism and auxiliary-metabolic genes (AMGs) - prokaryote host-derived genes that have been integrated in, and are encoded by, viral genomes). </p>
+<h3 id="identifying-viral-contigs-using-virsorter2">Identifying viral contigs using <em>VirSorter2</em><a class="headerlink" href="#identifying-viral-contigs-using-virsorter2" title="Permanent link">¶</a></h3>
+<p>For this exercise, we will use <em>VirSorter2</em> to identify viral contigs from our assembled contigs. We can also use <em>VirSorter2</em> to prepare files for later use with the gene annotation tool <em>DRAM-v</em>, which we'll run later in the day.</p>
+<h3 id="check-quality-and-estimate-completeness-of-the-viral-contigs-via-checkv">Check quality and estimate completeness of the viral contigs via <em>CheckV</em><a class="headerlink" href="#check-quality-and-estimate-completeness-of-the-viral-contigs-via-checkv" title="Permanent link">¶</a></h3>
+<p><a href="https://www.biorxiv.org/content/10.1101/2020.05.06.081778v1.abstract"><em>CheckV</em></a> was developed as an analogue to <em>CheckM</em>. <em>CheckV</em> first performs a 'contaminating sequence' trim, removing any retained (prokaryote) host sequence on the end of contigs with integrated prophage, and then assesses the quality and completeness of the assembled viral contigs. The quality of the contigs are also categoriesed based on the recently developed <a href="https://www.nature.com/articles/nbt.4306">Minimum Information about an Unclutivated Virus Genome</a> (MIUViG) standards for reporting sequences of unclutivated virus geneomes (such as those recovered from metagenomic sequencing data). The MIUViG were developed as an extension of the <a href="https://www.nature.com/articles/nbt.1823">Minimum Information about any (x) Sequence</a> (<a href="https://gensc.org/mixs/">MIxS</a>) standards, which include, among others, standards for Metagenome-Assembled Genomes (MIMAG).</p>
+<h4 id="run-virsorter2-and-checkv">Run <em>VirSorter2</em> and <em>CheckV</em><a class="headerlink" href="#run-virsorter2-and-checkv" title="Permanent link">¶</a></h4>
 <p>These exercises will take place in the <code>7.viruses/</code> folder.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/7.viruses/
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/7.viruses/
 </code></pre></div>
-<h4 id="run-vibrant">Run <em>Vibrant</em><a class="headerlink" href="#run-vibrant" title="Permanent link">¶</a></h4>
-<p>For this we will input the assembled contigs from the <code>SPAdes</code> assembly we performed earlier. These assembly files are available at <code>7.viruses/spades_assembly/</code></p>
-<p><em>NOTE: The path to the required databases for the <code>VIBRANT</code> NeSI module have been linked to the variable <code>$DB_PATH</code>. This needs to be included in the command (using the <code>-d</code> flag) for <code>VIBRANT</code> to be able to locate them.</em></p>
+<p>For <em>VirSorter2</em>, we will input the assembled contigs from the <em>SPAdes</em> assembly we performed earlier. These assembly files have been copied to <code>7.viruses/spades_assembly/</code> for this exercise.</p>
+<p>We will then run <em>CheckV</em> in the same script, providing the <em>fasta</em> file of viral contigs output by <em>VirSorter2</em> as input (<code>final-viral-combined.fa</code>).</p>
+<p><em>NOTE: For the <code>VirSorter/2.2.3-gimkl-2020a-Python-3.8.2</code> NeSI module to work properly, <strong>we must also include <code>module unload XALT</code></strong> in the script below</em></p>
+<p><em>NOTE: The key parameters you may want to consider altering for your own work are <code>--min-score</code> and <code>--include-groups</code>. For today's excersice we will include all available groups (<code>--include-groups dsDNAphage,NCLDV,RNA,ssDNA,lavidaviridae</code>), and will set the min-score to 0.7. You can expiriment with this value for your own data (see the <a href="https://github.com/jiarong/VirSorter2">Virsorter2 github page</a> for more information).</em></p>
+<p><em>NOTE: The required databases for *VirSorter2</em> are not loaded with the NeSI module. For your own work, you will need to first download these databases and provide the path to the <code>-d</code> flag below. For today's workshop this is already set up.*</p>
 <p>Create a new script</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>nano vibrant.sl
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>nano<span class="w"> </span>VirSorter2_and_checkv.sl
 </code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>Paste in the following (updating <code>&lt;YOUR FOLDER&gt;</code>)</p>
+</div>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="ch">#!/bin/bash -e</span>
-<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="c1">#SBATCH --account nesi02659</span>
-<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="c1">#SBATCH --res SummerSchool</span>
-<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1">#SBATCH --job-name vibrant</span>
-<a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="c1">#SBATCH --time 00:30:00</span>
-<a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="c1">#SBATCH --mem=4GB</span>
-<a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="c1">#SBATCH --ntasks=1</span>
-<a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="c1">#SBATCH --cpus-per-task=16</span>
-<a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="c1">#SBATCH --error vibrant.err</span>
-<a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="c1">#SBATCH --output vibrant.out</span>
-<a href="#__codelineno-2-11" id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="c1">#SBATCH --profile=task</span>
+<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="c1">#SBATCH --account       nesi02659</span>
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="c1">#SBATCH --job-name      VirSorter2_and_checkv</span>
+<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1">#SBATCH --time          05:00:00</span>
+<a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="c1">#SBATCH --mem           2GB</span>
+<a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="c1">#SBATCH --cpus-per-task 28</span>
+<a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="c1">#SBATCH --error         %x_%j.err</span>
+<a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="c1">#SBATCH --output        %x_%j.out</span>
+<a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a>
+<a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="c1"># Working directory</span>
+<a href="#__codelineno-2-11" id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/7.viruses/
 <a href="#__codelineno-2-12" id="__codelineno-2-12" name="__codelineno-2-12"></a>
-<a href="#__codelineno-2-13" id="__codelineno-2-13" name="__codelineno-2-13"></a>
-<a href="#__codelineno-2-14" id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="c1"># Load VIBRANT module</span>
-<a href="#__codelineno-2-15" id="__codelineno-2-15" name="__codelineno-2-15"></a>module purge
-<a href="#__codelineno-2-16" id="__codelineno-2-16" name="__codelineno-2-16"></a>module load VIBRANT/1.2.1-gimkl-2020a
-<a href="#__codelineno-2-17" id="__codelineno-2-17" name="__codelineno-2-17"></a>
-<a href="#__codelineno-2-18" id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="c1"># Set up working directories</span>
-<a href="#__codelineno-2-19" id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/7.viruses/
-<a href="#__codelineno-2-20" id="__codelineno-2-20" name="__codelineno-2-20"></a>mkdir -p vibrant
+<a href="#__codelineno-2-13" id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="c1"># VirSorter2</span>
+<a href="#__codelineno-2-14" id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="c1">## Load modules</span>
+<a href="#__codelineno-2-15" id="__codelineno-2-15" name="__codelineno-2-15"></a>module<span class="w"> </span>purge
+<a href="#__codelineno-2-16" id="__codelineno-2-16" name="__codelineno-2-16"></a>module<span class="w"> </span>unload<span class="w"> </span>XALT
+<a href="#__codelineno-2-17" id="__codelineno-2-17" name="__codelineno-2-17"></a>module<span class="w"> </span>load<span class="w"> </span>VirSorter/2.2.3-gimkl-2020a-Python-3.8.2
+<a href="#__codelineno-2-18" id="__codelineno-2-18" name="__codelineno-2-18"></a>
+<a href="#__codelineno-2-19" id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="c1">## Output directory</span>
+<a href="#__codelineno-2-20" id="__codelineno-2-20" name="__codelineno-2-20"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>VirSorter2
 <a href="#__codelineno-2-21" id="__codelineno-2-21" name="__codelineno-2-21"></a>
-<a href="#__codelineno-2-22" id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="c1"># Run VIBRANT</span>
-<a href="#__codelineno-2-23" id="__codelineno-2-23" name="__codelineno-2-23"></a>srun VIBRANT_run.py -t <span class="m">16</span> <span class="se">\</span>
-<a href="#__codelineno-2-24" id="__codelineno-2-24" name="__codelineno-2-24"></a>-i spades_assembly/spades_assembly.m1000.fna <span class="se">\</span>
-<a href="#__codelineno-2-25" id="__codelineno-2-25" name="__codelineno-2-25"></a>-d <span class="nv">$DB_PATH</span> <span class="se">\</span>
-<a href="#__codelineno-2-26" id="__codelineno-2-26" name="__codelineno-2-26"></a>-folder vibrant/
+<a href="#__codelineno-2-22" id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="c1">## Run VirSorter2</span>
+<a href="#__codelineno-2-23" id="__codelineno-2-23" name="__codelineno-2-23"></a>virsorter<span class="w"> </span>run<span class="w"> </span>-j<span class="w"> </span><span class="nv">$SLURM_CPUS_PER_TASK</span><span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-2-24" id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="w">  </span>-i<span class="w"> </span>spades_assembly/spades_assembly.m1000.fna<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-2-25" id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="w">  </span>-d<span class="w"> </span>/nesi/project/nesi02659/MGSS_2023/resources/virsorter2_20210909/<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-2-26" id="__codelineno-2-26" name="__codelineno-2-26"></a><span class="w">  </span>--min-score<span class="w"> </span><span class="m">0</span>.7<span class="w"> </span>--include-groups<span class="w"> </span>dsDNAphage,NCLDV,RNA,ssDNA,lavidaviridae<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-2-27" id="__codelineno-2-27" name="__codelineno-2-27"></a><span class="w">  </span>--prep-for-dramv<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-2-28" id="__codelineno-2-28" name="__codelineno-2-28"></a><span class="w">  </span>-l<span class="w"> </span>mgss<span class="w"> </span>-w<span class="w"> </span>VirSorter2<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-2-29" id="__codelineno-2-29" name="__codelineno-2-29"></a><span class="w">  </span>--tmpdir<span class="w"> </span><span class="si">${</span><span class="nv">SLURM_JOB_ID</span><span class="si">}</span>.tmp<span class="w"> </span>--rm-tmpdir<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-2-30" id="__codelineno-2-30" name="__codelineno-2-30"></a><span class="w">  </span>all<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-2-31" id="__codelineno-2-31" name="__codelineno-2-31"></a><span class="w">  </span>--config<span class="w"> </span><span class="nv">LOCAL_SCRATCH</span><span class="o">=</span><span class="si">${</span><span class="nv">TMPDIR</span><span class="k">:-</span><span class="p">/tmp</span><span class="si">}</span>
+<a href="#__codelineno-2-32" id="__codelineno-2-32" name="__codelineno-2-32"></a>
+<a href="#__codelineno-2-33" id="__codelineno-2-33" name="__codelineno-2-33"></a><span class="c1"># CheckV</span>
+<a href="#__codelineno-2-34" id="__codelineno-2-34" name="__codelineno-2-34"></a><span class="c1">## Load module</span>
+<a href="#__codelineno-2-35" id="__codelineno-2-35" name="__codelineno-2-35"></a>module<span class="w"> </span>purge
+<a href="#__codelineno-2-36" id="__codelineno-2-36" name="__codelineno-2-36"></a>module<span class="w"> </span>load<span class="w"> </span>CheckV/1.0.1-gimkl-2022a-Python-3.10.5
+<a href="#__codelineno-2-37" id="__codelineno-2-37" name="__codelineno-2-37"></a>
+<a href="#__codelineno-2-38" id="__codelineno-2-38" name="__codelineno-2-38"></a><span class="c1">## Output directory</span>
+<a href="#__codelineno-2-39" id="__codelineno-2-39" name="__codelineno-2-39"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>checkv_out
+<a href="#__codelineno-2-40" id="__codelineno-2-40" name="__codelineno-2-40"></a>
+<a href="#__codelineno-2-41" id="__codelineno-2-41" name="__codelineno-2-41"></a><span class="c1">## Run CheckV</span>
+<a href="#__codelineno-2-42" id="__codelineno-2-42" name="__codelineno-2-42"></a>checkv<span class="w"> </span>end_to_end<span class="w"> </span>VirSorter2/mgss-final-viral-combined.fa<span class="w"> </span>checkv_out/<span class="w"> </span>-t<span class="w"> </span><span class="nv">$SLURM_CPUS_PER_TASK</span>
 </code></pre></div>
+</div>
 <p>Submit the script as a slurm job</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>sbatch vibrant.sl
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>sbatch<span class="w"> </span>VirSorter2_and_checkv.sl
 </code></pre></div>
-<h4 id="examine-outputs-of-vibrant">Examine outputs of <em>VIBRANT</em><a class="headerlink" href="#examine-outputs-of-vibrant" title="Permanent link">¶</a></h4>
-<p>Exercise: <code>VIBRANT</code> provides a number of different outputs. Explore through the various folders within the <code>vibrant/</code> folder and identify some that might be of particular interest. Open some of these files to see if you can find the following information:</p>
+<h4 id="outputs-of-virsorter2-and-checkv">Outputs of <em>VirSorter2</em> and <em>CheckV</em><a class="headerlink" href="#outputs-of-virsorter2-and-checkv" title="Permanent link">¶</a></h4>
+<p>Key outputs from <em>VirSorter2</em> include:</p>
+<ul>
+<li><code>mgss-final-viral-combined.fa</code>: FASTA file of identified viral sequences</li>
+<li><code>mgss-final-viral-score.tsv</code>: table with score of each viral sequences across groups and a few more key features, which can also be used for further filtering</li>
+<li><code>mgss-for-dramv/</code>: files to be used as input to <em>DRAM-v</em> for gene prediction and annotation (we will be running <em>DRAM-v</em> later today during the gene annotation session)</li>
+</ul>
+<p><em>CheckV</em> provides summary outputs for contamination, completeness, repeats, and an overall quality summary. Later today we will have a brief look at some examples of the information you can draw from these <em>CheckV</em> outputs. </p>
+<h3 id="exercise-examine-viral-output-files-from-virsorter2-and-checkv">Exercise: Examine viral output files from <em>VirSorter2</em> and <em>CheckV</em><a class="headerlink" href="#exercise-examine-viral-output-files-from-virsorter2-and-checkv" title="Permanent link">¶</a></h3>
+<p><em>VirSorter2</em> and <em>CheckV</em> provide several of different output files that are important for identifying and understanding the viruses present in your data. Explore through the following files: </p>
+<ul>
+<li><code>7.viruses/VirSorter2/mgss-final-viral-score.tsv</code></li>
+<li><code>7.viruses/checkv_out/quality_summary.tsv</code></li>
+</ul>
+<p>When viewing these files, see if you can find the following information:</p>
 <div class="admonition quote">
 <ul>
-<li>How many viral contigs did <code>VIBRANT</code> identify?</li>
-<li>Of these, how many did <code>VIBRANT</code> identify as prophage?</li>
-<li>What are some annotations of interest within the output annotations file? </li>
-<li><em>NOTE: the <code>VIBRANT</code> annotations file includes multiple columns for both **prokaryote*</em> and <strong>viral</strong> protein predictions. Be careful as to which column you are looking at (as well as its associated confidence score) when assessing viral annotations vs. AMGs*.</li>
-<li>Among these annotations, how many were flagged as AMGs?</li>
-<li>What broad metabolic categories did the AMGs fall into? </li>
-<li><em>NOTE: as well as providing this information in table format, <code>VIBRANT</code> also generates a number of summary figures. These figures are not viewable within NeSI, but can be downloaded and opened on your local machine (e.g. via <code>scp ...</code>) if you wish to look more closely at these</em>.</li>
-<li>Discussion point: How might we investigate whether identified putative AMGs are actually <em>within</em> the viral genomes, rather than residual contaminating host genomic sequence attached to the end of integrated prophage (but incompletely trimmed off in the excision process)?</li>
+<li>How many viral contigs did <em>VirSorter2</em> identify?</li>
+<li>How many viral contigs meet the "High-quality" (MIUViG) standard?</li>
+<li>How many might we consider "complete" genomes based on <em>CheckV</em>'s completeness estimation?</li>
+<li>Are any of the identified viral contigs complete <em>cirular</em> genomes (based on identifying direct terminal repeat regions on both ends of the genome)? If not, think about why this might be the case for this dataset (hint: the workshop materials are a manufactured "metagenome" data set based on compiling several individual genomes)</li>
+<li>Are there any suspicious contigs that you might want to flag for closer examination (and/or careful consideration in downstream analyses)? (Note that standard practice would be to use these <em>CheckV</em> results as one basis for filtering to remove potential false positives)</li>
 </ul>
 </div>
 <hr/>
-<h3 id="check-quality-and-estimate-completeness-of-the-viral-contigs-via-checkv">Check quality and estimate completeness of the viral contigs via <em>CheckV</em><a class="headerlink" href="#check-quality-and-estimate-completeness-of-the-viral-contigs-via-checkv" title="Permanent link">¶</a></h3>
-<p><a href="https://www.biorxiv.org/content/10.1101/2020.05.06.081778v1.abstract">CheckV</a> was recently developed as an analogue to <code>CheckM</code>. <code>CheckV</code> first performs a 'contaminating sequence' trim, removing any retained (prokaryote) host sequence on the end of contigs with integrated prophage, and then assesses the quality and completeness of the assembled viral contigs. The quality of the contigs are also categoriesed based on the recently developed <a href="https://www.nature.com/articles/nbt.4306">Minimum Information about an Unclutivated Virus Genome</a> (MIUViG) standards for reporting sequences of unclutivated virus geneomes (such as those recovered from metagenomic sequencing data). The MIUViG were developed as an extension of the <a href="https://www.nature.com/articles/nbt.1823">Minimum Information about any (x) Sequence</a> (<a href="https://gensc.org/mixs/">MIxS</a>) standards, which include, among others, standards for Metagenome-Assembled Genomes (MIMAG).</p>
-<p>Installation and further instructions for <code>CheckV</code> can be found <a href="https://bitbucket.org/berkeleylab/checkv/src/master/">here</a>.</p>
-<h4 id="run-checkv">Run <em>CheckV</em><a class="headerlink" href="#run-checkv" title="Permanent link">¶</a></h4>
-<p>Run <code>CheckV</code> providing the <em>fastA</em> file of combined (virus and prophage) viral contigs output by <code>VIBRANT</code> as input (<code>spades_assembly.m1000.phages_combined.fna</code>).</p>
-<p>Create a new script</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>nano checkv.sl
+<h3 id="introduction-to-vcontact2-for-predicting-taxonomy-of-viral-contigs">Introduction to <em>vContact2</em> for predicting taxonomy of viral contigs<a class="headerlink" href="#introduction-to-vcontact2-for-predicting-taxonomy-of-viral-contigs" title="Permanent link">¶</a></h3>
+<p>Even more so than prokaryote taxonomy, establishing a coherent system for viral taxonomy is complex and continues to evolve. In 2020, the International Committee on Taxonomy of Viruses (<a href="https://talk.ictvonline.org/">ICTV</a>) overhauled the classification code into <a href="https://www.nature.com/articles/s41564-020-0709-x">15 hierarchical ranks</a>. Furthermore, the knowledge gap in databases of known and taxonomically assigned viruses remains substantial, and so identifying the putative taxonomy of viral contigs from environmental metagenomics data remains challenging.</p>
+<p>There are a number of approaches that can be used to attempt to predict the taxonomy of the set of putative viral contigs output by programs such as <em>VIBRANT</em>, <em>VirSorter</em>, and <em>VirFinder</em>. <a href="https://www.nature.com/articles/s41587-019-0100-8"><em>vContact2</em></a> is one such method that uses 'guilt-by-contig-association' to predict the potential taxonomy of viral genomic sequence data based on relatedness to known viruses within a reference database (such as viral RefSeq). The principle is that, to the extent that the 'unknown' viral contigs cluster closely with known viral genomes, we can then expect that they are closely related enough to be able to predict a shared taxonomic rank. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Anecdotally, however, in my own experience with this processes I have unfortunately been unable to directly predict the taxonomy of the vast majority of the viral contigs ouput by <em>VIBRANT</em>, <em>VirSorter</em>, or <em>VirFinder</em> from an environmental metagenomic data set (due to not clustering closely enough with known viruses in the reference database). You can, however, visualise the gene-sharing network generated to infer the <em>likely</em> taxonomy of each of your viruses at higher taxonomic ranks due to the relatedness to known reference viral genomes.</p>
+</div>
+<p>Running <em>vContact2</em> can require a considerable amount of computational resources, and so we won't be running this in the workshop today. The required process is outlined for reference in an <a href="../../resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/">Appendix for this exercise</a>, should you wish to experiment with this on your own data in the future. </p>
+<p>For today, we have provided some of the output files from this process when applied to our mock metagenome data. A selection of these can be viewed in the folder <code>7.viruses/vConTACT2_Results/</code> via <code>head</code> or <code>less</code>.</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>less<span class="w"> </span>vConTACT2_Results/genome_by_genome_overview.csv
 </code></pre></div>
-<p>Paste in the following (updating <code>&lt;YOUR FOLDER&gt;</code>)</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="ch">#!/bin/bash -e</span>
-<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a>
-<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
-<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1">#SBATCH --res           SummerSchool</span>
-<a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="c1">#SBATCH --job-name      checkv</span>
-<a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="c1">#SBATCH --time          00:10:00</span>
-<a href="#__codelineno-5-7" id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="c1">#SBATCH --mem           3GB</span>
-<a href="#__codelineno-5-8" id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
-<a href="#__codelineno-5-9" id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="c1">#SBATCH --error         checkv.err</span>
-<a href="#__codelineno-5-10" id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="c1">#SBATCH --output        checkv.out</span>
-<a href="#__codelineno-5-11" id="__codelineno-5-11" name="__codelineno-5-11"></a>
-<a href="#__codelineno-5-12" id="__codelineno-5-12" name="__codelineno-5-12"></a>
-<a href="#__codelineno-5-13" id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="c1"># Load the module</span>
-<a href="#__codelineno-5-14" id="__codelineno-5-14" name="__codelineno-5-14"></a>module purge
-<a href="#__codelineno-5-15" id="__codelineno-5-15" name="__codelineno-5-15"></a>module load CheckV/1.0.1-gimkl-2022a-Python-3.10.5
-<a href="#__codelineno-5-16" id="__codelineno-5-16" name="__codelineno-5-16"></a>
-<a href="#__codelineno-5-17" id="__codelineno-5-17" name="__codelineno-5-17"></a><span class="c1"># Set up working directories</span>
-<a href="#__codelineno-5-18" id="__codelineno-5-18" name="__codelineno-5-18"></a><span class="nb">cd</span> /nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/7.viruses/
-<a href="#__codelineno-5-19" id="__codelineno-5-19" name="__codelineno-5-19"></a>mkdir -p checkv_out
-<a href="#__codelineno-5-20" id="__codelineno-5-20" name="__codelineno-5-20"></a>
-<a href="#__codelineno-5-21" id="__codelineno-5-21" name="__codelineno-5-21"></a><span class="c1"># Run main analyses </span>
-<a href="#__codelineno-5-22" id="__codelineno-5-22" name="__codelineno-5-22"></a><span class="nv">checkv_in</span><span class="o">=</span><span class="s2">"vibrant/VIBRANT_spades_assembly.m1000/VIBRANT_phages_spades_assembly.m1000/spades_assembly.m1000.phages_combined.fna"</span>
-<a href="#__codelineno-5-23" id="__codelineno-5-23" name="__codelineno-5-23"></a>
-<a href="#__codelineno-5-24" id="__codelineno-5-24" name="__codelineno-5-24"></a>srun checkv end_to_end <span class="si">${</span><span class="nv">checkv_in</span><span class="si">}</span> checkv_out -t <span class="m">10</span> --quiet
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>less<span class="w"> </span>vConTACT2_Results/tax_predict_table.txt
 </code></pre></div>
-<p>Submit the script as a slurm job</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>sbatch checkv.sl
-</code></pre></div>
-<h4 id="examine-outputs-of-checkv">Examine outputs of <em>CheckV</em><a class="headerlink" href="#examine-outputs-of-checkv" title="Permanent link">¶</a></h4>
-<p><code>CheckV</code> provides summary outputs for contamination, completeness, repeats, and an overall quality summary. Have a brief look at some examples of the information you can draw from each of these <code>CheckV</code> outputs. </p>
-<div class="admonition question">
-<p class="admonition-title">Exercise: Examining <code>checkv_out/quality_summary.tsv</code></p>
+<p>A few notes to consider: </p>
+<div class="admonition quote">
 <ul>
-<li>How many viral contigs meet the "High-quality" (MIUViG) standard?</li>
-<li>How many might we consider "complete" genomes based on <code>CheckV</code>'s completeness estimation?</li>
-<li>Were any terminal repeat regions identified for any of the contigs?</li>
-<li>How many prophage were identified by <code>CheckV</code>? Why might this differ to <code>VIBRANT</code>'s identification of prophage above?</li>
-<li>Are there any suspicious contigs that you might want to flag for closer examination (and/or careful consideration in downstream analyses)?</li>
+<li>You will see that the <code>genome_by_genome_overview.csv</code> file contains entries for the full reference database used as well as the input viral contigs (contigs starting with <code>NODE</code>). </li>
+<li>
+<p>You can use a command such as <code>grep "NODE" vConTACT2_Results/genome_by_genome_overview.csv | less</code> to view only the lines for the input contigs of interest. </p>
+<ul>
+<li>Note also that these lines however will <em>not</em> contain taxonomy information. </li>
+<li>See the notes in the <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md">Appendix</a> for further information about why this might be.</li>
+</ul>
+</li>
+<li>
+<p>As per the notes in the <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md">Appendix</a>, the <code>tax_predict_table.txt</code> file contains <em>predictions</em> of potential taxonomy (and or <em>taxonomies</em>) of the input viral contigs for order, family, and genus, based on whether they clustered with any viruses in the reference database.</p>
+<ul>
+<li>Note that these may be lists of <em>multiple</em> potential taxonomies, in the cases where viral contigs clustered with multiple reference viruses representing more than one taxonomy at the given rank.</li>
+</ul>
+<div class="admonition note">
+<p>The taxonomies are deliberately enclosed in square brackets (<code>[ ]</code>) to highlight the fact that these are <strong>predictions</strong>, rather than definitive taxonomy <strong>assignments</strong>.</p>
+</div>
+</li>
 </ul>
 </div>
+<hr/>
+<h3 id="optional-visualise-the-vcontact2-gene-sharing-network-in-cytoscape">OPTIONAL: Visualise the <em>vContact2</em> gene-sharing network in <em>cytoscape</em><a class="headerlink" href="#optional-visualise-the-vcontact2-gene-sharing-network-in-cytoscape" title="Permanent link">¶</a></h3>
+<p>We can visualise the gene-sharing network generated by <em>vContact2</em> (<code>c1.ntw</code>) using the software <em>Cytoscape</em>. <em>Cytoscape</em> runs as a GUI (graphical user interface), so we will need to either download and install this software or open <em>Cytoscape</em> using NeSI's Virtual Desktop. To open in the Virtual Desktop, click <em>New Laucher</em> in Jupyterhub and lauch <em>Virtual Desktop</em>. This will open a new tab. In the new desktop, open a terminal, and then load and run the <em>Cytoscape</em> module as per below.</p>
+<div class="admonition warning">
+<p class="admonition-title">Copy/paste in the Virtual Desktop</p>
+<p>You may not be able to copy/paste into the Virtual Desktop, in which case you will need to manually type these commands.</p>
+</div>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1"># Load the module</span>
+<a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a>module<span class="w"> </span>purge
+<a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a>module<span class="w"> </span>load<span class="w"> </span>Cytoscape/3.9.1
+<a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="c1"># Run cytoscape</span>
+<a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a>Cytoscape
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Do not update Cytoscape!</p>
+<p>A dialog box will appear telling you about a new version of Cytoscape. <strong>Click "discard"</strong>, as we will not be installing any new versions today!</p>
+</div>
+<p>In <em>Cytoscape</em>, we can load the gene-sharing network by clicking <code>File/Import/Network from file</code>, and then opening the <code>c1.ntw</code> file (You may need to click the <code>Home</code> button and then navigate to the relevant directory when <code>c1.ntw</code> is located (i.e. in <code>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/7.viruses/vConTACT2_Results/</code>)). </p>
+<p>In the "Import Network From Table" pop-up box: </p>
+<ul>
+<li>
+<p>Click <em>Advanced Options</em>:</p>
+<ol>
+<li>Select <em>SPACE</em> as the delimiter</li>
+<li>Uncheck the <em>Use first line as column names</em> box</li>
+<li>Click <em>OK</em></li>
+</ol>
+</li>
+<li>
+<p>In the dropdown menu for "Column 1": </p>
+<ol>
+<li>Select the green dot (source node) </li>
+<li>For Column 2 select the red target (Target node)</li>
+<li>Click <em>OK</em></li>
+</ol>
+</li>
+</ul>
+<p>It will now ask if you want to create a view for your large networks now. Click <em>OK</em>. This may take a minute to generate the network visualisation. </p>
+<p>There are many ways to modify and inspect this visualisation. One basic addition that will help us interpret the results here is to colour code the viral genomes based on reference (RefSeq) genomes and the viral contigs recovered from our dataset. We can do this by loading the <code>genome_by_genome_overview.csv</code> file. </p>
+<div class="admonition note">
+<p class="admonition-title"><code>Dataset</code> column</p>
+<p>For the purposes of this workshop, we have added the additional column <code>Dataset</code> to the <code>genome_by_genome_overview.csv</code> file stating whether each viral sequence originated from either the reference database (<code>RefSeq</code>) or our own data (<code>Our_data</code>). This column is not generated by vConTACT2, but you can open the file in Excel to add any additional columns you would like to colour code the nodes by.</p>
+</div>
+<p>Click <code>File/Import/Table from file</code> and select the <code>genome_by_genome_overview.csv</code> file to open. In the pop-up box, leave the settings as default and click <em>OK</em>. This will add a bunch of metadata to your network table. We can now use this to colour code the nodes in the network.</p>
+<p>To colour code the nodes by genome source (<code>Refseq</code> or <code>Our_data</code>): </p>
+<ol>
+<li>Click the <code>Style</code> tab on the far left</li>
+<li>Select the dropdown arrow by <code>Fill Color</code></li>
+<li>Next to <code>Column</code> click on <em>--select value--</em> and select <code>Dataset</code> </li>
+<li>For <code>Mapping Type</code>, select <code>Discrete Mapping</code>. </li>
+<li>Then for each of <code>Refseq</code> and <code>Our_data</code>, click the three dots in the empty box to the right of the label and select a colour for that dataset.</li>
+</ol>
+<p>You can now zoom in on the network and select viral contigs from your own dataset, and examine which reference viruses may be the most closely related. This can give an indication of the possible taxonomy of your own viruses based on their gene-sharing relatedness to the known reference genomes.</p>
 <hr/>
 </article>
 </div>
 </div>
-<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
             Back to top
-          </a>
+          </button>
 </main>
 <footer class="md-footer">
-<nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Previous: Manually refining bins" class="md-footer__link md-footer__link--prev" href="../../day2/ex9_refining_bins/" rel="prev">
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
-</div>
-<div class="md-footer__title">
-<div class="md-ellipsis">
-<span class="md-footer__direction">
-                Previous
-              </span>
-              Manually refining bins
-            </div>
-</div>
-</a>
-<a aria-label="Next: Per-sample coverage and assigning taxonomy" class="md-footer__link md-footer__link--next" href="../ex11_coverage_and_taxonomy/" rel="next">
-<div class="md-footer__title">
-<div class="md-ellipsis">
-<span class="md-footer__direction">
-                Next
-              </span>
-              Per-sample coverage and assigning taxonomy
-            </div>
-</div>
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
-</div>
-</a>
-</nav>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-copyright">
@@ -717,10 +813,10 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
-<script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../assets/javascripts/bundle.b4d07000.min.js"></script>
 <script src="../../javascripts/mathjax.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>

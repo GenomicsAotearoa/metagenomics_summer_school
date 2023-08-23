@@ -1,0 +1,883 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Genomics Aotearoa &amp; NeSI" name="author"/>
+<link href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day1/ex2_1_intro_to_scheduler/" rel="canonical"/>
+<link href="../ex1_bash_and_scheduler/" rel="prev"/>
+<link href="../ex2_quality_filtering/" rel="next"/>
+<link href="../../theme_images/nesi_ga.png" rel="icon"/>
+<meta content="mkdocs-1.4.3, mkdocs-material-9.1.15" name="generator"/>
+<title>Introduction to HPC &amp; HPC job scheduler - Metagenomics Summer School</title>
+<link href="../../assets/stylesheets/main.26e3688c.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.ecc896b0.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Mukta";--md-code-font:"Roboto Mono"}</style>
+<link href="../../stylesheets/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#introduction-to-hpc-hpc-job-scheduler">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Metagenomics Summer School" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Metagenomics Summer School">
+<img alt="logo" src="../../theme_images/nesi_ga.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Metagenomics Summer School
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Introduction to HPC &amp; HPC job scheduler
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_3" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"></path></svg>
+</label>
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+</label>
+<input aria-label="Switch to system preference" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_3" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to system preference">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"></path></svg>
+</label>
+</form>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+</div>
+</nav>
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+      Home
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../ex1_bash_and_scheduler/">
+        Day1
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../day2/ex6_initial_binning/">
+        Day2
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../day3/ex10_viruses/">
+        Day3
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../day4/ex15_gene_annotation_part3/">
+        Day4
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../resources/1_APPENDIX_ex8_Dereplication/">
+        Resources
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../supplementary/supplementary_1/">
+        Supplementary
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Metagenomics Summer School" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Metagenomics Summer School">
+<img alt="logo" src="../../theme_images/nesi_ga.png"/>
+</a>
+    Metagenomics Summer School
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+        Home
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Day1
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          Day1
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ex1_bash_and_scheduler/">
+        Introduction to shell
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Introduction to HPC &amp; HPC job scheduler
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Introduction to HPC &amp; HPC job scheduler
+      </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#defining-high-performance-computing">
+    Defining high-performance computing
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hpc-architectures">
+    HPC architectures
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nesi-mahuika-cluster-architecture">
+    NeSI Mahuika Cluster architecture
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#from-hardware-to-software">
+    From Hardware to Software
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#accessing-software-via-modules">
+    Accessing software via modules
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#working-with-job-scheduler">
+    Working with job scheduler
+  </a>
+<nav aria-label="Working with job scheduler" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#life-cycle-of-a-slurm-job">
+    Life cycle of a slurm job
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#anatomy-of-a-slurm-script-and-submitting-first-slurm-job">
+    Anatomy of a slurm script and submitting first slurm job 🧐
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ex2_quality_filtering/">
+        Quality filtering raw reads
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ex3_assembly/">
+        Assembly
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ex4_assembly/">
+        Assembly (part 2)
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ex5_evaluating_assemblies/">
+        Evaluating the assemblies
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Day2
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          Day2
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day2/ex6_initial_binning/">
+        Introduction to binning
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day2/ex7_initial_binning/">
+        Binning (continued)
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day2/ex8_bin_dereplication/">
+        Bin dereplication
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day2/ex9_refining_bins/">
+        Manually refining bins
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Day3
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          Day3
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day3/ex10_viruses/">
+        Identifying viral contigs in metagenomic data
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day3/ex11_coverage_and_taxonomy/">
+        Assigning taxonomy to refined prokaryotic bins
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day3/ex12_gene_prediction/">
+        Gene prediction
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day3/ex13_gene_annotation_part1/">
+        Gene annotation (part 1)
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day3/ex14_gene_annotation_part2/">
+        Gene annotation (part 2) and coverage calculation
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Day4
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          Day4
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex15_gene_annotation_part3/">
+        Gene annotation (part 3)
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex16a_data_presentation_Intro/">
+        Presentation of data: Introduction
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex16b_data_presentation_Coverage/">
+        Presentation of data: Per-sample coverage heatmaps
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex16c_OPTIONAL_data_presentation_Ordination/">
+        Presentation of data: Ordinations
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex16d_data_presentation_KEGG_pathways/">
+        Presentation of data: KEGG pathway maps
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex16e_data_presentation_Gene_synteny/">
+        Presentation of data: Gene synteny
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations/">
+        Presentation of data: CAZy annotations heatmap
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          Resources
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+          Resources
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/1_APPENDIX_ex8_Dereplication/">
+        APPENDIX (ex8): Dereplicating data from multiple assemblies
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/2_APPENDIX_ex9_Generating_input_files_for_VizBin/">
+        APPENDIX (ex9): Generating input files for *VizBin* from *DAS_Tool* curated bins
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/3_APPENDIX_ex11_Normalise_coverage_example/">
+        APPENDIX (ex11): Normalise per-sample coverage values by average library size (example)
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/">
+        APPENDIX (ex11) : Viral taxonomy prediction via *vContact2*
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/5_APPENDIX_ex15_Prepare_gene_synteny_inputs/">
+        APPENDIX (ex15): Prepare input for gene synteny visualisation
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/5_APPENDIX_ex15_gene_synteny_Generate_blast_files/">
+        APPENDIX (ex15): Generating pairwise contig comparisons using online BLAST
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../resources/7_command_line_shortcuts/">
+        Useful command line shortcuts
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          Supplementary
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+          Supplementary
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../supplementary/supplementary_1/">
+        NeSI Setup
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../supplementary/supplementary_2/">
+        NeSI File system, Working directory and Symlinks
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#defining-high-performance-computing">
+    Defining high-performance computing
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hpc-architectures">
+    HPC architectures
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nesi-mahuika-cluster-architecture">
+    NeSI Mahuika Cluster architecture
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#from-hardware-to-software">
+    From Hardware to Software
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#accessing-software-via-modules">
+    Accessing software via modules
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#working-with-job-scheduler">
+    Working with job scheduler
+  </a>
+<nav aria-label="Working with job scheduler" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#life-cycle-of-a-slurm-job">
+    Life cycle of a slurm job
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#anatomy-of-a-slurm-script-and-submitting-first-slurm-job">
+    Anatomy of a slurm script and submitting first slurm job 🧐
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="introduction-to-hpc-hpc-job-scheduler">Introduction to HPC &amp; HPC job scheduler<a class="headerlink" href="#introduction-to-hpc-hpc-job-scheduler" title="Permanent link">¶</a></h1>
+<p><center><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/scaling.png"><img alt="image" src="../../theme_images/scaling.png" width="300"/></a></center></p>
+<h3 id="defining-high-performance-computing">Defining high-performance computing<a class="headerlink" href="#defining-high-performance-computing" title="Permanent link">¶</a></h3>
+<p>The simplest way of defining high-performance computing is by saying that it is the using of high-performance computers (HPC). However, this leads to our next question what is a HPC .</p>
+<div class="admonition info">
+<p class="admonition-title">HPC</p>
+<p>A high-performance computer is a network of computers in a cluster that typically share a common purpose and are used to accomplish tasks that might otherwise be too big for any one computer.</p>
+</div>
+<p><br/></p>
+<p>While modern computers can do a lot (and a lot more than their equivalents 10-20 years ago), there are limits to what they can do and the speed at which they are able to do this. One way to overcome these limits is to pool computers together to create a cluster of computers. These pooled resources can then be used to run software that requires more total memory, or need more processors to complete in a reasonable time.</p>
+<p>One way to do this is to take a group of computers and link them together via a network switch. Consider a case where you have five 4-core computers. By connecting them together, you could run jobs on 20 cores, which could result in your software running faster.</p>
+<h3 id="hpc-architectures">HPC architectures<a class="headerlink" href="#hpc-architectures" title="Permanent link">¶</a></h3>
+<p>Most HPC systems follow the ideas described above of taking many computers and linking them via network switches.  described above is:</p>
+<p><br/></p>
+<div class="admonition info">
+<p class="admonition-title">What distinguishes a high-performance computer from the computer clusters</p>
+<ul>
+<li>The number of computers/nodes </li>
+<li>The strength of each individual computer/node </li>
+<li>The network interconnect – this dictates the communication speed between nodes. The faster this speed is, the more a group of individual nodes will act like a unit.</li>
+</ul>
+</div>
+<h3 id="nesi-mahuika-cluster-architecture">NeSI Mahuika Cluster architecture<a class="headerlink" href="#nesi-mahuika-cluster-architecture" title="Permanent link">¶</a></h3>
+<p>NeSI Mahuika cluster (CRAY HPE CS400) system consists of a number of different node types. The ones visible to researchers are:</p>
+<ul>
+<li>Login nodes</li>
+<li>Compute nodes</li>
+</ul>
+<div class="admonition info">
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Overview of HPC Architecture</label><label for="__tabbed_1_2">Composition of a node</label><label for="__tabbed_1_3">In reality</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><br/>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/hpc_arch_new_fixalignment.png"><img alt="image" src="../../theme_images/hpc_arch_new_fixalignment.png" width="700"/></a>
+<br/></p>
+</div>
+<div class="tabbed-block">
+<p><br/><center>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/node_overview.png"><img alt="image" src="../../theme_images/node_overview.png" width="500"/></a>
+</center><br/></p>
+</div>
+<div class="tabbed-block">
+<p><center>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/mahuika_maui_real.png"><img alt="image" src="../../theme_images/mahuika_maui_real.png" width="700"/></a>
+</center></p>
+</div>
+</div>
+</input></input></input></div>
+</div>
+<h3 id="from-hardware-to-software">From Hardware to Software<a class="headerlink" href="#from-hardware-to-software" title="Permanent link">¶</a></h3>
+<p>Over 90% HPCs &amp; supercomputers employ Linux as their operating system.  Linux has four essential properties which make it an excellent operating system for the HPCs &amp;  science community:</p>
+<div class="admonition quote">
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><input id="__tabbed_2_3" name="__tabbed_2" type="radio"><input id="__tabbed_2_4" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">Performance</label><label for="__tabbed_2_2">Functionality</label><label for="__tabbed_2_3">Flexibility</label><label for="__tabbed_2_4">Portability</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Performance of the operating system can be optimized for specific tasks such as running small portable devices or large supercomputers.</p>
+</div>
+<div class="tabbed-block">
+<p>A number of community-driven scientific applications and libraries have been developed under Linux such as molecular dynamics, linear algebra, and fast-Fourier transforms.</p>
+</div>
+<div class="tabbed-block">
+<p>The system is flexible enough to allow users to build applications with a wide array of support tools such as compilers, scientific libraries, debuggers, and network monitors.</p>
+</div>
+<div class="tabbed-block">
+<p>The operating system, utilities, and libraries have been ported to a wide variety of devices including desktops, clusters, supercomputers, mainframes, embedded systems, and smart phones.</p>
+</div>
+</div>
+</input></input></input></input></div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">The Linux operating system is made up of three parts; the <ins>kernel</ins>, the <ins>shell</ins> and the software</p>
+<p>Kernel − The kernel is the heart of the operating system. It interacts with the hardware and most of the tasks like memory management, task scheduling and file management.</p>
+<p><ins><strong>Shell</strong></ins> − The shell is the utility that processes your requests (acts as an interface between the user and the kernel). When you type in a command at your terminal, the shell <em>interprets</em> (operating as in <ins><em>interpreter</em></ins>) the command and calls the program that you want. The shell uses standard syntax for all commands. The shell recognizes a limited set of commands, and you must give commands to the shell in a way that it understands: Each shell command consists of a command name, followed by command options (if any are desired) and command arguments (if any are desired). The command name, options, and arguments, are separated by blank space. </p>
+<ul>
+<li>An <ins><em>interpreter</em></ins> operates in a simple loop: It accepts a command, interprets the command, executes the command, and then waits for another command. The shell displays a "prompt," to notify you that it is ready to accept your command.
+<center>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/interpreter_loop.png"><img alt="image" src="../../theme_images/interpreter_loop.png" width="200"/></a>
+</center></li>
+</ul>
+</div>
+<h3 id="accessing-software-via-modules">Accessing software via modules<a class="headerlink" href="#accessing-software-via-modules" title="Permanent link">¶</a></h3>
+<p>On a high-performance computing system, it is quite rare that the software we want to use is available when we log in. It is installed, but we will need to “load” it before it can run.</p>
+<p>Before we start using individual software packages, however, we should understand the reasoning behind this approach. The three biggest factors are:</p>
+<ul>
+<li>software incompatibilities</li>
+<li>versioning</li>
+<li>dependencies</li>
+</ul>
+<p>One of the workarounds for this issue is Environment modules. A module is a self-contained description of a software package — it contains the settings required to run a software package and, usually, encodes required dependencies on other software packages.</p>
+<p>There are a number of different environment module implementations commonly used on HPC systems and the one used in NeSI Mahuika cluster is <code>Lmod</code> where the <code>module</code> command is used to interact with environment modules.</p>
+<div class="admonition info">
+<p class="admonition-title">Viewing, Accessing and Deploying software with <code>module</code> command"</p>
+<ul>
+<li>View available modules</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1">#View all modules</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>$<span class="w"> </span>module<span class="w"> </span>avail
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="c1"># View all modules which match the keyword in their name</span>
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a>$<span class="w"> </span>module<span class="w"> </span>avail<span class="w"> </span>KEYWORD
+<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a>
+<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="c1"># View all modules which match the keyword in their name or description</span>
+<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a>$<span class="w"> </span>module<span class="w"> </span>spider<span class="w"> </span>KEYWORD
+</code></pre></div>
+<ul>
+<li>
+<p>Load a specific program</p>
+<blockquote>
+<p>All module names on NeSI Software stack have a version and toolchain/environment suffixes. If none is specified, then the default version of the software is loaded. The default version can be seen with the <code>module avail modulename</code> command (corresponding module name will have <code>(D)</code> suffix)</p>
+</blockquote>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>Module_Name
+</code></pre></div>
+<ul>
+<li>Unload all current modules</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>$<span class="w"> </span>module<span class="w"> </span>purge
+</code></pre></div>
+<blockquote>
+<p>Please <strong>do not</strong> use <code>module --force purge</code></p>
+</blockquote>
+<ul>
+<li>Swap a currently loaded module for a different one</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>$<span class="w"> </span>module<span class="w"> </span>switch<span class="w"> </span>CURRENT_MODULE<span class="w"> </span>DESIRED_MODULE
+</code></pre></div>
+</div>
+<h2 id="working-with-job-scheduler">Working with job scheduler<a class="headerlink" href="#working-with-job-scheduler" title="Permanent link">¶</a></h2>
+<p><center><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/scheduler_image.png"><img alt="image" src="../../theme_images/scheduler_image.png" width="500"/></a></center></p>
+<p>An HPC system might have thousands of nodes and thousands of users. How do we decide who gets what and when? How do we ensure that a task is run with the resources it needs? This job is handled by a special piece of software called the scheduler. On an HPC system, the scheduler manages which jobs run where and when. In brief, scheduler is a </p>
+<ul>
+<li>Mechanism to control access by many users to shared computing resources</li>
+<li>Queuing / scheduling system for users’ jobs</li>
+<li>Manages the reservation of resources and job execution on these resources </li>
+<li>Allows users to “fire and forget” large, long calculations or many jobs (“production runs”)</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Why do we need a scheduler ?</p>
+<ul>
+<li>To ensure the machine is utilised as fully as possible</li>
+<li>To ensure all users get a fair chance to use compute resources (demand usually exceeds supply)</li>
+<li>To track usage - for accounting and budget control</li>
+<li>To mediate access to other resources e.g. software licenses</li>
+</ul>
+<p><strong>Commonly used schedulers</strong></p>
+<ul>
+<li>Slurm</li>
+<li>PBS , Torque</li>
+<li>Grid Engine</li>
+<li>LSF – IBM Systems</li>
+</ul>
+<p><center><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/slurm_comms2compute.png"><img alt="image" src="../../theme_images/slurm_comms2compute.png" width="800"/></a></center></p>
+<p><small>Researchers can not communicate directly to  Compute nodes from the login node. Only way to establish a connection OR send scripts to compute nodes is to use scheduler as the carrier/manager</small></p>
+</div>
+<h3 id="life-cycle-of-a-slurm-job">Life cycle of a slurm job<a class="headerlink" href="#life-cycle-of-a-slurm-job" title="Permanent link">¶</a></h3>
+<p><br/>
+<center><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/batch_system_flow%20.png"><img alt="image" src="../../theme_images/batch_system_flow%20.png" width="800"/></a></center>
+<br/></p>
+<details class="info">
+<summary>Commonly used Slurm commands</summary>
+<table>
+<thead>
+<tr>
+<th align="left">Command</th>
+<th align="left">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>sbatch</code></td>
+<td align="left">Submit non-interactive (batch) jobs to the scheduler</td>
+</tr>
+<tr>
+<td align="left"><code>squeue</code></td>
+<td align="left">List jobs in the queue</td>
+</tr>
+<tr>
+<td align="left"><code>scancel</code></td>
+<td align="left">Cancel a job</td>
+</tr>
+<tr>
+<td align="left"><code>sacct</code></td>
+<td align="left">Display accounting data for all jobs and job steps in the Slurm job accounting log or Slurm database</td>
+</tr>
+<tr>
+<td align="left"><code>srun</code></td>
+<td align="left">Slurm directive for parallel computing</td>
+</tr>
+<tr>
+<td align="left"><code>sinfo</code></td>
+<td align="left">Query the current state of nodes</td>
+</tr>
+<tr>
+<td align="left"><code>salloc</code></td>
+<td align="left">Submit interactive jobs to the scheduler</td>
+</tr>
+</tbody>
+</table>
+</details>
+<p>About</p>
+<h3 id="anatomy-of-a-slurm-script-and-submitting-first-slurm-job">Anatomy of a slurm script and submitting first slurm job 🧐<a class="headerlink" href="#anatomy-of-a-slurm-script-and-submitting-first-slurm-job" title="Permanent link">¶</a></h3>
+<p>As with most other scheduler systems, job submission scripts in Slurm consist of a header section with the shell specification and options to the submission command (<code>sbatch</code> in this case) followed by the body of the script that actually runs the commands you want. In the header section, options to <code>sbatch</code> should be prepended with <code>#SBATCH</code>.</p>
+<p><br/>
+<a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/anatomy_of_a_slurm_script.png"><img alt="image" src="../../theme_images/anatomy_of_a_slurm_script.png" width="700"/></a>
+<br/></p>
+<div class="admonition quote">
+<p>Commented lines are ignored by the bash interpreter, but they are not ignored by slurm. The <code>#SBATCH</code> parameters are read by slurm when we submit the job. When the job starts, the bash interpreter will ignore all lines starting with <code>#</code>. This is very similar to the shebang mentioned earlier, when you run your script, the system looks at the <code>#!</code>, then uses the program at the subsequent path to interpret the script, in our case <code>/bin/bash</code> (the program <code>bash</code> found in the <em>/bin</em> directory</p>
+</div>
+<hr/>
+<details class="info">
+<summary>Slurm variables</summary>
+<table>
+<thead>
+<tr>
+<th align="left">header</th>
+<th align="left">use</th>
+<th align="left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">--job-name</td>
+<td align="left"><code>#SBATCH --job-name=MyJob</code></td>
+<td align="left">The name that will appear when using <code>squeue</code> or <code>sacct</code>.</td>
+</tr>
+<tr>
+<td align="left">--account</td>
+<td align="left"><code>#SBATCH --account=nesi12345</code></td>
+<td align="left">The account your core hours will be 'charged' to.</td>
+</tr>
+<tr>
+<td align="left">--time</td>
+<td align="left"><code>#SBATCH --time=DD-HH:MM:SS</code></td>
+<td align="left">Job max walltime.</td>
+</tr>
+<tr>
+<td align="left">--mem</td>
+<td align="left"><code>#SBATCH --mem=512MB</code></td>
+<td align="left">Memory required per node.</td>
+</tr>
+<tr>
+<td align="left">--cpus-per-task</td>
+<td align="left"><code>#SBATCH --cpus-per-task=10</code></td>
+<td align="left">Will request 10 logical CPUs per task.</td>
+</tr>
+<tr>
+<td align="left">--output</td>
+<td align="left"><code>#SBATCH --output=%j_output.out</code></td>
+<td align="left">Path and name of standard output file. <code>%j</code> will be replaced by the job ID.</td>
+</tr>
+<tr>
+<td align="left">--mail-user</td>
+<td align="left"><code>#SBATCH --mail-user=me23@gmail.com</code></td>
+<td align="left">address to send mail notifications.</td>
+</tr>
+<tr>
+<td align="left">--mail-type</td>
+<td align="left"><code>#SBATCH --mail-type=ALL</code></td>
+<td align="left">Will send a mail notification at BEGIN END FAIL.</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"><code>#SBATCH --mail-type=TIME_LIMIT_80</code></td>
+<td align="left">Will send message at 80% walltime.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<p><br/></p>
+<div class="admonition bell">
+<p class="admonition-title">Assigning values to Slurm variables</p>
+<p><center><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/sbtach_def_1.png"><img alt="image" src="../../theme_images/sbtach_def_1.png"/></a></center></p>
+<p><center><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/sbatch_def_2.png"><img alt="image" src="../../theme_images/sbatch_def_2.png"/></a></center></p>
+</div>
+<p><br/></p>
+<details class="question">
+<summary>Exercise</summary>
+<ul>
+<li>Make sure you are in <strong>your</strong> working directory </li>
+<li>There is a <code>Slurm_Intro</code> directory which has the following directory structure </li>
+</ul>
+<p><center><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/slurm_intro_struc.png"><img alt="image" src="../../theme_images/slurm_intro_struc.png" width="500"/></a></center></p>
+<ul>
+<li>We will work from <strong>1.</strong> to <strong>4.</strong> . Objective is to review, submit, check and <em>review</em> Slurm jobs. </li>
+</ul>
+<p><center><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/slurm_cycle_mini.png"><img alt="image" src="../../theme_images/slurm_cycle_mini.png"/></a></center></p>
+</details>
+</article>
+</div>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            Back to top
+          </button>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../assets/javascripts/bundle.b4d07000.min.js"></script>
+<script src="../../javascripts/mathjax.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
