@@ -205,7 +205,7 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
 
 ---
 
-??? info "Slurm variables"
+??? circle-info "Slurm variables"
 
     | header          | use                                 | description                                          |
     |:--------------- |:------------------------------------|:-----------------------------------------------------|
