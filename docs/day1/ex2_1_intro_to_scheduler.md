@@ -6,7 +6,7 @@
 
 The simplest way of defining high-performance computing is by saying that it is the using of high-performance computers (HPC). However, this leads to our next question what is a HPC .
 
-!!! info "HPC"
+!!! circle-info "HPC"
 
     A high-performance computer is a network of computers in a cluster that typically share a common purpose and are used to accomplish tasks that might otherwise be too big for any one computer.
 
@@ -176,7 +176,7 @@ An HPC system might have thousands of nodes and thousands of users. How do we de
 
 
 
-??? info "Commonly used Slurm commands"
+??? circle-info "Commonly used Slurm commands"
 
     | Command        | Function                                                                                             |
     |:---------------|:------------------------------------------------------------------------------------------------------|
