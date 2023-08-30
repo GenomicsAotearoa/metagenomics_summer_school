@@ -221,7 +221,7 @@ Cytoscape
 
 !!! warning "Do not update Cytoscape!" 
     
-    A dialog box will appear telling you about a new version of Cytoscape. **Click "discard"**, as we will not be installing any new versions today!
+    A dialog box will appear telling you about a new version of Cytoscape. **Click "close"**, as we will not be installing any new versions today!
 
 In *Cytoscape*, we can load the gene-sharing network by clicking `File/Import/Network from file`, and then opening the `c1.ntw` file (You may need to click the `Home` button and then navigate to the relevant directory when `c1.ntw` is located (i.e. in `/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/vConTACT2_Results/`)). 
 
