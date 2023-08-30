@@ -25,25 +25,26 @@
 
 These exercises will take place in the `2.fastqc/` directory. First, navigate to this directory. Copy the command below into your terminal (logged in to NeSI), replacing `<YOUR FOLDER>`, and then running the command.
 
-```bash
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/
-```
+!!! terminal "code"
 
-To activate `FastQC` on NeSI, you need to first load the module using the command
+    ```bash
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/
+    ```
 
-```bash
-module purge
-module load FastQC/0.11.9
-```
+!!! terminal-2 "To activate `FastQC` on NeSI, you need to first load the module using the command"
+
+    ```bash
+    module purge
+    module load FastQC/0.11.9
+    ```
 
 #### Running *FastQC*
 
-We will run `FastQC` from the command line as follows:
+!!! terminal-2 "We will run `FastQC` from the command line as follows:"
 
-```bash
-
-fastqc mock_R1.good.fastq.gz mock_R2.good.fastq.gz
-```
+    ```bash
+    fastqc mock_R1.good.fastq.gz mock_R2.good.fastq.gz
+    ```
 
 #### Viewing the outputs from *FastQC*
 
@@ -121,16 +122,16 @@ Which of the previous fields we examined are now flagged as problematic? How doe
 
 There are a multitude of programs which can be used to quality trim sequence data and remove adapter sequence. For this exercise we are going to use `trimmomatic`, but this should in no way be interpreted as an endorsement of `trimmomatic` over equivalent tools like `BBMap`, `sickle`, `cutadapt` or any other.
 
-For a first run with `trimmomatic`, type the following commands into your console:
+!!! terminal-2 "For a first run with `trimmomatic`, type the following commands into your console:"
 
-```bash
-module load Trimmomatic/0.39-Java-1.8.0_144
-
-trimmomatic PE -threads 2 -phred33 \
-               mock_R1.adapter_decay.fastq.gz mock_R2.adapter_decay.fastq.gz \
-               mock_R1.qc.fastq.gz mock_s1.qc.fastq.gz mock_R2.qc.fastq.gz mock_s2.qc.fastq.gz \
-               HEADCROP:10 SLIDINGWINDOW:4:30 MINLEN:80
-```
+    ```bash
+    module load Trimmomatic/0.39-Java-1.8.0_144
+    
+    trimmomatic PE -threads 2 -phred33 \
+                   mock_R1.adapter_decay.fastq.gz mock_R2.adapter_decay.fastq.gz \
+                   mock_R1.qc.fastq.gz mock_s1.qc.fastq.gz mock_R2.qc.fastq.gz mock_s2.qc.fastq.gz \
+                   HEADCROP:10 SLIDINGWINDOW:4:30 MINLEN:80
+    ```
 
 There is a lot going on in this command, so here is a breakdown of the parameters in the command above
 
