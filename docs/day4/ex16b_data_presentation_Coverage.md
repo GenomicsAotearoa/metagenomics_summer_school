@@ -31,7 +31,7 @@
 
 ### Part 1 - Building a heatmap of MAG coverage per sample
 
-To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and open a `Notebook` running the `R 4.0.1` module as the kernel (or, outside the context of this workshop, open `RStudio` with the required packages installed (see the [data presentation intro](../day4/ex16a_data_presentation_Intro.md) docs for more information)).
+To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and make sure you are working within RStudio with the required packages installed (see the [data presentation intro](../day4/ex16a_data_presentation_Intro.md) for more information).
 
 #### 1.1 Prepare environment
 
@@ -470,7 +470,7 @@ We then obtain the coverage matrix and transform the values to enhance visualisa
     plot(
       virus_hclust,
       main = "Bray-Curtis dissimilarities between viruses",
-      xlab = "MAGs",
+      xlab = "Viral contigs",
       ylab = "Height",
       sub = "Method: average linkage",
       hang = -1,

@@ -17,7 +17,7 @@
 
 ### *BLAST*-like gene annotations and domain annotations
 
-Broadly speaking, there are two ways we perform gene annotations with protein sequences. Both compare our sequences of interest against a curated set of protein sequences for which function is known, or is strongly suspected. In each case, there are particular strenths to the approach and for particular research questions, one option may be favoured over another.
+Broadly speaking, there are two ways we perform gene annotations with protein sequences. Both compare our sequences of interest against a curated set of protein sequences for which function is known, or is strongly suspected. In each case, there are particular strengths to the approach and for particular research questions, one option may be favoured over another.
 
 #### BLAST-like annotation
 

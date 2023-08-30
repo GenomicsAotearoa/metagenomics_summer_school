@@ -121,34 +121,33 @@ Both `MetaBAT` and `MaxBin` have the option to output unbinned contigs after bin
 
 ### Bin dereplication using *DAS_Tool* - Running the tool
 
-We are now ready to run `DAS_Tool`. This can be done from the command line, as it does not take a particularly long time to run for this data set. Start by loading `DAS_Tool`.
+We are now ready to run `DAS_Tool`. This can be done from the command line, as it does not take a particularly long time to run for this data set. 
 
 ```bash
-module load DAS_Tool/1.1.5-gimkl-2022a-R-4.2.1
-```
-
-Depending on whether or not your session has been continued from previous exercises, you may encounter an error performing this module load. This is because some of the tools we have used in previous exercises have dependencies which conflict with the dependencies in `DAS_Tool`. If this is the case for you, you can unload all previous module loads with the following:
-
-```bash
+# Remove modules to ensure a clean environment
 module purge
 
+# Load DAS Tool
 module load DAS_Tool/1.1.5-gimkl-2022a-R-4.2.1
-module load DIAMOND/2.0.15-GCC-11.3.0
-module load USEARCH/11.0.667-i86linux32
-```
 
-`DAS_Tool` should now load without issue. With 2 threads, `DAS_Tool` should take 10 - 15 minutes to complete.
-
-```bash
 # Create DAS_Tool output directory
 mkdir -p dastool_out/
 
 # Run DAS_Tool
 DAS_Tool -i metabat_associations.txt,maxbin_associations.txt \
          -l MetaBAT,MaxBin \
-         -t 2 --write_bins --search_engine blastp \
+         -t 2 --write_bins --search_engine diamond \
          -c spades_assembly/spades_assembly.m1000.fna \
          -o dastool_out/
+```
+
+```
+DAS Tool 1.1.5 
+Analyzing assembly 
+Predicting genes 
+Annotating single copy genes using diamond 
+Dereplicating, aggregating, and scoring bins 
+Writing bins
 ```
 
 As usual, we will break down the parameters:
@@ -162,11 +161,6 @@ As usual, we will break down the parameters:
 |**--search_engine blastp**|Specify whether to use `usearch`, `diamond`, or `BLAST` as the alignment tool for comparing gene sequences (see note below)|
 |**-c ...**|Path to the assembly used in binning|
 |**-o ..**|Output directory for all files|
-
-
-
-
-This is not a problem - `DAS_Tool` can use either `BLAST`, `diamond`, or `usearch` for performing its alignment operations. Regardless of which one you specify, it will search to see which ones are available. In this case, it is telling us that `diamond` and `usearch` cannot be found, which doesn't really matter because we have specified `BLAST` as our search engine.
 
 When `DAS_Tool` has completed, we will have a final set of bins located in the folder path `dastool_out/_DASTool_bins`. Have a look at the output and see which bins made it to the final selection. Did a single binning tool pick the best bins, or are the results a split between `MetaBAT` and `MaxBin`?
 

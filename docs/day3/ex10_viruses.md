@@ -182,7 +182,7 @@ less vConTACT2_Results/genome_by_genome_overview.csv
 ```
 
 ```bash
-less vConTACT2_Results/tax_predict_table.txt
+less vConTACT2_Results/tax_predict_table.tsv
 ```
 
 A few notes to consider: 
@@ -194,7 +194,7 @@ A few notes to consider:
         * Note also that these lines however will *not* contain taxonomy information. 
         * See the notes in the [Appendix](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md) for further information about why this might be.
         
-    * As per the notes in the [Appendix](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md), the `tax_predict_table.txt` file contains *predictions* of potential taxonomy (and or *taxonomies*) of the input viral contigs for order, family, and genus, based on whether they clustered with any viruses in the reference database.
+    * As per the notes in the [Appendix](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md), the `tax_predict_table.tsv` file contains *predictions* of potential taxonomy (and or *taxonomies*) of the input viral contigs for order, family, and genus, based on whether they clustered with any viruses in the reference database.
         * Note that these may be lists of *multiple* potential taxonomies, in the cases where viral contigs clustered with multiple reference viruses representing more than one taxonomy at the given rank.
   
         !!! note "" 
@@ -221,7 +221,7 @@ Cytoscape
 
 !!! warning "Do not update Cytoscape!" 
     
-    A dialog box will appear telling you about a new version of Cytoscape. **Click "discard"**, as we will not be installing any new versions today!
+    A dialog box will appear telling you about a new version of Cytoscape. **Click "close"**, as we will not be installing any new versions today!
 
 In *Cytoscape*, we can load the gene-sharing network by clicking `File/Import/Network from file`, and then opening the `c1.ntw` file (You may need to click the `Home` button and then navigate to the relevant directory when `c1.ntw` is located (i.e. in `/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/vConTACT2_Results/`)). 
 
