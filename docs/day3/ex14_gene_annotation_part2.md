@@ -100,7 +100,7 @@ nano annotate_dram.sl
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="!"
     #!/bin/bash -e
 
     #SBATCH --account       nesi02659
