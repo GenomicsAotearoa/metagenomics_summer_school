@@ -160,19 +160,19 @@ module load IDBA-UD/1.1.3-GCC-11.3.0
 ...
 ```
 
-Fortunately, the `IDBA` set of tools comes with some helper scripts to achieve just this. Unfortunately we cannot apply this shuffling operation to compressed data, so we must decompress the data first.
+!!! terminal-2 "Fortunately, the `IDBA` set of tools comes with some helper scripts to achieve just this. Unfortunately we cannot apply this shuffling operation to compressed data, so we must decompress the data first."
 
-```bash
-module load pigz/2.7
+    ```bash
+    module load pigz/2.7
 
-for i in sample1 sample2 sample3 sample4;
-do
-  pigz --keep --decompress ${i}_R1.fastq.gz ${i}_R2.fastq.gz
-  fq2fa --merge ${i}_R1.fastq ${i}_R2.fastq ${i}.fna
-done
+    for i in sample1 sample2 sample3 sample4;
+    do
+      pigz --keep --decompress ${i}_R1.fastq.gz ${i}_R2.fastq.gz
+      fq2fa --merge ${i}_R1.fastq ${i}_R2.fastq ${i}.fna
+    done
 
-cat sample1.fna sample2.fna sample3.fna sample4.fna > for_idba.fna    
-```
+    cat sample1.fna sample2.fna sample3.fna sample4.fna > for_idba.fna    
+    ```
 
 ---
 
@@ -248,7 +248,7 @@ Into this file, either write or copy/paste the following commands:
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="1"
     #!/bin/bash -e
 
     #SBATCH --account       nesi02659
@@ -310,11 +310,11 @@ We don't explicitly set memory or thread counts for this job, simply for the sak
 
 It is a good idea to match your number of threads request in the slurm script with what you intend to use with `SPAdes` because your project usage is calculated based off what you request in your slurm scripts rather than what you actually use. Requesting many unused threads simply drives your project down the priority queue. By contrast, requesting fewer threads than you attempt to use in the program (i.e. request 10 in slurm, set thread count to 30 in `SPAdes`) will result in reduced performance, as your `SPAdes` job will divide up jobs as though it has 30 threads, but only 10 will be provided. This is discussed [in this blog post](https://www.codeguru.com/cpp/sample_chapter/article.php/c13533/Why-Too-Many-Threads-Hurts-Performance-and-What-to-do-About-It.htm).
 
-Once you are happy with your slurm script, execute the job by navigating to the location of your script and entering the command
+!!! terminal-2 "Once you are happy with your slurm script, execute the job by navigating to the location of your script and entering the command"
 
-```bash
-sbatch spades_assembly.sl
-```
+    ```bash
+    sbatch spades_assembly.sl
+    ```
 
 You will receive a message telling you the job identifier for your assembly. Record this number, as we will use it in the next exercise.
 
@@ -342,17 +342,17 @@ Which allows us to track how far into our run we are, and see the remaining time
 
 #### Submitting an *IDBA-UD* job to NeSI using slurm
 
-To run an equivalent assembly with `IDBA-UD`, create a new slurm script as follows
+!!! terminal-2 "To run an equivalent assembly with `IDBA-UD`, create a new slurm script as follows"
 
-```bash
-nano idbaud_assembly.sl
-```
+    ```bash
+    nano idbaud_assembly.sl
+    ```
 
 Paste or type in the following:
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="1"
     #!/bin/bash -e
     
     #SBATCH --account       nesi02659
@@ -375,11 +375,11 @@ Paste or type in the following:
             -r for_idba.fna -o idbaud_assembly/
     ```
 
-And submit the script as a slurm job:
+!!! terminal-2 "And submit the script as a slurm job:"
 
-```bash
-sbatch idbaud_assembly.sl
-```
+    ```bash
+    sbatch idbaud_assembly.sl
+    ```
 
 When your job starts running, files with suffixes `.err` and `.out` will be created in the directory from where you submitted your job. These files will have have your job name and job identification number as file names.
 

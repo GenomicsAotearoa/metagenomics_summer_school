@@ -40,7 +40,7 @@ sacct -S 2022-11-23
 
 Each job has been broken up into several lines, but the main ones to keep an eye on are the base JobID values. 
 
-??? info "Using `srun`"
+??? circle-info "Using `srun`"
 
     If you use `srun`, the JobID will have values suffixed with *.0*. The first of these references the complete job. The later (and any subsequent suffixes like *.1*, *.2*) are the individual steps in the script that were called with the `srun` command.
 
@@ -76,24 +76,26 @@ A few quick checks I recommend are to see how many contigs or scaffolds your dat
 
 These steps will take place in the `4.evaluation/` folder, which contains copies of our `SPAdes` and `IDBA-UD` assemblies.
 
-```bash
-module purge
-module load seqmagick/0.8.4-gimkl-2020a-Python-3.8.2
+!!! terminal"code"
 
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.evaluation/
+    ```bash
+    module purge
+    module load seqmagick/0.8.4-gimkl-2020a-Python-3.8.2
 
-seqmagick convert --min-length 1000 spades_assembly/spades_assembly.fna \
-                                    spades_assembly/spades_assembly.m1000.fna
-grep -c '>' spades_assembly/spades_assembly.fna spades_assembly/spades_assembly.m1000.fna
-# spades_assembly/spades_assembly.fna:1318
-# spades_assembly/spades_assembly.m1000.fna:933
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.evaluation/
 
-seqmagick convert --min-length 1000 idbaud_assembly/idbaud_assembly.fna \
-                                    idbaud_assembly/idbaud_assembly.m1000.fna
-grep -c '>' idbaud_assembly/idbaud_assembly.fna idbaud_assembly/idbaud_assembly.m1000.fna
-# idbaud_assembly/idbaud_assembly.fna:5057
-# idbaud_assembly/idbaud_assembly.m1000.fna:1996
-```
+    seqmagick convert --min-length 1000 spades_assembly/spades_assembly.fna \
+                                        spades_assembly/spades_assembly.m1000.fna
+    grep -c '>' spades_assembly/spades_assembly.fna spades_assembly/spades_assembly.m1000.fna
+    # spades_assembly/spades_assembly.fna:1318
+    # spades_assembly/spades_assembly.m1000.fna:933
+
+    seqmagick convert --min-length 1000 idbaud_assembly/idbaud_assembly.fna \
+                                        idbaud_assembly/idbaud_assembly.m1000.fna
+    grep -c '>' idbaud_assembly/idbaud_assembly.fna idbaud_assembly/idbaud_assembly.m1000.fna
+    # idbaud_assembly/idbaud_assembly.fna:5057
+    # idbaud_assembly/idbaud_assembly.m1000.fna:1996
+    ```
 
 If you have your own assemblies and you want to try inspect them in the same way, try that now. Note that the file names will be slightly different to the files provided above. If you followed the exact commands in the previous exercise, you can use the following commands.
 
@@ -188,7 +190,7 @@ However, since we **_do_** know the composition of the original communities used
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="1"
     #!/bin/bash -e
 
     #SBATCH --account       nesi02659

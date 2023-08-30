@@ -16,9 +16,11 @@ For this exercise, there is no real structure. Make a few copies of your initial
 
 Make a few copies of your `SPAdes` slurm script like so;
 
-```bash
-cp spades_assembly.sl spades_assembly_var1.sl
-```
+!!! terminal "code"
+
+    ```bash
+    cp spades_assembly.sl spades_assembly_var1.sl
+    ```
 
 Change a few of the parameters for run time. Some potential options include
 
