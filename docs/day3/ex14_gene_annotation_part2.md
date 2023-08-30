@@ -173,7 +173,7 @@ nano annotate_dramv.sl
     #SBATCH --account       nesi02659
     #SBATCH --job-name      annotate_DRAMv
     #SBATCH --time          02:00:00
-    #SBATCH --mem           4Gb
+    #SBATCH --mem           10Gb
     #SBATCH --cpus-per-task 12
     #SBATCH --error         %x_%A.err
     #SBATCH --output        %x_%A.out
