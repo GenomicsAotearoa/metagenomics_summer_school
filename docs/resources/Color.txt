@@ -11,7 +11,7 @@ SEPARATOR TAB
 #SEPARATOR COMMA
 
 #label is used in the legend table (can be changed later)
-DATASET_LABEL	example style
+DATASET_LABEL	Host
 
 #dataset color (can be changed later)
 COLOR	#ffff00
@@ -27,7 +27,7 @@ COLOR	#ffff00
 #Shape should be a number between 1 and 6, or any protein domain shape definition.
 #1: square
 #2: circle
-3: star
+#3: star
 #4: right pointing triangle
 #5: left pointing triangle
 #6: checkmark
@@ -35,7 +35,7 @@ COLOR	#ffff00
 LEGEND_TITLE	Host
 #LEGEND_POSITION_X,100
 #LEGEND_POSITION_Y,100
-#LEGEND_SHAPES	3	3	3	3	3	3	3	3	3
+LEGEND_SHAPES	3
 #LEGEND_COLORS	
 #LEGEND_LABELS	Co-assembled (group)
 #LEGEND_SHAPE_SCALES,1,1,0.5
