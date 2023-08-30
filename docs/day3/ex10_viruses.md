@@ -84,7 +84,7 @@ nano VirSorter2_and_checkv.sl
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="1"
     #!/bin/bash -e
     #SBATCH --account       nesi02659
     #SBATCH --job-name      VirSorter2_and_checkv
@@ -129,11 +129,11 @@ nano VirSorter2_and_checkv.sl
     checkv end_to_end VirSorter2/mgss-final-viral-combined.fa checkv_out/ -t $SLURM_CPUS_PER_TASK
     ```
 
-Submit the script as a slurm job
+!!! terminal-2 "Submit the script as a slurm job"
 
-```bash
-sbatch VirSorter2_and_checkv.sl
-```
+    ```bash
+    sbatch VirSorter2_and_checkv.sl
+    ```
 
 #### Outputs of *VirSorter2* and *CheckV*
 

@@ -111,7 +111,7 @@ nano prodigal.sl
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="1"
     #!/bin/bash -e
 
     #SBATCH --account       nesi02659
@@ -144,11 +144,11 @@ nano prodigal.sl
              -o predictions/${pred_file}.genes.gbk
     ```
 
-Submit the script
+!!! terminal-2 "Submit the script"
 
-```bash
-sbatch prodigal.sl
-```
+    ```bash
+    sbatch prodigal.sl
+    ```
 
 Once `prodigal` has completed, let's check one of the output files:
 
@@ -233,7 +233,7 @@ nano metaxa2.sl
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="1"
     #!/bin/bash -e
     
     #SBATCH --account       nesi02659
@@ -266,11 +266,11 @@ nano metaxa2.sl
     done
     ```
 
-Submit the script
+!!! terminal-2 "Submit the script"
 
-```bash
-sbatch metaxa2.sl
-```
+    ```bash
+    sbatch metaxa2.sl
+    ```
 
 The parameters here are fairly self-explanatory, so we won't discuss them in detail. Briefly, `--cpu` tells the program how many CPUs to use in sequence prediction, and the `-g` flag determines whether we are using the training data set for SSU or LSU regions. the `-i` and `-o` flags denote the input file and output prefix.
 
