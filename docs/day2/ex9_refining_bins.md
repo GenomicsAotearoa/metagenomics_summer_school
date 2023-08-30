@@ -68,19 +68,19 @@ We can now use these files in `VizBin` to curate the contigs in our bins. We wil
 
 For this exercise, we will be using the *Virtual Desktop* on NeSI which allows us to use programmes with graphical user interfaces (GUI) within the NeSI computing environment.
 
-#### Initiate the Virtual Desktop
+!!! jupyter "Initiate the Virtual Desktop"
 
-1. Click on <kbd>File</kbd> on the top left corner of the Jupyter Hub, and then select <kbd>New Launcher</kbd>. You can also click on the small <kbd>+</kbd> on the tabbed bar next to your terminal tab.
-2. Look for the Virtual Desktop icon and then click on centre of the icon.
+    1. Click on <kbd>File</kbd> on the top left corner of the Jupyter Hub, and then select <kbd>New Launcher</kbd>. You can also click on the small <kbd>+</kbd> on the tabbed bar next to your terminal tab.
+    2. Look for the Virtual Desktop icon and then click on centre of the icon.
+        <center>
+        ![virtual desktop icon](../figures/VirtualDesktop.PNG)
+        </center>
+    3. A new browser tab named 'TurboVNC:...' should appear and the Virtual Desktop should load.
+    4. A successful instance of the Virtual Desktop should look like a desktop environment.
+
     <center>
-    ![virtual desktop icon](../figures/VirtualDesktop.PNG)
+    ![virtual desktop environment](../figures/VirtualDesktopInitiated.PNG){width=600px}
     </center>
-3. A new browser tab named 'TurboVNC:...' should appear and the Virtual Desktop should load.
-4. A successful instance of the Virtual Desktop should look like a desktop environment.
-
-<center>
-![virtual desktop environment](../figures/VirtualDesktopInitiated.PNG){width=600px}
-</center>
 
 !!! note "Running VizBin: local vs remote" 
 
