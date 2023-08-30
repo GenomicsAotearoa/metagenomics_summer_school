@@ -470,7 +470,7 @@ We then obtain the coverage matrix and transform the values to enhance visualisa
     plot(
       virus_hclust,
       main = "Bray-Curtis dissimilarities between viruses",
-      xlab = "MAGs",
+      xlab = "Viral contigs",
       ylab = "Height",
       sub = "Method: average linkage",
       hang = -1,
