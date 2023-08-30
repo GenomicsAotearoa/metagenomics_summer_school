@@ -244,7 +244,7 @@ nano mapping_filtered_bins.sl
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="1"
     #!/bin/bash -e
     
     #SBATCH --account       nesi02659
@@ -273,11 +273,11 @@ nano mapping_filtered_bins.sl
     done
     ```
 
-Submit the script
+!!! terminal-2 "Submit the script"
 
-```bash
-sbatch mapping_filtered_bins.sl
-```
+    ```bash
+    sbatch mapping_filtered_bins.sl
+    ```
 
 Finally, generate the per-sample coverage table for each contig in each bin via `MetaBAT`'s `jgi_summarize_bam_contig_depths`.
 
@@ -339,7 +339,7 @@ nano mapping_viruses.sl
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="1"
     #!/bin/bash -e
     
     #SBATCH --account       nesi02659
@@ -368,11 +368,11 @@ nano mapping_viruses.sl
     done
     ```
 
-Run the script
+!!! terminal-2 "Run the script"
 
-```bash
-sbatch mapping_viruses.sl
-```
+    ```bash
+    sbatch mapping_viruses.sl
+    ```
 
 Finally, generate the per-sample coverage table for each viral contig via `MetaBAT`'s `jgi_summarize_bam_contig_depths`.
 

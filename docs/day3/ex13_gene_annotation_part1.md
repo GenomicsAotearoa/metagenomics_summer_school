@@ -185,7 +185,7 @@ nano annotate_pfam.sl
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="1"
     #!/bin/bash -e
     
     #SBATCH --account       nesi02659
@@ -215,11 +215,11 @@ nano annotate_pfam.sl
               ${db} ${prot_file}
     ```
 
-Submit the script
+!!! terminal-2 "Submit the script"
 
-```bash
-sbatch annotate_pfam.sl
-```
+    ```bash
+    sbatch annotate_pfam.sl
+    ```
 
 ---
 
