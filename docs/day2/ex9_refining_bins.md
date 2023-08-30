@@ -396,41 +396,45 @@ An example of an updated slurm script to run `CheckM` on the `filtered_bins/` is
 
 The data you have been working with was created using the `cut_up_fasta.py` script that comes with the binning tool `CONCOCT`. It was run to cut contigs into 20k fragments, to better add density to the cluster. If you would like to visualise the data using different contig fragment sizes, you can create these using the following commands (replace `YOUR_CONTIG_SIZE` with the size of interest, e.g. `10000`):
 
-```bash
-module load CONCOCT/1.0.0-gimkl-2018b-Python-2.7.16
+!!! terminal "code"
 
-mkdir custom_chop/
+    ```bash
+    module load CONCOCT/1.0.0-gimkl-2018b-Python-2.7.16
 
-# Fragment contigs within each bin, outputting to custom_chop/
-for bin_file in example_data_unchopped/*;
-do
-    bin_name=$(basename ${bin_file} .fna)
-    cut_up_fasta.py -c YOUR_CONTIG_SIZE -o 0 --merge_last ${bin_file} > custom_chop/${bin_name}.chopped.fna
-done
+    mkdir custom_chop/
 
-# Concatenate the chopped bins into single .fna
-cat custom_chop/*.fna > all_bins_custom_chop.fna
-```
+    # Fragment contigs within each bin, outputting to custom_chop/
+    for bin_file in example_data_unchopped/*;
+    do
+        bin_name=$(basename ${bin_file} .fna)
+        cut_up_fasta.py -c YOUR_CONTIG_SIZE -o 0 --merge_last ${bin_file} > custom_chop/${bin_name}.chopped.fna
+    done
+
+    # Concatenate the chopped bins into single .fna
+    cat custom_chop/*.fna > all_bins_custom_chop.fna
+    ```
 
 You can open `all_bins_custom_chop.fna` in VizBin to view the clustering with this new fragmentation threshold. 
 
 If you wish to also provide an annotation file to colour by bin, this can be generated with the following:
 
-```bash
-# Set up annotation file headers
-echo "label" > custom_chop.vizbin.ann
+!!! terminal "code"
 
-# loop through custom_chop .fna files
-for bin_file in custom_chop/*.fna; do
-    # extract bin ID
-    binID=$(basename ${bin_file} .fna)
-    # loop through each sequence header in bin_file, adding binID to custom_chop.vizbin.ann for each header present
-    for header in `grep ">" ${bin_file}`; do
-        # Add binID to vizbin.ann for each header present
-        echo "${binID}" >> custom_chop.vizbin.ann
+    ```bash
+    # Set up annotation file headers
+    echo "label" > custom_chop.vizbin.ann
+
+    # loop through custom_chop .fna files
+    for bin_file in custom_chop/*.fna; do
+        # extract bin ID
+        binID=$(basename ${bin_file} .fna)
+        # loop through each sequence header in bin_file, adding binID to custom_chop.vizbin.ann for each header present
+        for header in `grep ">" ${bin_file}`; do
+            # Add binID to vizbin.ann for each header present
+            echo "${binID}" >> custom_chop.vizbin.ann
+        done
     done
-done
-```
+    ```
 
 If you wish to generate the full annotation file, including coverage and length values, you will need to go through the process outlined in the [Appendix for this exercise](../resources/2_APPENDIX_ex9_Generating_input_files_for_VizBin.md).  
 
