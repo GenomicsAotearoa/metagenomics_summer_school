@@ -20,22 +20,22 @@ Check to see if your assembly jobs have completed. If you have multiple jobs run
 squeue --me
 
 # JOBID         USER     ACCOUNT   NAME        CPUS MIN_MEM PARTITI START_TIME     TIME_LEFT STATE    NODELIST(REASON)    
-# 31491555      jboe440  nesi02659 spawner-jupy   2      4G infill  2022-11-23T1     7:14:40 RUNNING  wbl001          
+# 39035482      jboe440  nesi02659 spawner-jupy   2      4G interac 2023-08-31T1     7:47:42 RUNNING  wbn004      
 ```
 
 If there are no jobs besides your Jupyter session listed, either everything running has completed or failed. To get a list of all jobs we have run in the last day, we can use the `sacct` command. By default this will report all jobs for the day but we can add a parameter to tell the command to report all jobs run since the date we are specifying.
 
 ```bash
-sacct -S 2022-11-23
+sacct -S 2023-08-12
 
 # JobID           JobName          Alloc     Elapsed     TotalCPU  ReqMem   MaxRSS State      
 # --------------- ---------------- ----- ----------- ------------ ------- -------- ---------- 
-# 31491555        spawner-jupyter+     2    00:45:50     00:00:00      4G          RUNNING    
-# 31491555.batch  batch                2    00:45:50     00:00:00                  RUNNING    
-# 31491555.extern extern               2    00:45:50     00:00:00                  RUNNING    
-# 31491999        spades_assembly     12    00:12:00     01:37:43     10G          COMPLETED  
-# 31491999.batch  batch               12    00:12:00     01:37:43         9564240K COMPLETED  
-# 31491999.extern extern              12    00:12:00    00:00.001                0 COMPLETED
+# 38483216        spawner-jupyter+     2    07:45:01     00:00:00      4G          NODE_FAIL  
+# 38483216.batch  batch                2    07:45:01     00:00:00                  CANCELLED  
+# 38483216.extern extern               2    07:45:01     00:00:00                  CANCELLED  
+# 38485254        spades_assembly     12    00:14:38     01:56:40     10G          COMPLETED  
+# 38485254.batch  batch               12    00:14:38     01:56:40         7227872K COMPLETED  
+# 38485254.extern extern              12    00:14:38     00:00:00                0 COMPLETED
 ```
 
 Each job has been broken up into several lines, but the main ones to keep an eye on are the base JobID values. 
@@ -44,22 +44,20 @@ Each job has been broken up into several lines, but the main ones to keep an eye
 
     If you use `srun`, the JobID will have values suffixed with *.0*. The first of these references the complete job. The later (and any subsequent suffixes like *.1*, *.2*) are the individual steps in the script that were called with the `srun` command.
 
-We can see here the time elapsed for each job, and the number of CPU hours used during the run. If we want a more detailed breakdown of the job we can use the `seff` command
+We can see here the time elapsed for each job, and the number of CPU hours used during the run. If we want a more detailed breakdown of the job we can use the `nn_seff` command
 
 ```bash
-seff 31491999
+nn_seff 38485254
 
-# Job ID: 31491999
 # Cluster: mahuika
-# User/Group: jboe440/jboe440
-# State: COMPLETED (exit code 0)
+# Job ID: 38485254
+# State: COMPLETED
+# Cores: 6
+# Tasks: 1
 # Nodes: 1
-# Cores per node: 12
-# CPU Utilized: 01:37:43
-# CPU Efficiency: 67.86% of 02:24:00 core-walltime
-# Job Wall-clock time: 00:12:00
-# Memory Utilized: 9.12 GB
-# Memory Efficiency: 91.21% of 10.00 GB
+# Job Wall-time:   48.8%  00:14:38 of 00:30:00 time limit
+# CPU Efficiency: 132.9%  01:56:40 of 01:27:48 core-walltime
+# Mem Efficiency:  68.9%  6.89 GB of 10.00 GB0
 ```
 
 Here we see some of the same information, but we also get some information regarding how well our job used the resources we allocated to it. You can see here that my CPU and memory usage was somewhat efficient but had high memory efficiency. In the future, I can request less time and retain the same RAM and still had the job run to completion.
