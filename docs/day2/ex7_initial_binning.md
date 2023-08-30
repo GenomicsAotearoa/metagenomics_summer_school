@@ -85,10 +85,10 @@ Generally speaking, this pattern of first, fourth, then [n + 2]<sup>th</sup> sho
 
 This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we want to direct the output files into a folder, we must create that folder in advance.
 
-Create a new script to submit as a slurm job
+!!! terminal-2 "Create a new script to submit as a slurm job"
 
-```bash
-nano maxbin_clustering.sl
+    ```bash
+    nano maxbin_clustering.sl
 ```
 
 !!! warning "Warning"
@@ -96,7 +96,7 @@ nano maxbin_clustering.sl
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="2"
     #!/bin/bash -e
     
     #SBATCH --account       nesi02659
@@ -124,11 +124,11 @@ nano maxbin_clustering.sl
                   -out maxbin/maxbin
     ```
 
-Submit the script as a slurm job:
+!!! terminal-2 "Submit the script as a slurm job:"
 
-```bash
-sbatch maxbin_clustering.sl
-```
+    ```bash
+    sbatch maxbin_clustering.sl
+    ```
 !!! note "Note"
 
     This will take a bit longer to complete, as `MaxBin` uses gene prediction tools to identify the ideal contigs to use as the start of each bin.

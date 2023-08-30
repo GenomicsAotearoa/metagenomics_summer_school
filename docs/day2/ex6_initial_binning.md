@@ -63,7 +63,7 @@ nano spades_mapping.sl
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="1"
     #!/bin/bash -e
 
     #SBATCH --account       nesi02659
@@ -96,11 +96,11 @@ nano spades_mapping.sl
     done
     ```
 
-Now run the script using `sbatch`
+!!! terminal-2 "Now run the script using `sbatch`"
 
-```bash
-sbatch spades_mapping.sl
-```
+    ```bash
+    sbatch spades_mapping.sl
+    ```
 
 #### Step 1 - Loop through the sample files
 
@@ -184,7 +184,7 @@ nano spades_mapping_array.sl
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="1"
     #!/bin/bash -e
     
     #SBATCH --account       nesi02659
@@ -219,8 +219,8 @@ nano spades_mapping_array.sl
                   ${samples[ $SLURM_ARRAY_TASK_ID ]}_a.sam
     ```
     
-Submit the job to slurm
+!!! terminal-2 "Submit the job to slurm"
 
-```bash
-sbatch spades_mapping_array.sl
-```
+    ```bash
+    sbatch spades_mapping_array.sl
+    ```

@@ -35,15 +35,17 @@ Contig[tab]Bin
 
 This can be done with a bit of `bash` scripting. There's quite a bit going on here, so we'll provide the full command, and then a step-by-step explanation of what's happening.
 
-```bash
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
+!!! terminal "code"
 
-for bin_path in metabat/*.fa; do
-    bin_name=$(basename ${bin_path} .fa)
+    ```bash
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 
-    grep ">" ${bin_path} | sed 's/>//g' | sed "s/$/\t${bin_name}/g" >> metabat_associations.txt
-done
-```
+    for bin_path in metabat/*.fa; do
+        bin_name=$(basename ${bin_path} .fa)
+
+        grep ">" ${bin_path} | sed 's/>//g' | sed "s/$/\t${bin_name}/g" >> metabat_associations.txt
+    done
+    ```
 
 You can check the contents of this file using `less` or `head`, and you should be something like:
 
@@ -121,25 +123,25 @@ Both `MetaBAT` and `MaxBin` have the option to output unbinned contigs after bin
 
 ### Bin dereplication using *DAS_Tool* - Running the tool
 
-We are now ready to run `DAS_Tool`. This can be done from the command line, as it does not take a particularly long time to run for this data set. 
+!!! terminal-2 "We are now ready to run `DAS_Tool`. This can be done from the command line, as it does not take a particularly long time to run for this data set." 
 
-```bash
-# Remove modules to ensure a clean environment
-module purge
+    ```bash
+    # Remove modules to ensure a clean environment
+    module purge
 
-# Load DAS Tool
-module load DAS_Tool/1.1.5-gimkl-2022a-R-4.2.1
+    # Load DAS Tool
+    module load DAS_Tool/1.1.5-gimkl-2022a-R-4.2.1
 
-# Create DAS_Tool output directory
-mkdir -p dastool_out/
+    # Create DAS_Tool output directory
+    mkdir -p dastool_out/
 
-# Run DAS_Tool
-DAS_Tool -i metabat_associations.txt,maxbin_associations.txt \
-         -l MetaBAT,MaxBin \
-         -t 2 --write_bins --search_engine diamond \
-         -c spades_assembly/spades_assembly.m1000.fna \
-         -o dastool_out/
-```
+    # Run DAS_Tool
+    DAS_Tool -i metabat_associations.txt,maxbin_associations.txt \
+             -l MetaBAT,MaxBin \
+             -t 2 --write_bins --search_engine diamond \
+             -c spades_assembly/spades_assembly.m1000.fna \
+             -o dastool_out/
+    ```
 
 ```
 DAS Tool 1.1.5 
@@ -202,7 +204,7 @@ nano checkm.sl
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="1"
     #!/bin/bash -e
     #SBATCH --account       nesi02659
     #SBATCH --job-name      CheckM
