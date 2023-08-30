@@ -182,7 +182,7 @@ For more genome-informed evaluation of the assembly, we can use the `MetaQUAST` 
     1. [MeTaxa2](https://microbiology.se/software/metaxa2/) or [SingleM](https://github.com/wwood/singlem) (DNA based, 16S rRNA recovery and classification)
     1. [MetaPhlAn2](http://huttenhower.sph.harvard.edu/metaphlan2) (DNA based, clade-specific marker gene classification)
 
-A good summary and comparison of these tools (and more) was recently published by [Ye *et al.*](https://www.ncbi.nlm.nih.gov/pubmed/31398336).
+A good summary and comparison of these tools (and more) was published by [Ye *et al.*](https://www.ncbi.nlm.nih.gov/pubmed/31398336).
 
 However, since we **_do_** know the composition of the original communities used to build this mock metagenome, `MetaQUAST` will work very well for us today. In your `4.evaluation/` directory you will find a file called `ref_genomes.txt`. This file contains the names of the genomes used to build these mock metagenomes. We will provide these as the reference input for `MetaQUAST`.
 
@@ -198,6 +198,7 @@ However, since we **_do_** know the composition of the original communities used
     #SBATCH --cpus-per-task 10
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
+    #SBATCH --parition      milan
 
     # Load module
     module purge
