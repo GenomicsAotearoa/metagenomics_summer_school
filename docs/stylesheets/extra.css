@@ -482,3 +482,22 @@
   -webkit-mask-image: var(--md-admonition-icon--circle-check);
           mask-image: var(--md-admonition-icon--circle-check);
 }
+
+:root {
+    --md-admonition-icon--circle-info: url('data:image/svg+xml;charset=utf-9,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>')
+  }
+  .md-typeset .admonition.circle-info,
+  .md-typeset details.circle-info {
+    border-color: rgb(55,52,238);
+  }
+  .md-typeset .circle-info > .admonition-title,
+  .md-typeset .circle-info > summary {
+    color:rgb(230, 230, 236);
+    background-color: rgba(9,23,143,959);
+  }
+  .md-typeset .circle-info > .admonition-title::before,
+  .md-typeset .circle-info > summary::before {
+    background-color: rgb(217,235,117);
+    -webkit-mask-image: var(--md-admonition-icon--circle-info);
+            mask-image: var(--md-admonition-icon--circle-info);
+  }

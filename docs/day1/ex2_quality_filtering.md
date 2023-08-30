@@ -126,7 +126,7 @@ There are a multitude of programs which can be used to quality trim sequence dat
 
     ```bash
     module load Trimmomatic/0.39-Java-1.8.0_144
-    
+
     trimmomatic PE -threads 2 -phred33 \
                    mock_R1.adapter_decay.fastq.gz mock_R2.adapter_decay.fastq.gz \
                    mock_R1.qc.fastq.gz mock_s1.qc.fastq.gz mock_R2.qc.fastq.gz mock_s2.qc.fastq.gz \
@@ -151,7 +151,7 @@ There is a lot going on in this command, so here is a breakdown of the parameter
     |MINLEN:80|*positional*|Length filtering command. Discard sequences that are shorter than 80 base pairs after trimming|
 
 
-!!! success "Terminal output"
+!!! circle-check "Terminal output"
 
     ```
     TrimmomaticPE: Started with arguments:
@@ -314,7 +314,7 @@ Build index reference via `BBMap`. We will do this by submitting the job via slu
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="1"
     #!/bin/bash -e
     
     #SBATCH --account       nesi02659
@@ -344,7 +344,7 @@ Finally, map the quality-filtered reads to the reference via `BBMap`. Here we wi
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="1"
     #!/bin/bash -e
 
     #SBATCH --account       nesi02659
