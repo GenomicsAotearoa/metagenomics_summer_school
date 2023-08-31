@@ -288,7 +288,7 @@ The breakdown of parameters is as follows
 |`dastool/\_DASTool\_bins/`|The location of the bins to test|
 |`checkm\_out/`|The location to write intermediate and output files|
 
-!!! tip "Increasing `--pplace_threads`"
+!!! tip "Increasing `--pplacer_threads`"
 
     Increasing this parameter results in a *linear* increase in memory requirement - seting it to 10 means that `CheckM` will need about 10 times more memory than with a single thread
 
