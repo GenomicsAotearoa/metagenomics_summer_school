@@ -246,6 +246,35 @@ The breakdown of parameters is as follows
 
 When your job completes, we will download the summary file and examine it.
 
+!!! note "CheckM2"
+
+    An independent update to CheckM was made in late 2022 in the form of a new software [CheckM2](https://github.com/chklovski/CheckM2) (see [publication](https://doi.org/10.1038/s41592-023-01940-w)). It uses machine learning to estimate completeness and contamination. Computationally, it uses less resources than CheckM. Keep in mind that because both software use different method to assessing genome completeness, the output statistics might be different (see [discussion here for a case example](https://github.com/chklovski/CheckM2/issues/32) and it does not estimate strain heterogeneity).
+    
+    If you would like to try it out, here's a script analogous to that we ran using CheckM:
+
+    !!! terminal "code"
+
+        ```bash
+        #!/bin/bash -e
+        #SBATCH --account       nesi02659
+        #SBATCH --job-name      CheckM2
+        #SBATCH --time          00:20:00
+        #SBATCH --mem           50GB
+        #SBATCH --cpus-per-task 10
+        #SBATCH --error         %x_%j.err
+        #SBATCH --output        %x_%j.out
+
+        # Load modules
+        module purge
+        module load CheckM2/1.0.1-Miniconda3
+
+        # Working directory
+        cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
+
+        checkm2 predict -t $SLURM_CPUS_PER_TASK -x .fa --input dastool_out/_DASTool_bins/ --output-directory checkm2_out/
+        ```
+
+
 ---
 
 ### Discussion: dereplication across multiple assemblies
