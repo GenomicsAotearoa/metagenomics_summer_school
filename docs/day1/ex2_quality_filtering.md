@@ -309,7 +309,16 @@ Build index reference via `BBMap`. We will do this by submitting the job via slu
 
     See [Preparing an assembly job for slurm](https://genomicsaotearoa.github.io/metagenomics_summer_school/day1/ex3_assembly/) for more information about how to submit a job via slurm.
 
+Create a new script named `host_filt_bbmap_index.sl` using `nano`:
+
+!!! terminal "code"
+
+    ```bash
+    nano host_filt_bbmap_index.sl
+    ```
+
 !!! warning "Warning"
+    
     Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own directory.
 
 !!! terminal "code"
@@ -333,11 +342,29 @@ Build index reference via `BBMap`. We will do this by submitting the job via slu
     module load BBMap/39.01-GCC-11.3.0
     
     # Build indexed reference file via BBMap
-    bbmap.sh ref=hg19_main_mask_ribo_animal_allplant_allfungus.fa.gz
-    
+    bbmap.sh ref=hg19_main_mask_ribo_animal_allplant_allfungus.fa.gz    
     ```
 
+Save your script by pressing <kbd>Ctrl</kbd> + <kbd>o</kbd> , then exit the editor by pressing <kbd>Ctrl</kbd> + <kbd>x</kbd> .
+
+Submit your newly created script to the scheduler as follows:
+
+!!! terminal "code"
+
+    ```bash
+    sbatch host_filt_bbmap_index.sl
+    ```
+
+
 Finally, map the quality-filtered reads to the reference via `BBMap`. Here we will submit the job as a slurm array, with one array job per sample. 
+
+Again, we will create a script using `nano`: 
+
+!!! terminal "code"
+
+    ```bash
+    nano host_filt_bbmap_map.sl
+    ```
 
 !!! warning "Warning"
     Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own directory.
@@ -372,7 +399,6 @@ Finally, map the quality-filtered reads to the reference via `BBMap`. Here we wi
       path=BBMask_human_reference/ \
       outu1=host_filtered_reads/sample${SLURM_ARRAY_TASK_ID}_R1_hostFilt.fastq \
       outu2=host_filtered_reads/sample${SLURM_ARRAY_TASK_ID}_R2_hostFilt.fastq
-
     ```
 
 Breaking down this command a little:
@@ -384,6 +410,18 @@ Breaking down this command a little:
     - The flags `-Xmx27g` and `-t=$SLURM_CPUS_PER_TASK` set the maximum memory and thread (AKA CPUs) allocations, and must match the `--mem` and `--cpus_per_task` allocations in the slurm headers at the top of the script.
     - The rest of the settings in the `BBMap` call here are as per the recommendations found within [this thread](http://seqanswers.com/forums/showthread.php?t=42552) about processing data to remove host reads.
     - Finally, the filtered output FASTQ files for downstream use are written to the `host_filtered_reads/` directory (taken from the outputs `outu1=` and `outu2=`, which include only those reads that did not map to the host reference genome).
+
+We'll submit the mapping script:
+
+!!! terminal "code"
+
+    ```bash
+    sbatch host_filt_bbmap_map.sl
+    ```
+
+??? tip "Monitoring job progress"
+
+    We can monitor our job progress using `squeue --me` or `sacct <job_id>`. This will be covered in further details as part of the main content when we [evaluate assemblies](./ex5_evaluating_assemblies.md#evaluate-the-resource-consumption-of-various-assemblies). 
 
 !!! note "Note"
 

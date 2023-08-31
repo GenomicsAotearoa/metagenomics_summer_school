@@ -161,12 +161,6 @@ Reads will initially be mapped in an unsorted order, as they are added to the *s
 
 Sorting the mapping information is an important prerequisite for performing certain downstream processes. Not every tool we use requires reads to be sorted, but it can be frustrating having to debug the instances where read sorting matters, so we typically just get it done as soon as possible and then we don't have to worry about it again.
 
-In newer versions of `samtools` we can perform the sorting and compressing in a single operation (as shown in the script above). For older versions of `samtools`, you may need to use a command of the following form.
-
-```bash
-samtools view -bS sample1.sam | samtools sort -o sample1.bam
-```
-
 ---
 
 ### *Optional: Read mapping using an array*
