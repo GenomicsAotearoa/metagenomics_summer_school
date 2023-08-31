@@ -119,10 +119,18 @@ If this fails to open on your PC, or if it runs prohibitively slowly, team up wi
     <center>
     ![terminal emulator](../figures/TerminalEmulator.PNG)
     </center>
+
+    
 2. VizBin is a Java programme, therefore we will need to load the Java module for it to work. In the terminal, type the following to load the Java module
+
+    !!! warning "Copy/paste in the Virtual Desktop"
+
+        You will not be able to copy text from outside the Virtual Desktop and paste into the Virtual Desktop, in which case you will need to manually type these commands.
+
     ```bash
     module load Java/17
     ```
+    
 3. In the terminal, navigate to your directory where the Java file resides
     
     !!! warning "Replace path"
