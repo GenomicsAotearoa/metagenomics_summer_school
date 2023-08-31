@@ -141,10 +141,13 @@ There is a lot going on in this command, so here is a breakdown of the parameter
     |`mock_R1.qc.fastq.gz`|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner also passed|
     |`mock_s1.qc.fastq.gz`|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner failed (orphan reads)|
     |`mock_R2.qc.fastq.gz` / `mock_s2.qc.fastq.gz`|*positional*|The reverse-sequence equivalent of above|
-    |`HEADCROP:10`|*positional*|Adapter trimming command. Remove the first 10 positions in the sequence|
+    |`HEADCROP:10`|*positional*|Remove the first 10 positions in the sequence|
     |`SLIDINGWINDOW:4:30`|*positional*|Quality filtering command. Analyse each sequence in a 4 base pair sliding window and then truncate if the average quality drops below Q30|
     |`MINLEN:80`|*positional*|Length filtering command. Discard sequences that are shorter than 80 base pairs after trimming|
 
+!!! tip "`HEADCROP` is not adapter trimming"
+
+    We used `HEADCROP` to remove the first ten bases where we found poorer quality scores in those bases. For adapter trimming, we will need to use `ILLUMINACLIP` (see [below](#optional-working-with-the-illuminaclip-command))
 
 !!! circle-check "Terminal output"
 
