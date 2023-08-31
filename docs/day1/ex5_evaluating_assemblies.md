@@ -266,7 +266,13 @@ By now, you should be getting familiar enough with the console to understand wha
 
 We will now look at a few interesting assembly comparisons.
 
- If you are working from the NeSI `Jupyter hub` environment today, the html viewer *within* the NeSI `Jupyter hub` does not currently support this (even if the browser you are running it in does). To view a basic version of the report, download the report file by navigating to the `4.evaluation/quast_results/` folder, right-click `report.html/` and select download. The downloaded file will then open within a new tab in the browser. (*NOTE: rendering the full report requires the other folders from within `quast_results/` to also be downloaded and available in the same directory as `report.html`. Unfortunately, the `Jupyter hub` environment does not appear to currently support downloading entire folders using this method.*)
+!!! note "Viewing HTML in Jupyter Hub"
+
+    The NeSI Jupyter hub does not currently support viewing HTML that require Javascript (even if the browser you are running it in does). To view a basic version of the report, download the report file by navigating to the `4.evaluation/quast_results/` folder, right-click `report.html/` and select download. The downloaded file will then open within a new tab in the browser. 
+    
+    !!! warning ""
+    
+        Rendering the full report requires the other folders from within `quast_results/` to also be downloaded and available in the same directory as `report.html`. Unfortunately, the Jupyter hub environment does not appear to currently support downloading entire folders using this method.
 
 An example of the `MetaQUAST` output files are also available for download. You will need to download both [references](../resources/quast_references.zip) and [results](../resources/quast_results_sans_reference.zip). Unzip both within the same directory.
 
