@@ -224,19 +224,23 @@ Cytoscape
     
     A dialog box will appear telling you about a new version of Cytoscape. **Click "close"**, as we will not be installing any new versions today!
 
-In *Cytoscape*, we can load the gene-sharing network by clicking `File/Import/Network from file`, and then opening the `c1.ntw` file (You may need to click the `Home` button and then navigate to the relevant directory when `c1.ntw` is located (i.e. in `/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/vConTACT2_Results/`)). 
+#### Load the network
 
-In the "Import Network From Table" pop-up box: 
+1. With Cytoscape open, click on *File* $\rightarrow$ *Import* $\rightarrow$ *Network from file*
+2. Open the `c1.ntw` file by (a) typing in the absolute path in the *File Name* box: `/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/vConTACT2_Results/c1.ntw` or (b) navigate to the file using the GUI.
+3. In the *Import Network From Table* pop-up box:
+    1. Click on *Advanced Options*
+        1. Select *SPACE* as the delimiter
+        2. Uncheck *Use first line as column names*
+        3. Click *OK*
+   
+    ![load cytoscape 1](../figures/day3_virus_cytoscape_import.PNG)
 
-- Click *Advanced Options*:
-    1. Select *SPACE* as the delimiter
-    2. Uncheck the *Use first line as column names* box
-    3. Click *OK*
-
-- In the dropdown menu for "Column 1": 
-    1. Select the green dot (source node) 
-    2. For Column 2 select the red target (Target node)
-    3. Click *OK*
+    2. In the drop-down menu for 'Column 1', select the green dot (source node)
+    3. For Column 2 select the red target (Target node)
+    4. Click *OK*
+   
+    ![load cytoscape 2](../figures/day3_virus_cytoscape_import_2.PNG)
 
 It will now ask if you want to create a view for your large networks now. Click *OK*. This may take a minute to generate the network visualisation. 
 
