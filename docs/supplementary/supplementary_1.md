@@ -10,7 +10,7 @@
      
           >>* make sure to choose the correct project code `nesi02659`, number of CPUs `CPUs=4`, memory `8 GB` prior to pressing ![image](../theme_images/start_button.png){width="50"} button.
           
-          <br>![image](../theme_images/jupyter_server2022.png)</br>
+          <br>![image](../theme_images/server-options-4c-8g.png)</br>
 
 
      4. <p>Once logged in, click the **Terminal** tile/icon to make sure a terminal session can be launched without any issues
