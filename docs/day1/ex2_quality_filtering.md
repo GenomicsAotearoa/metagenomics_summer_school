@@ -13,7 +13,7 @@
 </center>
 ---
 
-### Visualising raw reads
+## Visualising raw reads
 
 `FastQC` is an extremely popular tool for checking your sequencing libraries, as the visual interface makes it easy to identify the following issues:
 
@@ -21,11 +21,11 @@
 1. Low quality regions of sequence
 1. Quality drop-off towards the end of read-pair sequence
 
-#### Loading *FastQC*
+### Loading `FastQC`
 
 These exercises will take place in the `2.fastqc/` directory. First, navigate to this directory. Copy the command below into your terminal (logged in to NeSI), replacing `<YOUR FOLDER>`, and then running the command.
 
-!!! terminal "code"
+!!! terminal-2 "Navigate to our working directory"
 
     ```bash
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/
@@ -38,7 +38,7 @@ These exercises will take place in the `2.fastqc/` directory. First, navigate to
     module load FastQC/0.11.9
     ```
 
-#### Running *FastQC*
+### Running `FastQC`
 
 !!! terminal-2 "We will run `FastQC` from the command line as follows:"
 
@@ -46,7 +46,7 @@ These exercises will take place in the `2.fastqc/` directory. First, navigate to
     fastqc mock_R1.good.fastq.gz mock_R2.good.fastq.gz
     ```
 
-#### Viewing the outputs from *FastQC*
+### Viewing the outputs from `FastQC`
 
 `FastQC` generates output reports in `.html` files that can be viewed in a standard web browser. 
 
@@ -61,60 +61,55 @@ Examples of the output files are also available for download [here](../resources
 
 Note that `FastQC` does not load the forward and reverse pairs of a library in the same window, so you need to be mindful of how your samples relate to each other. 
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig1_overview.PNG)
 ![image](../figures/ex3_fig1_overview.PNG)
 
 At a first glance, we can see the follow statistics:
 
 1. The data is stored in Sanger / Illumina 1.9 encoding. *This will be important to remember when read trimming.*
 2. There are 100,000 reads in the file
-3. The maximum sequence length is 251 base pairs. *This is good to check, since the data were generated using Illumina
-2x250 bp sequencing.*
+3. The maximum sequence length is 251 base pairs. *This is good to check, since the data were generated using Illumina 2x250 bp sequencing.*
 
 Have a quick look through the menu sidebar on the left. As you can see, the data has passed most of the basic parameters.
 
-**Per-base sequence quality**
+!!! success ""
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig2_quality.PNG)
-![image](../figures/ex3_fig2_quality.PNG)
+    === "Per-base sequence quality"
 
-**Per base sequence content**
+        ![image](../figures/ex3_fig2_quality.PNG)
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig3_content.PNG)
-![image](../figures/ex3_fig3_content.PNG)
+    === "Per sequence GC content"
 
-**Adapter Content**
+        ![image](../figures/ex3_fig5_gc.PNG)
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig4_adapter.PNG)
-![image](../figures/ex3_fig4_adapter.PNG)
+    === "Adapter Content"
 
-**Per sequence GC content**
-
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig5_gc.PNG)
-![image](../figures/ex3_fig5_gc.PNG)
+        ![image](../figures/ex3_fig4_adapter.PNG)
 
 The only aspect of the data that `FastQC` is flagging as potentially problematic is the GC% content of the data set. This observation is expected as we deal with a mixed community and organisms. Therefore, it is unlikely that there will be a perfect normal distribution around an average value. For example, a community comprised of low- and high-GC organisms would manifest a bimodal distribution of peaks which would be a problematic outcome in terms of the expectations of `FastQC`, but completely consistent with the biology of the system.
 
-#### *FastQC* outputs for libraries with errors
+### `FastQC` outputs for libraries with errors
 
 Lets take a look at a library with significant errors. Process the sequence file `mock_R1.adapter_decay.fastq` with `FastQC`.
 
-```bash
-fastqc mock_R1.adapter_decay.fastq.gz
-```
+!!! terminal "code"
+
+    ```bash
+    fastqc mock_R1.adapter_decay.fastq.gz
+    ```
 
 Compare the results with the `mock_R1.good.fastq.gz` file.
 
 Which of the previous fields we examined are now flagged as problematic? How does this compare with your expectation? Are there any which should be flagged which are not?
 
-**Per-base sequence quality**
+!!! success ""
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig6_taildecay.PNG)
-![image](../figures/ex3_fig6_taildecay.PNG)
+    === "Per-base sequence quality"
+
+        ![image](../figures/ex3_fig6_taildecay.PNG)
 
 ---
 
-### **Read trimming and adapter removal with *trimmomatic***
+## Read trimming and adapter removal with *trimmomatic*
 
 <center>
 ![image](../theme_images/cleaning_reads.png){width="300"}
@@ -139,16 +134,16 @@ There is a lot going on in this command, so here is a breakdown of the parameter
 
     |Parameter|Type|Description|
     |:---|:---:|:---|
-    |PE|*positional*|Specifies whether we are analysing single- or paired-end reads|
-    |-threads 10|*keyword*|Specifies the number of threads to use when processing|
-    |-phred33|*keyword*|Specifies the fastq encoding used|
-    |mock_R1.adapter_decay.fastq.gz / mock_R2.adapter_decay.fastq.gz|*positional*|The paired forward and reverse reads to trim|
-    |mock_R1.qc.fastq.gz|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner also passed|
-    |mock_s1.qc.fastq.gz|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner failed (orphan reads)|
-    |mock_R2.qc.fastq.gz / mock_s2.qc.fastq.gz|*positional*|The reverse-sequence equivalent of above|
-    |HEADCROP:10|*positional*|Adapter trimming command. Remove the first 10 positions in the sequence|
-    |SLIDINGWINDOW:4:30|*positional*|Quality filtering command. Analyse each sequence in a 4 base pair sliding window and then truncate if the average quality drops below Q30|
-    |MINLEN:80|*positional*|Length filtering command. Discard sequences that are shorter than 80 base pairs after trimming|
+    |`PE`|*positional*|Specifies whether we are analysing single- or paired-end reads|
+    |`-threads 10`|*keyword*|Specifies the number of threads to use when processing|
+    |`-phred33`|*keyword*|Specifies the fastq encoding used|
+    |`mock_R1.adapter_decay.fastq.gz` / `mock_R2.adapter_decay.fastq.gz`|*positional*|The paired forward and reverse reads to trim|
+    |`mock_R1.qc.fastq.gz`|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner also passed|
+    |`mock_s1.qc.fastq.gz`|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner failed (orphan reads)|
+    |`mock_R2.qc.fastq.gz` / `mock_s2.qc.fastq.gz`|*positional*|The reverse-sequence equivalent of above|
+    |`HEADCROP:10`|*positional*|Adapter trimming command. Remove the first 10 positions in the sequence|
+    |`SLIDINGWINDOW:4:30`|*positional*|Quality filtering command. Analyse each sequence in a 4 base pair sliding window and then truncate if the average quality drops below Q30|
+    |`MINLEN:80`|*positional*|Length filtering command. Discard sequences that are shorter than 80 base pairs after trimming|
 
 
 !!! circle-check "Terminal output"
@@ -160,39 +155,43 @@ There is a lot going on in this command, so here is a breakdown of the parameter
     TrimmomaticPE: Completed successfully
     ```
 
-Running the trimmed files back through `FastQC`, we can see that this signifcantly improves the output.
+Running the trimmed files back through `FastQC`, we can see that this significantly improves the output.
 
-**Quality of reads**
+!!! success ""
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig7_qualtrim.PNG)
-![image](../figures/ex3_fig7_qualtrim.PNG)
+    === "Quality of reads"
 
-**Nucleotide distribution**
+        ![image](../figures/ex3_fig7_qualtrim.PNG)
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex3_fig8_headtrim.PNG)
-![image](../figures/ex3_fig8_headtrim.PNG)
+    === "Nucleotide distribution"
+
+        ![image](../figures/ex3_fig8_headtrim.PNG)
 
 ---
 
-### Considerations when working with *trimmomatic*
+### Considerations when working with `trimmomatic`
 
 **Order of operations**
 
 The basic format for a `trimmomatic` command is
 
-```bash
-trimmomatic PE <keyword flags> <sequence input> <sequence output> <trimming parameters>
-```
+!!! terminal "code"
+
+    ```bash
+    trimmomatic PE <keyword flags> <sequence input> <sequence output> <trimming parameters>
+    ```
 
 The trimming parameters are processed in the order you specify them. This is a deliberate behaviour, but can have some unexpected consequences for new users.
 
 For example, consider these two scenarios:
 
-```bash
-trimmomatic PE <keyword flags> <sequence input> <sequence output> SLIDINGWINDOW:4:30 MINLEN:80
+!!! terminal "code"
 
-trimmomatic PE <keyword flags> <sequence input> <sequence output> MINLEN:80 SLIDINGWINDOW:4:30
-```
+    ```bash
+    trimmomatic PE <keyword flags> <sequence input> <sequence output> SLIDINGWINDOW:4:30 MINLEN:80
+
+    trimmomatic PE <keyword flags> <sequence input> <sequence output> MINLEN:80 SLIDINGWINDOW:4:30
+    ```
 
 In the first run, we would not expect any sequence shorter than 80 base pairs to exist in the output files. However, we might encounter them in the second command. This is because in the second command we remove sequences shorter than 80 base pairs, **_then_** perform quality trimming. If a sequence is trimmed to a length shorter than 80 base pairs **_after_** trimming, the `MINLEN` filtering does not execute a second time. In the first instance, we do not perform trimming **_before_** size selection, so any reads that start longer than 80 base pairs, but are trimmed to under 80 base pairs during quality trimming will be caught in the `MINLEN` run.
 
@@ -200,19 +199,25 @@ A more subtle consequence of this behaviour is the interplay between adapter rem
 
 ---
 
-### *Optional:* Working with the ILLUMINACLIP command
+### *Optional:* Working with the `ILLUMINACLIP` command
 
 `Trimmomatic` also provides the `ILLUMINACLIP` command, which can be used to pass a FASTA file of adapter and barcode sequences to be found and removed from your data. The format for the `ILLUMINACLIP` parameter can be quite confusing to work with and so we generally favour a `HEADCROP` where possible. If you wish to work with the `ILLUMINACLIP` command, then you can see its use here in the `trimmomatic` [manual](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf).
 
-```bash
-ILLUMINACLIP:iua.fna:1:25:7
-             |       | |  |
-             |       | |  |
-             |       | |  Simple clip threshold
-             |       | Palindrome clip threshold
-             |       Seed mismatches
-             File of expected sequences
-```
+
+!!! terminal "code"
+
+    ```bash
+    ILLUMINACLIP:iua.fna:1:25:7
+    ```
+
+!!! abstract "`ILLUMINACLIP` parameters in order of appearance"
+
+    | Parameter | Description                |
+    | :-------- | :------------------------- |
+    | `iua.fna` | File of expected sequences |
+    | `1`       | Seed mismatches            |
+    | `25`      | Palindrome clip threshold  |
+    | `7`       | Simple clip threshold      |
 
 There is always some subjectivity in how sensitive you want your adapter (and barcode) searching to be. If the settings are too strict you might end up discarding real sequence data that only partially overlaps with the Illumina adapters. If your settings are not strict enough then you might leave partial adapters in the sequence. Where possible, we favour the use of simple positional trimming.
 
@@ -249,7 +254,7 @@ Whether a library is 'poor' quality or not can be a bit subjective. These are so
 
 ---
 
-### *Optional*: Filtering out host DNA
+## *(Optional)* Filtering out host DNA
 
 Metagenome data derived from host-associated microbial communities should ideally be filtered to remove any reads originating from host DNA. This may improve the quality and efficiency of downstream data processing (since we will no longer be processing a bunch of data that we are likely not interested in), and is also an important consideration when working with metagenomes that may include data of a sensitive nature (and which may also need to be removed prior to making the data publicly available). This is especially important for any studies involving human subjects or those involving samples derived from Taonga species.
 
@@ -271,7 +276,7 @@ This ensures that reads that would normally map to these sections of the human g
 
     The same process can be used to remove DNA matching other hosts (e.g. mouse), however you would need to search if anyone has prepared (and made available) a masked version of the reference genome, or create a masked version using `bbmask`. The creator of BBMap has made available masked human, mouse, cat, and dog genomes. More information, including links to these references and instructions on how to generate a masked genome for other taxa, can be found within [this thread](http://seqanswers.com/forums/showthread.php?t=42552).*
 
-#### Downloading the masked human reference genome
+### The masked human reference genome
 
 The masked reference genome is available via [Google drive](https://drive.google.com/file/d/0B3llHR93L14wd0pSSnFULUlhcUk/edit?usp=sharing) and [Zenodo](https://zenodo.org/record/1208052). For this workshop, we have provided you with the file within the `4.evaluation/BBMask_human_reference/` directory.
 
@@ -281,33 +286,39 @@ The masked reference genome is available via [Google drive](https://drive.google
 
     To install `gdown`, we can use `pip`. 
 
-    ```bash
-    # Install gdown (for downloading from google drive)
-    module purge
-    module load Python/3.10.5-gimkl-2022a
-    pip install --user gdown
-    ```
+    !!! terminal-2 "Install `gdown`"
+    
+        ```bash
+        # Install gdown (for downloading from google drive)
+        module purge
+        module load Python/3.10.5-gimkl-2022a
+        pip install --user gdown
+        ```
 
     Next, download the reference. It will also be necessary to first add your local `bin` location to the `PATH` variable via the `export PATH=...` command, as this is where `gdown` is located (modify `<your_username>` before running the code below).
 
-    ```bash
-    mkdir BBMask_human_reference/
-    cd BBMask_human_reference/
+    !!! terminal-2 "Download reference"
 
-    export PATH="/home/<your_username>/.local/bin:$PATH"
+        ```bash
+        mkdir BBMask_human_reference/
+        cd BBMask_human_reference/
 
-    gdown https://drive.google.com/uc?id=0B3llHR93L14wd0pSSnFULUlhcUk
-    ```
+        export PATH="/home/<your_username>/.local/bin:$PATH"
 
-#### Indexing the reference genome and read mapping with *BBMap*
+        gdown https://drive.google.com/uc?id=0B3llHR93L14wd0pSSnFULUlhcUk
+        ```
+
+### Indexing the reference genome and read mapping with `BBMap`
 
 We will cover more about read mapping in [later exercises](https://genomicsaotearoa.github.io/metagenomics_summer_school/day2/ex6_initial_binning/). For now, it is important to know that it is first necessary to build an index of the reference using the read mapping tool of choice. Here, we will first build a `BBMap` index, and then use `BBMap` to map the quality-filtered reads to that index, ultimately retaining only those reads that do *not* map to the index.
 
 Build index reference via `BBMap`. We will do this by submitting the job via slurm. 
 
+<!--
 !!! note "Note"
 
     See [Preparing an assembly job for slurm](https://genomicsaotearoa.github.io/metagenomics_summer_school/day1/ex3_assembly/) for more information about how to submit a job via slurm.
+-->
 
 Create a new script named `host_filt_bbmap_index.sl` using `nano`:
 
@@ -355,7 +366,6 @@ Submit your newly created script to the scheduler as follows:
     sbatch host_filt_bbmap_index.sl
     ```
 
-
 Finally, map the quality-filtered reads to the reference via `BBMap`. Here we will submit the job as a slurm array, with one array job per sample. 
 
 Again, we will create a script using `nano`: 
@@ -365,9 +375,6 @@ Again, we will create a script using `nano`:
     ```bash
     nano host_filt_bbmap_map.sl
     ```
-
-!!! warning "Warning"
-    Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own directory.
 
 !!! terminal "code"
 
@@ -401,6 +408,18 @@ Again, we will create a script using `nano`:
       outu2=host_filtered_reads/sample${SLURM_ARRAY_TASK_ID}_R2_hostFilt.fastq
     ```
 
+!!! abstract "`BBMap` parameters"
+
+    | Parameter | Description |
+    | :--- | :--- |
+    | `-Xmx27g` | Set maximum memory allocation to match `#SBATCH --mem`) |
+    | `-t` | Set number of threads (CPUs) to match `#SBATCH --cpus-per-task` |
+    | All flags in line 22 | Recommended parameters found within [this thread](http://seqanswers.com/forums/showthread.php?t=42552) about processing data to remove host reads |
+    | `in1` / `in2` | Input paired-end reads 1 and 2 stored in `3.assembly/`, each of which are "samples". These are the same files we will use in further lessons |
+    | `path` | The parent directory where `ref/` (our indexed and masked reference) exists |
+    | `outu1` / `outu2` | Reads that *were not mapped* to our masked reference written to `host_filtered_reads/` |
+    
+<!--
 Breaking down this command a little:
 
 !!! quote ""
@@ -410,6 +429,7 @@ Breaking down this command a little:
     - The flags `-Xmx27g` and `-t=$SLURM_CPUS_PER_TASK` set the maximum memory and thread (AKA CPUs) allocations, and must match the `--mem` and `--cpus_per_task` allocations in the slurm headers at the top of the script.
     - The rest of the settings in the `BBMap` call here are as per the recommendations found within [this thread](http://seqanswers.com/forums/showthread.php?t=42552) about processing data to remove host reads.
     - Finally, the filtered output FASTQ files for downstream use are written to the `host_filtered_reads/` directory (taken from the outputs `outu1=` and `outu2=`, which include only those reads that did not map to the host reference genome).
+-->
 
 We'll submit the mapping script:
 
@@ -421,9 +441,9 @@ We'll submit the mapping script:
 
 ??? tip "Monitoring job progress"
 
-    We can monitor our job progress using `squeue --me` or `sacct <job_id>`. This will be covered in further details as part of the main content when we [evaluate assemblies](./ex5_evaluating_assemblies.md#evaluate-the-resource-consumption-of-various-assemblies). 
+    We can monitor our job progress using `squeue --me` or `sacct <job_id>`. This will be covered in detail as part of the main content when we [evaluate assemblies](./ex5_evaluating_assemblies.md#evaluate-the-resource-consumption-of-various-assemblies). 
 
-!!! note "Note"
+!!! note "Array jobs"
 
     Slurm array jobs automatically create a variable `SLURM_ARRAY_TASK_ID` for that job, which contains the array task number (i.e. between 1 and 4 in the case above). We use this to run the command on the sample that matches this array task ID. I.e. array job 3 will run the commands on "sample3" (`sample${SLURM_ARRAY_TASK_ID}` is read in as `sample3`).
 
