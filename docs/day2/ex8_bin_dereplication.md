@@ -123,7 +123,9 @@ Both `MetaBAT` and `MaxBin` have the option to output unbinned contigs after bin
 
 ### Bin dereplication using *DAS_Tool* - Running the tool
 
-!!! terminal-2 "We are now ready to run `DAS_Tool`. This can be done from the command line, as it does not take a particularly long time to run for this data set." 
+We are now ready to run `DAS_Tool`. This can be done from the command line, as it does not take a particularly long time to run for this data set.
+
+!!! terminal-2 "Run `DAS_Tool`" 
 
     ```bash
     # Remove modules to ensure a clean environment
