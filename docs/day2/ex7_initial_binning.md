@@ -89,14 +89,14 @@ This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we wan
 
     ```bash
     nano maxbin_clustering.sl
-```
+    ```
 
 !!! warning "Warning"
     Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
 
 !!! terminal "code"
 
-    ```bash linenums="2"
+    ```bash linenums="1"
     #!/bin/bash -e
     
     #SBATCH --account       nesi02659
