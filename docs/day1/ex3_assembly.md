@@ -14,7 +14,7 @@ All work for this exercise will occur in the `3.assembly/` directory.
 
 ---
 
-### The standard input files for `SPAdes` and `IDBA-UD`
+## The standard input files for `SPAdes` and `IDBA-UD`
 
 Although they both make use of the same types of data, both `SPAdes` and `IDBA-UD` have their own preferences for how sequence data is provided to them. To begin, we will look at the types of data accepted by `SPAdes`:
 
@@ -193,7 +193,7 @@ Fortunately, the `IDBA` set of tools comes with some helper scripts to achieve j
 
 ---
 
-### Basic assembly parameters
+## Basic assembly parameters
 
 For any assembler, there are a **_lot_** of parameters that can be fine-tuned depending on your data. As no two data sets are the same, it is almost impossible to predict which parameter combinations will yield the best outcome for your dataset. That said, an assembly can be quite a resource-intensive process and it is generally not practical to test every permutation of parameter values with your data. In genomics, the saying goes that the best assembly is the one that answers your question. As long as the data you are receiving is meaningful to the hypothesis you are seeking to address, then your assembly is as good as it needs to be.
 
@@ -205,7 +205,7 @@ Generally speaking, assemblers are developed in a way where they run with defaul
     1. Number of threads to use during assembly
     1. Memory limit to prevent the assembler from using up all available RAM and forcing the computer to use its [swap space](https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/ch-swapspace.html)
 
-#### Setting the *k*-mer size
+### Setting the *k*-mer size
 
 Depending on which assembler you are using, the commands for choosing the *k*-mer sizes for the assembly vary slightly, but they are recognisable between programs. In `SPAdes`, you can set the *k*-mer size using either
 
@@ -227,7 +227,7 @@ The first command lets us specify the *k*-mers ourselves, or we are letting `SPA
 
 Unlike `SPAdes`, we do not have fine-scale control over the *k*-mer sizes used in the assembly. We instead provide `IDBA-UD` with the first and last *k*-mer size to use, then specify the increment to use between these. In either case, it is important that we are always assembling using a *k*-mer of odd lengths in order to avoid the creation of palindromic *k*-mers.
 
-#### Specifying the number of threads
+### Specifying the number of threads
 
 This is simple in either assembler:
 
@@ -241,7 +241,7 @@ This is simple in either assembler:
 
 The only thing to keep in mind is that these tools have different default behaviour. If no thread count is specified by the user, `SPAdes` will assemble with 16 threads. `IDBA-UD` will use all available threads, which can be problematic if you are using a shared compute environment that does not use a resource management system like slurm.
 
-#### Setting a memory limit
+### Setting a memory limit
 
 By far, the worst feature of `SPAdes` is the high memory requirement for performing an assembly. In the absence of monitoring, `SPAdes` will request more and more memory as it proceeds. If this requires more memory than is available on your computer, your system will start to store memory to disk space. This is an extremely slow operation and can render your computer effectively unusable. In managed environments such as NeSI a memory limit is imposed upon all running jobs, but if you are not using such a system you are advised to set a memory limit when executing `SPAdes`:
 
@@ -255,11 +255,11 @@ No such parameter exists in `IDBA-UD`, but it requires far less RAM than `SPAdes
 
 ---
 
-### Preparing an assembly job for slurm
+## Preparing an assembly job for slurm
 
 NeSI does not allow users to execute large jobs interactively on the terminal. Instead, the node that we have logged in to (*lander02*) has only a small fraction of the computing resources that NeSI houses. The *lander* node is used to write small command scripts, which are then deployed to the large compute nodes by a system called **slurm**. The ins and outs of working in slurm are well beyond the scope of this workshop (and may not be relevant if your institution uses a different resource allocation system). In this workshop, we will therefore only be showing you how to write minimal slurm scripts sufficient to achieve our goals. By the end of the workshop, you should have built up a small collection of slurm scripts for performing the necessary stages of our workflow and with experience you will be able to modify these to suit your own needs.
 
-#### Submitting a `SPAdes` job to NeSI using slurm
+### Submitting a `SPAdes` job to NeSI using slurm
 
 To begin, we need to open a text file using the `nano` text editor. 
 
@@ -351,7 +351,7 @@ Once you are happy with your slurm script, execute the job by navigating to the 
 
 You will receive a message telling you the job identifier for your assembly. Record this number, as we will use it in the next exercise.
 
-#### Monitoring job progress
+### Monitoring job progress
 
 You can view the status of your current jobs using the command
 
@@ -381,7 +381,7 @@ We can see here that the job has not yet begun, as NeSI is waiting for resources
 
 Which allows us to track how far into our run we are, and see the remaining time for the job. The `START_TIME` column now reports the time the job actually began.
 
-#### Submitting an `IDBA-UD` job to NeSI using slurm
+## Submitting an `IDBA-UD` job to NeSI using slurm
 
 !!! terminal-2 "Create a new slurm script using `nano` to run an equivalent assembly with `IDBA-UD`"
 
