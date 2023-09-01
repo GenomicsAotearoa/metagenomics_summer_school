@@ -1,4 +1,4 @@
-# Manually refining bins
+# Manual bin refinement
 
 !!! info "Objectives"
 

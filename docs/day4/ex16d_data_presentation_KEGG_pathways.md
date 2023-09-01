@@ -1,4 +1,4 @@
-# Presentation of data: KEGG pathway maps
+# KEGG pathway maps
 
 !!! info "Objectives"
 

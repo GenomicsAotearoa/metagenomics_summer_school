@@ -1,4 +1,4 @@
-# Presentation of data: Ordinations
+# Ordinations
 
 !!! info "Objectives"
 

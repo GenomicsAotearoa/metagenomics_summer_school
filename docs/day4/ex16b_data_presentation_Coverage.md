@@ -1,4 +1,4 @@
-# Presentation of data: Per-sample coverage heatmaps
+# Coverage heatmaps
 
 !!! info "Objectives"
 

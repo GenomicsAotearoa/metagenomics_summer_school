@@ -1,4 +1,4 @@
-# Assembly
+# Assembly I: Assembling contigs
 
 !!! info "Objectives"
 

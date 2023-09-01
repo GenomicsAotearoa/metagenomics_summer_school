@@ -1,4 +1,4 @@
-# Gene annotation (part 1)
+# Gene annotation I: BLAST-like and HMM
 
 !!! info "Objectives"
 

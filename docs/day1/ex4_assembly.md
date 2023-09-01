@@ -1,4 +1,4 @@
-# Assembly (part 2)
+# Assembly II: Variable parameters
 
 !!! info "Objectives"
 

@@ -1,4 +1,4 @@
-# Quality filtering raw reads
+# Filter raw reads by quality
 
 !!! info "Objectives"
 

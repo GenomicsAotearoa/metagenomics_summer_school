@@ -1,4 +1,4 @@
-# Presentation of data: Introduction
+# Introduction to data presentation
 
 !!! info "Objectives"
 

@@ -1,4 +1,4 @@
-# Presentation of data: CAZy annotations heatmap
+# CAZy heatmaps
 
 !!! info "Objectives"
 

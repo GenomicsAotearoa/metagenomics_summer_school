@@ -1,4 +1,4 @@
-# Evaluating the assemblies
+# Assembly evaluation
 
 !!! info "Objectives"
 

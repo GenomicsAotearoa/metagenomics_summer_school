@@ -1,4 +1,4 @@
-# Presentation of data: Gene synteny
+# Gene synteny
 
 !!! info "Objectives"
 

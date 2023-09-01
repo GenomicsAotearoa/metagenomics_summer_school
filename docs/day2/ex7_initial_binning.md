@@ -1,4 +1,4 @@
-# Binning (continued)
+# Binning with multiple tools
 
 !!! info "Objectives"
 
