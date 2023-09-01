@@ -11,9 +11,9 @@
 
 ---
 
-### Gene prediction and annotation with *DRAM* (Distilled and Refined Annotation of Metabolism) 
+## Gene prediction and annotation with `DRAM` (Distilled and Refined Annotation of Metabolism) 
 
-[DRAM](http://dx.doi.org/10.1093/nar/gkaa621) is a tool designed to profile microbial (meta)genomes for metabolisms known to impact ecosystem functions across biomes. `DRAM` annotates MAGs and viral contigs using KEGG (if provided by user), UniRef90, PFAM, CAZy, dbCAN, RefSeq viral, VOGDB (Virus Orthologous Groups), and the MEROPS peptidase database. It is also highly customizable to other custom user databases.
+[`DRAM`](http://dx.doi.org/10.1093/nar/gkaa621) is a tool designed to profile microbial (meta)genomes for metabolisms known to impact ecosystem functions across biomes. `DRAM` annotates MAGs and viral contigs using KEGG (if provided by user), UniRef90, PFAM, CAZy, dbCAN, RefSeq viral, VOGDB (Virus Orthologous Groups), and the MEROPS peptidase database. It is also highly customizable to other custom user databases.
 
 `DRAM` only uses assembly-derived *fastA* files input by the user. These input files may come from unbinned data (metagenome contig or scaffold files) or genome-resolved data from one or many organisms (isolate genomes, single-amplified genome (SAGs), MAGs).
 
@@ -21,86 +21,95 @@
 
 ![image](../figures/DRAM_overview.jpeg)
 
-#### Annotation
+### 1. Annotation
 
 The first step in `DRAM` is to annotate genes by assigning database identifiers to genes. Short contigs (default < 2,500 bp) are initially removed. Then, `Prodigal` is used to detect open reading frames (ORFs) and to predict their amino acid sequences. Next, `DRAM` searches all amino acid sequences against multiple databases, providing a single *Raw* output. When gene annotation is complete, all results are merged in a single tab-delimited annotation table, including the best hit for each database for user comparison.
 
-#### Distillation 
+### 2. Distillation 
 
-After genome annotation, a distill step follows with the aim to curate these annotations into useful functional categories, creating genome statistics and metabolism summary files, which are stored in the *Distillate* output. The genome statistics provides most genome quality information required for [MIMAG](https://www.nature.com/articles/nbt.3893) standards, including `GTDB-tk` and `checkM` information if provided by the user. The summarised metabolism table includes the number of genes with specific metabolic function identifiers (KO, CAZY ID, etc) for each genome, with information obtained from multiple databases. The *Distillate* output is then further distilled into the *Product*, an html file displaying a heatmap, as well as the corresponding data table. We will investigate all these files later on.  
+After genome annotation, a distill step follows with the aim to curate these annotations into useful functional categories, creating genome statistics and metabolism summary files, which are stored in the *Distillate* output. The genome statistics provides most genome quality information required for [MIMAG](https://www.nature.com/articles/nbt.3893) standards, including `GTDB-tk` and `CheckM` information if provided by the user. The summarised metabolism table includes the number of genes with specific metabolic function identifiers (KO, CAZY ID, etc) for each genome, with information obtained from multiple databases. The *Distillate* output is then further distilled into the *Product*, an html file displaying a heatmap, as well as the corresponding data table. We will investigate all these files later on.  
 
 ---
 
-### Annotation of the MAGs with *DRAM*
+## Annotate MAGs with `DRAM`
 
 Beyond annotation, `DRAM` aims to be a data compiler. For that reason, output files from both `CheckM` and `GTDB_tk` steps can be input to `DRAM` to provide both taxonomy and genome quality information of the MAGs. 
 
-#### *DRAM* input files
+### `DRAM` input files
 
 For these exercises, we have copied the relevant input files into the folder `10.gene_annotation_and_coverage/DRAM_input_files/`. `gtdbtk.bac120.summary.tsv` was taken from the earlier `8.prokaryotic_taxonomy/gtdbtk_out/` outputs, and `filtered_bins_checkm.txt` from the result of re-running `CheckM` on the final refined filtered bins in `6.bin_refinement/filtered_bins`.
 
-Navigate to the `10.gene_annotation_and_coverage/` folder
+!!! terminal-2 "Navigate to working directory"
 
-```bash
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage/
-```
+    ```bash
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage/
+    ```
 
 Along with our filtered bins, the `CheckM` output file (`checkm.txt`) and `GTDB-Tk` summary output `gtdbtk.bac120.summary.tsv` are used as inputs as is.
 
-#### *DRAM* annotation
+### `DRAM` annotation
 
 In default annotation mode, `DRAM` only requires as input the directory containing all the bins we would like to annotate in *fastA* format (either .fa or .fna). There are few parameters that can be modified if not using the default mode. Once the annotation step is complete, the mode `distill` is used to summarise the obtained results.
 
-*NOTE: due to the increased memory requirements, UniRef90 database is not default and the flag `–use_uniref` should be specified in order to search amino acid sequences against UniRef90. In this exercise, due to memory and time constraints, we won't be using the UniRef90 database.*
+!!! note "UniRef and RAM requirements"
+
+    Due to the increased memory requirements, annotations against the UniRef90 database is not set by default and the flag `–use_uniref` should be specified in order to search amino acid sequences against UniRef90. In this exercise, due to memory and time constraints, we won't be using the UniRef90 database.
 
 We will start by glancing at some of the options for `DRAM`.
 
-```sh
-module purge
-module load DRAM/1.3.5-Miniconda3
+!!! terminal "code"
 
-DRAM.py --help
+    ```bash
+    module purge
+    module load DRAM/1.3.5-Miniconda3
 
-# usage: DRAM.py [-h] {annotate,annotate_genes,distill,strainer,neighborhoods,merge_annotations} ...
-# 
-# positional arguments:
-#   {annotate,annotate_genes,distill,strainer,neighborhoods,merge_annotations}
-#     annotate            Annotate genomes/contigs/bins/MAGs
-#     annotate_genes      Annotate already called genes, limited functionality compared to annotate
-#     distill             Summarize metabolic content of annotated genomes
-#     strainer            Strain annotations down to genes of interest
-#     neighborhoods       Find neighborhoods around genes of interest
-#     merge_annotations   Merge multiple annotations to one larger set
-# 
-# options:
-#   -h, --help            show this help message and exit
-```
+    DRAM.py --help
+    ```
+
+!!! circle-check "Terminal output"
+
+    ```
+    usage: DRAM.py [-h] {annotate,annotate_genes,distill,strainer,neighborhoods,merge_annotations} ...
+
+    positional arguments:
+      {annotate,annotate_genes,distill,strainer,neighborhoods,merge_annotations}
+        annotate            Annotate genomes/contigs/bins/MAGs
+        annotate_genes      Annotate already called genes, limited functionality compared to annotate
+        distill             Summarize metabolic content of annotated genomes
+        strainer            Strain annotations down to genes of interest
+        neighborhoods       Find neighborhoods around genes of interest
+        merge_annotations   Merge multiple annotations to one larger set
+
+    options:
+      -h, --help            show this help message and exit
+    ```
 
 To look at some of the arguments in each command, type the following:
 
-```sh
-# DRAM.py <command> --help
+!!! terminal "code"
 
-# For example:
-DRAM.py annotate --help
-```
+    ```bash
+    # DRAM.py <command> --help
 
-#### Submitting *DRAM* annotation as a slurm job
+    # For example:
+    DRAM.py annotate --help
+    ```
+
+### Submitting `DRAM` annotation as a slurm job
 
 To run this exercise we first need to set up a slurm job. We will use the results for tomorrow's distillation step. 
 
-Create a new script
+!!! terminal-2 "Create script named `annotate_dram.sl`"
 
-```bash
-nano annotate_dram.sl
-```
-!!! warning "Warning"
+    ```bash
+    nano annotate_dram.sl
+    ```
 
-    Paste in the script (update all of the cases of `<YOUR FOLDER>`)
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
 
 !!! terminal "code"
 
-    ```bash linenums="!"
+    ```bash linenums="1"
     #!/bin/bash -e
 
     #SBATCH --account       nesi02659
@@ -125,49 +134,51 @@ nano annotate_dram.sl
                      -o dram_annotations --threads $SLURM_CPUS_PER_TASK
     ```
 
-Submit the job
+!!! terminal-2 "Submit the job"
 
-```bash
-sbatch annotate_dram.sl
-```
+    ```bash
+    sbatch annotate_dram.sl
+    ```
 
 The program will take 4-4.5 hours to run, so we will submit the jobs and inspect the results tomorrow morning.
 
 ---
 
-### Annotation of the viral contigs with *DRAM-v*
+## Annotate viral contigs with `DRAM-v`
 
-*DRAM* also has an equivalent program (*DRAM-v*) developed for predicting and annotating genes of viral genomes. A number of the options are similar to the standard *DRAM* run above, although the selection of databases differs slightly, and the subseqent *distill* step is focussed on identifying and classifying auxilliary metabolic genes (AMGs) rather than the metabolic pathways output by *DRAM*'s standard *distill* step.
+`DRAM` also has an equivalent program (`DRAM-v`) developed for predicting and annotating genes of viral genomes. A number of the options are similar to the standard `DRAM` run above, although the selection of databases differs slightly, and the subsequent *distill* step is focussed on identifying and classifying auxilliary metabolic genes (AMGs) rather than the metabolic pathways output by `DRAM`'s standard *distill* step.
 
-To see more details on options for *DRAM-v* we can run the same `--help` command as above:
-
-```sh
-# DRAM-v.py <command> --help
-
-# For example:
-DRAM-v.py annotate --help
-DRAM-v.py distill --help
-```
-
-#### Submitting *DRAM-v* annotation as a slurm job
-
-To run this exercise we first need to set up a slurm job. We will use the results for tomorrow's distillation step. 
-
-!!! note "Note"
-    *DRAM-v* requires the `mgss-for-dramv/` files `final-viral-combined-for-dramv.fa` and `viral-affi-contigs-for-dramv.tab` that were generated by *VirSorter2*. These have been copied into `10.gene_annotation_and_coverage/` for this exercise.
-
-Create a new script
-
-```bash
-nano annotate_dramv.sl
-```
-!!! warning "Warning"
-
-    Paste in the script (update all of the cases of `<YOUR FOLDER>`)
+To see more details on options for `DRAM-v` we can run the same `--help` command as above:
 
 !!! terminal "code"
 
     ```bash
+    # DRAM-v.py <command> --help
+
+    # For example:
+    DRAM-v.py annotate --help
+    DRAM-v.py distill --help
+    ```
+
+### Submit `DRAM-v` annotation as a slurm job
+
+To run this exercise we first need to set up a slurm job. We will use the results for tomorrow's distillation step. 
+
+!!! note "Note"
+
+    `DRAM-v` requires the `mgss-for-dramv/` files `final-viral-combined-for-dramv.fa` and `viral-affi-contigs-for-dramv.tab` that were generated by `VirSorter2`. These have been copied into `10.gene_annotation_and_coverage/` for this exercise.
+
+!!! terminal-2 "Create script named `annotate_dramv.sl`"
+
+    ```bash
+    nano annotate_dramv.sl
+    ```
+
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
+
+!!! terminal "code"
+
+    ```bash linenums="1"
     #!/bin/bash -e
 
     #SBATCH --account       nesi02659
@@ -193,16 +204,17 @@ nano annotate_dramv.sl
     -o dramv_annotations
     ```
 
-Submit the job
+!!! terminal-2 "Submit the job"
 
-```bash
-sbatch annotate_dramv.sl
-```
+    ```bash
+    sbatch annotate_dramv.sl
+    ```
 
 We will submit this job now and inspect the results tomorrow morning.
 
 ---
-### Calculate per-sample coverage stats of the filtered prokaryote bins
+
+## Calculate per-sample coverage stats of the filtered prokaryote bins
 
 One of the first questions we often ask when studying the ecology of a system is: What are the pattens of abundance and distribution of taxa across the different samples? With bins of metagenome-assembled genome (MAG) data, we can investigate this by mapping the quality-filtered unassembled reads back to the refined bins to then generate coverage profiles. Genomes in higher abundance in a sample will contribute more genomic sequence to the metagenome, and so the average depth of sequencing coverage for each of the different genomes provides a proxy for abundance in each sample. 
 
@@ -212,35 +224,36 @@ These exercises will take place in the `10.gene_annotation_and_coverage/` folder
 
 First, concatenate the bin data into a single file to then use to generate an index for the read mapper.
 
-```bash
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage/
+!!! terminal-2 "Concatenate bin nucleotide FASTA files"
 
-cat filtered_bins/*.fna > filtered_bins.fna
-```
+    ```bash
+    cat filtered_bins/*.fna > filtered_bins.fna
+    ```
 
 Now build the index for `Bowtie2` using the concatenated bin data. We will also make a new directory `bin_coverage/` to store the index and read mapping output into.
 
-```bash
-mkdir -p bin_coverage/
+!!! terminal-2 "Build `Bowtie2` index"
 
-# Load Bowtie2
-module purge
-module load Bowtie2/2.4.5-GCC-11.3.0
+    ```bash
+    mkdir -p bin_coverage/
 
-# Build Bowtie2 index
-bowtie2-build filtered_bins.fna bin_coverage/bw_bins
-```
+    # Load Bowtie2
+    module purge
+    module load Bowtie2/2.4.5-GCC-11.3.0
+
+    # Build Bowtie2 index
+    bowtie2-build filtered_bins.fna bin_coverage/bw_bins
+    ```
 
 Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowtie2`, and sort and convert to `.bam` format via `samtools`.
 
-Create a new script
+!!! terminal-2 "Create script named `mapping_filtered_bins.sl`"
 
-```bash
-nano mapping_filtered_bins.sl
-```
-!!! warning "Warning"
+    ```bash
+    nano mapping_filtered_bins.sl
+    ```
 
-    Paste in the script (replacing `<YOUR FOLDER>`)
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
 
 !!! terminal "code"
 
@@ -281,27 +294,30 @@ nano mapping_filtered_bins.sl
 
 Finally, generate the per-sample coverage table for each contig in each bin via `MetaBAT`'s `jgi_summarize_bam_contig_depths`.
 
-```bash 
-# Load MetaBAT
-module load MetaBAT/2.15-GCC-11.3.0
+!!! terminal-2 "Obtain coverage values"
 
-# calculate coverage table
-jgi_summarize_bam_contig_depths --outputDepth bins_cov_table.txt bin_coverage/sample*.bam
-```
+    ```bash 
+    # Load MetaBAT
+    module load MetaBAT/2.15-GCC-11.3.0
+
+    # Calculate coverage table
+    jgi_summarize_bam_contig_depths --outputDepth bins_cov_table.txt bin_coverage/sample*.bam
+    ```
 
 The coverage table will be generated as `bins_cov_table.txt`. As before, the key columns of interest are the `contigName`, and each `sample[1-n].bam` column.
 
 !!! note "Note"
+
     Here we are generating a per-sample table of coverage values for **each contig** within each bin. To get per-sample coverage of **each bin** as a whole, we will need to generate average coverage values based on all contigs contained within each bin. We will do this in `R` during our data visualisation exercises on day 4 of the workshop, leveraging the fact that we added bin IDs to the sequence headers.*
 
-### Calculate per-sample coverage stats of viral contigs
+## Calculate per-sample coverage stats of viral contigs
 
-Here we can follow the same steps as outlined above for the bin data, but with a concatenated *fastA* file of viral contigs. 
+Here we can follow the same steps as outlined above for the bin data, but with a concatenated FASTA file of viral contigs. 
 
-To quickly recap: 
+!!! backward "A quick recap" 
 
-* In previous exercises, we first used `VirSorter2` to identify viral contigs from the assembled reads, generating a new fasta file of viral contigs: `final-viral-combined.fa` 
-* We then processed this file using `CheckV` to generate quality information for each contig, and to further trim any retained (prokaryote) sequence on the ends of prophage contigs. 
+    * In previous exercises, we first used `VirSorter2` to identify viral contigs from the assembled reads, generating a new fasta file of viral contigs: `final-viral-combined.fa` 
+    * We then processed this file using `CheckV` to generate quality information for each contig, and to further trim any retained (prokaryote) sequence on the ends of prophage contigs. 
 
 The resultant *fasta* files generated by `CheckV` (`proviruses.fna` and `viruses.fna`) have been copied to to the `10.gene_annotation_and_coverage/checkv` folder for use in this exercise.
 
@@ -310,32 +326,35 @@ The resultant *fasta* files generated by `CheckV` (`proviruses.fna` and `viruses
 
 We will first need to concatenate these files together.
 
-```bash
-cat checkv/proviruses.fna checkv/viruses.fna > checkv_combined.fna
-```
+!!! terminal "code"
+
+    ```bash
+    cat checkv/proviruses.fna checkv/viruses.fna > checkv_combined.fna
+    ```
 
 Now build the index for `Bowtie2` using the concatenated viral contig data. We will also make a new directory `viruses_coverage/` to store the index and read mapping output into.
 
-```bash
-mkdir -p viruses_coverage/
+!!! terminal "code"
 
-# Load Bowtie2
-module load Bowtie2/2.4.5-GCC-11.3.0
+    ```bash
+    mkdir -p viruses_coverage/
 
-# Build Bowtie2 index
-bowtie2-build checkv_combined.fna viruses_coverage/bw_viruses
-```
+    # Load Bowtie2
+    module load Bowtie2/2.4.5-GCC-11.3.0
+
+    # Build Bowtie2 index
+    bowtie2-build checkv_combined.fna viruses_coverage/bw_viruses
+    ```
 
 Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowtie2`, and sort and convert to `.bam` format via `samtools`.
 
-Create a new script
+!!! terminal-2 "Create script named `mapping_viruses.sl`"
 
-```bash
-nano mapping_viruses.sl
-```
-!!! warning "Warning"
+    ```bash
+    nano mapping_viruses.sl
+    ```
 
-    Paste in the script (replacing `<YOUR FOLDER>`)
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
 
 !!! terminal "code"
 
@@ -376,20 +395,23 @@ nano mapping_viruses.sl
 
 Finally, generate the per-sample coverage table for each viral contig via `MetaBAT`'s `jgi_summarize_bam_contig_depths`.
 
-```bash 
-# Load MetaBAT
-module load MetaBAT/2.15-GCC-11.3.0
+!!! terminal "code"
 
-# calculate coverage table
-jgi_summarize_bam_contig_depths --outputDepth viruses_cov_table.txt viruses_coverage/sample*.bam
-```
+    ```bash 
+    # Load MetaBAT
+    module load MetaBAT/2.15-GCC-11.3.0
+
+    # calculate coverage table
+    jgi_summarize_bam_contig_depths --outputDepth viruses_cov_table.txt viruses_coverage/sample*.bam
+    ```
 
 The coverage table will be generated as `viruses_cov_table.txt`. As before, the key columns of interest are the `contigName`, and each `sample[1-n].bam` column.
 
 !!! note "Note"
+
     Unlike the prokaryote data, we have not used a binning process on the viral contigs (since many of the binning tools use hallmark characteristics of prokaryotes in the binning process). Here, `viruses_cov_table.txt` is the final coverage table. This can be combined with `CheckV` quality and completeness metrics to, for example, examine the coverage profiles of only those viral contigs considered to be "High-quality" or "Complete".* 
 
-#### Normalising coverage values
+### Normalise coverage values
 
 Having generated per-sample coverage values, it is usually necessary to also normalise these values across samples of differing sequencing depth. In this case, the mock metagenome data we have been working with are already of equal depth, and so this is an unnecessary step for the purposes of this workshop. 
 
@@ -397,7 +419,7 @@ For an example of one way in which the `cov_table.txt` output generated by `jgi_
 
 ---
 
-### Select initial goal
+## Select initial goal
 
 It is now time to select the goals to investigate the genomes you have been working with. We ask you to select one of the following goals:
 

@@ -28,6 +28,7 @@ In addition to this, a simple mapping file has also been created (`11.data_prese
 To get started, open `RStudio` and start a new document.
 
 !!! note "Note"
+
     You will recognise that the first few steps will follow the same process as the previous exercise on [generating coverage heatmaps](../day4/ex16b_data_presentation_Coverage.md). In practice, these two workflows can be combined to reduce the repetitive aspects.
 
 #### 1.1 Prepare environment
@@ -56,16 +57,18 @@ First, set the working directory and load the required libraries.
 
 Import coverage tables and mapping file.
 
-```R
-# Read files ----
-contig_cov <- read_tsv("bins_cov_table.txt") # Bin contig coverage table
-virus_cov <- read_tsv("viruses_cov_table.txt") # Viral contig coverage table
-metadata <- read_tsv("mapping_file.txt") # Metadata/mapping file of environmental parameters
-```
+!!! r-project "code"
+
+  ```R
+  # Read files ----
+  contig_cov <- read_tsv("bins_cov_table.txt") # Bin contig coverage table
+  virus_cov <- read_tsv("viruses_cov_table.txt") # Viral contig coverage table
+  metadata <- read_tsv("mapping_file.txt") # Metadata/mapping file of environmental parameters
+  ```
 
 #### 1.2 Wrangle data
 
-As before in [coverage exercise](../day4/ex16b_data_presentation_Coverage.md), we need to obtain per MAG and sample average coverage values. We begin by selecting relavent columns and renaming them.
+As before in [coverage exercise](../day4/ex16b_data_presentation_Coverage.md), we need to obtain per MAG and sample average coverage values. We begin by selecting relevant columns and renaming them.
 
 !!! r-project ""
 
@@ -105,7 +108,8 @@ It is often useful to examine ordinations based on both weighted and unweighted 
 
 Here we will use the functions `vegdist()` and `metaMDS()` from the `R` package `vegan` to generate weighted and unweighted Bray-Curtis dissimilarity matrices and nMDS solutions for the microbial bin data and viral contigs data.
 
-!!! note "Note"
+!!! tip "Setting seed"
+
     You may also wish to make use of the `set.seed()` function before each calculation to ensure that you obtain consistent results if the same commands are re-run at a later date.
 
 !!! r-project "code"
@@ -141,32 +145,38 @@ Here we will use the functions `vegdist()` and `metaMDS()` from the `R` package 
 
 From here on out, we will process the data using the same functions/commands. We can make our code less redundant by compiling all necessary inputs as a list, then processing them together. This is achieved by using the `map(...)` family of functions from the `purrr` package.
 
-```R
-# Collect dissimilarities into a list for collective processing ----
-bray_list <- list(
-  "MAG_binary_bray" = MAG_binary_bray,
-  "MAG_bray" = MAG_bray,
-  "virus_binary_bray" = virus_binary_bray,
-  "virus_bray" = virus_bray
-)
-```
+!!! r-project "code"
+
+    ```R
+    # Collect dissimilarities into a list for collective processing ----
+    bray_list <- list(
+      "MAG_binary_bray" = MAG_binary_bray,
+      "MAG_bray" = MAG_bray,
+      "virus_binary_bray" = virus_binary_bray,
+      "virus_bray" = virus_bray
+    )
+    ```
 
 ### 3. Generate ordination
 
 We now generate and visualise all ordinations in 4 panels them using native plotting methods.
 
-```R
-# Perform non-metric multidimensional scaling (nMDS) ----
-nmds_list <- map(bray_list, function(bray) metaMDS(bray, trymax = 999))
+!!! r-project "code"
 
-## Check nMDS plot natively
-par(mfrow = c(2, 2)) # Sets panels
-map2(nmds_list, names(nmds_list), function(nmds, lbl) {
-  ordiplot(nmds, main = lbl, type = "t", display = "sites")
-})
-```
+    ```R
+    # Perform non-metric multidimensional scaling (nMDS) ----
+    nmds_list <- map(bray_list, function(bray) metaMDS(bray, trymax = 999))
 
+    ## Check nMDS plot natively
+    par(mfrow = c(2, 2)) # Sets panels
+    map2(nmds_list, names(nmds_list), function(nmds, lbl) {
+      ordiplot(nmds, main = lbl, type = "t", display = "sites")
+    })
+    ```
+
+<center>
 ![image](../figures/day4_coverage.09.nmds_native.png)
+</center>
 
 Plotting via this method is a quick and easy way to look at what your ordination looks like. However, this method is often tedious to modify to achieve publication quality figures. In the following section, we will use `ggplot2` to generate a polished and panelled figure.
 
@@ -280,8 +290,14 @@ You should try and modify any of the arguments above to see what changes: Change
 
 ### Follow-up analyses
 
-It is often valuable to follow these visualisations up with tests for beta-dispersion (whether or not sample groups have a comparable *spread* to one another, i.e. is one group of communities more heterogeneous than another?) and, provided that beta-dispersion is not significantly different between groups, PERMANOVA tests (the extent to which the variation in the data can be explained by a given variable (such as sample groups or other environmental factors, based on differences between the *centroids* of each group).
+It is often valuable to follow these visualisations up with tests for $\beta$-dispersion (whether or not sample groups have a comparable *spread* to one another, i.e. is one group of communities more heterogeneous than another?) and, provided that beta-dispersion is not significantly different between groups, PERMANOVA tests (the extent to which the variation in the data can be explained by a given variable (such as sample groups or other environmental factors, based on differences between the *centroids* of each group).
 
-Beta-dispersion can be calculated using the  `betadisper()` function from the `vegan` package (passing the `bray.dist` data and the `map$Group` variable to group by), followed by `anova()`, `permutest()`, or `TukeyHSD()` tests of differences between the groups (by inputting the generated `betadisper` output). PERMANOVA tests can be conducted via the `adonis()` function from the `vegan` package (for example, via: `adonis(bray.dist ~ Group, data=map, permutations=999, method="bray")`.
+Beta-dispersion can be calculated using the  `betadisper()` function from the `vegan` package (passing the `bray.dist` data and the `map$Group` variable to group by), followed by `anova()`, `permutest()`, or `TukeyHSD()` tests of differences between the groups (by inputting the generated `betadisper` output). PERMANOVA tests can be conducted via the `adonis()` function from the `vegan` package. For example: 
+
+!!! r-project "code"
+
+    ```r
+    adonis(bray.dist ~ Group, data=map, permutations=999, method="bray")
+    ```
 
 ---

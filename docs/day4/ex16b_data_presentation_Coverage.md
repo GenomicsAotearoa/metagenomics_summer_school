@@ -7,7 +7,7 @@
 
 ---
 
-### Build a heatmap of average coverage per sample using *R*
+## Build a heatmap of average coverage per sample using *R*
 
 !!! quote ""
 
@@ -29,11 +29,11 @@
 
 ---
 
-### Part 1 - Building a heatmap of MAG coverage per sample
+## Part 1 - Building a heatmap of MAG coverage per sample
 
 To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and make sure you are working within RStudio with the required packages installed (see the [data presentation intro](../day4/ex16a_data_presentation_Intro.md) for more information).
 
-#### 1.1 Prepare environment
+### 1.1 Prepare environment
 
 First, set the working directory and load the required libraries.
 
@@ -74,7 +74,7 @@ Import all relevant data as follows:
     metadata <- read_tsv("mapping_file.txt") # Metadata/mapping file of environmental parameters
     ```
 
-#### 1.2 Wrangle data
+### 1.2 Wrangle data
 
 After importing the data tables, we need to subset the tables to only relevant columns. As noted during the [coverage](../day3/ex14_gene_annotation_part2.md) exercises, it is important to remember that we currently have a table of coverage values for all *contigs* contained within each MAG. Since we're aiming to present coverage for each *MAG*, we need to reduce these contig coverages into a single mean coverage value per MAG per sample.
 
@@ -160,39 +160,45 @@ After obtaining a tidy taxonomy table, we append the species annotations to the 
     
     For example, you may only be interested in the top 10 MAGs based on coverage:
 
-    ```R
-    # Create a vector of top 10 MAGs
-    top10 <- sort(rowSums(MAG_cov), decreasing = TRUE)[1:10]
+    !!! r-project "code"
+    
+        ```R
+        # Create a vector of top 10 MAGs
+        top10 <- sort(rowSums(MAG_cov), decreasing = TRUE)[1:10]
 
-    # Retain only top 10 MAGs
-    MAG_cov_top10 <- MAG_cov[rownames(MAG_cov) %in% names(top10), ]
-    ```
+        # Retain only top 10 MAGs
+        MAG_cov_top10 <- MAG_cov[rownames(MAG_cov) %in% names(top10), ]
+        ```
 
     Perhaps you want to filter MAGs based on their prevalence across your sampling regime? Assuming you would like to retain MAGs that are present in at least 50% of your samples:
 
-    ```R
-    # Create a presence/absence matrix
-    MAG_prevalence <- ifelse(MAG_cov > 0, 1, 0)
+    !!! r-project "code"
 
-    # Create a logical vector that fulfill criteria
-    top_prev <- rowSums(MAG_prevalence) > (0.5 * ncol(MAG_prevalence))
+        ```R
+        # Create a presence/absence matrix
+        MAG_prevalence <- ifelse(MAG_cov > 0, 1, 0)
 
-    # Retain only MAGs in coverage table that fulfill criteria
-    MAG_cov_top_prev <- MAG_cov[top_prev, ]
-    ```
+        # Create a logical vector that fulfill criteria
+        top_prev <- rowSums(MAG_prevalence) > (0.5 * ncol(MAG_prevalence))
 
-Very often, coverage data generated using metagenomic methods can be sparse and/or have values that differ by large orders of magnitude. This can hamper effective visualisation of the data. To remedy this, we can perform numeric transformations that can enhance visualisation of relative differences between values. Here, we will use a logarithm (base 2) transform with 1 added as a pseudocount (because $\log 0$ is undefined).
+        # Retain only MAGs in coverage table that fulfill criteria
+        MAG_cov_top_prev <- MAG_cov[top_prev, ]
+        ```
+
+Very often, coverage data generated using metagenomic methods can be sparse and/or have values that differ by large orders of magnitude. This can hamper effective visualisation of the data. To remedy this, we can perform numeric transformations that can enhance visualisation of relative differences between values. Here, we will use a logarithm (base 2) transform with 1 added as a pseudo-count (because $\log 0$ is undefined).
 
 !!! note "On data transformation"
 
-    Transformations applied to enhance data visualisation are not necessarily suitable for downstream statistical analyses. Depending on the attributes of your data (shape, sparseness, potential biases, etc.) and choice of analyses, it is recommended that you become familiar with field and tool-specifc assumptions, norms and requirements for data transformation.
+    Transformations applied to enhance data visualisation are not necessarily suitable for downstream statistical analyses. Depending on the attributes of your data (shape, sparsity, potential biases, etc.) and choice of analyses, it is recommended that you become familiar with field and tool-specific assumptions, norms and requirements for data transformation.
 
-```R
-## 4. Transform coverage data ----
-MAG_cov_log2 <- log2(MAG_cov + 1)
-```
+!!! r-project "code"
 
-#### 1.3 Order the heatmap
+    ```R
+    ## 4. Transform coverage data ----
+    MAG_cov_log2 <- log2(MAG_cov + 1)
+    ```
+
+### 1.3 Order the heatmap
 
 We then need to prepare some form of ordering for our heatmap. This is usually presented in the form of a dendrogram based on results from hierarchical clustering. To do this, we first need to generate two dissimilarity/distance matrices based on transformed coverage values:
 
@@ -247,7 +253,7 @@ Here, we calculate [Bray-Curtis dissimilarity](https://en.wikipedia.org/wiki/Bra
     dev.off()
     ```
 
-#### 1.4 Set colour palettes
+### 1.4 Set colour palettes
 
 The penultimate step before building our heatmap is to set the colours that will be used to represent annotations and the cell/tile values. In this case, annotations are sample groups as designated in the metadata (a.k.a. mapping) file and MAG taxonomy. In the code below, we will set 3 palettes:
 
@@ -261,16 +267,19 @@ The penultimate step before building our heatmap is to set the colours that will
 
     You can also quickly check what these colour palettes are:
 
-    ```R
-    # What colour palettes come pre-installed?
-    palette.pals()
+    !!! r-project "code"
 
-    # Plotting the "Okabe-Ito" palette
-    # (Requires the "scales" package)
-    scales::show_col(
-      palette.colors(palette = "Okabe-Ito")
-    )
-    ```
+        ```R
+        # What colour palettes come pre-installed?
+        palette.pals()
+
+        # Plotting the "Okabe-Ito" palette
+        # (Requires the "scales" package)
+        scales::show_col(
+          palette.colors(palette = "Okabe-Ito")
+        )
+        ```
+
     ![image](../figures/day4_coverage.03.show_col.Okabe-Ito.png)
 
 !!! r-project "code"
@@ -293,7 +302,7 @@ The penultimate step before building our heatmap is to set the colours that will
     sample_colour <- left_join(metadata, group_colour)
 
     ## Prepare MAG colours based on taxonomic class
-    ### Remember that the new labels (bin ID) are 'binID_species'
+    ## Remember that the new labels (bin ID) are 'binID_species'
     bin_phylum <- bin_taxonomy %>%
       select(user_genome, species, phylum) %>%
       unite(col = "binID", user_genome, species, sep = "_") %>%
@@ -314,7 +323,7 @@ The penultimate step before building our heatmap is to set the colours that will
     cell_colour <- colorRampPalette(c("white", "black"), space = "Lab")(2^8)
     ```
 
-#### 1.5 Build heatmap
+### 1.5 Build heatmap
 
 !!! r-project "code"
 
@@ -379,15 +388,15 @@ Here, we arrange our columns based Bray-Curtis dissimilarities between samples. 
 
 ---
 
-### Part 2 - Building a heatmap of viral contigs per sample
+## Part 2 - Building a heatmap of viral contigs per sample
 
 We can run through the same process for the viral contigs. Many of the steps are as outlined above, so we will work through these a bit quicker and with less commentary along the way. However, we will highlight a handful of differences compared to the commands for the MAGs above, for example:  steps for selecting and/or formatting the taxonomy; importing the quality output from `CheckV`; and the (optional) addition of filtering out low quality contigs.
 
-#### 2.1 Prepare environment
+### 2.1 Prepare environment
 
 This has already been done above. We will immediately begin wrangling the data.
 
-#### 2.2 Wrangle data
+### 2.2 Wrangle data
 
 To start, we need to identify viral contigs of at least medium quality. THis will be used as a filtering vector.
 
@@ -444,7 +453,7 @@ We then obtain the coverage matrix and transform the values to enhance visualisa
     virus_cov_matrix_log2 <- log2(virus_cov_matrix + 1)
     ```
 
-#### 2.3 Order the heatmap
+### 2.3 Order the heatmap
 
 !!! r-project "code"
 
@@ -481,21 +490,25 @@ We then obtain the coverage matrix and transform the values to enhance visualisa
 ![image](../figures/day4_coverage.05.cov_hmp.hclust.vir_sample.png)
 ![image](../figures/day4_coverage.06.cov_hmp.hclust.vir.png)
 
-#### 2.4 Set colour palettes
+### 2.4 Set colour palettes
 
 For colours based on sample group, we will retain the colours set as above. Here, we will only set a new palette (Tableau 10) for viruses based on the predicted taxonomy.
 
-```R
-# Prepare grouping variables and colour palettes ----
-# Check palette colours
-scales::show_col(
-  palette.colors(
-    palette = "Tableau 10"
-  )
-)
-```
+!!! r-project "code"
 
+    ```R
+    # Prepare grouping variables and colour palettes ----
+    # Check palette colours
+    scales::show_col(
+      palette.colors(
+        palette = "Tableau 10"
+      )
+    )
+    ```
+
+<center>
 ![image](../figures/day4_coverage.07.show_col.Tableau10.png)
+</center>
 
 !!! r-project "code"
 
@@ -515,7 +528,7 @@ scales::show_col(
       left_join(virus_order_colour, by = c("Order_VC_predicted" = "virus_order"))
     ```
 
-#### 2.5 Build heatmap
+### 2.5 Build heatmap
 
 !!! r-project "code"
 
