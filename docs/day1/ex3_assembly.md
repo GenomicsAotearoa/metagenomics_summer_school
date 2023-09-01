@@ -24,6 +24,8 @@ Although they both make use of the same types of data, both `SPAdes` and `IDBA-U
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly
     ```
 
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
+
 !!! terminal-2 "Load `SPAdes` and check parameters"
 
     ```bash
