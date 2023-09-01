@@ -2,22 +2,22 @@
 
 !!! info "Objectives"
 
-    * [Identifying viral contigs using *VirSorter2*](#identifying-viral-contigs-using-VirSorter2)
-    * [Check quality and estimate completeness of the viral contigs via *CheckV*](#check-quality-and-estimate-completeness-of-the-viral-contigs-via-checkv)
-    * [Introduction to *vContact2* for predicting taxonomy of viral contigs](#introduction-to-vcontact2-for-predicting-taxonomy-of-viral-contigs)
-    * [OPTIONAL: Visualise the vcontact2 gene-sharing network in *Cytoscape*](#optional-visualise-the-vcontact2-gene-sharing-network-in-cytoscape)
+    * [Identifying viral contigs using `VirSorter2`](#identifying-viral-contigs-using-VirSorter2)
+    * [Check quality and estimate completeness of the viral contigs via `CheckV`](#check-quality-and-estimate-completeness-of-the-viral-contigs-via-checkv)
+    * [Introduction to `vConTACT2` for predicting taxonomy of viral contigs](#introduction-to-vcontact2-for-predicting-taxonomy-of-viral-contigs)
+    * [OPTIONAL: Visualise the `vConTACT2` gene-sharing network in `Cytoscape`](#optional-visualise-the-vcontact2-gene-sharing-network-in-cytoscape)
 
 ---
 
-### Identifying viral contigs
+## Identifying viral contigs
 
 Viral metagenomics is a rapidly progressing field, and new software are constantly being developed and released each year that aim to better identify and characterise viral genomic sequences from assembled metagenomic sequence reads. 
 
-Currently, the most commonly used methods are [VirSorter2](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00990-y), [VIBRANT](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0), and [VirFinder](https://link.springer.com/epdf/10.1186/s40168-017-0283-5?author_access_token=YQgkTWibFIFPtRICkTjZF2_BpE1tBhCbnbw3BuzI2RMCpVMGldKV8DA9scozc7Z-db3ufPFz9-pswHsYVHyEsCrziBuECllLPOgZ6ANHsMeKF5KejrdDKdeASyDkxB5wfFDq523QSd01cnqxCLqCiQ%3D%3D) (or the machine learning implementation of this, [DeepVirFinder](https://github.com/jessieren/DeepVirFinder)). A number of recent studies use one of these tools or a combination of several at once.
+Currently, the most commonly used methods are [`VirSorter2`](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00990-y), [`VIBRANT`](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0), and [`VirFinder`](https://link.springer.com/epdf/10.1186/s40168-017-0283-5?author_access_token=YQgkTWibFIFPtRICkTjZF2_BpE1tBhCbnbw3BuzI2RMCpVMGldKV8DA9scozc7Z-db3ufPFz9-pswHsYVHyEsCrziBuECllLPOgZ6ANHsMeKF5KejrdDKdeASyDkxB5wfFDq523QSd01cnqxCLqCiQ%3D%3D) (or the machine learning implementation of this, [`DeepVirFinder`](https://github.com/jessieren/DeepVirFinder)). A number of recent studies use one of these tools or a combination of several at once.
 
 !!! info ""
 
-    === "VirSorter2"
+    === "`VirSorter2`"
 
         Uses a predicted protein homology reference database-based approach, together with searching for a number of pre-defined metrics based on known viral genomic features. `VirSorter2` includes dsDNAphage, ssDNA, and RNA viruses, and the viral groups Nucleocytoviricota and lavidaviridae.* 
 
@@ -26,7 +26,7 @@ Currently, the most commonly used methods are [VirSorter2](https://microbiomejou
         - [VirSorter2 GitHub](https://github.com/jiarong/VirSorter2)
         - [Guo *et al.* (2021) VirSorter2: a multi-classifier, expert-guided approach to detect diverse DNA and RNA viruses](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00990-y)
 
-    === "VIBRANT"
+    === "`VIBRANT`"
 
         Uses a machine learning approach based on protein similarity (non-reference-based similarity searches with multiple HMM sets), and is in principle applicable to bacterial and archaeal DNA and RNA viruses, integrated proviruses (which are excised from contigs by `VIBRANT`), and eukaryotic viruses. 
 
@@ -35,7 +35,7 @@ Currently, the most commonly used methods are [VirSorter2](https://microbiomejou
         - [VIBRANT GitHub](https://github.com/AnantharamanLab/VIBRANT)
         - [Kieft, Zhou, and Anantharaman (2020) VIBRANT: automated recovery, annotation and curation of microbial viruses, and evaluation of viral community function from genomic sequences](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00867-0)
 
-    === "DeepVirFinder"
+    === "`DeepVirFinder`"
 
         Uses a machine learning based approach based on *k*-mer frequencies. Having developed a database of the differences in *k*-mer frequencies between prokaryote and viral genomes, *VirFinder* examines assembled contigs and identifies whether their *k*-mer frequencies are comparable to known viruses in the database, using this to predict viral genomic sequence. This method has some limitations based on the viruses that were included when building the database (bacterial DNA viruses, but very few archaeal viruses, and, at least in some versions of the software, no eukaryotic viruses). However, tools are also provided to build your own database should you wish to develop an expanded one. Due to its distinctive *k*-mer frequency-based approach, *VirFinder* may also have the capability of identifying some novel viruses overlooked by tools such as *VIBRANT* or *VirSorter*.
 
@@ -46,41 +46,36 @@ Currently, the most commonly used methods are [VirSorter2](https://microbiomejou
 
 ---
 
-### Identifying viral contigs using *VirSorter2*
+## Identifying viral contigs using `VirSorter2`
 
-For this exercise, we will use *VirSorter2* to identify viral contigs from our assembled contigs. We can also use *VirSorter2* to prepare files for later use with the gene annotation tool *DRAM-v*, which we'll run later in the day.
+For this exercise, we will use `VirSorter2` to identify viral contigs from our assembled contigs. We can also use `VirSorter2` to prepare files for later use with the gene annotation tool `DRAM-v`, which we'll run later in the day.
 
-### Check quality and estimate completeness of the viral contigs via *CheckV*
+## Check quality and estimate completeness of the viral contigs via `CheckV`
 
-[*CheckV*](https://www.biorxiv.org/content/10.1101/2020.05.06.081778v1.abstract) was developed as an analogue to *CheckM*. *CheckV* first performs a 'contaminating sequence' trim, removing any retained (prokaryote) host sequence on the end of contigs with integrated prophage, and then assesses the quality and completeness of the assembled viral contigs. The quality of the contigs are also categoriesed based on the recently developed [Minimum Information about an Unclutivated Virus Genome](https://www.nature.com/articles/nbt.4306) (MIUViG) standards for reporting sequences of unclutivated virus geneomes (such as those recovered from metagenomic sequencing data). The MIUViG were developed as an extension of the [Minimum Information about any (x) Sequence](https://www.nature.com/articles/nbt.1823) ([MIxS](https://gensc.org/mixs/)) standards, which include, among others, standards for Metagenome-Assembled Genomes (MIMAG).
+[`CheckV`](https://www.biorxiv.org/content/10.1101/2020.05.06.081778v1.abstract) was developed as an analogue to `CheckM`. `CheckV` first performs a 'contaminating sequence' trim, removing any retained (prokaryote) host sequence on the end of contigs with integrated prophage, and then assesses the quality and completeness of the assembled viral contigs. The quality of the contigs are also categoriesed based on the recently developed [Minimum Information about an Unclutivated Virus Genome](https://www.nature.com/articles/nbt.4306) (MIUViG) standards for reporting sequences of unclutivated virus geneomes (such as those recovered from metagenomic sequencing data). The MIUViG were developed as an extension of the [Minimum Information about any (x) Sequence](https://www.nature.com/articles/nbt.1823) ([MIxS](https://gensc.org/mixs/)) standards, which include, among others, standards for Metagenome-Assembled Genomes (MIMAG).
 
 
-#### Run *VirSorter2* and *CheckV*
+### Run `VirSorter2` and `CheckV`
 
 These exercises will take place in the `7.viruses/` folder.
 
-```bash
-cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/
-```
+!!! terminal-2 "Navigate to working directory"
 
-For *VirSorter2*, we will input the assembled contigs from the *SPAdes* assembly we performed earlier. These assembly files have been copied to `7.viruses/spades_assembly/` for this exercise.
+    ```bash
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/
+    ```
 
-We will then run *CheckV* in the same script, providing the *fasta* file of viral contigs output by *VirSorter2* as input (`final-viral-combined.fa`).
+For `VirSorter2`, we will input the assembled contigs from the `SPAdes` assembly we performed earlier. These assembly files have been copied to `7.viruses/spades_assembly/` for this exercise.
 
-*NOTE: For the `VirSorter/2.2.3-gimkl-2020a-Python-3.8.2` NeSI module to work properly, **we must also include `module unload XALT`** in the script below*
+We will then run `CheckV` in the same script, providing the FASTA file of viral contigs output by `VirSorter2` as input (`final-viral-combined.fa`).
 
-*NOTE: The key parameters you may want to consider altering for your own work are `--min-score` and `--include-groups`. For today's excersice we will include all available groups (`--include-groups dsDNAphage,NCLDV,RNA,ssDNA,lavidaviridae`), and will set the min-score to 0.7. You can expiriment with this value for your own data (see the [Virsorter2 github page](https://github.com/jiarong/VirSorter2) for more information).*
+!!! terminal-2 "Create a script named `VirSorter2_and_checkv.sl`"
 
-*NOTE: The required databases for *VirSorter2* are not loaded with the NeSI module. For your own work, you will need to first download these databases and provide the path to the `-d` flag below. For today's workshop this is already set up.*
+    ```bash
+    nano VirSorter2_and_checkv.sl
+    ```
 
-Create a new script
-
-```bash
-nano VirSorter2_and_checkv.sl
-```
-!!! warning "Warning"
-
-    Paste in the following (updating `<YOUR FOLDER>`)
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder."
 
 !!! terminal "code"
 
@@ -129,25 +124,37 @@ nano VirSorter2_and_checkv.sl
     checkv end_to_end VirSorter2/mgss-final-viral-combined.fa checkv_out/ -t $SLURM_CPUS_PER_TASK
     ```
 
+!!! warning "`module unload XALT`"
+
+    For the `VirSorter/2.2.3-gimkl-2020a-Python-3.8.2` NeSI module to work properly, **we must also include `module unload XALT`** in the script above.
+
+!!! tip "`VirSorter2` parameters"
+
+    The key parameters you may want to consider altering for your own work are `--min-score` and `--include-groups`. For today's excersice we will include all available groups (`--include-groups dsDNAphage,NCLDV,RNA,ssDNA,lavidaviridae`), and will set the min-score to 0.7. You can expiriment with this value for your own data (see the [Virsorter2 github page](https://github.com/jiarong/VirSorter2) for more information).
+
 !!! terminal-2 "Submit the script as a slurm job"
 
     ```bash
     sbatch VirSorter2_and_checkv.sl
     ```
 
-#### Outputs of *VirSorter2* and *CheckV*
+!!! note "`VirSorter2` for your own work"
 
-Key outputs from *VirSorter2* include:
+    The required databases for `VirSorter2` are not loaded with the NeSI module. For your own work, you will need to first download these databases and provide the path to the `-d` flag below. For today's workshop this is already set up.
+
+### Outputs of `VirSorter2` and `CheckV`
+
+Key outputs from `VirSorter2` include:
 
 - `mgss-final-viral-combined.fa`: FASTA file of identified viral sequences
 - `mgss-final-viral-score.tsv`: table with score of each viral sequences across groups and a few more key features, which can also be used for further filtering
-- `mgss-for-dramv/`: files to be used as input to *DRAM-v* for gene prediction and annotation (we will be running *DRAM-v* later today during the gene annotation session)
+- `mgss-for-dramv/`: files to be used as input to `DRAM-v` for gene prediction and annotation (we will be running `DRAM-v` later today during the gene annotation session)
 
-*CheckV* provides summary outputs for contamination, completeness, repeats, and an overall quality summary. Later today we will have a brief look at some examples of the information you can draw from these *CheckV* outputs. 
+`CheckV` provides summary outputs for contamination, completeness, repeats, and an overall quality summary. Later today we will have a brief look at some examples of the information you can draw from these `CheckV` outputs. 
 
-### Exercise: Examine viral output files from *VirSorter2* and *CheckV*
+## Exercise: Examine viral output files from `VirSorter2` and `CheckV`
 
-*VirSorter2* and *CheckV* provide several of different output files that are important for identifying and understanding the viruses present in your data. Explore through the following files: 
+`VirSorter2` and `CheckV` provide several of different output files that are important for identifying and understanding the viruses present in your data. Explore through the following files: 
 
 - `7.viruses/VirSorter2/mgss-final-viral-score.tsv`
 - `7.viruses/checkv_out/quality_summary.tsv`
@@ -156,35 +163,39 @@ When viewing these files, see if you can find the following information:
 
 !!! quote ""
 
-    * How many viral contigs did *VirSorter2* identify?
+    * How many viral contigs did `VirSorter2` identify?
     * How many viral contigs meet the "High-quality" (MIUViG) standard?
-    * How many might we consider "complete" genomes based on *CheckV*'s completeness estimation?
-    * Are any of the identified viral contigs complete *cirular* genomes (based on identifying direct terminal repeat regions on both ends of the genome)? If not, think about why this might be the case for this dataset (hint: the workshop materials are a manufactured "metagenome" data set based on compiling several individual genomes)
-    * Are there any suspicious contigs that you might want to flag for closer examination (and/or careful consideration in downstream analyses)? (Note that standard practice would be to use these *CheckV* results as one basis for filtering to remove potential false positives)
+    * How many might we consider "complete" genomes based on `CheckV`'s completeness estimation?
+    * Are any of the identified viral contigs complete *circular* genomes (based on identifying direct terminal repeat regions on both ends of the genome)? If not, think about why this might be the case for this dataset (hint: the workshop materials are a manufactured "metagenome" data set based on compiling several individual genomes)
+    * Are there any suspicious contigs that you might want to flag for closer examination (and/or careful consideration in downstream analyses)? (Note that standard practice would be to use these `CheckV` results as one basis for filtering to remove potential false positives)
 
 ---
 
-### Introduction to *vContact2* for predicting taxonomy of viral contigs
+## Introduction to `vConTACT2` for predicting taxonomy of viral contigs
 
 Even more so than prokaryote taxonomy, establishing a coherent system for viral taxonomy is complex and continues to evolve. In 2020, the International Committee on Taxonomy of Viruses ([ICTV](https://talk.ictvonline.org/)) overhauled the classification code into [15 hierarchical ranks](https://www.nature.com/articles/s41564-020-0709-x). Furthermore, the knowledge gap in databases of known and taxonomically assigned viruses remains substantial, and so identifying the putative taxonomy of viral contigs from environmental metagenomics data remains challenging.
 
-There are a number of approaches that can be used to attempt to predict the taxonomy of the set of putative viral contigs output by programs such as *VIBRANT*, *VirSorter*, and *VirFinder*. [*vContact2*](https://www.nature.com/articles/s41587-019-0100-8) is one such method that uses 'guilt-by-contig-association' to predict the potential taxonomy of viral genomic sequence data based on relatedness to known viruses within a reference database (such as viral RefSeq). The principle is that, to the extent that the 'unknown' viral contigs cluster closely with known viral genomes, we can then expect that they are closely related enough to be able to predict a shared taxonomic rank. 
+There are a number of approaches that can be used to attempt to predict the taxonomy of the set of putative viral contigs output by programs such as `VIBRANT`, `VirSorter`, and `VirFinder`. [`vConTACT2`](https://www.nature.com/articles/s41587-019-0100-8) is one such method that uses 'guilt-by-contig-association' to predict the potential taxonomy of viral genomic sequence data based on relatedness to known viruses within a reference database (such as viral RefSeq). The principle is that, to the extent that the 'unknown' viral contigs cluster closely with known viral genomes, we can then expect that they are closely related enough to be able to predict a shared taxonomic rank. 
 
 !!! note "Note"
 
-    Anecdotally, however, in my own experience with this process I have unfortunately been unable to directly predict the taxonomy of the vast majority of the viral contigs ouput by *VIBRANT*, *VirSorter*, or *VirFinder* from an environmental metagenomic data set (due to not clustering closely enough with known viruses in the reference database). You can, however, visualise the gene-sharing network generated to infer the *likely* taxonomy of each of your viruses at higher taxonomic ranks due to the relatedness to known reference viral genomes.
+    Anecdotally, however, in my own experience with this process I have unfortunately been unable to directly predict the taxonomy of the vast majority of the viral contigs output by `VIBRANT`, `VirSorter`, or `VirFinder` from an environmental metagenomic data set (due to not clustering closely enough with known viruses in the reference database). You can, however, visualise the gene-sharing network generated to infer the *likely* taxonomy of each of your viruses at higher taxonomic ranks due to the relatedness to known reference viral genomes.
 
-Running *vContact2* can require a considerable amount of computational resources, and so we won't be running this in the workshop today. The required process is outlined for reference in an [Appendix for this exercise](../resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md), should you wish to experiment with this on your own data in the future. 
+Running `vConTACT2` can require a considerable amount of computational resources, and so we won't be running this in the workshop today. The required process is outlined for reference in an [Appendix for this exercise](../resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md), should you wish to experiment with this on your own data in the future. 
 
 For today, we have provided some of the output files from this process when applied to our mock metagenome data. A selection of these can be viewed in the folder `7.viruses/vConTACT2_Results/` via `head` or `less`.
 
-```bash
-less vConTACT2_Results/genome_by_genome_overview.csv
-```
+!!! terminal "code"
 
-```bash
-less vConTACT2_Results/tax_predict_table.tsv
-```
+    ```bash
+    less vConTACT2_Results/genome_by_genome_overview.csv
+    ```
+
+!!! terminal "code"
+
+    ```bash
+    less vConTACT2_Results/tax_predict_table.tsv
+    ```
 
 A few notes to consider: 
 
@@ -204,29 +215,33 @@ A few notes to consider:
     
 ---
 
-### OPTIONAL: Visualise the *vContact2* gene-sharing network in *cytoscape*
+## *(Optional)* Visualise the `vConTACT2` gene-sharing network in `Cytoscape`
 
-We can visualise the gene-sharing network generated by *vContact2* (`c1.ntw `) using the software *Cytoscape*. *Cytoscape* runs as a GUI (graphical user interface), so we will need to either download and install this software or open *Cytoscape* using NeSI's Virtual Desktop. To open in the Virtual Desktop, click *New Laucher* in Jupyterhub and lauch *Virtual Desktop*. This will open a new tab. In the new desktop, open a terminal, and then load and run the *Cytoscape* module as per below.
+We can visualise the gene-sharing network generated by `vConTACT2` (`c1.ntw `) using the software `Cytoscape`. `Cytoscape` runs as a GUI (graphical user interface), so we will need to either download and install this software or open `Cytoscape` using NeSI's Virtual Desktop (instructions can be found [here](../day2/ex9_refining_bins.md#initiate-vizbin-within-the-virtual-desktop-environment)). With our Virtual Desktop open, `Cytoscape` can then be loaded as follows.
 
 !!! warning "Copy/paste in the Virtual Desktop"
 
     You will not be able to copy text from outside the Virtual Desktop and paste into the Virtual Desktop, in which case you will need to manually type these commands.
 
-```bash
-# Load the module
-module purge
-module load Cytoscape/3.9.1
-# Run cytoscape
-Cytoscape
-```
+!!! note "Open a terminal in Virtual Desktop prior to running code below"
 
-!!! warning "Do not update Cytoscape!" 
+!!! terminal "code"
+
+    ```bash
+    # Load the module
+    module purge
+    module load Cytoscape/3.9.1
+    # Run cytoscape
+    Cytoscape
+    ```
+
+!!! warning "Do not update `Cytoscape`!" 
     
-    A dialog box will appear telling you about a new version of Cytoscape. **Click "close"**, as we will not be installing any new versions today!
+    A dialog box will appear telling you about a new version of `Cytoscape`. **Click "close"**, as we will not be installing any new versions today!
 
-#### Load the network
+### Load the network
 
-1. With Cytoscape open, click on *File* $\rightarrow$ *Import* $\rightarrow$ *Network from file*
+1. With `Cytoscape` open, click on *File* $\rightarrow$ *Import* $\rightarrow$ *Network from file*
 2. Open the `c1.ntw` file by (a) typing in the absolute path in the *File Name* box: `/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/vConTACT2_Results/c1.ntw` or (b) navigate to the file using the GUI.
 3. In the *Import Network From Table* pop-up box:
     1. Click on *Advanced Options*
@@ -244,11 +259,13 @@ Cytoscape
 
 It will now ask if you want to create a view for your large networks now. Click *OK*. This may take a minute to generate the network visualisation. 
 
+### Annotate the network 
+
 There are many ways to modify and inspect this visualisation. One basic addition that will help us interpret the results here is to colour code the viral genomes based on reference (RefSeq) genomes and the viral contigs recovered from our dataset. We can do this by loading the `genome_by_genome_overview.csv` file. 
 
 !!! note "`Dataset` column" 
 
-    For the purposes of this workshop, we have added the additional column `Dataset` to the `genome_by_genome_overview.csv` file stating whether each viral sequence originated from either the reference database (`RefSeq`) or our own data (`Our_data`). This column is not generated by vConTACT2, but you can open the file in Excel to add any additional columns you would like to colour code the nodes by.
+    For the purposes of this workshop, we have added the additional column `Dataset` to the `genome_by_genome_overview.csv` file stating whether each viral sequence originated from either the reference database (`RefSeq`) or our own data (`Our_data`). This column is not generated by `vConTACT2`, but you can open the file in Excel to add any additional columns you would like to colour code the nodes by.
 
 Click `File/Import/Table from file` and select the `genome_by_genome_overview.csv` file to open. In the pop-up box, leave the settings as default and click *OK*. This will add a bunch of metadata to your network table. We can now use this to colour code the nodes in the network.
 
