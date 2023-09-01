@@ -446,6 +446,7 @@ The data you have been working with was created using the `cut_up_fasta.py` scri
 !!! terminal "code"
 
     ```bash
+    module purge
     module load CONCOCT/1.0.0-gimkl-2018b-Python-2.7.16
 
     mkdir custom_chop/
