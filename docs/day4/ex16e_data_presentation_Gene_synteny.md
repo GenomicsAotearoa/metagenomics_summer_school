@@ -9,7 +9,7 @@
 
 ---
 
-### Build a sulfur assimilation gene alignment figure to investigate gene synteny using `R`
+## Build a sulfur assimilation gene alignment figure to investigate gene synteny using `R`
 
 When investigating the evolution of genomes, we sometimes want to consider not only the presence/absence of genes in a genome, but also how they are arranged in an operon. For this exercise, we are going to visualise several sulfur assimilation genes from our MAGs and compare their arrangements.
 
@@ -21,7 +21,7 @@ For this exercise, navigate to the directory `11.data_presentation/gene_synteny/
 
     Refer to [this appendix](../resources/5_APPENDIX_ex15_Prepare_gene_synteny_inputs.md) for detailed information on how to generate input data.
 
-#### Part 1 - Parsing files in *bash*
+### Part 1 - Parsing files in *bash*
 
 We will be performing this exercise in two stages. Firstly, in `bash`, we will use `cut` and `tail` to pull out the genes of interest listed in the `*cys.txt` files from the `prodigal` files. The gene names will then be used to create a table of gene coordinates from the `prodigal` output using `grep`, `cut`, and `sed`.
 
@@ -76,18 +76,18 @@ Check the content of the `.coords` files now. You should see something like the 
 If you recall from the previous exercise on gene prediction, we have taken the first four entries from each line of the `prodigal` output, which consists of:
 
 !!! quote ""
-    1. The gene name, written as [CONTIG]\_[GENE]
-    2. The start position of the gene
-    3. The stop position of the gene
-    4. The orienation of the gene
+    1. Gene name, written as [CONTIG]\_[GENE]
+    2. Start position of the gene
+    3. Stop position of the gene
+    4. Orientation of the gene
 
 We will now use these tables, together with the annotation tables to create the gene synteny view in `R`.
 
-#### Part 2 - Producing the figure in *R*
+### Part 2 - Producing the figure in `R`
 
 First, move back to the [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) pane and start an `RStudio` session
 
-##### 2.1 Prepare environment
+#### 2.1 Prepare environment
 
 Similar to previous sessions, we will begin by preparing the environment by setting our working directory and loading required libraries.
 
@@ -109,7 +109,7 @@ Similar to previous sessions, we will begin by preparing the environment by sett
     library(genoPlotR)
     ```
 
-##### 2.2 Import files
+#### 2.2 Import files
 
 Using genoPlotR requires files with 3 different types of information:
 
@@ -155,7 +155,7 @@ Lets continue to import the other files
 
 Notice that the file reading function for BLAST files are different (`read_comparison_from_blast()` versus `read_tsv()`). This is a function specific to `genoPlotR` for parsing BLAST outputs. If you have some custom comparison pipeline, `genoPlotR` can also read tab-delimited files via `read_comparison_from_tab()`
 
-##### 2.3 Wrangle data
+#### 2.3 Wrangle data
 
 We now need to do the following:
 
@@ -186,44 +186,49 @@ Now we tidy our annotations table and create a joint coordinate-annotation table
 
     ```R
     annot_list
-    # $bin_3_annot
-    # # A tibble: 7 × 3
-    #   `Query gene`                                 KO                                      Annotation                                 
-    #   <chr>                                        <chr>                                   <chr>                                      
-    # 1 bin_3_NODE_53_length_158395_cov_1.135272_128 K02048                                  sbp1; Prokaryotic sulfate-/thiosulfate-bin…
-    # 2 bin_3_NODE_53_length_158395_cov_1.135272_129 possible predicted diverged CheY-domain possible predicted diverged CheY-domain    
-    # 3 bin_3_NODE_53_length_158395_cov_1.135272_130 Domain of unknown function 2            Domain of unknown function 2               
-    # 4 bin_3_NODE_53_length_158395_cov_1.135272_131 Domain of unknown function 2            Domain of unknown function 2               
-    # 5 bin_3_NODE_53_length_158395_cov_1.135272_132 K02046                                  cysU; cysU; sulfate transport ABC transpor…
-    # 6 bin_3_NODE_53_length_158395_cov_1.135272_133 K02047                                  cysW; cysW; sulfate transport ABC transpor…
-    # 7 bin_3_NODE_53_length_158395_cov_1.135272_134 K02045                                  cysA; cysA; sulfate transport ATP-binding …
-    # 
-    # $bin_5_annot
-    # # A tibble: 4 × 3
-    #   `Query gene`                               KO     Annotation                                                        
-    #   <chr>                                      <chr>  <chr>                                                             
-    # 1 bin_5_NODE_95_length_91726_cov_0.379302_67 K02048 sbp; sulfate-binding protein                                      
-    # 2 bin_5_NODE_95_length_91726_cov_0.379302_68 K02046 cysT; sulfate transporter CysT                                    
-    # 3 bin_5_NODE_95_length_91726_cov_0.379302_69 K02047 cysW; sulfate transporter CysW                                    
-    # 4 bin_5_NODE_95_length_91726_cov_0.379302_70 K02045 cysA; sulfate.thiosulfate ABC transporter ATP-binding protein CysA
-    # 
-    # $bin_8_annot
-    # # A tibble: 4 × 3
-    #   `Query gene`                                KO     Annotation                                    
-    #   <chr>                                       <chr>  <chr>                                         
-    # 1 bin_8_NODE_60_length_149231_cov_0.651774_55 K02048 Thiosulphate-binding protein                  
-    # 2 bin_8_NODE_60_length_149231_cov_0.651774_56 K02046 sulfate ABC transporter permease subunit CysT 
-    # 3 bin_8_NODE_60_length_149231_cov_0.651774_57 K02047 Sulfate ABC transporter, permease protein CysW
-    # 4 bin_8_NODE_60_length_149231_cov_0.651774_58 K02045 sulphate transport system permease protein 1  
-    # 
-    # $bin_9_annot
-    # # A tibble: 4 × 3
-    #   `Query gene`                                 KO     Annotation                                           
-    #   <chr>                                        <chr>  <chr>                                                
-    # 1 bin_9_NODE_12_length_355673_cov_0.516990_147 K02048 thiosulfate ABC transporter substrate-binding protein
-    # 2 bin_9_NODE_12_length_355673_cov_0.516990_148 K02046 sulfate ABC transporter permease                     
-    # 3 bin_9_NODE_12_length_355673_cov_0.516990_149 K02047 sulfate ABC transporter permease                     
-    # 4 bin_9_NODE_12_length_355673_cov_0.516990_150 K02045 sulfate ABC transporter ATP-binding protein   
+    ```
+
+!!! circle-check "Console output"
+
+    ```
+    $bin_3_annot
+    # A tibble: 7 × 3
+      `Query gene`                                 KO                                      Annotation                                 
+      <chr>                                        <chr>                                   <chr>                                      
+    1 bin_3_NODE_53_length_158395_cov_1.135272_128 K02048                                  sbp1; Prokaryotic sulfate-/thiosulfate-bin…
+    2 bin_3_NODE_53_length_158395_cov_1.135272_129 possible predicted diverged CheY-domain possible predicted diverged CheY-domain    
+    3 bin_3_NODE_53_length_158395_cov_1.135272_130 Domain of unknown function 2            Domain of unknown function 2               
+    4 bin_3_NODE_53_length_158395_cov_1.135272_131 Domain of unknown function 2            Domain of unknown function 2               
+    5 bin_3_NODE_53_length_158395_cov_1.135272_132 K02046                                  cysU; cysU; sulfate transport ABC transpor…
+    6 bin_3_NODE_53_length_158395_cov_1.135272_133 K02047                                  cysW; cysW; sulfate transport ABC transpor…
+    7 bin_3_NODE_53_length_158395_cov_1.135272_134 K02045                                  cysA; cysA; sulfate transport ATP-binding …
+    
+    $bin_5_annot
+    # A tibble: 4 × 3
+      `Query gene`                               KO     Annotation                                                        
+      <chr>                                      <chr>  <chr>                                                             
+    1 bin_5_NODE_95_length_91726_cov_0.379302_67 K02048 sbp; sulfate-binding protein                                      
+    2 bin_5_NODE_95_length_91726_cov_0.379302_68 K02046 cysT; sulfate transporter CysT                                    
+    3 bin_5_NODE_95_length_91726_cov_0.379302_69 K02047 cysW; sulfate transporter CysW                                    
+    4 bin_5_NODE_95_length_91726_cov_0.379302_70 K02045 cysA; sulfate.thiosulfate ABC transporter ATP-binding protein CysA
+    
+    $bin_8_annot
+    # A tibble: 4 × 3
+      `Query gene`                                KO     Annotation                                    
+      <chr>                                       <chr>  <chr>                                         
+    1 bin_8_NODE_60_length_149231_cov_0.651774_55 K02048 Thiosulphate-binding protein                  
+    2 bin_8_NODE_60_length_149231_cov_0.651774_56 K02046 sulfate ABC transporter permease subunit CysT 
+    3 bin_8_NODE_60_length_149231_cov_0.651774_57 K02047 Sulfate ABC transporter, permease protein CysW
+    4 bin_8_NODE_60_length_149231_cov_0.651774_58 K02045 sulphate transport system permease protein 1  
+    
+    $bin_9_annot
+    # A tibble: 4 × 3
+      `Query gene`                                 KO     Annotation                                           
+      <chr>                                        <chr>  <chr>                                                
+    1 bin_9_NODE_12_length_355673_cov_0.516990_147 K02048 thiosulfate ABC transporter substrate-binding protein
+    2 bin_9_NODE_12_length_355673_cov_0.516990_148 K02046 sulfate ABC transporter permease                     
+    3 bin_9_NODE_12_length_355673_cov_0.516990_149 K02047 sulfate ABC transporter permease                     
+    4 bin_9_NODE_12_length_355673_cov_0.516990_150 K02045 sulfate ABC transporter ATP-binding protein   
     ```
 
 Immediately, we can see that there are some inconsistencies in the annotations. 
@@ -292,7 +297,7 @@ We also need to convert the tidy annotation table into something that `genoPlotR
     # 4 74470 75459 cysA black   0
     ```
 
-##### 2.4 Plot data
+#### 2.4 Plot data
 
 Lets plot our data to see what it looks like and if it need tweaking.
 
@@ -351,11 +356,11 @@ We have a plot! However, it is rather cluttered and could be further improved:
 
 This looks much cleaner!
 
-!!! success "Results at a glance"
+??? success "Results at a glance"
 
     From the last plot, we see that:
     
     * The arrangement sulfur assimilation genes are well conserved
-    * Gene sequences of sbp1, cysW, and cysA are very conserved between bins 3, 5, and 8
+    * Gene sequences of *sbp1*, *cysW*, and *cysA* are very conserved between bins 3, 5, and 8
     * Bin 3 has 3 unknown domains between its sulfur binding protein and the other sulfur assimilation genes
-    * cysW in bin 9 shows some sequence homology with cysW from bin 8
+    * *cysW* in bin 9 shows some sequence homology with *cysU* from bin 8
