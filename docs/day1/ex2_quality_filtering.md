@@ -220,7 +220,7 @@ In the first run, we would not expect any sequence shorter than 80 base pairs to
     | `25`      | Palindrome clip threshold  |
     | `7`       | Simple clip threshold      |
 
-There is always some subjectivity in how sensitive you want your adapter (and barcode) searching to be. If the settings are too strict you might end up discarding real sequence data that only partially overlaps with the Illumina adapters. If your settings are not strict enough then you might leave partial adapters in the sequence. Where possible, we favour the use of simple positional trimming.
+There is always some subjectivity in how sensitive you want your adapter (and barcode) searching to be. If the settings are too strict you might end up discarding real sequence data that only partially overlaps with the Illumina adapters. If your settings are not strict enough then you might leave partial adapters in the sequence. For short inserts (DNA fragments), the sequencing process can read through into the adapter on the other side (3'), thus adapters need to be removed *prior* to quality-based trimming as the change of hitting adapters (thus, removing them) is highest when the sequence is longer.
 
 ---
 
@@ -248,7 +248,7 @@ Whether a library is 'poor' quality or not can be a bit subjective. These are so
 
     1. Do I need to remove (rare) adapters?
     1. I don’t know if adapters have been removed or not
-    1. How do I identify and remove adapter read-through
+    1. How do I identify and remove adapter read-through?
     1. Identifying incomplete barcode/adapter removal
     1. Over aggressive trimming
     1. GC skew is outside of expected range
