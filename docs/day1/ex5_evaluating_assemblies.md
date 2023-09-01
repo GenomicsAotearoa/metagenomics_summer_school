@@ -92,6 +92,8 @@ A few quick checks I recommend are to see how many contigs or scaffolds your dat
 
 These steps will take place in the `4.evaluation/` folder, which contains copies of our `SPAdes` and `IDBA-UD` assemblies.
 
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
+
 !!! terminal "code"
 
     ```bash
@@ -230,6 +232,8 @@ A good summary and comparison of these tools (and more) was published by [Ye *et
 
 However, since we **_do_** know the composition of the original communities used to build this mock metagenome, `MetaQUAST` will work very well for us today. In your `4.evaluation/` directory you will find a file called `ref_genomes.txt`. This file contains the names of the genomes used to build these mock metagenomes. We will provide these as the reference input for `MetaQUAST`.
 
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
+
 !!! terminal "code"
 
     ```bash linenums="1"
@@ -242,7 +246,7 @@ However, since we **_do_** know the composition of the original communities used
     #SBATCH --cpus-per-task 10
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
-    #SBATCH --parition      milan
+    #SBATCH --partition     milan
 
     # Load module
     module purge

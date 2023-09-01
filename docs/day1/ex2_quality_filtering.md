@@ -141,13 +141,13 @@ There is a lot going on in this command, so here is a breakdown of the parameter
     |`mock_R1.qc.fastq.gz`|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner also passed|
     |`mock_s1.qc.fastq.gz`|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner failed (orphan reads)|
     |`mock_R2.qc.fastq.gz` / `mock_s2.qc.fastq.gz`|*positional*|The reverse-sequence equivalent of above|
-    |`HEADCROP:10`|*positional*|Remove the first 10 positions in the sequence|
+    |`HEADCROP:10`|*positional*|Cut the specified number of bases from the start of the read|
     |`SLIDINGWINDOW:4:30`|*positional*|Quality filtering command. Analyse each sequence in a 4 base pair sliding window and then truncate if the average quality drops below Q30|
     |`MINLEN:80`|*positional*|Length filtering command. Discard sequences that are shorter than 80 base pairs after trimming|
 
 !!! tip "`HEADCROP` is not adapter trimming"
 
-    We used `HEADCROP` to remove the first ten bases where we found poorer quality scores in those bases. For adapter trimming, we will need to use `ILLUMINACLIP` (see [below](#optional-working-with-the-illuminaclip-command))
+    We used `HEADCROP` to remove the first ten bases at the 5' end where we found poorer quality scores in those bases. For adapter trimming, we will need to use `ILLUMINACLIP` (see [below](#optional-working-with-the-illuminaclip-command)).
 
 !!! circle-check "Terminal output"
 
@@ -198,13 +198,11 @@ For example, consider these two scenarios:
 
 In the first run, we would not expect any sequence shorter than 80 base pairs to exist in the output files. However, we might encounter them in the second command. This is because in the second command we remove sequences shorter than 80 base pairs, **_then_** perform quality trimming. If a sequence is trimmed to a length shorter than 80 base pairs **_after_** trimming, the `MINLEN` filtering does not execute a second time. In the first instance, we do not perform trimming **_before_** size selection, so any reads that start longer than 80 base pairs, but are trimmed to under 80 base pairs during quality trimming will be caught in the `MINLEN` run.
 
-A more subtle consequence of this behaviour is the interplay between adapter removal and quality filtering. In the command we ran, we try to identify adapters **_before_** quality trimming. Why do you think this is?
-
 ---
 
-### *Optional:* Working with the `ILLUMINACLIP` command
+### *(Optional)* Working with the `ILLUMINACLIP` command
 
-`Trimmomatic` also provides the `ILLUMINACLIP` command, which can be used to pass a FASTA file of adapter and barcode sequences to be found and removed from your data. The format for the `ILLUMINACLIP` parameter can be quite confusing to work with and so we generally favour a `HEADCROP` where possible. If you wish to work with the `ILLUMINACLIP` command, then you can see its use here in the `trimmomatic` [manual](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf).
+`Trimmomatic` also provides the `ILLUMINACLIP` command, which can be used to pass a FASTA file of adapter and barcode sequences to be found and removed from your data. For further information about the `ILLUMINACLIP` command, then you can see its use here in the `trimmomatic` [manual](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf).
 
 
 !!! terminal "code"
@@ -222,7 +220,7 @@ A more subtle consequence of this behaviour is the interplay between adapter rem
     | `25`      | Palindrome clip threshold  |
     | `7`       | Simple clip threshold      |
 
-There is always some subjectivity in how sensitive you want your adapter (and barcode) searching to be. If the settings are too strict you might end up discarding real sequence data that only partially overlaps with the Illumina adapters. If your settings are not strict enough then you might leave partial adapters in the sequence. Where possible, we favour the use of simple positional trimming.
+There is always some subjectivity in how sensitive you want your adapter (and barcode) searching to be. If the settings are too strict you might end up discarding real sequence data that only partially overlaps with the Illumina adapters. If your settings are not strict enough then you might leave partial adapters in the sequence. For short inserts (DNA fragments), the sequencing process can read through into the adapter on the other side (3'), thus adapters need to be removed *prior* to quality-based trimming as the change of hitting adapters (thus, removing them) is highest when the sequence is longer.
 
 ---
 
@@ -250,7 +248,7 @@ Whether a library is 'poor' quality or not can be a bit subjective. These are so
 
     1. Do I need to remove (rare) adapters?
     1. I don’t know if adapters have been removed or not
-    1. How do I identify and remove adapter read-through
+    1. How do I identify and remove adapter read-through?
     1. Identifying incomplete barcode/adapter removal
     1. Over aggressive trimming
     1. GC skew is outside of expected range
