@@ -6,7 +6,7 @@
 
 ---
 
-### Assign taxonomy to the refined bins
+## Assign taxonomy to the refined bins
 
 It is always valuable to know the taxonomy of our binned MAGs, so that we can link them to the wider scientific literature. In order to do this, there are a few different options available to us:
 
@@ -33,12 +33,13 @@ For the following exercises, we will be working in `8.prokaryotic_taxonomy/`.
 
 Create a new script
 
-```bash
-nano gtdbtk.sl
-```
-!!! warning "Warning"
+!!! terminal-2 "Create script named `gtdbtk.sl`"
 
-    Paste in the script (replacing `<YOUR FOLDER>`)
+    ```bash
+    nano gtdbtk.sl
+    ```
+
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
 
 !!! terminal "code"
 
@@ -67,26 +68,26 @@ nano gtdbtk.sl
                        --out_dir gtdbtk_out/
     ```
 
-Submit the script
+!!! terminal-2 "Submit the script"
 
-```bash
-sbatch gtdbtk.sl
-```
+    ```bash
+    sbatch gtdbtk.sl
+    ```
 
 As usual, lets look at the parameters here
 
-|Parameter|Function|
+|<div style="width:200px">Parameter</div>|Description|
 |:---|:---|
-|**classify_wf**|Specifies the sub-workflow from `GTDB-TK` that we wish to use|
-|**-x ...**|Specify the file extension for MAGs within our input directory.<br>Default is *.fna*, but it's always good practice to specify it anyway|
-|**--cpus ...**|Number of threads/CPUs to use when finding marker genes, and performing tree insertion operations|
-|**--keep_intermediates**|Keep intermediate outputs|
-|**--genome_dir ...**|Input directory containing MAGs as individual *fastA* files|
-|**--out_dir ...**|Output directory to write the final set of files|
+|`classify_wf`|Specifies the sub-workflow from `GTDB-TK` that we wish to use|
+|`-x`|Specify the file extension for MAGs within our input directory.<br>Default is *.fna*, but it's always good practice to specify it anyway|
+|`--cpus`|Number of threads/CPUs to use when finding marker genes, and performing tree insertion operations|
+|`--keep_intermediates`|Keep intermediate outputs|
+|`--genome_dir`|Input directory containing MAGs as individual FASTA files|
+|`--out_dir`|Output directory to write the final set of files|
 
 Before submitting your job, think carefully about which set of MAGs you want to classify. You could either use the raw `DAS_Tool` outputs in the `../6.bin_refinement/dastool_out/_DASTool_bins/` folder, the renamed set of bins in the `../6.bin_refinement/example_data_unchopped/` folder, the set of curated bins in the `filtered_bins/` folder, or your own set of refined bins. Whichever set you choose, make sure you select the correct input folder and extension setting as it may differ from the example here.
 
-When the task completes, you will have a number of output files provided. The main ones to look for are `gtdbtk.bac120.summary.tsv` and `gtdbtk.arch122.summary.tsv` which report the taoxnomies for your MAGs, split at the domain level. These file are only written if MAGs that fall into the domain were found in your data set, so for this exercise we do not expect to see the `gtdbtk.arch122.summary.tsv` file.
+When the task completes, you will have a number of output files provided. The main ones to look for are `gtdbtk.bac120.summary.tsv` and `gtdbtk.arch122.summary.tsv` which report the taxonomies for your MAGs, split at the domain level. These file are only written if MAGs that fall into the domain were found in your data set, so for this exercise we do not expect to see the `gtdbtk.arch122.summary.tsv` file.
 
 If you are interested in performing more detailed phylogenetic analysis of the data, the filtered multiple sequence alignment (MSA) for the data are provided in the `gtdbtk.bac120.msa.fasta` and `gtdbtk.arch122.msa.fasta` files.
 
