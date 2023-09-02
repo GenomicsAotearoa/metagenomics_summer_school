@@ -2,9 +2,9 @@
 
 The final bins that we obtained in the previous step (output from `DAS_Tool`) have been copied into `6.bin_refinement/dastool_out/_DASTool_bins/`
 
-**1. Generalise bin naming and add bin IDs to sequence headers**
+## 1. Generalise bin naming and add bin IDs to sequence headers
 
-We will first modify the names of our bins to be simply numbered 1 to n bins. We will use a loop to do this, using the wildcard ( * ) to loop over all files in the `_DASTool_bins` folder, copying to the new `example_data_unchopped/` folder and renaming as `bin_[1-n].fna`. The `sed` command then adds the bin ID to the start of sequence headers in each of the new bin files (this will be handy information to have in the sequence headers for downstream processing).
+We will first modify the names of our bins to be simply numbered 1 to n bins. We will use a loop to do this, using the wildcard ( `*` ) to loop over all files in the `_DASTool_bins` folder, copying to the new `example_data_unchopped/` folder and renaming as `bin_[1-n].fna`. The `sed` command then adds the bin ID to the start of sequence headers in each of the new bin files (this will be handy information to have in the sequence headers for downstream processing).
 
 !!! terminal "code"
 
@@ -29,7 +29,7 @@ We will first modify the names of our bins to be simply numbered 1 to n bins. We
     done
     ```
 
-**2. Fragment contigs**
+## 2. Fragment contigs
 
 Using the `cut_up_fasta.py` script that comes with the binning tool `CONCOCT`, cut contigs into 20k fragments to add better density to the cluster.
 
@@ -50,51 +50,53 @@ Using the `cut_up_fasta.py` script that comes with the binning tool `CONCOCT`, c
     done
     ```
 
-**3. Concatenate fragmented bins**
+## 3. Concatenate fragmented bins
 
 Concatenate chopped bins into a single *fastA* file.
 
 Concatenate chopped bins into a single `all_bins.fna` file to use as input for both subcontig read mapping via `Bowtie2` and visualisation via `VizBin`.
 
-```bash
-cat example_data_20k/*.fna > all_bins.fna
-```
+!!! terminal "code"
 
-**4. Read mapping of subcontigs (fragmented contigs based on 20k length)**
+    ```bash
+    cat example_data_20k/*.fna > all_bins.fna
+    ```
 
-**4a. Build mapping index**
+## 4. Read mapping of subcontigs (fragmented contigs based on 20k length)
+
+### 4a. Build mapping index
 
 Build `Bowtie2` mapping index based on the concatenated chopped bins.
 
-```bash
-mkdir -p read_mapping/
+!!! terminal "code"
 
-module load Bowtie2/2.4.5-GCC-11.3.0
+    ```bash
+    mkdir -p read_mapping/
 
-bowtie2-build all_bins.fna read_mapping/bw_bins
-```
+    module load Bowtie2/2.4.5-GCC-11.3.0
 
-**4b. Map sample reads to index**
+    bowtie2-build all_bins.fna read_mapping/bw_bins
+    ```
+
+### 4b. Map sample reads to index
 
 Map quality filtered reads to the index using `Bowtie2`.
 
 Example slurm script:
 
-!!! warning "Warning"
-    Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own folder.
-
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="1"
     #!/bin/bash -e
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      6.bin_refinement_mapping
+    #SBATCH --partition     milan
     #SBATCH --time          00:05:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 10
-    #SBATCH --error         6.bin_refinement_mapping.err
-    #SBATCH --output        6.bin_refinement_mapping.out
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
 
 
     module purge
@@ -117,23 +119,25 @@ Example slurm script:
 
     done
     ```
-!!! note "Note"
+!!! note "Resource allocations"
 
-    These settings are appropriate for this workshop's mock data. Full data sets will likely require considerably greater memory and time allocations.*
+    These settings are appropriate for this workshop's mock data. Full data sets will likely require considerably greater memory and time allocations.
 
-**5. Generate coverage table of subcontigs (contigs fragmented based on 20k length)**
+## 5. Generate coverage table of subcontigs (contigs fragmented based on 20k length)
 
 Use `MetaBAT`'s `jgi_summarise_bam_contig_depths` to generate a coverage table.
 
-```bash
-# Load module
-module load MetaBAT/2.15-GCC-11.3.0
+!!! terminal "code"
 
-# calculate coverage table
-jgi_summarize_bam_contig_depths --outputDepth example_data_20k_cov.txt read_mapping/sample*.bam
-```
+    ```bash
+    # Load module
+    module load MetaBAT/2.15-GCC-11.3.0
+    
+    # calculate coverage table
+    jgi_summarize_bam_contig_depths --outputDepth example_data_20k_cov.txt read_mapping/sample*.bam
+    ```
 
-**6. Generate annotation table for `VizBin`**
+## 6. Generate annotation table for `VizBin`
 
 Using the chopped bin files (`example_data_20k/`) and the coverage table generated above (`example_data_20k_cov.txt`), we can use the following script to generate an annotation table in the format that `VizBin` is expecting. Note that here we are including columns for per-sub-contig coverage based on *sample1* (see note at the start of this exercise), label (bin ID), and length values, and storing this in `all_bins.sample1.vizbin.ann`.
 
@@ -161,6 +165,6 @@ What this script is doing is taking each fasta file and picking out the names of
     done
     ```
 
-We now have the `all_bins.fna` and `all_bins.sample1.vizbin.ann` files that were provided at the [start of the VizBin exercise](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/day2/ex9_refining_bins.md#prepare-input-files-for-vizbin).
+We now have the `all_bins.fna` and `all_bins.sample1.vizbin.ann` files that were provided at the [start of the VizBin exercise](../day2/ex9_refining_bins.md).
 
 ---
