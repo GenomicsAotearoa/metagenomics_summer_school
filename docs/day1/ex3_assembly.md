@@ -271,11 +271,9 @@ NeSI does not allow users to execute large jobs interactively on the terminal. I
 
 To begin, we need to open a text file using the `nano` text editor. 
 
-!!! terminal-2 "Navigate to working directory and call `nano`"
+!!! terminal-2 "Create script named `spades_assembly.sl` using `nano`"
 
     ```bash
-    cd 3.assembly/
-
     nano spades_assembly.sl
     ```
 
