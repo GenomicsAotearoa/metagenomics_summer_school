@@ -162,7 +162,7 @@ As usual, we will break down the parameters:
 |`-l`|A comma-separated list of the binning tools used|
 |`-t`|Number of threads to use|
 |`--write_bins`|An argument telling `DAS_Tool` whether or not to write out a new set of bins<br>This is recommended, because `DAS_Tool` can create slices of old bins based on marker composition (see [the paper](https://www.nature.com/articles/s41564-018-0171-1) for details)|
-|`--search_engine blastp`|Specify whether to use `usearch`, `diamond`, or `BLAST` as the alignment tool for comparing gene sequences (see note below)|
+|`--search_engine diamond`|Specify whether to use `usearch`, `diamond`, or `BLAST` as the alignment tool for comparing gene sequences|
 |`-c`|Path to the assembly used in binning|
 |`-o`|Output directory for all files|
 
