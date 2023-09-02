@@ -43,7 +43,7 @@ The *.bam* files can be passed in via either a user-defined order, or using wild
     jgi_summarize_bam_contig_depths --outputDepth metabat.txt sample1.bam sample2.bam sample3.bam sample4.bam
 
     # Wildcard
-    jgi_summarize_bam_contig_depths --outputDepth metabat.txt sample*.bam
+    jgi_summarize_bam_contig_depths --outputDepth metabat.txt sample?.bam
     ```
 
 Both give the same result, although the sample order may vary.
