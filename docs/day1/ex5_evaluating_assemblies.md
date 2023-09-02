@@ -150,6 +150,7 @@ As we can see here, the `SPAdes` assembly has completed with fewer contigs assem
 
     ```bash
     # Load BBMap module
+    module purge
     module load BBMap/39.01-GCC-11.3.0
 
     # Generate statistics for filtered SPAdes assembly
