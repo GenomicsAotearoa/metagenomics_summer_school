@@ -72,7 +72,7 @@ Import coverage tables and mapping file.
 
 As before in [coverage exercise](../day4/ex16b_data_presentation_Coverage.md), we need to obtain per MAG and sample average coverage values. We begin by selecting relevant columns and renaming them.
 
-!!! r-project ""
+!!! r-project "code"
 
     ```R
     ## Select relevant columns and rename them
