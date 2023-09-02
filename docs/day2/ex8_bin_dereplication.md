@@ -264,7 +264,7 @@ When your job completes, we will download the summary file and examine it.
 
     !!! terminal "code"
 
-        ```bash
+        ```bash linenums="1"
         #!/bin/bash -e
         #SBATCH --account       nesi02659
         #SBATCH --job-name      CheckM2
