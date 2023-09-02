@@ -61,8 +61,14 @@ As previously, we will quickly go through the steps of this command:
 Check the content of the `.coords` files now. You should see something like the following:
 
 !!! terminal "code"
+
     ```bash
     cat bin_3_cys.coords
+    ```
+  
+!!! circle-check "Terminal output"
+
+    ```
     bin_3_NODE_53_length_158395_cov_1.135272_128    135928  136935  1
     bin_3_NODE_53_length_158395_cov_1.135272_129    136994  137299  1
     bin_3_NODE_53_length_158395_cov_1.135272_130    137411  138322  1
