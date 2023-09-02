@@ -1,11 +1,10 @@
-# Presentation of data: Gene synteny
+# Gene synteny
 
 !!! info "Objectives"
 
     * [Build a sulfur assimilation gene alignment figure to investigate gene synteny using `R`](#build-a-sulfur-assimilation-gene-alignment-figure-to-investigate-gene-synteny-using-r)
     * [Parsing files in `bash`](#part-1---parsing-files-in-bash)
     * [Import and wrangle data in `R`](#part-2---producing-the-figure-in-r)
-    * [Create a comparison table and build the plot in `R`](#part-23---creating-a-comparison-table-and-building-the-plot-in-r)
 
 ---
 

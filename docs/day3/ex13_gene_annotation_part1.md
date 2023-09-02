@@ -1,18 +1,13 @@
-# Gene annotation (part 1)
+# Gene annotation I: BLAST-like and HMM
 
 !!! info "Objectives"
 
-    - [Gene annotation (part 1)](#gene-annotation-part-1)
-        - [Objectives](#objectives)
-        - [*BLAST*-like gene annotations and domain annotations](#blast-like-gene-annotations-and-domain-annotations)
-          - [BLAST-like annotation](#blast-like-annotation)
-          - [HMM-profiling of domains](#hmm-profiling-of-domains)
-        - [Annotating MAGs against the *UniProt* database with `DIAMOND`](#annotating-mags-against-the-uniprot-database-with-diamond)
-        - [Annotating MAGs against the *Pfam* database with `HMMER`](#annotating-mags-against-the-pfam-database-with-hmmer)
-        - [Evaluating the quality of gene assignment](#evaluating-the-quality-of-gene-assignment)
-        - [Differences in taxonomies](#differences-in-taxonomies)
-          - [Examples of various genome-level and protein taxonomies](#examples-of-various-genome-level-and-protein-taxonomies)
-
+    - [Annotation methods](#annotation-methods)
+    - [Annotating MAGs against the *UniProt* database with `DIAMOND`](#annotating-mags-against-the-uniprot-database-with-diamond)
+    - [Annotating MAGs against the *Pfam* database with `HMMER`](#annotating-mags-against-the-pfam-database-with-hmmer)
+    - [Evaluating the quality of gene assignment](#evaluating-the-quality-of-gene-assignment)
+    - [Differences in taxonomies](#differences-in-taxonomies)
+    
 ---
 
 ## Annotation methods
@@ -39,7 +34,7 @@ These exercises will take place in the `10.gene_annotation_and_coverage/` folder
 
 ---
 
-## Annotate MAGs against the *UniProt* database with `DIAMOND`
+## Annotating MAGs against the *UniProt* database with `DIAMOND`
 
 For this exercise we are going to use `DIAMOND` for performing our annotation. We have chosen to use this tool because it is faster than `BLAST`, and `USEARCH` comes with licensing restrictions that make it hard to work with in a shared computing environment like NeSI.
 
@@ -113,6 +108,7 @@ Create a new script
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      annotate_uniprot
+    #SBATCH --partition     milan
     #SBATCH --time          01:00:00
     #SBATCH --mem           20GB
     #SBATCH --cpus-per-task 20
@@ -146,7 +142,7 @@ Create a new script
 
 ---
 
-## Annotate MAGs against the *Pfam* database with `HMMER`
+## Annotating MAGs against the *Pfam* database with `HMMER`
 
 The standard software for performing HMM-profiling annotation is [HMMER](http://hmmer.org/). Compared to `BLAST`, `FASTA`, and other sequence alignment and database search tools based on older scoring methodology, `HMMER` aims to be significantly more accurate and more able to detect remote homologs because of the strength of its underlying mathematical models. In the past, this strength came at significant computational expense, but in the new `HMMER3` project, `HMMER` is now essentially as fast as `BLAST`. 
 
@@ -208,6 +204,7 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      annotate_pfam
+    #SBATCH --partition     milan
     #SBATCH --time          00:20:00
     #SBATCH --mem           5GB
     #SBATCH --cpus-per-task 10
@@ -241,7 +238,7 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
 
 ---
 
-## Evaluate the quality of gene assignment
+## Evaluating the quality of gene assignment
 
 Determining how trustworthy a gene annotation is can be a very tricky process. How similar do protein sequences need to be to perform the same function? The answer is surprisingly low. A bioinformatic analysis performed in 1999 identified that proteins with as little as 20 - 35% sequence identity can still share the same function ([Rost, 1999](https://doi.org/10.1093/protein/12.2.85)), but this is not a universal occurrence. When evaluating annotations, consider the following questions:
 

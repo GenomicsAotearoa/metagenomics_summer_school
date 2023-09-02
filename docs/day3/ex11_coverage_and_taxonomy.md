@@ -2,11 +2,11 @@
 
 !!! info "Objectives"
 
-    * [Assign taxonomy to the refined bins](#assign-taxonomy-to-the-refined-bins)
+    * [Assigning taxonomy to the refined bins](#assigning-taxonomy-to-the-refined-bins)
 
 ---
 
-## Assign taxonomy to the refined bins
+## Assigning taxonomy to the refined bins
 
 It is always valuable to know the taxonomy of our binned MAGs, so that we can link them to the wider scientific literature. In order to do this, there are a few different options available to us:
 
@@ -48,6 +48,7 @@ Create a new script
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      gtdbtk
+    #SBATCH --partition     milan
     #SBATCH --time          01:00:00
     #SBATCH --mem           140GB
     #SBATCH --cpus-per-task 24

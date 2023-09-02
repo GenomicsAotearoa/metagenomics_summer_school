@@ -1,11 +1,11 @@
-# Quality filtering raw reads
+# Filter raw reads by quality
 
 !!! info "Objectives"
 
     * [Visualising raw reads with `FastQC`](#visualising-raw-reads)
     * [Read trimming and adapter removal with `trimmomatic`](#read-trimming-and-adapter-removal-with-trimmomatic)
     * [Diagnosing poor libraries](#diagnosing-poor-libraries)
-    * [Understand common issues and best practices](#understand-common-issues-and-best-practices)
+    * [Understand common issues and best practices](#understanding-common-issues-and-best-practices)
     * [*Optional*: Filtering out host DNA with `BBMap`](#optional-filtering-out-host-dna)
 
 <center>
@@ -224,7 +224,7 @@ There is always some subjectivity in how sensitive you want your adapter (and ba
 
 ---
 
-### Diagnosing poor libraries
+## Diagnosing poor libraries
 
 Whether a library is 'poor' quality or not can be a bit subjective. These are some aspects of the library that you should be looking for when evaluating `FastQC`:
 
@@ -242,7 +242,7 @@ Whether a library is 'poor' quality or not can be a bit subjective. These are so
 
 ---
 
-### Understand common issues and best practices
+## Understanding common issues and best practices
 
 !!! success ""
 
@@ -315,12 +315,6 @@ We will cover more about read mapping in [later exercises](https://genomicsaotea
 
 Build index reference via `BBMap`. We will do this by submitting the job via slurm. 
 
-<!--
-!!! note "Note"
-
-    See [Preparing an assembly job for slurm](https://genomicsaotearoa.github.io/metagenomics_summer_school/day1/ex3_assembly/) for more information about how to submit a job via slurm.
--->
-
 Create a new script named `host_filt_bbmap_index.sl` using `nano`:
 
 !!! terminal "code"
@@ -329,9 +323,7 @@ Create a new script named `host_filt_bbmap_index.sl` using `nano`:
     nano host_filt_bbmap_index.sl
     ```
 
-!!! warning "Warning"
-    
-    Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own directory.
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
 
 !!! terminal "code"
 
@@ -340,6 +332,7 @@ Create a new script named `host_filt_bbmap_index.sl` using `nano`:
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      host_filt_bbmap_index
+    #SBATCH --partition     milan
     #SBATCH --time          00:20:00
     #SBATCH --mem           32GB
     #SBATCH --cpus-per-task 12
@@ -384,6 +377,7 @@ Again, we will create a script using `nano`:
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      host_filt_bbmap_map
+    #SBATCH --partition     milan
     #SBATCH --time          01:00:00
     #SBATCH --mem           27GB
     #SBATCH --array         1-4
@@ -420,18 +414,6 @@ Again, we will create a script using `nano`:
     | `path` | The parent directory where `ref/` (our indexed and masked reference) exists |
     | `outu1` / `outu2` | Reads that *were not mapped* to our masked reference written to `host_filtered_reads/` |
     
-<!--
-Breaking down this command a little:
-
-!!! quote ""
-
-    - We pass the path to the `ref` directory (the reference we just built) to `path=...`.
-    - Provide quality-filtered reads as input (i.e. output of the `trimmomatic` process above). In this case, we will provide the FASTQ files located in `../3.assembly/` which have been processed via `trimmomatic` in the same manner as the exercise above. These are four sets of paired reads (representing metagenome data from four "samples") that the remainder of the workshop exercises will be working with.
-    - The flags `-Xmx27g` and `-t=$SLURM_CPUS_PER_TASK` set the maximum memory and thread (AKA CPUs) allocations, and must match the `--mem` and `--cpus_per_task` allocations in the slurm headers at the top of the script.
-    - The rest of the settings in the `BBMap` call here are as per the recommendations found within [this thread](http://seqanswers.com/forums/showthread.php?t=42552) about processing data to remove host reads.
-    - Finally, the filtered output FASTQ files for downstream use are written to the `host_filtered_reads/` directory (taken from the outputs `outu1=` and `outu2=`, which include only those reads that did not map to the host reference genome).
--->
-
 We'll submit the mapping script:
 
 !!! terminal "code"

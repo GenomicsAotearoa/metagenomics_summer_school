@@ -82,6 +82,7 @@ Open a new script using nano:
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      spades_mapping
+    #SBATCH --partition     milan
     #SBATCH --time          00:05:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 10
@@ -136,7 +137,7 @@ For large sets of files, it can be beneficial to use a slurm *array* to send the
     |`-1` / `-2`|The forward and reverse read pairs to map to the assembly|
     |`-S`|Name of the output file, to be written in *sam* format|
 
-### Step 3 - Sorting and compressing results
+### Step 3 - Sort and compress results
 
 The default output format for most mapping tools is the Sequence Alignment/Map (*sam*) format. This is a compact text representation of where each short read sits in the contigs. You can view this file using any text viewer, although owing to the file size `less` is a good idea.
 
@@ -192,7 +193,7 @@ Sorting the mapping information is an important prerequisite for performing cert
 
 ---
 
-## *(Optional)* Map reads using an array
+## *(Optional)* Read mapping using an array
 
 If you have a large number of files to process, it might be worth using a slurm array to distribute your individual mapping jobs across many separate nodes. An example script for how to perform this is given below. We do not need to use an array for read mapping in this workshop, but we will revisit array jobs in further lessons.
 
@@ -213,6 +214,7 @@ Open a new script using nano:
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      spades_mapping_array
+    #SBATCH --partition     milan
     #SBATCH --time          00:20:00
     #SBATCH --mem           20GB
     #SBATCH --array         0-3

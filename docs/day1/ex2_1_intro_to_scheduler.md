@@ -1,4 +1,4 @@
-# Introduction to HPC & HPC job scheduler
+# Introduction II: HPC and job scheduler
 
 <center>![image](../theme_images/scaling.png){width="300"}</center>
 

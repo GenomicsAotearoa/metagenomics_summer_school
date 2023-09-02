@@ -120,3 +120,44 @@ plugins:
 
 extra_css:
   - stylesheets/extra.css
+
+nav:
+  - 'Home': 'index.md'
+  - 'Day 1':
+    - 'day1/ex1_bash_and_scheduler.md'
+    - 'day1/ex2_1_intro_to_scheduler.md'
+    - 'day1/ex2_quality_filtering.md'
+    - 'day1/ex3_assembly.md'
+    - 'day1/ex4_assembly.md'
+    - 'day1/ex5_evaluating_assemblies.md'
+  - 'Day 2':
+    - 'day2/ex6_initial_binning.md'
+    - 'day2/ex7_initial_binning.md'
+    - 'day2/ex8_bin_dereplication.md'
+    - 'day2/ex9_refining_bins.md'
+  - 'Day 3':
+    - 'day3/ex11_coverage_and_taxonomy.md'
+    - 'day3/ex11.1_phylogenomics.md'
+    - 'day3/ex10_viruses.md'
+    - 'day3/ex12_gene_prediction.md'
+    - 'day3/ex13_gene_annotation_part1.md'
+    - 'day3/ex14_gene_annotation_part2.md'
+  - 'Day 4':
+    - 'day4/ex15_gene_annotation_part3.md'
+    - 'day4/ex16a_data_presentation_Intro.md'
+    - 'day4/ex16b_data_presentation_Coverage.md'
+    - 'day4/ex16c_OPTIONAL_data_presentation_Ordination.md'
+    - 'day4/ex16d_data_presentation_KEGG_pathways.md'
+    - 'day4/ex16e_data_presentation_Gene_synteny.md'
+    - 'day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations.md'
+  - 'Resources':
+    - 'resources/1_APPENDIX_ex8_Dereplication.md'
+    - 'resources/2_APPENDIX_ex9_Generating_input_files_for_VizBin.md'
+    - 'resources/3_APPENDIX_ex11_Normalise_coverage_example.md'
+    - 'resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md'
+    - 'resources/5_APPENDIX_ex15_Prepare_gene_synteny_inputs.md'
+    - 'resources/5_APPENDIX_ex15_gene_synteny_Generate_blast_files.md'
+    - 'resources/7_command_line_shortcuts.md'
+  - 'Supplementary':
+    - 'supplementary/supplementary_1.md'
+    - 'supplementary/supplementary_2.md'

@@ -1,4 +1,4 @@
-# Presentation of data: Introduction
+# Introduction to data presentation
 
 !!! info "Objectives"
 
@@ -7,7 +7,7 @@
     * [Logging in to the NeSI `Jupyter hub`](#getting-started-logging-in-to-the-nesi-jupyter-hub)
 ---
 
-### Overview, *R/RStudio*, and using *R* in the *Jupyter* environment
+## Overview, *R/RStudio*, and using *R* in the *Jupyter* environment
 
 There are a number of powerful packages within the `R` software environment which can be used to create high quality images of genomic and metagenomic data. While each of these packages comes with its own documentation, these documents and tutorials usually assume that your data is already in some already-prepared format. Our data will almost never be in this format, though, so these exercises show a few brief examples of how we can scrape data from our existing files to create useful figures. As such, these examples are more complicated than what you would get reading the tutorials and manuals of the plotting tools, but will be transferable to your own work.
 
@@ -17,7 +17,7 @@ By now you should be very familiar with running the terminal window from within 
 
 These exercises will take place with files in the `11.data_presentation/` folder.
 
-### Data visualisation and accessibility
+## Data visualisation and accessibility
 
 In this section, we will work through a number of example exercises for visualising various aspects of metagenomic data.
 
@@ -34,7 +34,7 @@ We have been mindful to make appropriate colour selections throughout these exam
 
 ---
 
-### Getting started: logging in to the NeSI *Jupyter hub*
+## Getting started: logging in to the NeSI *Jupyter hub*
 
 To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login).
 

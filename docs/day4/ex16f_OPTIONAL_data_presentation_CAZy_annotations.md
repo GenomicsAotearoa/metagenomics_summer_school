@@ -1,15 +1,12 @@
-# Presentation of data: CAZy annotations heatmap
+# CAZy heatmaps
 
 !!! info "Objectives"
 
-    * [Build a basic heatmap from `BLAST` data using `R`](#build-a-basic-heatmap-from-annotation-data-using-r)
-    * [Import and wrangle data in `R`](#import-the-data-into-an-r-dataframe)
-    * [Build the plot in `R`](#build-the-plot-in-r)
-
+    * [Build a basic heatmap from annotation data using `R`](#build-a-basic-heatmap-from-annotation-data-using-r)
 
 ---
 
-## Build a basic heatmap from annotation data using *R*
+## Build a basic heatmap from annotation data using `R`
 
 To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and open `RStudio`.
 
@@ -18,7 +15,7 @@ For this exercise, set `11.data_presentation/cazy_heatmap/` as the working direc
 1. Annotating each `prodigal` output against the **dbCAN** database using `hmmer`
 1. Converting the raw `hmmer` output into a table using the `hmmscan-parser.py` script that bundles with **dbCAN**
 
-### Import the data into an R data.frame
+### Import the data into an `R` `data.frame`
 
 The first thing we need to do is import these annotations into `R`. We will do this using the following workflow
 
@@ -152,7 +149,7 @@ We now have a data.frame-like object (a [tibble](https://tibble.tidyverse.org/))
       pivot_wider(id_cols=Bin, names_from=CAZy, values_from=n, values_fill=list(n = 0))
     ```
 
-### Build the plot in *R*
+### Build the plot in `R`
 
 Finally, we create the actual plot by passing this matrix into the `pheatmap` library. Before doing this, we need to take the text column `Bin` from the matrix and move it into the rownames, as this is how `pheatmap` infers the names of our samples. Also, if we left text data in the numeric input for a heatmap, the function would crash. We can quickly transfer the `Bin` column to the rownames using the `column_to_rownames` function from the `tibble` library.
 

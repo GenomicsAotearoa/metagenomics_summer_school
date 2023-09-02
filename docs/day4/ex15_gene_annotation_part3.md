@@ -1,4 +1,4 @@
-# Gene annotation (part 3)
+# Gene annotation III: DRAM distillation
 
 !!! info "Objectives"
 
@@ -8,7 +8,7 @@
 
 ---
 
-## Overview of *DRAM.py annotate* output
+## Overview of `DRAM.py annotate` output
 
 The submitted jobs from the previous session should now be completed. If we examine the output directory `10.gene_annotation_and_coverage/dram_annotations/` we will see the following files:
 

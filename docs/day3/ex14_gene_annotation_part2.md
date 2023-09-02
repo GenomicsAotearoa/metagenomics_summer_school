@@ -1,12 +1,12 @@
-# Gene annotation (part 2) and coverage calculation
+# Gene annotation II: DRAM and coverage calculation
 
 !!! info "Objectives"
 
     * [Gene prediction and annotation with `DRAM`](#gene-prediction-and-annotation-with-dram-distilled-and-refined-annotation-of-metabolism)
-    * [Annotation of the MAGs with `DRAM`](#annotation-of-the-mags-with-dram)
-    * [Annotation of the viral contigs with `DRAM-v`](#annotation-of-the-viral-contigs-with-dram)
-    * [Calculate per-sample coverage stats for prokaryotic bins](#calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins)
-    * [Calculate per-sample coverage stats for viral contigs](#calculate-per-sample-coverage-stats-of-viral-contigs)
+    * [Annotating MAGs with `DRAM`](#annotating-mags-with-dram)
+    * [Annotating viral contigs with `DRAM-v`](#annotating-viral-contigs-with-dram-v)
+    * [Calculating per-sample coverage stats for prokaryotic bins](#calculating-per-sample-coverage-stats-for-prokaryotic-bins)
+    * [Calculating per-sample coverage stats for viral contigs](#calculating-per-sample-coverage-stats-for-viral-contigs)
     * [Select initial goal](#select-initial-goal)
 
 ---
@@ -31,7 +31,7 @@ After genome annotation, a distill step follows with the aim to curate these ann
 
 ---
 
-## Annotate MAGs with `DRAM`
+## Annotating MAGs with `DRAM`
 
 Beyond annotation, `DRAM` aims to be a data compiler. For that reason, output files from both `CheckM` and `GTDB_tk` steps can be input to `DRAM` to provide both taxonomy and genome quality information of the MAGs. 
 
@@ -114,6 +114,7 @@ To run this exercise we first need to set up a slurm job. We will use the result
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      annotate_DRAM
+    #SBATCH --partition     milan
     #SBATCH --time          5:00:00
     #SBATCH --mem           30Gb
     #SBATCH --cpus-per-task 24
@@ -144,7 +145,7 @@ The program will take 4-4.5 hours to run, so we will submit the jobs and inspect
 
 ---
 
-## Annotate viral contigs with `DRAM-v`
+## Annotating viral contigs with `DRAM-v`
 
 `DRAM` also has an equivalent program (`DRAM-v`) developed for predicting and annotating genes of viral genomes. A number of the options are similar to the standard `DRAM` run above, although the selection of databases differs slightly, and the subsequent *distill* step is focussed on identifying and classifying auxilliary metabolic genes (AMGs) rather than the metabolic pathways output by `DRAM`'s standard *distill* step.
 
@@ -183,6 +184,7 @@ To run this exercise we first need to set up a slurm job. We will use the result
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      annotate_DRAMv
+    #SBATCH --partition     milan
     #SBATCH --time          02:00:00
     #SBATCH --mem           10Gb
     #SBATCH --cpus-per-task 12
@@ -214,7 +216,7 @@ We will submit this job now and inspect the results tomorrow morning.
 
 ---
 
-## Calculate per-sample coverage stats of the filtered prokaryote bins
+## Calculating per-sample coverage stats for prokaryotic bins
 
 One of the first questions we often ask when studying the ecology of a system is: What are the pattens of abundance and distribution of taxa across the different samples? With bins of metagenome-assembled genome (MAG) data, we can investigate this by mapping the quality-filtered unassembled reads back to the refined bins to then generate coverage profiles. Genomes in higher abundance in a sample will contribute more genomic sequence to the metagenome, and so the average depth of sequencing coverage for each of the different genomes provides a proxy for abundance in each sample. 
 
@@ -262,6 +264,7 @@ Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowti
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      mapping_filtered_bins
+    #SBATCH --partition     milan
     #SBATCH --time          00:05:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 10
@@ -310,7 +313,7 @@ The coverage table will be generated as `bins_cov_table.txt`. As before, the key
 
     Here we are generating a per-sample table of coverage values for **each contig** within each bin. To get per-sample coverage of **each bin** as a whole, we will need to generate average coverage values based on all contigs contained within each bin. We will do this in `R` during our data visualisation exercises on day 4 of the workshop, leveraging the fact that we added bin IDs to the sequence headers.*
 
-## Calculate per-sample coverage stats of viral contigs
+## Calculating per-sample coverage stats for viral contigs
 
 Here we can follow the same steps as outlined above for the bin data, but with a concatenated FASTA file of viral contigs. 
 
@@ -363,6 +366,7 @@ Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowti
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      mapping_viruses
+    #SBATCH --partition     milan
     #SBATCH --time          00:05:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 10

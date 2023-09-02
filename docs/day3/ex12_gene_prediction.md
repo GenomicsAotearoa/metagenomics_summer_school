@@ -35,7 +35,7 @@ It is also not advised to use `prodigal` when making predictions through your un
 
 ---
 
-## Predict protein coding sequences in MAGs
+## Predicting protein coding sequences in MAGs
 
 To get started, move into the exercise directory.
 
@@ -122,6 +122,7 @@ We will now run `prodigal` over the 10 bins in *anonymous* mode using an array.
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      prodigal
+    #SBATCH --partition     milan
     #SBATCH --time          00:10:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 1
@@ -239,7 +240,7 @@ While this header information can be very informative, its presence in the FASTA
 
 ---
 
-## Predict RNA features and non-coding regions
+## Predicting RNA features and non-coding regions
 
 ### Predict rRNA sequences
 
@@ -262,6 +263,7 @@ To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits 
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      metaxa2
+    #SBATCH --partition     milan
     #SBATCH --time          00:05:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 4

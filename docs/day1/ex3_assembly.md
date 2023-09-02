@@ -1,4 +1,4 @@
-# Assembly
+# Assembly I: Assembling contigs
 
 !!! info "Objectives"
 
@@ -292,6 +292,7 @@ Into this file, either write or copy/paste the following commands:
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      spades_assembly
+    #SBATCH --partition     milan
     #SBATCH --time          00:30:00
     #SBATCH --mem           10GB
     #SBATCH --cpus-per-task 12
@@ -389,7 +390,7 @@ We can see here that the job has not yet begun, as NeSI is waiting for resources
 
 Which allows us to track how far into our run we are, and see the remaining time for the job. The `START_TIME` column now reports the time the job actually began.
 
-## Submitting an `IDBA-UD` job to NeSI using slurm
+### Submitting an `IDBA-UD` job to NeSI using slurm
 
 !!! terminal-2 "Create a new slurm script using `nano` to run an equivalent assembly with `IDBA-UD`"
 
@@ -406,6 +407,7 @@ Paste or type in the following:
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      idbaud_assembly
+    #SBATCH --partition     milan
     #SBATCH --time          00:20:00
     #SBATCH --mem           4GB
     #SBATCH --cpus-per-task 12
