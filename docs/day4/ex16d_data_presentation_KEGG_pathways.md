@@ -3,10 +3,6 @@
 !!! info "Objectives"
 
     * [Build a KEGG pathway map using `R`](#build-a-kegg-pathway-map-using-r)
-    * [Import and wrangle data in `R`](#set-the-working-directory-and-load-packages-and-files-into-r)
-    * [Subset the data for KO IDs of interest](#subset-the-data)
-    * [Reshape the data for input into pathview](#reshaping-the-data-for-input-into-pathview)
-    * [Creating pathway map of genes related to nitrogen metabolism](#creating-pathway-map-of-genes-related-to-nitrogen-metabolism)
 
 ---
 
@@ -151,7 +147,7 @@ Here, we are interested in the available KO in each bin. Thus, we can summarise 
       arrange(bin_id, KO)
     ```
 
-### Identify pathway maps of interest
+### 4. Identify pathway maps of interest
 
 Before moving on, we must first identify the pathway map ID of our pathway of interest. Lets say, for this exercise, we are interested in the TCA cycle. Here, we will use `KEGGREST` to access the KEGG database and query it with a search term. 
 
@@ -177,7 +173,7 @@ Before moving on, we must first identify the pathway map ID of our pathway of in
     tca_map_id <- "00020"
     ```
 
-### Reshaping the data for input into pathview
+### 5. Reshaping the data for input into pathview
 
 `pathview` needs the data as a numeric matrix with IDs as row names and samples/experiments/bins as column names. Here, we will reshape the data into a matrix of counts per KO number in each bin.
 
@@ -196,7 +192,7 @@ Before moving on, we must first identify the pathway map ID of our pathway of in
 
 If you click on `KO_matrix` in the Environment pane, you can see that it is now a matrix of counts per KO per bin. Bins that do not possess a particular KO number is given NA. Do not worry about that as `pathview` can deal with that.
 
-### Creating pathway map of genes related to TCA cycle
+### 6. Creating pathway map of genes related to TCA cycle
 
 Now we can generate images of the KEGG pathway maps using the matrix we just made. For this section, we will try to find genes invovled in the TCA cycle.
 

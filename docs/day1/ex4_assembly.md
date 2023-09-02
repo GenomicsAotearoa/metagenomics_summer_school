@@ -1,14 +1,14 @@
-# Assembly II: Variable parameters
+# Assembly II: Varying the parameters
 
 !!! info "Objectives"
 
-    * [Examine the effect of changing parameters for assembly](#examine-the-effect-of-changing-assembly-parameters)
+    * [Examining the effect of changing parameters for assembly](#examining-the-effect-of-changing-assembly-parameters)
 
 All work for this exercise will occur in the `3.assembly/` directory.
 
 ---
 
-## Examine the effect of changing assembly parameters
+## Examining the effect of changing assembly parameters
 
 For this exercise, there is no real structure. Make a few copies of your initial slurm scripts and tweak a few of the assembly parameters. You will have a chance to compare the effects of these changes tomorrow.
 

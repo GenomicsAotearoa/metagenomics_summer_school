@@ -2,19 +2,11 @@
 
 !!! info "Objectives"
 
-    - [Bin dereplication](#bin-dereplication)
-        - [Objectives](#objectives)
-        - [Bin dereplication using `DAS_Tool` - Creating input tables](#bin-dereplication-using-das_tool---creating-input-tables)
-          - [Creating contig/bin tables - *MetaBAT*](#creating-contigbin-tables---metabat)
-          - [Creating contig/bin tables - *MaxBin*](#creating-contigbin-tables---maxbin)
-            - [Warning for unbinned contigs](#warning-for-unbinned-contigs)
-        - [Bin dereplication using *DAS_Tool* - Running the tool](#bin-dereplication-using-das_tool---running-the-tool)
-        - [Evaluating bins using *CheckM*](#evaluating-bins-using-checkm)
-            - [Highly conserved, single copy markers](#highly-conserved-single-copy-markers)
-            - [Genes are considered as co-located clusters](#genes-are-considered-as-co-located-clusters)
-            - [Lineage-specific duplications and losses can be identified](#lineage-specific-duplications-and-losses-can-be-identified)
-        - [Discussion: dereplication across multiple assemblies](#discussion-dereplication-across-multiple-assemblies)
-    
+    - [Bin dereplication using `DAS_Tool` - Creating input tables](#bin-dereplication-using-das_tool---creating-input-tables)
+    - [Bin dereplication using `DAS_Tool`](#bin-dereplication-using-das_tool)
+    - [Evaluating bins using `CheckM`](#evaluating-bins-using-checkm)
+    - [Dereplicating bins across multiple assemblies](#dereplicating-bins-across-multiple-assemblies)
+
 ---
 
 ## Bin dereplication using `DAS_Tool` - Creating input tables
@@ -36,6 +28,8 @@ For each of our binning tools, we need to extract the contigs assigned to each b
     ```
 
 This can be done with a bit of `bash` scripting. There's quite a bit going on here, so we'll provide the full command, and then a step-by-step explanation of what's happening.
+
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
 
 !!! terminal-2 "Navigate to working directory"
 
@@ -104,39 +98,6 @@ We will break this line down step-by-step:
 | `sed 's/>//g'` | The first `sed` command replaces the `>` character with the empty character `''`, as we do not need this character in the final file. |
 | `sed "s/$/\t${bin_name}/g"` | We now use `sed` again, this time to replace the `$` character. In many command line tools and software environments (including `R` and `python`) the characters `^` and `$` are used as shortcuts for the beginning and ending of a line, respectively. By using the character in this way, we are telling `sed` to replace the end-of-line with the text `\t${bin_name}`. `sed` will parse this text to mean the tab character followed by the content of the `bin_name` variable. The nature of `sed` is that it will automatically insert a new end-of-line. |
 | `>> metabat_associations.txt` | This is similar to the stdout redirection we have previously used, but the double use of the `>` character means that we are appending our text to the end of the file `metabat_associations.txt`. Because we are looping through several files in this exercise, if we were to use the single `>` character then on each new *fastA* file read, the content of `metabat_associations.txt` would be replaced.<br><br>It is important to note that because we are **_appending_** to the file, not **_replacing_** the contents, if you make a mistake in the command and need to re-run it, you will need to explicitly delete the `metabat_associations.txt` file using `rm`, otherwise your new (correct) output will be pasted to the end of your old (incorrect) output.|
-
-<!-- 
-```bash
-    grep ">" ${bin_path} | sed 's/>//g' | sed "s/$/\t${bin_name}/g" >> metabat_associations.txt
-    |                      |              |                         |
-    |                      |              |                         Command 4
-    |                      |              Command 3
-    |                      Command 2
-    Command 1
-```
-
-This next step uses piping between several commands to achieve the desired output.
-
-!!! info "Commands"
-
-    **Command 1**
-
-    The `grep` command searches the input file `bin_path` for lines containing the `>` character, which is the *fastA* demarcation for a sequence name.
-
-    **Command 2**
-
-    The `sed` command replaces the `>` character with the empty character `''`, as we do not need this character in the final file.
-
-    **Command 3**
-
-    We now use `sed` again, this time to replace the `$` character. In many command line tools and software environments (including `R` and `python`) the characters `^` and `$` are used as shortcuts for the beginning and ending of a line, respectively. By using the character in this way, we are telling `sed` to replace the end-of-line with the text `\t${bin_name}`. `sed` will parse this text to mean the tab character followed by the content of the `bin_name` variable. The nature of `sed` is that it will automatically insert a new end-of-line.
-
-    **Command 4**
-
-    This is similar to the stdout redirection we have previously used, but the double use of the `>` character means that we are appending our text to the end of the file `metabat_associations.txt`. Because we are looping through several files in this exercise, if we were to use the single `>` character then on each new *fastA* file read, the content of `metabat_associations.txt` would be replaced.
-
-    It is important to note that because we are **_appending_** to the file, not **_replacing_** the contents, if you make a mistake in the command and need to re-run it, you will need to explicitly delete the `metabat_associations.txt` file using `rm`, otherwise your new (correct) output will be pasted to the end of your old (incorrect) output.
--->
 
 ### Create contig/bin tables - `MaxBin`
 
@@ -209,7 +170,7 @@ When `DAS_Tool` has completed, we will have a final set of bins located in the f
 
 ---
 
-## Evaluate bins using `CheckM`
+## Evaluating bins using `CheckM`
 
 Now that we have our dereplicated set of bins, it is a good idea to determine estimates of their completeness (how much of the genome was recovered) and contamination (how many contigs we believe have been incorrectly assigned to the bin). For organisms that lack a reference genome there is not **_definitive_** way to do this, but the tool `CheckM` provides a robust estimate for these statistics by searching each of your bins for a number of highly conserved, single copy genes. The number of markers depends on whether or not you are working with bacterial (120 markers) or archaeal (122 markers) genomes, but `CheckM` is able to determine which set is more appropriate for each of your bins as it runs.
 
@@ -250,6 +211,7 @@ Create a new script
     #!/bin/bash -e
     #SBATCH --account       nesi02659
     #SBATCH --job-name      CheckM
+    #SBATCH --partition     milan
     #SBATCH --time          00:20:00
     #SBATCH --mem           50GB
     #SBATCH --cpus-per-task 10
@@ -306,6 +268,7 @@ When your job completes, we will download the summary file and examine it.
         #!/bin/bash -e
         #SBATCH --account       nesi02659
         #SBATCH --job-name      CheckM2
+        #SBATCH --partition     milan
         #SBATCH --time          00:20:00
         #SBATCH --mem           50GB
         #SBATCH --cpus-per-task 10
@@ -327,7 +290,7 @@ When your job completes, we will download the summary file and examine it.
 
 ---
 
-## Dereplication across multiple assemblies
+## Dereplicating bins across multiple assemblies
 
 In this workshop, we have generated a set of putative MAGs by binning scaffolds taken from a *single co-assembly*. Alternatively, we may have chosen to generate multiple assemblies (for example, mini-co-assemblies for each sample group, or individual assemblies for each sample). In this case, it would be necessary to work through the binning process for each assembly, and then conduct an additional dereplication step *across* the multiple assemblies to generate a single set of dereplicated bins for all assemblies. 
 

@@ -3,13 +3,15 @@
 !!! info "Objectives"
 
     * [Import and wrangle data in `R`](#1-import-and-wrangle-data-in-r)
-    * [Calculate weighted and unweighted Bray-Curtis dissimilarity metrics and nMDS analyses](#2-calculate-weighted-and-unweighted-bray-curtis-dissimilarity-and-nmds-using-r)
-    * [Build nMDS plots in `R` using the `ggplot2` package](#3-build-nmds-plots-in-r-using-the-ggplot2-package)
-    * [Discussion: Follow-up analyses](#follow-up-analyses)
+    * [Calculate weighted and unweighted dissimilarities](#2-calculate-weighted-and-unweighted-dissimilarities)
+    * [Generate ordination](#3-generate-ordination)
+    * [Extract data from ordination](#4-extract-data-from-ordination)
+    * [Build the ordination plot](#5-build-the-ordination-plot)
+    * [Follow-up analyses](#follow-up-analyses)
 
 ---
 
-### Introduction
+## Introduction
 
 A common method to investigate the relatedness of samples to one another is to calculate [ordinations](https://en.wikipedia.org/wiki/Ordination_(statistics)) and to visualise this in the form of a principal components analysis (PCA) or non-metric multidimensional scaling (nMDS) plot. In this exercise, we will calculate ordinations based on weighted and unweighted (binary) [Bray-Curtis dissimilarity](https://en.wikipedia.org/wiki/Bray%E2%80%93Curtis_dissimilarity) and present these in nMDS plots.
 
@@ -23,7 +25,7 @@ In addition to this, a simple mapping file has also been created (`11.data_prese
 
 ---
 
-### 1. Import and wrangle data in *R*
+## 1. Import and wrangle data in *R*
 
 To get started, open `RStudio` and start a new document.
 
@@ -31,7 +33,7 @@ To get started, open `RStudio` and start a new document.
 
     You will recognise that the first few steps will follow the same process as the previous exercise on [generating coverage heatmaps](../day4/ex16b_data_presentation_Coverage.md). In practice, these two workflows can be combined to reduce the repetitive aspects.
 
-#### 1.1 Prepare environment
+### 1.1 Prepare environment
 
 First, set the working directory and load the required libraries.
 
@@ -66,7 +68,7 @@ Import coverage tables and mapping file.
   metadata <- read_tsv("mapping_file.txt") # Metadata/mapping file of environmental parameters
   ```
 
-#### 1.2 Wrangle data
+### 1.2 Wrangle data
 
 As before in [coverage exercise](../day4/ex16b_data_presentation_Coverage.md), we need to obtain per MAG and sample average coverage values. We begin by selecting relevant columns and renaming them.
 
@@ -102,7 +104,7 @@ As before in [coverage exercise](../day4/ex16b_data_presentation_Coverage.md), w
       )
     ```
 
-### Calculate weighted and unweighted dissimilarities
+## 2. Calculate weighted and unweighted dissimilarities
 
 It is often useful to examine ordinations based on both weighted and unweighted (binary) dissimilarity (or distance) metrics. Weighted metrics take into account the proportions or abundances of each variable (in our case, the coverage value of each bin or viral contig). This can be particularly useful for visualising broad shifts in overall community structure (while the membership of the community may remain relatively unchanged). Unweighted metrics are based on presence/absence alone, and can be useful for highlighting cases where the actual membership of communities differs (ignoring their relative proportions within the communities).
 
@@ -157,7 +159,7 @@ From here on out, we will process the data using the same functions/commands. We
     )
     ```
 
-### 3. Generate ordination
+## 3. Generate ordination
 
 We now generate and visualise all ordinations in 4 panels them using native plotting methods.
 
@@ -184,7 +186,7 @@ Plotting via this method is a quick and easy way to look at what your ordination
 
     The `map(...)` function iterates through a list and applies the same set of commands/functions to each of them. For `map2(...)`, two lists are iterated concurrently and one output is generated based on inputs from both lists. The base `R` equivalent is the `apply(...)` family of functions. Here, we need to perform the same analyses on similar data types (dissimilarities of different kinds and organisms). These are powerful functions that can make your workflow more efficient, less repetitive, and more readable. However, this is not a panacea and there will be times where `for` loops or brute coding is necessary.
 
-### 4. Extract data from ordination
+## 4. Extract data from ordination
 
 Before proceeding to plotting using `ggplot2`. We need to extract the X and Y coordinates from the ordination result using `scores()`. We then also need to "flatten" the list to a single data frame as well as extract other relevant statistics (e.g. [stress values](https://www.researchgate.net/post/What_is_the_importanceexplanation_of_stress_values_in_NMDS_Plots)).
 
@@ -215,7 +217,7 @@ If you click on `scrs_all` in the 'Environment' pane (top right), you will see t
 * `sample`: Sample names
 * `NMDS1` and `NMDS2`: X and Y coordinates for each plot
 
-### 5. Build the ordination plot
+## 5. Build the ordination plot
 
 After obtaining the coordinates (and associated statistics), we can use it as input to `ggplot()` (the function is `ggplot()` from the package called `ggplot2`). As before, we will set our colour palette first. We will also generate a vector of panel headers.
 
@@ -284,11 +286,12 @@ You should try and modify any of the arguments above to see what changes: Change
 ![image](../figures/day4_coverage.10.nmds_ggplot2.png)
 
 !!! note "Note"
+
     How informative these types of analyses are depends in part on the number of samples you actually have and the degree of variation between the samples. As you can see in the nMDS plots based on unweighted (binary) Bray-Curtis dissimilarities (especially for the MAGs data) there are not enough differences between any of the samples (in this case, in terms of community membership, rather than relative abundances) for this to result in a particularly meaningful or useful plot in these cases.
 
 ---
 
-### Follow-up analyses
+## Follow-up analyses
 
 It is often valuable to follow these visualisations up with tests for $\beta$-dispersion (whether or not sample groups have a comparable *spread* to one another, i.e. is one group of communities more heterogeneous than another?) and, provided that beta-dispersion is not significantly different between groups, PERMANOVA tests (the extent to which the variation in the data can be explained by a given variable (such as sample groups or other environmental factors, based on differences between the *centroids* of each group).
 

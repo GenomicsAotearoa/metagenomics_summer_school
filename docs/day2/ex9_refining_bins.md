@@ -2,21 +2,22 @@
 
 !!! info "Objectives"
 
-    * [Prepare input files for `VizBin`](#prepare-input-files-for-vizbin)
-    * [Project a *t-SNE* using `VizBin` and examine bin clusters](#project-a-t-sne-and-examine-bin-clusters)
-    * [Refine bins by identifying incorrectly assigned contigs](#picking-refined-bins)
-    * [*(Optional)* Refine and filter problematic contigs from bins](#optional-refine-and-filter-problematic-contigs-from-bins)
+    * [Preparing input files for `VizBin`](#preparing-input-files-for-vizbin)
+    * [Projecting a *t-SNE* using `VizBin` and examining bin clusters](#projecting-a-t-sne-and-examining-bin-clusters)
+    * [Picking refined bins](#picking-refined-bins)
+    * [Export `VizBin` clusters](#1-export-vizbin-clusters)
+    * [Export potentially problematic contigs](#2-export-potentially-problematic-contigs)
+    * [*(Optional)* Refining and filtering problematic contigs from bins](#optional-refining-and-filtering-problematic-contigs-from-bins)
     * [*(Optional)* Comparing pre- and post-filtered bins via *CheckM*](#optional-comparing-pre--and-post-filtered-bins-via-checkm)
-    * [*(Optional)* Creating new `VizBin` profiles with different fragment lengths](#optional-creating-new-vizbin-profiles-with-different-fragment-lengths)
     * [*(Optional)* Scripts for processing data with `ESOMana`](#optional-scripts-for-processing-data-with-esomana)
 
 ---
 
-## Prepare input files for `VizBin`
+## Preparing input files for `VizBin`
 
-!!! quote "What is VizBin?"
+!!! quote "What is `VizBin`?"
 
-    [*`VizBin`*](http://claczny.github.io/VizBin/) is a handy, GUI-based tool for creating ordinations of our binning data using the [t-Distributed Stochastic Neighbor Embedding (t-SNE)](https://lvdmaaten.github.io/tsne/) algorithm to project high-dimensional data down into a 2D plot that preserves clustering information. There's a really good video on [YouTube](https://www.youtube.com/watch?v=NEaUSP4YerM) that explains how the algorithm works in high-level terms, but for our purposes you can really consider it as a similar approach to a PCA or NMDS.
+    [`VizBin`](http://claczny.github.io/VizBin/) is a handy, GUI-based tool for creating ordinations of our binning data using the [t-Distributed Stochastic Neighbor Embedding (t-SNE)](https://lvdmaaten.github.io/tsne/) algorithm to project high-dimensional data down into a 2D plot that preserves clustering information. There's a really good video on [YouTube](https://www.youtube.com/watch?v=NEaUSP4YerM) that explains how the algorithm works in high-level terms, but for our purposes you can really consider it as a similar approach to a PCA or NMDS.
     
     On its own, `VizBin` takes a set of contigs and performs the *t-SNE* projection using compositional data. We can optionally provide it files that annotate contigs as belonging to particular bins and a file that adds coverage data to be considered when clustering. Unfortuantely, at this stage `VizBin` only allows a single coverage value per contig, which is not ideal. This is because `VizBin` only uses coverage as a means to modify the visualisation, not the ordination itself. It is possible to create your own *t-SNE* projection using multiple coverage values, however this is beyond the scope of today's exercise, and here we will be providing `VizBin` with coverage values for sample1 only. 
     
@@ -27,9 +28,9 @@
     * `all_bins.fna` is a concatenation of the bins of *fragmented* sub-contigs (fragmented to 20k)
     * `all_bins.sample1.vizbin.ann` is the annotation file containing per-subcontig coverage, label (bin ID), and length values.
 
-!!! note "Contig fragments as input for VizBin"
+!!! note "Contig fragments as input for `VizBin`"
 
-    When running VizBin, it is often preferable to split long contigs into smaller pieces in order to increase the density of clustering in the **t-SNE**. The data we are working with today are based on our bins output by `DAS_Tool` in the last binning exercise, but have been further processed using the `cut_up_fasta.py` script that comes with the binning tool `CONCOCT` to cut long contigs into 20k fragments. When reviewing our `VizBin` plots and outputs, it is important to remember that here we are looking at the **fragmented sub-contigs**, rather than the full complete contigs (the importance of this will be clear when we are reviewing our `vb_count_table.txt` later in this exercise).
+    When running `VizBin`, it is often preferable to split long contigs into smaller pieces in order to increase the density of clustering in the **t-SNE**. The data we are working with today are based on our bins output by `DAS_Tool` in the last binning exercise, but have been further processed using the `cut_up_fasta.py` script that comes with the binning tool `CONCOCT` to cut long contigs into 20k fragments. When reviewing our `VizBin` plots and outputs, it is important to remember that here we are looking at the **fragmented sub-contigs**, rather than the full complete contigs (the importance of this will be clear when we are reviewing our `vb_count_table.txt` later in this exercise).
 
 For future reference, and for working with your own data, a step-by-step process for generating these files from the dereplicated bins generated by `DAS_Tool` has been provided as an [Appendix](../resources/2_APPENDIX_ex9_Generating_input_files_for_VizBin.md).
 
@@ -58,7 +59,7 @@ For this section, we will be working within `6.bin_refinement/`. Let's first hav
     16.7296,bin_0.chopped,20000
     ```
 
-This file is a comma-delimited table (csv file) that presents the information in the way that VizBin expects it. The order of rows in this file corresponds to the order of contigs in the concatenated FASTA file of our fragmented bins, `all_bins.fna`.
+This file is a comma-delimited table (csv file) that presents the information in the way that `VizBin` expects it. The order of rows in this file corresponds to the order of contigs in the concatenated FASTA file of our fragmented bins, `all_bins.fna`.
 
 Create a few variations of the *.ann* file with various columns removed, in order to examine the different outputs they can generate.
 
@@ -78,7 +79,7 @@ Create a few variations of the *.ann* file with various columns removed, in orde
 
 ---
 
-## Project a *t-SNE* and examine bin clusters
+## Projecting a *t-SNE* and examining bin clusters
 
 We can now use these files in `VizBin` to curate the contigs in our bins. We will load and view the data in a few different steps.
 
@@ -98,7 +99,7 @@ For this exercise, we will be using the *Virtual Desktop* on NeSI which allows u
     ![virtual desktop environment](../figures/VirtualDesktopInitiated.PNG){width=600px}
     </center>
 
-!!! note "Running VizBin: local vs remote" 
+!!! note "Running `VizBin`: local vs remote" 
 
     Running `VizBin` remotely (e.g. within NeSI) can be slow with full data sets. Running a GUI (such as a program like `VizBin`) remotely can also require additional set up on some PCs. For day-to-day work, we recommend installing `VizBin` on your local machine and downloading the relevant input files (e.g. via `scp ...`) to run locally.
 
@@ -129,7 +130,7 @@ If this fails to open on your PC, or if it runs prohibitively slowly, team up wi
 
 -->
 
-### Initiate VizBin within the Virtual Desktop environment
+### Initiate `VizBin` within the Virtual Desktop environment
 
 1. In the Virtual Desktop, click on the terminal icon.
     <center>
@@ -137,7 +138,7 @@ If this fails to open on your PC, or if it runs prohibitively slowly, team up wi
     </center>
 
     
-2. VizBin is a Java programme, therefore we will need to load the Java module for it to work. In the terminal, type the following to load the Java module
+2. `VizBin` is a Java programme, therefore we will need to load the Java module for it to work. In the terminal, type the following to load the Java module
 
     !!! warning "Copy/paste in the Virtual Desktop"
 
@@ -175,7 +176,7 @@ If this fails to open on your PC, or if it runs prohibitively slowly, team up wi
         java -jar VizBin-dist.jar
         ```
 
-5. A successful launch of VizBin will look like the following:
+5. A successful launch of `VizBin` will look like the following:
    <center>
    ![vizbin launch](../figures/SuccessVizBin.PNG)
    </center>
@@ -185,7 +186,7 @@ If this fails to open on your PC, or if it runs prohibitively slowly, team up wi
 
 Once `VizBin` is open, to get started, click the 'Choose...' button then navigate to the FASTA file `all_bins.fna`.
 
-!!! tip "VizBin directory"
+!!! tip "`VizBin` directory"
 
     It is likely that when we click on the 'Choose...' button, the directory that is open will be our NeSI home directory. In that case, we can type in the input FASTA file in the 'File Name' bar: `/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinement/all_bins.fna`
 
@@ -238,23 +239,25 @@ Try this for one or two clusters. In practice, we would do this for each `VizBin
 
 ### Highlight a cluster to zoom into
 
-
-<center>![image](../figures/ex10_select_to_zoom_2022.png){width="600"}</center>
+<center>
+![image](../figures/ex10_select_to_zoom_2022.png){width="600"}
+</center>
 
 ### Select the cluster to export
 
 Left-click several points around the cluster
 
-
-<center>![image](../figures/ex10_select_cluster_2022.png){width="600"}</center>
+<center>
+![image](../figures/ex10_select_cluster_2022.png){width="600"}
+</center>
 
 ### Export the cluster
 
 Right-click, 'Selection', 'Export'. Save the output as `cluster_1.fna`. 
 
-
-<center>![image](../figures/ex10_export_2022.png){width="600"}</center>
-
+<center>
+![image](../figures/ex10_export_2022.png){width="600"}
+</center>
 
 ## 2. Export potentially problematic contigs
 
@@ -262,10 +265,11 @@ Right-click, 'Selection', 'Export'. Save the output as `cluster_1.fna`.
 
 Zoom in,  make a selection of potentially problematic contigs, and export as above.
 
-![](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/figures/ex10_select_outlier.png)
-<center>![image](../figures/ex10_select_outlier_2022.png){width="600"}</center>
+<center>
+![image](../figures/ex10_select_outlier_2022.png){width="600"}
+</center>
 
-Try this for one or two problematic contigs (or subsets of contigs). In practice, you could repeat this for all potentially problemtic contigs, saving each export as a new `contigs_n.fna` file.
+Try this for one or two problematic contigs (or subsets of contigs). In practice, you could repeat this for all potentially problematic contigs, saving each export as a new `contigs_n.fna` file.
 
 !!! abstract "Note"
 
@@ -273,7 +277,7 @@ Try this for one or two problematic contigs (or subsets of contigs). In practice
 
 ---
 
-## *(Optional)* Refine and filter problematic contigs from bins
+## *(Optional)* Refining and filtering problematic contigs from bins
 
 ### Create a count table of counts of our problematic contigs across each bin
 
@@ -315,7 +319,7 @@ Note that in the case of the first contig from the excerpt above, the 'problemat
 
 ### Generate a list of contigs to *exclude* from filtering
 
-Create a list of contigs identified from `vb_count_table.txt` that are *not* to be filtered out by seqmagick in the next step. For example, those contigs that have sub-contigs split across multiple vizbin clusters, and for which it's reasonable to actually keep the contig (such as when a flagged selected sub-contig exported from vizbin is in one unexpected cluster, but all other sub-contigs from that parent contig are in the expected cluster; in this case, you likely *don't* want to filter out the parent contig from the data set moving forward). 
+Create a list of contigs identified from `vb_count_table.txt` that are *not* to be filtered out by seqmagick in the next step. For example, those contigs that have sub-contigs split across multiple `VizBin` clusters, and for which it's reasonable to actually keep the contig (such as when a flagged selected sub-contig exported from vizbin is in one unexpected cluster, but all other sub-contigs from that parent contig are in the expected cluster; in this case, you likely *don't* want to filter out the parent contig from the data set moving forward). 
 
 Below is an example. Simply replace the contig IDs between the quotes for as many lines as necessary for your data. 
 
@@ -344,7 +348,7 @@ This creates `vb_omit_contigs_filtered.txt`, which we will then pass to `seqmagi
 
 ### Filter suspect contigs (based on `VizBin` analysis) from the bin data
 
-Use `seqmagick --exclude-from-file ...` to filter problematic contigs (those contigs listed in `vb_omit_contigs_filtered.txt`) out of the initial *unchopped* bin fasta files, generating final bins for downstream processing.
+Use `seqmagick --exclude-from-file ...` to filter problematic contigs (those contigs listed in `vb_omit_contigs_filtered.txt`) out of the initial *unchopped* bin FASTA files, generating final bins for downstream processing.
 
 !!! terminal "code"
 
@@ -366,7 +370,7 @@ Our filtered bins for downstream use are now in `filtered_bins/`
 
 ---
 
-## *(Optional)* Comparing pre- and post-filtered bins via *CheckM*
+## *(Optional)* Comparing pre- and post-filtered bins via `CheckM`
 
 The end goal of this process is the generation of a final set of refined bins. Following this, the `CheckM` procedure should be re-run, this time on the refined `filtered_bins/`. This provides `CheckM` metrics for the final actual (filtered) bin set, and also an opportunity to compare between pre- and post-filtering to see if the `VizBin` bin refinement steps have, for example, improved the degree of contamination in the bins.
 
@@ -414,21 +418,20 @@ For this exercise, a copy of the output from running `CheckM` on the `filtered_b
     | metabat.5 | f__Bradyrhizobiaceae (UID3695) | 47 | 693 | 296 | 3 | 690 | 0 | 0 | 0 | 0 | 99.47 | 0.00 | 0.00 |
     | metabat.7 | g__Vibrio (UID4878) | 67 | 1130 | 369 | 4 | 1125 | 1 | 0 | 0 | 0 | 99.46 | 0.03 | 0.00 |
     
-
 An example of an updated slurm script to run `CheckM` on the `filtered_bins/` is as follows:
 
 !!! terminal "code"
 
     ```bash linenums="1"
     #!/bin/bash -e
-    #SBATCH --account nesi02659
-    #SBATCH --job-name checkm_refined_bins
-    #SBATCH --time 00:20:00
-    #SBATCH --mem 50GB
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      checkm_refined_bins
+    #SBATCH --partition     milan
+    #SBATCH --time          00:20:00
+    #SBATCH --mem           50GB
     #SBATCH --cpus-per-task 10
-    #SBATCH --error %x_%j.err
-    #SBATCH --output %x_%j.out
-
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
 
     module purge
     module load CheckM/1.2.1-gimkl-2022a-Python-3.10.5
@@ -438,7 +441,6 @@ An example of an updated slurm script to run `CheckM` on the `filtered_bins/` is
     checkm lineage_wf -t $SLURM_CPUS_PER_TASK --pplacer_threads $SLURM_CPUS_PER_TASK -x fna \
                       --tab_table -f filtered_bins_checkm.txt \
                       filtered_bins/ filtered_bins_checkm_out/
-
     ```
 
 The data you have been working with was created using the `cut_up_fasta.py` script that comes with the binning tool `CONCOCT`. It was run to cut contigs into 20k fragments, to better add density to the cluster. If you would like to visualise the data using different contig fragment sizes, you can create these using the following commands (replace `YOUR_CONTIG_SIZE` with the size of interest, e.g. `10000`):
@@ -462,7 +464,7 @@ The data you have been working with was created using the `cut_up_fasta.py` scri
     cat custom_chop/*.fna > all_bins_custom_chop.fna
     ```
 
-You can open `all_bins_custom_chop.fna` in VizBin to view the clustering with this new fragmentation threshold. 
+You can open `all_bins_custom_chop.fna` in `VizBin` to view the clustering with this new fragmentation threshold. 
 
 If you wish to also provide an annotation file to colour by bin, this can be generated with the following:
 

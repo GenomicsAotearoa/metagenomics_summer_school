@@ -14,25 +14,30 @@ With the mapping information computed in the last exercise, we can now perform b
 
 In our own workflow, we use the tools `MetaBAT`, `MaxBin`, and `CONCOCT` for binning, but there are many alternatives that are equally viable. In the interests of time, we are only going to demonstrate the first two tools. However, we recommend that you experiment with some of the following tools when conducting your own research.
 
-1. [GroopM](http://ecogenomics.github.io/GroopM/)
 1. [Tetra-ESOM](https://github.com/tetramerFreqs/Binning)
 1. [VAMB](https://github.com/RasmussenLab/vamb)
 
 ---
 
-## *MetaBAT*
+## `MetaBAT`
 
 `MetaBAT` binning occurs in two steps. First, the *bam* files from the last exercise are parsed into a tab-delimited table of the average coverage depth and variance per sample mapped. Binning is then performed using this table.
 
 The *.bam* files can be passed in via either a user-defined order, or using wildcards.
+
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
+
+!!! terminal-2 "Navigate to working directory"
+
+    ```bash
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
+    ```
 
 !!! terminal "code"
 
     ```bash
     module purge
     module load MetaBAT/2.15-GCC-11.3.0
-
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 
     # Manual specification of files
     jgi_summarize_bam_contig_depths --outputDepth metabat.txt sample1.bam sample2.bam sample3.bam sample4.bam
@@ -78,7 +83,7 @@ The problem with this is that on Linux systems, prefixing a file or folder name 
 
 ---
 
-## *MaxBin*
+## `MaxBin`
 
 Like `MetaBAT`, `MaxBin` requires a text representation of the coverage information for binning. Luckily, we can be sneaky here and just reformat the `metabat.txt` file into the format expected by `MaxBin`. We use `cut` to select only the columns of interest, which are the *contigName* and coverage columns, but not the *contigLen*, *totalAvgDepth*, or variance columns.
 
