@@ -21,6 +21,7 @@ Example slurm script:
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      prodigal
+    #SBATCH --partition     milan
     #SBATCH --time          00:05:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 2
@@ -113,6 +114,7 @@ Use `vContact2`'s `vcontact2_gene2genome` script to generate the required mappin
 From the `vContact2` online docs:
 
 !!! quote ""
+
     One important note is that the taxonomic information is not included for user sequences. This means that each user will need to find their genome(s) of interest and check to see if reference genomes are located in the same VC. If the user genome is within the same VC sub-cluster as a reference genome, then there's a very high probability that the user genome is part of the same genus. If the user genome is in the same VC but not the same sub-cluster as a reference, then it's highly likely the two genomes are related at roughly genus-subfamily level. If there are no reference genomes in the same VC or VC sub-cluster, then it's likely that they are not related at the genus level at all.
 
 The summary output of `vContact2` is the file `vConTACT2_Results/genome_by_genome_overview.csv`. As the comment above notes, one approach would be to search this file for particular contigs of interest, and see if any reference genomes fall into the same viral cluster (VC), using this reference to predict the taxonomy of the contig of interest.

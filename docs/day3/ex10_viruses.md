@@ -3,7 +3,7 @@
 !!! info "Objectives"
 
     * [Identifying viral contigs](#identifying-viral-contigs)
-    * [Identifying viral contigs using `VirSorter2`](#identifying-viral-contigs-using-VirSorter2)
+    * [Identifying viral contigs using `VirSorter2`](#identifying-viral-contigs-using-virsorter2)
     * [Checking quality and estimating completeness of the viral contigs via `CheckV`](#checking-quality-and-estimate-completeness-of-the-viral-contigs-via-checkv)
     * [Exercise: Examining viral output files from `VirSorter2` and `CheckV`](#exercise-examining-viral-output-files-from-virsorter2-and-checkv)
     * [Introduction to `vConTACT2` for predicting taxonomy of viral contigs](#introduction-to-vcontact2-for-predicting-taxonomy-of-viral-contigs)
@@ -207,9 +207,9 @@ A few notes to consider:
     * You will see that the `genome_by_genome_overview.csv` file contains entries for the full reference database used as well as the input viral contigs (contigs starting with `NODE`). 
     * You can use a command such as `grep "NODE" vConTACT2_Results/genome_by_genome_overview.csv | less` to view only the lines for the input contigs of interest. 
         * Note also that these lines however will *not* contain taxonomy information. 
-        * See the notes in the [Appendix](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md) for further information about why this might be.
+        * See the notes in the [Appendix](../resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md) for further information about why this might be.
         
-    * As per the notes in the [Appendix](https://github.com/GenomicsAotearoa/metagenomics_summer_school/blob/master/materials/resources/APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md), the `tax_predict_table.tsv` file contains *predictions* of potential taxonomy (and or *taxonomies*) of the input viral contigs for order, family, and genus, based on whether they clustered with any viruses in the reference database.
+    * As per the notes in the [Appendix](../resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md), the `tax_predict_table.tsv` file contains *predictions* of potential taxonomy (and or *taxonomies*) of the input viral contigs for order, family, and genus, based on whether they clustered with any viruses in the reference database.
         * Note that these may be lists of *multiple* potential taxonomies, in the cases where viral contigs clustered with multiple reference viruses representing more than one taxonomy at the given rank.
   
         !!! note "" 

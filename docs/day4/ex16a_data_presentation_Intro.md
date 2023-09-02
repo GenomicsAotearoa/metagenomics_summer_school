@@ -26,7 +26,7 @@ As the fundamental point of data visualisation is *communication*, when building
 * [ColorBrewer2](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3) (select 'colorblindsafe')
 * [chroma.js](https://gka.github.io/palettes/#/7|d|6e5300,7c8c00,00a63e|ffffe0,ff005e,93003a|1|1)
 * Selecting and checking your colour choice using [Viz Palette](https://projects.susielu.com/viz-palette?colors=[%22#ffd700%22,%22#ffb14e%22,%22#fa8775%22,%22#ea5f94%22,%22#cd34b5%22,%22#9d02d7%22,%22#0000ff%22]&backgroundColor=%22white%22&fontColor=%22black%22&mode=%22achromatopsia%22)
-* [Blog post](https://bconnelly.net/posts/creating_colorblind-friendly_figures/) by Brian Connelly.
+* [An article featuring tips for visual accessibility](https://www.nature.com/articles/d41586-021-02696-z)
 * Several useful colour palettes designed by Martin Krzywinski are available [here](http://mkweb.bcgsc.ca/colorblind/palettes.mhtml#page-container)
 * [Stack Overflow community suggestions](https://stackoverflow.com/questions/57153428/r-plot-color-combinations-that-are-colorblind-accessible)
 
