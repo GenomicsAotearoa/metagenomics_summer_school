@@ -44,7 +44,7 @@ We can then import our data using the `list.files()` function to loop over each 
 !!! r-project "code"
 
     ```R
-    cazy_files <- list.files('.')
+    cazy_files <- list.files('.', pattern = ".*.domtbl")
 
     # For each file, import it, drop unneeded columns, and add a column recording the bin name
     cazy_df <- data.frame()
