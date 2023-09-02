@@ -46,6 +46,15 @@ The *.bam* files can be passed in via either a user-defined order, or using wild
     jgi_summarize_bam_contig_depths --outputDepth metabat.txt sample?.bam
     ```
 
+??? tip "Bash wildcards"
+
+    The question mark `?` is also a Bash wildcard. The difference between `?` and `*` is that:
+
+    - `?` represents any character ***once***
+    - `*` represents any character ***zero or more times***
+
+    The reason we use a `?` here instead is because if you did the SPAdes contig mapping with the `for` loop AND with the array, you will capture each sample twice (i.e., `sample1.bam` and `sample1_a.bam`) with the asterisk `*`. For this exercise, we really want each sample file to be counted only once.
+
 Both give the same result, although the sample order may vary.
 
 We can then pass the table `metabat.txt` into the `MetaBAT` binning tool.
