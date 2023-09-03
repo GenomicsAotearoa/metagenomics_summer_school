@@ -134,7 +134,7 @@ There are a number of different environment module implementations commonly used
     ```bash
     $ module purge
     ```
-    >Please **do not** use `module --force purge`
+    ><span style="color:red">Please **do not** use `module --force purge`</span>
 
     * Swap a currently loaded module for a different one
 
