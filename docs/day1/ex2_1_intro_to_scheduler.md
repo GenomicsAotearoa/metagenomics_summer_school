@@ -148,9 +148,9 @@ There are a number of different environment module implementations commonly used
     ```bash
     cd ~/mgss/hpc-and-slurm
     ```
-    - Run `ls -F` command to list the file/directories in this directory. There are four files 
+    - Run `ls -F` command to list the file/directories in this directory. There are four files and a directory 
     ```bash
-    blast.slurm  mm-first.faa  mm-protein.faa  mm-second.faa
+    blast.slurm*  Exercise/  mm-first.faa  mm-protein.faa  mm-second.faa
     ```
     - `mm-protein.faa` is a mouse RefSeq protein data set with 64,599 sequences.. `mm-first.faa` and `mm-second.faa` are subsets of `mm-protein.faa`
         - `mm-first.faa` contains the first two sequences whereas `mm-second.faa` has the first 96 sequences. 
@@ -261,13 +261,18 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
 
 <br>
 
-??? question "Exercise"
+??? laptopcode "Demo"
 
-    * Make sure you are in **your** working directory 
-    * There is a `Slurm_Intro` directory which has the following directory structure 
+    * Make sure you are in **your**  `hpc-and-slurm` directory .i.e. `cd ~/mgss/hpc-and-slurm/`
+    * Open `blast.slurm` script with `nano` OR direct the the File explorer to <KBD>nobackup_nesi02659</KBD> > <KBD>MGSS_U</KBD> > <KBD>YOUR_USERNAME</KBD> > <KBS>hpc-and-slurm</KBD> ( refer to [Jupyter File explorer](https://genomicsaotearoa.github.io/metagenomics_summer_school/supplementary/supplementary_2/#jupyter-file-explorer) on Supplementary) and double click the file
 
-    <center>![image](../theme_images/slurm_intro_struc.png){width="500"}</center>
+    !!! terminal-2 "Review the script and submit it to cluster as below"
 
-    * We will work from **1.** to **4.** . Objective is to review, submit, check and *review* Slurm jobs. 
+        ```bash
+        sbatch blast.slurm
+        ```
 
     <center>![image](../theme_images/slurm_cycle_mini.png)</center>
+
+
+??? Exercise "
