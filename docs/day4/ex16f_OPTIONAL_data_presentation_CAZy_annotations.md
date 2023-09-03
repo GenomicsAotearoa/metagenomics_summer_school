@@ -160,7 +160,13 @@ Finally, we create the actual plot by passing this matrix into the `pheatmap` li
 
     colours <- colorRampPalette(c("#fff9e7","#920000"), space="Lab")(100)
 
-    cazy_matrix %>% column_to_rownames('Bin') %>% as.matrix(.) %>% pheatmap(., col = colours)
+    png(file = "ex15_CAZy_heatmap.bmp", width = 1200 * 2, height = 250 * 2, units = "px")
+    cazy_matrix %>% 
+      column_to_rownames('Bin') %>% 
+      as.matrix(.) %>% 
+      t() %>%
+      pheatmap(., col = colours, fontsize = 5)
+    dev.off()
     ```
     
 <center>
