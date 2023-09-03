@@ -194,7 +194,6 @@ An HPC system might have thousands of nodes and thousands of users. How do we de
     * Slurm
     * PBS , Torque
     * Grid Engine
-    * LSF – IBM Systems
 
     <center>![image](../theme_images/slurm_comms2compute.png){width="800"}</center>
 
@@ -229,7 +228,7 @@ About
 As with most other scheduler systems, job submission scripts in Slurm consist of a header section with the shell specification and options to the submission command (`sbatch` in this case) followed by the body of the script that actually runs the commands you want. In the header section, options to `sbatch` should be prepended with `#SBATCH`.
 
 <br>
-![image](../theme_images/anatomy_of_a_slurm_script.png){width="700"}
+![image](../theme_images/anatomy-of-slurm-2023.png){width="700"}
 <br>
 
 !!! quote ""
