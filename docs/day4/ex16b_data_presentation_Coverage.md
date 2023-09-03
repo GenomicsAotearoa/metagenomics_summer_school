@@ -464,7 +464,7 @@ We then obtain the coverage matrix and transform the values to enhance visualisa
     virus_sample_hclust <- hclust(virus_sample_dist, "average")
 
     plot(
-      sample_hclust,
+      virus_sample_hclust,
       main = "Bray-Curtis dissimilarities between samples\n(virus)",
       xlab = "Sample",
       ylab = "Height",

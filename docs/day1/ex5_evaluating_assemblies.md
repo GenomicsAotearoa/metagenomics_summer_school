@@ -150,6 +150,7 @@ As we can see here, the `SPAdes` assembly has completed with fewer contigs assem
 
     ```bash
     # Load BBMap module
+    module purge
     module load BBMap/39.01-GCC-11.3.0
 
     # Generate statistics for filtered SPAdes assembly
@@ -244,7 +245,7 @@ However, since we **_do_** know the composition of the original communities used
     #SBATCH --job-name      metaquast
     #SBATCH --partition     milan
     #SBATCH --time          00:15:00
-    #SBATCH --mem           4GB
+    #SBATCH --mem           10GB
     #SBATCH --cpus-per-task 10
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out

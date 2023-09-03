@@ -394,7 +394,7 @@ Again, we will create a script using `nano`:
     module load BBMap/39.01-GCC-11.3.0
 
     # Run bbmap
-    srun bbmap.sh -Xmx27g -t=$SLURM_CPUS_PER_TASK \
+    bbmap.sh -Xmx27g -t=$SLURM_CPUS_PER_TASK \
       minid=0.95 maxindel=3 bwr=0.16 bw=12 quickmatch fast minhits=2 qtrim=rl trimq=10 untrim \
       in1=../3.assembly/sample${SLURM_ARRAY_TASK_ID}_R1.fastq.gz \
       in2=../3.assembly/sample${SLURM_ARRAY_TASK_ID}_R2.fastq.gz \

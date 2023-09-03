@@ -61,8 +61,14 @@ As previously, we will quickly go through the steps of this command:
 Check the content of the `.coords` files now. You should see something like the following:
 
 !!! terminal "code"
+
     ```bash
     cat bin_3_cys.coords
+    ```
+  
+!!! circle-check "Terminal output"
+
+    ```
     bin_3_NODE_53_length_158395_cov_1.135272_128    135928  136935  1
     bin_3_NODE_53_length_158395_cov_1.135272_129    136994  137299  1
     bin_3_NODE_53_length_158395_cov_1.135272_130    137411  138322  1
@@ -248,11 +254,16 @@ We need to remedy this by having a consistent label system. First, create a data
 
     # Check what we have created
     KO_genes
-    #       KO gene_name
-    # 1 K02045      cysA
-    # 2 K02046      cysU
-    # 3 K02047      cysW
-    # 4 K02048      sbp1
+    ```
+
+!!! circle-check "Console output"
+
+    ```
+          KO gene_name
+    1 K02045      cysA
+    2 K02046      cysU
+    3 K02047      cysW
+    4 K02048      sbp1
     ```
 
 Then, we join the KO_genes, annotation, and coordinate tables. We also replace rows that contain `NA` with `"Unknown domain"`.
@@ -289,11 +300,16 @@ We also need to convert the tidy annotation table into something that `genoPlotR
 
     # Check one of the annotations_list objects
     annotations_list$bin_5_annot
-    #      x1    x2 text color rot
-    # 1 71608 72606 sbp1 black   0
-    # 2 72768 73586 cysU black   0
-    # 3 73597 74466 cysW black   0
-    # 4 74470 75459 cysA black   0
+    ```
+
+!!! circle-check "Console output"
+
+    ```
+         x1    x2 text color rot
+    1 71608 72606 sbp1 black   0
+    2 72768 73586 cysU black   0
+    3 73597 74466 cysW black   0
+    4 74470 75459 cysA black   0
     ```
 
 #### 2.4 Plot data

@@ -46,6 +46,7 @@ Load your files into R. Here, we are loading them into a list. Given that there 
 !!! r-project "code"
 
     ```R
+    # Read files ----
     filenames <- list.files(pattern = ".*.aa")
     bin_ids <- str_extract(filenames, "bin_\\d+")
     annotations <- map(filenames, function(file) read_tsv(file)) %>% 

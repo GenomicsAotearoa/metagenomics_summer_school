@@ -61,18 +61,18 @@ Import coverage tables and mapping file.
 
 !!! r-project "code"
 
-  ```R
-  # Read files ----
-  contig_cov <- read_tsv("bins_cov_table.txt") # Bin contig coverage table
-  virus_cov <- read_tsv("viruses_cov_table.txt") # Viral contig coverage table
-  metadata <- read_tsv("mapping_file.txt") # Metadata/mapping file of environmental parameters
-  ```
+    ```R
+    # Read files ----
+    contig_cov <- read_tsv("bins_cov_table.txt") # Bin contig coverage table
+    virus_cov <- read_tsv("viruses_cov_table.txt") # Viral contig coverage table
+    metadata <- read_tsv("mapping_file.txt") # Metadata/mapping file of environmental parameters
+    ```
 
 ### 1.2 Wrangle data
 
 As before in [coverage exercise](../day4/ex16b_data_presentation_Coverage.md), we need to obtain per MAG and sample average coverage values. We begin by selecting relevant columns and renaming them.
 
-!!! r-project ""
+!!! r-project "code"
 
     ```R
     ## Select relevant columns and rename them

@@ -44,7 +44,7 @@ We can then import our data using the `list.files()` function to loop over each 
 !!! r-project "code"
 
     ```R
-    cazy_files <- list.files('.')
+    cazy_files <- list.files('.', pattern = ".*.domtbl")
 
     # For each file, import it, drop unneeded columns, and add a column recording the bin name
     cazy_df <- data.frame()
@@ -160,12 +160,20 @@ Finally, we create the actual plot by passing this matrix into the `pheatmap` li
 
     colours <- colorRampPalette(c("#fff9e7","#920000"), space="Lab")(100)
 
-    cazy_matrix %>% column_to_rownames('Bin') %>% as.matrix(.) %>% pheatmap(., col = colours)
+    png(file = "ex15_CAZy_heatmap.bmp", width = 1200 * 2, height = 250 * 2, units = "px")
+    cazy_matrix %>% 
+      column_to_rownames('Bin') %>% 
+      as.matrix(.) %>% 
+      t() %>%
+      pheatmap(., col = colours, fontsize = 5)
+    dev.off()
     ```
-    
-<center>
-![image](../figures/ex15_CAZy_heatmap.png){width="700"}
-</center>
+
+??? circle-check "CAZy heatmap plot"
+
+    <center>
+    ![image](../figures/ex15_CAZy_heatmap.png){width="700"}
+    </center>
 
 And there we go. This is a pretty basic heatmap, so there are a number of presentation issues with it. If you have time, try to do the following fixes to the heatmap by exploring the manual for `pheatmap` or other `tidyverse` and `R` functions.
 
