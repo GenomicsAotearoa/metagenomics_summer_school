@@ -168,10 +168,12 @@ Finally, we create the actual plot by passing this matrix into the `pheatmap` li
       pheatmap(., col = colours, fontsize = 5)
     dev.off()
     ```
-    
-<center>
-![image](../figures/ex15_CAZy_heatmap.png){width="700"}
-</center>
+
+??? circle-check "CAZy heatmap plot"
+
+    <center>
+    ![image](../figures/ex15_CAZy_heatmap.png){width="700"}
+    </center>
 
 And there we go. This is a pretty basic heatmap, so there are a number of presentation issues with it. If you have time, try to do the following fixes to the heatmap by exploring the manual for `pheatmap` or other `tidyverse` and `R` functions.
 
