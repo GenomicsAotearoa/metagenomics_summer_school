@@ -529,7 +529,8 @@
 }
 .md-typeset .mosnet > .admonition-title,
 .md-typeset .mosnet > summary {
-  background-color: rgba(47,79,79,0.1);
+  color:rgb(230, 230, 236);
+  background-color: rgb(1, 38, 141);
 }
 .md-typeset .mosnet > .admonition-title::before,
 .md-typeset .mosnet > summary::before {

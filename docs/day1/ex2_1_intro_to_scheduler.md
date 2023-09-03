@@ -105,7 +105,7 @@ One of the workarounds for this issue is Environment modules. A module is a self
 
 There are a number of different environment module implementations commonly used on HPC systems and the one used in NeSI Mahuika cluster is `Lmod` where the `module` command is used to interact with environment modules.
 
-!!! info "Viewing, Accessing and Deploying software with `module` command""
+!!! mosnet "Viewing, Accessing and Deploying software with `module` command"
 
     * View available modules
 
