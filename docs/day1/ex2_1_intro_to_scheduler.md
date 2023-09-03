@@ -79,7 +79,7 @@ Over 90% HPCs & supercomputers employ Linux as their operating system.  Linux ha
     === "Portability"
         The operating system, utilities, and libraries have been ported to a wide variety of devices including desktops, clusters, supercomputers, mainframes, embedded systems, and smart phones.
 
-!!! info "The Linux operating system is made up of three parts; the ^^kernel^^, the ^^shell^^ and the software"
+??? info "The Linux operating system is made up of three parts; the ^^kernel^^, the ^^shell^^ and the software"
 
     Kernel − The kernel is the heart of the operating system. It interacts with the hardware and most of the tasks like memory management, task scheduling and file management.
 
@@ -141,6 +141,7 @@ There are a number of different environment module implementations commonly used
     ```bash
     $ module switch CURRENT_MODULE DESIRED_MODULE
     ```
+
 ## Working with job scheduler
 
 <center>![image](../theme_images/scheduler_image.png){width="500"}</center>
