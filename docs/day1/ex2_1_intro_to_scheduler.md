@@ -275,4 +275,22 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
     <center>![image](../theme_images/slurm_cycle_mini.png)</center>
 
 
-??? Exercise "
+??? question "Exercise `bowtie-test.slurm` Fill in the blanks and submit"
+
+    - Navigate to Exercise directory 
+    ```bash
+    cd ~/mgss/hpc-and-slurm/Exercise/
+    ```
+    - `bowtie-test.slurm` was compiled to execute a variant calling workflow for a set of reads belong to a lambda virus 
+    - Review the content of `bowtie-test.slurm`, fill in the missing values for Slurm variables and then the module commands 
+        * Name of the job/process can be anything. ( highly recommend giving it a "representative" name such as variant-calling OR lambda-variants,etc)
+        * 2 CPUs and ~2G of memory is sufficient 
+        * Runtime will be about 35 seconds but we can assign ~2 minutes for it.  ( counting for the overhead and unexpected slowdowns)
+        * We can ask Slurm to send an email notification when the job gets started and finished (regardless of the outcome)
+        * modules are listed but the command to load them are missing 
+
+    !!! terminal-2 "Submit the script"
+
+        ```bash
+        sbatch bowtie-test.slurm
+        ```
