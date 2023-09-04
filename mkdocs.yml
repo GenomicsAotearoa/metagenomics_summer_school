@@ -52,6 +52,8 @@ theme:
 #    - toc.integrate
     - navigation.tabs
     - navigation.tabs.sticky
+    - content.code.copy
+    - content.code.annotate
     
 
   # Necessary for search to work properly

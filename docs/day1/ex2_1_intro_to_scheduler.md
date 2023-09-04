@@ -55,6 +55,10 @@ NeSI Mahuika cluster (CRAY HPE CS400) system consists of a number of different n
         ![image](../theme_images/mahuika_maui_real.png){width="700"}
         </center>
 
+!!! jupyter "Jupyter Terminal"
+
+    - Jupyter terminal should be treated as a **login** node. .i.e. Just like what we have done so far; use it to develop, test and debug scripts but do not to deploy the production level workflow interactively.
+
 
 ### From Hardware to Software
 
@@ -75,7 +79,7 @@ Over 90% HPCs & supercomputers employ Linux as their operating system.  Linux ha
     === "Portability"
         The operating system, utilities, and libraries have been ported to a wide variety of devices including desktops, clusters, supercomputers, mainframes, embedded systems, and smart phones.
 
-!!! info "The Linux operating system is made up of three parts; the ^^kernel^^, the ^^shell^^ and the software"
+??? info "Supplementary : The Linux operating system is made up of three parts; the ^^kernel^^, the ^^shell^^ and the software"
 
     Kernel − The kernel is the heart of the operating system. It interacts with the hardware and most of the tasks like memory management, task scheduling and file management.
 
@@ -101,7 +105,7 @@ One of the workarounds for this issue is Environment modules. A module is a self
 
 There are a number of different environment module implementations commonly used on HPC systems and the one used in NeSI Mahuika cluster is `Lmod` where the `module` command is used to interact with environment modules.
 
-!!! info "Viewing, Accessing and Deploying software with `module` command""
+!!! mosnet "Viewing, Accessing and Deploying software with `module` command"
 
     * View available modules
 
@@ -130,13 +134,42 @@ There are a number of different environment module implementations commonly used
     ```bash
     $ module purge
     ```
-    >Please **do not** use `module --force purge`
+    ><span style="color:red">Please **do not** use `module --force purge`</span>
 
     * Swap a currently loaded module for a different one
 
     ```bash
     $ module switch CURRENT_MODULE DESIRED_MODULE
     ```
+
+!!! question "Exercise  - Use of login node and modules"
+
+    - Navigate to  **hpc-and-slurm** directory 
+    ```bash
+    cd ~/mgss/hpc-and-slurm
+    ```
+    - Run `ls -F` command to list the file/directories in this directory. There are four files and a directory 
+    ```bash
+    blast.slurm*  Exercise/  mm-first.faa  mm-protein.faa  mm-second.faa
+    ```
+    - `mm-protein.faa` is a mouse RefSeq protein data set with 64,599 sequences.. `mm-first.faa` and `mm-second.faa` are subsets of `mm-protein.faa`
+        - `mm-first.faa` contains the first two sequences whereas `mm-second.faa` has the first 96 sequences. 
+        - Let's BLAST these two sequences against the `swissprot` databae ( technically, we should be using `refseq_protein` database for this but it is substantially larger than `swissprot` .i.e. Not suitable for a quick demo)
+    ```bash  title="load modules"
+    module purge
+    module load BLASTDB/2023-07
+    module load BLAST/2.13.0-GCC-11.3.0
+    ```
+    ```bash title="This will take  ~ 10 seconds"
+    blastp -query mm-first.faa -db swissprot
+    ```
+    ```bash title="This will take ~3.5 minutes"
+    blastp -query mm-second.faa -db swissprot
+    ```
+    !!! clipboard-question ""
+
+        - Runtime for `mm-second.faa` is starting to demonstrate the limitation of running this query interactively on "login node". If we want to query `mm-protein.faa` which has 54503 more sequences than `mm-second.faa`, we will need access to more compute resources (**Compute nodes**) and ideally a non-interacive method where we don't have to leave the desktop/laptop on. In other words, a "Remote" mechanism
+        - Both of these problems can be solved with the help of a HPC "Scheduler"
 ## Working with job scheduler
 
 <center>![image](../theme_images/scheduler_image.png){width="500"}</center>
@@ -161,7 +194,6 @@ An HPC system might have thousands of nodes and thousands of users. How do we de
     * Slurm
     * PBS , Torque
     * Grid Engine
-    * LSF – IBM Systems
 
     <center>![image](../theme_images/slurm_comms2compute.png){width="800"}</center>
 
@@ -196,7 +228,7 @@ About
 As with most other scheduler systems, job submission scripts in Slurm consist of a header section with the shell specification and options to the submission command (`sbatch` in this case) followed by the body of the script that actually runs the commands you want. In the header section, options to `sbatch` should be prepended with `#SBATCH`.
 
 <br>
-![image](../theme_images/anatomy_of_a_slurm_script.png){width="700"}
+![image](../theme_images/anatomy-of-slurm-2023.png){width="700"}
 <br>
 
 !!! quote ""
@@ -229,13 +261,36 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
 
 <br>
 
-??? question "Exercise"
+??? laptopcode "Demo"
 
-    * Make sure you are in **your** working directory 
-    * There is a `Slurm_Intro` directory which has the following directory structure 
+    * Make sure you are in **your**  `hpc-and-slurm` directory .i.e. `cd ~/mgss/hpc-and-slurm/`
+    * Open `blast.slurm` script with `nano` OR direct the the File explorer to <KBD>nobackup_nesi02659</KBD> > <KBD>MGSS_U</KBD> > <KBD>YOUR_USERNAME</KBD> > <KBS>hpc-and-slurm</KBD> ( refer to [Jupyter File explorer](https://genomicsaotearoa.github.io/metagenomics_summer_school/supplementary/supplementary_2/#jupyter-file-explorer) on Supplementary) and double click the file
 
-    <center>![image](../theme_images/slurm_intro_struc.png){width="500"}</center>
+    !!! terminal-2 "Review the script and submit it to cluster as below"
 
-    * We will work from **1.** to **4.** . Objective is to review, submit, check and *review* Slurm jobs. 
+        ```bash
+        sbatch blast.slurm
+        ```
 
     <center>![image](../theme_images/slurm_cycle_mini.png)</center>
+
+
+??? question "Exercise `bowtie-test.slurm` Fill in the blanks and submit"
+
+    - Navigate to Exercise directory 
+    ```bash
+    cd ~/mgss/hpc-and-slurm/Exercise/
+    ```
+    - `bowtie-test.slurm` was compiled to execute a variant calling workflow for a set of reads belong to a lambda virus 
+    - Review the content of `bowtie-test.slurm`, fill in the missing values for Slurm variables and then the module commands 
+        * Name of the job/process can be anything. ( highly recommend giving it a "representative" name such as variant-calling OR lambda-variants,etc)
+        * 2 CPUs and ~2G of memory is sufficient 
+        * Runtime will be about 35 seconds but we can assign ~2 minutes for it.  ( counting for the overhead and unexpected slowdowns)
+        * We can ask Slurm to send an email notification when the job gets started and finished (regardless of the outcome)
+        * modules are listed but the command to load them are missing 
+
+    !!! terminal-2 "Submit the script"
+
+        ```bash
+        sbatch bowtie-test.slurm
+        ```
