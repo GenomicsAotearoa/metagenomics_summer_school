@@ -142,7 +142,7 @@ There are a number of different environment module implementations commonly used
     $ module switch CURRENT_MODULE DESIRED_MODULE
     ```
 
-!!! question "Exercise  - Use of login node and modules"
+!!! laptopcode "Demo  - Use of login node and modules"
 
     - Navigate to  **hpc-and-slurm** directory 
     ```bash
@@ -294,3 +294,10 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
         ```bash
         sbatch bowtie-test.slurm
         ```
+
+??? question "Optional : Exercise-2"
+
+    - Time permitting, we will discuss **Exercise-2** and GPUs 😊 (not needed for Summer School material)
+    ```bash
+    cd /mgss/hpc-and-slurm/Exercise-2/
+    ```
