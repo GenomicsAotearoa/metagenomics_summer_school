@@ -261,11 +261,6 @@ Another way to determine if an annotation 'belongs' in the MAG of interest is to
 
 However, when comparing taxonomic assignments, it is important to be aware of the differing taxonomic schemas that are circulating in the microbiological and bioinformatic literature and to know how to reconcile their differences. Similar to how the 16S rRNA gene taxonomies provided by *SILVA*, *Greengenes*, and *RDP* taxonomies all differ in some aspects, there are multiple competing taxonomies in protein databases.
 
-### Examples of various genome-level and protein taxonomies
-
-* [NCBI](https://www.ncbi.nlm.nih.gov/taxonomy)
-* [Genome Taxonomy Database](https://gtdb.ecogenomic.org/)
-
 This problem exists despite the existence of a formal [Code](https://www.microbiologyresearch.org/content/journal/ijsem/10.1099/ijsem.0.000778) for the naming of bacteria and archaea, because 
 
 !!! quote ""
