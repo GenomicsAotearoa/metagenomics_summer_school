@@ -287,23 +287,23 @@ Into this file, either write or copy/paste the following commands:
 
     ```bash linenums="1"
     #!/bin/bash -e
-
-    #SBATCH --account       nesi02659
-    #SBATCH --job-name      spades_assembly
-    #SBATCH --partition     milan
-    #SBATCH --time          00:30:00
-    #SBATCH --mem           10GB
-    #SBATCH --cpus-per-task 12
+    
+    #SBATCH --account       nesi02659      
+    #SBATCH --job-name      spades_assembly      
+    #SBATCH --partition     milan
+    #SBATCH --time          00:30:00          
+    #SBATCH --mem           10G           
+    #SBATCH --cpus-per-task 12 
     #SBATCH --error         %x_%j.err
-    #SBATCH --output        %x_%j.out
-
+    #SBATCH --output        %x_%j.out       
+    
     # Load modules
     module purge
     module load SPAdes/3.15.4-gimkl-2022a-Python-3.10.5
-
+    
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly
-
+    
     # Run SPAdes
     spades.py --meta -k 33,55,77,99,121 -t $SLURM_CPUS_PER_TASK \
               -1 for_spades_R1.fq.gz -2 for_spades_R2.fq.gz \
@@ -405,7 +405,7 @@ Paste or type in the following:
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      idbaud_assembly
-    #SBATCH --partition     milan
+    #SBATCH --partition     milan
     #SBATCH --time          00:20:00
     #SBATCH --mem           4GB
     #SBATCH --cpus-per-task 12

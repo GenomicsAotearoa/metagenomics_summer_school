@@ -240,7 +240,7 @@ However, since we **_do_** know the composition of the original communities used
 
     ```bash linenums="1"
     #!/bin/bash -e
-
+    
     #SBATCH --account       nesi02659
     #SBATCH --job-name      metaquast
     #SBATCH --partition     milan
@@ -249,14 +249,14 @@ However, since we **_do_** know the composition of the original communities used
     #SBATCH --cpus-per-task 10
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
-
+    
     # Load module
     module purge
     module load QUAST/5.0.2-gimkl-2018b
-
+    
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.evaluation
-
+    
     # Run metaquast    
     metaquast.py --references-list ref_genomes.txt --max-ref-number 21 \
                  -t $SLURM_CPUS_PER_TASK \
