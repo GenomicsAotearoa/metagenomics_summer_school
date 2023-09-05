@@ -6,12 +6,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Genomics Aotearoa &amp; NeSI" name="author"/>
-<link href="https://genomicsaotearoa.github.io/metagenomics_summer_school/supplementary/supplementary_1/" rel="canonical"/>
-<link href="../../resources/7_command_line_shortcuts/" rel="prev"/>
-<link href="../supplementary_2/" rel="next"/>
+<link href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day3/ex11.1_phylogenomics/" rel="canonical"/>
+<link href="../ex11_coverage_and_taxonomy/" rel="prev"/>
+<link href="../ex10_viruses/" rel="next"/>
 <link href="../../theme_images/nesi_ga.png" rel="icon"/>
 <meta content="mkdocs-1.4.3, mkdocs-material-9.1.15" name="generator"/>
-<title>NeSI Setup - Metagenomics Summer School</title>
+<title>Phylogenomics - Metagenomics Summer School</title>
 <link href="../../assets/stylesheets/main.26e3688c.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.ecc896b0.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -37,7 +37,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#nesi-setup">
+<a class="md-skip" href="#phylogenomics">
           Skip to content
         </a>
 </div>
@@ -61,7 +61,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              NeSI Setup
+              Phylogenomics
             
           </span>
 </div>
@@ -141,7 +141,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../day3/ex11_coverage_and_taxonomy/">
+<a class="md-tabs__link md-tabs__link--active" href="../ex11_coverage_and_taxonomy/">
         Day 3
       </a>
 </li>
@@ -156,7 +156,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="./">
+<a class="md-tabs__link" href="../../supplementary/supplementary_1/">
         Supplementary
       </a>
 </li>
@@ -273,45 +273,73 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
 <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
           Day 3
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
           Day 3
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../day3/ex11_coverage_and_taxonomy/">
+<a class="md-nav__link" href="../ex11_coverage_and_taxonomy/">
         Assigning taxonomy to refined prokaryotic bins
       </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../day3/ex11.1_phylogenomics/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Phylogenomics
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
         Phylogenomics
       </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#introduction-to-phylogenetic-inference">
+    Introduction to phylogenetic inference
+  </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../day3/ex10_viruses/">
+<a class="md-nav__link" href="#building-a-phylogenetic-tree">
+    Building a phylogenetic tree
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#visualising-the-tree">
+    Visualising the tree
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ex10_viruses/">
         Identifying viral contigs in metagenomic data
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../day3/ex12_gene_prediction/">
+<a class="md-nav__link" href="../ex12_gene_prediction/">
         Gene prediction
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../day3/ex13_gene_annotation_part1/">
+<a class="md-nav__link" href="../ex13_gene_annotation_part1/">
         Gene annotation I: BLAST-like and HMM
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../day3/ex14_gene_annotation_part2/">
+<a class="md-nav__link" href="../ex14_gene_annotation_part2/">
         Gene annotation II: DRAM and coverage calculation
       </a>
 </li>
@@ -418,26 +446,25 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
 <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
           Supplementary
           <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_7">
 <span class="md-nav__icon md-icon"></span>
           Supplementary
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../supplementary/supplementary_1/">
         NeSI Setup
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../supplementary_2/">
+<a class="md-nav__link" href="../../supplementary/supplementary_2/">
         NeSI File system, Working directory and Symlinks
       </a>
 </li>
@@ -453,63 +480,171 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#introduction-to-phylogenetic-inference">
+    Introduction to phylogenetic inference
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#building-a-phylogenetic-tree">
+    Building a phylogenetic tree
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#visualising-the-tree">
+    Visualising the tree
+  </a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="nesi-setup">NeSI Setup<a class="headerlink" href="#nesi-setup" title="Permanent link">¶</a></h1>
-<details class="jupyter">
-<summary>S.1.1 : NeSI Mahuika Jupyter login</summary>
-<ol>
-<li><p>Follow <a href="https://jupyter.nesi.org.nz/hub/login">https://jupyter.nesi.org.nz/hub/login</a></p></li>
-<li><p>Enter NeSI username, HPC password and 6 digit second factor token </p><br/><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/jupyter_login_labels_updated.png"><img alt="image" src="../../theme_images/jupyter_login_labels_updated.png" width="720"/></a></li>
-<li>
-<p><p>Choose server options as below</p></p>
-<blockquote>
-<blockquote>
+<h1 id="phylogenomics">Phylogenomics<a class="headerlink" href="#phylogenomics" title="Permanent link">¶</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Objectives</p>
 <ul>
-<li>make sure to choose the correct project code <code>nesi02659</code>, number of CPUs <code>CPUs=4</code>, memory <code>8 GB</code> prior to pressing <a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/start_button.png"><img alt="image" src="../../theme_images/start_button.png" width="50"/></a> button.</li>
+<li><a href="#introduction-to-phylogenetic-inference">Introduction to phylogenetic inference</a></li>
+<li><a href="#building-a-phylogenetic-tree">Building a phylogenetic tree</a></li>
+<li><a href="#visualising-the-tree">Visualising the tree</a></li>
 </ul>
-</blockquote>
-</blockquote>
-<p><br/><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/server-options-4c-8g.png"><img alt="image" src="../../theme_images/server-options-4c-8g.png"/></a></p>
-</li>
-<li>
-<p><p>Once logged in, click the <strong>Terminal</strong> tile/icon to make sure a terminal session can be launched without any issues</p>
-<p><br/><center><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/terminal_icon.png"><img alt="image" src="../../theme_images/terminal_icon.png"/></a></center></p>
-</p></li>
-</ol>
+</div>
+<hr/>
+<h2 id="introduction-to-phylogenetic-inference">Introduction to phylogenetic inference<a class="headerlink" href="#introduction-to-phylogenetic-inference" title="Permanent link">¶</a></h2>
+<p><code>GTDB-Tk</code> is very helpful in inferring the taxonomy of our MAGs. It also has a bunch of additional files that is generated so we can visualise the phylogenetic relationships between the MAGs (both in the larger context of the entire GTDB tree, or just our MAGs). </p>
+<p>There are several software options for inferring phylogenetic relationships, some more commonly used than others. Popular options include <code>BEAST</code> (Bayesian Evolutionary Analysis Sampling Trees), <code>FastTree 2</code>, <code>Geneious</code>, <code>IQ-TREE 2</code>, <code>MEGA</code> (Molecular Evolutionary Genetics Analysis), and <code>RAxML</code> (Randomized Axelerated Maximum Likelihood). A requirement common to all software listed is that they require a multiple sequence alignment (MSA). For this workshop, GTDB-Tk has conveniently output this file for us.</p>
+<details class="tip">
+<summary>Software for MSAs</summary>
+<p>GTDB-Tk generates an MSA based on a concatenated set of core single-copy genes identified within each of our MAGs. However, if you are studying other genes, you will need to generate (and curate) your own MSA. Popular software include <code>MAFFT</code>, <code>ClustalW</code>, <code>Clustal Omega</code>, and <code>MUSCLE</code>. </p>
 </details>
-<details class="key">
-<summary>S.1.2 : Set NeSI HPC Password</summary>
-<ol>
-<li>Log into <a href="https://my.nesi.org.nz">mynesi portal</a> with your Institutional credentials (OR Tuakiri Virtual Home) and set your <strong>NeSI HPC password</strong> as below</li>
-</ol>
-<p><br/><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/SetPassword.png"><img alt="image" src="../../theme_images/SetPassword.png" width="1200"/></a></p>
+<p><strong>Phylogenetic inference methods</strong> </p>
+<p>To start, we need a set of aligned (and ideally, trimmed) orthologous genes. These are genes in different species that, by speciation, have evolved from a common ancestor and tend to retain the same function over the course of evolution. From here, there are two ways to generate an input for phylogenetic inference:</p>
+<div class="admonition note">
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Super-tree approach</label><label for="__tabbed_1_2">Supermatrix approach (most common)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Alignment of each gene is analysed individually to estimate a tree. Then, these distinct trees are integrated to estimate the species tree.</p>
+</div>
+<div class="tabbed-block">
+<p>Aligned orthologous genes are concatenated (this is the supermatrix) and then used to estimate a tree. This is the most commonly used method.</p>
+</div>
+</div>
+</input></input></div>
+</div>
+<p>From here, we then choose one of two ways to reconstruct the phylogeny:</p>
+<div class="admonition note">
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">Distance-based</label><label for="__tabbed_2_2">Character-based</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>This involves the calculation of a pairwise genetic distance matrix and then using it to iteratively construct a tree. A common implementation of this method is the Neighbour-Joining algorithm. While computationally efficient, it tends not to perform well for distantly related organisms.</p>
+</div>
+<div class="tabbed-block">
+<p>Infers phylogeny based on the characters (nucleic/amino acid alphabet) in the MSA via one of three methods:</p>
+<ul>
+<li><strong>Maximum parsimony</strong> This method tries to find a tree topology with the least the number of character changes required to explain the data (i.e., the most parsimonious tree). While computationally efficient, this method is the least commonly applied due to unrealistic assumptions about evolution.</li>
+<li><strong>Maximum likelihood (ML)</strong> Estimates the parameters of a statistical model such that the probability of observing the data (i.e., the likelihood) is maximal. The general idea behind this method is that if the estimated parameter values of a model makes it more likely to observe the data, it is assumed to approximate the true topology of the tree. This framework is employed in software such as RAxML, IQ-TREE2, and FastTree2.</li>
+<li><strong>Bayesian methods</strong> This method uses a similar approach to ML in that it relies on a model and maximises the likelihood of observing the data. The difference is in its implementation, where parameters are inferred under the Bayesian framework. Here, unknown model parameter values are described using probability distributions (i.e., these values have a degree of uncertainty and are not fixed values). These are then integrated with the likelihood of observing the data (as in ML) to generate a posterior distribution from which tree model parameters are actually inferred/sampled from.</li>
+</ul>
+</div>
+</div>
+</input></input></div>
+</div>
+<p><strong>Confidence in tree inference</strong></p>
+<p>How would we know if the placement of branches are correct in our inferred trees? For ML- and parsimony-based tree reconstruction, a common way to test that is via bootstrapping. This is the generation of pseudo-data of similar size to the observed data via iterative resampling of the observed data. New trees are then inferred from the resampled data, and the number of times the same tree or branch placements (clades) are observed based on the pseudo-data. This is analogous to permutations in non-parametric tests. For Bayesian method-based inference, confidence is estimated based on posterior probabilities (a.k.a. the posterior support; i.e., the product of prior probabilities and maximal likelihood).</p>
+<h2 id="building-a-phylogenetic-tree">Building a phylogenetic tree<a class="headerlink" href="#building-a-phylogenetic-tree" title="Permanent link">¶</a></h2>
+<p>The exercises for this section is performed in the <code>8.prokaryotic_taxonomy/</code> directory. Here, we will build a bootstrapped ML tree using <code>FastTree2</code> with an MSA provided by <code>GTDB-Tk</code> of our MAGs.</p>
+<p>We begin by loading the required modules:</p>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>module<span class="w"> </span>purge
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>module<span class="w"> </span>load<span class="w"> </span>FastTree/2.1.11-GCCcore-9.2.0
+</code></pre></div>
+</div>
+<p>Then, we prepare the input file based on our GTDB-Tk outputs:</p>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1"># Copy MSA produced by GTDB-Tk</span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>cp<span class="w"> </span>gtdbtk_out/align/gtdbtk.bac120.user_msa.fasta.gz<span class="w"> </span>.
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="c1"># Decompress file</span>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a>gzip<span class="w"> </span>-d<span class="w"> </span>gtdbtk.bac120.user_msa.fasta.gz
+</code></pre></div>
+</div>
+<p>Finally, we can build the tree using the following code:</p>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>FastTree<span class="w"> </span>gtdbtk.bac120.user_msa.fasta<span class="w"> </span>&gt;<span class="w"> </span>bin.tree
+</code></pre></div>
+</div>
+<p>We can inspect what the output looks like:</p>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>cat<span class="w"> </span>bin.tree
+</code></pre></div>
+<details class="success">
+<summary>Output</summary>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>((bin_0.filtered:0.39270,bin_1.filtered:0.27312)1.000:0.53352,(bin_7.filtered:0.73278,(bin_2.filtered:0.51665,bin_6.filtered:0.66105)0.930:0.06144)1.000:0.07298,(bin_4.filtered:0.62639,(bin_8.filtered:0.57815,(bin_3.filtered:0.36294,(bin_5.filtered:0.24898,bin_9.filtered:0.28774)1.000:0.11846)1.000:0.19589)1.000:0.07212)0.970:0.05113);
+</code></pre></div>
 </details>
-<details class="key">
-<summary>S.1.3 : Set NeSI HPC Second Factor</summary>
-<ol>
-<li>Log into <a href="https://my.nesi.org.nz">mynesi portal</a> with your Institutional credentials (OR Tuakiri Virtual Home) and set your <strong>NeSI HPC Second factor</strong> as below</li>
-</ol>
-<p><br/><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/new_Set2FA.png"><img alt="image" src="../../theme_images/new_Set2FA.png" width="1000"/></a></p>
+</div>
+<h2 id="visualising-the-tree">Visualising the tree<a class="headerlink" href="#visualising-the-tree" title="Permanent link">¶</a></h2>
+<p>We will use <a href="https://itol.embl.de/">iTOL</a> (Interactive Tree Of Life) to visualise the tree we made. iToL is a powerful online, browser-based tool for the display, annotation and management of phylogenetic and trees. </p>
+<div class="admonition tip">
+<p class="admonition-title">iToL subscription</p>
+<p>For the purposes of today's workshop, the free version of iToL will suffice. However, if you think you will need to perform more phylogenetic analyses, you should consider creating an account and subscribing to the web service. This allows you to save your trees online for future use.</p>
+</div>
+<p><strong>Navigate to iTOL</strong></p>
+<p>On your web browser, navigate to <a href="https://itol.embl.de/">iTOL</a>.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../figures/day3_iToLMainPage.PNG"><img alt="itol main page" src="../../figures/day3_iToLMainPage.PNG"/></a></p>
+<p>Click on the Upload button on the top left.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../figures/day3_iToLUpload.PNG"><img alt="itol upload page" src="../../figures/day3_iToLUpload.PNG"/></a></p>
+<p><strong>Add tree information</strong></p>
+<p>As we are working with a small tree, we can go back to the Jupyter terminal to copy the contents of <code>bin.tree</code> into the 'Tree text' area.</p>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>cat<span class="w"> </span>bin.tree
+</code></pre></div>
+<details class="success">
+<summary>Content of <code>bin.tree</code></summary>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>((bin_0.filtered:0.39270,bin_1.filtered:0.27312)1.000:0.53352,(bin_7.filtered:0.73278,(bin_2.filtered:0.51665,bin_6.filtered:0.66105)0.930:0.06144)1.000:0.07298,(bin_4.filtered:0.62639,(bin_8.filtered:0.57815,(bin_3.filtered:0.36294,(bin_5.filtered:0.24898,bin_9.filtered:0.28774)1.000:0.11846)1.000:0.19589)1.000:0.07212)0.970:0.05113);
+</code></pre></div>
 </details>
-<details class="backward">
-<summary>S.1.4 : <em>Reset</em> NeSI HPC Password</summary>
-<ol>
-<li>Log into <a href="https://my.nesi.org.nz">mynesi portal</a> with your Institutional credentials (OR Tuakiri Virtual Home) and Reset your <strong>NeSI HPC Second factor</strong> as below</li>
-</ol>
-<p><br/><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/newResetPassword.png"><img alt="image" src="../../theme_images/newResetPassword.png" width="1000"/></a></p>
-</details>
-<details class="backward">
-<summary>S.1.5 : <em>Reset</em> NeSI HPC Second Factor</summary>
-<ol>
-<li>Log into <a href="https://my.nesi.org.nz">mynesi portal</a> with your Institutional credentials (OR Tuakiri Virtual Home) and Reset your <strong>NeSI HPC Second factor</strong> as below</li>
-</ol>
-<p><br/><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../theme_images/2faReset.png"><img alt="image" src="../../theme_images/2faReset.png" width="1000"/></a></p>
-</details>
+</div>
+<p>We can also name our tree.</p>
+<p>Once we are done, click Upload.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../figures/day3_iToLTreeInfo.PNG"><img alt="itol tree info" src="../../figures/day3_iToLTreeInfo.PNG"/></a></p>
+<p><strong>Annotate tree</strong></p>
+<p>We can also add additional information to highlight some or all of the tips. iTOL requires annotation files in a specific format. We have provided you with some example ones to use in this workshop:</p>
+<ul>
+<li><a href="../../resources/Relabelling.txt">Relabel the bin IDs to their taxon</a></li>
+<li><a href="../../resources/Color.txt">Add colour to highlight relevant taxa</a></li>
+<li><a href="../../resources/Risks.txt">Add shapes to highlight risk-associated taxa</a></li>
+</ul>
+<p>After downloading the files, simply drag and drop them into the iTOL page and it will annotate the tips accordingly.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../figures/day3_iToLTreeAnnotation.PNG"><img alt="itol tree annotated" src="../../figures/day3_iToLTreeAnnotation.PNG"/></a></p>
+<p><strong>Play around with the tree</strong></p>
+<p>We can edit and add annotations by clicking within the iTol website environment. However, the annotation files are a great way to maintain annotations for the phylogenetic trees and automatically display information you need to highlight on the tree.</p>
+<div class="admonition question">
+<p class="admonition-title"><strong>Exercise</strong> Alternative display and additional information</p>
+<p>See if you can add/change the following from your tree:</p>
+<ul>
+<li>Show bootstrap support values in blue</li>
+<li>Show branch lengths in red</li>
+<li>Change display format of your tree</li>
+</ul>
+</div>
+<div class="admonition book-atlas">
+<p class="admonition-title">References</p>
+<p><a href="https://doi.org/10.1038/s41576-020-0233-0">Kapli, P., Yang, Z. and Telford M.J. (2020) Phylogenetic tree building in the genomic age. Nat Rev Genet 21: 428-444</a></p>
+<p><a href="https://doi.org/10.1038/nrg3186">Yang, Z. and Rannala, B. (2012) Molecular phylogenetics: principles and practice. Nat Rev Genet 13: 303-314.</a></p>
+</div>
 </article>
 </div>
 </div>

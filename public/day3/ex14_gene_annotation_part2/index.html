@@ -11,7 +11,7 @@
 <link href="../../day4/ex15_gene_annotation_part3/" rel="next"/>
 <link href="../../theme_images/nesi_ga.png" rel="icon"/>
 <meta content="mkdocs-1.4.3, mkdocs-material-9.1.15" name="generator"/>
-<title>Gene annotation (part 2) and coverage calculation - Metagenomics Summer School</title>
+<title>Gene annotation II: DRAM and coverage calculation - Metagenomics Summer School</title>
 <link href="../../assets/stylesheets/main.26e3688c.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.ecc896b0.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -37,7 +37,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#gene-annotation-part-2-and-coverage-calculation">
+<a class="md-skip" href="#gene-annotation-ii-dram-and-coverage-calculation">
           Skip to content
         </a>
 </div>
@@ -61,7 +61,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Gene annotation (part 2) and coverage calculation
+              Gene annotation II: DRAM and coverage calculation
             
           </span>
 </div>
@@ -132,22 +132,22 @@
 </li>
 <li class="md-tabs__item">
 <a class="md-tabs__link" href="../../day1/ex1_bash_and_scheduler/">
-        Day1
+        Day 1
       </a>
 </li>
 <li class="md-tabs__item">
 <a class="md-tabs__link" href="../../day2/ex6_initial_binning/">
-        Day2
+        Day 2
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="../ex10_viruses/">
-        Day3
+<a class="md-tabs__link md-tabs__link--active" href="../ex11_coverage_and_taxonomy/">
+        Day 3
       </a>
 </li>
 <li class="md-tabs__item">
 <a class="md-tabs__link" href="../../day4/ex15_gene_annotation_part3/">
-        Day4
+        Day 4
       </a>
 </li>
 <li class="md-tabs__item">
@@ -196,43 +196,43 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_2" type="checkbox"/>
 <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-          Day1
+          Day 1
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
-          Day1
+          Day 1
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day1/ex1_bash_and_scheduler/">
-        Introduction to shell
+        Introduction I: Shell
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day1/ex2_1_intro_to_scheduler/">
-        Introduction to HPC &amp; HPC job scheduler
+        Introduction II: HPC and job scheduler
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day1/ex2_quality_filtering/">
-        Quality filtering raw reads
+        Filter raw reads by quality
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day1/ex3_assembly/">
-        Assembly
+        Assembly I: Assembling contigs
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day1/ex4_assembly/">
-        Assembly (part 2)
+        Assembly II: Varying the parameters
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day1/ex5_evaluating_assemblies/">
-        Evaluating the assemblies
+        Assembly evaluation
       </a>
 </li>
 </ul>
@@ -241,13 +241,13 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3" type="checkbox"/>
 <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-          Day2
+          Day 2
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
-          Day2
+          Day 2
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
@@ -257,7 +257,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day2/ex7_initial_binning/">
-        Binning (continued)
+        Binning with multiple tools
       </a>
 </li>
 <li class="md-nav__item">
@@ -267,7 +267,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day2/ex9_refining_bins/">
-        Manually refining bins
+        Manual bin refinement
       </a>
 </li>
 </ul>
@@ -276,23 +276,28 @@
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
 <input checked="" class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
 <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-          Day3
+          Day 3
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-expanded="true" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
-          Day3
+          Day 3
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../ex10_viruses/">
-        Identifying viral contigs in metagenomic data
+<a class="md-nav__link" href="../ex11_coverage_and_taxonomy/">
+        Assigning taxonomy to refined prokaryotic bins
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../ex11_coverage_and_taxonomy/">
-        Assigning taxonomy to refined prokaryotic bins
+<a class="md-nav__link" href="../ex11.1_phylogenomics/">
+        Phylogenomics
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ex10_viruses/">
+        Identifying viral contigs in metagenomic data
       </a>
 </li>
 <li class="md-nav__item">
@@ -302,17 +307,17 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../ex13_gene_annotation_part1/">
-        Gene annotation (part 1)
+        Gene annotation I: BLAST-like and HMM
       </a>
 </li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
-          Gene annotation (part 2) and coverage calculation
+          Gene annotation II: DRAM and coverage calculation
           <span class="md-nav__icon md-icon"></span>
 </label>
 <a class="md-nav__link md-nav__link--active" href="./">
-        Gene annotation (part 2) and coverage calculation
+        Gene annotation II: DRAM and coverage calculation
       </a>
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
@@ -327,23 +332,23 @@
 <nav aria-label="Gene prediction and annotation with DRAM (Distilled and Refined Annotation of Metabolism)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#annotation">
-    Annotation
+<a class="md-nav__link" href="#1-annotation">
+    1. Annotation
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#distillation">
-    Distillation
+<a class="md-nav__link" href="#2-distillation">
+    2. Distillation
   </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#annotation-of-the-mags-with-dram">
-    Annotation of the MAGs with DRAM
+<a class="md-nav__link" href="#annotating-mags-with-dram">
+    Annotating MAGs with DRAM
   </a>
-<nav aria-label="Annotation of the MAGs with DRAM" class="md-nav">
+<nav aria-label="Annotating MAGs with DRAM" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#dram-input-files">
@@ -364,33 +369,33 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#annotation-of-the-viral-contigs-with-dram-v">
-    Annotation of the viral contigs with DRAM-v
+<a class="md-nav__link" href="#annotating-viral-contigs-with-dram-v">
+    Annotating viral contigs with DRAM-v
   </a>
-<nav aria-label="Annotation of the viral contigs with DRAM-v" class="md-nav">
+<nav aria-label="Annotating viral contigs with DRAM-v" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#submitting-dram-v-annotation-as-a-slurm-job">
-    Submitting DRAM-v annotation as a slurm job
+<a class="md-nav__link" href="#submit-dram-v-annotation-as-a-slurm-job">
+    Submit DRAM-v annotation as a slurm job
   </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins">
-    Calculate per-sample coverage stats of the filtered prokaryote bins
+<a class="md-nav__link" href="#calculating-per-sample-coverage-stats-for-prokaryotic-bins">
+    Calculating per-sample coverage stats for prokaryotic bins
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#calculate-per-sample-coverage-stats-of-viral-contigs">
-    Calculate per-sample coverage stats of viral contigs
+<a class="md-nav__link" href="#calculating-per-sample-coverage-stats-for-viral-contigs">
+    Calculating per-sample coverage stats for viral contigs
   </a>
-<nav aria-label="Calculate per-sample coverage stats of viral contigs" class="md-nav">
+<nav aria-label="Calculating per-sample coverage stats for viral contigs" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#normalising-coverage-values">
-    Normalising coverage values
+<a class="md-nav__link" href="#normalise-coverage-values">
+    Normalise coverage values
   </a>
 </li>
 </ul>
@@ -410,48 +415,48 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5" type="checkbox"/>
 <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-          Day4
+          Day 4
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_5">
 <span class="md-nav__icon md-icon"></span>
-          Day4
+          Day 4
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex15_gene_annotation_part3/">
-        Gene annotation (part 3)
+        Gene annotation III: DRAM distillation
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex16a_data_presentation_Intro/">
-        Presentation of data: Introduction
+        Introduction to data presentation
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex16b_data_presentation_Coverage/">
-        Presentation of data: Per-sample coverage heatmaps
+        Coverage heatmaps
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex16c_OPTIONAL_data_presentation_Ordination/">
-        Presentation of data: Ordinations
+        Ordinations
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex16d_data_presentation_KEGG_pathways/">
-        Presentation of data: KEGG pathway maps
+        KEGG pathway maps
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex16e_data_presentation_Gene_synteny/">
-        Presentation of data: Gene synteny
+        Gene synteny
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations/">
-        Presentation of data: CAZy annotations heatmap
+        CAZy heatmaps
       </a>
 </li>
 </ul>
@@ -553,23 +558,23 @@
 <nav aria-label="Gene prediction and annotation with DRAM (Distilled and Refined Annotation of Metabolism)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#annotation">
-    Annotation
+<a class="md-nav__link" href="#1-annotation">
+    1. Annotation
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#distillation">
-    Distillation
+<a class="md-nav__link" href="#2-distillation">
+    2. Distillation
   </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#annotation-of-the-mags-with-dram">
-    Annotation of the MAGs with DRAM
+<a class="md-nav__link" href="#annotating-mags-with-dram">
+    Annotating MAGs with DRAM
   </a>
-<nav aria-label="Annotation of the MAGs with DRAM" class="md-nav">
+<nav aria-label="Annotating MAGs with DRAM" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#dram-input-files">
@@ -590,33 +595,33 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#annotation-of-the-viral-contigs-with-dram-v">
-    Annotation of the viral contigs with DRAM-v
+<a class="md-nav__link" href="#annotating-viral-contigs-with-dram-v">
+    Annotating viral contigs with DRAM-v
   </a>
-<nav aria-label="Annotation of the viral contigs with DRAM-v" class="md-nav">
+<nav aria-label="Annotating viral contigs with DRAM-v" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#submitting-dram-v-annotation-as-a-slurm-job">
-    Submitting DRAM-v annotation as a slurm job
+<a class="md-nav__link" href="#submit-dram-v-annotation-as-a-slurm-job">
+    Submit DRAM-v annotation as a slurm job
   </a>
 </li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins">
-    Calculate per-sample coverage stats of the filtered prokaryote bins
+<a class="md-nav__link" href="#calculating-per-sample-coverage-stats-for-prokaryotic-bins">
+    Calculating per-sample coverage stats for prokaryotic bins
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#calculate-per-sample-coverage-stats-of-viral-contigs">
-    Calculate per-sample coverage stats of viral contigs
+<a class="md-nav__link" href="#calculating-per-sample-coverage-stats-for-viral-contigs">
+    Calculating per-sample coverage stats for viral contigs
   </a>
-<nav aria-label="Calculate per-sample coverage stats of viral contigs" class="md-nav">
+<nav aria-label="Calculating per-sample coverage stats for viral contigs" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#normalising-coverage-values">
-    Normalising coverage values
+<a class="md-nav__link" href="#normalise-coverage-values">
+    Normalise coverage values
   </a>
 </li>
 </ul>
@@ -634,314 +639,462 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="gene-annotation-part-2-and-coverage-calculation">Gene annotation (part 2) and coverage calculation<a class="headerlink" href="#gene-annotation-part-2-and-coverage-calculation" title="Permanent link">¶</a></h1>
+<h1 id="gene-annotation-ii-dram-and-coverage-calculation">Gene annotation II: DRAM and coverage calculation<a class="headerlink" href="#gene-annotation-ii-dram-and-coverage-calculation" title="Permanent link">¶</a></h1>
 <div class="admonition info">
 <p class="admonition-title">Objectives</p>
 <ul>
 <li><a href="#gene-prediction-and-annotation-with-dram-distilled-and-refined-annotation-of-metabolism">Gene prediction and annotation with <code>DRAM</code></a></li>
-<li><a href="#annotation-of-the-mags-with-dram">Annotation of the MAGs with <code>DRAM</code></a></li>
-<li><a href="#annotation-of-the-viral-contigs-with-dram">Annotation of the viral contigs with <code>DRAM-v</code></a></li>
-<li><a href="#calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins">Calculate per-sample coverage stats for prokaryotic bins</a></li>
-<li><a href="#calculate-per-sample-coverage-stats-of-viral-contigs">Calculate per-sample coverage stats for viral contigs</a></li>
+<li><a href="#annotating-mags-with-dram">Annotating MAGs with <code>DRAM</code></a></li>
+<li><a href="#annotating-viral-contigs-with-dram-v">Annotating viral contigs with <code>DRAM-v</code></a></li>
+<li><a href="#calculating-per-sample-coverage-stats-for-prokaryotic-bins">Calculating per-sample coverage stats for prokaryotic bins</a></li>
+<li><a href="#calculating-per-sample-coverage-stats-for-viral-contigs">Calculating per-sample coverage stats for viral contigs</a></li>
 <li><a href="#select-initial-goal">Select initial goal</a></li>
 </ul>
 </div>
 <hr/>
-<h3 id="gene-prediction-and-annotation-with-dram-distilled-and-refined-annotation-of-metabolism">Gene prediction and annotation with <em>DRAM</em> (Distilled and Refined Annotation of Metabolism)<a class="headerlink" href="#gene-prediction-and-annotation-with-dram-distilled-and-refined-annotation-of-metabolism" title="Permanent link">¶</a></h3>
-<p><a href="http://dx.doi.org/10.1093/nar/gkaa621">DRAM</a> is a tool designed to profile microbial (meta)genomes for metabolisms known to impact ecosystem functions across biomes. <code>DRAM</code> annotates MAGs and viral contigs using KEGG (if provided by user), UniRef90, PFAM, CAZy, dbCAN, RefSeq viral, VOGDB (Virus Orthologous Groups), and the MEROPS peptidase database. It is also highly customizable to other custom user databases.</p>
-<p><code>DRAM</code> only uses assembly-derived <em>fastA</em> files input by the user. These input files may come from unbinned data (metagenome contig or scaffold files) or genome-resolved data from one or many organisms (isolate genomes, single-amplified genome (SAGs), MAGs).</p>
+<h2 id="gene-prediction-and-annotation-with-dram-distilled-and-refined-annotation-of-metabolism">Gene prediction and annotation with <code>DRAM</code> (Distilled and Refined Annotation of Metabolism)<a class="headerlink" href="#gene-prediction-and-annotation-with-dram-distilled-and-refined-annotation-of-metabolism" title="Permanent link">¶</a></h2>
+<p><a href="http://dx.doi.org/10.1093/nar/gkaa621"><code>DRAM</code></a> is a tool designed to profile microbial (meta)genomes for metabolisms known to impact ecosystem functions across biomes. <code>DRAM</code> annotates MAGs and viral contigs using KEGG (if provided by user), UniRef90, PFAM, CAZy, dbCAN, RefSeq viral, VOGDB (Virus Orthologous Groups), and the MEROPS peptidase database. It is also highly customizable to other custom user databases.</p>
+<p><code>DRAM</code> only uses assembly-derived FASTA files input by the user. These input files may come from unbinned data (metagenome contig or scaffold files) or genome-resolved data from one or many organisms (isolate genomes, single-amplified genome (SAGs), MAGs).</p>
 <p><code>DRAM</code> is run in two stages: annotation and distillation.</p>
 <p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../figures/DRAM_overview.jpeg"><img alt="image" src="../../figures/DRAM_overview.jpeg"/></a></p>
-<h4 id="annotation">Annotation<a class="headerlink" href="#annotation" title="Permanent link">¶</a></h4>
+<h3 id="1-annotation">1. Annotation<a class="headerlink" href="#1-annotation" title="Permanent link">¶</a></h3>
 <p>The first step in <code>DRAM</code> is to annotate genes by assigning database identifiers to genes. Short contigs (default &lt; 2,500 bp) are initially removed. Then, <code>Prodigal</code> is used to detect open reading frames (ORFs) and to predict their amino acid sequences. Next, <code>DRAM</code> searches all amino acid sequences against multiple databases, providing a single <em>Raw</em> output. When gene annotation is complete, all results are merged in a single tab-delimited annotation table, including the best hit for each database for user comparison.</p>
-<h4 id="distillation">Distillation<a class="headerlink" href="#distillation" title="Permanent link">¶</a></h4>
-<p>After genome annotation, a distill step follows with the aim to curate these annotations into useful functional categories, creating genome statistics and metabolism summary files, which are stored in the <em>Distillate</em> output. The genome statistics provides most genome quality information required for <a href="https://www.nature.com/articles/nbt.3893">MIMAG</a> standards, including <code>GTDB-tk</code> and <code>checkM</code> information if provided by the user. The summarised metabolism table includes the number of genes with specific metabolic function identifiers (KO, CAZY ID, etc) for each genome, with information obtained from multiple databases. The <em>Distillate</em> output is then further distilled into the <em>Product</em>, an html file displaying a heatmap, as well as the corresponding data table. We will investigate all these files later on.  </p>
+<h3 id="2-distillation">2. Distillation<a class="headerlink" href="#2-distillation" title="Permanent link">¶</a></h3>
+<p>After genome annotation, a distill step follows with the aim to curate these annotations into useful functional categories, creating genome statistics and metabolism summary files, which are stored in the <em>Distillate</em> output. The genome statistics provides most genome quality information required for <a href="https://www.nature.com/articles/nbt.3893">MIMAG</a> standards, including <code>GTDB-tk</code> and <code>CheckM</code> information if provided by the user. The summarised metabolism table includes the number of genes with specific metabolic function identifiers (KO, CAZY ID, etc) for each genome, with information obtained from multiple databases. The <em>Distillate</em> output is then further distilled into the <em>Product</em>, an html file displaying a heatmap, as well as the corresponding data table. We will investigate all these files later on.  </p>
 <hr/>
-<h3 id="annotation-of-the-mags-with-dram">Annotation of the MAGs with <em>DRAM</em><a class="headerlink" href="#annotation-of-the-mags-with-dram" title="Permanent link">¶</a></h3>
+<h2 id="annotating-mags-with-dram">Annotating MAGs with <code>DRAM</code><a class="headerlink" href="#annotating-mags-with-dram" title="Permanent link">¶</a></h2>
 <p>Beyond annotation, <code>DRAM</code> aims to be a data compiler. For that reason, output files from both <code>CheckM</code> and <code>GTDB_tk</code> steps can be input to <code>DRAM</code> to provide both taxonomy and genome quality information of the MAGs. </p>
-<h4 id="dram-input-files"><em>DRAM</em> input files<a class="headerlink" href="#dram-input-files" title="Permanent link">¶</a></h4>
+<h3 id="dram-input-files"><code>DRAM</code> input files<a class="headerlink" href="#dram-input-files" title="Permanent link">¶</a></h3>
 <p>For these exercises, we have copied the relevant input files into the folder <code>10.gene_annotation_and_coverage/DRAM_input_files/</code>. <code>gtdbtk.bac120.summary.tsv</code> was taken from the earlier <code>8.prokaryotic_taxonomy/gtdbtk_out/</code> outputs, and <code>filtered_bins_checkm.txt</code> from the result of re-running <code>CheckM</code> on the final refined filtered bins in <code>6.bin_refinement/filtered_bins</code>.</p>
-<p>Navigate to the <code>10.gene_annotation_and_coverage/</code> folder</p>
+<div class="admonition terminal-2">
+<p class="admonition-title">Navigate to working directory</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/10.gene_annotation_and_coverage/
 </code></pre></div>
+</div>
 <p>Along with our filtered bins, the <code>CheckM</code> output file (<code>checkm.txt</code>) and <code>GTDB-Tk</code> summary output <code>gtdbtk.bac120.summary.tsv</code> are used as inputs as is.</p>
-<h4 id="dram-annotation"><em>DRAM</em> annotation<a class="headerlink" href="#dram-annotation" title="Permanent link">¶</a></h4>
+<h3 id="dram-annotation"><code>DRAM</code> annotation<a class="headerlink" href="#dram-annotation" title="Permanent link">¶</a></h3>
 <p>In default annotation mode, <code>DRAM</code> only requires as input the directory containing all the bins we would like to annotate in <em>fastA</em> format (either .fa or .fna). There are few parameters that can be modified if not using the default mode. Once the annotation step is complete, the mode <code>distill</code> is used to summarise the obtained results.</p>
-<p><em>NOTE: due to the increased memory requirements, UniRef90 database is not default and the flag <code>–use_uniref</code> should be specified in order to search amino acid sequences against UniRef90. In this exercise, due to memory and time constraints, we won't be using the UniRef90 database.</em></p>
+<div class="admonition note">
+<p class="admonition-title">UniRef and RAM requirements</p>
+<p>Due to the increased memory requirements, annotations against the UniRef90 database is not set by default and the flag <code>–use_uniref</code> should be specified in order to search amino acid sequences against UniRef90. In this exercise, due to memory and time constraints, we won't be using the UniRef90 database.</p>
+</div>
 <p>We will start by glancing at some of the options for <code>DRAM</code>.</p>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>module<span class="w"> </span>purge
 <a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>module<span class="w"> </span>load<span class="w"> </span>DRAM/1.3.5-Miniconda3
 <a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>
 <a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>DRAM.py<span class="w"> </span>--help
-<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a>
-<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="c1"># usage: DRAM.py [-h] {annotate,annotate_genes,distill,strainer,neighborhoods,merge_annotations} ...</span>
-<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="c1"># </span>
-<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="c1"># positional arguments:</span>
-<a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="c1">#   {annotate,annotate_genes,distill,strainer,neighborhoods,merge_annotations}</span>
-<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="c1">#     annotate            Annotate genomes/contigs/bins/MAGs</span>
-<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="c1">#     annotate_genes      Annotate already called genes, limited functionality compared to annotate</span>
-<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="c1">#     distill             Summarize metabolic content of annotated genomes</span>
-<a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="c1">#     strainer            Strain annotations down to genes of interest</span>
-<a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="c1">#     neighborhoods       Find neighborhoods around genes of interest</span>
-<a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="c1">#     merge_annotations   Merge multiple annotations to one larger set</span>
-<a href="#__codelineno-1-16" id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="c1"># </span>
-<a href="#__codelineno-1-17" id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="c1"># options:</span>
-<a href="#__codelineno-1-18" id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="c1">#   -h, --help            show this help message and exit</span>
 </code></pre></div>
-<p>To look at some of the arguments in each command, type the following:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># DRAM.py &lt;command&gt; --help</span>
+</div>
+<div class="admonition circle-check">
+<p class="admonition-title">Terminal output</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>usage: DRAM.py [-h] {annotate,annotate_genes,distill,strainer,neighborhoods,merge_annotations} ...
 <a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>
-<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="c1"># For example:</span>
-<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>DRAM.py<span class="w"> </span>annotate<span class="w"> </span>--help
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a>positional arguments:
+<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>  {annotate,annotate_genes,distill,strainer,neighborhoods,merge_annotations}
+<a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a>    annotate            Annotate genomes/contigs/bins/MAGs
+<a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a>    annotate_genes      Annotate already called genes, limited functionality compared to annotate
+<a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a>    distill             Summarize metabolic content of annotated genomes
+<a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a>    strainer            Strain annotations down to genes of interest
+<a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a>    neighborhoods       Find neighborhoods around genes of interest
+<a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a>    merge_annotations   Merge multiple annotations to one larger set
+<a href="#__codelineno-2-11" id="__codelineno-2-11" name="__codelineno-2-11"></a>
+<a href="#__codelineno-2-12" id="__codelineno-2-12" name="__codelineno-2-12"></a>options:
+<a href="#__codelineno-2-13" id="__codelineno-2-13" name="__codelineno-2-13"></a>  -h, --help            show this help message and exit
 </code></pre></div>
-<h4 id="submitting-dram-annotation-as-a-slurm-job">Submitting <em>DRAM</em> annotation as a slurm job<a class="headerlink" href="#submitting-dram-annotation-as-a-slurm-job" title="Permanent link">¶</a></h4>
+</div>
+<p>To look at some of the arguments in each command, type the following:</p>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1"># DRAM.py &lt;command&gt; --help</span>
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="c1"># For example:</span>
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a>DRAM.py<span class="w"> </span>annotate<span class="w"> </span>--help
+</code></pre></div>
+</div>
+<h3 id="submitting-dram-annotation-as-a-slurm-job">Submitting <code>DRAM</code> annotation as a slurm job<a class="headerlink" href="#submitting-dram-annotation-as-a-slurm-job" title="Permanent link">¶</a></h3>
 <p>To run this exercise we first need to set up a slurm job. We will use the results for tomorrow's distillation step. </p>
-<p>Create a new script</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>nano<span class="w"> </span>annotate_dram.sl
+<div class="admonition terminal-2">
+<p class="admonition-title">Create script named <code>annotate_dram.sl</code></p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>nano<span class="w"> </span>annotate_dram.sl
 </code></pre></div>
+</div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Paste in the script (update all of the cases of <code>&lt;YOUR FOLDER&gt;</code>)</p>
+<p class="admonition-title">Remember to update <code>&lt;YOUR FOLDER&gt;</code> to your own folder</p>
 </div>
 <div class="admonition terminal">
 <p class="admonition-title">code</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="ch">#!/bin/bash -e</span>
-<a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>
-<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
-<a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="c1">#SBATCH --job-name      annotate_DRAM</span>
-<a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="c1">#SBATCH --time          5:00:00</span>
-<a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="c1">#SBATCH --mem           30Gb</span>
-<a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="c1">#SBATCH --cpus-per-task 24</span>
-<a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="c1">#SBATCH --error         %x_%A.err</span>
-<a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="c1">#SBATCH --output        %x_%A.out</span>
-<a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a>
-<a href="#__codelineno-4-11" id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="c1"># Load modules</span>
-<a href="#__codelineno-4-12" id="__codelineno-4-12" name="__codelineno-4-12"></a>module<span class="w"> </span>purge
-<a href="#__codelineno-4-13" id="__codelineno-4-13" name="__codelineno-4-13"></a>module<span class="w"> </span>load<span class="w"> </span>DRAM/1.3.5-Miniconda3
-<a href="#__codelineno-4-14" id="__codelineno-4-14" name="__codelineno-4-14"></a>
-<a href="#__codelineno-4-15" id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="c1"># Working directory</span>
-<a href="#__codelineno-4-16" id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/10.gene_annotation_and_coverage
-<a href="#__codelineno-4-17" id="__codelineno-4-17" name="__codelineno-4-17"></a>
-<a href="#__codelineno-4-18" id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="c1"># Run DRAM</span>
-<a href="#__codelineno-4-19" id="__codelineno-4-19" name="__codelineno-4-19"></a>DRAM.py<span class="w"> </span>annotate<span class="w"> </span>-i<span class="w"> </span><span class="s1">'filtered_bins/*.filtered.fna'</span><span class="w"> </span><span class="se">\</span>
-<a href="#__codelineno-4-20" id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="w">                 </span>--checkm_quality<span class="w"> </span>DRAM_input_files/filtered_bins_checkm.txt<span class="w"> </span><span class="se">\</span>
-<a href="#__codelineno-4-21" id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="w">                 </span>--gtdb_taxonomy<span class="w"> </span>DRAM_input_files/gtdbtk.bac120.summary.tsv<span class="w"> </span><span class="se">\</span>
-<a href="#__codelineno-4-22" id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="w">                 </span>-o<span class="w"> </span>dram_annotations<span class="w"> </span>--threads<span class="w"> </span><span class="nv">$SLURM_CPUS_PER_TASK</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span>
+<span class="normal"><a href="#__codelineno-5-20">20</a></span>
+<span class="normal"><a href="#__codelineno-5-21">21</a></span>
+<span class="normal"><a href="#__codelineno-5-22">22</a></span>
+<span class="normal"><a href="#__codelineno-5-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="ch">#!/bin/bash -e</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1">#SBATCH --job-name      annotate_DRAM</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="c1">#SBATCH --partition     milan</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="c1">#SBATCH --time          5:00:00</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="c1">#SBATCH --mem           30Gb</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="c1">#SBATCH --cpus-per-task 24</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="c1">#SBATCH --error         %x_%A.err</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="c1">#SBATCH --output        %x_%A.out</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="c1"># Load modules</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a>module<span class="w"> </span>purge
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a>module<span class="w"> </span>load<span class="w"> </span>DRAM/1.3.5-Miniconda3
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="c1"># Working directory</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/10.gene_annotation_and_coverage
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a>
+<a id="__codelineno-5-19" name="__codelineno-5-19"></a><span class="c1"># Run DRAM</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20"></a>DRAM.py<span class="w"> </span>annotate<span class="w"> </span>-i<span class="w"> </span><span class="s1">'filtered_bins/*.filtered.fna'</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21"></a><span class="w">                 </span>--checkm_quality<span class="w"> </span>DRAM_input_files/filtered_bins_checkm.txt<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22"></a><span class="w">                 </span>--gtdb_taxonomy<span class="w"> </span>DRAM_input_files/gtdbtk.bac120.summary.tsv<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23"></a><span class="w">                 </span>-o<span class="w"> </span>dram_annotations<span class="w"> </span>--threads<span class="w"> </span><span class="nv">$SLURM_CPUS_PER_TASK</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">Submit the job</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>sbatch<span class="w"> </span>annotate_dram.sl
 </code></pre></div>
 </div>
-<p>Submit the job</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>sbatch<span class="w"> </span>annotate_dram.sl
-</code></pre></div>
 <p>The program will take 4-4.5 hours to run, so we will submit the jobs and inspect the results tomorrow morning.</p>
 <hr/>
-<h3 id="annotation-of-the-viral-contigs-with-dram-v">Annotation of the viral contigs with <em>DRAM-v</em><a class="headerlink" href="#annotation-of-the-viral-contigs-with-dram-v" title="Permanent link">¶</a></h3>
-<p><em>DRAM</em> also has an equivalent program (<em>DRAM-v</em>) developed for predicting and annotating genes of viral genomes. A number of the options are similar to the standard <em>DRAM</em> run above, although the selection of databases differs slightly, and the subseqent <em>distill</em> step is focussed on identifying and classifying auxilliary metabolic genes (AMGs) rather than the metabolic pathways output by <em>DRAM</em>'s standard <em>distill</em> step.</p>
-<p>To see more details on options for <em>DRAM-v</em> we can run the same <code>--help</code> command as above:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1"># DRAM-v.py &lt;command&gt; --help</span>
-<a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a>
-<a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="c1"># For example:</span>
-<a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a>DRAM-v.py<span class="w"> </span>annotate<span class="w"> </span>--help
-<a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a>DRAM-v.py<span class="w"> </span>distill<span class="w"> </span>--help
+<h2 id="annotating-viral-contigs-with-dram-v">Annotating viral contigs with <code>DRAM-v</code><a class="headerlink" href="#annotating-viral-contigs-with-dram-v" title="Permanent link">¶</a></h2>
+<p><code>DRAM</code> also has an equivalent program (<code>DRAM-v</code>) developed for predicting and annotating genes of viral genomes. A number of the options are similar to the standard <code>DRAM</code> run above, although the selection of databases differs slightly, and the subsequent <em>distill</em> step is focussed on identifying and classifying auxilliary metabolic genes (AMGs) rather than the metabolic pathways output by <code>DRAM</code>'s standard <em>distill</em> step.</p>
+<p>To see more details on options for <code>DRAM-v</code> we can run the same <code>--help</code> command as above:</p>
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1"># DRAM-v.py &lt;command&gt; --help</span>
+<a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a>
+<a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="c1"># For example:</span>
+<a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a>DRAM-v.py<span class="w"> </span>annotate<span class="w"> </span>--help
+<a href="#__codelineno-7-5" id="__codelineno-7-5" name="__codelineno-7-5"></a>DRAM-v.py<span class="w"> </span>distill<span class="w"> </span>--help
 </code></pre></div>
-<h4 id="submitting-dram-v-annotation-as-a-slurm-job">Submitting <em>DRAM-v</em> annotation as a slurm job<a class="headerlink" href="#submitting-dram-v-annotation-as-a-slurm-job" title="Permanent link">¶</a></h4>
+</div>
+<h3 id="submit-dram-v-annotation-as-a-slurm-job">Submit <code>DRAM-v</code> annotation as a slurm job<a class="headerlink" href="#submit-dram-v-annotation-as-a-slurm-job" title="Permanent link">¶</a></h3>
 <p>To run this exercise we first need to set up a slurm job. We will use the results for tomorrow's distillation step. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><em>DRAM-v</em> requires the <code>mgss-for-dramv/</code> files <code>final-viral-combined-for-dramv.fa</code> and <code>viral-affi-contigs-for-dramv.tab</code> that were generated by <em>VirSorter2</em>. These have been copied into <code>10.gene_annotation_and_coverage/</code> for this exercise.</p>
+<p><code>DRAM-v</code> requires the <code>mgss-for-dramv/</code> files <code>final-viral-combined-for-dramv.fa</code> and <code>viral-affi-contigs-for-dramv.tab</code> that were generated by <code>VirSorter2</code>. These have been copied into <code>10.gene_annotation_and_coverage/</code> for this exercise.</p>
 </div>
-<p>Create a new script</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a>nano<span class="w"> </span>annotate_dramv.sl
+<div class="admonition terminal-2">
+<p class="admonition-title">Create script named <code>annotate_dramv.sl</code></p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a>nano<span class="w"> </span>annotate_dramv.sl
 </code></pre></div>
+</div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Paste in the script (update all of the cases of <code>&lt;YOUR FOLDER&gt;</code>)</p>
+<p class="admonition-title">Remember to update <code>&lt;YOUR FOLDER&gt;</code> to your own folder</p>
 </div>
 <div class="admonition terminal">
 <p class="admonition-title">code</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="ch">#!/bin/bash -e</span>
-<a href="#__codelineno-8-2" id="__codelineno-8-2" name="__codelineno-8-2"></a>
-<a href="#__codelineno-8-3" id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
-<a href="#__codelineno-8-4" id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="c1">#SBATCH --job-name      annotate_DRAMv</span>
-<a href="#__codelineno-8-5" id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="c1">#SBATCH --time          02:00:00</span>
-<a href="#__codelineno-8-6" id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="c1">#SBATCH --mem           4Gb</span>
-<a href="#__codelineno-8-7" id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="c1">#SBATCH --cpus-per-task 12</span>
-<a href="#__codelineno-8-8" id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="c1">#SBATCH --error         %x_%A.err</span>
-<a href="#__codelineno-8-9" id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="c1">#SBATCH --output        %x_%A.out</span>
-<a href="#__codelineno-8-10" id="__codelineno-8-10" name="__codelineno-8-10"></a>
-<a href="#__codelineno-8-11" id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="c1"># Load modules</span>
-<a href="#__codelineno-8-12" id="__codelineno-8-12" name="__codelineno-8-12"></a>module<span class="w"> </span>purge
-<a href="#__codelineno-8-13" id="__codelineno-8-13" name="__codelineno-8-13"></a>module<span class="w"> </span>load<span class="w"> </span>DRAM/1.3.5-Miniconda3
-<a href="#__codelineno-8-14" id="__codelineno-8-14" name="__codelineno-8-14"></a>
-<a href="#__codelineno-8-15" id="__codelineno-8-15" name="__codelineno-8-15"></a><span class="c1"># Working directory</span>
-<a href="#__codelineno-8-16" id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/10.gene_annotation_and_coverage
-<a href="#__codelineno-8-17" id="__codelineno-8-17" name="__codelineno-8-17"></a>
-<a href="#__codelineno-8-18" id="__codelineno-8-18" name="__codelineno-8-18"></a><span class="c1"># Run DRAM-v</span>
-<a href="#__codelineno-8-19" id="__codelineno-8-19" name="__codelineno-8-19"></a>DRAM-v.py<span class="w"> </span>annotate<span class="w"> </span>--threads<span class="w"> </span><span class="si">${</span><span class="nv">SLURM_CPUS_PER_TASK</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
-<a href="#__codelineno-8-20" id="__codelineno-8-20" name="__codelineno-8-20"></a>--min_contig_size<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="se">\</span>
-<a href="#__codelineno-8-21" id="__codelineno-8-21" name="__codelineno-8-21"></a>-i<span class="w"> </span>mgss-for-dramv/final-viral-combined-for-dramv.fa<span class="w"> </span><span class="se">\</span>
-<a href="#__codelineno-8-22" id="__codelineno-8-22" name="__codelineno-8-22"></a>-v<span class="w"> </span>mgss-for-dramv/viral-affi-contigs-for-dramv.tab<span class="w"> </span><span class="se">\</span>
-<a href="#__codelineno-8-23" id="__codelineno-8-23" name="__codelineno-8-23"></a>-o<span class="w"> </span>dramv_annotations
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span>
+<span class="normal"><a href="#__codelineno-9-17">17</a></span>
+<span class="normal"><a href="#__codelineno-9-18">18</a></span>
+<span class="normal"><a href="#__codelineno-9-19">19</a></span>
+<span class="normal"><a href="#__codelineno-9-20">20</a></span>
+<span class="normal"><a href="#__codelineno-9-21">21</a></span>
+<span class="normal"><a href="#__codelineno-9-22">22</a></span>
+<span class="normal"><a href="#__codelineno-9-23">23</a></span>
+<span class="normal"><a href="#__codelineno-9-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="ch">#!/bin/bash -e</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="c1">#SBATCH --job-name      annotate_DRAMv</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="c1">#SBATCH --partition     milan</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="c1">#SBATCH --time          02:00:00</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="c1">#SBATCH --mem           10Gb</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="c1">#SBATCH --cpus-per-task 12</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="c1">#SBATCH --error         %x_%A.err</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="c1">#SBATCH --output        %x_%A.out</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="c1"># Load modules</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a>module<span class="w"> </span>purge
+<a id="__codelineno-9-14" name="__codelineno-9-14"></a>module<span class="w"> </span>load<span class="w"> </span>DRAM/1.3.5-Miniconda3
+<a id="__codelineno-9-15" name="__codelineno-9-15"></a>
+<a id="__codelineno-9-16" name="__codelineno-9-16"></a><span class="c1"># Working directory</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/10.gene_annotation_and_coverage
+<a id="__codelineno-9-18" name="__codelineno-9-18"></a>
+<a id="__codelineno-9-19" name="__codelineno-9-19"></a><span class="c1"># Run DRAM-v</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20"></a>DRAM-v.py<span class="w"> </span>annotate<span class="w"> </span>--threads<span class="w"> </span><span class="si">${</span><span class="nv">SLURM_CPUS_PER_TASK</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21"></a>--min_contig_size<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22"></a>-i<span class="w"> </span>mgss-for-dramv/final-viral-combined-for-dramv.fa<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23"></a>-v<span class="w"> </span>mgss-for-dramv/viral-affi-contigs-for-dramv.tab<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24"></a>-o<span class="w"> </span>dramv_annotations
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">Submit the job</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a>sbatch<span class="w"> </span>annotate_dramv.sl
 </code></pre></div>
 </div>
-<p>Submit the job</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a>sbatch<span class="w"> </span>annotate_dramv.sl
-</code></pre></div>
 <p>We will submit this job now and inspect the results tomorrow morning.</p>
 <hr/>
-<h3 id="calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins">Calculate per-sample coverage stats of the filtered prokaryote bins<a class="headerlink" href="#calculate-per-sample-coverage-stats-of-the-filtered-prokaryote-bins" title="Permanent link">¶</a></h3>
+<h2 id="calculating-per-sample-coverage-stats-for-prokaryotic-bins">Calculating per-sample coverage stats for prokaryotic bins<a class="headerlink" href="#calculating-per-sample-coverage-stats-for-prokaryotic-bins" title="Permanent link">¶</a></h2>
 <p>One of the first questions we often ask when studying the ecology of a system is: What are the pattens of abundance and distribution of taxa across the different samples? With bins of metagenome-assembled genome (MAG) data, we can investigate this by mapping the quality-filtered unassembled reads back to the refined bins to then generate coverage profiles. Genomes in higher abundance in a sample will contribute more genomic sequence to the metagenome, and so the average depth of sequencing coverage for each of the different genomes provides a proxy for abundance in each sample. </p>
 <p>As per the preparation step at the start of the binning process, we can do this using read mapping tools such as <code>Bowtie</code>, <code>Bowtie2</code>, and <code>BBMap</code>. Here we will follow the same steps as before using <code>Bowtie2</code>, <code>samtools</code>, and <code>MetaBAT</code>'s <code>jgi_summarize_bam_contig_depths</code>, but this time inputting our refined filtered bins. </p>
 <p>These exercises will take place in the <code>10.gene_annotation_and_coverage/</code> folder. Our final filtered refined bins from the previous bin refinement exercise have been copied to the <code>10.gene_annotation_and_coverage/filtered_bins/</code> folder.</p>
 <p>First, concatenate the bin data into a single file to then use to generate an index for the read mapper.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/10.gene_annotation_and_coverage/
-<a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a>
-<a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a>cat<span class="w"> </span>filtered_bins/*.fna<span class="w"> </span>&gt;<span class="w"> </span>filtered_bins.fna
+<div class="admonition terminal-2">
+<p class="admonition-title">Concatenate bin nucleotide FASTA files</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a>cat<span class="w"> </span>filtered_bins/*.fna<span class="w"> </span>&gt;<span class="w"> </span>filtered_bins.fna
 </code></pre></div>
+</div>
 <p>Now build the index for <code>Bowtie2</code> using the concatenated bin data. We will also make a new directory <code>bin_coverage/</code> to store the index and read mapping output into.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>bin_coverage/
-<a href="#__codelineno-11-2" id="__codelineno-11-2" name="__codelineno-11-2"></a>
-<a href="#__codelineno-11-3" id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="c1"># Load Bowtie2</span>
-<a href="#__codelineno-11-4" id="__codelineno-11-4" name="__codelineno-11-4"></a>module<span class="w"> </span>purge
-<a href="#__codelineno-11-5" id="__codelineno-11-5" name="__codelineno-11-5"></a>module<span class="w"> </span>load<span class="w"> </span>Bowtie2/2.4.5-GCC-11.3.0
-<a href="#__codelineno-11-6" id="__codelineno-11-6" name="__codelineno-11-6"></a>
-<a href="#__codelineno-11-7" id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="c1"># Build Bowtie2 index</span>
-<a href="#__codelineno-11-8" id="__codelineno-11-8" name="__codelineno-11-8"></a>bowtie2-build<span class="w"> </span>filtered_bins.fna<span class="w"> </span>bin_coverage/bw_bins
+<div class="admonition terminal-2">
+<p class="admonition-title">Build <code>Bowtie2</code> index</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>bin_coverage/
+<a href="#__codelineno-12-2" id="__codelineno-12-2" name="__codelineno-12-2"></a>
+<a href="#__codelineno-12-3" id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="c1"># Load Bowtie2</span>
+<a href="#__codelineno-12-4" id="__codelineno-12-4" name="__codelineno-12-4"></a>module<span class="w"> </span>purge
+<a href="#__codelineno-12-5" id="__codelineno-12-5" name="__codelineno-12-5"></a>module<span class="w"> </span>load<span class="w"> </span>Bowtie2/2.4.5-GCC-11.3.0
+<a href="#__codelineno-12-6" id="__codelineno-12-6" name="__codelineno-12-6"></a>
+<a href="#__codelineno-12-7" id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="c1"># Build Bowtie2 index</span>
+<a href="#__codelineno-12-8" id="__codelineno-12-8" name="__codelineno-12-8"></a>bowtie2-build<span class="w"> </span>filtered_bins.fna<span class="w"> </span>bin_coverage/bw_bins
 </code></pre></div>
+</div>
 <p>Map the quality-filtered reads (from <code>../3.assembly/</code>) to the index using <code>Bowtie2</code>, and sort and convert to <code>.bam</code> format via <code>samtools</code>.</p>
-<p>Create a new script</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a>nano<span class="w"> </span>mapping_filtered_bins.sl
+<div class="admonition terminal-2">
+<p class="admonition-title">Create script named <code>mapping_filtered_bins.sl</code></p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a>nano<span class="w"> </span>mapping_filtered_bins.sl
 </code></pre></div>
+</div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Paste in the script (replacing <code>&lt;YOUR FOLDER&gt;</code>)</p>
+<p class="admonition-title">Remember to update <code>&lt;YOUR FOLDER&gt;</code> to your own folder</p>
 </div>
 <div class="admonition terminal">
 <p class="admonition-title">code</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="ch">#!/bin/bash -e</span>
-<a href="#__codelineno-13-2" id="__codelineno-13-2" name="__codelineno-13-2"></a>
-<a href="#__codelineno-13-3" id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
-<a href="#__codelineno-13-4" id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="c1">#SBATCH --job-name      mapping_filtered_bins</span>
-<a href="#__codelineno-13-5" id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="c1">#SBATCH --time          00:05:00</span>
-<a href="#__codelineno-13-6" id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="c1">#SBATCH --mem           1GB</span>
-<a href="#__codelineno-13-7" id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
-<a href="#__codelineno-13-8" id="__codelineno-13-8" name="__codelineno-13-8"></a><span class="c1">#SBATCH --error         %x_%j.err</span>
-<a href="#__codelineno-13-9" id="__codelineno-13-9" name="__codelineno-13-9"></a><span class="c1">#SBATCH --output        %x_%j.out</span>
-<a href="#__codelineno-13-10" id="__codelineno-13-10" name="__codelineno-13-10"></a>
-<a href="#__codelineno-13-11" id="__codelineno-13-11" name="__codelineno-13-11"></a><span class="c1"># Load modules</span>
-<a href="#__codelineno-13-12" id="__codelineno-13-12" name="__codelineno-13-12"></a>module<span class="w"> </span>purge
-<a href="#__codelineno-13-13" id="__codelineno-13-13" name="__codelineno-13-13"></a>module<span class="w"> </span>load<span class="w"> </span>Bowtie2/2.4.5-GCC-11.3.0<span class="w"> </span>SAMtools/1.15.1-GCC-11.3.0
-<a href="#__codelineno-13-14" id="__codelineno-13-14" name="__codelineno-13-14"></a>
-<a href="#__codelineno-13-15" id="__codelineno-13-15" name="__codelineno-13-15"></a><span class="c1"># Working directory</span>
-<a href="#__codelineno-13-16" id="__codelineno-13-16" name="__codelineno-13-16"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/10.gene_annotation_and_coverage
-<a href="#__codelineno-13-17" id="__codelineno-13-17" name="__codelineno-13-17"></a>
-<a href="#__codelineno-13-18" id="__codelineno-13-18" name="__codelineno-13-18"></a><span class="c1"># Run Bowtie2</span>
-<a href="#__codelineno-13-19" id="__codelineno-13-19" name="__codelineno-13-19"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..4<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<a href="#__codelineno-13-20" id="__codelineno-13-20" name="__codelineno-13-20"></a><span class="w">    </span>bowtie2<span class="w"> </span>--minins<span class="w"> </span><span class="m">200</span><span class="w"> </span>--maxins<span class="w"> </span><span class="m">800</span><span class="w"> </span>--threads<span class="w"> </span><span class="nv">$SLURM_CPUS_PER_TASK</span><span class="w"> </span>--sensitive<span class="w"> </span><span class="se">\</span>
-<a href="#__codelineno-13-21" id="__codelineno-13-21" name="__codelineno-13-21"></a><span class="w">            </span>-x<span class="w"> </span>bin_coverage/bw_bins<span class="w"> </span><span class="se">\</span>
-<a href="#__codelineno-13-22" id="__codelineno-13-22" name="__codelineno-13-22"></a><span class="w">            </span>-1<span class="w"> </span>../3.assembly/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R1.fastq.gz<span class="w"> </span><span class="se">\</span>
-<a href="#__codelineno-13-23" id="__codelineno-13-23" name="__codelineno-13-23"></a><span class="w">            </span>-2<span class="w"> </span>../3.assembly/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R2.fastq.gz<span class="w"> </span><span class="se">\</span>
-<a href="#__codelineno-13-24" id="__codelineno-13-24" name="__codelineno-13-24"></a><span class="w">            </span>-S<span class="w"> </span>bin_coverage/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sam
-<a href="#__codelineno-13-25" id="__codelineno-13-25" name="__codelineno-13-25"></a><span class="w">    </span>samtools<span class="w"> </span>sort<span class="w"> </span>-@<span class="w"> </span><span class="nv">$SLURM_CPUS_PER_TASK</span><span class="w"> </span>-o<span class="w"> </span>bin_coverage/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.bam<span class="w"> </span>bin_coverage/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sam
-<a href="#__codelineno-13-26" id="__codelineno-13-26" name="__codelineno-13-26"></a><span class="k">done</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span>
+<span class="normal"><a href="#__codelineno-14-13">13</a></span>
+<span class="normal"><a href="#__codelineno-14-14">14</a></span>
+<span class="normal"><a href="#__codelineno-14-15">15</a></span>
+<span class="normal"><a href="#__codelineno-14-16">16</a></span>
+<span class="normal"><a href="#__codelineno-14-17">17</a></span>
+<span class="normal"><a href="#__codelineno-14-18">18</a></span>
+<span class="normal"><a href="#__codelineno-14-19">19</a></span>
+<span class="normal"><a href="#__codelineno-14-20">20</a></span>
+<span class="normal"><a href="#__codelineno-14-21">21</a></span>
+<span class="normal"><a href="#__codelineno-14-22">22</a></span>
+<span class="normal"><a href="#__codelineno-14-23">23</a></span>
+<span class="normal"><a href="#__codelineno-14-24">24</a></span>
+<span class="normal"><a href="#__codelineno-14-25">25</a></span>
+<span class="normal"><a href="#__codelineno-14-26">26</a></span>
+<span class="normal"><a href="#__codelineno-14-27">27</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="ch">#!/bin/bash -e</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="c1">#SBATCH --job-name      mapping_filtered_bins</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="c1">#SBATCH --partition     milan</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="c1">#SBATCH --time          00:05:00</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="c1">#SBATCH --mem           1GB</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="c1">#SBATCH --error         %x_%j.err</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="c1">#SBATCH --output        %x_%j.out</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11"></a>
+<a id="__codelineno-14-12" name="__codelineno-14-12"></a><span class="c1"># Load modules</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13"></a>module<span class="w"> </span>purge
+<a id="__codelineno-14-14" name="__codelineno-14-14"></a>module<span class="w"> </span>load<span class="w"> </span>Bowtie2/2.4.5-GCC-11.3.0<span class="w"> </span>SAMtools/1.15.1-GCC-11.3.0
+<a id="__codelineno-14-15" name="__codelineno-14-15"></a>
+<a id="__codelineno-14-16" name="__codelineno-14-16"></a><span class="c1"># Working directory</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/10.gene_annotation_and_coverage
+<a id="__codelineno-14-18" name="__codelineno-14-18"></a>
+<a id="__codelineno-14-19" name="__codelineno-14-19"></a><span class="c1"># Run Bowtie2</span>
+<a id="__codelineno-14-20" name="__codelineno-14-20"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..4<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-14-21" name="__codelineno-14-21"></a><span class="w">    </span>bowtie2<span class="w"> </span>--minins<span class="w"> </span><span class="m">200</span><span class="w"> </span>--maxins<span class="w"> </span><span class="m">800</span><span class="w"> </span>--threads<span class="w"> </span><span class="nv">$SLURM_CPUS_PER_TASK</span><span class="w"> </span>--sensitive<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-22" name="__codelineno-14-22"></a><span class="w">            </span>-x<span class="w"> </span>bin_coverage/bw_bins<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-23" name="__codelineno-14-23"></a><span class="w">            </span>-1<span class="w"> </span>../3.assembly/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R1.fastq.gz<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-24" name="__codelineno-14-24"></a><span class="w">            </span>-2<span class="w"> </span>../3.assembly/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R2.fastq.gz<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-14-25" name="__codelineno-14-25"></a><span class="w">            </span>-S<span class="w"> </span>bin_coverage/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sam
+<a id="__codelineno-14-26" name="__codelineno-14-26"></a><span class="w">    </span>samtools<span class="w"> </span>sort<span class="w"> </span>-@<span class="w"> </span><span class="nv">$SLURM_CPUS_PER_TASK</span><span class="w"> </span>-o<span class="w"> </span>bin_coverage/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.bam<span class="w"> </span>bin_coverage/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sam
+<a id="__codelineno-14-27" name="__codelineno-14-27"></a><span class="k">done</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">Submit the script</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-15-1" id="__codelineno-15-1" name="__codelineno-15-1"></a>sbatch<span class="w"> </span>mapping_filtered_bins.sl
 </code></pre></div>
 </div>
-<p>Submit the script</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-14-1" id="__codelineno-14-1" name="__codelineno-14-1"></a>sbatch<span class="w"> </span>mapping_filtered_bins.sl
-</code></pre></div>
 <p>Finally, generate the per-sample coverage table for each contig in each bin via <code>MetaBAT</code>'s <code>jgi_summarize_bam_contig_depths</code>.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-15-1" id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="c1"># Load MetaBAT</span>
-<a href="#__codelineno-15-2" id="__codelineno-15-2" name="__codelineno-15-2"></a>module<span class="w"> </span>load<span class="w"> </span>MetaBAT/2.15-GCC-11.3.0
-<a href="#__codelineno-15-3" id="__codelineno-15-3" name="__codelineno-15-3"></a>
-<a href="#__codelineno-15-4" id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="c1"># calculate coverage table</span>
-<a href="#__codelineno-15-5" id="__codelineno-15-5" name="__codelineno-15-5"></a>jgi_summarize_bam_contig_depths<span class="w"> </span>--outputDepth<span class="w"> </span>bins_cov_table.txt<span class="w"> </span>bin_coverage/sample*.bam
+<div class="admonition terminal-2">
+<p class="admonition-title">Obtain coverage values</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-16-1" id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="c1"># Load MetaBAT</span>
+<a href="#__codelineno-16-2" id="__codelineno-16-2" name="__codelineno-16-2"></a>module<span class="w"> </span>load<span class="w"> </span>MetaBAT/2.15-GCC-11.3.0
+<a href="#__codelineno-16-3" id="__codelineno-16-3" name="__codelineno-16-3"></a>
+<a href="#__codelineno-16-4" id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="c1"># Calculate coverage table</span>
+<a href="#__codelineno-16-5" id="__codelineno-16-5" name="__codelineno-16-5"></a>jgi_summarize_bam_contig_depths<span class="w"> </span>--outputDepth<span class="w"> </span>bins_cov_table.txt<span class="w"> </span>bin_coverage/sample*.bam
 </code></pre></div>
+</div>
 <p>The coverage table will be generated as <code>bins_cov_table.txt</code>. As before, the key columns of interest are the <code>contigName</code>, and each <code>sample[1-n].bam</code> column.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Here we are generating a per-sample table of coverage values for <strong>each contig</strong> within each bin. To get per-sample coverage of <strong>each bin</strong> as a whole, we will need to generate average coverage values based on all contigs contained within each bin. We will do this in <code>R</code> during our data visualisation exercises on day 4 of the workshop, leveraging the fact that we added bin IDs to the sequence headers.*</p>
 </div>
-<h3 id="calculate-per-sample-coverage-stats-of-viral-contigs">Calculate per-sample coverage stats of viral contigs<a class="headerlink" href="#calculate-per-sample-coverage-stats-of-viral-contigs" title="Permanent link">¶</a></h3>
-<p>Here we can follow the same steps as outlined above for the bin data, but with a concatenated <em>fastA</em> file of viral contigs. </p>
-<p>To quickly recap: </p>
+<h2 id="calculating-per-sample-coverage-stats-for-viral-contigs">Calculating per-sample coverage stats for viral contigs<a class="headerlink" href="#calculating-per-sample-coverage-stats-for-viral-contigs" title="Permanent link">¶</a></h2>
+<p>Here we can follow the same steps as outlined above for the bin data, but with a concatenated FASTA file of viral contigs. </p>
+<div class="admonition backward">
+<p class="admonition-title">A quick recap</p>
 <ul>
 <li>In previous exercises, we first used <code>VirSorter2</code> to identify viral contigs from the assembled reads, generating a new fasta file of viral contigs: <code>final-viral-combined.fa</code> </li>
 <li>We then processed this file using <code>CheckV</code> to generate quality information for each contig, and to further trim any retained (prokaryote) sequence on the ends of prophage contigs. </li>
 </ul>
+</div>
 <p>The resultant <em>fasta</em> files generated by <code>CheckV</code> (<code>proviruses.fna</code> and <code>viruses.fna</code>) have been copied to to the <code>10.gene_annotation_and_coverage/checkv</code> folder for use in this exercise.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Due to the rapid mutation rates of viruses, with full data sets it will likely be preferable to first further reduce viral contigs down based on a percentage-identity threshold using a tool such as <code>BBMap</code>'s <code>dedupe.sh</code> or <a href="https://raw.githubusercontent.com/simroux/ClusterGenomes/master/Cluster_genomes_5.1.pl">Cluster_genomes_5.1.pl</a> from Simon Roux's group. This would be a necessary step in cases where you had opted for generating multiple individual assemblies or mini-co-assemblies (and would be comparable to the use of a tool like <code>dRep</code> for prokaryote data), but may still be useful even in the case of single co-assemblies incorporating all samples.*</p>
 </div>
 <p>We will first need to concatenate these files together.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-16-1" id="__codelineno-16-1" name="__codelineno-16-1"></a>cat<span class="w"> </span>checkv/proviruses.fna<span class="w"> </span>checkv/viruses.fna<span class="w"> </span>&gt;<span class="w"> </span>checkv_combined.fna
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-17-1" id="__codelineno-17-1" name="__codelineno-17-1"></a>cat<span class="w"> </span>checkv/proviruses.fna<span class="w"> </span>checkv/viruses.fna<span class="w"> </span>&gt;<span class="w"> </span>checkv_combined.fna
 </code></pre></div>
+</div>
 <p>Now build the index for <code>Bowtie2</code> using the concatenated viral contig data. We will also make a new directory <code>viruses_coverage/</code> to store the index and read mapping output into.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-17-1" id="__codelineno-17-1" name="__codelineno-17-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>viruses_coverage/
-<a href="#__codelineno-17-2" id="__codelineno-17-2" name="__codelineno-17-2"></a>
-<a href="#__codelineno-17-3" id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="c1"># Load Bowtie2</span>
-<a href="#__codelineno-17-4" id="__codelineno-17-4" name="__codelineno-17-4"></a>module<span class="w"> </span>load<span class="w"> </span>Bowtie2/2.4.5-GCC-11.3.0
-<a href="#__codelineno-17-5" id="__codelineno-17-5" name="__codelineno-17-5"></a>
-<a href="#__codelineno-17-6" id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="c1"># Build Bowtie2 index</span>
-<a href="#__codelineno-17-7" id="__codelineno-17-7" name="__codelineno-17-7"></a>bowtie2-build<span class="w"> </span>checkv_combined.fna<span class="w"> </span>viruses_coverage/bw_viruses
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-18-1" id="__codelineno-18-1" name="__codelineno-18-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>viruses_coverage/
+<a href="#__codelineno-18-2" id="__codelineno-18-2" name="__codelineno-18-2"></a>
+<a href="#__codelineno-18-3" id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="c1"># Load Bowtie2</span>
+<a href="#__codelineno-18-4" id="__codelineno-18-4" name="__codelineno-18-4"></a>module<span class="w"> </span>load<span class="w"> </span>Bowtie2/2.4.5-GCC-11.3.0
+<a href="#__codelineno-18-5" id="__codelineno-18-5" name="__codelineno-18-5"></a>
+<a href="#__codelineno-18-6" id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="c1"># Build Bowtie2 index</span>
+<a href="#__codelineno-18-7" id="__codelineno-18-7" name="__codelineno-18-7"></a>bowtie2-build<span class="w"> </span>checkv_combined.fna<span class="w"> </span>viruses_coverage/bw_viruses
 </code></pre></div>
+</div>
 <p>Map the quality-filtered reads (from <code>../3.assembly/</code>) to the index using <code>Bowtie2</code>, and sort and convert to <code>.bam</code> format via <code>samtools</code>.</p>
-<p>Create a new script</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-18-1" id="__codelineno-18-1" name="__codelineno-18-1"></a>nano<span class="w"> </span>mapping_viruses.sl
+<div class="admonition terminal-2">
+<p class="admonition-title">Create script named <code>mapping_viruses.sl</code></p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-19-1" id="__codelineno-19-1" name="__codelineno-19-1"></a>nano<span class="w"> </span>mapping_viruses.sl
 </code></pre></div>
+</div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Paste in the script (replacing <code>&lt;YOUR FOLDER&gt;</code>)</p>
+<p class="admonition-title">Remember to update <code>&lt;YOUR FOLDER&gt;</code> to your own folder</p>
 </div>
 <div class="admonition terminal">
 <p class="admonition-title">code</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-19-1" id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="ch">#!/bin/bash -e</span>
-<a href="#__codelineno-19-2" id="__codelineno-19-2" name="__codelineno-19-2"></a>
-<a href="#__codelineno-19-3" id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
-<a href="#__codelineno-19-4" id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="c1">#SBATCH --job-name      mapping_viruses</span>
-<a href="#__codelineno-19-5" id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="c1">#SBATCH --time          00:05:00</span>
-<a href="#__codelineno-19-6" id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="c1">#SBATCH --mem           1GB</span>
-<a href="#__codelineno-19-7" id="__codelineno-19-7" name="__codelineno-19-7"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
-<a href="#__codelineno-19-8" id="__codelineno-19-8" name="__codelineno-19-8"></a><span class="c1">#SBATCH --error         %x_%j.err</span>
-<a href="#__codelineno-19-9" id="__codelineno-19-9" name="__codelineno-19-9"></a><span class="c1">#SBATCH --output        %x_%j.out</span>
-<a href="#__codelineno-19-10" id="__codelineno-19-10" name="__codelineno-19-10"></a>
-<a href="#__codelineno-19-11" id="__codelineno-19-11" name="__codelineno-19-11"></a><span class="c1"># Load modules</span>
-<a href="#__codelineno-19-12" id="__codelineno-19-12" name="__codelineno-19-12"></a>module<span class="w"> </span>purge
-<a href="#__codelineno-19-13" id="__codelineno-19-13" name="__codelineno-19-13"></a>module<span class="w"> </span>load<span class="w"> </span>Bowtie2/2.4.5-GCC-11.3.0<span class="w"> </span>SAMtools/1.15.1-GCC-11.3.0
-<a href="#__codelineno-19-14" id="__codelineno-19-14" name="__codelineno-19-14"></a>
-<a href="#__codelineno-19-15" id="__codelineno-19-15" name="__codelineno-19-15"></a><span class="c1"># Working directory</span>
-<a href="#__codelineno-19-16" id="__codelineno-19-16" name="__codelineno-19-16"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/10.gene_annotation_and_coverage
-<a href="#__codelineno-19-17" id="__codelineno-19-17" name="__codelineno-19-17"></a>
-<a href="#__codelineno-19-18" id="__codelineno-19-18" name="__codelineno-19-18"></a><span class="c1"># Run Bowtie2</span>
-<a href="#__codelineno-19-19" id="__codelineno-19-19" name="__codelineno-19-19"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..4<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<a href="#__codelineno-19-20" id="__codelineno-19-20" name="__codelineno-19-20"></a><span class="w">  </span>bowtie2<span class="w"> </span>--minins<span class="w"> </span><span class="m">200</span><span class="w"> </span>--maxins<span class="w"> </span><span class="m">800</span><span class="w"> </span>--threads<span class="w"> </span><span class="nv">$SLURM_CPUS_PER_TASK</span><span class="w"> </span>--sensitive<span class="w"> </span><span class="se">\</span>
-<a href="#__codelineno-19-21" id="__codelineno-19-21" name="__codelineno-19-21"></a><span class="w">            </span>-x<span class="w"> </span>viruses_coverage/bw_viruses<span class="w"> </span><span class="se">\</span>
-<a href="#__codelineno-19-22" id="__codelineno-19-22" name="__codelineno-19-22"></a><span class="w">            </span>-1<span class="w"> </span>../3.assembly/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R1.fastq.gz<span class="w"> </span><span class="se">\</span>
-<a href="#__codelineno-19-23" id="__codelineno-19-23" name="__codelineno-19-23"></a><span class="w">            </span>-2<span class="w"> </span>../3.assembly/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R2.fastq.gz<span class="w"> </span><span class="se">\</span>
-<a href="#__codelineno-19-24" id="__codelineno-19-24" name="__codelineno-19-24"></a><span class="w">            </span>-S<span class="w"> </span>viruses_coverage/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sam
-<a href="#__codelineno-19-25" id="__codelineno-19-25" name="__codelineno-19-25"></a><span class="w">  </span>samtools<span class="w"> </span>sort<span class="w"> </span>-@<span class="w"> </span><span class="nv">$SLURM_CPUS_PER_TASK</span><span class="w"> </span>-o<span class="w"> </span>viruses_coverage/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.bam<span class="w"> </span>viruses_coverage/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sam
-<a href="#__codelineno-19-26" id="__codelineno-19-26" name="__codelineno-19-26"></a><span class="k">done</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-20-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-20-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-20-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-20-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-20-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-20-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-20-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-20-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-20-10">10</a></span>
+<span class="normal"><a href="#__codelineno-20-11">11</a></span>
+<span class="normal"><a href="#__codelineno-20-12">12</a></span>
+<span class="normal"><a href="#__codelineno-20-13">13</a></span>
+<span class="normal"><a href="#__codelineno-20-14">14</a></span>
+<span class="normal"><a href="#__codelineno-20-15">15</a></span>
+<span class="normal"><a href="#__codelineno-20-16">16</a></span>
+<span class="normal"><a href="#__codelineno-20-17">17</a></span>
+<span class="normal"><a href="#__codelineno-20-18">18</a></span>
+<span class="normal"><a href="#__codelineno-20-19">19</a></span>
+<span class="normal"><a href="#__codelineno-20-20">20</a></span>
+<span class="normal"><a href="#__codelineno-20-21">21</a></span>
+<span class="normal"><a href="#__codelineno-20-22">22</a></span>
+<span class="normal"><a href="#__codelineno-20-23">23</a></span>
+<span class="normal"><a href="#__codelineno-20-24">24</a></span>
+<span class="normal"><a href="#__codelineno-20-25">25</a></span>
+<span class="normal"><a href="#__codelineno-20-26">26</a></span>
+<span class="normal"><a href="#__codelineno-20-27">27</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="ch">#!/bin/bash -e</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2"></a>
+<a id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4"></a><span class="c1">#SBATCH --job-name      mapping_viruses</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="c1">#SBATCH --partition     milan</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="c1">#SBATCH --time          00:05:00</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7"></a><span class="c1">#SBATCH --mem           1GB</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8"></a><span class="c1">#SBATCH --cpus-per-task 10</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9"></a><span class="c1">#SBATCH --error         %x_%j.err</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10"></a><span class="c1">#SBATCH --output        %x_%j.out</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11"></a>
+<a id="__codelineno-20-12" name="__codelineno-20-12"></a><span class="c1"># Load modules</span>
+<a id="__codelineno-20-13" name="__codelineno-20-13"></a>module<span class="w"> </span>purge
+<a id="__codelineno-20-14" name="__codelineno-20-14"></a>module<span class="w"> </span>load<span class="w"> </span>Bowtie2/2.4.5-GCC-11.3.0<span class="w"> </span>SAMtools/1.15.1-GCC-11.3.0
+<a id="__codelineno-20-15" name="__codelineno-20-15"></a>
+<a id="__codelineno-20-16" name="__codelineno-20-16"></a><span class="c1"># Working directory</span>
+<a id="__codelineno-20-17" name="__codelineno-20-17"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/10.gene_annotation_and_coverage
+<a id="__codelineno-20-18" name="__codelineno-20-18"></a>
+<a id="__codelineno-20-19" name="__codelineno-20-19"></a><span class="c1"># Run Bowtie2</span>
+<a id="__codelineno-20-20" name="__codelineno-20-20"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..4<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-20-21" name="__codelineno-20-21"></a><span class="w">  </span>bowtie2<span class="w"> </span>--minins<span class="w"> </span><span class="m">200</span><span class="w"> </span>--maxins<span class="w"> </span><span class="m">800</span><span class="w"> </span>--threads<span class="w"> </span><span class="nv">$SLURM_CPUS_PER_TASK</span><span class="w"> </span>--sensitive<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-22" name="__codelineno-20-22"></a><span class="w">            </span>-x<span class="w"> </span>viruses_coverage/bw_viruses<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-23" name="__codelineno-20-23"></a><span class="w">            </span>-1<span class="w"> </span>../3.assembly/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R1.fastq.gz<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-24" name="__codelineno-20-24"></a><span class="w">            </span>-2<span class="w"> </span>../3.assembly/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_R2.fastq.gz<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-25" name="__codelineno-20-25"></a><span class="w">            </span>-S<span class="w"> </span>viruses_coverage/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sam
+<a id="__codelineno-20-26" name="__codelineno-20-26"></a><span class="w">  </span>samtools<span class="w"> </span>sort<span class="w"> </span>-@<span class="w"> </span><span class="nv">$SLURM_CPUS_PER_TASK</span><span class="w"> </span>-o<span class="w"> </span>viruses_coverage/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.bam<span class="w"> </span>viruses_coverage/sample<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.sam
+<a id="__codelineno-20-27" name="__codelineno-20-27"></a><span class="k">done</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="admonition terminal-2">
+<p class="admonition-title">Run the script</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-21-1" id="__codelineno-21-1" name="__codelineno-21-1"></a>sbatch<span class="w"> </span>mapping_viruses.sl
 </code></pre></div>
 </div>
-<p>Run the script</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-20-1" id="__codelineno-20-1" name="__codelineno-20-1"></a>sbatch<span class="w"> </span>mapping_viruses.sl
-</code></pre></div>
 <p>Finally, generate the per-sample coverage table for each viral contig via <code>MetaBAT</code>'s <code>jgi_summarize_bam_contig_depths</code>.</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-21-1" id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="c1"># Load MetaBAT</span>
-<a href="#__codelineno-21-2" id="__codelineno-21-2" name="__codelineno-21-2"></a>module<span class="w"> </span>load<span class="w"> </span>MetaBAT/2.15-GCC-11.3.0
-<a href="#__codelineno-21-3" id="__codelineno-21-3" name="__codelineno-21-3"></a>
-<a href="#__codelineno-21-4" id="__codelineno-21-4" name="__codelineno-21-4"></a><span class="c1"># calculate coverage table</span>
-<a href="#__codelineno-21-5" id="__codelineno-21-5" name="__codelineno-21-5"></a>jgi_summarize_bam_contig_depths<span class="w"> </span>--outputDepth<span class="w"> </span>viruses_cov_table.txt<span class="w"> </span>viruses_coverage/sample*.bam
+<div class="admonition terminal">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-22-1" id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="c1"># Load MetaBAT</span>
+<a href="#__codelineno-22-2" id="__codelineno-22-2" name="__codelineno-22-2"></a>module<span class="w"> </span>load<span class="w"> </span>MetaBAT/2.15-GCC-11.3.0
+<a href="#__codelineno-22-3" id="__codelineno-22-3" name="__codelineno-22-3"></a>
+<a href="#__codelineno-22-4" id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="c1"># calculate coverage table</span>
+<a href="#__codelineno-22-5" id="__codelineno-22-5" name="__codelineno-22-5"></a>jgi_summarize_bam_contig_depths<span class="w"> </span>--outputDepth<span class="w"> </span>viruses_cov_table.txt<span class="w"> </span>viruses_coverage/sample*.bam
 </code></pre></div>
+</div>
 <p>The coverage table will be generated as <code>viruses_cov_table.txt</code>. As before, the key columns of interest are the <code>contigName</code>, and each <code>sample[1-n].bam</code> column.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Unlike the prokaryote data, we have not used a binning process on the viral contigs (since many of the binning tools use hallmark characteristics of prokaryotes in the binning process). Here, <code>viruses_cov_table.txt</code> is the final coverage table. This can be combined with <code>CheckV</code> quality and completeness metrics to, for example, examine the coverage profiles of only those viral contigs considered to be "High-quality" or "Complete".* </p>
 </div>
-<h4 id="normalising-coverage-values">Normalising coverage values<a class="headerlink" href="#normalising-coverage-values" title="Permanent link">¶</a></h4>
+<h3 id="normalise-coverage-values">Normalise coverage values<a class="headerlink" href="#normalise-coverage-values" title="Permanent link">¶</a></h3>
 <p>Having generated per-sample coverage values, it is usually necessary to also normalise these values across samples of differing sequencing depth. In this case, the mock metagenome data we have been working with are already of equal depth, and so this is an unnecessary step for the purposes of this workshop. </p>
 <p>For an example of one way in which the <code>cov_table.txt</code> output generated by <code>jgi_summarize_bam_contig_depths</code> above could then be normalised based on average library size, see the <a href="https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/3_APPENDIX_ex11_Normalise_coverage_example/">Normalise per-sample coverage Appendix</a>.</p>
 <hr/>
-<h3 id="select-initial-goal">Select initial goal<a class="headerlink" href="#select-initial-goal" title="Permanent link">¶</a></h3>
+<h2 id="select-initial-goal">Select initial goal<a class="headerlink" href="#select-initial-goal" title="Permanent link">¶</a></h2>
 <p>It is now time to select the goals to investigate the genomes you have been working with. We ask you to select one of the following goals:</p>
 <div class="admonition quote">
 <ol>
@@ -959,7 +1112,7 @@
 </div>
 <p>Depending on what you are looking for, you will either be trying to find gene(s) of relevance to a particular functional pathway, or the omission of genes that might be critical in function. In either case, make sure to use the taxonomy of each MAG to determine whether it is likely to be a worthwhile candidate for exploration, as some of these traits are quite restricted in terms of which organisms carry them.</p>
 <p>To conduct this exersise, you should use the information generated with <code>DRAM</code> as well as the annotation files we created previously that will be available in the directory <code>10.gene_annotation_and_coverage/gene_annotations</code>. </p>
-<p>Please note that we have also provided further annotation files within the directory <code>10.gene_annotation_and_coverage/example_annotation_tables</code> that contain information obtained after annotating the MAGs against additional databases (UniProt, UniRef100, KEGG, PFAM and TIGRfam). These example files can also be downloaded from <a href="../../resources/example_annotation_tables.zip">here</a>. These files were created by using an in-house python script designed to aggregate different annotations and as part of the environmental metagenomics worflow followed in Handley's lab. Information about using this script as well as the script is available <a href="https://github.com/GenomicsAotearoa/environmental_metagenomics/blob/master/metagenomic_annotation/3.aggregation.md">here</a> </p>
+<p>Please note that we have also provided further annotation files within the directory <code>10.gene_annotation_and_coverage/example_annotation_tables</code> that contain information obtained after annotating the MAGs against additional databases (UniProt, UniRef100, KEGG, PFAM and TIGRfam). These example files can also be downloaded from <a href="../../resources/example_annotation_tables.zip">here</a>. These files were created by using an in-house python script designed to aggregate different annotations and as part of the environmental metagenomics worflow followed in Handley's lab. Information about using this script as well as the script is available <a href="https://github.com/GenomicsAotearoa/environmental_metagenomics/blob/master/old_stuff/metagenomic_annotation/3.aggregation.md">here</a> </p>
 <hr/>
 </article>
 </div>
@@ -987,7 +1140,7 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
 <script src="../../assets/javascripts/bundle.b4d07000.min.js"></script>
 <script src="../../javascripts/mathjax.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>

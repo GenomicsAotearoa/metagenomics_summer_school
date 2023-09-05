@@ -7,8 +7,8 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Genomics Aotearoa &amp; NeSI" name="author"/>
 <link href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day3/ex11_coverage_and_taxonomy/" rel="canonical"/>
-<link href="../ex10_viruses/" rel="prev"/>
-<link href="../ex12_gene_prediction/" rel="next"/>
+<link href="../../day2/ex9_refining_bins/" rel="prev"/>
+<link href="../ex11.1_phylogenomics/" rel="next"/>
 <link href="../../theme_images/nesi_ga.png" rel="icon"/>
 <meta content="mkdocs-1.4.3, mkdocs-material-9.1.15" name="generator"/>
 <title>Assigning taxonomy to refined prokaryotic bins - Metagenomics Summer School</title>
@@ -132,22 +132,22 @@
 </li>
 <li class="md-tabs__item">
 <a class="md-tabs__link" href="../../day1/ex1_bash_and_scheduler/">
-        Day1
+        Day 1
       </a>
 </li>
 <li class="md-tabs__item">
 <a class="md-tabs__link" href="../../day2/ex6_initial_binning/">
-        Day2
+        Day 2
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="../ex10_viruses/">
-        Day3
+<a class="md-tabs__link md-tabs__link--active" href="./">
+        Day 3
       </a>
 </li>
 <li class="md-tabs__item">
 <a class="md-tabs__link" href="../../day4/ex15_gene_annotation_part3/">
-        Day4
+        Day 4
       </a>
 </li>
 <li class="md-tabs__item">
@@ -196,43 +196,43 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_2" type="checkbox"/>
 <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-          Day1
+          Day 1
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
-          Day1
+          Day 1
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day1/ex1_bash_and_scheduler/">
-        Introduction to shell
+        Introduction I: Shell
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day1/ex2_1_intro_to_scheduler/">
-        Introduction to HPC &amp; HPC job scheduler
+        Introduction II: HPC and job scheduler
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day1/ex2_quality_filtering/">
-        Quality filtering raw reads
+        Filter raw reads by quality
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day1/ex3_assembly/">
-        Assembly
+        Assembly I: Assembling contigs
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day1/ex4_assembly/">
-        Assembly (part 2)
+        Assembly II: Varying the parameters
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day1/ex5_evaluating_assemblies/">
-        Evaluating the assemblies
+        Assembly evaluation
       </a>
 </li>
 </ul>
@@ -241,13 +241,13 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3" type="checkbox"/>
 <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-          Day2
+          Day 2
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
-          Day2
+          Day 2
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
@@ -257,7 +257,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day2/ex7_initial_binning/">
-        Binning (continued)
+        Binning with multiple tools
       </a>
 </li>
 <li class="md-nav__item">
@@ -267,7 +267,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day2/ex9_refining_bins/">
-        Manually refining bins
+        Manual bin refinement
       </a>
 </li>
 </ul>
@@ -276,20 +276,15 @@
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
 <input checked="" class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
 <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-          Day3
+          Day 3
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-expanded="true" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
-          Day3
+          Day 3
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../ex10_viruses/">
-        Identifying viral contigs in metagenomic data
-      </a>
-</li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
@@ -306,12 +301,22 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#assign-taxonomy-to-the-refined-bins">
-    Assign taxonomy to the refined bins
+<a class="md-nav__link" href="#assigning-taxonomy-to-the-refined-bins">
+    Assigning taxonomy to the refined bins
   </a>
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ex11.1_phylogenomics/">
+        Phylogenomics
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ex10_viruses/">
+        Identifying viral contigs in metagenomic data
+      </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../ex12_gene_prediction/">
@@ -320,12 +325,12 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../ex13_gene_annotation_part1/">
-        Gene annotation (part 1)
+        Gene annotation I: BLAST-like and HMM
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../ex14_gene_annotation_part2/">
-        Gene annotation (part 2) and coverage calculation
+        Gene annotation II: DRAM and coverage calculation
       </a>
 </li>
 </ul>
@@ -334,48 +339,48 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5" type="checkbox"/>
 <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-          Day4
+          Day 4
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_5">
 <span class="md-nav__icon md-icon"></span>
-          Day4
+          Day 4
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex15_gene_annotation_part3/">
-        Gene annotation (part 3)
+        Gene annotation III: DRAM distillation
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex16a_data_presentation_Intro/">
-        Presentation of data: Introduction
+        Introduction to data presentation
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex16b_data_presentation_Coverage/">
-        Presentation of data: Per-sample coverage heatmaps
+        Coverage heatmaps
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex16c_OPTIONAL_data_presentation_Ordination/">
-        Presentation of data: Ordinations
+        Ordinations
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex16d_data_presentation_KEGG_pathways/">
-        Presentation of data: KEGG pathway maps
+        KEGG pathway maps
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex16e_data_presentation_Gene_synteny/">
-        Presentation of data: Gene synteny
+        Gene synteny
       </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations/">
-        Presentation of data: CAZy annotations heatmap
+        CAZy heatmaps
       </a>
 </li>
 </ul>
@@ -471,8 +476,8 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#assign-taxonomy-to-the-refined-bins">
-    Assign taxonomy to the refined bins
+<a class="md-nav__link" href="#assigning-taxonomy-to-the-refined-bins">
+    Assigning taxonomy to the refined bins
   </a>
 </li>
 </ul>
@@ -486,11 +491,11 @@
 <div class="admonition info">
 <p class="admonition-title">Objectives</p>
 <ul>
-<li><a href="#assign-taxonomy-to-the-refined-bins">Assign taxonomy to the refined bins</a></li>
+<li><a href="#assigning-taxonomy-to-the-refined-bins">Assigning taxonomy to the refined bins</a></li>
 </ul>
 </div>
 <hr/>
-<h3 id="assign-taxonomy-to-the-refined-bins">Assign taxonomy to the refined bins<a class="headerlink" href="#assign-taxonomy-to-the-refined-bins" title="Permanent link">¶</a></h3>
+<h2 id="assigning-taxonomy-to-the-refined-bins">Assigning taxonomy to the refined bins<a class="headerlink" href="#assigning-taxonomy-to-the-refined-bins" title="Permanent link">¶</a></h2>
 <p>It is always valuable to know the taxonomy of our binned MAGs, so that we can link them to the wider scientific literature. In order to do this, there are a few different options available to us:</p>
 <ol>
 <li>Extract 16S rRNA gene sequences from the MAGs and classify them</li>
@@ -514,11 +519,13 @@
 <p>This can all be achieved in a single command, although it must be performed through a slurm script due to the high memory requirements of the process.</p>
 <p>For the following exercises, we will be working in <code>8.prokaryotic_taxonomy/</code>.</p>
 <p>Create a new script</p>
+<div class="admonition terminal-2">
+<p class="admonition-title">Create script named <code>gtdbtk.sl</code></p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>nano<span class="w"> </span>gtdbtk.sl
 </code></pre></div>
+</div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Paste in the script (replacing <code>&lt;YOUR FOLDER&gt;</code>)</p>
+<p class="admonition-title">Remember to update <code>&lt;YOUR FOLDER&gt;</code> to your own folder</p>
 </div>
 <div class="admonition terminal">
 <p class="admonition-title">code</p>
@@ -526,66 +533,69 @@
 <a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>
 <a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="c1">#SBATCH --account       nesi02659</span>
 <a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="c1">#SBATCH --job-name      gtdbtk</span>
-<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="c1">#SBATCH --time          01:00:00</span>
-<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="c1">#SBATCH --mem           140GB</span>
-<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="c1">#SBATCH --cpus-per-task 24</span>
-<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="c1">#SBATCH --error         %x_%j.err</span>
-<a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="c1">#SBATCH --output        %x_%j.out</span>
-<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a>
-<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="c1"># Load modules</span>
-<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a>module<span class="w"> </span>purge
-<a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a>module<span class="w"> </span>load<span class="w"> </span>GTDB-Tk/2.1.0-gimkl-2020a-Python-3.9.9
-<a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a>
-<a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="c1"># Working directory</span>
-<a href="#__codelineno-1-16" id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/8.prokaryotic_taxonomy
-<a href="#__codelineno-1-17" id="__codelineno-1-17" name="__codelineno-1-17"></a>
-<a href="#__codelineno-1-18" id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="c1"># Run GTDB-Tk</span>
-<a href="#__codelineno-1-19" id="__codelineno-1-19" name="__codelineno-1-19"></a>gtdbtk<span class="w"> </span>classify_wf<span class="w"> </span>-x<span class="w"> </span>fna<span class="w"> </span>--cpus<span class="w"> </span><span class="nv">$SLURM_CPUS_PER_TASK</span><span class="w"> </span><span class="se">\</span>
-<a href="#__codelineno-1-20" id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="w">                   </span>--keep_intermediates<span class="w"> </span><span class="se">\</span>
-<a href="#__codelineno-1-21" id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">                   </span>--genome_dir<span class="w"> </span>filtered_bins/<span class="w"> </span><span class="se">\</span>
-<a href="#__codelineno-1-22" id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">                   </span>--out_dir<span class="w"> </span>gtdbtk_out/
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="c1">#SBATCH --partition     milan</span>
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="c1">#SBATCH --time          01:00:00</span>
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="c1">#SBATCH --mem           140GB</span>
+<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="c1">#SBATCH --cpus-per-task 24</span>
+<a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="c1">#SBATCH --error         %x_%j.err</span>
+<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="c1">#SBATCH --output        %x_%j.out</span>
+<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a>
+<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="c1"># Load modules</span>
+<a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a>module<span class="w"> </span>purge
+<a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a>module<span class="w"> </span>load<span class="w"> </span>GTDB-Tk/2.1.0-gimkl-2020a-Python-3.9.9
+<a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a>
+<a href="#__codelineno-1-16" id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="c1"># Working directory</span>
+<a href="#__codelineno-1-17" id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR<span class="w"> </span>FOLDER&gt;/8.prokaryotic_taxonomy
+<a href="#__codelineno-1-18" id="__codelineno-1-18" name="__codelineno-1-18"></a>
+<a href="#__codelineno-1-19" id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="c1"># Run GTDB-Tk</span>
+<a href="#__codelineno-1-20" id="__codelineno-1-20" name="__codelineno-1-20"></a>gtdbtk<span class="w"> </span>classify_wf<span class="w"> </span>-x<span class="w"> </span>fna<span class="w"> </span>--cpus<span class="w"> </span><span class="nv">$SLURM_CPUS_PER_TASK</span><span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-1-21" id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">                   </span>--keep_intermediates<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-1-22" id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">                   </span>--genome_dir<span class="w"> </span>filtered_bins/<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-1-23" id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="w">                   </span>--out_dir<span class="w"> </span>gtdbtk_out/
 </code></pre></div>
 </div>
-<p>Submit the script</p>
+<div class="admonition terminal-2">
+<p class="admonition-title">Submit the script</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>sbatch<span class="w"> </span>gtdbtk.sl
 </code></pre></div>
+</div>
 <p>As usual, lets look at the parameters here</p>
 <table>
 <thead>
 <tr>
-<th align="left">Parameter</th>
-<th align="left">Function</th>
+<th align="left"><div style="width:200px">Parameter</div></th>
+<th align="left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left"><strong>classify_wf</strong></td>
+<td align="left"><code>classify_wf</code></td>
 <td align="left">Specifies the sub-workflow from <code>GTDB-TK</code> that we wish to use</td>
 </tr>
 <tr>
-<td align="left"><strong>-x ...</strong></td>
+<td align="left"><code>-x</code></td>
 <td align="left">Specify the file extension for MAGs within our input directory.<br/>Default is <em>.fna</em>, but it's always good practice to specify it anyway</td>
 </tr>
 <tr>
-<td align="left"><strong>--cpus ...</strong></td>
+<td align="left"><code>--cpus</code></td>
 <td align="left">Number of threads/CPUs to use when finding marker genes, and performing tree insertion operations</td>
 </tr>
 <tr>
-<td align="left"><strong>--keep_intermediates</strong></td>
+<td align="left"><code>--keep_intermediates</code></td>
 <td align="left">Keep intermediate outputs</td>
 </tr>
 <tr>
-<td align="left"><strong>--genome_dir ...</strong></td>
-<td align="left">Input directory containing MAGs as individual <em>fastA</em> files</td>
+<td align="left"><code>--genome_dir</code></td>
+<td align="left">Input directory containing MAGs as individual FASTA files</td>
 </tr>
 <tr>
-<td align="left"><strong>--out_dir ...</strong></td>
+<td align="left"><code>--out_dir</code></td>
 <td align="left">Output directory to write the final set of files</td>
 </tr>
 </tbody>
 </table>
 <p>Before submitting your job, think carefully about which set of MAGs you want to classify. You could either use the raw <code>DAS_Tool</code> outputs in the <code>../6.bin_refinement/dastool_out/_DASTool_bins/</code> folder, the renamed set of bins in the <code>../6.bin_refinement/example_data_unchopped/</code> folder, the set of curated bins in the <code>filtered_bins/</code> folder, or your own set of refined bins. Whichever set you choose, make sure you select the correct input folder and extension setting as it may differ from the example here.</p>
-<p>When the task completes, you will have a number of output files provided. The main ones to look for are <code>gtdbtk.bac120.summary.tsv</code> and <code>gtdbtk.arch122.summary.tsv</code> which report the taoxnomies for your MAGs, split at the domain level. These file are only written if MAGs that fall into the domain were found in your data set, so for this exercise we do not expect to see the <code>gtdbtk.arch122.summary.tsv</code> file.</p>
+<p>When the task completes, you will have a number of output files provided. The main ones to look for are <code>gtdbtk.bac120.summary.tsv</code> and <code>gtdbtk.arch122.summary.tsv</code> which report the taxonomies for your MAGs, split at the domain level. These file are only written if MAGs that fall into the domain were found in your data set, so for this exercise we do not expect to see the <code>gtdbtk.arch122.summary.tsv</code> file.</p>
 <p>If you are interested in performing more detailed phylogenetic analysis of the data, the filtered multiple sequence alignment (MSA) for the data are provided in the <code>gtdbtk.bac120.msa.fasta</code> and <code>gtdbtk.arch122.msa.fasta</code> files.</p>
 <p>Have a look at your resulting taxonomy. The classification of your MAGs will be informative when addressing your research goal for this workshop.</p>
 <hr/>
@@ -615,7 +625,7 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
 <script src="../../assets/javascripts/bundle.b4d07000.min.js"></script>
 <script src="../../javascripts/mathjax.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
