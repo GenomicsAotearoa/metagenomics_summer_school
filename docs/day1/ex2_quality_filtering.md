@@ -135,7 +135,7 @@ There is a lot going on in this command, so here is a breakdown of the parameter
     |Parameter|Type|Description|
     |:---|:---:|:---|
     |`PE`|*positional*|Specifies whether we are analysing single- or paired-end reads|
-    |`-threads 10`|*keyword*|Specifies the number of threads to use when processing|
+    |`-threads 2`|*keyword*|Specifies the number of threads to use when processing|
     |`-phred33`|*keyword*|Specifies the fastq encoding used|
     |`mock_R1.adapter_decay.fastq.gz` / `mock_R2.adapter_decay.fastq.gz`|*positional*|The paired forward and reverse reads to trim|
     |`mock_R1.qc.fastq.gz`|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner also passed|
