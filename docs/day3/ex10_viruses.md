@@ -85,7 +85,7 @@ We will then run `CheckV` in the same script, providing the FASTA file of viral 
     #!/bin/bash -e
     #SBATCH --account       nesi02659
     #SBATCH --job-name      VirSorter2_and_checkv
-    #SBATCH --partition     milan
+    #SBATCH --partition     milan
     #SBATCH --time          05:00:00
     #SBATCH --mem           2GB
     #SBATCH --cpus-per-task 28

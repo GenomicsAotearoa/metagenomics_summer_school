@@ -108,7 +108,7 @@ Create a new script
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      annotate_uniprot
-    #SBATCH --partition     milan
+    #SBATCH --partition     milan
     #SBATCH --time          01:00:00
     #SBATCH --mem           20GB
     #SBATCH --cpus-per-task 20
@@ -204,7 +204,7 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      annotate_pfam
-    #SBATCH --partition     milan
+    #SBATCH --partition     milan
     #SBATCH --time          00:20:00
     #SBATCH --mem           5GB
     #SBATCH --cpus-per-task 10

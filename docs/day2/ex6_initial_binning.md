@@ -82,7 +82,7 @@ Open a new script using nano:
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      spades_mapping
-    #SBATCH --partition     milan
+    #SBATCH --partition     milan
     #SBATCH --time          00:05:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 10
@@ -211,27 +211,27 @@ Open a new script using nano:
 
     ```bash linenums="1"
     #!/bin/bash -e
-    
+
     #SBATCH --account       nesi02659
     #SBATCH --job-name      spades_mapping_array
-    #SBATCH --partition     milan
+    #SBATCH --partition     milan
     #SBATCH --time          00:20:00
     #SBATCH --mem           20GB
     #SBATCH --array         0-3
     #SBATCH --cpus-per-task 10
     #SBATCH --error         %x_%A_%a.err
     #SBATCH --output        %x_%A_%a.out
-    
+
     # Load modules
     module purge
     module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
-    
+
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
-    
+
     # Load the sample names into a bash array
     samples=(sample1 sample2 sample3 sample4)
-    
+
     # Run Bowtie2 and SAMTools, using the SLURM_ARRAY_TASK_ID variable to
     # identify which position in the `samples` array to use
     bowtie2 --minins 200 --maxins 800 --threads $SLURM_CPUS_PER_TASK --sensitive \
@@ -239,7 +239,7 @@ Open a new script using nano:
             -1 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R1.fastq.gz \
             -2 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R2.fastq.gz \
             -S ${samples[ $SLURM_ARRAY_TASK_ID ]}_a.sam
-    
+
     samtools sort -@ $SLURM_CPUS_PER_TASK \
                   -o ${samples[ $SLURM_ARRAY_TASK_ID ]}_a.bam \
                   ${samples[ $SLURM_ARRAY_TASK_ID ]}_a.sam

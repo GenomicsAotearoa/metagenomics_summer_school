@@ -114,7 +114,7 @@ To run this exercise we first need to set up a slurm job. We will use the result
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      annotate_DRAM
-    #SBATCH --partition     milan
+    #SBATCH --partition     milan
     #SBATCH --time          5:00:00
     #SBATCH --mem           30Gb
     #SBATCH --cpus-per-task 24
@@ -184,7 +184,7 @@ To run this exercise we first need to set up a slurm job. We will use the result
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      annotate_DRAMv
-    #SBATCH --partition     milan
+    #SBATCH --partition     milan
     #SBATCH --time          02:00:00
     #SBATCH --mem           10Gb
     #SBATCH --cpus-per-task 12
@@ -264,7 +264,7 @@ Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowti
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      mapping_filtered_bins
-    #SBATCH --partition     milan
+    #SBATCH --partition     milan
     #SBATCH --time          00:05:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 10
@@ -366,7 +366,7 @@ Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowti
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      mapping_viruses
-    #SBATCH --partition     milan
+    #SBATCH --partition     milan
     #SBATCH --time          00:05:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 10

@@ -48,7 +48,7 @@ Create a new script
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      gtdbtk
-    #SBATCH --partition     milan
+    #SBATCH --partition     milan
     #SBATCH --time          01:00:00
     #SBATCH --mem           140GB
     #SBATCH --cpus-per-task 24

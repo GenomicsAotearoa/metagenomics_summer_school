@@ -426,7 +426,7 @@ An example of an updated slurm script to run `CheckM` on the `filtered_bins/` is
     #!/bin/bash -e
     #SBATCH --account       nesi02659
     #SBATCH --job-name      checkm_refined_bins
-    #SBATCH --partition     milan
+    #SBATCH --partition     milan
     #SBATCH --time          00:20:00
     #SBATCH --mem           50GB
     #SBATCH --cpus-per-task 10
