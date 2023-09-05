@@ -211,7 +211,7 @@ Create a new script
     #!/bin/bash -e
     #SBATCH --account       nesi02659
     #SBATCH --job-name      CheckM
-    #SBATCH --partition     milan
+    #SBATCH --partition     milan
     #SBATCH --time          00:20:00
     #SBATCH --mem           50GB
     #SBATCH --cpus-per-task 10
@@ -268,7 +268,7 @@ When your job completes, we will download the summary file and examine it.
         #!/bin/bash -e
         #SBATCH --account       nesi02659
         #SBATCH --job-name      CheckM2
-        #SBATCH --partition     milan
+        #SBATCH --partition     milan
         #SBATCH --time          00:20:00
         #SBATCH --mem           50GB
         #SBATCH --cpus-per-task 10
