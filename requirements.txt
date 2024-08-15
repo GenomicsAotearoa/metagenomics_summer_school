@@ -1,0 +1,11 @@
+# requirements for core
+mergedeep
+mkdocs-material
+cairosvg
+pillow
+
+#requirements for intergration
+mkdocs-material
+mkdocs-awesome-pages-plugin
+mkdocs-glightbox
+markdown-grid-tables
