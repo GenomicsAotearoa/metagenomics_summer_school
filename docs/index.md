@@ -18,7 +18,7 @@
 <style>h1 {text-align: left;}</style>
 ## :material-calendar: Timetable 2024
 
-=== "Day 1: Tuesday, 5<sup>th</sup> Sep"
+=== "Day 1: Tuesday, 3<sup>rd</sup> Sep"
 
     | <div style="width:100px">Time</div> | <div style="width:350px">Event</div> | <div style="width:125px">Session leader</div> |
     | --- | --- | --- |
@@ -35,7 +35,7 @@
     | 15:20 &ndash; 15:50 | :fontawesome-solid-laptop-code: **TASK** Ribosomal RNA reconstruction using *PhyloFlash* | Annie West<br>Jian Sheng Boey |
     | 15:50 &ndash; 16:00 | :fontawesome-solid-microphone-lines: **TALK** Project introduction and description | Kim Handley |
 
-=== "Day 2: Wednesday, 6<sup>th</sup> Sep"
+=== "Day 2: Wednesday, 4<sup>th</sup> Sep"
 
     | <div style="width:100px">Time</div> | <div style="width:350px">Event</div> | <div style="width:125px">Session leader</div> |
     | --- | --- | --- |
@@ -51,7 +51,7 @@
     | 15:35 &ndash; 16:05 | :fontawesome-solid-microphone-lines: **TALK** Viruses in metagenomic data<br>:fontawesome-solid-laptop-code: **TASK** Identify viral contigs using *VirSorter2* and *CheckV* | Mike Hoggard |
     | 16:04 &ndash; 16:30 | :octicons-comment-discussion-16: **DISCUSSION** How will you approach your research question? | |
 
-=== "Day 3: Thursday, 7<sup>th</sup> Sep"
+=== "Day 3: Thursday, 5<sup>th</sup> Sep"
 
     | <div style="width:100px">Time</div> | <div style="width:350px">Event</div> | <div style="width:125px">Session leader</div> |
     | --- | --- | --- |
@@ -69,7 +69,7 @@
     | 15:30 &ndash; 15:50 | :fontawesome-solid-laptop-code: **TASK** MAG annotation with DRAM<br>:fontawesome-solid-laptop-code: **TASK** Coverage calculation | Annie West |
     | 15:50 &ndash; 16:00 | :fontawesome-solid-laptop-code: **TASK** Group formation and project topic selection | Kim Handley |
 
-=== "Day 4: Friday, 8<sup>th</sup> Sep"
+=== "Day 4: Friday, 6<sup>th</sup> Sep"
 
     | <div style="width:100px">Time</div> | <div style="width:350px">Event</div> | <div style="width:125px">Session leader</div> |
     | --- | --- | --- |
