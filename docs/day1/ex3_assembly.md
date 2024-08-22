@@ -31,7 +31,7 @@ Although they both make use of the same types of data, both `SPAdes` and `IDBA-U
     ```bash
     # Load module
     module purge
-    module load SPAdes/3.15.4-gimkl-2022a-Python-3.10.5
+    module load SPAdes/4.0.0-foss-2023a-Python-3.11.6
 
     # Check parameters
     spades.py -h
@@ -57,7 +57,7 @@ Although they both make use of the same types of data, both `SPAdes` and `IDBA-U
                                   Older deprecated syntax is -pe<#>-s <filename>
       --pe-m <#> <filename>       file with merged reads for paired-end library number <#>.
                                   Older deprecated syntax is -pe<#>-m <filename>
-      --pe-or <#> <or>            orientation of reads for paired-end library number <#>
+      --pe-or <#> <or>            orientation of reads for paired-end library number <#> 
                                   (<or> = fr, rf, ff).
                                   Older deprecated syntax is -pe<#>-<or>
       --s <#> <filename>          file with unpaired reads for single reads library number <#>.
@@ -70,7 +70,7 @@ Although they both make use of the same types of data, both `SPAdes` and `IDBA-U
                                   Older deprecated syntax is -mp<#>-2 <filename>
       --mp-s <#> <filename>       file with unpaired reads for mate-pair library number <#>.
                                   Older deprecated syntax is -mp<#>-s <filename>
-      --mp-or <#> <or>            orientation of reads for mate-pair library number <#>
+      --mp-or <#> <or>            orientation of reads for mate-pair library number <#> 
                                   (<or> = fr, rf, ff).
                                   Older deprecated syntax is -mp<#>-<or>
       --hqmp-12 <#> <filename>    file with interlaced reads for high-quality mate-pair library number <#>.
@@ -81,7 +81,7 @@ Although they both make use of the same types of data, both `SPAdes` and `IDBA-U
                                   Older deprecated syntax is -hqmp<#>-2 <filename>
       --hqmp-s <#> <filename>     file with unpaired reads for high-quality mate-pair library number <#>.
                                   Older deprecated syntax is -hqmp<#>-s <filename>
-      --hqmp-or <#> <or>          orientation of reads for high-quality mate-pair library number <#>
+      --hqmp-or <#> <or>          orientation of reads for high-quality mate-pair library number <#> 
                                   (<or> = fr, rf, ff).
                                   Older deprecated syntax is -hqmp<#>-<or>
       --sanger <filename>         file with Sanger reads
@@ -288,18 +288,18 @@ Into this file, either write or copy/paste the following commands:
     ```bash linenums="1"
     #!/bin/bash -e
     
-    #SBATCH --account       nesi02659      
-    #SBATCH --job-name      spades_assembly      
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      spades_assembly
     #SBATCH --partition     milan
-    #SBATCH --time          00:30:00          
-    #SBATCH --mem           10G           
-    #SBATCH --cpus-per-task 12 
+    #SBATCH --time          00:30:00
+    #SBATCH --mem           10G
+    #SBATCH --cpus-per-task 12
     #SBATCH --error         %x_%j.err
-    #SBATCH --output        %x_%j.out       
+    #SBATCH --output        %x_%j.out
     
     # Load modules
     module purge
-    module load SPAdes/3.15.4-gimkl-2022a-Python-3.10.5
+    module load SPAdes/4.0.0-foss-2023a-Python-3.11.6
     
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly
