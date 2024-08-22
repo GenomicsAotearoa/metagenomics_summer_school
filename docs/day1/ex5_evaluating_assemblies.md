@@ -213,10 +213,119 @@ But what we can highlight here is that the statistics for the `SPAdes` assembly,
 
 |Assembly|N50 (contig)|L50 (contig)|
 |:---|:---:|:---:|
-|**SPAdes** (filtered)|72.5 kbp|107 |
-|**SPAdes** (unfiltered)|72.1 kbp|108 |
+|**SPAdes** (filtered)|72.9 kbp|107 |
+|**SPAdes** (unfiltered)|72.3 kbp|108 |
 |**IDBA-UD** (filtered)|103.9 kbp|82 |
 |**IDBA-UD** (unfiltered)|96.6 kbp|88 |
+
+## Sequence taxonomic classification using `Kraken2`
+
+!!! terminal "code"
+
+    ```bash linenums="1"
+    nano kraken2.sl
+    ```
+
+!!! terminal "code"
+
+    ```bash linenums="1"
+    #!/bin/bash -e
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      kraken2
+    #SBATCH --partition     milan
+    #SBATCH --time          10:00
+    #SBATCH --mem           80G
+    #SBATCH --cpus-per-task 20
+    #SBATCH --error         %x.%j.err
+    #SBATCH --output        %x.%j.out
+
+    # Load module
+    module purge
+    module load Kraken2/2.1.3-GCC-11.3.0
+
+    # Point to database
+    K2DB=/nesi/project/nesi02659/MGSS_2024/resources/databases/k2_standard_20240605
+
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.evaluation
+
+    # Run Kraken2
+    kraken2 --threads $SLURM_CPUS_PER_TASK \
+            --classified-out spades_assembly.m1000.k2_classified.fna \
+            --unclassified-out spades_assembly.m1000.k2_unclassified.fna \
+            --report spades_assembly.m1000.k2_report.txt \
+            --output spades_assembly.m1000.k2_out \
+            --db ${K2DB} \
+            spades_assembly/spades_assembly.m1000.fna
+    ```
+
+As `Kraken2` classifications are *k*-mer based, it also supports read classification. You can do that by modifying the above run script with the following lines:
+
+!!! terminal "code"
+
+    ```bash linenums="21"
+    for r1 in ../3.assembly/sample*_R1.fastq.gz; do
+        base=kraken_reads/$(basename ${r1} _R1.fastq.gz)
+        # Running Kraken2
+        kraken2 --paired --threads $SLURM_CPUS_PER_TASK \
+            --classified-out ${base}#.k2_classified.fq \
+            --unclassified-out ${base}#.k2_unclassified.fq \
+            --report ${base}.k2_report.txt \
+            --output ${base}.k2_out \
+            --db ${K2DB} \
+            ${r1} ${r1/R1/R2}
+    done
+    ```
+
+The modified code tells `Kraken2` that the inputs `${r1}` and `${r1/R1/R2}` are paired-end reads. The `#` after `${base}` will be replaced with the read orientation (i.e., forward `_1` or reverse `_2`).
+
+## Reconstruct rRNA using `PhyloFlash`-`EMIRGE`
+
+!!! terminal "code"
+
+    ```bash linenums="1"
+    nano phyloflash.sl
+    ```
+
+!!! terminal "code"
+
+    ```bash linenums="1"
+    #!/bin/bash -e
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      phyloflash
+    #SBATCH --partition     milan
+    #SBATCH --time          15:00
+    #SBATCH --mem           16G
+    #SBATCH --cpus-per-task 12
+    #SBATCH --error         %x.%j.err
+    #SBATCH --output        %x.%j.out
+
+    module purge
+    module load Miniconda3/23.10.0-1
+    module load USEARCH/11.0.667-i86linux32
+
+    # Set conda variables
+    source $(conda info --base)/etc/profile.d/conda.sh
+    export PYTHONNOUSERSITE=1
+
+    # Activate environment
+    export CONDA_ENVS_PATH=/nesi/project/nesi02659/MGSS_2024/resources/tools
+    source activate phyloflash
+
+    # Run PhyloFlash per sample pair
+    for r1 in ../3.assembly/sample*_R1.fastq.gz; do
+        phyloFlash.pl -lib $(basename $r1 _R1.fastq.gz) \
+                      -read1 ${r1} -read2 ${r1/R1/R2} \
+                      -everything \
+                      -CPUs $SLURM_CPUS_PER_TASK
+    done
+
+    phyloFlash_compare.pl \
+        --zip $(ls -1 sample*.phyloFlash.tar.gz | paste -sd ",") \
+        --task heatmap,barplot,matrix,ntu_table \
+        --out allsamples_compare
+    
+    conda deactivate
+    ```
 
 ## *(Optional)* Evaluating assemblies using `MetaQUAST`
 
