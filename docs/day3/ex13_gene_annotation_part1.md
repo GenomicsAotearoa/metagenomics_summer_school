@@ -5,6 +5,7 @@
     - [Annotation methods](#annotation-methods)
     - [Annotating MAGs against the *UniProt* database with `DIAMOND`](#annotating-mags-against-the-uniprot-database-with-diamond)
     - [Annotating MAGs against the *Pfam* database with `HMMER`](#annotating-mags-against-the-pfam-database-with-hmmer)
+    - [Annotating signal peptides with `SignalP6`](#annotating-signal-peptides-of-predicted-genes-using-signalp6)
     - [Evaluating the quality of gene assignment](#evaluating-the-quality-of-gene-assignment)
     - [Differences in taxonomies](#differences-in-taxonomies)
     
