@@ -220,7 +220,7 @@ Create a new script
     
     # Load modules
     module purge
-    module load CheckM/1.2.1-gimkl-2022a-Python-3.10.5
+    module load CheckM/1.2.3-foss-2023a-Python-3.11.6
     
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
