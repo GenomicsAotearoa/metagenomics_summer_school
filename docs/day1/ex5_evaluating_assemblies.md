@@ -258,21 +258,54 @@ But what we can highlight here is that the statistics for the `SPAdes` assembly,
             spades_assembly/spades_assembly.m1000.fna
     ```
 
-As `Kraken2` classifications are *k*-mer based, it also supports read classification. You can do that by modifying the above run script with the following lines:
+As `Kraken2` classifications are *k*-mer based, we can also classify reads. This can be helpful if trying to filter out reads that may belong to taxonomic classifications that you're not interested in. When using reads for classification, we can also estimate the abundance of reads that belong to those taxa using Bracken.
 
 !!! terminal "code"
 
-    ```bash linenums="21"
-    for r1 in ../3.assembly/sample*_R1.fastq.gz; do
-        base=kraken_reads/$(basename ${r1} _R1.fastq.gz)
-        # Running Kraken2
-        kraken2 --paired --threads $SLURM_CPUS_PER_TASK \
-            --classified-out ${base}#.k2_classified.fq \
-            --unclassified-out ${base}#.k2_unclassified.fq \
-            --report ${base}.k2_report.txt \
-            --output ${base}.k2_out \
-            --db ${K2DB} \
-            ${r1} ${r1/R1/R2}
+    ```bash
+    nano kraken2_bracken.sl
+    ```
+
+!!! terminal "code"
+
+    ```bash linenums="1"
+    #!/bin/bash -e
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      kraken2_bracken
+    #SBATCH --partition     milan
+    #SBATCH --time          30:00
+    #SBATCH --mem           80G
+    #SBATCH --cpus-per-task 20
+    #SBATCH --error         %x.%j.err
+    #SBATCH --output        %x.%j.out
+
+    # Load modules
+    module purge
+    module load \
+        Kraken2/2.1.3-GCC-11.3.0 \
+        Bracken/2.7-GCC-11.3.0
+
+    # Point to database
+    K2DB=/nesi/project/nesi02659/MGSS_2024/resources/databases/k2_standard_20240605
+
+    # Create output directory
+    mkdir -p read_classification/
+
+    # Run Kraken2 and Bracken
+    for r1 in ../3.assembly/sample?_R1.fastq.gz; do
+      # Output basename
+      outbase=read_classification/$(basename ${r1} _R1.fastq.gz)
+      # Taxonomic classification of reads
+      kraken2 --paired --threads $SLURM_CPUS_PER_TASK \
+              --classified-out ${outbase}#.k2_classified.fq \
+              --unclassified-out ${outbase}#.k2_unclassified.fq \
+              --report ${outbase}.k2_report.txt \
+              --output ${outbase}.k2_out \
+              --db ${K2DB} \
+              ${r1} ${r1/R1/R2}
+      # Estimate taxa abundance
+      bracken -d ${K2DB} -i ${outbase}.k2_report.txt -r 100 \
+              -o ${outbase}.bracken
     done
     ```
 
