@@ -1,8 +1,8 @@
 <center>
 ![image](./theme_images/uoa_ga_nesi_LOGOS.png){width="350"}
 </center>
-<style>h1 {text-align: center;}</style>
-<h1><b>Metagenomics Summer School</b></h1>
+
+# <span style="display: block; text-align: center;">**Metagenomics Summer School**</span>
 
 - - - 
 
