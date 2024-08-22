@@ -241,7 +241,7 @@ Now build the index for `Bowtie2` using the concatenated bin data. We will also 
 
     # Load Bowtie2
     module purge
-    module load Bowtie2/2.4.5-GCC-11.3.0
+    module load Bowtie2/2.5.4-GCC-12.3.0
 
     # Build Bowtie2 index
     bowtie2-build filtered_bins.fna bin_coverage/bw_bins
@@ -273,7 +273,7 @@ Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowti
     
     # Load modules
     module purge
-    module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
+    module load Bowtie2/2.5.4-GCC-12.3.0 SAMtools/1.19-GCC-12.3.0
     
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
@@ -343,7 +343,7 @@ Now build the index for `Bowtie2` using the concatenated viral contig data. We w
     mkdir -p viruses_coverage/
 
     # Load Bowtie2
-    module load Bowtie2/2.4.5-GCC-11.3.0
+    module load Bowtie2/2.5.4-GCC-12.3.0
 
     # Build Bowtie2 index
     bowtie2-build checkv_combined.fna viruses_coverage/bw_viruses
@@ -375,7 +375,7 @@ Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowti
     
     # Load modules
     module purge
-    module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
+    module load Bowtie2/2.5.4-GCC-12.3.0 SAMtools/1.19-GCC-12.3.0
     
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
