@@ -53,7 +53,7 @@ Before we start running `prodigal`, we will take a quick look at the parameters.
 
     ```bash
     module purge
-    module load prodigal/2.6.3-GCC-11.3.0
+    module load prodigal/2.6.3-GCCcore-7.4.0
 
     prodigal -h
     ```
