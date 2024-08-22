@@ -10,7 +10,7 @@
 
 ## Remove short contigs from the data set
 
-Ideally, we do not want to be creating bins from all of the assembled contigs, as there is often a long tail of contigs which are only several $k$-mers long. These have little biological meaning, as they are too short for robust gene annotation, and they can introduce a significant degree of noise in the clustering algorithms used for binning. We therefore identify a suitable threshold for a minimum length of contigs to be considered for binning.
+Ideally, we do not want to be creating bins from all of the assembled contigs, as there is often a long tail of contigs which are only several *k*-mers long. These have little biological meaning, as they are too short for robust gene annotation, and they can introduce a significant degree of noise in the clustering algorithms used for binning. We therefore identify a suitable threshold for a minimum length of contigs to be considered for binning.
 
 We have already done this in the [previous exercise](../day1/ex5_evaluating_assemblies.md) so we could either use the existing filtering at 1,000 bp in length, or move to something stricter. Most binning tools have a default cut-off for minimum contig size - `MetaBAT` uses a default minimum of 2,500 bp, and recommends at least 1,500 bp. By contrast, `MaxBin` sets the minimum length at 1,000 bp.
 
@@ -31,7 +31,7 @@ Before we can map reads, we need to create a `bowtie2` index file from the assem
     ```bash
     # Load modules
     module purge
-    module load Bowtie2/2.4.5-GCC-11.3.0
+    module load Bowtie2/2.5.4-GCC-12.3.0
 
     # Navigate to working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
@@ -90,7 +90,7 @@ Open a new script using nano:
     #SBATCH --output        %x_%j.out
 
     module purge
-    module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
+    module load Bowtie2/2.5.4-GCC-12.3.0 SAMtools/1.19-GCC-12.3.0
 
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
@@ -224,7 +224,7 @@ Open a new script using nano:
 
     # Load modules
     module purge
-    module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
+    module load Bowtie2/2.5.4-GCC-12.3.0 SAMtools/1.19-GCC-12.3.0
 
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/

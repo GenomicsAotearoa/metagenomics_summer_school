@@ -434,7 +434,7 @@ An example of an updated slurm script to run `CheckM` on the `filtered_bins/` is
     #SBATCH --output        %x_%j.out
 
     module purge
-    module load CheckM/1.2.1-gimkl-2022a-Python-3.10.5
+    module load CheckM/1.2.3-foss-2023a-Python-3.11.6
 
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinement/
 

@@ -5,6 +5,7 @@
     - [Annotation methods](#annotation-methods)
     - [Annotating MAGs against the *UniProt* database with `DIAMOND`](#annotating-mags-against-the-uniprot-database-with-diamond)
     - [Annotating MAGs against the *Pfam* database with `HMMER`](#annotating-mags-against-the-pfam-database-with-hmmer)
+    - [Annotating signal peptides with `SignalP6`](#annotating-signal-peptides-of-predicted-genes-using-signalp6)
     - [Evaluating the quality of gene assignment](#evaluating-the-quality-of-gene-assignment)
     - [Differences in taxonomies](#differences-in-taxonomies)
     
@@ -237,6 +238,51 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
     ```
 
 ---
+
+## Annotating signal peptides of predicted genes using `SignalP6`
+
+!!! terminal-code "code"
+
+    ```bash
+    nano annotate_signal_peptide.sl
+    ```
+
+!!! terminal-code "code"
+
+    ```bash linenums="1"
+    #!/bin/bash -e
+
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      signal_peptide
+    #SBATCH --partition     milan
+    #SBATCH --time          00:15:00
+    #SBATCH --mem           10GB
+    #SBATCH --cpus-per-task 24
+    #SBATCH --error         %x_%A_%a.err
+    #SBATCH --output        %x_%A_%a.out
+    #SBATCH --array         0-9
+
+    # Load modules
+    module purge
+    module load SignalP/6.0g-gimkl-2022a-Python-3.10.5
+
+    # Working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
+
+    # Array variables
+    files=(predictions/*.faa)
+    bin=${files[$SLURM_ARRAY_TASK_ID]}
+    prefix=$(basename ${bin} genes.no_metadata.faa)
+
+    # Run SignalP
+    signalp6 --fastafile ${bin} --output_dir signal_peptides/${prefix} \
+             --format none --organism other --bsize 50 \
+             --write_procs $SLURM_CPUS_PER_TASK
+    ```
+
+!!! warning "`SignalP` will probably `TIMEOUT`"
+
+    The above script will almost, inevitably, time out before completing every MAG. However, that is not critical for our purposes today. We simply need at least one of the array jobs to complete (several will) for us to explore the output.
 
 ## Evaluating the quality of gene assignment
 

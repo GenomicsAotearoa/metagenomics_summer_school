@@ -53,7 +53,7 @@ Before we start running `prodigal`, we will take a quick look at the parameters.
 
     ```bash
     module purge
-    module load prodigal/2.6.3-GCC-11.3.0
+    module load prodigal/2.6.3-GCCcore-7.4.0
 
     prodigal -h
     ```
@@ -141,7 +141,7 @@ We will now run `prodigal` over the 10 bins in *anonymous* mode using an array.
     mkdir -p predictions/
 
     # Variables
-    bin_file=filtered_bins/bin_${SLURM_ARRAY_TASK_ID}.filtered.fna
+    bin_file=dastool_bins/bin_${SLURM_ARRAY_TASK_ID}.fna
     pred_file=$(basename ${bin_file} .fna)
 
     # Run prodigal
@@ -282,7 +282,7 @@ To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits 
     mkdir -p ribosomes/
     
     # Variables
-    bin_file=filtered_bins/bin_${SLURM_ARRAY_TASK_ID}.filtered.fna
+    bin_file=dastool_bins/bin_${SLURM_ARRAY_TASK_ID}.fna
     pred_file=$(basename ${bin_file} .fna)
     
     # Run Metaxa2

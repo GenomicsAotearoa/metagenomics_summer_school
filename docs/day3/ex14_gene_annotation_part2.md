@@ -37,7 +37,7 @@ Beyond annotation, `DRAM` aims to be a data compiler. For that reason, output fi
 
 ### `DRAM` input files
 
-For these exercises, we have copied the relevant input files into the folder `10.gene_annotation_and_coverage/DRAM_input_files/`. `gtdbtk.bac120.summary.tsv` was taken from the earlier `8.prokaryotic_taxonomy/gtdbtk_out/` outputs, and `filtered_bins_checkm.txt` from the result of re-running `CheckM` on the final refined filtered bins in `6.bin_refinement/filtered_bins`.
+For these exercises, we have copied the relevant input files into the folder `10.gene_annotation_and_coverage/DRAM_input_files/`. `gtdbtk.bac120.summary.tsv` was taken from the earlier `8.prokaryotic_taxonomy/gtdbtk_out/` outputs, and `dastool_bins_checkm.txt` from the result of re-running `CheckM` on the final refined filtered bins in `6.bin_refinement/dastool_bins`.
 
 !!! terminal-2 "Navigate to working directory"
 
@@ -129,8 +129,8 @@ To run this exercise we first need to set up a slurm job. We will use the result
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
 
     # Run DRAM
-    DRAM.py annotate -i 'filtered_bins/*.filtered.fna' \
-                     --checkm_quality DRAM_input_files/filtered_bins_checkm.txt \
+    DRAM.py annotate -i 'dastool_bins/*.fna' \
+                     --checkm_quality DRAM_input_files/dastool_bins_checkm.txt \
                      --gtdb_taxonomy DRAM_input_files/gtdbtk.bac120.summary.tsv \
                      -o dram_annotations --threads $SLURM_CPUS_PER_TASK
     ```
@@ -222,14 +222,14 @@ One of the first questions we often ask when studying the ecology of a system is
 
 As per the preparation step at the start of the binning process, we can do this using read mapping tools such as `Bowtie`, `Bowtie2`, and `BBMap`. Here we will follow the same steps as before using `Bowtie2`, `samtools`, and `MetaBAT`'s `jgi_summarize_bam_contig_depths`, but this time inputting our refined filtered bins. 
 
-These exercises will take place in the `10.gene_annotation_and_coverage/` folder. Our final filtered refined bins from the previous bin refinement exercise have been copied to the `10.gene_annotation_and_coverage/filtered_bins/` folder.
+These exercises will take place in the `10.gene_annotation_and_coverage/` folder. Our final filtered refined bins from the previous bin refinement exercise have been copied to the `10.gene_annotation_and_coverage/dastool_bins/` folder.
 
 First, concatenate the bin data into a single file to then use to generate an index for the read mapper.
 
 !!! terminal-2 "Concatenate bin nucleotide FASTA files"
 
     ```bash
-    cat filtered_bins/*.fna > filtered_bins.fna
+    cat dastool_bins/*.fna > dastool_bins.fna
     ```
 
 Now build the index for `Bowtie2` using the concatenated bin data. We will also make a new directory `bin_coverage/` to store the index and read mapping output into.
@@ -241,18 +241,18 @@ Now build the index for `Bowtie2` using the concatenated bin data. We will also 
 
     # Load Bowtie2
     module purge
-    module load Bowtie2/2.4.5-GCC-11.3.0
+    module load Bowtie2/2.5.4-GCC-12.3.0
 
     # Build Bowtie2 index
-    bowtie2-build filtered_bins.fna bin_coverage/bw_bins
+    bowtie2-build dastool_bins.fna bin_coverage/bw_bins
     ```
 
 Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowtie2`, and sort and convert to `.bam` format via `samtools`.
 
-!!! terminal-2 "Create script named `mapping_filtered_bins.sl`"
+!!! terminal-2 "Create script named `mapping_dastool_bins.sl`"
 
     ```bash
-    nano mapping_filtered_bins.sl
+    nano mapping_dastool_bins.sl
     ```
 
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
@@ -263,7 +263,7 @@ Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowti
     #!/bin/bash -e
     
     #SBATCH --account       nesi02659
-    #SBATCH --job-name      mapping_filtered_bins
+    #SBATCH --job-name      mapping_dastool_bins
     #SBATCH --partition     milan
     #SBATCH --time          00:05:00
     #SBATCH --mem           1GB
@@ -273,7 +273,7 @@ Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowti
     
     # Load modules
     module purge
-    module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
+    module load Bowtie2/2.5.4-GCC-12.3.0 SAMtools/1.19-GCC-12.3.0
     
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
@@ -292,7 +292,7 @@ Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowti
 !!! terminal-2 "Submit the script"
 
     ```bash
-    sbatch mapping_filtered_bins.sl
+    sbatch mapping_dastool_bins.sl
     ```
 
 Finally, generate the per-sample coverage table for each contig in each bin via `MetaBAT`'s `jgi_summarize_bam_contig_depths`.
@@ -343,7 +343,7 @@ Now build the index for `Bowtie2` using the concatenated viral contig data. We w
     mkdir -p viruses_coverage/
 
     # Load Bowtie2
-    module load Bowtie2/2.4.5-GCC-11.3.0
+    module load Bowtie2/2.5.4-GCC-12.3.0
 
     # Build Bowtie2 index
     bowtie2-build checkv_combined.fna viruses_coverage/bw_viruses
@@ -375,7 +375,7 @@ Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowti
     
     # Load modules
     module purge
-    module load Bowtie2/2.4.5-GCC-11.3.0 SAMtools/1.15.1-GCC-11.3.0
+    module load Bowtie2/2.5.4-GCC-12.3.0 SAMtools/1.19-GCC-12.3.0
     
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
