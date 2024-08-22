@@ -57,7 +57,7 @@ Create a new script
     
     # Load modules
     module purge
-    module load GTDB-Tk/2.1.0-gimkl-2020a-Python-3.9.9
+    module load GTDB-Tk/2.4.0-foss-2023a-Python-3.11.6
     
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.prokaryotic_taxonomy
@@ -65,6 +65,7 @@ Create a new script
     # Run GTDB-Tk
     gtdbtk classify_wf -x fna --cpus $SLURM_CPUS_PER_TASK \
                        --keep_intermediates \
+                       --skip_ani_screen \
                        --genome_dir filtered_bins/ \
                        --out_dir gtdbtk_out/
     ```
