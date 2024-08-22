@@ -141,7 +141,7 @@ We will now run `prodigal` over the 10 bins in *anonymous* mode using an array.
     mkdir -p predictions/
 
     # Variables
-    bin_file=dastool_bins/bin_${SLURM_ARRAY_TASK_ID}.filtered.fna
+    bin_file=dastool_bins/bin_${SLURM_ARRAY_TASK_ID}.fna
     pred_file=$(basename ${bin_file} .fna)
 
     # Run prodigal
@@ -282,7 +282,7 @@ To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits 
     mkdir -p ribosomes/
     
     # Variables
-    bin_file=dastool_bins/bin_${SLURM_ARRAY_TASK_ID}.filtered.fna
+    bin_file=dastool_bins/bin_${SLURM_ARRAY_TASK_ID}.fna
     pred_file=$(basename ${bin_file} .fna)
     
     # Run Metaxa2

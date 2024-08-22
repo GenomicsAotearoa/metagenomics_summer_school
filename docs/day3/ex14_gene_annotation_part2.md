@@ -129,7 +129,7 @@ To run this exercise we first need to set up a slurm job. We will use the result
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
 
     # Run DRAM
-    DRAM.py annotate -i 'dastool_bins/*.filtered.fna' \
+    DRAM.py annotate -i 'dastool_bins/*.fna' \
                      --checkm_quality DRAM_input_files/dastool_bins_checkm.txt \
                      --gtdb_taxonomy DRAM_input_files/gtdbtk.bac120.summary.tsv \
                      -o dram_annotations --threads $SLURM_CPUS_PER_TASK
