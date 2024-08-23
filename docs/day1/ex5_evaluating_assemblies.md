@@ -220,6 +220,8 @@ But what we can highlight here is that the statistics for the `SPAdes` assembly,
 
 ## Sequence taxonomic classification using `Kraken2`
 
+Most, if not all, of the time, we never know the taxonomic composition of our metagenomic assemblies *a priori*. For some environments, we can make good guesses (e.g., *Prochlorococcus* in marine samples, members of the Actinobacteriota in soil samples, various Bacteroidota in the gut microbiome, etc.). Here, we can use `Kraken2`, a k-mer based taxonomic classifier to help us interrogate the taxonomic composition of our samples. This is helpful if there are targets we might be looking for (e.g. working hypotheses, well characterised microbiome) or as a check on what we might be missing out on after binning (taught in [day 2](../day2/ex6_initial_binning.md) and [day 3](../day3/ex11_coverage_and_taxonomy.md)).
+
 !!! terminal "code"
 
     ```bash linenums="1"
@@ -257,6 +259,17 @@ But what we can highlight here is that the statistics for the `SPAdes` assembly,
             --db ${K2DB} \
             spades_assembly/spades_assembly.m1000.fna
     ```
+
+The main output `spades_assembly.m1000.k2_out` is quite dense and verbose with columns indicated [here](https://github.com/DerrickWood/kraken2/wiki/Manual#sample-report-output-format). The report `spades_assembly.m1000.k2_report.txt` is more human-readable, with nicely spaced columns that indicate: 
+
+1. Percentage reads mapped to taxon
+2. Number of reads mapped to taxon
+3. Number of reads directly assigned to taxon
+4. Rank of taxon
+5. NCBI taxonomy ID
+6. Scientific name of taxon
+
+We also get the sequences that were classified and unclassified that can be used for further analyses (e.g. coverage estimation) if required.
 
 As `Kraken2` classifications are *k*-mer based, we can also classify reads. This can be helpful if trying to filter out reads that may belong to taxonomic classifications that you're not interested in. When using reads for classification, we can also estimate the abundance of reads that belong to those taxa using Bracken.
 
@@ -309,9 +322,35 @@ As `Kraken2` classifications are *k*-mer based, we can also classify reads. This
     done
     ```
 
+!!! note "Remember to produce the `--report` as Bracken bases its estimation on the report"
+
 The modified code tells `Kraken2` that the inputs `${r1}` and `${r1/R1/R2}` are paired-end reads. The `#` after `${base}` will be replaced with the read orientation (i.e., forward `_1` or reverse `_2`).
 
+Outputs for this run are similar to that of the assembly, with the major difference being paired-end read (fastq) outputs for classified and unclassified sequences.
+
+The Bracken outputs provides us with adjusted number (columns `added_reads` and `new_est_reads`) and fraction of reads that were assigned to each species identified by Kraken2 for downstream analyses.
+
+??? warning "Database construction for `Kraken2` and `Bracken`"
+
+    For this workshop (and most applications), the standard or other extensive [pre-built Kraken2 databases](https://benlangmead.github.io/aws-indexes/k2) are sufficient. However, if you require specific reference sequences to be present, the database building process (outlined [here](https://github.com/DerrickWood/kraken2/wiki/Manual#custom-databases)) can be quite time and resource intensive.
+
+    The Kraken2 database also comes with a few pre-built Bracken databases (filenames look like this: `database100mers.kmer_distrib`). Note that the "100mers" doesn't refer to k-mers (oligonucleotide frequency), but it is the length of the read the database was built for. In this workshop, we've used the 100bp database to estimate abundances for 126bp reads. [According to the developers, this is acceptable](https://github.com/jenniferlu717/Bracken/issues/260). As long as the read length of the built database is $\le$ than the length of reads to be classified, Bracken will provide good enough estimates.
+
+    If you want to build your own Bracken database based on your library minimum read lengths, you can follow the process [here](https://github.com/jenniferlu717/Bracken#step-0-build-a-kraken-1krakenuniqkraken2-database). Take note that you will require the initial sequence and taxonomy files used for building the `Kraken2` database (not part of the files in the pre-built databases) and these (especially for NCBI nt and bacterial databses) will take a long time to download and lots of memory to build.
+
 ## Reconstruct rRNA using `PhyloFlash`-`EMIRGE`
+
+Another method that we can use to obtain taxonomic composition of our metagenomic libraries is to extract/reconstruct the 16S ribosomal RNA gene. However, modern assemblers often struggle to produce contiguous 16S rRNA genes due to (1) taxa harbouring multiple copies of the gene and (2) repeat regions that short reads cannot span ([see here for details](https://github.com/ablab/spades/issues/803)). As such, software such as [EMIRGE](https://github.com/csmiller/EMIRGE) ([Miller et al., 2011](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2011-12-5-r44)) and [PhyloFlash](https://github.com/HRGV/phyloFlash) ([Gruber-Vodicka et al., 2020](https://journals.asm.org/doi/10.1128/msystems.00920-20)) were developed to reconstruct 16S rRNA genes. These methods leverage the expansive catalogue of 16S rRNA genes available in databases such as SILVA in order to subset reads and then reconstruct the full-length gene.
+
+For this workshop, we will use PhyloFlash to obtain sequences and abundances of 16S rRNA sequences. The reason being that PhyloFlash can also run EMIRGE as part of its routine, compare those reconstructions with sequences generated by PhyloFlash's map-assemble, and produce a set of 16S rRNA gene sequences as well as estimate relative abundances via coverage estimation.
+
+!!! note "Limitations"
+
+    Both EMIRGE and PhyloFlash are closed reference methods, meaning they cannot produce sequences from novel taxa (i.e., taxa that do not exist in 16S rRNA databases). In this regard, the other reliable option to obtain sequences from novel taxa is by amplicon sequencing. 
+
+!!! warning "`-lib`"
+
+    A quirk of PhyloFlash is that all outputs will be placed in the current running directory. The only punctuation allowed is "-" and "_". Make sure to name your "LIB" sensibly so you can track which library you're working with.
 
 !!! terminal "code"
 
@@ -359,6 +398,35 @@ The modified code tells `Kraken2` that the inputs `${r1}` and `${r1/R1/R2}` are 
     
     conda deactivate
     ```
+
+A successful run of PhyloFlash (lines 24-29) would have generated the following per-sample outputs:
+
+* `tar.gz` archive containing relevant data files
+* An `.html` page summary
+* A timestamped `.log` detailing what was done
+
+The reconstructed 16S rRNA sequences are stored in the per-sample archive. We will extract them to explore the data files inside.
+
+!!! terminal "code"
+
+    ```sh
+    for pf in *phyloFlash.tar.gz; do
+        outdir=$(basename ${pf} .tar.gz)
+        mkdir -p ${outdir}
+        tar -xvzf ${pf} -C ${outdir}
+    done
+    ```
+
+The reconstructed sequences based on the `phyloFlash` and `EMIRGE` workflows are stored in `sample?.phyloFlash/sample?.all.final.fasta`.
+
+In lines 32-34 of our slurm script, we also ran a cross-sample comparison script. This generated 4 files:
+
+* `allsamples_compare.barplot.pdf` A relative abundance barplot of identified taxa
+* `allsamples_compare.heatmap.pdf` A heatmap of identified taxa
+* `allsamples_compare.matrix.tsv` A dissimilarity matrix (abundance-weighted, UniFrac-like)
+* `allsamples_compare.ntu_table.tsv` (long/tidy-format table of relative abundance per sample per taxa)
+
+The `allsamples_compare.ntu_table.tsv` is especially useful if you intend to perform specific downstream analyses in `R`.
 
 ## *(Optional)* Evaluating assemblies using `MetaQUAST`
 
