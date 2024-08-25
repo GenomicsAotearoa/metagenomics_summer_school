@@ -86,7 +86,7 @@ In the following code, we first `select()` columns of interest (i.e. the contig 
     ## 1. Obtain average coverage per MAG per sample ----
     MAG_cov <- contig_cov %>%
       # Pick relevant columns
-      select(contigName, ends_with(".bam")) %>%
+      select(contigName, contigLen, ends_with(".bam")) %>%
       # Remove ".bam" from sample columns
       rename_with(
         .fn = function(sample_name) str_remove(sample_name, ".bam"),
@@ -101,7 +101,7 @@ In the following code, we first `select()` columns of interest (i.e. the contig 
       # Calculate average coverage per sample per bin
       summarise(
         across(
-          contains("sample"), mean
+          contains("sample"), function(coverage) weighted.mean(coverage, contigLen)
         )
       )
     ```
