@@ -137,10 +137,11 @@ nav:
     - 'day2/ex7_initial_binning.md'
     - 'day2/ex8_bin_dereplication.md'
     - 'day2/ex9_refining_bins.md'
+    - 'day3/ex10.1_viruses.md'
   - 'Day 3':
     - 'day3/ex11_coverage_and_taxonomy.md'
     - 'day3/ex11.1_phylogenomics.md'
-    - 'day3/ex10_viruses.md'
+    - 'day3/ex10.2_viruses.md'
     - 'day3/ex12_gene_prediction.md'
     - 'day3/ex13_gene_annotation_part1.md'
     - 'day3/ex14_gene_annotation_part2.md'
