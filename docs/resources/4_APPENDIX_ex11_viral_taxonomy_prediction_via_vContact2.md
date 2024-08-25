@@ -128,7 +128,11 @@ The following `python` script is effectively an automated version of this for al
 
     The taxonomies are deliberately enclosed in square brackets (`[ ]`) to highlight the fact that these are **predictions**, rather than definitive taxonomy **assignments**.
 
-For future reference, a copy of this script is available for download [here](../scripts/vcontact2_tax_predict.py)
+For future reference, a copy of this script is available for download [here](../scripts/tax_predict_vConTACT2_0.9.19.py)
+
+!!! note "Note"
+
+    This script was written for vConTACT2_0.9.19 and vConTACT2_0.11.3, and has not been tested with later versions. A comparable script for earlier versions of vConTACT2 is available [here](../scripts/vcontact2_tax_predict.py).
 
 !!! terminal "code"
 
@@ -138,7 +142,7 @@ For future reference, a copy of this script is available for download [here](../
     
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/
     
-    ./vcontact2_tax_predict.py \
+    ./tax_predict_vConTACT2_0.9.19.py \
     -i viral_taxonomy/vConTACT2_Results/genome_by_genome_overview.csv \
     -o viral_taxonomy/
     ```
