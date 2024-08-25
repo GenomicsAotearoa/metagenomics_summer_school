@@ -124,14 +124,14 @@ In the following code, we first `select()` the `user_genome` (which is equivalen
         sep = ';'
       ) %>%
       mutate(
-        # Remove ".filtered" from the bin ID
-        user_genome = str_remove(user_genome, ".filtered"),
         # Remove "d__" from all taxonomy columns
         across(
           # Negative selection: change all columns except "user_genome"
           -user_genome,
           .fns = function(taxa) str_replace(taxa, "[a-z]__(.*)", "\\1")
-        )
+        ),
+        # If species is empty, fill with genus
+        species = if_else(species == "", genus, species)
       )
     ```
 
