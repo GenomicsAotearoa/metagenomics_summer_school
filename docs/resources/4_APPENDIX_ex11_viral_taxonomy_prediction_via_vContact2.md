@@ -132,7 +132,9 @@ For future reference, a copy of this script is available for download [here](../
 
 !!! note "Note"
 
-    This script was written for vConTACT2_0.9.19 and vConTACT2_0.11.3, and has not been tested with later versions. A comparable script for earlier versions of vConTACT2 is available [here](../scripts/vcontact2_tax_predict.py).
+    This script was written for vConTACT2_0.9.19 and vConTACT2_0.11.3, and has not been tested with later versions. 
+
+A comparable script for earlier versions of vConTACT2 is available [here](../scripts/vcontact2_tax_predict.py)
 
 !!! terminal "code"
 
