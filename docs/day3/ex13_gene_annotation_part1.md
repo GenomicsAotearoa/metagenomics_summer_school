@@ -241,6 +241,14 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
 
 ## Annotating signal peptides of predicted genes using `SignalP6`
 
+In addition to putative function, we can also predict whether a protein is secreted or not using `SignalP`. In the 5<sup>th</sup> version, users needed to know the Gram status of the organism for the software to predict signal peptides. In 2022, the developers ([Teufel et al., 2022](https://www.nature.com/articles/s41587-021-01156-3)) produced a 6<sup>th</sup> version that uses protein language models (like ChatGPT, for proteins!) to predict the presence of signal peptides across the domains of life.
+
+`SignalP6` has several models depending on required accuracy and hardware availability. Here, we are running the fast model on CPU. There are models built for GPU (they are interconvertible and the software package comes with utilities for easy conversion) that is blazingly fast (most language models require GPUs for accelerations). However, GPUs on NeSI are a coveted resource. For our small dataset, the fast model on CPU is sufficient as an example.
+
+!!! note "`SignalP6` is licensed software"
+
+    In terms of computational capability to detect signal peptides, there is nothing like SignalP6. It is free for academic use and other models can be requested from the developers. If you are not running this on NeSI, you will need to acquire your own license.
+
 !!! terminal-code "code"
 
     ```bash
@@ -283,6 +291,19 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
 !!! warning "`SignalP` will probably `TIMEOUT`"
 
     The above script will almost, inevitably, time out before completing every MAG. However, that is not critical for our purposes today. We simply need at least one of the array jobs to complete (several will) for us to explore the output.
+
+The output of the script above are directories per bin that contain 5 files:
+
+* `predicted_results.txt` the main output with gene ID and the predicted signal peptide ("Other" means none predicted), the prediction probability (i.e., confidence), and the cleavage site
+* `output.gff3` A GFF3-format output of sequences with start and end positions of signal peptides relative to each amino acid sequence
+* `output.json` Similar to above, with more information about run parameters
+* `processed_entries.fasta` Amino acid sequences with the signal peptide cleaved off (i.e., predicted mature proteins)
+* `region_output.gff3` Signal peptides have specific regions characteristic of each type of signal peptide. These usually inform us about cleavage sites for those proteins. This output provides this information. 
+
+!!! warning "`--format none`"
+
+    If you choose to run the above script with other formats (e.g., txt, png, all), per-sequence data outputs and prediction plots (if requested) will be produced. For large numbers of amino acid sequences, this can be problematic as it uses up a lot of space. Unless you're needing to query specific parts of a few proteins, it is advised to stick to "none" to output summaries only.
+
 
 ## Evaluating the quality of gene assignment
 

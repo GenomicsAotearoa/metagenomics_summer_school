@@ -10,6 +10,9 @@
 
     # Create output directory
     mkdir -p viral_taxonomy
+
+    # Create combined nucleotide sequence file
+    cat checkv_out/*.fna > checkv_combined.fna
     ```
 
 Example slurm script:
