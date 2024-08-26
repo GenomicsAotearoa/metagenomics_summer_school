@@ -137,7 +137,7 @@ nav:
     - 'day2/ex7_initial_binning.md'
     - 'day2/ex8_bin_dereplication.md'
     - 'day2/ex9_refining_bins.md'
-    - 'day3/ex10.1_viruses.md'
+    - 'day2/ex10.1_viruses.md'
   - 'Day 3':
     - 'day3/ex11_coverage_and_taxonomy.md'
     - 'day3/ex11.1_phylogenomics.md'
@@ -158,8 +158,6 @@ nav:
     - 'resources/2_APPENDIX_ex9_Generating_input_files_for_VizBin.md'
     - 'resources/3_APPENDIX_ex11_Normalise_coverage_example.md'
     - 'resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md'
-    - 'resources/5_APPENDIX_ex15_Prepare_gene_synteny_inputs.md'
-    - 'resources/5_APPENDIX_ex15_gene_synteny_Generate_blast_files.md'
     - 'resources/7_command_line_shortcuts.md'
   - 'Supplementary':
     - 'supplementary/supplementary_1.md'
