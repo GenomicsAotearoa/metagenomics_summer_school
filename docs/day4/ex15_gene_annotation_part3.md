@@ -66,7 +66,10 @@ For the viral annotations, we will also include the parameters `--remove_transpo
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage/
     
     # Prokaryote annotations
-    DRAM.py distill -i dram_annotations/annotations.tsv -o dram_distillation --trna_path dram_annotations/trnas.tsv --rrna_path dram_annotations/rrnas.tsv
+    DRAM.py distill -i dram_annotations/annotations.tsv \
+                    -o dram_distillation \
+                    --trna_path dram_annotations/trnas.tsv \
+                    --rrna_path dram_annotations/rrnas.tsv
     
     # viral annotations
     DRAM-v.py distill --remove_transposons --remove_fs \
