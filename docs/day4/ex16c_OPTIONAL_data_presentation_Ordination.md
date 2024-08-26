@@ -249,24 +249,21 @@ After obtaining the coordinates (and associated statistics), we can use it as in
     ## Call ggplot
     ggplot(data = scrs_all, aes(x = NMDS1, y = NMDS2, colour = Group)) +
       # Plot scatterplot
-      geom_point(size = 0.5) +
+      geom_point() +
       # Designate sample group colours
       scale_colour_manual(values = group_colour, name = "Sample group") +
       # Split plots based on "data_type"
       facet_wrap(~ data_type, labeller = labeller(data_type = panel_labels)) +
       # Add text annotations
       geom_text(data = stress_values, aes(label = label), inherit.aes = F,
-                x = 0.4, y = 0.4, vjust = 0, hjust = 0,
-                size = 1.2) +
+                x = 0.4, y = 0.4, vjust = 0, hjust = 0) +
       # Set general theme
       theme_bw() +
       theme(
         panel.grid = element_blank(), # remove grid lines
-        legend.position = "bottom", # set legend position at the bottom
-        text = element_text(size = 5), # All text size should be 5 points
-        rect = element_rect(size = 0.25), # All edges of boxes should be 0.25 wide
-        line = element_line(size = 0.25) # 
+        legend.position = "bottom" # set legend position at the bottom
       )
+
     ```
 
 The code above can be summarised to the following:
