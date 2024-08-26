@@ -66,11 +66,11 @@ Import all relevant data as follows:
 
     ```R
     # Read files ----
-    contig_cov <- read_tsv("bins_cov_table.txt") # Bin contig coverage table
+    contig_cov <- read_tsv("bin_cov_table.txt") # Bin contig coverage table
     gtdbtk_out <- read_tsv("gtdbtk.bac120.summary.tsv") # Prokaryotic taxonomy from GTDB-Tk
     virus_cov <- read_tsv("viruses_cov_table.txt") # Viral contig coverage table
     checkv_summary <- read_tsv("checkv_quality_summary.tsv") # Viral contig quality from CheckV
-    vContact2_out <- read_tsv("tax_predict_table.txt") # Viral taxonomy from vContact2
+    vContact2_out <- read_tsv("tax_predict_table.tsv") # Viral taxonomy from vContact2
     metadata <- read_tsv("mapping_file.txt") # Metadata/mapping file of environmental parameters
     ```
 
