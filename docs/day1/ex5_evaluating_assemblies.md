@@ -4,6 +4,8 @@
 
     * [Evaluating the resource consumption of various assemblies](#evaluating-the-resource-consumption-of-various-assemblies)
     * [Evaluating the assemblies using `BBMap`](#evaluating-the-assemblies-using-bbmap)
+    * [Sequence taxonomic classification using `Kraken2`](#sequence-taxonomic-classification-using-kraken2)
+    * [Reconstruct rRNA using `PhyloFlash`-`EMIRGE`](#reconstruct-rrna-using-phyloflash-emirge)
     * [*(Optional)* Evaluating assemblies using `MetaQUAST`](#optional-evaluating-assemblies-using-metaquast)
 
 ---
