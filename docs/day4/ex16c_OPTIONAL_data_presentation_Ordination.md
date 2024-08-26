@@ -63,7 +63,7 @@ Import coverage tables and mapping file.
 
     ```R
     # Read files ----
-    contig_cov <- read_tsv("bins_cov_table.txt") # Bin contig coverage table
+    contig_cov <- read_tsv("bin_cov_table.txt") # Bin contig coverage table
     virus_cov <- read_tsv("viruses_cov_table.txt") # Viral contig coverage table
     metadata <- read_tsv("mapping_file.txt") # Metadata/mapping file of environmental parameters
     ```
@@ -77,7 +77,7 @@ As before in [coverage exercise](../day4/ex16b_data_presentation_Coverage.md), w
     ```R
     ## Select relevant columns and rename them
     contig_cov <- contig_cov %>%
-      select(contigName, ends_with(".bam")) %>%
+      select(contigName, contigLen, ends_with(".bam")) %>%
       rename_with(
         .fn = function(sample_name) str_remove(sample_name, ".bam"),
         .cols = everything()
@@ -98,8 +98,8 @@ As before in [coverage exercise](../day4/ex16b_data_presentation_Coverage.md), w
       group_by(binID) %>%
       summarise(
         across(
-          -contigName,
-          .fns = function(coverage) mean(coverage)
+          contains("sample"),
+          .fns = function(coverage) weighted.mean(coverage, contigLen)
         )
       )
     ```
