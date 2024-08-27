@@ -64,7 +64,9 @@ Use `vContact2`'s `vcontact2_gene2genome` script to generate the required mappin
     # Load modules
     module purge
     module unload XALT
-    module load Singularity/3.10.3 DIAMOND/2.0.15-GCC-11.3.0 MCL/14.137-gimkl-2020a
+    module load Singularity/3.11.3 \
+            MCL/14.137-gimkl-2020a \
+            DIAMOND/2.1.9-GCC-11.3.0
     
     # Bind path to Singularity container
     export SINGULARITY_BIND="$PWD"
@@ -86,7 +88,7 @@ Use `vContact2`'s `vcontact2_gene2genome` script to generate the required mappin
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      vConTACT2
-    #SBATCH --partition     milan
+    #SBATCH --partition     milan
     #SBATCH --time          02:00:00
     #SBATCH --mem           20GB
     #SBATCH --cpus-per-task 16
@@ -99,7 +101,9 @@ Use `vContact2`'s `vcontact2_gene2genome` script to generate the required mappin
     # Load modules
     module purge
     module unload XALT
-    module load Singularity/3.10.3 MCL/14.137-gimkl-2020a DIAMOND/2.0.15-GCC-11.3.0
+    module load Singularity/3.11.3 \
+            MCL/14.137-gimkl-2020a \
+            DIAMOND/2.1.9-GCC-11.3.0
 
     # Bind paths
     export SINGULARITY_BIND="$PWD"
@@ -146,12 +150,12 @@ A comparable script for earlier versions of vConTACT2 is available [here](../scr
 
     ```bash
     module purge
-    module load Python/3.8.2-gimkl-2020a
+    module load Python/3.11.6-foss-2023a
     
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.viruses/
     
     ./tax_predict_vConTACT2_0.9.19.py \
-    -i viral_taxonomy/vConTACT2_Results/genome_by_genome_overview.csv \
+    -i vConTACT2_Results/genome_by_genome_overview.csv \
     -o viral_taxonomy/
     ```
 
