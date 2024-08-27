@@ -4,12 +4,8 @@
 
     * [Preparing input files for `VizBin`](#preparing-input-files-for-vizbin)
     * [Projecting a *t-SNE* using `VizBin` and examining bin clusters](#projecting-a-t-sne-and-examining-bin-clusters)
-    * [Picking refined bins](#picking-refined-bins)
-    * [Export `VizBin` clusters](#1-export-vizbin-clusters)
-    * [Export potentially problematic contigs](#2-export-potentially-problematic-contigs)
-    * [*(Optional)* Refining and filtering problematic contigs from bins](#optional-refining-and-filtering-problematic-contigs-from-bins)
-    * [*(Optional)* Comparing pre- and post-filtered bins via *CheckM*](#optional-comparing-pre--and-post-filtered-bins-via-checkm)
-    * [*(Optional)* Scripts for processing data with `ESOMana`](#optional-scripts-for-processing-data-with-esomana)
+    * [Picking and exporting sequences](#1-picking-and-exporting-sequences)
+    * [Refining bins](#2-refining-bins)
 
 ---
 
@@ -249,7 +245,7 @@ Similar to other projection techniques, we interpret the closeness of points as 
 
 ---
 
-## Picking sequences
+## 1. Picking and exporting sequences
 
 We can use the interactive GUI to pick the boundaries of new bins, or to identify contigs which we do not believe should be retained in the data. Have a play around with the interface, testing out the following commands:
 
@@ -263,9 +259,9 @@ How you proceed in this stage is up to you. You can either select bins based on 
 
 <!--
 Today, we will run through an example of selecting potentially problematic (sub)contigs, and then deciding whether or not we want to filter these contigs out of our refined bins. We can use a combination of `VizBin` and `seqmagick` to remove contigs from bins where we do not trust the placement of the contig. We are aiming to reduce each bin to a trusted set of contigs.
--->
 
 ## 1. Export `VizBin` clusters
+-->
 
 First, for each `VizBin` cluster, select the area around the cluster (via multiple left-clicks around the cluster), right-click, 'Selection', 'Export'. Save this output as `cluster_1.fna`. 
 

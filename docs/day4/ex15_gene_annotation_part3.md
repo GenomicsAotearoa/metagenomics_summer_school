@@ -2,8 +2,8 @@
 
 !!! info "Objectives"
 
-    * [Overview of `DRAM.py annotate` and `DRAM-v.py annotate` output](#overview-of-drampy-annotate-and-dramvpy-annotate-output)
-    * [`DRAM` and `DRAM-v` distillation step and visualization of results](#dram-and-dramv-distillation-of-the-results)
+    * [Overview of `DRAM.py annotate` and `DRAM-v.py annotate` output](#overview-of-drampy-annotate-output)
+    * [`DRAM` and `DRAM-v` distillation step and visualization of results](#dram-and-dram-v-distillation-of-the-results)
     * [Tie findings to your initial goal](#tie-findings-to-your-initial-goal)
 
 ---

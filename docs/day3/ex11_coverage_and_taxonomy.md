@@ -2,7 +2,7 @@
 
 !!! info "Objectives"
 
-    * [Assigning taxonomy to the refined bins](#assigning-taxonomy-to-the-refined-bins)
+    * [Assigning taxonomy to the refined bins](#assigning-taxonomy-to-the-dereplicated-bins)
 
 ---
 

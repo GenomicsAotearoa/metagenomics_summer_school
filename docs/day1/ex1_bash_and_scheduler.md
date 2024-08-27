@@ -12,12 +12,11 @@
     * [Navigating your file system](#navigating-your-file-system)
     * [Copying, Moving, Renaming and Removing files](#copying-moving-renaming-and-removing-files)
     * [Examining file contents](#examining-file-contents)
-    * [Redirection, manipulation and extraction](#redirection-manipulation-and-extraction)
+    * [Redirection, manipulation and extraction](#redirection-and-extraction)
     * [Text and file manipulation](#text-and-file-manipulation)
     * [Loops](#loops)
     * [Shell scripting](#scripts)
-    * [Moving files between your laptop and NeSI](#moving-files-between-your-laptop-and-remote-clustermachine)
-    * [Introduction to slurm](#introduction-to-slurm)
+    * [Introduction to HPC and the SLURM scheduler](../day1/ex2_1_intro_to_scheduler.md)
 
 ---
 

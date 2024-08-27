@@ -3,8 +3,6 @@
 !!! info "Objectives"
 
     * [Build a sulfur assimilation gene alignment figure to investigate gene synteny using `R`](#build-a-sulfur-assimilation-gene-alignment-figure-to-investigate-gene-synteny-using-r)
-    * [Parsing files in `bash`](#part-1---parsing-files-in-bash)
-    * [Import and wrangle data in `R`](#part-2---producing-the-figure-in-r)
 
 ---
 

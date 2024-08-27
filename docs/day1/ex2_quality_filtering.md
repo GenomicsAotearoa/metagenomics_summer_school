@@ -6,7 +6,7 @@
     * [Read trimming and adapter removal with `trimmomatic`](#read-trimming-and-adapter-removal-with-trimmomatic)
     * [Diagnosing poor libraries](#diagnosing-poor-libraries)
     * [Understand common issues and best practices](#understanding-common-issues-and-best-practices)
-    * [*Optional*: Filtering out host DNA with `BBMap`](#optional-filtering-out-host-dna)
+    * [Filtering out host DNA with `BBMap`](#filtering-out-host-dna)
 
 <center>
 ![image](../theme_images/qc_image.png){width="350"}
@@ -427,7 +427,7 @@ We'll submit the mapping script:
 
 ??? tip "Monitoring job progress"
 
-    We can monitor our job progress using `squeue --me` or `sacct <job_id>`. This will be covered in detail as part of the main content when we [evaluate assemblies](./ex5_evaluating_assemblies.md#evaluate-the-resource-consumption-of-various-assemblies). 
+    We can monitor our job progress using `squeue --me` or `sacct <job_id>`. This will be covered in detail as part of the main content when we [evaluate assemblies](./ex5_evaluating_assemblies.md#evaluating-the-resource-consumption-of-various-assemblies). 
 
 !!! note "Array jobs"
 
