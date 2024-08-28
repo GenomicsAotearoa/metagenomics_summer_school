@@ -167,7 +167,7 @@ This gives quite a verbose output:
 
 !!! circle-check "Terminal output"
 
-    ```bash
+    ```
     A       C       G       T       N       IUPAC   Other   GC      GC_stdev
     0.2541  0.2475  0.2453  0.2531  0.0018  0.0000  0.0000  0.4928  0.0958
 
