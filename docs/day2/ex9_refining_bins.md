@@ -313,7 +313,7 @@ List the content of `mock_bins/`, there are 4 FASTA files. We will need to gener
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="1"
     # VizBin requires a header for annotation files
     echo "label" > all_mock_bins.label.txt
 
