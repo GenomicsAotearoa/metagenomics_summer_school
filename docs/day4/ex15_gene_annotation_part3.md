@@ -95,16 +95,16 @@ First, let's have a look at the `genome_stats.tsv` file to check the assembly qu
 
     |genome|number of scaffolds|taxonomy|completeness score|contamination score|5S rRNA|16S rRNA|23S rRNA|tRNA count|assembly quality|
     |:--- | :--- |:--- | :--- |:--- | :--- |:--- | :--- |:--- | :--- |
-    |bin_0|1|d__Bacteria;p__Cyanobacteria;c__Cyanobacteriia;o__Synechococcales;f__Cyanobiaceae;g__Prochlorococcus_C;s__|100|0.14|-|2 present|2 present|47|med|
-    |bin_1|4|d__Bacteria;p__Firmicutes;c__Bacilli;o__Staphylococcales;f__Staphylococcaceae;g__Staphylococcus;s__|99.51|0.08|6 present|5 present|5 present|60|med|
-    |bin_2|1|d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Pseudomonadales;f__Pseudomonadaceae;g__Pseudomonas;s__|96.45|0.11|3 present|-|-|43|med|
-    |bin_3|3|d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacterales;f__Vibrionaceae;g__Vibrio;s__|99.73|0.03|9 present|8 present|8 present|98|med|
-    |bin_4|1|d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Burkholderiales;f__Nitrosomonadaceae;g__Nitrosomonas;s__|99.97|0.74|bin_4, (74043, 74150)|bin_4, (69143, 70676)|bin_4, (71085, 73967)|42|high|
-    |bin_5|1|d__Bacteria;p__Proteobacteria;c__Alphaproteobacteria;o__Rhizobiales;f__Xanthobacteraceae;g__Nitrobacter;s__|99.8|0|bin_5, (643507, 643615)|bin_5, (638306, 639791)|bin_5, (640621, 643431)|49|high|
-    |bin_6|1|d__Bacteria;p__Campylobacterota;c__Campylobacteria;o__Nautiliales;f__Nautiliaceae;g__;s__|99.59|0.41|4 present|4 present|4 present|49|med|
-    |bin_7|1|d__Bacteria;p__Campylobacterota;c__Campylobacteria;o__Campylobacterales;f__Arcobacteraceae;g__Arcobacter;s__|99.59|2.98|4 present|4 present|4 present|54|med|
-    |bin_8|19|d__Bacteria;p__Desulfobacterota_A;c__Desulfovibrionia;o__Desulfovibrionales;f__Desulfovibrionaceae;g__Desulfovibrio;s__|99.41|0|2 present|bin_8, (3744, 5289)|bin_8, (379, 3300)|57|med|
-    |bin_9|1|d__Bacteria;p__Planctomycetota;c__Brocadiae;o__Brocadiales;f__Brocadiaceae;g__;s__|97.8|1.65|bin_9, (1066028, 1066130)|bin_9, (1069811, 1071397)|bin_9, (1066309, 1069302)|46|high|
+    |bin_0|23|d__Bacteria;p__Campylobacterota;c__Campylobacteria;o__Campylobacterales;f__Arcobacteraceae;g__Arcobacter;s__Arcobacter nitrofigilis|99.59|3.39|2 present|bin_0_bin_0_NODE_25_length_262222_cov_1.020389 (260223, 261736)|-|44|med|
+    |bin_1|10|d__Bacteria;p__Campylobacterota;c__Campylobacteria;o__Nautiliales;f__Nautiliaceae;g__Nautilia;s__Nautilia profundicola|99.59|0.41|bin_1_bin_1_NODE_179_length_42779_cov_1.586174 (42578, 42683)|bin_1_bin_1_NODE_179_length_42779_cov_1.586174 (37726, 39229)|bin_1_bin_1_NODE_179_length_42779_cov_1.586174 (39618, 42521)|43|high|
+    |bin_2|14|d__Bacteria;p__Cyanobacteriota;c__Cyanobacteriia;o__PCC-6307;f__Cyanobiaceae;g__Prochlorococcus_C;s__|99.73|0.27|-|bin_2_bin_2_NODE_16_length_329212_cov_0.767174 (155033, 156512)|bin_2_bin_2_NODE_16_length_329212_cov_0.767174 (151325, 154198)|51|med|
+    |bin_3|375|d__Bacteria;p__Planctomycetota;c__Brocadiia;o__Brocadiales;f__Brocadiaceae;g__Kuenenia;s__Kuenenia stuttgartiensis_A|91.21|0.61|-|bin_3_bin_3_NODE_465_length_7730_cov_0.184781 (1, 929)|-|37|med|    
+    |bin_4|12|d__Bacteria;p__Desulfobacterota;c__Desulfovibrionia;o__Desulfovibrionales;f__Desulfovibrionaceae;g__Desulfovibrio;s__Desulfovibrio desulfuricans|94.67|0|-|-|-|46|med|    
+    |bin_5|59|d__Bacteria;p__Pseudomonadota;c__Gammaproteobacteria;o__Burkholderiales;f__Nitrosomonadaceae;g__Nitrosomonas;s__Nitrosomonas europaea|99.97|0.9|bin_5_bin_5_NODE_53_length_160826_cov_1.123462 (86680, 86787)|bin_5_bin_5_NODE_53_length_160826_cov_1.123462 (90154, 91687)|bin_5_bin_5_NODE_53_length_160826_cov_1.123462 (86863, 89745)|42|high|    
+    |bin_6|73|d__Bacteria;p__Bacillota;c__Bacilli;o__Staphylococcales;f__Staphylococcaceae;g__Staphylococcus;s__Staphylococcus aureus|98.58|0.11|3 present|bin_6_bin_6_NODE_110_length_77108_cov_0.318002 (42475, 44023)|bin_6_bin_6_NODE_110_length_77108_cov_0.318002 (39078, 41996)|34|med|    
+    |bin_7|57|d__Bacteria;p__Pseudomonadota;c__Gammaproteobacteria;o__Pseudomonadales;f__Pseudomonadaceae;g__Pseudomonas;s__Pseudomonas aeruginosa|96.87|0.11|2 present|-|-|42|med|    
+    |bin_8|16|d__Bacteria;p__Pseudomonadota;c__Gammaproteobacteria;o__Enterobacterales;f__Vibrionaceae;g__Vibrio;s__Vibrio cholerae|99.41|0.03|6 present|bin_8_bin_8_NODE_68_length_133755_cov_0.640623 (22138, 23676)|bin_8_bin_8_NODE_68_length_133755_cov_0.640623 (24392, 27264)|77|med|    
+    |bin_9|70|d__Bacteria;p__Pseudomonadota;c__Alphaproteobacteria;o__Rhizobiales;f__Xanthobacteraceae;g__Nitrobacter;s__Nitrobacter winogradskyi|99.8|0|bin_9_bin_9_NODE_50_length_179569_cov_0.671348 (103643, 103751)|bin_9_bin_9_NODE_50_length_179569_cov_0.671348 (98442, 99927)|bin_9_bin_9_NODE_50_length_179569_cov_0.671348 (100757, 103567)|49|high|
 
 To finish, we visualize the *Product*, an .HTML file produced in the distillation step, by double-clicking on it in our *Jupyter* lab notebook or downloading from [here](../resources/dram_distillation.zip). The *Product* has three primary parts:
 
