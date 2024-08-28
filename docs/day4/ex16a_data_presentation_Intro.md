@@ -47,7 +47,7 @@ All of the required packages for these exercises are already installed.
 
     !!! r-project "code"
     
-        ```R
+        ```R linenums="1"
         install.packages('ade4')
         install.packages('genoPlotR')
         install.packages('pheatmap')
