@@ -156,7 +156,7 @@ If this fails to open on your PC, or if it runs prohibitively slowly, team up wi
     !!! terminal "code"
     
         ```bash
-        module load Java/17
+        module load Java/20.0.2
         ```
     
 3. In the terminal, navigate to your directory where the Java file resides
