@@ -82,7 +82,7 @@ If we only provided the path, without a file name prefix, `MetaBAT` would create
 
 !!! success "" 
 
-    ```bash
+    ```
     metabat/.1.fa
     metabat/.2.fa
     metabat/.3.fa
