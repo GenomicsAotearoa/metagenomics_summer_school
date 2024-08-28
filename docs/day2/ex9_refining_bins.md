@@ -386,11 +386,13 @@ Moment of truth! How did your decisions impact the genome metrics of each bin? R
 
 Did you do better than the automated binning software? Consider the following:
 
-* Were the new clusters more complete?
-* How much contamination was removed?
-* Was there an substantial trade-off between completeness and contamination?
-* How would you pre-process the sequences differently prior to manual refinement?
-* Are there additional information that would have helped you in the decision-making process?
+!!! question ""
+
+    * Were the new clusters more complete?
+    * How much contamination was removed?
+    * Was there an substantial trade-off between completeness and contamination?
+    * How would you pre-process the sequences differently prior to manual refinement?
+    * Are there additional information that would have helped you in the decision-making process?
 
 When your CheckM run finishes, check and compare how you did!
 
