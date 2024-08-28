@@ -200,10 +200,10 @@ To run this exercise we first need to set up a slurm job. We will use the result
 
     # Run DRAM-v
     DRAM-v.py annotate --threads ${SLURM_CPUS_PER_TASK} \
-    --min_contig_size 1000 \
-    -i mgss-for-dramv/final-viral-combined-for-dramv.fa \
-    -v mgss-for-dramv/viral-affi-contigs-for-dramv.tab \
-    -o dramv_annotations
+                       --min_contig_size 1000 \
+                       -i mgss-for-dramv/final-viral-combined-for-dramv.fa \
+                       -v mgss-for-dramv/viral-affi-contigs-for-dramv.tab \
+                       -o dramv_annotations
     ```
 
 !!! terminal-2 "Submit the job"
