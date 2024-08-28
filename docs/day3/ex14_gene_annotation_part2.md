@@ -118,8 +118,8 @@ To run this exercise we first need to set up a slurm job. We will use the result
     #SBATCH --time          5:00:00
     #SBATCH --mem           30Gb
     #SBATCH --cpus-per-task 24
-    #SBATCH --error         %x_%A.err
-    #SBATCH --output        %x_%A.out
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
 
     # Load modules
     module purge
@@ -188,8 +188,8 @@ To run this exercise we first need to set up a slurm job. We will use the result
     #SBATCH --time          02:00:00
     #SBATCH --mem           10Gb
     #SBATCH --cpus-per-task 12
-    #SBATCH --error         %x_%A.err
-    #SBATCH --output        %x_%A.out
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
 
     # Load modules
     module purge
