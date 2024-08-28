@@ -127,7 +127,7 @@ For large sets of files, it can be beneficial to use a slurm *array* to send the
 
 !!! abstract "This is performed using the following parameters"
 
-    |Parameter|Function|
+    |<div style="width:100px">Parameter</div>|Function|
     |:---|:---|
     |`--minins`|Minimum insert size, determines the minimum distance between the start of each read pair|
     |`--maxins`|Maximum insert size, determines the maximum distance between the start of each read pair|
