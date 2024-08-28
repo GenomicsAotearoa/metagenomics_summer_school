@@ -25,16 +25,16 @@ COLOR	#000000
 #=================================================================#
 DATA
 
-bin_0.filtered	Arcobacter nitrofigilis
-bin_1.filtered	Nautilia profundicola
-bin_2.filtered	Staphylococcus aureus
-bin_3.filtered	Nitrosomonas europaea
-bin_4.filtered	Desulfovibrio desulfuricans
-bin_5.filtered	Pseudomonas aeruginosa
-bin_6.filtered	Kuenenia stuttgartiensis
-bin_7.filtered	Prochlorococcus marinus
-bin_8.filtered	Nitrobacter winogradskyi
-bin_9.filtered	Vibrio cholerae
+bin_0	Arcobacter nitrofigilis
+bin_1	Nautilia profundicola
+bin_2	Prochlorococcus sp.
+bin_3	Kuenenia stuttgartiensis A
+bin_4	Desulfovibrio desulfuricans
+bin_5	Nitrosomonas europaea
+bin_6	Staphylococcus aureus
+bin_7	Pseudomonas aeruginosa
+bin_8	Vibrio cholerae
+bin_9	Nitrobacter winogradskyi
 
 #Examples:
 #assign a red colored strip to leaf 9606, with label 'Human' (label is displayed in the mouseover popups)

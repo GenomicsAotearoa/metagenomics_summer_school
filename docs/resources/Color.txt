@@ -59,16 +59,16 @@ LEGEND_SHAPES	3
 
 DATA
 
-bin_0.filtered	label	clade	#000000	1	italic
-bin_1.filtered	label	clade	#000000	1	italic
-bin_2.filtered	label	clade	#e69138	1	italic
-bin_3.filtered	label	clade	#000000	1	italic
-bin_4.filtered	label	clade	#000000	1	italic
-bin_5.filtered	label	clade	#674ea7	1	italic
-bin_6.filtered	label	clade	#000000	1	italic
-bin_7.filtered	label	clade	#000000	1	italic
-bin_8.filtered	label	clade	#000000	1	italic
-bin_9.filtered	label	clade	#990000	1	italic
+bin_0	label	clade	#000000	1	italic
+bin_1	label	clade	#000000	1	italic
+bin_2	label	clade	#000000	1	italic
+bin_3	label	clade	#000000	1	italic
+bin_4	label	clade	#000000	1	italic
+bin_5	label	clade	#000000	1	italic
+bin_6	label	clade	#e69138	1	italic
+bin_7	label	clade	#674ea7	1	italic
+bin_8	label	clade	#990000	1	italic
+bin_9	label	clade	#000000	1	italic
 
 #Examples
 

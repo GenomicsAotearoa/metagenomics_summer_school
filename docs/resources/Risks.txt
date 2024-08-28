@@ -79,13 +79,13 @@ LEGEND_LABELS	Healthcare associated infections	Intestinal infection
 #=================================================================#						
 DATA
 
-bin_0.filtered	-1	-1
-bin_1.filtered	-1	-1
-bin_2.filtered	1	-1
-bin_3.filtered	-1	-1
-bin_4.filtered	-1	-1
-bin_5.filtered	1	-1
-bin_6.filtered	-1	-1
-bin_7.filtered	-1	-1
-bin_8.filtered	-1	-1
-bin_9.filtered	-1	1				
+bin_0	-1	-1
+bin_1	-1	-1
+bin_2	-1	-1
+bin_3	-1	-1
+bin_4	-1	-1
+bin_5	-1	-1
+bin_6	1	-1
+bin_7	1	-1
+bin_8	-1	1
+bin_9	-1	-1				
