@@ -39,7 +39,7 @@ These exercises will take place in the `10.gene_annotation_and_coverage/` folder
 
 For this exercise we are going to use `DIAMOND` for performing our annotation. We have chosen to use this tool because it is faster than `BLAST`, and `USEARCH` comes with licensing restrictions that make it hard to work with in a shared computing environment like NeSI.
 
-For this exercise we have created a diamond-compatible database from the 2018 release of the *UniProt* database.
+For this exercise we have created a diamond-compatible database from the 2024 release of the *UniProt* database.
 
 For input files, the `predictions/` results from the previous gene prediction exercise have been copied over to `10.gene_annotation_and_coverage/predictions/`.
 
