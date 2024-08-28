@@ -207,7 +207,7 @@ While this header information can be very informative, its presence in the FASTA
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="1"
     for pred_file in predictions/*.fna;
     do
         file_base=$(basename ${pred_file} .fna)
