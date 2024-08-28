@@ -247,8 +247,8 @@ The breakdown of parameters is as follows
 |`-x`|The *fastA* file extension to look for in the input folder. Default is *.fna*|
 |`--tab_table`|If this parameter is present, a summary table will be written for the `CheckM` run|
 |`-f`|The name of the file for the summary|
-|`dastool/\_DASTool\_bins/`|The location of the bins to test|
-|`checkm\_out/`|The location to write intermediate and output files|
+|`dastool/_DASTool_bins/`|The location of the bins to test|
+|`checkm_out/`|The location to write intermediate and output files|
 
 !!! tip "Increasing `--pplacer_threads`"
 
