@@ -217,10 +217,12 @@ For example, consider these two scenarios:
 
     ```bash
     # Command 1
-    trimmomatic PE <keyword flags> <sequence input> <sequence output> ILLUMINACLIP:${adapter}:1:25:7 SLIDINGWINDOW:4:30 MINLEN:80
+    trimmomatic PE <keyword flags> <sequence input> <sequence output> \
+                    ILLUMINACLIP:${adapter}:1:25:7 SLIDINGWINDOW:4:30 MINLEN:80
 
     # Command 2
-    trimmomatic PE <keyword flags> <sequence input> <sequence output> ILLUMINACLIP:${adapter}:1:25:7 MINLEN:80 SLIDINGWINDOW:4:30
+    trimmomatic PE <keyword flags> <sequence input> <sequence output> \
+                    ILLUMINACLIP:${adapter}:1:25:7 MINLEN:80 SLIDINGWINDOW:4:30
     ```
 
 In the first run, we would not expect any sequence shorter than 80 base pairs to exist in the output files. However, we might encounter them in the second command. This is because in the second command we remove sequences shorter than 80 base pairs, **_then_** perform quality trimming. If a sequence is trimmed to a length shorter than 80 base pairs **_after_** trimming, the `MINLEN` filtering does not execute a second time. In the first instance, we do not perform trimming **_before_** size selection, so any reads that start longer than 80 base pairs, but are trimmed to under 80 base pairs during quality trimming will be caught in the `MINLEN` run.
