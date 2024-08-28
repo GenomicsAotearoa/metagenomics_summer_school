@@ -145,7 +145,7 @@ We will now run `prodigal` over the 10 bins in *anonymous* mode using an array.
     pred_file=$(basename ${bin_file} .fna)
 
     # Run prodigal
-    prodigal -i ${bin_file} -p meta \
+    prodigal -i ${bin_file} -p single \
              -d predictions/${pred_file}.genes.fna \
              -a predictions/${pred_file}.genes.faa \
              -o predictions/${pred_file}.genes.gbk
