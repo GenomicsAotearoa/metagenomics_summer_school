@@ -39,7 +39,7 @@ First, set the working directory and load the required libraries.
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     # Set working directory
     setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/coverage')
     
@@ -61,7 +61,7 @@ Import coverage tables and mapping file.
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     # Read files ----
     contig_cov <- read_tsv("bin_cov_table.txt") # Bin contig coverage table
     virus_cov <- read_tsv("viruses_cov_table.txt") # Viral contig coverage table
@@ -74,7 +74,7 @@ As before in [coverage exercise](../day4/ex16b_data_presentation_Coverage.md), w
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     ## Select relevant columns and rename them
     contig_cov <- contig_cov %>%
       select(contigName, contigLen, ends_with(".bam")) %>%
@@ -116,7 +116,7 @@ Here we will use the functions `vegdist()` and `metaMDS()` from the `R` package 
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     # Calculate dissimilarities ----
     ## Unweighted dissimilarities (presence/absence)
     MAG_binary_bray <- MAG_cov %>%
@@ -149,7 +149,7 @@ From here on out, we will process the data using the same functions/commands. We
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     # Collect dissimilarities into a list for collective processing ----
     bray_list <- list(
       "MAG_binary_bray" = MAG_binary_bray,
@@ -165,7 +165,7 @@ We now generate and visualise all ordinations in 4 panels them using native plot
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     # Perform non-metric multidimensional scaling (nMDS) ----
     nmds_list <- map(bray_list, function(bray) metaMDS(bray, trymax = 999))
 
@@ -192,7 +192,7 @@ Before proceeding to plotting using `ggplot2`. We need to extract the X and Y co
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     # Extract data from nMDS ----
     ## Obtain coordinates
     scrs_list <- map(nmds_list, function(nmds) {
@@ -223,7 +223,7 @@ After obtaining the coordinates (and associated statistics), we can use it as in
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     # Plot nMDS using ggplot2 ----
     ## Set up colours
     metadata <- metadata %>%
