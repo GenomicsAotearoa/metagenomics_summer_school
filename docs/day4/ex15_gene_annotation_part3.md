@@ -59,7 +59,7 @@ For the viral annotations, we will also include the parameters `--remove_transpo
 
 !!! terminal "code"
 
-    ```bash
+    ```bash linenums="1"
     module purge
     module load DRAM/1.3.5-Miniconda3
     
