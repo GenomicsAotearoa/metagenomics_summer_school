@@ -223,7 +223,7 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
     # Variables
     prot_file=predictions/bin_${SLURM_ARRAY_TASK_ID}.genes.no_metadata.faa
     out_file=$(basename ${prot_file} .faa)
-    db=/nesi/nobackup/nesi02659/MGSS_resources_2022/databases/Pfam-A.hmm
+    db=/nesi/nobackup/nesi02659/MGSS_2024/resources/databases/Pfam-A.hmm
     
     # Run HMMER
     hmmsearch --tblout gene_annotations/${out_file}.pfam.txt -E 0.001 \
