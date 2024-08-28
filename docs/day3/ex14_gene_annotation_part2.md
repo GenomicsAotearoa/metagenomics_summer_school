@@ -444,6 +444,8 @@ Depending on what you are looking for, you will either be trying to find gene(s)
 
 To conduct this exersise, you should use the information generated with `DRAM` as well as the annotation files we created previously that will be available in the directory `10.gene_annotation_and_coverage/gene_annotations`. 
 
+<!--
 Please note that we have also provided further annotation files within the directory `10.gene_annotation_and_coverage/example_annotation_tables` that contain information obtained after annotating the MAGs against additional databases (UniProt, UniRef100, KEGG, PFAM and TIGRfam). These example files can also be downloaded from [here](../resources/example_annotation_tables.zip). These files were created by using an in-house python script designed to aggregate different annotations and as part of the environmental metagenomics worflow followed in Handley's lab. Information about using this script as well as the script is available [here](https://github.com/GenomicsAotearoa/environmental_metagenomics/blob/master/old_stuff/metagenomic_annotation/3.aggregation.md)  
+-->
 
 ---
