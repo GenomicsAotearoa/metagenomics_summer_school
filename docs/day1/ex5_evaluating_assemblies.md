@@ -121,14 +121,14 @@ These steps will take place in the `4.evaluation/` folder, which contains copies
     === "`SPAdes`"
 
         ```
-        spades_assembly/spades_assembly.fna:1318
+        spades_assembly/spades_assembly.fna:1327
         spades_assembly/spades_assembly.m1000.fna:933
         ```
 
     === "`IDBA-UD`"
 
         ```
-        idbaud_assembly/idbaud_assembly.fna:5057
+        idbaud_assembly/idbaud_assembly.fna:5056
         idbaud_assembly/idbaud_assembly.m1000.fna:1996
         ```
 
@@ -137,9 +137,13 @@ If you have your own assemblies and you want to try inspect them in the same way
 !!! terminal "code"
 
     ```bash
-    seqmagick convert --min-length 1000 ../3.assembly/my_spades_assembly/scaffolds.fasta my_spades_assembly.m1000.fna
+    seqmagick convert \
+        --min-length 1000 \
+        ../3.assembly/my_spades_assembly/scaffolds.fasta my_spades_assembly.m1000.fna
 
-    seqmagick convert --min-length 1000 ../3.assembly/my_idbaud_assembly/scaffold.fa my_idbaud_assembly.m1000.fna
+    seqmagick convert \
+        --min-length 1000 \
+        ../3.assembly/my_idbaud_assembly/scaffold.fa my_idbaud_assembly.m1000.fna
     ```
 
 !!! note "Choice of software: sequence file manipulation"
@@ -165,37 +169,37 @@ This gives quite a verbose output:
 
     ```bash
     A       C       G       T       N       IUPAC   Other   GC      GC_stdev
-    0.2536  0.2466  0.2462  0.2536  0.0019  0.0000  0.0000  0.4928  0.0960
+    0.2541  0.2475  0.2453  0.2531  0.0018  0.0000  0.0000  0.4928  0.0958
 
-    Main genome scaffold total:             933
-    Main genome contig total:               2710
-    Main genome scaffold sequence total:    34.300 MB
-    Main genome contig sequence total:      34.236 MB       0.186% gap
-    Main genome scaffold N/L50:             52/158.668 KB
-    Main genome contig N/L50:               107/72.463 KB
-    Main genome scaffold N/L90:             302/15.818 KB
-    Main genome contig N/L90:               816/4.654 KB
-    Max scaffold length:                    1.221 MB
+    Main genome scaffold total:             934
+    Main genome contig total:               2703
+    Main genome scaffold sequence total:    34.293 MB
+    Main genome contig sequence total:      34.231 MB       0.182% gap
+    Main genome scaffold N/L50:             53/160.826 KB
+    Main genome contig N/L50:               107/72.909 KB
+    Main genome scaffold N/L90:             302/15.325 KB
+    Main genome contig N/L90:               812/4.643 KB
+    Max scaffold length:                    1.222 MB
     Max contig length:                      1.045 MB
-    Number of scaffolds > 50 KB:            151
-    % main genome in scaffolds > 50 KB:     76.76%
+    Number of scaffolds > 50 KB:            152
+    % main genome in scaffolds > 50 KB:     77.10%
 
 
     Minimum         Number          Number          Total           Total           Scaffold
     Scaffold        of              of              Scaffold        Contig          Contig  
     Length          Scaffolds       Contigs         Length          Length          Coverage
     --------        --------------  --------------  --------------  --------------  --------
-        All                    933           2,710      34,299,647      34,235,702    99.81%
-       1 KB                    933           2,710      34,299,647      34,235,702    99.81%
-     2.5 KB                    745           2,458      33,980,511      33,921,524    99.83%
-       5 KB                    579           2,142      33,383,109      33,329,777    99.84%
-      10 KB                    396           1,605      32,059,731      32,022,009    99.88%
-      25 KB                    237             936      29,559,828      29,540,698    99.94%
-      50 KB                    151             593      26,330,017      26,317,988    99.95%
-     100 KB                     91             411      22,108,846      22,100,263    99.96%
-     250 KB                     29             141      12,338,782      12,335,701    99.98%
-     500 KB                      7              38       5,611,200       5,610,890    99.99%
-       1 MB                      1               2       1,221,431       1,221,421   100.00%
+        All                    934           2,703      34,293,018      34,230,627    99.82%
+       1 KB                    934           2,703      34,293,018      34,230,627    99.82%
+     2.5 KB                    744           2,447      33,967,189      33,909,776    99.83%
+       5 KB                    581           2,131      33,379,814      33,328,450    99.85%
+      10 KB                    394           1,585      32,031,121      31,994,989    99.89%
+      25 KB                    236             916      29,564,265      29,545,757    99.94%
+      50 KB                    152             599      26,441,339      26,429,391    99.95%
+     100 KB                     92             415      22,238,822      22,230,143    99.96%
+     250 KB                     31             153      12,606,774      12,603,418    99.97%
+     500 KB                      6              32       4,821,355       4,821,095    99.99%
+       1 MB                      1               2       1,221,548       1,221,538   100.00%
     ```
 
 !!! danger "N50 and L50 in `BBMap`"
@@ -435,7 +439,6 @@ The `allsamples_compare.ntu_table.tsv` is especially useful if you intend to per
 For more genome-informed evaluation of the assembly, we can use the `MetaQUAST` tool to view our assembled metagenome. This is something of an optional step because, like `QUAST`, `MetaQUAST` aligns your assembly against a set of reference genomes. Under normal circumstances we wouldn't know the composition of the metagenome that led to our assembly. In this instance determining the optimal reference genomes for a `MetaQUAST` evaluation is a bit of a problem. For your own work, the following tools could be used to generate taxonomic summaries of your metagenomes to inform your reference selection:
 
 !!! abstract ""
-    1. [Kraken2](https://ccb.jhu.edu/software/kraken2/) (DNA based, *k*-mer classification)
     1. [CLARK](http://clark.cs.ucr.edu/) (DNA based. *k*-mer classification)
     1. [Kaiju](http://kaiju.binf.ku.dk/) (Protein based, BLAST classification)
     1. [Centrifuge](https://ccb.jhu.edu/software/centrifuge/manual.shtml) (DNA based, sequence alignment classification)
@@ -486,13 +489,15 @@ We will now look at a few interesting assembly comparisons.
 
 !!! note "Viewing HTML in Jupyter Hub"
 
-    The NeSI Jupyter hub does not currently support viewing HTML that require Javascript (even if the browser you are running it in does). To view a basic version of the report, download the report file by navigating to the `4.evaluation/quast_results/` folder, right-click `report.html/` and select download. The downloaded file will then open within a new tab in the browser. 
+    The NeSI Jupyter hub does not currently support viewing HTML that require Javascript (even if the browser you are running it in does). To view a basic version of the report, download the report file by navigating to the `4.evaluation/metaquast_results/` folder, right-click `report.html/` and select download. The downloaded file will then open within a new tab in the browser. 
     
     !!! warning ""
     
-        Rendering the full report requires the other folders from within `quast_results/` to also be downloaded and available in the same directory as `report.html`. Unfortunately, the Jupyter hub environment does not appear to currently support downloading entire folders using this method.
+        Rendering the full report requires the other folders from within `metaquast_results/` to also be downloaded and available in the same directory as `report.html`. Unfortunately, the Jupyter hub environment does not appear to currently support downloading entire folders using this method.
 
+<!--
 An example of the `MetaQUAST` output files are also available for download. You will need to download both [references](../resources/quast_references.zip) and [results](../resources/quast_results_sans_reference.zip). Unzip both within the same directory.
+-->
 
 !!! success ""
 
