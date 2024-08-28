@@ -73,8 +73,8 @@ For the viral annotations, we will also include the parameters `--remove_transpo
     
     # viral annotations
     DRAM-v.py distill --remove_transposons --remove_fs \
-    -i dramv_annotations/annotations.tsv \
-    -o dramv_distillation
+                      -i dramv_annotations/annotations.tsv \
+                      -o dramv_distillation
     ```
 
 ## `DRAM.py distill` output files 
