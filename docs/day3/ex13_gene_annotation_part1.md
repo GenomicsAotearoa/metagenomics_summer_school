@@ -119,7 +119,7 @@ Create a new script
 
     # Load modules
     module purge
-    module load DIAMOND/2.0.15-GCC-11.3.0
+    module load DIAMOND/2.1.6-GCC-11.3.0
 
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
@@ -127,7 +127,7 @@ Create a new script
     # Variables
     prot_file=predictions/bin_${SLURM_ARRAY_TASK_ID}.genes.no_metadata.faa
     out_file=$(basename ${prot_file} .faa)
-    db=/nesi/nobackup/nesi02659/MGSS_resources_2022/databases/uniprot.20181026.dmnd
+    db=/nesi/nobackup/nesi02659/MGSS_2024/resources/databases/uniprot.20240724.dmnd
 
     # Run DIAMOND
     diamond blastp --threads $SLURM_CPUS_PER_TASK --max-target-seqs 5 --evalue 0.001 \
