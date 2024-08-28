@@ -49,7 +49,7 @@ In general, `diamond` takes a pair of input files - the protein coding sequences
 
     ```bash
     module purge
-    module load DIAMOND/2.0.15-GCC-11.3.0
+    module load DIAMOND/2.1.6-GCC-11.3.0
 
     diamond help
     ```
