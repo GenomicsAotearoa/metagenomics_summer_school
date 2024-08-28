@@ -39,7 +39,7 @@ First, set the working directory and load the required libraries.
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     # Set working directory ----
     setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/coverage')
 
@@ -64,7 +64,7 @@ Import all relevant data as follows:
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     # Read files ----
     contig_cov <- read_tsv("bin_cov_table.txt") # Bin contig coverage table
     gtdbtk_out <- read_tsv("gtdbtk.bac120.summary.tsv") # Prokaryotic taxonomy from GTDB-Tk
@@ -82,7 +82,7 @@ In the following code, we first `select()` columns of interest (i.e. the contig 
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     ## 1. Obtain average coverage per MAG per sample ----
     MAG_cov <- contig_cov %>%
       # Pick relevant columns
@@ -112,7 +112,7 @@ In the following code, we first `select()` the `user_genome` (which is equivalen
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     ## 2. Clean up taxonomy table ----
     bin_taxonomy <- gtdbtk_out %>%
       # Select relevant columns
@@ -143,7 +143,7 @@ After obtaining a tidy taxonomy table, we append the species annotations to the 
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     ## 3. Add species to bin ID ----
     MAG_cov <- MAG_cov %>%
       left_join(
@@ -162,7 +162,7 @@ After obtaining a tidy taxonomy table, we append the species annotations to the 
 
     !!! r-project "code"
     
-        ```R
+        ```R linenums="1"
         # Create a vector of top 10 MAGs
         top10 <- sort(rowSums(MAG_cov), decreasing = TRUE)[1:10]
 
@@ -174,7 +174,7 @@ After obtaining a tidy taxonomy table, we append the species annotations to the 
 
     !!! r-project "code"
 
-        ```R
+        ```R linenums="1"
         # Create a presence/absence matrix
         MAG_prevalence <- ifelse(MAG_cov > 0, 1, 0)
 
@@ -209,7 +209,7 @@ Here, we calculate [Bray-Curtis dissimilarity](https://en.wikipedia.org/wiki/Bra
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     # Perform hierarchical clustering ----
     ## Dissimilarities between samples
     sample_dist <- vegdist(t(MAG_cov_log2), method = "bray")
@@ -247,7 +247,7 @@ Here, we calculate [Bray-Curtis dissimilarity](https://en.wikipedia.org/wiki/Bra
     
     If you would like to do this via code, you can wrap the plot code in between functions for graphic devices (i.e. `png()`, `jpeg()`, `tiff()`, `bmp()`, `pdf()`, and `postscript()`) and `dev.off()`. The following is an example:
 
-    ```R
+    ```R linenums="1"
     png(filename = "file.png", ...)
     plot(...)
     dev.off()
@@ -269,7 +269,7 @@ The penultimate step before building our heatmap is to set the colours that will
 
     !!! r-project "code"
 
-        ```R
+        ```R linenums="1"
         # What colour palettes come pre-installed?
         palette.pals()
 
@@ -284,7 +284,7 @@ The penultimate step before building our heatmap is to set the colours that will
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     # Set colour palette ----
     ## Prepare sample groups and colour
     metadata <- metadata %>%
@@ -327,7 +327,7 @@ The penultimate step before building our heatmap is to set the colours that will
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     heatmap.2(
         x = as.matrix(MAG_cov_log2), # Log2 transformed coverage table
         Colv = as.dendrogram(sample_hclust), # Arrange columns based on sample-wise dissimilarities
@@ -402,7 +402,7 @@ To start, we need to identify viral contigs of at least medium quality. THis wil
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     ## 1. Clean up viral taxonomy annotation quality ----
     virus_quality <- checkv_summary %>%
       mutate(
@@ -434,7 +434,7 @@ We then obtain the coverage matrix and transform the values to enhance visualisa
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     ## 2. Obtain viral contig coverage matrix ----
     ## Unlike MAGs, we do not need to average coverage values.
     ## However, we do need to filter out annotations of lesser quality.
@@ -457,7 +457,7 @@ We then obtain the coverage matrix and transform the values to enhance visualisa
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     # Perform hierarchical clustering (viral contigs) ----
     ## Dissimilarities between samples
     virus_sample_dist <- vegdist(t(virus_cov_matrix_log2))
@@ -496,7 +496,7 @@ For colours based on sample group, we will retain the colours set as above. Here
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     # Prepare grouping variables and colour palettes ----
     # Check palette colours
     scales::show_col(
@@ -512,7 +512,7 @@ For colours based on sample group, we will retain the colours set as above. Here
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     ## Set colours for viral orders
     virus_order_colour <- data.frame(
       "virus_order" = levels(virus_taxonomy_hq$Order_VC_predicted),
@@ -532,7 +532,7 @@ For colours based on sample group, we will retain the colours set as above. Here
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     heatmap.2(
       x = virus_cov_matrix_log2,
       Colv = as.dendrogram(virus_sample_hclust),
