@@ -349,7 +349,7 @@ Make your selection around clusters that you think should form bins. Use the Che
 
 Once you've made your selection, export the sequences into the `vb_export/` directory we made earlier. Name your new clusters in a way that you can easily recognise the original bins they came from. For example, if most of the contigs were from `mock_bin_3`, perhaps name the new cluster `mock_bin_3.cluster`. If you're splitting a bin into several clusters, we recommend you name them something like `mock_bin_3.cluster_1` and `mock_bin_3.cluster_2`.
 
-!!! tip "Remember to add the `.fna` suffix to your new cluster filenames!"
+!!! tip "Remember to add the `.fa` suffix to your new cluster filenames!"
 
 ### Check exported clusters
 
