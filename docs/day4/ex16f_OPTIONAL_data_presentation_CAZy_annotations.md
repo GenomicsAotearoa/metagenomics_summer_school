@@ -20,7 +20,7 @@ First, we import our `R` libraries with the `library()` command. For this workfl
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     # Set working directory
     setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/cazy_heatmap/')
 
@@ -67,7 +67,7 @@ This process is done using the `group_by` and `tally` functions from `dplyr`, ag
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     cazy_tally <- cazy %>%
       mutate(cazy_id = str_remove(cazy_id, "_.*")) %>%
       group_by(bin, cazy_id) %>%
@@ -108,7 +108,7 @@ We now have a data.frame-like object (a [tibble](https://tibble.tidyverse.org/))
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     cazy_matrix <- cazy_tally %>%
       pivot_wider(names_from = "bin", values_from = "hits", values_fill = 0) %>%
       arrange(cazy_id) %>%
@@ -123,7 +123,7 @@ Finally, we create the actual plot by passing this matrix into the `pheatmap` li
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     # Set cell colours
     colours <- viridis(n = 100)
 
