@@ -125,7 +125,7 @@ Create a new script
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
 
     # Variables
-    prot_file=predictions/bin_${SLURM_ARRAY_TASK_ID}.filtered.genes.no_metadata.faa
+    prot_file=predictions/bin_${SLURM_ARRAY_TASK_ID}.genes.no_metadata.faa
     out_file=$(basename ${prot_file} .faa)
     db=/nesi/nobackup/nesi02659/MGSS_resources_2022/databases/uniprot.20181026.dmnd
 
@@ -221,7 +221,7 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
     
     # Variables
-    prot_file=predictions/bin_${SLURM_ARRAY_TASK_ID}.filtered.genes.no_metadata.faa
+    prot_file=predictions/bin_${SLURM_ARRAY_TASK_ID}.genes.no_metadata.faa
     out_file=$(basename ${prot_file} .faa)
     db=/nesi/nobackup/nesi02659/MGSS_resources_2022/databases/Pfam-A.hmm
     
