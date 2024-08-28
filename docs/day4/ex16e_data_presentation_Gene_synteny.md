@@ -274,7 +274,7 @@ We first need to import all the relevant per bin files.
 
 !!! r-project "code"
 
-    ```R
+    ```R linenums="1"
     # Gene coordinates
     goi_files <- list.files(pattern = ".*.goi.tsv")
     goi <- map(goi_files, function(x) read_tsv(x)) %>%
