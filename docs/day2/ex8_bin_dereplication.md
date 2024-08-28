@@ -105,7 +105,7 @@ The process for creating the `MaxBin` table is basically the same, we just need 
 
 !!! terminal-2 "Create `maxbin_associations.txt`"
 
-    ```bash
+    ```bash linenums="1"
     for bin_path in maxbin/*.fasta;
     do
         bin_name=$(basename ${bin_path} .fasta)
@@ -125,7 +125,7 @@ We are now ready to run `DAS_Tool`. This can be done from the command line, as i
 
 !!! terminal-2 "Run `DAS_Tool`" 
 
-    ```bash
+    ```bash linenums="1"
     # Remove modules to ensure a clean environment
     module purge
 
