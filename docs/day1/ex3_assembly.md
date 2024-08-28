@@ -380,7 +380,7 @@ We can see here that the job has not yet begun, as NeSI is waiting for resources
 
 !!! circle-check "Terminal output"
 
-    ```bash
+    ```
     JOBID         USER     ACCOUNT   NAME        CPUS MIN_MEM PARTITI START_TIME     TIME_LEFT STATE    NODELIST(REASON)    
     31491555      jboe440  nesi02659 spawner-jupy   2      4G infill  2022-11-23T1     7:44:15 RUNNING  wbl001              
     31491999      jboe440  nesi02659 spades_assem  12     10G large   2022-11-23T1       29:58 RUNNING  wbn069          
