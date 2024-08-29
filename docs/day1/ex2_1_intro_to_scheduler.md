@@ -335,7 +335,7 @@ Using your keyboard arrow keys, navigate to the line that starts with `#SBATCH -
     #SBATCH --mail-user myaddress@email.com
     ```
 
-Save your edits by pressing the keys <kbd>CTRL</kbd> + <kbd>O</kbd>. When asked for `File Name to Write: bowtie-test.slurm`, press <kbd>Enter</kbd>. Exit `nano` by pressing <kbd>CTRL</kbd> + <kbd>C</kbd>
+Save your edits by pressing the keys <kbd>CTRL</kbd> + <kbd>O</kbd>. When asked for `File Name to Write: bowtie-test.slurm`, press <kbd>Enter</kbd>. Exit `nano` by pressing <kbd>CTRL</kbd> + <kbd>X</kbd>
 
 Submit your job
 
