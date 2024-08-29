@@ -301,3 +301,50 @@ As with most other scheduler systems, job submission scripts in Slurm consist of
     ```bash
     cd /mgss/hpc-and-slurm/Exercise-2/
     ```
+
+## Day 1 starts here: Submitting a slurm job
+
+As the first task of the workshop, we would like you to submit a slurm script to ensure that things will move smoothly throughout the workshop days.
+
+Nagivate to the working directory:
+
+!!! terminal "code"
+
+    ```bash
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/1.Slurm_test/
+    ```
+
+In the directory, you should see 2 objects:
+
+* `bowtie-test.slurm`
+* `example/`
+
+We will need to modify the slurm script. We will use `nano` for this:
+
+!!! terminal "code"
+
+    ```bash
+    nano bowtie-test.slurm
+    ```
+
+Using your keyboard arrow keys, navigate to the line that starts with `#SBATCH --mail-user` and enter your email address
+
+!!! terminal "code"
+
+    ```bash
+    #SBATCH --mail-user myaddress@email.com
+    ```
+
+Save your edits by pressing the keys <kbd>CTRL</kbd> + <kbd>O</kbd>. When asked for `File Name to Write: bowtie-test.slurm`, press <kbd>Enter</kbd>. Exit `nano` by pressing <kbd>CTRL</kbd> + <kbd>C</kbd>
+
+Submit your job
+
+!!! terminal "code"
+
+    ```bash
+    sbatch bowtie-test.slurm
+    ```
+
+The job will send email notifications on its progress to your specified address.
+
+If you receive email notifications about its status and have output files in the directory, that means you are good to go!
