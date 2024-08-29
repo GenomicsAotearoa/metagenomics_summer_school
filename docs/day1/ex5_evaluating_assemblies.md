@@ -226,8 +226,9 @@ But what we can highlight here is that the statistics for the `SPAdes` assembly,
 
 ## Sequence taxonomic classification using `Kraken2`
 
-Most, if not all, of the time, we never know the taxonomic composition of our metagenomic assemblies *a priori*. For some environments, we can make good guesses (e.g., *Prochlorococcus* in marine samples, members of the Actinobacteriota in soil samples, various Bacteroidota in the gut microbiome, etc.). Here, we can use `Kraken2`, a k-mer based taxonomic classifier to help us interrogate the taxonomic composition of our samples. This is helpful if there are targets we might be looking for (e.g. working hypotheses, well characterised microbiome) or as a check on what we might be missing out on after binning (taught in [day 2](../day2/ex6_initial_binning.md) and [day 3](../day3/ex11_coverage_and_taxonomy.md)).
+Most, if not all, of the time, we never know the taxonomic composition of our metagenomic reads *a priori*. For some environments, we can make good guesses (e.g., *Prochlorococcus* in marine samples, members of the Actinobacteriota in soil samples, various Bacteroidota in the gut microbiome, etc.). Here, we can use `Kraken2`, a k-mer based taxonomic classifier to help us interrogate the taxonomic composition of our samples. This is helpful if there are targets we might be looking for (e.g. working hypotheses, well characterised microbiome). Furthermore, we can estimate the abundance of the classified taxa using `Bracken`.
 
+<!--
 !!! terminal "code"
 
     ```bash linenums="1"
@@ -265,19 +266,11 @@ Most, if not all, of the time, we never know the taxonomic composition of our me
             --db ${K2DB} \
             spades_assembly/spades_assembly.m1000.fna
     ```
+-->
 
-The main output `spades_assembly.m1000.k2_out` is quite dense and verbose with columns indicated [here](https://github.com/DerrickWood/kraken2/wiki/Manual#sample-report-output-format). The report `spades_assembly.m1000.k2_report.txt` is more human-readable, with nicely spaced columns that indicate: 
-
-1. Percentage reads mapped to taxon
-2. Number of reads mapped to taxon
-3. Number of reads directly assigned to taxon
-4. Rank of taxon
-5. NCBI taxonomy ID
-6. Scientific name of taxon
-
-We also get the sequences that were classified and unclassified that can be used for further analyses (e.g. coverage estimation) if required.
-
+<!--
 As `Kraken2` classifications are *k*-mer based, we can also classify reads. This can be helpful if trying to filter out reads that may belong to taxonomic classifications that you're not interested in. When using reads for classification, we can also estimate the abundance of reads that belong to those taxa using Bracken.
+-->
 
 !!! terminal "code"
 
@@ -328,11 +321,18 @@ As `Kraken2` classifications are *k*-mer based, we can also classify reads. This
     done
     ```
 
+The main output is quite dense and verbose with columns indicated [here](https://github.com/DerrickWood/kraken2/wiki/Manual#sample-report-output-format). The report is more human-readable, with nicely spaced columns that indicate:
+
+1. Percentage reads mapped to taxon
+2. Number of reads mapped to taxon
+3. Number of reads directly assigned to taxon
+4. Rank of taxon
+5. NCBI taxonomy ID
+6. Scientific name of taxon
+
 !!! note "Remember to produce the `--report` as Bracken bases its estimation on the report"
 
-The modified code tells `Kraken2` that the inputs `${r1}` and `${r1/R1/R2}` are paired-end reads. The `#` after `${base}` will be replaced with the read orientation (i.e., forward `_1` or reverse `_2`).
-
-Outputs for this run are similar to that of the assembly, with the major difference being paired-end read (fastq) outputs for classified and unclassified sequences.
+The code tells `Kraken2` that the inputs `${r1}` and `${r1/R1/R2}` are paired-end reads. The `#` after `${base}` will be replaced with the read orientation (i.e., forward `_1` or reverse `_2`).
 
 The Bracken outputs provides us with adjusted number (columns `added_reads` and `new_est_reads`) and fraction of reads that were assigned to each species identified by Kraken2 for downstream analyses.
 
