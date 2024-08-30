@@ -270,7 +270,7 @@ There are several approaches that can be used to achieve this. The general princ
 
     This process may be more complicated if a reference genome for your host taxa is not readily available. In this case an alternative method would need to be employed (for example: predicting taxonomy via `Kraken2` and then filtering out all reads that map to the phylum or kingdom of your host taxa).
 
-This exercise provides an example using `BBMap` to map against a masked human reference genome and retain only those reads that do *not* map to the reference. Here we are mapping the quality-filtered reads against a pre-prepared human genome that has been processed to mask sections of the genome, including those that:
+This exercise provides an example using `BBMap` to map against a masked human reference genome and retain only those reads that do *not* map to the reference. Here we are mapping some mock human microbiome reads against a pre-prepared human genome that has been processed to mask sections of the genome, including those that:
  
 - are presumed microbial contaminant in the reference
 - have high homology to microbial genes/genomes (e.g. ribosomes)
@@ -316,7 +316,7 @@ The masked reference genome is available via [Google drive](https://drive.google
 
 ### Indexing the reference genome and read mapping with `BBMap`
 
-We will cover more about read mapping in [later exercises](https://genomicsaotearoa.github.io/metagenomics_summer_school/day2/ex6_initial_binning/). For now, it is important to know that it is first necessary to build an index of the reference using the read mapping tool of choice. Here, we will first build a `BBMap` index, and then use `BBMap` to map the quality-filtered reads to that index, ultimately retaining only those reads that do *not* map to the index.
+We will cover more about read mapping in [later exercises](https://genomicsaotearoa.github.io/metagenomics_summer_school/day2/ex6_initial_binning/). For now, it is important to know that it is first necessary to build an index of the reference using the read mapping tool of choice. Here, we will first build a `BBMap` index, and then use `BBMap` to map the reads to that index, ultimately retaining only those reads that do *not* map to the index.
 
 Build index reference via `BBMap`. We will do this by submitting the job via slurm. 
 
@@ -365,7 +365,7 @@ Submit your newly created script to the scheduler as follows:
     sbatch host_filt_bbmap_index.sl
     ```
 
-Finally, map the quality-filtered reads to the reference via `BBMap`. Here we will submit the job as a slurm array, with one array job per sample. 
+Finally, map the reads to the reference via `BBMap`. Here we will submit the job as a slurm array, with one array job per sample. 
 
 Again, we will create a script using `nano`: 
 
@@ -385,10 +385,9 @@ Again, we will create a script using `nano`:
     #SBATCH --partition     milan
     #SBATCH --time          01:00:00
     #SBATCH --mem           27GB
-    #SBATCH --array         1-4
     #SBATCH --cpus-per-task 20
-    #SBATCH --error         %x_%A_%a.err
-    #SBATCH --output        %x_%A_%a.out
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
 
     # Set up working directories
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/
@@ -399,13 +398,13 @@ Again, we will create a script using `nano`:
     module load BBMap/39.01-GCC-11.3.0
 
     # Run bbmap
-    bbmap.sh -Xmx27g -t=$SLURM_CPUS_PER_TASK \
+    bbmap.sh -Xmx27g -t=12 usejni=t \
       minid=0.95 maxindel=3 bwr=0.16 bw=12 quickmatch fast minhits=2 qtrim=rl trimq=10 untrim \
-      in1=../3.assembly/sample${SLURM_ARRAY_TASK_ID}_R1.fastq.gz \
-      in2=../3.assembly/sample${SLURM_ARRAY_TASK_ID}_R2.fastq.gz \
+      in1=human_microb_reads.R1.fastq.gz \
+      in2=human_microb_reads.R2.fastq.gz \
       path=BBMask_human_reference/ \
-      outu1=host_filtered_reads/sample${SLURM_ARRAY_TASK_ID}_R1_hostFilt.fastq \
-      outu2=host_filtered_reads/sample${SLURM_ARRAY_TASK_ID}_R2_hostFilt.fastq
+      outu1=host_filt_R1.fastq \
+      outu2=host_filt_R2.fastq
     ```
 
 !!! abstract "`BBMap` parameters"
