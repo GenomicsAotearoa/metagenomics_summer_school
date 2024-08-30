@@ -211,7 +211,7 @@ Generally speaking, assemblers are developed in a way where they run with defaul
 
     1. *k*-mer sizes to be assembled over, and step size if using a range
     1. Number of threads to use during assembly
-    1. Memory limit to prevent the assembler from using up all available RAM and forcing the computer to use its [swap space](https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Deployment_Guide-en-US/ch-swapspace.html)
+    1. Memory limit to prevent the assembler from using up all available RAM and forcing the computer to use its [swap space](https://www.geeksforgeeks.org/swap-space-in-operating-system/)
 
 ### Setting the *k*-mer size
 
