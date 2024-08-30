@@ -156,7 +156,7 @@ Generally I wouldn't bother with this - there is a lot of information in here an
 
 !!! failure "Do not open a `.bam` file, your terminal might crash!"
 
-Compressing the file to the *bam* format is an important step as when working with real data *sam* files can be massive and our storage capacity on NeSI is limited. It is also helpful to sort the mapping information so that reads mapped to a contig are listed in order of their start position. For example
+Compressing the *sam* files to *bam* format is an important step as *sam* files can be massive. It is also helpful to sort the mapping information so that reads mapped to a contig are listed in order of their start position. For example
 
 <section markdown="1" style="display: flex;">
 
