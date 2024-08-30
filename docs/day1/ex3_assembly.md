@@ -342,9 +342,7 @@ The `module load` command needs to be invoked within your slurm script. It is al
     |`-2`|Reverse reads, matched to their forward partners|
     |`-o`|Output directory for all files|
 
-Note that we also prefix the command (`spades.py`) with the `srun` command. This is a command specific to slurm and allows NeSI to track the resource usage of the `SPAdes` job.
-
-We don't explicitly set memory or thread counts for this job, simply for the sake of keeping the command uncluttered. The default memory limit of `SPAdes` (250 GB) is much higher than the 10 GB we have allowed our job here. If the memory cap was violated then both slurm and `SPAdes` will terminate the assembly. We have also left the number of threads at the default value of 16, which matches the number specified in the slurm header.
+We don't explicitly set memory for this job, simply for the sake of keeping the command uncluttered. The default memory limit of `SPAdes` (250 GB) is much higher than the 10 GB we have allowed our job here. If the memory cap was violated then both slurm and `SPAdes` will terminate the assembly. We did specify the number of threads at the value of 12, which is specified by the special slurm variable `$SLURM_CPUS_PER_TASK`.
 
 It is a good idea to match your number of threads request in the slurm script with what you intend to use with `SPAdes` because your project usage is calculated based off what you request in your slurm scripts rather than what you actually use. Requesting many unused threads simply drives your project down the priority queue. By contrast, requesting fewer threads than you attempt to use in the program (i.e., request 10 in slurm, set thread count to 30 in `SPAdes`) will result in reduced performance, as your `SPAdes` job will divide up jobs as though it has 30 threads, but only 10 will be provided. This is discussed [in this blog post](https://www.codeguru.com/cpp/sample_chapter/article.php/c13533/Why-Too-Many-Threads-Hurts-Performance-and-What-to-do-About-It.htm).
 
