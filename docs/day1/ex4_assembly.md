@@ -10,7 +10,7 @@ All work for this exercise will occur in the `3.assembly/` directory.
 
 ## Examining the effect of changing assembly parameters
 
-For this exercise, there is no real structure. Make a few copies of your initial slurm scripts and tweak a few of the assembly parameters. Make sure to also change the assembly output file (e.g. from `spades_assembly` to `spades_assembly_var1`). You will have a chance to compare the effects of these changes tomorrow.
+For this exercise, there is no real structure. Make a few copies of your initial slurm scripts and tweak a few of the assembly parameters. Make sure to also change the assembly output file (e.g. from `spades_assembly` to `spades_assembly_var1`). We will compare the effects of these changes in the next lesson.
 
 ### `SPAdes` parameters
 
