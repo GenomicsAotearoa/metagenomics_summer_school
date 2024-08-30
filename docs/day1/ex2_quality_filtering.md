@@ -161,7 +161,7 @@ There is a lot going on in this command, so here is a breakdown of the parameter
     |`mock_R1.qc.fastq.gz`|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner also passed|
     |`mock_s1.qc.fastq.gz`|*positional*|The file to write forward reads which passed quality trimming, if their reverse partner failed (orphan reads)|
     |`mock_R2.qc.fastq.gz` / `mock_s2.qc.fastq.gz`|*positional*|The reverse-sequence equivalent of above|
-    | `ILLUMINACLIP:${adapter}:1:25:7` | *positional* | Adapter trimming allowing for 1 seed mismatch, palindrome clip score threshold of 25, and simple clip score threshold of 7|
+    | `ILLUMINACLIP:NexteraPE-PE.fa:1:25:7` | *positional* | Adapter trimming allowing for 1 seed mismatch, palindrome clip score threshold of 25, and simple clip score threshold of 7|
     |`SLIDINGWINDOW:4:30`|*positional*|Quality filtering command. Analyse each sequence in a 4 base pair sliding window and then truncate if the average quality drops below Q30|
     |`MINLEN:80`|*positional*|Length filtering command. Discard sequences that are shorter than 80 base pairs after trimming|
 
