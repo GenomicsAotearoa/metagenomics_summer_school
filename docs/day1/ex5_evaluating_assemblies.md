@@ -477,6 +477,9 @@ However, since we **_do_** know the composition of the original communities used
                  spades_assembly/spades_assembly.m1000.fna \
                  idbaud_assembly/idbaud_assembly.fna \
                  idbaud_assembly/idbaud_assembly.m1000.fna
+    
+    # Create archive for download
+    tar -cvzf metaquast_results.tar.gz metaquast_results
     ```
 
 By now, you should be getting familiar enough with the console to understand what most of the parameters here refer to. The one parameter that needs explanation is the `--max-ref-number` flag, which we have set to 21. This caps the maximum number of reference genomes to be downloaded from NCBI which we do in the interest of speed. Since there are 21 taxa in the file `ref_genomes.txt` (10 prokaryote species and 11 viruses), `MetaQUAST` will download one reference genome for each. If we increase  the `--max-ref-number` flag we will start to get multiple reference genomes per taxa provided which is usually desirable.
@@ -485,15 +488,7 @@ We will now look at a few interesting assembly comparisons.
 
 !!! note "Viewing HTML in Jupyter Hub"
 
-    The NeSI Jupyter hub does not currently support viewing HTML that require Javascript (even if the browser you are running it in does). To view a basic version of the report, download the report file by navigating to the `4.evaluation/metaquast_results/` folder, right-click `report.html/` and select download. The downloaded file will then open within a new tab in the browser. 
-    
-    !!! warning ""
-    
-        Rendering the full report requires the other folders from within `metaquast_results/` to also be downloaded and available in the same directory as `report.html`. Unfortunately, the Jupyter hub environment does not appear to currently support downloading entire folders using this method.
-
-<!--
-An example of the `MetaQUAST` output files are also available for download. You will need to download both [references](../resources/quast_references.zip) and [results](../resources/quast_results_sans_reference.zip). Unzip both within the same directory.
--->
+    The NeSI Jupyter hub does not currently support viewing HTML that require Javascript (even if the browser you are running it in does). To view a basic version of the report, download the report file by navigating to the `4.evaluation/` directory, right-click `metaquast_results.tar.gz` and select download. You will need to decompress and extract the archive on your computer. Navigate to the folder with the extracted contents to open the `report.html`.
 
 !!! success ""
 
