@@ -297,6 +297,9 @@ As `Kraken2` classifications are *k*-mer based, we can also classify reads. This
         Kraken2/2.1.3-GCC-11.3.0 \
         Bracken/2.7-GCC-11.3.0
 
+    # Navigate to working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.evaluation/
+
     # Point to database
     K2DB=/nesi/project/nesi02659/MGSS_2024/resources/databases/k2_standard_20240605
 
@@ -376,6 +379,9 @@ For this workshop, we will use PhyloFlash to obtain sequences and abundances of 
     module purge
     module load Miniconda3/23.10.0-1
     module load USEARCH/11.0.667-i86linux32
+
+    # Navigate to working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.evaluation/
 
     # Set conda variables
     source $(conda info --base)/etc/profile.d/conda.sh
