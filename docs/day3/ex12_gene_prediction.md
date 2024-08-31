@@ -162,7 +162,7 @@ Once `prodigal` has completed, let's check one of the output files:
 !!! terminal "code"
 
     ```bash
-    head -n 5 predictions/bin_0.filtered.genes.faa
+    head -n 5 predictions/bin_0.genes.faa
     ```
 
 !!! circle-check "Terminal output"
@@ -225,7 +225,7 @@ While this header information can be very informative, its presence in the FASTA
 !!! terminal "code"
 
     ```bash
-    head -n 5 predictions/bin_0.filtered.genes.no_metadata.faa
+    head -n 5 predictions/bin_0.genes.no_metadata.faa
     ```
 
 !!! circle-check "Terminal output"
