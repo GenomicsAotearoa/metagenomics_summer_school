@@ -342,7 +342,7 @@ Create a new script named `host_filt_bbmap_index.sl` using `nano`:
     
     #SBATCH --account       nesi02659
     #SBATCH --job-name      host_filt_bbmap_index
-    #SBATCH --partition     milan
+    #SBATCH --partition     milan
     #SBATCH --time          00:20:00
     #SBATCH --mem           32GB
     #SBATCH --cpus-per-task 12
