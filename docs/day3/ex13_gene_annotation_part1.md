@@ -263,7 +263,7 @@ In addition to putative function, we can also predict whether a protein is secre
     #SBATCH --account       nesi02659
     #SBATCH --job-name      signal_peptide
     #SBATCH --partition     milan
-    #SBATCH --time          00:15:00
+    #SBATCH --time          00:30:00
     #SBATCH --mem           10GB
     #SBATCH --cpus-per-task 24
     #SBATCH --error         %x_%A_%a.err
