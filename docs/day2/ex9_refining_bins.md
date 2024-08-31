@@ -321,7 +321,7 @@ List the content of `mock_bins/`, there are 4 FASTA files. We will need to gener
     for bin in mock_bins/*.fna; do
         binID=$(basename ${bin} .fna)
         grep '>' ${bin} | sed "s/.*/${binID}/g" >> all_mock_bins.label.ann
-        cat ${i} >> all_mock_bins.fna
+        cat ${bin} >> all_mock_bins.fna
     done
     ```
 
