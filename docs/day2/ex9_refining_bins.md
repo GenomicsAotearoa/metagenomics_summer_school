@@ -202,11 +202,11 @@ Once `VizBin` is open, to get started, click the 'Choose...' button then navigat
 
     It is likely that when we click on the 'Choose...' button, the directory that is open will be our NeSI home directory. In that case, we can type in the input FASTA file in the 'File Name' bar: `/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.bin_refinement/all_fragments.fna`
 
-<center>![image](../figures/ex10_load_fasta_2022.png)</center>
+<center>![image](../figures/ex10_load_fasta_2024.png)</center>
 
 Once this is imported, use the 'Show additional options' button to expose the advanced options, and add your **'bin only'** *.ann* file into the 'Annotation file (optional)' field.
 
-<center>![image](../figures/ex10_load_ann_2022.png)</center>
+<center>![image](../figures/ex10_load_ann_2024.png)</center>
 
 ### Executing the *t-SNE*
 
