@@ -193,6 +193,8 @@ This plot looks much better. We can see that some genes do have more hits than o
 !!! r-project "code"
 
     ```R linenums="1"
+    bin_ids <- colnames(KO_matrix)
+
     pv_bin_all <- map(bin_ids, function(bin) {
       # Get column with correct bin ID
       bin_data <- KO_matrix[, bin]
