@@ -343,6 +343,10 @@ Return to the VizBin set-up dialogue in the Virtual Desktop. Select the followin
 
 **Annotation file:** `all_mock_bins.label.ann`
 
+!!! hint "Legends"
+
+    When you have projected the tSNE, you can show the bin identity by right-clicking anywhere on the ordination and then click "Legend". This will give you a box that shows you which contig belongs to which bin.
+
 ### Export contig clusters
 
 Make your selection around clusters that you think should form bins. Use the CheckM output earlier to help inform your decisions.
