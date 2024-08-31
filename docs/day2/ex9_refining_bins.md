@@ -190,7 +190,7 @@ If this fails to open on your PC, or if it runs prohibitively slowly, team up wi
 
 5. A successful launch of `VizBin` will look like the following:
    <center>
-   ![vizbin launch](../figures/SuccessVizBin.PNG)
+   ![vizbin launch](../figures/SucessVizBin-2024.png){width="600"}
    </center>
 
 
