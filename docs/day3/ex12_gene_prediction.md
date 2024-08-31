@@ -105,7 +105,7 @@ Anecdotally, when applied to a MAG or genome, anonymous mode (`-p meta`) will id
 
 ### Execute `prodigal`
 
-We will now run `prodigal` over the 10 bins in *anonymous* mode using an array.
+We will now run `prodigal` over the 10 bins in *single* mode using an array.
 
 !!! terminal-2 "Create script named `prodigal.sl`"
 
