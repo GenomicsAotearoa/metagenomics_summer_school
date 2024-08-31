@@ -156,7 +156,7 @@ A comparable script for earlier versions of vConTACT2 is available [here](../scr
     
     ./tax_predict_vConTACT2_0.9.19.py \
     -i vConTACT2_Results/genome_by_genome_overview.csv \
-    -o viral_taxonomy/
+    -o vConTACT2_Results/
     ```
 
 ---
