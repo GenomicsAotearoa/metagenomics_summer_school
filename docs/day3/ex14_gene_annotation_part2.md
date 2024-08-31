@@ -130,7 +130,7 @@ To run this exercise we first need to set up a slurm job. We will use the result
 
     # Run DRAM
     DRAM.py annotate -i 'dastool_bins/*.fna' \
-                     --checkm_quality DRAM_input_files/dastool_bins_checkm.txt \
+                     --checkm_quality DRAM_input_files/checkm.txt \
                      --gtdb_taxonomy DRAM_input_files/gtdbtk.bac120.summary.tsv \
                      -o dram_annotations --threads $SLURM_CPUS_PER_TASK
     ```
