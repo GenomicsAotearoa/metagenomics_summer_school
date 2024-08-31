@@ -314,6 +314,6 @@ It is usually worth letting it search for all options as detecting multiple rRNA
 
 The [MIMAG](https://www.ncbi.nlm.nih.gov/pubmed/28787424) standard specifies that in order to reach particular quality criteria, a MAG must contain a certain number or tRNA sequences. We can search a MAG or genome for these using `Aragorn` ([link here](https://www.trna.se/)).
 
-![image](../figures/ex11_aragorn.PNG)
+![image](../figures/ex11_aragorn-2024.png)
 
 ---
