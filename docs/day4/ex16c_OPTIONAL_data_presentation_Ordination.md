@@ -297,7 +297,7 @@ Beta-dispersion can be calculated using the  `betadisper()` function from the `v
 !!! r-project "code"
 
     ```r
-    adonis(bray.dist ~ Group, data=map, permutations=999, method="bray")
+    adonis2(MAG_bray ~ Group, data=metadata, permutations=999)
     ```
 
 ---
