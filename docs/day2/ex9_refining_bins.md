@@ -228,7 +228,7 @@ Similar to other projection techniques, we interpret the closeness of points as 
 
 !!! question "What do scaffolds look like?"
 
-    In the example above, we used fragmented scaffolds as input files for VizBin. Take a look at what scaffolds look like with VizBin. You run follow the following code to generate input files for VizBin to visualise scaffolds.
+    In the example above, we used fragmented scaffolds as input files for VizBin. Take a look at what scaffolds look like with VizBin. Run the following code to generate input files for VizBin to visualise scaffolds.
 
     !!! terminal "code"
 
