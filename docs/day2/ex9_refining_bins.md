@@ -315,7 +315,7 @@ List the content of `mock_bins/`, there are 4 FASTA files. We will need to gener
 
     ```bash linenums="1"
     # VizBin requires a header for annotation files
-    echo "label" > all_mock_bins.label.txt
+    echo "label" > all_mock_bins.label.ann
 
     # Generate concatenated set of sequences and labels at the same time!
     for bin in mock_bins/*.fna; do
