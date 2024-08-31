@@ -382,8 +382,8 @@ Moment of truth! How did your decisions impact the genome metrics of each bin? R
     # Run CheckM
     checkm lineage_wf -t $SLURM_CPUS_PER_TASK \
                       --pplacer_threads $SLURM_CPUS_PER_TASK \
-                      -x fa --tab_table -f vb_exports.checkm.txt \
-                      vb_exports/ vb_exports.checkm_out/
+                      -x fa --tab_table -f vb_export.checkm.txt \
+                      vb_export/ vb_export.checkm_out/
     ```
 
 ### Human refinement vs automated binning
