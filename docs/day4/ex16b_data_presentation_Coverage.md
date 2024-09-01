@@ -372,9 +372,9 @@ The penultimate step before building our heatmap is to set the colours that will
 
     The heatmap shows us that:
     
-    * 4 MAGs belong to the phylum Proteobacteria
-    * Sample 4 belonging to Group C is somewhat of an outlier, with only 2 MAGs recovered from this sample
-    * `bin_8`, a Nitrobacter, is only found in sample 4
+    * 4 MAGs belong to the phylum Pseudomonadota
+    * Sample 4 belonging to Group C is somewhat of an outlier, with only 3 MAGs recovered from this sample
+    * `bin_9`, a Nitrobacter, is only found in sample 4
     * Presumably, sample 4 has a high abundance of nitrogen cycling MAGs
     * Samples from Groups A and B recovered the same bins
 
