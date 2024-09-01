@@ -53,6 +53,14 @@ Example slurm script:
              -a viral_taxonomy/checkv_combined.faa 
     ```
 
+!!! note "Deprecation warning"
+
+    When running the above, you might get a warning:
+    
+    `/opt/conda/bin/vcontact2_gene2genome:174: DeprecationWarning: 'U' mode is deprecated`
+
+    This is okay and will not impact the outcome.
+
 ## 2. Generate required mapping file for `vContact2`
 
 Use `vContact2`'s `vcontact2_gene2genome` script to generate the required mapping file from the output of `prodigal`.
