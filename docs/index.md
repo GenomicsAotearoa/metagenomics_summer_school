@@ -30,9 +30,9 @@
     | 11:25 &ndash; 12:30 | **Assembly**<br>:fontawesome-solid-microphone-lines: **TALK** Choice of assemblers, parameter considerations, and when to stop!<br>:fontawesome-solid-laptop-code: **TASK** Prepare data for assembly<br>:fontawesome-solid-laptop-code: **TASK** Exploring assembler options<br>:fontawesome-solid-laptop-code: **TASK** Submit assembly jobs to NeSI via Slurm<br>:fontawesome-solid-laptop-code: **TASK** Submit variant assembly jobs | Kim Handley |
     | 12:30 &ndash; 13:30 | :material-silverware-fork-knife: *Lunch* | |
     | 13:30 &ndash; 14:15 | :fontawesome-solid-microphone-lines: **TALK** Assembly evaluation<br>:fontawesome-solid-laptop-code: **TASK** Evaluate your assemblies<br>:fontawesome-solid-laptop-code: **TASK** Short contig removal | Mike Hoggard |
-    | 14:15 &ndash; 15:00 | :fontawesome-solid-microphone-lines: **TALK** Other considerations: assembly strategies, read classification, rRNA reconstruction<br>:fontawesome-solid-laptop-code: **TASK** Sequence classification using *Kraken2* and *Bracken* | Annie West<br>Jian Sheng Boey |
+    | 14:15 &ndash; 15:00 | :fontawesome-solid-microphone-lines: **TALK** Other considerations: assembly strategies<br>:fontawesome-solid-microphone-lines: **TALK** Other considerations: rRNA reconstruction<br>:fontawesome-solid-microphone-lines: **TALK** Other considerations: read classification <br>:fontawesome-solid-laptop-code: **TASK** Ribosomal RNA reconstruction using *PhyloFlash* | Annie West<br>Jian Sheng Boey |
     | 15:00 &ndash; 15:20 | :material-tea: *Afternoon tea* | |
-    | 15:20 &ndash; 15:50 | :fontawesome-solid-laptop-code: **TASK** Ribosomal RNA reconstruction using *PhyloFlash* | Annie West<br>Jian Sheng Boey |
+    | 15:20 &ndash; 15:50 | :fontawesome-solid-laptop-code: **TASK** Sequence classification using *Kraken2* and *Bracken* | Annie West<br>Jian Sheng Boey |
     | 15:50 &ndash; 16:00 | :fontawesome-solid-microphone-lines: **TALK** Project introduction and description | Kim Handley |
 
 === "Day 2: Wednesday, 4<sup>th</sup> Sep"
@@ -59,7 +59,7 @@
     | 09:10 &ndash; 10:20 | :fontawesome-solid-microphone-lines: **TALK** Taxonomic classification: Bin and species determination<br>:fontawesome-solid-laptop-code: **TASK** Taxonomic classification using GTDB-Tk<br>:fontawesome-solid-laptop-code: **TASK** View phylogenetic trait distribution using ANNOTREE | Annie West |
     | 10:20 &ndash; 10:40 | :material-tea: *Morning tea* | |
     | 10:40 &ndash; 11:15 | :fontawesome-solid-microphone-lines: **TALK** Primer to phylogenetic analyses<br>:fontawesome-solid-laptop-code: **TASK** Build a phylogenetic tree using FastTree and visualise tree using iTOL | Jian Sheng Boey |
-    | 11:15 &ndash; 12:05 | :fontawesome-solid-laptop-code: **TASK** QC of viral contigs using CheckV<br>:fontawesome-solid-microphone-lines: **TALK** Predicting viral taxonomy using vConTACT2<br>:fontawesome-solid-laptop-code: **TASK (Optional)** Visualise vConTACT2 viral gene sharing network in Cytoscape | Mike Hoggard |
+    | 11:15 &ndash; 12:05 | :fontawesome-solid-laptop-code: **TASK** Exploring results from VirSorter2 and CheckV<br>:fontawesome-solid-microphone-lines: **TALK** Predicting viral taxonomy using vConTACT2<br>:fontawesome-solid-laptop-code: **TASK (Optional)** Visualise vConTACT2 viral gene sharing network in Cytoscape | Mike Hoggard |
     | 12:05 &ndash; 12:50 | :material-silverware-fork-knife: *Lunch* | |
     | 12:50 &ndash; 13:20 | :fontawesome-solid-microphone-lines: **TALK** Tools for predicting genes: Prodigal, RNAmer, Aragorn, etc.<br>:fontawesome-solid-laptop-code: **TASK** Predict ORFs and protein sequences using Prodigal | Jian Sheng Boey |
     | 13:20 &ndash; 14:20 | :fontawesome-solid-microphone-lines: **TALK** Methods for gene annotation<br>:fontawesome-solid-laptop-code: **TASK** Annotate predicted genes using DIAMOND and HMMER3 | Jian Sheng Boey |
