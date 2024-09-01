@@ -1,5 +1,7 @@
 # APPENDIX (ex11) : Viral taxonomy prediction via *vContact2*
 
+Prior to running this, you need to have run VirSorter2 and CheckV as indicated [here](../day2/ex10.1_viruses.md).
+
 ## 1. Predict genes via *prodigal-gv*
 
 Prodigal-gv is a variant of prodigal that has been modified to improve gene calling for giant viruses and viruses that use alternative genetic codes. More information is available [here](https://github.com/apcamargo/prodigal-gv).
