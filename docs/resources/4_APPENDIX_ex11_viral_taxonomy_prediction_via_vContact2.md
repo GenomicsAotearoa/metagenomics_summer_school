@@ -64,16 +64,15 @@ Use `vContact2`'s `vcontact2_gene2genome` script to generate the required mappin
     # Load modules
     module purge
     module unload XALT
-    module load Singularity/3.11.3 \
+    module load Apptainer/1.2.5 \
             MCL/14.137-gimkl-2020a \
             DIAMOND/2.1.9-GCC-11.3.0
     
-    # Bind path to Singularity container
-    export SINGULARITY_BIND="$PWD"
+    # All NeSI Filesystems are pre-bound to APPTAINER_BIND
     container=/opt/nesi/containers/vContact2
     
     # Run script
-    singularity run $container/vcontact2.simg \
+    apptainer run $container/vcontact2.simg \
     vcontact2_gene2genome --proteins viral_taxonomy/checkv_combined.faa \
                           --output viral_taxonomy/viral_genomes_g2g.csv \
                           -s 'Prodigal-FAA'
@@ -101,16 +100,15 @@ Use `vContact2`'s `vcontact2_gene2genome` script to generate the required mappin
     # Load modules
     module purge
     module unload XALT
-    module load Singularity/3.11.3 \
+    module load Apptainer/1.2.5 \
             MCL/14.137-gimkl-2020a \
             DIAMOND/2.1.9-GCC-11.3.0
 
     # Bind paths
-    export SINGULARITY_BIND="$PWD"
     container=/opt/nesi/containers/vContact2
 
     # Run vConTACT2
-    singularity run $container/vcontact2.simg \
+    apptainer run $container/vcontact2.simg \
     vcontact2 --raw-proteins viral_taxonomy/checkv_combined.faa \
               --rel-mode Diamond \
               --threads $SLURM_CPUS_PER_TASK \
