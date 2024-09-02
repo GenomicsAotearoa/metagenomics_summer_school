@@ -291,39 +291,19 @@ Right-click, 'Selection', 'Export'. Save the output as `cluster_1.fna`.
 
 ## 2. Refining bins
 
-VizBin is a general purpose tool for contig/scaffold/fragment visualisation. For this workshop, we're going to attempt to refine a few bins. Here, we will:
+VizBin is a general purpose tool for contig/scaffold/fragment visualisation. For this workshop, we're going to attempt to refine a few bins. Refinement can mean reducing contamination, improving completeness and/or splitting strains. Here, we will:
 
-* Diagnose and visualise contigs
-* Export clusters of contigs
+* Diagnose and visualise contig fragments
+* Export clusters of contig fragments
+* Check distribution of contig fragments across clusters
+* Pull new contigs from concatenated bin files to form new bin clusters
 * Check if genome metrics improve after manual refinement
 
-For this exercise, we will be using data from the `mock_bins/` sub-directory and additional genome metrics in `mock_bins.checkm.txt`. These files were generated using a different assembly (reads assembled using MEGAHIT) based on a modified sample 3 library, and then binned using MetaBAT2 and MaxBin as per previous lessons. The assembly is quite a bit more fragmented which saves us from fragmenting the input ourselves!
-
-??? question "Do you remember how to check an assembly?"
-
-    Use BBMap's `stats.sh` (see [here](../day1/ex5_evaluating_assemblies.md#evaluating-the-assemblies-using-bbmap))
+For this exercise, we will be using data from the `mock_bins/` sub-directory and additional genome metrics in `mock_bins.checkm.txt`. These files were generated using a different assembly (reads assembled using MEGAHIT) based on a modified sample 3 library, and then binned using MetaBAT2 and MaxBin as per previous lessons. We also provide a set of fragmented assembled contigs for better visualisation (i.e., contig fragments with similar k-mer profiles are clustered together)!
 
 ### Inspect the genome metrics
 
 Open up the file named `mock_bins.checkm.txt`. Take note of the metrics of each bin and consider what we might want to improve on.
-
-### Prepare files for VizBin
-
-List the content of `mock_bins/`, there are 4 FASTA files. We will need to generate a concatenated set of sequences and a bin-contig map for colours.
-
-!!! terminal "code"
-
-    ```bash linenums="1"
-    # VizBin requires a header for annotation files
-    echo "label" > all_mock_bins.label.ann
-
-    # Generate concatenated set of sequences and labels at the same time!
-    for bin in mock_bins/*.fna; do
-        binID=$(basename ${bin} .fna)
-        grep '>' ${bin} | sed "s/.*/${binID}/g" >> all_mock_bins.label.ann
-        cat ${bin} >> all_mock_bins.fna
-    done
-    ```
 
 ### Prepare output directory
 
@@ -339,29 +319,103 @@ We also need to prepare an output directory for the clusters that we export.
 
 Return to the VizBin set-up dialogue in the Virtual Desktop. Select the following input files we just made:
 
-**File to visualize:** `all_mock_bins.fna`
+**File to visualize:** `mock_fragments.fna`
 
-**Annotation file:** `all_mock_bins.label.ann`
+**Annotation file:** `mock_fragments.sample3.vizbin.bin_only.ann`
 
 !!! hint "Legends"
 
     When you have projected the tSNE, you can show the bin identity by right-clicking anywhere on the ordination and then click "Legend". This will give you a box that shows you which contig belongs to which bin.
 
-### Export contig clusters
+### Export clusters
 
-Make your selection around clusters that you think should form bins. Use the CheckM output earlier to help inform your decisions.
+Based on information you have on hand, make your selection around points that you think:
 
-Once you've made your selection, export the sequences into the `vb_export/` directory we made earlier. Name your new clusters in a way that you can easily recognise the original bins they came from. For example, if most of the contigs were from `mock_bin_3`, perhaps name the new cluster `mock_bin_3.cluster.fa`. If you're splitting a bin into several clusters, we recommend you name them something like `mock_bin_3.cluster_1.fa` and `mock_bin_3.cluster_2.fa`.
+* Should form bins (name these sequences `cluster_n.bin_n.fa`, where `bin_n` reminds you which bin most of the fragments come from)
+* Are problematic fragments or fragments in doubt (name these sequences `contigs_n.fa`)
 
-!!! tip "Remember to add the `.fa` suffix to your new cluster filenames!"
+!!! tip "You don't have to circle everything, just the ones you think need refining!"
 
-### Check exported clusters
+Export the sequences into the `vb_export/` directory we made earlier.
 
-Moment of truth! How did your decisions impact the genome metrics of each bin? Run your selections through CheckM and see how you did!
+### Check distribution of contig fragments
+
+We have provided you with a script that collects information from your exported fragments in order to check if you need to remove contigs from the aggregated `mock_fragments.fna`. We run this script like so:
 
 !!! terminal "code"
 
-    ```sh linenums="1"
+    ```bash linenums="1"
+    ./vizbin_count_table.sh -i vb_export/ \
+                            -e fa \
+                            -c cluster \
+                            -s contig
+    ```
+
+!!! note "`vizbin_count_table.sh` flags"
+
+    | Flags | Description |
+    | :---- | :---- |
+    | `-i`  | Input directory where FASTA files of drawn clusters are located |
+    | `-e`  | File extension for drawn clusters |
+    | `-c`  | File prefix for fragments that form new bins |
+    | `-s`  | File prefix for problematic fragments or whose placements are doubtful. |
+
+The script counts how problematic fragments are distributed across different clusters (based on the contig they came from). This helps us make an informed decision if removing a contig from a cluster would impact other clusters.
+
+The outputs are:
+
+* `vb_count_table.txt`: A table of fragments and where other fragments of the same contig are also distributed in different clusters.
+* `vb_omit_contigs_tmp.txt`: A list of contigs (*not fragments*) that were designated as problematic to be removed.
+
+### Remove problematic contigs
+
+If your `vb_count_table.txt` has fragments of a contig that are spread across different clusters, you may need to reconsider removing that contig (i.e., there are non-zero counts in multiple cluster columns). This is because removing them may impact the composition of other clusters. 
+
+Otherwise, if problematic contig fragments do not form clusters, we can simply ignore them when reforming new bins. In this exercise, it is highly unlikely you will encounter contig fragments shared across multiple clusters. As such, we will simply ignore the problematic contigs from the concatenated contigs file.
+
+### Form new bins
+
+Start by creating a new directory for refined bins.
+
+!!! terminal "code"
+
+    ```bash
+    mkdir -p refined_bins/
+    ```
+
+We then create a file with the relevant contigs from our newly formed clusters.
+
+!!! terminal "code"
+
+    ```bash
+    for cluster in vb_export/cluster*.fa; do
+        grep '>' ${cluster} \
+        | sed -e 's/>//g' -e 's/\.concoct_part_[0-9]*//g' \
+        | sort -u \
+        > ${cluster/.fa/.contigID}
+    done
+    ```
+
+Then, we use SeqKit to extract the required contigs.
+
+!!! terminal "code"
+
+    ```bash
+    module purge
+    module load SeqKit/2.4.0
+
+    for ids in vb_export/cluster*.contigID; do
+        seqkit grep -f ${ids} <(cat mock_bins/*.fna) > refined_bins/$(basename ${ids} .contigID).fna
+    done
+    ```
+
+### Check your new bins!
+
+Moment of truth! How did your decisions impact the genome metrics of the refined bins? Run your selections through CheckM and see how you did!
+
+!!! terminal "code"
+
+    ```bash linenums="1"
     #!/bin/bash -e
     #SBATCH --account       nesi02659
     #SBATCH --job-name      CheckM_vb_exports
@@ -382,8 +436,8 @@ Moment of truth! How did your decisions impact the genome metrics of each bin? R
     # Run CheckM
     checkm lineage_wf -t $SLURM_CPUS_PER_TASK \
                       --pplacer_threads $SLURM_CPUS_PER_TASK \
-                      -x fa --tab_table -f vb_export.checkm.txt \
-                      vb_export/ vb_export.checkm_out/
+                      -x fa --tab_table -f refined_bins.checkm.txt \
+                      refined_bins/ refined_bins.checkm_out/
     ```
 
 ### Human refinement vs automated binning

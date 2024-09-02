@@ -29,8 +29,8 @@
     | 10:50 &ndash; 11:25 | :fontawesome-solid-laptop-code: **TASK** Read trimming & adapter removal<br>:fontawesome-solid-laptop-code: **TASK** Diagnosing poor libraries<br>:fontawesome-solid-microphone-lines: **TALK** Common issues & best practices<br>:fontawesome-solid-laptop-code: **TASK** Filter out host DNA | Annie West |
     | 11:25 &ndash; 12:30 | **Assembly**<br>:fontawesome-solid-microphone-lines: **TALK** Choice of assemblers, parameter considerations, and when to stop!<br>:fontawesome-solid-laptop-code: **TASK** Prepare data for assembly<br>:fontawesome-solid-laptop-code: **TASK** Exploring assembler options<br>:fontawesome-solid-laptop-code: **TASK** Submit assembly jobs to NeSI via Slurm<br>:fontawesome-solid-laptop-code: **TASK** Submit variant assembly jobs | Kim Handley |
     | 12:30 &ndash; 13:30 | :material-silverware-fork-knife: *Lunch* | |
-    | 13:30 &ndash; 14:15 | :fontawesome-solid-microphone-lines: **TALK** Assembly evaluation<br>:fontawesome-solid-laptop-code: **TASK** Evaluate your assemblies<br>:fontawesome-solid-laptop-code: **TASK** Short contig removal | Mike Hoggard |
-    | 14:15 &ndash; 15:00 | :fontawesome-solid-microphone-lines: **TALK** Other considerations: assembly strategies<br>:fontawesome-solid-microphone-lines: **TALK** Other considerations: rRNA reconstruction<br>:fontawesome-solid-microphone-lines: **TALK** Other considerations: read classification <br>:fontawesome-solid-laptop-code: **TASK** Ribosomal RNA reconstruction using *PhyloFlash* | Annie West<br>Jian Sheng Boey |
+    | 13:30 &ndash; 14:15 | :fontawesome-solid-microphone-lines: **TALK** Other considerations: assembly strategies<br>:fontawesome-solid-microphone-lines: **TALK** Assembly evaluation<br>:fontawesome-solid-laptop-code: **TASK** Evaluate your assemblies<br>:fontawesome-solid-laptop-code: **TASK** Short contig removal | Mike Hoggard |
+    | 14:15 &ndash; 15:00 | :fontawesome-solid-microphone-lines: **TALK** Other considerations: rRNA reconstruction<br>:fontawesome-solid-laptop-code: **TASK** Ribosomal RNA reconstruction using *PhyloFlash*<br>:fontawesome-solid-microphone-lines: **TALK** Other considerations: read classification | Annie West<br>Jian Sheng Boey |
     | 15:00 &ndash; 15:20 | :material-tea: *Afternoon tea* | |
     | 15:20 &ndash; 15:50 | :fontawesome-solid-laptop-code: **TASK** Sequence classification using *Kraken2* and *Bracken* | Annie West<br>Jian Sheng Boey |
     | 15:50 &ndash; 16:00 | :fontawesome-solid-microphone-lines: **TALK** Project introduction and description | Kim Handley |
@@ -47,9 +47,9 @@
     | 12:10 &ndash; 13:00 | :material-silverware-fork-knife: *Lunch* | |
     | 13:00 &ndash; 15:00 | :fontawesome-solid-laptop-code: **TASK** Bin evaluation using *CheckM* and *CheckM2*<br>:fontawesome-solid-microphone-lines: **TALK** Bin dereplication across assemblies, working with minimal or non-prokaryotic genomes, and bin refinement strategies<br>:fontawesome-solid-laptop-code: **TASK** Visual bin refinement using *VizBin* | Kim Handley<br>Mike Hoggard |
     | 15:00 &ndash; 15:20 | :material-tea: *Afternoon tea* | |
-    | 15:20 &ndash; 15:35 | :fontawesome-solid-laptop-code: **TASK** Checking VizBin results | |
+    | 15:20 &ndash; 15:35 | :fontawesome-solid-laptop-code: **TASK** Checking VizBin results | Annie West |
     | 15:35 &ndash; 16:05 | :fontawesome-solid-microphone-lines: **TALK** Viruses in metagenomic data<br>:fontawesome-solid-laptop-code: **TASK** Identify viral contigs using *VirSorter2* and *CheckV* | Mike Hoggard |
-    | 16:04 &ndash; 16:30 | :octicons-comment-discussion-16: **DISCUSSION** How will you approach your research question? | |
+    | 16:05 &ndash; 16:30 | :octicons-comment-discussion-16: **DISCUSSION** How will you approach your research question? | |
 
 === "Day 3: Thursday, 5<sup>th</sup> Sep"
 
