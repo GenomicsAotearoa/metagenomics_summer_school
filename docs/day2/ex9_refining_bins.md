@@ -299,7 +299,7 @@ VizBin is a general purpose tool for contig/scaffold/fragment visualisation. For
 * Pull new contigs from concatenated bin files to form new bin clusters
 * Check if genome metrics improve after manual refinement
 
-For this exercise, we will be using data from the `mock_bins/` sub-directory and additional genome metrics in `mock_bins.checkm.txt`. These files were generated using a different assembly (reads assembled using MEGAHIT) based on a modified sample 3 library, and then binned using MetaBAT2 and MaxBin as per previous lessons. We also provide a set of fragmented assembled contigs for better visualisation (i.e., contig fragments with similar k-mer profiles are clustered together)!
+For this exercise, we will be using data from the `mock_fragments*` files, `mock_bins/` sub-directory, and additional genome metrics in `mock_bins.checkm.txt`. These files were generated using a different assembly (reads assembled using MEGAHIT) based on a modified sample 3 library, and then binned using MetaBAT2 and MaxBin as per previous lessons.
 
 ### Inspect the genome metrics
 
