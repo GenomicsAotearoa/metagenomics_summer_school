@@ -174,10 +174,10 @@ If this fails to open on your PC, or if it runs prohibitively slowly, team up wi
     !!! circle-check "Terminal output"
 
         ```
-        all_fragments.fna                 example_data_unchopped  sample3.vb_tbl.csv
-        all_fragments.sample1.vizbin.ann  mock_bins               VizBin-dist.jar
-        example_data_20k                  mock_bins_checkm_out
-        example_data_20k_cov.txt          mock_bins.checkm.txt
+        all_fragments.fna                 example_data_unchopped  mock_fragments.fna
+        all_fragments.sample1.vizbin.ann  mock_bins               mock_fragments.sample3.vizbin.bin_only.ann
+        example_data_20k                  mock_bins_checkm_out    vizbin_count_table.sh
+        example_data_20k_cov.txt          mock_bins.checkm.txt    VizBin-dist.jar
         ```
 
 4. Type the following into your Virtual Desktop terminal to initiate VizBin.
