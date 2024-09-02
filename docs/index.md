@@ -102,7 +102,7 @@
 
 !!! comment-dots "Post-workshop survey"
     
-    Thank you for attending Metagenomics Summer School 2023! We would like your feedback on how we have done and what we can improve on. You can provide feedback [here](https://auckland.au1.qualtrics.com/jfe/form/SV_4JcEoG7GxaugScC).
+    Thank you for attending Metagenomics Summer School 2024! We would like your feedback on how we have done and what we can improve on. You can provide feedback [here](https://auckland.au1.qualtrics.com/jfe/form/SV_4JcEoG7GxaugScC).
 
 <br>
 
