@@ -214,7 +214,7 @@ For now leave all other parameters as default. Click the 'Start' button to begin
 
 ### Contigs coloured by bin
 
-<center>![image](../figures/ex10_bin_only_2022.png){width="600"}</center>
+<center>![image](../figures/ex10_bin_only_2024.png){width="600"}</center>
 
 ??? note "Additional annotations by length and coverage"
     
@@ -322,6 +322,10 @@ Return to the VizBin set-up dialogue in the Virtual Desktop. Select the followin
 **File to visualize:** `mock_fragments.fna`
 
 **Annotation file:** `mock_fragments.sample3.vizbin.bin_only.ann`
+
+Your VizBin will look like this:
+
+[image](../figures/ex10_mock_fragments.PNG)
 
 !!! hint "Legends"
 
