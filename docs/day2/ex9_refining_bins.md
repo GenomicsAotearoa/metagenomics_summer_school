@@ -317,7 +317,7 @@ We also need to prepare an output directory for the clusters that we export.
 
 ### Load the files into VizBin
 
-Return to the VizBin set-up dialogue in the Virtual Desktop. Select the following input files we just made:
+Return to the VizBin set-up dialogue in the Virtual Desktop. Select the following input files:
 
 **File to visualize:** `mock_fragments.fna`
 
