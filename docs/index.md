@@ -56,14 +56,14 @@
     | <div style="width:100px">Time</div> | <div style="width:350px">Event</div> | <div style="width:125px">Session leader</div> |
     | --- | --- | --- |
     | 09:00 &ndash; 09:10 | **Introductions**<br>Recap of day 2<br>Recap of binning outputs<br>Overview of the day | Jian Sheng Boey |
-    | 09:10 &ndash; 10:20 | :fontawesome-solid-microphone-lines: **TALK** Taxonomic classification: Bin and species determination<br>:fontawesome-solid-laptop-code: **TASK** Taxonomic classification using GTDB-Tk<br>:fontawesome-solid-laptop-code: **TASK** View phylogenetic trait distribution using ANNOTREE | Annie West |
+    | 09:10 &ndash; 10:20 | :fontawesome-solid-microphone-lines: **TALK** Taxonomic classification: Bin and species determination<br>:fontawesome-solid-laptop-code: **TASK** Taxonomic classification using GTDB-Tk | Annie West |
     | 10:20 &ndash; 10:40 | :material-tea: *Morning tea* | |
     | 10:40 &ndash; 11:15 | :fontawesome-solid-microphone-lines: **TALK** Primer to phylogenetic analyses<br>:fontawesome-solid-laptop-code: **TASK** Build a phylogenetic tree using FastTree and visualise tree using iTOL | Jian Sheng Boey |
     | 11:15 &ndash; 12:05 | :fontawesome-solid-laptop-code: **TASK** Exploring results from VirSorter2 and CheckV<br>:fontawesome-solid-microphone-lines: **TALK** Predicting viral taxonomy using vConTACT2<br>:fontawesome-solid-laptop-code: **TASK (Optional)** Visualise vConTACT2 viral gene sharing network in Cytoscape | Mike Hoggard |
     | 12:05 &ndash; 12:50 | :material-silverware-fork-knife: *Lunch* | |
     | 12:50 &ndash; 13:20 | :fontawesome-solid-microphone-lines: **TALK** Tools for predicting genes: Prodigal, RNAmer, Aragorn, etc.<br>:fontawesome-solid-laptop-code: **TASK** Predict ORFs and protein sequences using Prodigal | Jian Sheng Boey |
     | 13:20 &ndash; 14:20 | :fontawesome-solid-microphone-lines: **TALK** Methods for gene annotation<br>:fontawesome-solid-laptop-code: **TASK** Annotate predicted genes using DIAMOND and HMMER3 | Jian Sheng Boey |
-    | 14:20 &ndash; 14:50 | :fontawesome-solid-microphone-lines: **TALK** Using online resources (KEGG, BioCyc, MetaCyc, InterPro, PSORT)<br>:fontawesome-solid-laptop-code: **TASK** View KEGG annotations online | Jian Sheng Boey |
+    | 14:20 &ndash; 14:50 | :fontawesome-solid-microphone-lines: **TALK** Using online resources (KEGG, BioCyc, MetaCyc, InterPro, PSORT)<br>:fontawesome-solid-laptop-code: **TASK** View KEGG annotations online<br>:fontawesome-solid-laptop-code: **TASK** View phylogenetic trait distribution using ANNOTREE | Jian Sheng Boey |
     | 14:50 &ndash; 15:05 | :material-tea: *Afternoon tea* | |
     | 15:05 &ndash; 15:30 | :material-presentation-play: **PRESENTATION** Metagenomic analyses *sans* binning | Jess Wallbank |
     | 15:30 &ndash; 15:50 | :fontawesome-solid-laptop-code: **TASK** MAG annotation with DRAM<br>:fontawesome-solid-laptop-code: **TASK** Coverage calculation | Annie West |
