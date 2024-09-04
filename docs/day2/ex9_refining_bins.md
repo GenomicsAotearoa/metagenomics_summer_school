@@ -413,6 +413,22 @@ Then, we use SeqKit to extract the required contigs.
     done
     ```
 
+??? hint "Refining by omission"
+
+    If you want to use the `vb_omit_contigs_tmp.txt` as the search pattern to omit contigs from the bins, you can do that following:
+
+    ```bash
+    module purge
+    module load SeqKit/2.4.0
+
+    for bins in mock_bins/*.fna; do
+        seqkit grep -v -f vb_omit_contigs.tmp.txt > refined_bins/$(basename ${bins} .fna).refined.fna
+    done
+    ```
+
+    In the code above, we added a `-v` to the `grep` command to indicate invert matches.
+
+
 ### Check your new bins!
 
 Moment of truth! How did your decisions impact the genome metrics of the refined bins? Run your selections through CheckM and see how you did!
