@@ -440,7 +440,7 @@ Moment of truth! How did your decisions impact the genome metrics of the refined
     # Run CheckM
     checkm lineage_wf -t $SLURM_CPUS_PER_TASK \
                       --pplacer_threads $SLURM_CPUS_PER_TASK \
-                      -x fa --tab_table -f refined_bins.checkm.txt \
+                      -x fna --tab_table -f refined_bins.checkm.txt \
                       refined_bins/ refined_bins.checkm_out/
     ```
 
