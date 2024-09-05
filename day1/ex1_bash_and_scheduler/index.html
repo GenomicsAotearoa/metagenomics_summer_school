@@ -1,0 +1,2085 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Genomics Aotearoa & NeSI">
+      
+      
+        <link rel="canonical" href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day1/ex1_bash_and_scheduler/">
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../ex2_1_intro_to_scheduler/">
+      
+      
+      <link rel="icon" href="../../theme_images/nesi_ga.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>Introduction I: Shell - Metagenomics Summer School</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35f28582.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Mukta";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction-i-shell" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Metagenomics Summer School" class="md-header__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../theme_images/nesi_ga.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Metagenomics Summer School
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction I: Shell
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Day 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day2/ex6_initial_binning/" class="md-tabs__link">
+          
+  
+  Day 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day3/ex11_coverage_and_taxonomy/" class="md-tabs__link">
+          
+  
+  Day 3
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day4/ex15_gene_annotation_part3/" class="md-tabs__link">
+          
+  
+  Day 4
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../resources/1_APPENDIX_ex8_Dereplication/" class="md-tabs__link">
+          
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../supplementary/supplementary_1/" class="md-tabs__link">
+          
+  
+  Supplementary
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Metagenomics Summer School" class="md-nav__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../theme_images/nesi_ga.png" alt="logo">
+
+    </a>
+    Metagenomics Summer School
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Day 1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Day 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Introduction I: Shell
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Introduction I: Shell
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#navigating-your-file-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Navigating your file system
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copying-moving-renaming-and-removing-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copying, Moving, Renaming and Removing files
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examining-file-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examining file contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redirection-and-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redirection and extraction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text-and-file-manipulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Text and file manipulation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Text and file manipulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cut" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cut
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basename" class="md-nav__link">
+    <span class="md-ellipsis">
+      basename
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sed" class="md-nav__link">
+    <span class="md-ellipsis">
+      sed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loops
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scripts
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex2_1_intro_to_scheduler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction II: HPC and job scheduler
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex2_quality_filtering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Filter raw reads by quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex3_assembly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assembly I: Assembling contigs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex4_assembly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assembly II: Varying the parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex5_evaluating_assemblies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assembly evaluation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Day 2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Day 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex6_initial_binning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction to binning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex7_initial_binning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Binning with multiple tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex8_bin_dereplication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bin dereplication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex9_refining_bins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manual bin refinement
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex10.1_viruses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Identifying viral contigs in metagenomic data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Day 3
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Day 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex11_coverage_and_taxonomy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assigning taxonomy to refined prokaryotic bins
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex11.1_phylogenomics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Phylogenomics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex10.2_viruses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virus taxonomy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex12_gene_prediction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gene prediction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex13_gene_annotation_part1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gene annotation I: BLAST-like and HMM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex14_gene_annotation_part2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gene annotation II: DRAM and coverage calculation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Day 4
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Day 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex15_gene_annotation_part3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gene annotation III: DRAM distillation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex16a_data_presentation_Intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction to data presentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex16b_data_presentation_Coverage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coverage heatmaps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex16c_OPTIONAL_data_presentation_Ordination/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ordinations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex16d_data_presentation_KEGG_pathways/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KEGG pathway maps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex16e_data_presentation_Gene_synteny/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gene synteny
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CAZy heatmaps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Resources
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/1_APPENDIX_ex8_Dereplication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APPENDIX (ex8): Dereplicating data from multiple assemblies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/2_APPENDIX_ex9_Generating_input_files_for_VizBin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APPENDIX (ex9): Generating input files for VizBin from DAS_Tool curated bins
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/3_APPENDIX_ex11_Normalise_coverage_example/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APPENDIX (ex11): Normalise per-sample coverage values by average library size (example)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APPENDIX (ex11) : Viral taxonomy prediction via vContact2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/7_command_line_shortcuts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Useful command line shortcuts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Supplementary
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Supplementary
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supplementary/supplementary_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NeSI Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supplementary/supplementary_2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NeSI File system, Working directory and Symlinks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#navigating-your-file-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Navigating your file system
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copying-moving-renaming-and-removing-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copying, Moving, Renaming and Removing files
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examining-file-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examining file contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redirection-and-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redirection and extraction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text-and-file-manipulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Text and file manipulation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Text and file manipulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cut" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cut
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basename" class="md-nav__link">
+    <span class="md-ellipsis">
+      basename
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sed" class="md-nav__link">
+    <span class="md-ellipsis">
+      sed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loops
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scripts
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="introduction-i-shell">Introduction I: Shell<a class="headerlink" href="#introduction-i-shell" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p>This lesson will be covered/referred during pre-Summer School sessions. We will start <strong>Day 1</strong> with <a href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day1/ex2_1_intro_to_scheduler/">Introduction to HPC &amp; HPC job scheduler</a></p>
+</div>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">Objectives</p>
+<ul>
+<li><a href="#navigating-your-file-system">Navigating your file system</a></li>
+<li><a href="#copying-moving-renaming-and-removing-files">Copying, Moving, Renaming and Removing files</a></li>
+<li><a href="#examining-file-contents">Examining file contents</a></li>
+<li><a href="#redirection-and-extraction">Redirection, manipulation and extraction</a></li>
+<li><a href="#text-and-file-manipulation">Text and file manipulation</a></li>
+<li><a href="#loops">Loops</a></li>
+<li><a href="#scripts">Shell scripting</a></li>
+<li><a href="../ex2_1_intro_to_scheduler/">Introduction to HPC and the SLURM scheduler</a></li>
+</ul>
+</div>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">Quick recap</p>
+<ul>
+<li>Log into the NeSI Jupyter service as per <strong>S.1.1 : NeSI Mahuika Jupyter login</strong> in <a href="https://genomicsaotearoa.github.io/metagenomics_summer_school/supplementary/supplementary_1/">NeSI Setup Supplementary material</a></li>
+<li>Then open a Jupyter <strong>Terminal</strong> Session </li>
+<li>We do recommend referring to <a href="https://genomicsaotearoa.github.io/metagenomics_summer_school/supplementary/supplementary_2/">NeSI File system,..Symlinks Supplementary material first</a> </li>
+<li>This lesson is a quick recap on basic/essential linux commands and will be covered during the pre-summer school sessions. </li>
+<li>If you would like to follow through and learn a bit more on this topic, refer to  <a href="https://genomicsaotearoa.github.io/shell-for-bioinformatics/">Intermediate Shell for Bioinformatics</a> material (or welcome to attend that workshop which will be offered two or three times per year)</li>
+</ul>
+</div>
+<h3 id="navigating-your-file-system">Navigating your file system<a class="headerlink" href="#navigating-your-file-system" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<ul>
+<li>
+<p>Check the current <em>working directory</em>.(terminal session  will be land on <code>/home</code> directory)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">pwd</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># /home/UserName/</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Switch to individual working directory on nobackup ( below )
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>/nesi/nobackup/nesi02659/MGSS_U/<span class="nv">$USER</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>OR you can navigate to above by using the symlink created as per instructions on  <a href="../../supplementary/supplementary_2/#symlinks-shortcuts">Supplementary material</a> with just <code>cd ~/mgss</code></p>
+</li>
+<li>
+<p>Change the directory to <code>MGSS_Intro</code>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>MGSS_Intro/
+</code></pre></div></p>
+</li>
+<li>
+<p>Run the <code>ls</code> command to list the contents of the current directory. Check whether there are two <em>.fastq</em> files.</p>
+</li>
+<li>
+<p>The <code>mkdir</code> command (<em>make directory</em>) is used to make a directory. Enter <code>mkdir</code> followed by a space, then the directory name you want to create
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mkdir<span class="w"> </span>backup/
+</code></pre></div></p>
+</li>
+</ul>
+</div>
+<hr />
+<h3 id="copying-moving-renaming-and-removing-files">Copying, Moving, Renaming and Removing files<a class="headerlink" href="#copying-moving-renaming-and-removing-files" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<ul>
+<li>
+<p>Make a second copy of <code>SRR097977.fastq</code> and rename it as <code>Test_1_backup.fastq</code>.<br />
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>cp<span class="w"> </span>SRR097977.fastq<span class="w"> </span>Test_1_backup.fastq
+</code></pre></div></p>
+</li>
+<li>
+<p>Then move that file to <code>backup/</code> directory.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mv Test_1_backup.fastq backup
+</code></pre></div></p>
+</li>
+<li>
+<p>Navigate to <code>backup/</code> directory and use <code>mv</code> command to rename and move <code>Test_1_backup.fastq</code> as <code>Test_1_copy.fastq</code> to the directory immediately above.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>backup/
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>mv Test_1_backup.fastq ../Test_1_copy.fastq
+</code></pre></div></p>
+</li>
+<li>
+<p>Return to the directory immediately above, check whether the <code>Test_1_copy.fastq</code> was moved and renamed as instructed and remove it by using the <code>rm</code> command.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>..
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>rm<span class="w"> </span>Test_1_copy.fastq
+</code></pre></div></p>
+</li>
+<li>
+<p>See whether you can remove the <code>backup/</code> directory by using the <code>rm</code> command as well. 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>rm<span class="w"> </span>backup/
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1"># rm : can not remove &#39;backup/&#39;: Is a directory</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>By default, <code>rm</code> will not delete directories. This can be done by using <code>-r</code> (recursive) option.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>rm<span class="w"> </span>-r<span class="w"> </span>backup
+</code></pre></div></p>
+</li>
+</ul>
+</div>
+<hr />
+<h3 id="examining-file-contents">Examining file contents<a class="headerlink" href="#examining-file-contents" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<ul>
+<li>
+<p>There are a number of ways to examine the content of a file. <code>cat</code> and <code>less</code> are two commonly used programs for a quick look. Check the content of <code>SRR097977.fastq</code> by using these commands. Take a note of the differences. 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>cat SRR097977.fastq
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a># less SRR097977.fastq
+</code></pre></div></p>
+</li>
+<li>
+<p>A few useful shortcuts for navigating in <code>less</code></p>
+</li>
+</ul>
+<p><center><a class="glightbox" href="../../figures/ex1_less_shortcuts.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image" src="../../figures/ex1_less_shortcuts.jpg" width="450" /></a></center></p>
+<ul>
+<li>
+<p>There are ways to take a look at parts of a file. For example, the <code>head</code> and <code>tail</code> commands will scan the beginning and end of a file, respectively. 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>head<span class="w"> </span>SRR097977.fastq
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>tail<span class="w"> </span>SRR097977.fastq
+</code></pre></div></p>
+</li>
+<li>
+<p>Adding <code>-n</code> option to either of these commands will print the first or last <em>n</em> lines of a file.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>head<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>SRR097977.fastq
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1"># @SRR097977.1 209DTAAXX_Lenski2_1_7:8:3:710:178 length=36</span>
+</code></pre></div></p>
+</li>
+</ul>
+</div>
+<hr />
+<h3 id="redirection-and-extraction">Redirection and extraction<a class="headerlink" href="#redirection-and-extraction" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<ul>
+<li>
+<p>Although using <code>cat</code> and <code>less</code> commands will allow us to view the content of the whole file, most of the time we are in search of particular characters (strings) of interest, rather than the full content of the file. One of the most commonly used command-line utilities to search for strings is <code>grep</code>. Let's use this command to search for the string <code>NNNNNNNNNN</code> in <code>SRR098026.fastq</code> file.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>grep<span class="w"> </span>NNNNNNNNNN<span class="w"> </span>SRR098026.fastq
+</code></pre></div></p>
+</li>
+<li>
+<p>Retrieve and discuss the output you get when <code>grep</code> was executed with the <code>-B1</code> and <code>-A1</code> flags.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>grep<span class="w"> </span>-B1<span class="w"> </span>-A2<span class="w"> </span>NNNNNNNNNN<span class="w"> </span>SRR098026.fastq
+</code></pre></div></p>
+</li>
+<li>
+<p>In both occasions, outputs were printed to the terminal where they can not be reproduced without the execution of the same command. In order for "string" of interest to be used for other operations, this has to be "redirected" (captured and written into a file). The command for redirecting output to a file is <code>&gt;</code>. Redirecting the string of bad reads that was searched using the <code>grep</code> command to a file named <code>bad_reads.txt</code> can be done with
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>grep<span class="w"> </span>-B1<span class="w"> </span>-A2<span class="w"> </span>NNNNNNNNNN<span class="w"> </span>SRR098026.fastq<span class="w"> </span>&gt;<span class="w"> </span>bad_reads.txt
+</code></pre></div></p>
+</li>
+<li>
+<p>Use the <code>wc</code> command to count the number of words, lines and characters in the <code>bad_reads.txt</code> file.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>wc<span class="w"> </span>bad_reads.txt
+</code></pre></div></p>
+</li>
+<li>
+<p>Add <code>-l</code> flag to <code>wc</code> command and compare the number with the above output
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>wc<span class="w"> </span>-l<span class="w"> </span>bad_reads.txt
+</code></pre></div></p>
+</li>
+<li>
+<p>In an instance where the same operation has to be applied for multiple input files and the outputs are to be redirected to the same output file, it is important to make sure that the new output is not over-writing the previous output. This can be avoided with the use of <code>&gt;&gt;</code> (append redirect) command which will append the new output to the end of the file, rather than overwriting it. 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>grep<span class="w"> </span>-B1<span class="w"> </span>-A2<span class="w"> </span>NNNNNNNNNN<span class="w"> </span>SRR097977.fastq<span class="w"> </span>&gt;&gt;<span class="w"> </span>bad_reads.txt
+</code></pre></div></p>
+</li>
+<li>
+<p>Executing the same operation on multiple files with the same file extension (or different) can be done with <em>wildcards</em>, which are symbols or special characters that represent other characters. For an example. Using <code>*</code> wildcard, we can run the previous <code>grep</code> command on both files at the same time.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>grep<span class="w"> </span>-B1<span class="w"> </span>-A2<span class="w"> </span>NNNNNNNNNN<span class="w"> </span>*.fastq<span class="w"> </span>&gt;&gt;<span class="w"> </span>bad_reads.txt
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>wc<span class="w"> </span>-l<span class="w"> </span>bad_reads.txt
+</code></pre></div></p>
+</li>
+<li>
+<p>The objective of the redirection example above is to search for a string in a set of files, write the output to a file, and then count the number of lines in that file. Generating output files for short routine tasks like this will end up generating an excessive number of files with little value. The <code>|</code> (pipe) command is a commonly used method to apply an operation for an output without creating intermediate files. It takes the output generated by one command and uses it as the input to another command. 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>grep<span class="w"> </span>-B1<span class="w"> </span>-A2<span class="w"> </span>NNNNNNNNNN<span class="w"> </span>SRR098026.fastq<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</code></pre></div></p>
+</li>
+</ul>
+</div>
+<hr />
+<h3 id="text-and-file-manipulation">Text and file manipulation<a class="headerlink" href="#text-and-file-manipulation" title="Permanent link">&para;</a></h3>
+<p>There are a number of handy command line tools for working with text files and performing operations like selecting columns from a table or modifying text in a file stream. A few examples of these are below.</p>
+<h4 id="cut">Cut<a class="headerlink" href="#cut" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p>The <code>cut</code> command prints selected parts of lines from each file to standard output. It is basically a tool for selecting columns of text, delimited by a particular character. The tab character is the default delimiter that <code>cut</code> uses to determine what constitutes a field. If the columns in your file are delimited by another character, you can specify this using the <code>-d</code> parameter.</p>
+<p>See what results you get from the file <code>names.txt</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>cat<span class="w"> </span>names.txt
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>cut<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">1</span><span class="w"> </span>names.txt
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>cut<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>-3<span class="w"> </span>names.txt
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>cut<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>,3<span class="w"> </span>names.txt
+</code></pre></div>
+</div>
+<h4 id="basename">basename<a class="headerlink" href="#basename" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p><code>basename</code> is a function in UNIX that is helpful for removing a uniform part of a name from a list of files. In this case, we will use <code>basename</code> to remove the .fastq extension from the files that we've been working with.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>basename<span class="w"> </span>SRR097977.fastq<span class="w"> </span>.fastq
+</code></pre></div>
+</div>
+<h4 id="sed">sed<a class="headerlink" href="#sed" title="Permanent link">&para;</a></h4>
+<p><code>sed</code> is a stream editor. A stream editor is used to perform basic text transformations on an input stream (a file, or input from a pipeline) like, searching, find and replace, insertion or deletion. The most common use of the <code>sed</code> command in UNIX is for substitution or for find and replace. By using <code>sed</code> you can edit files even without opening them, which is extremely important when working with large files.</p>
+<div class="admonition success">
+<ul>
+<li>Some find and replace examples</li>
+</ul>
+<p>Find and replace all <code>chr</code> to <code>chromosome</code> in the example.bed file and append the the edit to a new file named example_chromosome.bed</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>sed<span class="w"> </span><span class="s1">&#39;s/chr/chromosome/g&#39;</span><span class="w"> </span>example.bed<span class="w"> </span>&gt;<span class="w"> </span>example_chromosome.bed
+</code></pre></div>
+Find and replace <code>chr</code> to <code>chromosome</code>, only if you also find <strong>40</strong> in the line</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>sed<span class="w"> </span><span class="s1">&#39;/40/s/chr/chromosome/g&#39;</span><span class="w"> </span>example.bed<span class="w"> </span>&gt;<span class="w"> </span>example_40.bed
+</code></pre></div>
+Find and replace directly on the input, but save an old version too</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>sed<span class="w"> </span>-i.old<span class="w"> </span><span class="s1">&#39;s/chr/chromosome/g&#39;</span><span class="w"> </span>example.bed
+</code></pre></div>
+<div class="admonition info">
+<p><code>-i</code> to edit files in-place instead of printing to standard output</p>
+</div>
+<ul>
+<li>Print specific lines of the file</li>
+</ul>
+<p>To print a specific line you can use the address function. Note that by default, <code>sed</code> will stream the entire file, so when you are interested in specific lines only, you will have to suppress this feature using the option <code>-n</code> </p>
+<div class="admonition info">
+<p><code>-n</code>, <code>--quiet</code>, <code>--silent</code> = suppress automatic printing of pattern space</p>
+</div>
+<p>print 5<sup>th</sup> line of example.bed</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;5p&#39;</span><span class="w"> </span>example.bed
+</code></pre></div>
+<p>We can provide any number of additional lines to print using <code>-e</code> option. Let's print line 2 and 5, </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>sed<span class="w"> </span>-n<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;2p&#39;</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;5p&#39;</span><span class="w"> </span>example.bed
+</code></pre></div>
+<p>It also accepts range, using <code>,</code>. Let's print line 2-6,</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;2,6p&#39;</span><span class="w"> </span>example.bed
+</code></pre></div>
+</div>
+<hr />
+<h3 id="loops">Loops<a class="headerlink" href="#loops" title="Permanent link">&para;</a></h3>
+<p>Loops are a common concept in most programming languages which allow us to execute commands repeatedly with ease. There are three basic loop constructs in <code>bash</code> scripting,</p>
+<details class="info">
+<summary>Types of Loops</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1"><code>for</code> </label><label for="__tabbed_1_2"><code>while</code></label><label for="__tabbed_1_3"><code>until</code></label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>iterates over a list of items and performs the given set of commands
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>for item in [LIST]
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>do
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>    [COMMANDS]
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>done
+</code></pre></div>
+For most of our uses, a <code>for loop</code> is sufficient for our needs, so that is what we will be focusing on for this exercise.</p>
+<p>Shell identifies the <code>for</code> command and repeats a block of commands once for each item in a list. The for loop will take each item in the list (in order, one after the other), assign that item as the value of a variable, execute the commands between the <code>do</code> and <code>done</code> keywords, then proceed to the next item in the list and repeat over. The value of a variable is accessed by placing the <code>$</code> character in front of the variable name. This will tell the interpreter to access the data stored within the variable, rather than the variable name. For example</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nv">i</span><span class="o">=</span><span class="s2">&quot;MG Summer School&quot;</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="nb">echo</span><span class="w"> </span>i
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="c1"># i</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$i</span>
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="c1"># MG Summer School</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">i</span><span class="si">}</span>
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="c1"># MG Summer School</span>
+</code></pre></div>
+<p>This prevents the shell interpreter from treating <code>i</code> as a string or a command. The process is known as <em>expanding</em> the variable. We will now write a for loop to print the first two lines of our <em>fastQ</em> files:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>for filename in *.fastq
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>do
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>    head -n 2 ${filename}
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>done
+</code></pre></div>
+Another useful command to be used with <code>for</code> loops is <code>basename</code> which strips directory information and suffixes from file names (i.e. prints the filename name with any leading directory components removed).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>basename SRR097977.fastq .fastq
+</code></pre></div>
+<p><code>basename</code> is rather a powerful tool when used in a for loop. It enables the user to access just the file prefix which can be use to name things</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>for filename in *.fastq
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>do
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>    name=$(basename ${filename} .fastq)
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>    echo ${name}
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>done
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Performs a given set of commands an unknown number of times as long as the given condition evaluates is true
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>while [CONDITION]
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>do
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>    [COMMANDS]
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>done
+</code></pre></div></p>
+</div>
+<div class="tabbed-block">
+<p>Execute a given set of commands as longs as the given condition evaluates to false</p>
+</div>
+</div>
+</div>
+</details>
+<hr />
+<h3 id="scripts">Scripts<a class="headerlink" href="#scripts" title="Permanent link">&para;</a></h3>
+<div class="admonition success">
+<p>Executing operations that contain multiple lines/tasks or steps such as for loops via command line is rather inconvenient. For an example, imagine fixing a simple spelling mistake made somewhere in the middle of a for loop that was directly executed on the terminal.</p>
+<p>The solution for this is the use of shell scripts, which are essentially a set of commands that you write into a text file and then run as a single command. In UNIX-like operating systems, inbuilt text editors such as <code>nano</code>, <code>emacs</code>, and <code>vi</code> provide the platforms to write scripts. For this workshop we will use <code>nano</code> to create a file named <code>ForLoop.sh</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>nano ForLoop.sh
+</code></pre></div>
+<p>Add the following for-loop to the script (note the header <code>#!/bin/bash</code>).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="k">for</span><span class="w"> </span>filename<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.fastq
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="k">do</span>
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="w">    </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="si">${</span><span class="nv">filename</span><span class="si">}</span>
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="k">done</span>
+</code></pre></div>
+<p>Because <code>nano</code> is designed to work without a mouse for input, all commands you pass into the editor are done via keyboard shortcuts. You can save your changes by pressing <code>Ctrl + O</code>, then exit <code>nano</code> using <code>Ctrl + X</code>. If you try to exit without saving changes, you will get a prompt confirming whether or not you want to save before exiting, just like you would if you were working in <strong>Notepad</strong> or <strong>Word</strong>.</p>
+<p>Now that you have saved your file, see if you can run the file by just typing the name of it (as you would for any command run off the terminal). You will notice the command written in the file will not be executed. The solution for this is to tell the machine what program to use to run the script. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>bash<span class="w"> </span>ForLoop.sh
+</code></pre></div>
+<p>Although the file contains enough information to be considered as a program itself, the operating system can not recognise it as a program. This is due to it's lacking "executable" permissions to be executed without the assistance of a third party. Run the <code>ls -l ForLoop.sh</code> command and evaluate the first part of the output</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>ls<span class="w"> </span>-l<span class="w"> </span>ForLoop.sh<span class="w"> </span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="c1"># -rw-rw-r-- 1 user user 88 Dec  6 19:52 ForLoop.sh</span>
+</code></pre></div>
+<p>There are three file permission flags that a file we create on NeSI can possess. Two of these, the read (<code>r</code>) and write (<code>w</code>) are marked for the <code>ForLoop.sh</code> file .The third flag, executable (<code>x</code>) is not set. We want to change these permissions so that the file can be executed as a program. This can be done by using <code>chmod</code> command. Add the executable permissions (<code>+x</code>) to <code>ForLoop.sh</code> and run <code>ls</code> again to see what has changed.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>chmod<span class="w"> </span>+x<span class="w"> </span>ForLoop.sh
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>ls<span class="w"> </span>-l<span class="w"> </span>ForLoop.sh<span class="w"> </span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="c1"># -rwxrwxr-x 1 user user 88 Dec  6 19:52 ForLoop.sh</span>
+</code></pre></div>
+<p>Re-open the file in <code>nano</code> and append the output to <strong>TwoLines.txt</strong>, save and exit</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="k">for</span><span class="w"> </span>filename<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.fastq
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="k">do</span>
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="w">    </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="si">${</span><span class="nv">filename</span><span class="si">}</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>TwoLines.txt
+<a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a><span class="k">done</span>
+</code></pre></div>
+<p>Execute the file <code>ForLoop.sh</code>. We'll need to put <code>./</code> at the beginning so the computer knows to look here in this directory for the program.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>./ForLoop.sh
+</code></pre></div>
+</div>
+<hr />
+<div class="admonition pied-piper">
+<p class="admonition-title">Cheat sheet</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Key commands for navigating around the filesystem are:</label><label for="__tabbed_2_2">Other useful commands:</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li><code>ls</code> - list the contents of the current directory</li>
+<li><code>ls -l</code> - list the contents of the current directory in more detail</li>
+<li><code>pwd</code> - show the location of the current directory</li>
+<li><code>cd DIR</code> - change directory to directory DIR (DIR must be in your current directory - you should see its name when you type <code>ls</code> OR you need to specify either a full or relative path to DIR)</li>
+<li><code>cd -</code> - change back to the last directory you were in</li>
+<li><code>cd</code> (also <code>cd ~/</code>) - change to your home directory</li>
+<li><code>cd ..</code> - change to the directory one level above</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><code>mv</code> - move files or directories</li>
+<li><code>cp</code> - copy files or directories</li>
+<li><code>rm</code> - delete files or directories</li>
+<li><code>mkdir</code> - create a new directory</li>
+<li><code>cat</code> - concatenate and print text files to screen</li>
+<li><code>more</code> - show contents of text files on screen</li>
+<li><code>less</code> - cooler version of <code>more</code>. Allows searching (use <code>/</code>)</li>
+<li><code>tree</code> - tree view of directory structure</li>
+<li><code>head</code> - view lines from the start of a file</li>
+<li><code>tail</code> - view lines from the end of a file</li>
+<li><code>grep</code> - find patterns within files</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

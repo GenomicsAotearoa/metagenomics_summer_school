@@ -1,0 +1,2097 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Genomics Aotearoa & NeSI">
+      
+      
+        <link rel="canonical" href="https://genomicsaotearoa.github.io/metagenomics_summer_school/day4/ex16c_OPTIONAL_data_presentation_Ordination/">
+      
+      
+        <link rel="prev" href="../ex16b_data_presentation_Coverage/">
+      
+      
+        <link rel="next" href="../ex16d_data_presentation_KEGG_pathways/">
+      
+      
+      <link rel="icon" href="../../theme_images/nesi_ga.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>Ordinations - Metagenomics Summer School</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35f28582.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Mukta";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ordinations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Metagenomics Summer School" class="md-header__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../theme_images/nesi_ga.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Metagenomics Summer School
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ordinations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day1/ex1_bash_and_scheduler/" class="md-tabs__link">
+          
+  
+  Day 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day2/ex6_initial_binning/" class="md-tabs__link">
+          
+  
+  Day 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day3/ex11_coverage_and_taxonomy/" class="md-tabs__link">
+          
+  
+  Day 3
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../ex15_gene_annotation_part3/" class="md-tabs__link">
+          
+  
+  Day 4
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../resources/1_APPENDIX_ex8_Dereplication/" class="md-tabs__link">
+          
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../supplementary/supplementary_1/" class="md-tabs__link">
+          
+  
+  Supplementary
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Metagenomics Summer School" class="md-nav__button md-logo" aria-label="Metagenomics Summer School" data-md-component="logo">
+      
+  <img src="../../theme_images/nesi_ga.png" alt="logo">
+
+    </a>
+    Metagenomics Summer School
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GenomicsAotearoa/metagenomics_summer_school" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GenomicsAotearoa/metagenomics_summer_school
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Day 1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Day 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex1_bash_and_scheduler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction I: Shell
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex2_1_intro_to_scheduler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction II: HPC and job scheduler
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex2_quality_filtering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Filter raw reads by quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex3_assembly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assembly I: Assembling contigs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex4_assembly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assembly II: Varying the parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/ex5_evaluating_assemblies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assembly evaluation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Day 2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Day 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex6_initial_binning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction to binning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex7_initial_binning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Binning with multiple tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex8_bin_dereplication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bin dereplication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex9_refining_bins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manual bin refinement
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/ex10.1_viruses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Identifying viral contigs in metagenomic data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Day 3
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Day 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex11_coverage_and_taxonomy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assigning taxonomy to refined prokaryotic bins
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex11.1_phylogenomics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Phylogenomics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex10.2_viruses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virus taxonomy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex12_gene_prediction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gene prediction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex13_gene_annotation_part1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gene annotation I: BLAST-like and HMM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/ex14_gene_annotation_part2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gene annotation II: DRAM and coverage calculation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Day 4
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Day 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex15_gene_annotation_part3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gene annotation III: DRAM distillation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16a_data_presentation_Intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction to data presentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16b_data_presentation_Coverage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Coverage heatmaps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Ordinations
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Ordinations
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-import-and-wrangle-data-in-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Import and wrangle data in R
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Import and wrangle data in R">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-prepare-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Prepare environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-wrangle-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Wrangle data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-calculate-weighted-and-unweighted-dissimilarities" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Calculate weighted and unweighted dissimilarities
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-generate-ordination" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Generate ordination
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-extract-data-from-ordination" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Extract data from ordination
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-build-the-ordination-plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Build the ordination plot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#follow-up-analyses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Follow-up analyses
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16d_data_presentation_KEGG_pathways/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KEGG pathway maps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16e_data_presentation_Gene_synteny/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gene synteny
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ex16f_OPTIONAL_data_presentation_CAZy_annotations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CAZy heatmaps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Resources
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/1_APPENDIX_ex8_Dereplication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APPENDIX (ex8): Dereplicating data from multiple assemblies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/2_APPENDIX_ex9_Generating_input_files_for_VizBin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APPENDIX (ex9): Generating input files for VizBin from DAS_Tool curated bins
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/3_APPENDIX_ex11_Normalise_coverage_example/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APPENDIX (ex11): Normalise per-sample coverage values by average library size (example)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APPENDIX (ex11) : Viral taxonomy prediction via vContact2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/7_command_line_shortcuts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Useful command line shortcuts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Supplementary
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Supplementary
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supplementary/supplementary_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NeSI Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supplementary/supplementary_2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NeSI File system, Working directory and Symlinks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-import-and-wrangle-data-in-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Import and wrangle data in R
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Import and wrangle data in R">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-prepare-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Prepare environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-wrangle-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Wrangle data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-calculate-weighted-and-unweighted-dissimilarities" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Calculate weighted and unweighted dissimilarities
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-generate-ordination" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Generate ordination
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-extract-data-from-ordination" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Extract data from ordination
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-build-the-ordination-plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Build the ordination plot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#follow-up-analyses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Follow-up analyses
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="ordinations">Ordinations<a class="headerlink" href="#ordinations" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Objectives</p>
+<ul>
+<li><a href="#1-import-and-wrangle-data-in-r">Import and wrangle data in <code>R</code></a></li>
+<li><a href="#2-calculate-weighted-and-unweighted-dissimilarities">Calculate weighted and unweighted dissimilarities</a></li>
+<li><a href="#3-generate-ordination">Generate ordination</a></li>
+<li><a href="#4-extract-data-from-ordination">Extract data from ordination</a></li>
+<li><a href="#5-build-the-ordination-plot">Build the ordination plot</a></li>
+<li><a href="#follow-up-analyses">Follow-up analyses</a></li>
+</ul>
+</div>
+<hr />
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>A common method to investigate the relatedness of samples to one another is to calculate <a href="https://en.wikipedia.org/wiki/Ordination_(statistics)">ordinations</a> and to visualise this in the form of a principal components analysis (PCA) or non-metric multidimensional scaling (nMDS) plot. In this exercise, we will calculate ordinations based on weighted and unweighted (binary) <a href="https://en.wikipedia.org/wiki/Bray%E2%80%93Curtis_dissimilarity">Bray-Curtis dissimilarity</a> and present these in nMDS plots.</p>
+<p>The coverage tables generated in earlier exercises have been copied to <code>11.data_presentation/coverage/</code> a for use in these exercises.</p>
+<p>In addition to this, a simple mapping file has also been created (<code>11.data_presentation/coverage/mapping_file.txt</code>). This is a tab-delimited file listing each sample ID in the first column, and the sample "Group" in the second column (<em>Group_A</em>, <em>Group_B</em>, and <em>Group_C</em>). This grouping might represent, for example, three different sampling sites that we want to compare between. If you had other data (such as environmental measures, community diversity measures, etc.) that you wish to incorporate in other downstream analyses (such an fitting environmental variables to an ordination) you could also add new columns to this file and load them at the same time.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As discussed in the <a href="../../day3/ex14_gene_annotation_part2/">coverage exercises</a>, it is usually necessary to normalise coverage values across samples based on equal sequencing depth. This isn't necessary with the mock metagenome data we're working with, but if you include this step in your own work you would read the <strong>normalised</strong> coverage tables into the steps outlined below.*</p>
+</div>
+<hr />
+<h2 id="1-import-and-wrangle-data-in-r">1. Import and wrangle data in <em>R</em><a class="headerlink" href="#1-import-and-wrangle-data-in-r" title="Permanent link">&para;</a></h2>
+<p>To get started, open <code>RStudio</code> and start a new document.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You will recognise that the first few steps will follow the same process as the previous exercise on <a href="../ex16b_data_presentation_Coverage/">generating coverage heatmaps</a>. In practice, these two workflows can be combined to reduce the repetitive aspects.</p>
+</div>
+<h3 id="11-prepare-environment">1.1 Prepare environment<a class="headerlink" href="#11-prepare-environment" title="Permanent link">&para;</a></h3>
+<p>First, set the working directory and load the required libraries.</p>
+<div class="admonition r-project">
+<p class="admonition-title">code</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1"># Set working directory</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="nf">setwd</span><span class="p">(</span><span class="s">&#39;/nesi/nobackup/nesi02659/MGSS_U/&lt;YOUR FOLDER&gt;/11.data_presentation/coverage&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="c1"># Load libraries ----</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="c1"># Tidyverse libraries</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="nf">library</span><span class="p">(</span><span class="n">readr</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="nf">library</span><span class="p">(</span><span class="n">stringr</span><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="nf">library</span><span class="p">(</span><span class="n">tibble</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="nf">library</span><span class="p">(</span><span class="n">purrr</span><span class="p">)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="c1"># Ecological analyses</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="nf">library</span><span class="p">(</span><span class="n">vegan</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<p>Import coverage tables and mapping file.</p>
+<div class="admonition r-project">
+<p class="admonition-title">code</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1"># Read files ----</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="n">contig_cov</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_tsv</span><span class="p">(</span><span class="s">&quot;bin_cov_table.txt&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># Bin contig coverage table</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="n">virus_cov</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_tsv</span><span class="p">(</span><span class="s">&quot;viruses_cov_table.txt&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># Viral contig coverage table</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="n">metadata</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_tsv</span><span class="p">(</span><span class="s">&quot;mapping_file.txt&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1"># Metadata/mapping file of environmental parameters</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<h3 id="12-wrangle-data">1.2 Wrangle data<a class="headerlink" href="#12-wrangle-data" title="Permanent link">&para;</a></h3>
+<p>As before in <a href="../ex16b_data_presentation_Coverage/">coverage exercise</a>, we need to obtain per MAG and sample average coverage values. We begin by selecting relevant columns and renaming them.</p>
+<div class="admonition r-project">
+<p class="admonition-title">code</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span>
+<span class="normal"><a href="#__codelineno-2-27">27</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">## Select relevant columns and rename them</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="n">contig_cov</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">contig_cov</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="n">contigName</span><span class="p">,</span><span class="w"> </span><span class="n">contigLen</span><span class="p">,</span><span class="w"> </span><span class="nf">ends_with</span><span class="p">(</span><span class="s">&quot;.bam&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">  </span><span class="nf">rename_with</span><span class="p">(</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">    </span><span class="n">.fn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">sample_name</span><span class="p">)</span><span class="w"> </span><span class="nf">str_remove</span><span class="p">(</span><span class="n">sample_name</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;.bam&quot;</span><span class="p">),</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">    </span><span class="n">.cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">everything</span><span class="p">()</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">  </span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="n">virus_cov</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">virus_cov</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="n">contigName</span><span class="p">,</span><span class="w"> </span><span class="nf">ends_with</span><span class="p">(</span><span class="s">&quot;.bam&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">  </span><span class="nf">rename_with</span><span class="p">(</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">    </span><span class="n">.fn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">sample_name</span><span class="p">)</span><span class="w"> </span><span class="nf">str_remove</span><span class="p">(</span><span class="n">sample_name</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;.bam&quot;</span><span class="p">),</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">    </span><span class="n">.cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">everything</span><span class="p">()</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">  </span><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="c1">## Calculate average bin coverage based on contig coverage</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="n">MAG_cov</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">contig_cov</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="w">  </span><span class="nf">mutate</span><span class="p">(</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="w">    </span><span class="n">binID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">str_replace</span><span class="p">(</span><span class="n">contigName</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;(.*)_NODE_.*&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\\1&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">binID</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="w">  </span><span class="nf">summarise</span><span class="p">(</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="w">    </span><span class="nf">across</span><span class="p">(</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="w">      </span><span class="nf">contains</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">),</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="w">      </span><span class="n">.fns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">coverage</span><span class="p">)</span><span class="w"> </span><span class="nf">weighted.mean</span><span class="p">(</span><span class="n">coverage</span><span class="p">,</span><span class="w"> </span><span class="n">contigLen</span><span class="p">)</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26"></a><span class="w">    </span><span class="p">)</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27"></a><span class="w">  </span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<h2 id="2-calculate-weighted-and-unweighted-dissimilarities">2. Calculate weighted and unweighted dissimilarities<a class="headerlink" href="#2-calculate-weighted-and-unweighted-dissimilarities" title="Permanent link">&para;</a></h2>
+<p>It is often useful to examine ordinations based on both weighted and unweighted (binary) dissimilarity (or distance) metrics. Weighted metrics take into account the proportions or abundances of each variable (in our case, the coverage value of each bin or viral contig). This can be particularly useful for visualising broad shifts in overall community structure (while the membership of the community may remain relatively unchanged). Unweighted metrics are based on presence/absence alone, and can be useful for highlighting cases where the actual membership of communities differs (ignoring their relative proportions within the communities).</p>
+<p>Here we will use the functions <code>vegdist()</code> and <code>metaMDS()</code> from the <code>R</code> package <code>vegan</code> to generate weighted and unweighted Bray-Curtis dissimilarity matrices and nMDS solutions for the microbial bin data and viral contigs data.</p>
+<div class="admonition tip">
+<p class="admonition-title">Setting seed</p>
+<p>You may also wish to make use of the <code>set.seed()</code> function before each calculation to ensure that you obtain consistent results if the same commands are re-run at a later date.</p>
+</div>
+<div class="admonition r-project">
+<p class="admonition-title">code</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span>
+<span class="normal"><a href="#__codelineno-3-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1"># Calculate dissimilarities ----</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="c1">## Unweighted dissimilarities (presence/absence)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="n">MAG_binary_bray</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">MAG_cov</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">  </span><span class="c1"># Convert &quot;binID&quot; column into rownames</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">  </span><span class="c1"># (vegan prefers to work on numeric matrices)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">  </span><span class="nf">column_to_rownames</span><span class="p">(</span><span class="s">&quot;binID&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">  </span><span class="c1"># Transpose the data frame</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">  </span><span class="nf">t</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="w">  </span><span class="c1"># Calculate dissimilarities</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="w">  </span><span class="nf">vegdist</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bray&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">binary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="n">virus_binary_bray</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">virus_cov</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="w">  </span><span class="nf">column_to_rownames</span><span class="p">(</span><span class="s">&quot;contigName&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="w">  </span><span class="nf">t</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="w">  </span><span class="nf">vegdist</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bray&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">binary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">)</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="c1">## Weighted dissimilarities</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="n">MAG_bray</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">MAG_cov</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="w">  </span><span class="nf">column_to_rownames</span><span class="p">(</span><span class="s">&quot;binID&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20"></a><span class="w">  </span><span class="nf">t</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21"></a><span class="w">  </span><span class="nf">vegdist</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bray&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22"></a>
+<a id="__codelineno-3-23" name="__codelineno-3-23"></a><span class="n">virus_bray</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">virus_cov</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24"></a><span class="w">  </span><span class="nf">column_to_rownames</span><span class="p">(</span><span class="s">&quot;contigName&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25"></a><span class="w">  </span><span class="nf">t</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26"></a><span class="w">  </span><span class="nf">vegdist</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bray&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<p>From here on out, we will process the data using the same functions/commands. We can make our code less redundant by compiling all necessary inputs as a list, then processing them together. This is achieved by using the <code>map(...)</code> family of functions from the <code>purrr</code> package.</p>
+<div class="admonition r-project">
+<p class="admonition-title">code</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1"># Collect dissimilarities into a list for collective processing ----</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="n">bray_list</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">  </span><span class="s">&quot;MAG_binary_bray&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MAG_binary_bray</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">  </span><span class="s">&quot;MAG_bray&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MAG_bray</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">  </span><span class="s">&quot;virus_binary_bray&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">virus_binary_bray</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">  </span><span class="s">&quot;virus_bray&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">virus_bray</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<h2 id="3-generate-ordination">3. Generate ordination<a class="headerlink" href="#3-generate-ordination" title="Permanent link">&para;</a></h2>
+<p>We now generate and visualise all ordinations in 4 panels them using native plotting methods.</p>
+<div class="admonition r-project">
+<p class="admonition-title">code</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span>
+<span class="normal"><a href="#__codelineno-5-7">7</a></span>
+<span class="normal"><a href="#__codelineno-5-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1"># Perform non-metric multidimensional scaling (nMDS) ----</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="n">nmds_list</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">map</span><span class="p">(</span><span class="n">bray_list</span><span class="p">,</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">bray</span><span class="p">)</span><span class="w"> </span><span class="nf">metaMDS</span><span class="p">(</span><span class="n">bray</span><span class="p">,</span><span class="w"> </span><span class="n">trymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">999</span><span class="p">))</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1">## Check nMDS plot natively</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">))</span><span class="w"> </span><span class="c1"># Sets panels</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="nf">map2</span><span class="p">(</span><span class="n">nmds_list</span><span class="p">,</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">nmds_list</span><span class="p">),</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">nmds</span><span class="p">,</span><span class="w"> </span><span class="n">lbl</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="w">  </span><span class="nf">ordiplot</span><span class="p">(</span><span class="n">nmds</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lbl</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;t&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">display</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sites&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="p">})</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<p><center>
+<a class="glightbox" href="../../figures/day4_coverage.09.nmds_native.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image" src="../../figures/day4_coverage.09.nmds_native.png" /></a>
+</center></p>
+<p>Plotting via this method is a quick and easy way to look at what your ordination looks like. However, this method is often tedious to modify to achieve publication quality figures. In the following section, we will use <code>ggplot2</code> to generate a polished and panelled figure.</p>
+<div class="admonition info">
+<p class="admonition-title"><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/purrr.pdf">The <code>map(...)</code> function</a></p>
+<p>The <code>map(...)</code> function iterates through a list and applies the same set of commands/functions to each of them. For <code>map2(...)</code>, two lists are iterated concurrently and one output is generated based on inputs from both lists. The base <code>R</code> equivalent is the <code>apply(...)</code> family of functions. Here, we need to perform the same analyses on similar data types (dissimilarities of different kinds and organisms). These are powerful functions that can make your workflow more efficient, less repetitive, and more readable. However, this is not a panacea and there will be times where <code>for</code> loops or brute coding is necessary.</p>
+</div>
+<h2 id="4-extract-data-from-ordination">4. Extract data from ordination<a class="headerlink" href="#4-extract-data-from-ordination" title="Permanent link">&para;</a></h2>
+<p>Before proceeding to plotting using <code>ggplot2</code>. We need to extract the X and Y coordinates from the ordination result using <code>scores()</code>. We then also need to "flatten" the list to a single data frame as well as extract other relevant statistics (e.g. <a href="https://www.researchgate.net/post/What_is_the_importanceexplanation_of_stress_values_in_NMDS_Plots">stress values</a>).</p>
+<div class="admonition r-project">
+<p class="admonition-title">code</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span>
+<span class="normal"><a href="#__codelineno-6-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1"># Extract data from nMDS ----</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="c1">## Obtain coordinates</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="n">scrs_list</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">map</span><span class="p">(</span><span class="n">nmds_list</span><span class="p">,</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">nmds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">  </span><span class="nf">scores</span><span class="p">(</span><span class="n">nmds</span><span class="p">,</span><span class="w"> </span><span class="n">display</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sites&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">    </span><span class="nf">as.data.frame</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">    </span><span class="nf">rownames_to_column</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="p">})</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="c1">## Collect nMDS scores in a single data frame</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="n">scrs_all</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">bind_rows</span><span class="p">(</span><span class="n">scrs_list</span><span class="p">,</span><span class="w"> </span><span class="n">.id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;data_type&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="c1">## Collect nMDS statistics (stress values)</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="n">stress_values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">map</span><span class="p">(</span><span class="n">nmds_list</span><span class="p">,</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">nmds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="w">  </span><span class="nf">data.frame</span><span class="p">(</span><span class="s">&quot;label&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;Stress =&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nmds</span><span class="o">$</span><span class="n">stress</span><span class="p">))</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="p">})</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16"></a><span class="w">  </span><span class="nf">bind_rows</span><span class="p">(</span><span class="n">.id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;data_type&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<p>If you click on <code>scrs_all</code> in the 'Environment' pane (top right), you will see that it is a data frame with the columns:</p>
+<ul>
+<li><code>data_type</code>: Label for data output (weighted MAG coverage; unweighted MAG coverage, ...)</li>
+<li><code>sample</code>: Sample names</li>
+<li><code>NMDS1</code> and <code>NMDS2</code>: X and Y coordinates for each plot</li>
+</ul>
+<h2 id="5-build-the-ordination-plot">5. Build the ordination plot<a class="headerlink" href="#5-build-the-ordination-plot" title="Permanent link">&para;</a></h2>
+<p>After obtaining the coordinates (and associated statistics), we can use it as input to <code>ggplot()</code> (the function is <code>ggplot()</code> from the package called <code>ggplot2</code>). As before, we will set our colour palette first. We will also generate a vector of panel headers.</p>
+<div class="admonition r-project">
+<p class="admonition-title">code</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span>
+<span class="normal"><a href="#__codelineno-7-21">21</a></span>
+<span class="normal"><a href="#__codelineno-7-22">22</a></span>
+<span class="normal"><a href="#__codelineno-7-23">23</a></span>
+<span class="normal"><a href="#__codelineno-7-24">24</a></span>
+<span class="normal"><a href="#__codelineno-7-25">25</a></span>
+<span class="normal"><a href="#__codelineno-7-26">26</a></span>
+<span class="normal"><a href="#__codelineno-7-27">27</a></span>
+<span class="normal"><a href="#__codelineno-7-28">28</a></span>
+<span class="normal"><a href="#__codelineno-7-29">29</a></span>
+<span class="normal"><a href="#__codelineno-7-30">30</a></span>
+<span class="normal"><a href="#__codelineno-7-31">31</a></span>
+<span class="normal"><a href="#__codelineno-7-32">32</a></span>
+<span class="normal"><a href="#__codelineno-7-33">33</a></span>
+<span class="normal"><a href="#__codelineno-7-34">34</a></span>
+<span class="normal"><a href="#__codelineno-7-35">35</a></span>
+<span class="normal"><a href="#__codelineno-7-36">36</a></span>
+<span class="normal"><a href="#__codelineno-7-37">37</a></span>
+<span class="normal"><a href="#__codelineno-7-38">38</a></span>
+<span class="normal"><a href="#__codelineno-7-39">39</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1"># Plot nMDS using ggplot2 ----</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="c1">## Set up colours</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="n">metadata</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">metadata</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">  </span><span class="nf">mutate</span><span class="p">(</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">    </span><span class="n">Group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.factor</span><span class="p">(</span><span class="n">Group</span><span class="p">)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">  </span><span class="p">)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="n">group_colour</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">palette.colors</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="nf">levels</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">Group</span><span class="p">)),</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="w">                               </span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Okabe-Ito&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">  </span><span class="nf">setNames</span><span class="p">(</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="nf">levels</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">Group</span><span class="p">))</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="c1">## Append sample grouping to scores</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="n">scrs_all</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">left_join</span><span class="p">(</span><span class="n">scrs_all</span><span class="p">,</span><span class="w"> </span><span class="n">metadata</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;sample&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SampleID&quot;</span><span class="p">))</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="c1">## Create panel headers</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="n">panel_labels</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17"></a><span class="w">  </span><span class="s">&quot;MAG_binary_bray&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MAG coverage\n(unweighted Bray-Curtis)&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18"></a><span class="w">  </span><span class="s">&quot;MAG_bray&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MAG coverage\n(weighted Bray-Curtis)&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19"></a><span class="w">  </span><span class="s">&quot;virus_binary_bray&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Virus coverage\n(unweighted Bray-Curtis)&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20"></a><span class="w">  </span><span class="s">&quot;virus_bray&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Virus coverage\n(weighted Bray-Curtis)&quot;</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21"></a><span class="p">)</span>
+<a id="__codelineno-7-22" name="__codelineno-7-22"></a>
+<a id="__codelineno-7-23" name="__codelineno-7-23"></a><span class="c1">## Call ggplot</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24"></a><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scrs_all</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NMDS1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NMDS2</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Group</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<a id="__codelineno-7-25" name="__codelineno-7-25"></a><span class="w">  </span><span class="c1"># Plot scatterplot</span>
+<a id="__codelineno-7-26" name="__codelineno-7-26"></a><span class="w">  </span><span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<a id="__codelineno-7-27" name="__codelineno-7-27"></a><span class="w">  </span><span class="c1"># Designate sample group colours</span>
+<a id="__codelineno-7-28" name="__codelineno-7-28"></a><span class="w">  </span><span class="nf">scale_colour_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">group_colour</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Sample group&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<a id="__codelineno-7-29" name="__codelineno-7-29"></a><span class="w">  </span><span class="c1"># Split plots based on &quot;data_type&quot;</span>
+<a id="__codelineno-7-30" name="__codelineno-7-30"></a><span class="w">  </span><span class="nf">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">data_type</span><span class="p">,</span><span class="w"> </span><span class="n">labeller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">labeller</span><span class="p">(</span><span class="n">data_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">panel_labels</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<a id="__codelineno-7-31" name="__codelineno-7-31"></a><span class="w">  </span><span class="c1"># Add text annotations</span>
+<a id="__codelineno-7-32" name="__codelineno-7-32"></a><span class="w">  </span><span class="nf">geom_text</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stress_values</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label</span><span class="p">),</span><span class="w"> </span><span class="n">inherit.aes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">F</span><span class="p">,</span>
+<a id="__codelineno-7-33" name="__codelineno-7-33"></a><span class="w">            </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.4</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.4</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<a id="__codelineno-7-34" name="__codelineno-7-34"></a><span class="w">  </span><span class="c1"># Set general theme</span>
+<a id="__codelineno-7-35" name="__codelineno-7-35"></a><span class="w">  </span><span class="nf">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<a id="__codelineno-7-36" name="__codelineno-7-36"></a><span class="w">  </span><span class="nf">theme</span><span class="p">(</span>
+<a id="__codelineno-7-37" name="__codelineno-7-37"></a><span class="w">    </span><span class="n">panel.grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span><span class="w"> </span><span class="c1"># remove grid lines</span>
+<a id="__codelineno-7-38" name="__codelineno-7-38"></a><span class="w">    </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bottom&quot;</span><span class="w"> </span><span class="c1"># set legend position at the bottom</span>
+<a id="__codelineno-7-39" name="__codelineno-7-39"></a><span class="w">  </span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<p>The code above can be summarised to the following:</p>
+<ol>
+<li>Call <code>ggplot()</code> which initiates an empty plot. It reads in the data frame <code>scrs_all</code> as the main source of data and sets <code>NMDS1</code> and <code>NMDS1</code> as <code>x</code> and <code>y</code> coordinates, as well as designates colour based on the <code>Group</code> column.</li>
+<li><code>geom_point</code> specifies that we want to plot points (i.e. a scatterplot), and we also set a size for all points.</li>
+<li><code>scale_colour_manual</code> specifies our preferred colour palette and names our colour legend.</li>
+<li><code>facet_wrap</code> specifies that we want to panel our figure based on the <code>data_type</code> column and that the labels/headers (a.k.a. <code>labellers</code>) should be printed according to the <code>panel_label</code> object.</li>
+<li>We also add text annotations using <code>geom_text</code>, but that it should read data from the <code>stress_values</code> data frame and do not use data arguments (via <code>inherit.aes = F</code>) specified above in <code>ggplot()</code>. Text adjustments were made using <code>size</code>, <code>vjust</code> and <code>hjust</code>.</li>
+<li><code>theme_bw</code> specifies the application of a general, monochromatic theme.</li>
+<li>Elements of the monochromatic theme were modified based on arguments within <code>theme()</code></li>
+</ol>
+<p>You should try and modify any of the arguments above to see what changes: Change sizes, colours, labels, etc...</p>
+<p><code>ggplot2</code> implements extremely flexible plotting methods. It uses the concept of layers where each line after <code>+</code> adds another layer that modifies the plot. Each geometric layer (the actual plotted data) can also read different inputs. Nearly all aspects of a figure can be modified provided one knows which layer to modify. To start out, it is recommended that you take a glance at the <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf">cheat sheet</a>.</p>
+<p><a class="glightbox" href="../../figures/day4_coverage.10.nmds_ggplot2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image" src="../../figures/day4_coverage.10.nmds_ggplot2.png" /></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>How informative these types of analyses are depends in part on the number of samples you actually have and the degree of variation between the samples. As you can see in the nMDS plots based on unweighted (binary) Bray-Curtis dissimilarities (especially for the MAGs data) there are not enough differences between any of the samples (in this case, in terms of community membership, rather than relative abundances) for this to result in a particularly meaningful or useful plot in these cases.</p>
+</div>
+<hr />
+<h2 id="follow-up-analyses">Follow-up analyses<a class="headerlink" href="#follow-up-analyses" title="Permanent link">&para;</a></h2>
+<p>It is often valuable to follow these visualisations up with tests for <span class="arithmatex">\(\beta\)</span>-dispersion (whether or not sample groups have a comparable <em>spread</em> to one another, i.e. is one group of communities more heterogeneous than another?) and, provided that beta-dispersion is not significantly different between groups, PERMANOVA tests (the extent to which the variation in the data can be explained by a given variable (such as sample groups or other environmental factors, based on differences between the <em>centroids</em> of each group).</p>
+<p>Beta-dispersion can be calculated using the  <code>betadisper()</code> function from the <code>vegan</code> package (passing the <code>bray.dist</code> data and the <code>map$Group</code> variable to group by), followed by <code>anova()</code>, <code>permutest()</code>, or <code>TukeyHSD()</code> tests of differences between the groups (by inputting the generated <code>betadisper</code> output). PERMANOVA tests can be conducted via the <code>adonis()</code> function from the <code>vegan</code> package. For example: </p>
+<div class="admonition r-project">
+<p class="admonition-title">code</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nf">adonis2</span><span class="p">(</span><span class="n">MAG_bray</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Group</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span><span class="w"> </span><span class="n">permutations</span><span class="o">=</span><span class="m">999</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
