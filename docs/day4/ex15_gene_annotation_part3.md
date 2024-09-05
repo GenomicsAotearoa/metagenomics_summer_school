@@ -154,6 +154,7 @@ When viewing these files, see if you can find the following information:
     * What broad metabolic categories did the AMGs fall into? 
     * Discussion point: How might we investigate whether identified putative AMGs are actually *within* the viral genomes, rather than residual contaminating host genomic sequence attached to the end of integrated prophage (but incompletely trimmed off in the excision process)?
 
+<!--
 ---
 
 ## Tie findings to your initial goal
@@ -179,8 +180,8 @@ Depending on what you are looking for, you will either be trying to find gene(s)
 
 To conduct this exersise, you should use the information generated with `DRAM` as well as the annotation files we created yesterday and that are available in the directory `10.gene_annotation_and_coverage/gene_annotations`. 
 
-<!--
 Please note that we have also provided further annotation files within the directory `10.gene_annotation_and_coverage/example_annotation_tables` that contain information obtained after annotating the MAGs against additional databases (UniProt, UniRef100, KEGG, PFAM and TIGRfam). These example files can also be downloaded from [here](../resources/example_annotation_tables.zip). 
--->
 
 ---
+
+-->
