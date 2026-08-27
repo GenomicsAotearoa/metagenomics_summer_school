@@ -10,9 +10,7 @@
 
 ---
 
-<center>
-![image](../theme_images/eval_assembly.png){width="450"}
-</center>
+![image](../theme_images/eval_assembly.png){.center width="450"}
 
 ## Evaluating the resource consumption of various assemblies
 

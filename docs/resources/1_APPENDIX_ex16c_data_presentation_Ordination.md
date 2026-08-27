@@ -1,4 +1,4 @@
-# Ordinations
+# APPENDIX: Ordinations
 
 !!! info "Objectives"
 

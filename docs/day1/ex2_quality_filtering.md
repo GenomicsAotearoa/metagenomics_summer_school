@@ -8,9 +8,8 @@
     * [Understand common issues and best practices](#understanding-common-issues-and-best-practices)
     * [Filtering out host DNA with `BBMap`](#filtering-out-host-dna)
 
-<center>
-![image](../theme_images/qc_image.png){width="350"}
-</center>
+![image](../theme_images/qc_image.png){.center width="350"}
+
 ---
 
 ## Visualising raw reads
@@ -130,9 +129,7 @@ In the command above, MultiQC is directed to look for relevant files in the curr
 
 ## Read trimming and adapter removal with *trimmomatic*
 
-<center>
-![image](../theme_images/cleaning_reads.png){width="300"}
-</center>
+![image](../theme_images/cleaning_reads.png){.center width="300"}
 
 There are a multitude of programs which can be used to quality trim sequence data and remove adapter sequence. For this exercise we are going to use `trimmomatic`, but this should in no way be interpreted as an endorsement of `trimmomatic` over equivalent tools like `BBMap`, `sickle`, `cutadapt` or any other.
 

@@ -1,4 +1,4 @@
-# Gene annotation I: BLAST-like and HMM
+# BONUS: Gene annotation I: BLAST-like and HMM
 
 !!! info "Objectives"
 

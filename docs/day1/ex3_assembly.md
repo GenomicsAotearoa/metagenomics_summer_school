@@ -2,21 +2,19 @@
 
 !!! info "Objectives"
 
-    * [Become familiar with the standard input files for `SPAdes` and `IDBA-UD`](#the-standard-input-files-for-spades-and-idba-ud)
-    * [Understand the basic parameters that should be modified when using these assemblers](#basic-assembly-parameters)
+    * [Become familiar with the standard input files for `SPAdes` ](#the-standard-input-files-for-spades-and-idba-ud)
+    * [Understand the basic parameters that should be modified when using this assembler](#basic-assembly-parameters)
     * [Prepare an assembly job to run under slurm](#preparing-an-assembly-job-for-slurm)
 
-<center>
-![image](../theme_images/genome_assembly.png){width="450"}
-</center>
+![image](../theme_images/genome_assembly.png){.center width="450"}
 
 All work for this exercise will occur in the `3.assembly/` directory.
 
 ---
 
-## The standard input files for `SPAdes` and `IDBA-UD`
+## The standard input files for `SPAdes`
 
-Although they both make use of the same types of data, both `SPAdes` and `IDBA-UD` have their own preferences for how sequence data is provided to them. To begin, we will look at the types of data accepted by `SPAdes`:
+ `SPAdes`  has  preferences for how sequence data is provided to it. To begin, we will look at the types of data accepted by `SPAdes`:
 
 !!! terminal-2 "Navigate to working directory"
 
@@ -113,91 +111,6 @@ Awkwardly, while `SPAdes` accepts multiple input libraries (i.e. samples) in a s
 
 Note that these FASTQ files are compressed, yet we can concatenate them together with the `cat` command regardless. This is a nice feature of `.gz` files that is handy to remember.
 
-By contrast, what does `IDBA-UD` accept?
-
-!!! terminal-2 "Load `IDBA-UD` and check parameters"
-
-    ```bash
-    # Load module
-    module purge
-    module load IDBA-UD/1.1.3-GCC-11.3.0
-
-    # Check parameters
-    idba_ud --help
-    ```
-
-??? circle-check "`IDBA-UD` parameters"
-
-    ```
-      -o, --out arg (=out)                   output directory
-      -r, --read arg                         fasta read file (<=128)
-          --read_level_2 arg                 paired-end reads fasta for second level scaffolds
-          --read_level_3 arg                 paired-end reads fasta for third level scaffolds
-          --read_level_4 arg                 paired-end reads fasta for fourth level scaffolds
-          --read_level_5 arg                 paired-end reads fasta for fifth level scaffolds
-      -l, --long_read arg                    fasta long read file (>128)
-          --mink arg (=20)                   minimum k value (<=124)
-          --maxk arg (=100)                  maximum k value (<=124)
-          --step arg (=20)                   increment of k-mer of each iteration
-          --inner_mink arg (=10)             inner minimum k value
-          --inner_step arg (=5)              inner increment of k-mer
-          --prefix arg (=3)                  prefix length used to build sub k-mer table
-          --min_count arg (=2)               minimum multiplicity for filtering k-mer when building the graph
-          --min_support arg (=1)             minimum supoort in each iteration
-          --num_threads arg (=0)             number of threads
-          --seed_kmer arg (=30)              seed kmer size for alignment
-          --min_contig arg (=200)            minimum size of contig
-          --similar arg (=0.95)              similarity for alignment
-          --max_mismatch arg (=3)            max mismatch of error correction
-          --min_pairs arg (=3)               minimum number of pairs
-          --no_bubble                        do not merge bubble
-          --no_local                         do not use local assembly
-          --no_coverage                      do not iterate on coverage
-          --no_correct                       do not do correction
-          --pre_correction                   perform pre-correction before assembly
-    ```
-
-'Short' or 'long' reads, and only a single file for each. This means that if we want to assemble our community data using `IDBA-UD` we will need to pool the paired-end data into a single, interleaved FASTA file. Interleaved means that instead of having a pair of files that contain the separate forward and reverse sequences, the read pairs are in a single file in alternating order. For example
-
-```bash
-# Paired-end file, forward
->read1_1
-...
->read2_1
-...
-
-# Paired-end file, reverse
->read1_2
-...
->read2_2
-...
-
-# Interleaved file
->read1_1
-...
->read1_2
-...
->read2_1
-...
->read2_2
-...
-```
-
-Fortunately, the `IDBA` set of tools comes with some helper scripts to achieve just this. Unfortunately we cannot apply this shuffling operation to compressed data, so we must decompress the data first.
-
-!!! terminal-2 "Decompress, interleave, and then concatenate sequence files"
-
-    ```bash
-    module load pigz/2.7
-
-    for i in sample1 sample2 sample3 sample4;
-    do
-      pigz --keep --decompress ${i}_R1.fastq.gz ${i}_R2.fastq.gz
-      fq2fa --merge ${i}_R1.fastq ${i}_R2.fastq ${i}.fna
-    done
-
-    cat sample1.fna sample2.fna sample3.fna sample4.fna > for_idba.fna    
-    ```
 
 ---
 
@@ -225,33 +138,24 @@ Depending on which assembler you are using, the commands for choosing the *k*-me
     spades.py -k auto ...
     ```
 
-The first command lets us specify the *k*-mers ourselves, or we are letting `SPAdes` automatically pick the most appropriate size. For `IDBA-UD`, we can select the *k*-mer size using
+The first command lets us specify the *k*-mers ourselves, or we are letting `SPAdes` automatically pick the most appropriate size. 
 
-!!! terminal "code"
-
-    ```bash
-    idba_ud --mink 21 --maxk 121 --step 22
-    ```
-
-Unlike `SPAdes`, we do not have fine-scale control over the *k*-mer sizes used in the assembly. We instead provide `IDBA-UD` with the first and last *k*-mer size to use, then specify the increment to use between these. In either case, it is important that we are always assembling using a *k*-mer of odd lengths in order to avoid the creation of palindromic *k*-mers.
 
 ### Specifying the number of threads
 
-This is simple in either assembler:
+
 
 !!! terminal "code"
 
     ```bash
     spades.py -t 20 ...
-
-    idba_ud --num_threads 20 ...
     ```
 
-The only thing to keep in mind is that these tools have different default behaviour. If no thread count is specified by the user, `SPAdes` will assemble with 16 threads. `IDBA-UD` will use all available threads, which can be problematic if you are using a shared compute environment that does not use a resource management system like slurm.
+If no thread count is specified by the user, `SPAdes` will assemble with 16 threads.
 
 ### Setting a memory limit
 
-By far, the worst feature of `SPAdes` is the high memory requirement for performing an assembly. In the absence of monitoring, `SPAdes` will request more and more memory as it proceeds. If this requires more memory than is available on your computer, your system will start to store memory to disk space. This is an extremely slow operation and can render your computer effectively unusable. In managed environments such as NeSI a memory limit is imposed upon all running jobs, but if you are not using such a system you are advised to set a memory limit when executing `SPAdes`:
+By far, the worst feature of `SPAdes` is the high memory requirement for performing an assembly (see our Bonus material on assembling with `IDBA-UD` instead). In the absence of monitoring, `SPAdes` will request more and more memory as it proceeds. If this requires more memory than is available on your computer, your system will start to store memory to disk space. This is an extremely slow operation and can render your computer effectively unusable. In managed environments such as NeSI a memory limit is imposed upon all running jobs, but if you are not using such a system you are advised to set a memory limit when executing `SPAdes`:
 
 !!! terminal "code"
 
@@ -386,47 +290,7 @@ We can see here that the job has not yet begun, as NeSI is waiting for resources
 
 Which allows us to track how far into our run we are, and see the remaining time for the job. The `START_TIME` column now reports the time the job actually began.
 
-### Submitting an `IDBA-UD` job to NeSI using slurm
 
-!!! terminal-2 "Create a new slurm script using `nano` to run an equivalent assembly with `IDBA-UD`"
-
-    ```bash
-    nano idbaud_assembly.sl
-    ```
-
-Paste or type in the following:
-
-!!! terminal "code"
-
-    ```bash linenums="1"
-    #!/bin/bash -e
-    
-    #SBATCH --account       nesi02659
-    #SBATCH --job-name      idbaud_assembly
-    #SBATCH --partition     milan
-    #SBATCH --time          00:20:00
-    #SBATCH --mem           4GB
-    #SBATCH --cpus-per-task 12
-    #SBATCH --error         %x_%j.err
-    #SBATCH --output        %x_%j.out
-    
-    # Prepare modules
-    module purge
-    module load IDBA-UD/1.1.3-GCC-11.3.0
-    
-    # Working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly
-    
-    # Run IDBA-UD
-    idba_ud --num_threads $SLURM_CPUS_PER_TASK --mink 33 --maxk 99 --step 22 \
-            -r for_idba.fna -o idbaud_assembly/
-    ```
-
-!!! terminal-2 "Submit the script as a slurm job"
-
-    ```bash
-    sbatch idbaud_assembly.sl
-    ```
 
 When your job starts running, files with suffixes `.err` and `.out` will be created in the directory from where you submitted your job. These files will have have your job name and job identification number as file names.
 

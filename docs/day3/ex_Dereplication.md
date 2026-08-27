@@ -1,4 +1,4 @@
-# APPENDIX (ex8): Dereplicating data from multiple assemblies
+# Dereplicating data from multiple assemblies
 
 !!! info "Objectives"
 

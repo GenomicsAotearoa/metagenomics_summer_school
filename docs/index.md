@@ -1,24 +1,23 @@
-<center>
-![image](./theme_images/uoa_ga_nesi_LOGOS.png){width="350"}
-</center>
+![image](./theme_images/uoa_ga_nesi_LOGOS.png){.center width="350"}
 
 # <span style="display: block; text-align: center;">**Metagenomics Summer School**</span>
 
 - - - 
 
+Should be correct below:
+
 | <div style="width:150px">Day</div> | <div style="width:400px">Lesson topic</div> |
 | --- | --- |
-| [Day 1: Assembly](#){ .md-button .md-button--primary } | [1. (Pre-Summer School) Introduction I: Shell](./day1/ex1_bash_and_scheduler.md)<br>[2. (Pre-Summer School) Introduction II: HPC and job scheduler](./day1/ex2_1_intro_to_scheduler.md)<br>[3. Filter raw reads by quality](./day1/ex2_quality_filtering.md)<br>[4. Assembly I: Assembling contigs](./day1/ex3_assembly.md)<br>[5. Assembly II: Variable parameters](./day1/ex4_assembly.md)<br>[6. Assembly evaluation](./day1/ex5_evaluating_assemblies.md) |
-| [Day 2: Binning](#){ .md-button .md-button--primary } | [1. Introduction to binning](./day2/ex6_initial_binning.md)<br>[2. Binning with multiple tools](./day2/ex7_initial_binning.md)<br>[3. Bin dereplication](./day2/ex8_bin_dereplication.md)<br>[4. Manual bin refinement](./day2/ex9_refining_bins.md)<br>[3. Identifying viral contigs in metagenomic data](./day2/ex10.1_viruses.md) |
-| [Day 3: Annotation](#){ .md-button .md-button--primary } | [1. Assigning taxonomy to refined prokaryotic bins](./day3/ex11_coverage_and_taxonomy.md)<br>[2. Phylogenomics](./day3/ex11.1_phylogenomics.md)<br>[3. Virus taxonomy](./day3/ex10.2_viruses.md)<br>[4. Gene prediction](./day3/ex12_gene_prediction.md)<br>[5. Gene annotation I: BLAST-like and HMM](./day3/ex13_gene_annotation_part1.md)<br>[6. Gene annotation II: DRAM and coverage calculation](./day3/ex14_gene_annotation_part2.md) |
-| [Day 4: Visualisation](#){ .md-button .md-button--primary } | [1. Gene annotation III: DRAM distillation](./day4/ex15_gene_annotation_part3.md)<br>[2. Introduction to data presentation](./day4/ex16a_data_presentation_Intro.md)<br>[3. Coverage heatmaps](./day4/ex16b_data_presentation_Coverage.md)<br>[4. Ordinations](./day4/ex16c_OPTIONAL_data_presentation_Ordination.md)<br>[5. KEGG pathway maps](./day4/ex16d_data_presentation_KEGG_pathways.md)<br>[6. Gene synteny](./day4/ex16e_data_presentation_Gene_synteny.md)<br>[7. CAZy heatmaps](./day4/ex16f_OPTIONAL_data_presentation_CAZy_annotations.md) |
+| [Day 1: Assembly](#){ .md-button .md-button--primary } | [1. Filter raw reads by quality](./day1/ex2_quality_filtering.md)<br>[2. Assembly I: Assembling contigs](./day1/ex3_assembly.md)<br>[3. Assembly II: Variable parameters](./day1/ex4_assembly.md)<br>[4. Assembly evaluation](./day1/ex5_evaluating_assemblies.md)<br>[BONUS: Assembling contigs: IDBA-UD](./day1/ex3_2_assembly_idba-ud.md) |
+| [Day 2: Binning and annotation](#){ .md-button .md-button--primary } | [1. Introduction to binning](./day2/ex6_initial_binning.md)<br>[2. Binning with multiple tools](./day2/ex7_initial_binning.md)<br>[3. Bin dereplication](./day2/ex8_bin_dereplication.md)<br>[4. Assigning taxonomy to refined prokaryotic bins](./day2/ex11_coverage_and_taxonomy.md)<br>[5. Phylogenomics](./day2/ex11.1_phylogenomics.md)<br>[6. Gene prediction](./day2/ex12_gene_prediction.md)<br>[7. Gene annotation II: DRAM and coverage calculation](./day2/ex14_gene_annotation_part2.md)<br>[BONUS: Gene annotation I: BLAST + HMM](./day2/ex13_gene_annotation_part1.md) |
+| [Day 3: Visualisation](#){ .md-button .md-button--primary } | [1. Gene annotation II (cont.)](./day3/ex14_gene_annotation_part2.2.md)<br>[2. Gene annotation III: DRAM distillation](./day3/ex15_gene_annotation_part3.md)<br>[3. Introduction to data presentation](./day3/ex16a_data_presentation_Intro.md)<br>[4. Coverage heatmaps](./day3/ex16b_data_presentation_Coverage.md)<br>[5. Dereplication](./day3/ex_Dereplication.md)<br>[6. KEGG pathway maps](./day3/ex16d_data_presentation_KEGG_pathways.md)<br>[7. Gene synteny](./day3/ex16e_data_presentation_Gene_synteny.md) |
 
 <br>
 
 <style>h1 {text-align: left;}</style>
-## :material-calendar: Timetable 2024
+## :material-calendar: Timetable 2026 - NOT REARRANGED YET
 
-=== "Day 1: Tuesday, 3<sup>rd</sup> Sep"
+=== "Day 1: Wednesday, 2<sup>nd</sup> Dec"
 
     | <div style="width:100px">Time</div> | <div style="width:350px">Event</div> | <div style="width:125px">Session leader</div> |
     | --- | --- | --- |
@@ -35,7 +34,7 @@
     | 15:20 &ndash; 15:50 | :fontawesome-solid-laptop-code: **TASK** Sequence classification using *Kraken2* and *Bracken* | Annie West<br>Jian Sheng Boey |
     | 15:50 &ndash; 16:00 | :fontawesome-solid-microphone-lines: **TALK** Project introduction and description | Kim Handley |
 
-=== "Day 2: Wednesday, 4<sup>th</sup> Sep"
+=== "Day 2: Thursday, 3<sup>rd</sup> Dec"
 
     | <div style="width:100px">Time</div> | <div style="width:350px">Event</div> | <div style="width:125px">Session leader</div> |
     | --- | --- | --- |
@@ -51,7 +50,7 @@
     | 15:35 &ndash; 16:05 | :fontawesome-solid-microphone-lines: **TALK** Viruses in metagenomic data<br>:fontawesome-solid-laptop-code: **TASK** Identify viral contigs using *VirSorter2* and *CheckV* | Mike Hoggard |
     | 16:05 &ndash; 16:30 | :octicons-comment-discussion-16: **DISCUSSION** How will you approach your research question? | |
 
-=== "Day 3: Thursday, 5<sup>th</sup> Sep"
+=== "Day 3: Friday, 4<sup>th</sup> Dec"
 
     | <div style="width:100px">Time</div> | <div style="width:350px">Event</div> | <div style="width:125px">Session leader</div> |
     | --- | --- | --- |
@@ -102,7 +101,7 @@
 
 !!! comment-dots "Post-workshop survey"
     
-    Thank you for attending Metagenomics Summer School 2024! We would like your feedback on how we have done and what we can improve on. You can provide feedback [here](https://auckland.au1.qualtrics.com/jfe/form/SV_4JcEoG7GxaugScC).
+    Thank you for attending Metagenomics Summer School 2026! We would like your feedback on how we have done and what we can improve on. You can provide feedback [here ADD LINK]().
 
 <br>
 
