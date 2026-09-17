@@ -1,4 +1,4 @@
-# Gene annotation III: DRAM distillation
+# Gene annotation II: DRAM distillation
 
 !!! info "Objectives"
 

@@ -1,4 +1,4 @@
-# Dereplicating data from multiple assemblies
+# Bin coverage 1: Dereplication
 
 !!! info "Objectives"
 

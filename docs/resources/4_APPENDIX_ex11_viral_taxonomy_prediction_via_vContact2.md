@@ -1,4 +1,4 @@
-# APPENDIX (ex11) : Viral taxonomy prediction via *vContact2*
+# APPENDIX: Viral taxonomy prediction via *vContact2*
 
 Prior to running this, you need to have run VirSorter2 and CheckV as indicated [here](../day2/ex10.1_viruses.md).
 

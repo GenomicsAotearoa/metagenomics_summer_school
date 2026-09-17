@@ -1,4 +1,4 @@
-# Bin dereplication
+# Binning II: Bin dereplication
 
 !!! info "Objectives"
 

@@ -9,8 +9,8 @@ Should be correct below:
 | <div style="width:150px">Day</div> | <div style="width:400px">Lesson topic</div> |
 | --- | --- |
 | [Day 1: Assembly](#){ .md-button .md-button--primary } | [1. Filter raw reads by quality](./day1/ex2_quality_filtering.md)<br>[2. Assembly I: Assembling contigs](./day1/ex3_assembly.md)<br>[3. Assembly II: Variable parameters](./day1/ex4_assembly.md)<br>[4. Assembly evaluation](./day1/ex5_evaluating_assemblies.md)<br>[BONUS: Assembling contigs: IDBA-UD](./day1/ex3_2_assembly_idba-ud.md) |
-| [Day 2: Binning and annotation](#){ .md-button .md-button--primary } | [1. Introduction to binning](./day2/ex6_initial_binning.md)<br>[2. Binning with multiple tools](./day2/ex7_initial_binning.md)<br>[3. Bin dereplication](./day2/ex8_bin_dereplication.md)<br>[4. Assigning taxonomy to refined prokaryotic bins](./day2/ex11_coverage_and_taxonomy.md)<br>[5. Phylogenomics](./day2/ex11.1_phylogenomics.md)<br>[6. Gene prediction](./day2/ex12_gene_prediction.md)<br>[7. Gene annotation II: DRAM and coverage calculation](./day2/ex14_gene_annotation_part2.md)<br>[BONUS: Gene annotation I: BLAST + HMM](./day2/ex13_gene_annotation_part1.md) |
-| [Day 3: Visualisation](#){ .md-button .md-button--primary } | [1. Gene annotation II (cont.)](./day3/ex14_gene_annotation_part2.2.md)<br>[2. Gene annotation III: DRAM distillation](./day3/ex15_gene_annotation_part3.md)<br>[3. Introduction to data presentation](./day3/ex16a_data_presentation_Intro.md)<br>[4. Coverage heatmaps](./day3/ex16b_data_presentation_Coverage.md)<br>[5. Dereplication](./day3/ex_Dereplication.md)<br>[6. KEGG pathway maps](./day3/ex16d_data_presentation_KEGG_pathways.md)<br>[7. Gene synteny](./day3/ex16e_data_presentation_Gene_synteny.md) |
+| [Day 2: Binning and annotation](#){ .md-button .md-button--primary } | [1. Introduction to binning](./day2/ex6_initial_binning.md)<br>[2. Binning I: Bin with multiple tools](./day2/ex7_initial_binning.md)<br>[3. Binning II: Bin dereplication](./day2/ex8_bin_dereplication.md)<br>[4. Assigning taxonomy to refined prokaryotic bins](./day2/ex11_coverage_and_taxonomy.md)<br>[5. Phylogenomics](./day2/ex11.1_phylogenomics.md)<br>[6. Gene prediction](./day2/ex12_gene_prediction.md)<br>[7. Gene annotation I: DRAM](./day2/ex14_gene_annotation_part2.md)<br>[BONUS: Gene annotation I: BLAST + HMM](./day2/ex13_gene_annotation_part1.md) |
+| [Day 3: Visualisation](#){ .md-button .md-button--primary } | [1. Gene annotation II: DRAM distillation](./day3/ex15_gene_annotation_part3.md)<br>[2. Bin coverage 1: Dereplication](./day3/ex_Dereplication.md)<br>[3. Bin coverage 2: Read mapping and coverage calculation](./day3/ex14_gene_annotation_part2.2.md)<br>[4. Introduction to data presentation](./day3/ex16a_data_presentation_Intro.md)<br>[5. Coverage heatmaps](./day3/ex16b_data_presentation_Coverage.md)<br>[6. KEGG pathway maps](./day3/ex16d_data_presentation_KEGG_pathways.md)<br>[7. Gene synteny](./day3/ex16e_data_presentation_Gene_synteny.md) |
 
 <br>
 
@@ -91,11 +91,7 @@ Should be correct below:
 
     |Appendix ID                                         |                        | 
     |:---------------------------------------------------|:---------------------------------------|
-    | [Appendix 1](""){ .md-button } | [Dereplicating data from multiple assemblies](./resources/1_APPENDIX_ex8_Dereplication.md)|
-    |[Appendix 2](""){ .md-button  } | [Generating input files for "VizBin" from "DAS_Tool" curated bins](./resources/2_APPENDIX_ex9_Generating_input_files_for_VizBin.md) |
-    |[Appendix 3](""){ .md-button    }| [Normalise per-sample coverage values by average library size](./resources/3_APPENDIX_ex11_Normalise_coverage_example.md) |
-    |[Appendix 4](""){ .md-button    } | [Viral taxonomy prediction via vContact2](./resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md) |
-<!--    |[Appendix 5](""){ .md-button } | [Preparing input files for visualising gene synteny](./resources/5_APPENDIX_ex15_Prepare_gene_synteny_inputs.md) | -->
+    |[Appendix 1](#){ .md-button    } | [Viral taxonomy prediction via vContact2](./resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md) |
 
 <br>
 

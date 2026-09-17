@@ -1,4 +1,4 @@
-# Gene annotation II: DRAM and coverage calculation
+# Gene annotation I: DRAM
 
 !!! info "Objectives"
 

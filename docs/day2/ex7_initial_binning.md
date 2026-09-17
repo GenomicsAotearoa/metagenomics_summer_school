@@ -1,10 +1,11 @@
-# Binning with multiple tools
+# Binning I: Bin with multiple tools
 
 !!! info "Objectives"
 
     * [Overview](#overview)
     * [Create initial bins using `MetaBAT`](#metabat)
     * [Create initial bins using `MaxBin`](#maxbin)
+    * [Create initial bins using `MetaDecoder`](#metadecoder)
 
 ---
 
@@ -174,5 +175,12 @@ This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we wan
 !!! note "`MaxBin` runtime"
 
     This will take a bit longer to complete, as `MaxBin` uses gene prediction tools to identify the ideal contigs to use as the start of each bin.
+
+
+---
+
+## `MetaDecoder`
+
+TBD
 
 ---
