@@ -1,6 +1,6 @@
 # APPENDIX (ex15): Prepare input for gene synteny visualisation
 
-In order to produce gene synteny plots using `genoPlotR` as outlined in [Gene synteny](../day4/ex16e_data_presentation_Gene_synteny.md), we need to know the annotations and relative nucleotide positions of our genes of interest. We can use our annotations file generated via [homology and domain searches](../day3/ex13_gene_annotation_part1.md) (here, we have parsed and aggregated these annotations using an [in-house custom script](https://github.com/GenomicsAotearoa/environmental_metagenomics/tree/master/analysis_tools/annotationaggregator_v0.1)) or [DRAM](../day3/ex14_gene_annotation_part2.md) in order to obtain relevant genes and their labels. Gene nucleotide positions relative to assembled contigs/scaffolds can be obtained from `prodigal` outputs. 
+In order to produce gene synteny plots using `genoPlotR` as outlined in [Gene synteny](../day4/ex_19_data_presentation_gene_synteny.md), we need to know the annotations and relative nucleotide positions of our genes of interest. We can use our annotations file generated via [homology and domain searches](../day3/ex_13_gene_annotation_various.md) (here, we have parsed and aggregated these annotations using an [in-house custom script](https://github.com/GenomicsAotearoa/environmental_metagenomics/tree/master/analysis_tools/annotationaggregator_v0.1)) or [DRAM](../day3/ex_12_gene_annotation_DRAM.md) in order to obtain relevant genes and their labels. Gene nucleotide positions relative to assembled contigs/scaffolds can be obtained from `prodigal` outputs. 
 
 Additionally, we need BLAST outputs for comparing between genes along their contigs. For this, we rely on outputs from pairwise `tBLASTx` (translates a nucleotide database then searches it using a translated nucleotide query) to perform sequential comparisons across different bins.
 
@@ -328,5 +328,5 @@ We do not need to perform pairwise comparisons for all bin combinations (you can
 
 ---
 
-The above workflow should generate the required files for the annotation subset (`<binID>_cys.txt`) and pairwise `BLAST` comparisons (`blast_<query binID>_<subject binID>.txt`). Along with these outputs, copy the `prodigal` predictions (either `*.faa` or `*.fna`; do not use `no_metadata` files) from relevant bins into your working directory and follow the steps outlined in [Presentation of data: gene synteny](../day4/ex16e_data_presentation_Gene_synteny.md) to generate synteny plots.
+The above workflow should generate the required files for the annotation subset (`<binID>_cys.txt`) and pairwise `BLAST` comparisons (`blast_<query binID>_<subject binID>.txt`). Along with these outputs, copy the `prodigal` predictions (either `*.faa` or `*.fna`; do not use `no_metadata` files) from relevant bins into your working directory and follow the steps outlined in [Presentation of data: gene synteny](../day4/ex_19_data_presentation_gene_synteny.md) to generate synteny plots.
 

@@ -318,7 +318,7 @@ The masked reference genome is available via [Google drive](https://drive.google
 
 ### Indexing the reference genome and read mapping with `BBMap`
 
-We will cover more about read mapping in [later exercises](https://genomicsaotearoa.github.io/metagenomics_summer_school/day2/ex6_initial_binning/). For now, it is important to know that it is first necessary to build an index of the reference using the read mapping tool of choice. Here, we will first build a `BBMap` index, and then use `BBMap` to map the reads to that index, ultimately retaining only those reads that do *not* map to the index.
+We will cover more about read mapping in [later exercises](https://genomicsaotearoa.github.io/metagenomics_summer_school/day2/ex_06_binning_intro/). For now, it is important to know that it is first necessary to build an index of the reference using the read mapping tool of choice. Here, we will first build a `BBMap` index, and then use `BBMap` to map the reads to that index, ultimately retaining only those reads that do *not* map to the index.
 
 Build index reference via `BBMap`. We will do this by submitting the job via slurm. 
 
@@ -430,7 +430,7 @@ We'll submit the mapping script:
 
 ??? tip "Monitoring job progress"
 
-    We can monitor our job progress using `squeue --me` or `sacct <job_id>`. This will be covered in detail as part of the main content when we [evaluate assemblies](./ex5_evaluating_assemblies.md#evaluating-the-resource-consumption-of-various-assemblies). 
+    We can monitor our job progress using `squeue --me` or `sacct <job_id>`. This will be covered in detail as part of the main content when we [evaluate assemblies](./ex_04_assembly_evaluation.md#evaluating-the-resource-consumption-of-various-assemblies). 
 
 !!! note "Array jobs"
 

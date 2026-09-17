@@ -21,7 +21,7 @@ In addition to this, a simple mapping file has also been created (`11.data_prese
 
 !!! note "Note"
 
-    As discussed in the [coverage exercises](../day3/ex14_gene_annotation_part2.md), it is usually necessary to normalise coverage values across samples based on equal sequencing depth. This isn't necessary with the mock metagenome data we're working with, but if you include this step in your own work you would read the **normalised** coverage tables into the steps outlined below.*
+    As discussed in the [coverage exercises](../day3/ex_12_gene_annotation_DRAM.md), it is usually necessary to normalise coverage values across samples based on equal sequencing depth. This isn't necessary with the mock metagenome data we're working with, but if you include this step in your own work you would read the **normalised** coverage tables into the steps outlined below.*
 
 ---
 
@@ -31,7 +31,7 @@ To get started, open `RStudio` and start a new document.
 
 !!! note "Note"
 
-    You will recognise that the first few steps will follow the same process as the previous exercise on [generating coverage heatmaps](../day4/ex16b_data_presentation_Coverage.md). In practice, these two workflows can be combined to reduce the repetitive aspects.
+    You will recognise that the first few steps will follow the same process as the previous exercise on [generating coverage heatmaps](../day4/ex_17_data_presentation_coverage.md). In practice, these two workflows can be combined to reduce the repetitive aspects.
 
 ### 1.1 Prepare environment
 
@@ -70,7 +70,7 @@ Import coverage tables and mapping file.
 
 ### 1.2 Wrangle data
 
-As before in [coverage exercise](../day4/ex16b_data_presentation_Coverage.md), we need to obtain per MAG and sample average coverage values. We begin by selecting relevant columns and renaming them.
+As before in [coverage exercise](../day4/ex_17_data_presentation_coverage.md), we need to obtain per MAG and sample average coverage values. We begin by selecting relevant columns and renaming them.
 
 !!! r-project "code"
 
