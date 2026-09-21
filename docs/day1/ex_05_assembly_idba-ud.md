@@ -202,3 +202,19 @@ Paste or type in the following:
 When your job starts running, files with suffixes `.err` and `.out` will be created in the directory from where you submitted your job. These files will have have your job name and job identification number as file names.
 
 ---
+
+!!! terminal "code"
+
+    ```bash
+    stats.sh in=spades_assembly/spades_assembly.fna
+
+    stats.sh in=idbaud_assembly/idbaud_assembly.m1000.fna
+    stats.sh in=idbaud_assembly/idbaud_assembly.fna
+    ```
+
+|Assembly|N50 (contig)|L50 (contig)|
+|:---|:---:|:---:|
+|**SPAdes** (filtered)|72.9 kbp|107 |
+|**SPAdes** (unfiltered)|72.3 kbp|108 |
+|**IDBA-UD** (filtered)|103.9 kbp|82 |
+|**IDBA-UD** (unfiltered)|96.6 kbp|88 |
