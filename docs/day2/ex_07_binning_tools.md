@@ -11,12 +11,15 @@
 
 ## Overview
 
+**Q-Det** are CONCOCT, Tetra-ESOM, VAMB really still widely used?
+
 With the mapping information computed in the last exercise, we can now perform binning. There are a multitude of good binning tools currently published, and each have their strengths and weaknesses. As there is no best tool for binning, the current strategy for binning is to use a number of different tools on your data, then use the tool `DAS_Tool` to evaluate all potential outcomes and define the best set of bins across all tools used.
 
 In our own workflow, we use the tools `MetaBAT`, `MaxBin`, and `CONCOCT` for binning, but there are many alternatives that are equally viable. In the interests of time, we are only going to demonstrate the first two tools. However, we recommend that you experiment with some of the following tools when conducting your own research.
 
 1. [Tetra-ESOM](https://github.com/tetramerFreqs/Binning)
 1. [VAMB](https://github.com/RasmussenLab/vamb)
+1. [COMEBin](https://github.com/ziyewang/COMEBin)
 
 ---
 
@@ -61,6 +64,8 @@ Both give the same result, although the sample order may vary.
 We can then pass the table `metabat.txt` into the `MetaBAT` binning tool.
 
 Before we proceed, note that when you run `MetaBAT` on NeSI you will see the text `vGIT-NOTFOUND` appear in your command line. This has no impact on the performance of the tool.
+
+**Q-Det** is ^^^ this really still happening? I don't remember ever seeing it
 
 !!! terminal-2 "Run MetaBAT"
 
@@ -181,6 +186,76 @@ This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we wan
 
 ## `MetaDecoder`
 
-TBD
+`MetaDecoder` binning occurs in three steps. The `MetaDecoder` software package contains all required tools. First, as with `MetaBAT`, the *bam* files are parsed into a tab-delimited table of average coverage depths. Then single-copy marker genes are mapped to the assembly to generate seed sequences for the clustering bins. Finally, clustering is performed using the coverage table, the *seed* file, and internally calculated compositions (k-mer frequencies).
+
+Note that many metagenomic software tools utilise stochastic processes and therefore make use of random numbers at some point. As a consequence, the results are usually not deterministic, i.e., different runs may result in slightly different bins. Often the software tools provide an option to supply a seed for the random number generator, which would be a machine generated random number otherwise. If you want to receive the same deterministic result with every run you will need to provide the same random number seed. For clustering with `MetaDecoder` this can be achieved with the `--random_number` option.
+
+!!! terminal-2 "Create a new script to submit as a slurm job"
+
+    ```bash
+    nano metadecoder_clustering.sl
+    ```
+
+
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
+
+!!! terminal "code"
+
+    ```bash linenums="1"
+    #!/bin/bash -e
+    
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      metadecoder_clustering
+    #SBATCH --time          00:05:00
+    #SBATCH --partition     milan
+    #SBATCH --mem           2GB
+    #SBATCH --cpus-per-task 4
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
+    
+    # Load modules and SW environment
+    module purge
+    module load Python/3.11.6-foss-2023a 
+    source /nesi/project/nesi02659/MGSS_2026/resources/tools/MetaDecoder_v1.2.2_python3.11-venv/bin/activate
+    
+    # Working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
+    
+    # I/O
+    src="spades_assembly/spades_assembly.m1000.fna"
+    dstdir="metadecoder"
+
+    # Create destination dir
+    mkdir -p "$dstdir"
+
+    # Run MetaDecoder pipeline
+    metadecoder coverage --threads $SLURM_CPUS_PER_TASK \
+            -b *.bam \
+            -o "${dstdir}/mdecoder_cov.tsv"
+
+    metadecoder seed --threads $SLURM_CPUS_PER_TASK \
+            -f "$src" \
+            -o "${dstdir}/mdecoder.seed"
+
+    # NB "min_sequence_length" must be >=2000
+    metadecoder cluster --threads $SLURM_CPUS_PER_TASK \
+            --min_sequence_length 2000 --random_number 42 \
+            -f "$src" \
+            -c "${dstdir}/mdecoder_cov.tsv" \
+            -s "${dstdir}/mdecoder.seed" \
+            -o "${dstdir}/metadecoder"
+
+    # Sanitise and finish
+    rename ".fasta" ".fa" "$dstdir"/*.fasta
+    deactivate 
+    ```
+
+!!! terminal-2 "Submit the script as a slurm job"
+
+    ```bash
+    sbatch metadecoder_clustering.sl
+    ```
+
+
 
 ---
