@@ -1,4 +1,4 @@
-# BONUS: Assembling contigs with IBDA-UD
+# BONUS: Assembling contigs with IDBA-UD
 
 
 

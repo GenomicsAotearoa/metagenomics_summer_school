@@ -31,7 +31,7 @@ To get started, open `RStudio` and start a new document.
 
 !!! note "Note"
 
-    You will recognise that the first few steps will follow the same process as the previous exercise on [generating coverage heatmaps](../day4/ex_17_data_presentation_coverage.md). In practice, these two workflows can be combined to reduce the repetitive aspects.
+    You will recognise that the first few steps will follow the same process as the previous exercise on [generating coverage heatmaps](../day4/ex_18_data_presentation_coverage.md). In practice, these two workflows can be combined to reduce the repetitive aspects.
 
 ### 1.1 Prepare environment
 
@@ -70,7 +70,7 @@ Import coverage tables and mapping file.
 
 ### 1.2 Wrangle data
 
-As before in [coverage exercise](../day4/ex_17_data_presentation_coverage.md), we need to obtain per MAG and sample average coverage values. We begin by selecting relevant columns and renaming them.
+As before in [coverage exercise](../day4/ex_18_data_presentation_coverage.md), we need to obtain per MAG and sample average coverage values. We begin by selecting relevant columns and renaming them.
 
 !!! r-project "code"
 

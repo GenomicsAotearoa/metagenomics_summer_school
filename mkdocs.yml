@@ -142,12 +142,12 @@ nav:
     - 'day2/ex_13_gene_annotation_various.md'
   - 'Day 3':
     - 'day3/ex_14_gene_annotation_DRAM_distillation.md'
-    - 'day3/ex_14_bin_coverage_dereplication.md'
-    - 'day3/ex_15_bin_coverage_mapping.md'
-    - 'day3/ex_16_data_presentation_intro.md'
-    - 'day3/ex_17_data_presentation_coverage.md'
-    - 'day3/ex_18_data_presentation_KEGG_pathways.md'
-    - 'day3/ex_19_data_presentation_gene_synteny.md'
+    - 'day3/ex_15_bin_coverage_dereplication.md'
+    - 'day3/ex_16_bin_coverage_mapping.md'
+    - 'day3/ex_17_data_presentation_intro.md'
+    - 'day3/ex_18_data_presentation_coverage.md'
+    - 'day3/ex_19_data_presentation_KEGG_pathways.md'
+    - 'day3/ex_20_data_presentation_gene_synteny.md'
   - 'Resources':
     - 'resources/1_APPENDIX_ex16c_data_presentation_Ordination.md'
     - 'resources/2_APPENDIX_ex9_Generating_input_files_for_VizBin.md'

@@ -11,15 +11,15 @@
 
 ## Overview
 
-**Q-Det** are CONCOCT, Tetra-ESOM, VAMB really still widely used?
-
 With the mapping information computed in the last exercise, we can now perform binning. There are a multitude of good binning tools currently published, and each have their strengths and weaknesses. As there is no best tool for binning, the current strategy for binning is to use a number of different tools on your data, then use the tool `DAS_Tool` to evaluate all potential outcomes and define the best set of bins across all tools used.
 
-In our own workflow, we use the tools `MetaBAT`, `MaxBin`, and `CONCOCT` for binning, but there are many alternatives that are equally viable. In the interests of time, we are only going to demonstrate the first two tools. However, we recommend that you experiment with some of the following tools when conducting your own research.
+In our own workflow, we often use the tools `MetaBAT` and `MaxBin` for binning, but there are many alternatives that are equally viable. In the interests of time, we are only going to demonstrate one alternative, `MetaDecoder`. We recommend that you experiment with several tools when conducting your own research:
 
-1. [Tetra-ESOM](https://github.com/tetramerFreqs/Binning)
-1. [VAMB](https://github.com/RasmussenLab/vamb)
+1. [MetaBAT](https://bitbucket.org/berkeleylab/metabat)
+1. [MaxBin](https://sourceforge.net/projects/maxbin)
+1. [MetaDecoder](https://github.com/liu-congcong/MetaDecoder)
 1. [COMEBin](https://github.com/ziyewang/COMEBin)
+1. ...
 
 ---
 

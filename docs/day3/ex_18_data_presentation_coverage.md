@@ -31,7 +31,7 @@
 
 ## Part 1 - Building a heatmap of MAG coverage per sample
 
-To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and make sure you are working within RStudio with the required packages installed (see the [data presentation intro](../day4/ex_16_data_presentation_intro.md) for more information).
+To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and make sure you are working within RStudio with the required packages installed (see the [data presentation intro](../day4/ex_17_data_presentation_intro.md) for more information).
 
 ### 1.1 Prepare environment
 
