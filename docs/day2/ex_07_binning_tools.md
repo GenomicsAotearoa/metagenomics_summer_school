@@ -41,13 +41,13 @@ The *.bam* files can be passed in via either a user-defined order, or using wild
 
     ```bash
     module purge
-    module load MetaBAT/2.15-GCC-11.3.0
+    module load MetaBAT/2.17-GCC-12.3.0
 
     # Manual specification of files
-    jgi_summarize_bam_contig_depths --outputDepth metabat.txt sample1.bam sample2.bam sample3.bam sample4.bam
+    jgi_summarize_bam_contig_depths --outputDepth metabat.tsv sample1.bam sample2.bam sample3.bam sample4.bam
 
     # Wildcard
-    jgi_summarize_bam_contig_depths --outputDepth metabat.txt sample?.bam
+    jgi_summarize_bam_contig_depths --outputDepth metabat.tsv sample?.bam
     ```
 
 ??? tip "Bash wildcards"
@@ -61,22 +61,28 @@ The *.bam* files can be passed in via either a user-defined order, or using wild
 
 Both give the same result, although the sample order may vary.
 
-We can then pass the table `metabat.txt` into the `MetaBAT` binning tool.
+??? tip ".tsv files"
 
-Before we proceed, note that when you run `MetaBAT` on NeSI you will see the text `vGIT-NOTFOUND` appear in your command line. This has no impact on the performance of the tool.
+    Tab separated value files with the extension `.tsv` will be displayed in tabular layout by Jupyter when opening the file from the Jupyter file browser.
 
-**Q-Det** is ^^^ this really still happening? I don't remember ever seeing it
+
+We can then pass the table `metabat.tsv` into the `MetaBAT` binning tool.
+
+Before we proceed, note that when you run `MetaBAT` on NeSI you will see the text `GIT-NOTFOUND` appear in your command line. This has no impact on the performance of the tool.
 
 !!! terminal-2 "Run MetaBAT"
 
     ```bash
-    metabat2 -t 2 -m 1500 \
-             -i spades_assembly/spades_assembly.m1000.fna \
-             -a metabat.txt \
-             -o metabat/metabat
+    metabat2 --numThreads 2 --seed 13 \
+             --minContig 1500 \
+             --inFile spades_assembly/spades_assembly.m1000.fna \
+             --abdFile metabat.tsv \
+             --outFile metabat/metabat
     ```
 
-Note here that we are specifying a minimum contig size of 1,500 bp, which is the lower limit allowed by the authors of `MetaBAT`. This is larger than the minimum threshold of 1,000 bp when we filtered the assembly, which means there are some assembled contigs which cannot be binned. Consider the choice of this parameter and your initial contig filtering carefully when binning your own data.
+Note that many metagenomic software tools utilise stochastic processes and therefore make use of random numbers at some point. As a consequence, the results are usually not fully reproducible, i.e., different runs may result in slightly different bins. Often the software tools provide an option to supply a seed for the random number generator, which would be a machine generated random number otherwise. If you want to receive the same deterministic result with every run you will need to provide the same random number seed. For clustering with `MetaBAT2` this can be achieved with the `--seed` option.
+
+Note also that we are specifying a minimum contig size of 1,500 bp, which is the lower limit allowed by the authors of `MetaBAT`. This is larger than the minimum threshold of 1,000 bp when we filtered the assembly, which means there are some assembled contigs which cannot be binned. Consider the choice of this parameter and your initial contig filtering carefully when binning your own data.
 
 When specifying the output file, notice that we pass both a folder path (*metabat/*) and file name (*metabat*). The reason I do this is that `MetaBAT` writes its output files using the pattern
 
@@ -100,17 +106,17 @@ The problem with this is that on Linux systems, prefixing a file or folder name 
 
 ## `MaxBin`
 
-Like `MetaBAT`, `MaxBin` requires a text representation of the coverage information for binning. Luckily, we can be sneaky here and just reformat the `metabat.txt` file into the format expected by `MaxBin`. We use `cut` to select only the columns of interest, which are the *contigName* and coverage columns, but not the *contigLen*, *totalAvgDepth*, or variance columns.
+Like `MetaBAT`, `MaxBin` requires a text representation of the coverage information for binning. Luckily, we can be sneaky here and just reformat the `metabat.tsv` file into the format expected by `MaxBin`. We use `cut` to select only the columns of interest, which are the *contigName* and coverage columns, but not the *contigLen*, *totalAvgDepth*, or variance columns.
 
-We can inspect the `metabat.txt` file with `head` or `less` to identify the correct column indices for `cut`.
+We can inspect the `metabat.tsv` file with `head` or `less` to identify the correct column indices for `cut`.
 
 !!! terminal "code"
 
     ```bash
-    less metabat.txt
+    less metabat.tsv
     ```
 
-!!! circle-check "Terminal output: Snapshot of `metabat.txt`"
+!!! circle-check "Terminal output: Snapshot of `metabat.tsv`"
 
     ```
     contigName      contigLen       totalAvgDepth   sample1.bam     sample1.bam-var sample2.bam     sample2.bam-var sample3.bam     sample3.bam-var sample4.bam     sample4.bam-var
@@ -122,10 +128,10 @@ We can inspect the `metabat.txt` file with `head` or `less` to identify the corr
     NODE_6_length_607162_cov_1.000759       607162  25.0853 16.7701 17.576  2.759   2.74899 5.55618 5.69041 0       0
     ```
 
-!!! terminal-2 "Create `maxbin.txt` based on `metabat.txt`"
+!!! terminal-2 "Create `maxbin.tsv` based on `metabat.tsv`"
 
     ```bash
-    cut -f1,4,6,8,10 metabat.txt > maxbin.txt
+    cut -f1,4,6,8,10 metabat.tsv > maxbin.tsv
     ```
 
 Generally speaking, this pattern of first, fourth, then [n + 2]<sup>th</sup> should work for any number of mapping files, although we always recommend that you check and confirm before you continue.
@@ -167,8 +173,11 @@ This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we wan
     # Run MaxBin
     run_MaxBin.pl -thread $SLURM_CPUS_PER_TASK -min_contig_length 1500 \
                   -contig spades_assembly/spades_assembly.m1000.fna \
-                  -abund maxbin.txt \
+                  -abund maxbin.tsv \
                   -out maxbin/maxbin
+    
+    # Normalise filenames
+    rename ".fasta" ".fa" maxbin/*.fasta
     ```
 
 !!! terminal-2 "Submit the script as a slurm job"
@@ -188,7 +197,9 @@ This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we wan
 
 `MetaDecoder` binning occurs in three steps. The `MetaDecoder` software package contains all required tools. First, as with `MetaBAT`, the *bam* files are parsed into a tab-delimited table of average coverage depths. Then single-copy marker genes are mapped to the assembly to generate seed sequences for the clustering bins. Finally, clustering is performed using the coverage table, the *seed* file, and internally calculated compositions (k-mer frequencies).
 
-Note that many metagenomic software tools utilise stochastic processes and therefore make use of random numbers at some point. As a consequence, the results are usually not deterministic, i.e., different runs may result in slightly different bins. Often the software tools provide an option to supply a seed for the random number generator, which would be a machine generated random number otherwise. If you want to receive the same deterministic result with every run you will need to provide the same random number seed. For clustering with `MetaDecoder` this can be achieved with the `--random_number` option.
+Note that in order to get fully reproducible results with `MetaDecoder` the `--random_number` parameter should be set (cf. `--seed` for MetaBAT2).
+
+Note also that we are specifying a minimum contig size of 2,000 bp, which is the lower limit allowed for `MetaDecoder`, the default value would have been 2,500 bp.
 
 !!! terminal-2 "Create a new script to submit as a slurm job"
 
@@ -230,22 +241,21 @@ Note that many metagenomic software tools utilise stochastic processes and there
 
     # Run MetaDecoder pipeline
     metadecoder coverage --threads $SLURM_CPUS_PER_TASK \
-            -b *.bam \
-            -o "${dstdir}/mdecoder_cov.tsv"
+            --bam *.bam \
+            --output "mdecoder.tsv"
 
     metadecoder seed --threads $SLURM_CPUS_PER_TASK \
-            -f "$src" \
-            -o "${dstdir}/mdecoder.seed"
+            --fasta "$src" \
+            --output "${dstdir}/mdecoder.seed"
 
-    # NB "min_sequence_length" must be >=2000
     metadecoder cluster --threads $SLURM_CPUS_PER_TASK \
-            --min_sequence_length 2000 --random_number 42 \
-            -f "$src" \
-            -c "${dstdir}/mdecoder_cov.tsv" \
-            -s "${dstdir}/mdecoder.seed" \
-            -o "${dstdir}/metadecoder"
+            --min_sequence_length 2000 --random_number 13 \
+            --fasta "$src" \
+            --coverage "mdecoder.tsv" \
+            --seed "${dstdir}/mdecoder.seed" \
+            --output "${dstdir}/metadecoder"
 
-    # Sanitise and finish
+    # Normalise filenames and finish
     rename ".fasta" ".fa" "$dstdir"/*.fasta
     deactivate 
     ```

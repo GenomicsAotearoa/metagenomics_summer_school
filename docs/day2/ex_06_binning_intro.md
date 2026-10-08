@@ -10,7 +10,7 @@
 
 ## Remove short contigs from the data set
 
-Ideally, we do not want to be creating bins from all of the assembled contigs, as there is often a long tail of contigs which are only several *k*-mers long. These have little biological meaning, as they are too short for robust gene annotation, and they can introduce a significant degree of noise in the clustering algorithms used for binning. We therefore identify a suitable threshold for a minimum length of contigs to be considered for binning.
+We do not want to create bins from overly short contigs as these have little biological meaning. Contigs below 1,000 bp tend to be too short for robust gene annotation and they can introduce a significant degree of noise in the clustering algorithms used for binning. We therefore filter out short contigs for binning.
 
 We have already done this in the [previous exercise](../day1/ex_04_assembly_evaluation.md) so we could either use the existing filtering at 1,000 bp in length, or move to something stricter. Most binning tools have a default cut-off for minimum contig size - `MetaBAT` uses a default minimum of 2,500 bp, and recommends at least 1,500 bp. By contrast, `MaxBin` sets the minimum length at 1,000 bp.
 
@@ -90,23 +90,25 @@ Open a new script using nano:
     #SBATCH --output        %x_%j.out
 
     module purge
-    module load Bowtie2/2.5.4-GCC-12.3.0 SAMtools/1.19-GCC-12.3.0
+    module load Bowtie2/2.5.4-GCC-12.3.0 SAMtools/1.23.1-GCC-12.3.0
 
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
 
     # Step 1
-    for i in sample1 sample2 sample3 sample4;
-    do
+    for i in sample1 sample2 sample3 sample4; do
 
       # Step 2
-      bowtie2 --minins 200 --maxins 800 --threads $SLURM_CPUS_PER_TASK --sensitive \
+      bowtie2 --threads $SLURM_CPUS_PER_TASK  --sensitive \
+              --minins 200  --maxins 800 \
               -x spades_assembly/bw_spades \
-              -1 ../3.assembly/${i}_R1.fastq.gz -2 ../3.assembly/${i}_R2.fastq.gz \
+              -1 ../3.assembly/${i}_R1.fastq.gz \
+              -2 ../3.assembly/${i}_R2.fastq.gz \
               -S ${i}.sam
 
       # Step 3
-      samtools sort -@ $SLURM_CPUS_PER_TASK -o ${i}.bam ${i}.sam
+      samtools sort --threads $SLURM_CPUS_PER_TASK \
+                    -o ${i}.bam  ${i}.sam
 
     done
     ```
@@ -119,7 +121,7 @@ Open a new script using nano:
 
 ### Step 1 - Loop through the sample files
 
-Since we just want to perform the same set of operations on each file, we can use a *for loop* to repeat each operation on a set of files. The structure of the loop, and use of variables was covered on the first day.
+Since we just want to perform the same set of operations on each file, we can use a *for loop* to repeat each operation on a set of files.
 
 For large sets of files, it can be beneficial to use a slurm *array* to send the jobs out to different nodes and distribute the process across many independent jobs. An example of how we could modify the above script is given at the bottom of this exercise, but is not necessary for the purposes of this workshop.
 
@@ -129,8 +131,8 @@ For large sets of files, it can be beneficial to use a slurm *array* to send the
 
     |<div style="width:100px">Parameter</div>|Function|
     |:---|:---|
-    |`--minins`|Minimum insert size, determines the minimum distance between the start of each read pair|
-    |`--maxins`|Maximum insert size, determines the maximum distance between the start of each read pair|
+    |`--minins`|The minimum DNA fragment length in paired-end sequencing|
+    |`--maxins`|The maximum DNA fragment length in paired-end sequencing|
     |`--threads`|Number of threads to use in read mapping|
     |`--sensitive`|Specifies where we want to be positioned in the trade-off between speed and sensitivity. See the manual for more information|
     |`-x`|The base name of our assembly index. Should be exactly the same as what was specified when running `bowtie2-build`|
@@ -151,7 +153,7 @@ Generally I wouldn't bother with this - there is a lot of information in here an
     |Parameter|Function|
     |:---|:---|
     |`sort`|Subcommand for `samtools` to invoke the `sort` operation|
-    |`-@`|Number of threads to use for sorting and compressing|
+    |`--threads`|Number of threads to use for sorting and compressing|
     |`-o`|Output file name. When we specify the *bam* extension `samtools` automatically compresses the output|
 
 !!! failure "Do not open a `.bam` file, your terminal might crash!"
@@ -226,7 +228,7 @@ Open a new script using nano:
 
     # Load modules
     module purge
-    module load Bowtie2/2.5.4-GCC-12.3.0 SAMtools/1.19-GCC-12.3.0
+    module load Bowtie2/2.5.4-GCC-12.3.0 SAMtools/1.23.1-GCC-12.3.0
 
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
@@ -236,13 +238,14 @@ Open a new script using nano:
 
     # Run Bowtie2 and SAMTools, using the SLURM_ARRAY_TASK_ID variable to
     # identify which position in the `samples` array to use
-    bowtie2 --minins 200 --maxins 800 --threads $SLURM_CPUS_PER_TASK --sensitive \
+    bowtie2 --threads $SLURM_CPUS_PER_TASK  --sensitive \
+            --minins 200  --maxins 800 \
             -x spades_assembly/bw_spades \
             -1 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R1.fastq.gz \
             -2 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R2.fastq.gz \
             -S ${samples[ $SLURM_ARRAY_TASK_ID ]}_a.sam
 
-    samtools sort -@ $SLURM_CPUS_PER_TASK \
+    samtools sort --threads $SLURM_CPUS_PER_TASK \
                   -o ${samples[ $SLURM_ARRAY_TASK_ID ]}_a.bam \
                   ${samples[ $SLURM_ARRAY_TASK_ID ]}_a.sam
     ```

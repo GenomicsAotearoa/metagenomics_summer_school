@@ -4,10 +4,6 @@
 
     * [Gene prediction and annotation with `DRAM`](#gene-prediction-and-annotation-with-dram-distilled-and-refined-annotation-of-metabolism)
     * [Annotating MAGs with `DRAM`](#annotating-mags-with-dram)
-    * [Annotating viral contigs with `DRAM-v`](#annotating-viral-contigs-with-dram-v)
-    * [Calculating per-sample coverage stats for prokaryotic bins](#calculating-per-sample-coverage-stats-for-prokaryotic-bins)
-    * [Calculating per-sample coverage stats for viral contigs](#calculating-per-sample-coverage-stats-for-viral-contigs)
-    * [Select initial goal](#select-initial-goal)
 
 ---
 
@@ -37,7 +33,7 @@ Beyond annotation, `DRAM` aims to be a data compiler. For that reason, output fi
 
 ### `DRAM` input files
 
-For these exercises, we have copied the relevant input files into the folder `10.gene_annotation_and_coverage/DRAM_input_files/`. `gtdbtk.bac120.summary.tsv` was taken from the earlier `8.prokaryotic_taxonomy/gtdbtk_out/` outputs, and `dastool_bins_checkm.txt` from the result of re-running `CheckM` on the final refined filtered bins in `6.bin_refinement/dastool_bins`.
+For these exercises, we have copied the relevant input files into the folder `10.gene_annotation_and_coverage/DRAM_input_files/`. `gtdbtk.bac120.summary.tsv` was taken from the earlier `8.prokaryotic_taxonomy/gtdbtk_out/` outputs, and `checkm.txt` from running `CheckM` on the bins in `5.binning/dastool_out/dastool_bins`.
 
 !!! terminal-2 "Navigate to working directory"
 
@@ -49,7 +45,7 @@ Along with our filtered bins, the `CheckM` output file (`checkm.txt`) and `GTDB-
 
 ### `DRAM` annotation
 
-In default annotation mode, `DRAM` only requires as input the directory containing all the bins we would like to annotate in *fastA* format (either .fa or .fna). There are few parameters that can be modified if not using the default mode. Once the annotation step is complete, the mode `distill` is used to summarise the obtained results.
+In default annotation mode, `DRAM` only requires as input the directory containing all the bins we would like to annotate in *FASTA* format (either .fa or .fna). There are few parameters that can be modified if not using the default mode. Once the annotation step is complete, the mode `distill` is used to summarise the obtained results.
 
 !!! note "UniRef and RAM requirements"
 

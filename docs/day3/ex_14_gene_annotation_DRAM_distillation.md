@@ -2,9 +2,8 @@
 
 !!! info "Objectives"
 
-    * [Overview of `DRAM.py annotate` and `DRAM-v.py annotate` output](#overview-of-drampy-annotate-output)
-    * [`DRAM` and `DRAM-v` distillation step and visualization of results](#dram-and-dram-v-distillation-of-the-results)
-    * [Tie findings to your initial goal](#tie-findings-to-your-initial-goal)
+    * [Overview of `DRAM.py annotate` output](#overview-of-drampy-annotate-output)
+    * [`DRAM` distillation step and visualization of results](#dram-distillation-of-the-results)
 
 ---
 
@@ -45,14 +44,9 @@ For each gene annotated, `DRAM` provides a summary rank (from A to E), represent
 
 ![image](../figures/ex14_DRAM_annotation_rank.png){width="495"}
 
-
-## Overview of `DRAM-v.py annotate` output
-
-`DRAM-v` generates the same output files as `DRAM`, but this time for the viral contigs. These files can be viewed in the output directory `10.gene_annotation_and_coverage/dramv_annotations/`. In this case, `annotations.tsv` also includes some viral-specific columns, including viral gene database matches (`vogdb`), and categories that are used by `DRAM-v.py distill` to identify putative auxiliary metabolic genes (AMGs) (`virsorter_category`, `auxiliary_score`,  `is_transposon`, `amg_flags`)
-
 ---
 
-## `DRAM` and `DRAM-v` distillation of the results
+## `DRAM` distillation of the results
 
 After the annotation is finished, we will summarise and visualise these annotations with the so-called *distillation* step. We do so by running the following commands directly in the terminal. This will generate the distillate and liquor files for each dataset.
 
@@ -71,11 +65,6 @@ For the viral annotations, we will also include the parameters `--remove_transpo
                     -o dram_distillation \
                     --trna_path dram_annotations/trnas.tsv \
                     --rrna_path dram_annotations/rrnas.tsv
-    
-    # viral annotations
-    DRAM-v.py distill --remove_transposons --remove_fs \
-                      -i dramv_annotations/annotations.tsv \
-                      -o dramv_distillation
     ```
 
 ## `DRAM.py distill` output files 
@@ -134,54 +123,6 @@ To finish, we visualize the *Product*, an .HTML file produced in the distillatio
         <center>
         ![image](../figures/ex15_fig3_DRAM_product_2022.png)
         </center>
-
-## `DRAM-v.py distill` output files 
-
-The `DRAM-v` distillation step for the viral contigs generates the following files that can be found within the ```dramv_distillation/``` directory :
-
-| <div style="width:200px">File name</div> | Description|
-|:--- | :--- |
-|`vMAG_stats.tsv`| "Genome" (in this case viral contigs of varying completeness) information including: total gene counts, viral vs host gene counts, and counts of genes related to viral replication, structure, and those with presumed viral or host benefits |
-|`amg_summary.tsv`| Genes identified as putative auxiliary metabolic genes (AMGs) and various columns for metabolic characterisation of each gene |
-|`product.html`| HTML file displaying a heatmap summarising AMG counts and presence/absence for different broad metabolic categories for each viral contig |
-
-When viewing these files, see if you can find the following information:
-
-!!! quote ""
-
-    * What are some annotations of interest within the output annotations file? 
-      * *NOTE: the *VirSorter2* annotations file includes multiple columns for both **prokaryote** and **viral** protein predictions. Be careful as to which column you are looking at (as well as its associated confidence score) when assessing viral annotations vs. AMGs*.
-    * Among these annotations, how many were flagged as AMGs by `DRAM-v`?
-    * What broad metabolic categories did the AMGs fall into? 
-    * Discussion point: How might we investigate whether identified putative AMGs are actually *within* the viral genomes, rather than residual contaminating host genomic sequence attached to the end of integrated prophage (but incompletely trimmed off in the excision process)?
-
-<!--
----
-
-## Tie findings to your initial goal
-
-It is now time to explore the genomes and try to address your original goal!
-
-You were tasked with identifying one of the following.
-
-!!! abstract ""
-
-    1. Denitrification (Nitrate or nitrite to nitrogen)
-    2. Ammonia oxidation (Ammonia to nitrite or nitrate)
-    3. Anammox (Ammonia and nitrite to nitrogen)
-    4. Sulfur oxidation (SOX pathway, thiosulfate to sulfate)
-    5. Sulfur reduction (DSR pathway, sulfate to sulfide)
-    6. Photosynthetic carbon fixation
-    7. Non-photosynthetic carbon fixation (Reverse TCA or Wood-Ljundahl)
-    8. Non-polar flagella expression due to a chromosomal deletion
-    9. Plasmid-encoded antibiotic resistance
-    10. Aerobic (versus anaerobic) metabolism
-
-Depending on what you are looking for, you will either be trying to find gene(s) of relevance to a particular functional pathway, or the omission of genes that might be critical in function. In either case, make sure to use the taxonomy of each MAG to determine whether it is likely to be a worthwhile candidate for exploration, as some of these traits are quite restricted in terms of which organisms carry them.
-
-To conduct this exersise, you should use the information generated with `DRAM` as well as the annotation files we created yesterday and that are available in the directory `10.gene_annotation_and_coverage/gene_annotations`. 
-
-Please note that we have also provided further annotation files within the directory `10.gene_annotation_and_coverage/example_annotation_tables` that contain information obtained after annotating the MAGs against additional databases (UniProt, UniRef100, KEGG, PFAM and TIGRfam). These example files can also be downloaded from [here](../resources/example_annotation_tables.zip). 
 
 ---
 
