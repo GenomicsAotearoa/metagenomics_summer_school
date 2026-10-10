@@ -4,7 +4,6 @@
 
     * Understand the common issues with using `dRep` and `CheckM`
     * Use `CheckM` and `dRep` together to dereplicate a set of genomes
-    * De-duplicate viral contigs using `BBMap`'s `dedupe.sh`
 
 ---
 
@@ -46,11 +45,15 @@ We will write a single slurm script to run all necessary commands, then analyse 
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
 
+	# Load modules
+    module purge
+    module load CheckM/1.2.5-foss-2026-Python-3.14.4
+    module load drep/3.7.1-foss-2026-Python-3.14.4
+
+	# Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/12.drep_example/
 
     # Step 1
-    module purge
-    module load CheckM/1.2.1-gimkl-2022a-Python-3.10.5
     checkm lineage_wf -t $SLURM_CPUS_PER_TASK \
                       --pplacer_threads $SLURM_CPUS_PER_TASK \
                       -x fa --tab_table -f checkm.txt \
@@ -64,9 +67,6 @@ We will write a single slurm script to run all necessary commands, then analyse 
       | tail -n+2 >> dRep.genomeInfo
 
     # Step 3
-    module purge
-    module load drep/2.3.2-gimkl-2018b-Python-3.7.3
-
     dRep dereplicate --genomeInfo dRep.genomeInfo \
                      -g input_bins/*.fa \
                      -p $SLURM_CPUS_PER_TASK \
@@ -105,9 +105,7 @@ We append the MAG statistics to the end of the `dRep.genomeInfo` file, which con
 
 ### Step 3
 
-Here we simply load the modules required for `dRep`, then execute the command. Because of the compatibility issues between the `python` version required by `CheckM` and `dRep`, we use the `module purge` command to unload all current modules before loading `dRep`. This removes the `CheckM` library, and its `python2.7` dependency, allowing the `dRep` and `python3.6` to load correctly.
-
-The parameters for `dRep` are as follows:
+Here we simply execute `dRep`. The parameters for `dRep` are as follows:
 
 !!! abstract ""
 
@@ -128,37 +126,5 @@ When `dRep` finishes running, there are a few useful outputs to examine:
     drep_output/figures/                # Dendrograms to visualise the clustering of genomes
     drep_output/data_tables/            # The primary and secondary clustering of the MAGs, and scoring information
     ```
-
----
-
-## De-duplicate viral contigs using `BBMap`'s `dedupe.sh`
-
-Part of the process for `dRep` includes measures specific to prokaryotes. Hence, the above approach will not be appropriate for dereplicating *viral contigs* derived from different assemblies. `dedupe.sh` from the `BBMap` suite of tools is one alternative to achieve a similar process for these data.
-
-`dedupe.sh` takes a comma separated list of assembly FASTA files as input, and filters out any contigs that are either full *duplicates* of another contig, or fully *contained* within another (longer) contig (i.e. matching alignment within another longer contig). `minidentity=...` sets the minimum identity threshold, and `out=...` results in a single deduplicated set of contigs as output.
-
-An example of how `dedupe.sh` might be run on multiple FASTA files of assembled viral contigs (e.g. those output by tools such as `VIBRANT` or `VirSorter`) is as follows:
-
-!!! terminal "code"
-
-    ```bash
-    cd /path/to/viral/contigs/from/multiple/assemblies/
-    mkdir -p dedupe
-    
-    # load BBMap
-    module load BBMap/39.01-GCC-11.3.0
-    
-    # Set infiles
-    infiles="assembly_viral_1.fna,assembly_viral_2.fna,assembly_viral_3.fna,assembly_viral_4.fna"
-    
-    # Run main analyses 
-    dedupe.sh threads=1 in=${infiles} \
-      minidentity=98 exact=f sort=length mergenames=t mergedelimiter=___ overwrite=t \
-      out=dedupe/dedupe.fa
-    ```
-
-!!! note "Note"
-
-    `dedupe.sh` will dereplicate contigs that are duplicates or are fully contained by another contig, but unfortunately not those that share a partial overlap (i.e. sharing an overlapping region, but with non-overlapping sections hanging off the ends). `dedupe.sh` does include the functionality to **cluster** these contigs together (via `c` and `mo`) and output as separate FASTA files, but not to then merge these sequences together into a single representative (this appears to have been a "to do" item for a number of years). One option in this case could be to develop a method that: outputs all of the clusters, aligns sequences within each cluster, generates a consensus sequence from the alignment (i.e. effectively performing new mini-assemblies on each of the clusters of overlapping contigs), and then adds this back to the deduplicated FASTA output from `dedupe.sh` (n.b. this is unfortunately a less trivial process than it sounds...).
 
 ---

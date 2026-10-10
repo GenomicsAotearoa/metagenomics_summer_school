@@ -63,7 +63,7 @@ Both give the same result, although the sample order may vary.
 
 ??? tip ".tsv files"
 
-    Tab separated value files with the extension `.tsv` will be displayed in tabular layout by Jupyter when opening the file from the Jupyter file browser.
+    Tab separated value files with the extension `.tsv` will be displayed in tabular layout by Jupyter when opening the file from the Jupyter file browser and can also easily be loaded into Excel or LibreOffice Calc.
 
 
 We can then pass the table `metabat.tsv` into the `MetaBAT` binning tool.

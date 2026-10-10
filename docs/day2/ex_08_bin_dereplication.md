@@ -236,7 +236,7 @@ Create a new script
     checkm lineage_wf --threads $SLURM_CPUS_PER_TASK \
                       --pplacer_threads $SLURM_CPUS_PER_TASK \
                       --extension fa  --tab_table \
-                      --file checkm.txt \
+                      --file checkm.tsv \
                       dastool_out/_DASTool_bins/ checkm_out/
     ```
 

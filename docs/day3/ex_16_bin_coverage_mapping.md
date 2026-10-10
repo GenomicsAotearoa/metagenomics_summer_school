@@ -1,113 +1,43 @@
-# Bin coverage 2: Read mapping and coverage calculation
+# Bin coverage 2: Coverage calculation
 
-## NOTE (KH 2026-08-31):
-
-Note to update coverage calculation method from jgi_summarize_bam_contig_depths, and add normalisation to this.
 
 ## Calculating per-sample coverage stats for prokaryotic bins
 
 One of the first questions we often ask when studying the ecology of a system is: What are the pattens of abundance and distribution of taxa across the different samples? With bins of metagenome-assembled genome (MAG) data, we can investigate this by mapping the quality-filtered unassembled reads back to the refined bins to then generate coverage profiles. Genomes in higher abundance in a sample will contribute more genomic sequence to the metagenome, and so the average depth of sequencing coverage for each of the different genomes provides a proxy for abundance in each sample. 
 
-As per the preparation step at the start of the binning process, we can do this using read mapping tools such as `Bowtie`, `Bowtie2`, and `BBMap`. Here we will follow the same steps as before using `Bowtie2`, `samtools`, and `MetaBAT`'s `jgi_summarize_bam_contig_depths`, but this time inputting our refined filtered bins. 
+We can do this using the tool `CoverM`. This exercise will take place in the `10.gene_annotation_and_coverage/` folder which contains our results on the mock metagenome data. `CoverM` will retrieve the per-contig coverages from the *.bam* files calculated earlier and calculate a mean coverage for each MAG (`dastool_bins`). 
 
-These exercises will take place in the `10.gene_annotation_and_coverage/` folder. Our final filtered refined bins from the previous bin refinement exercise have been copied to the `10.gene_annotation_and_coverage/dastool_bins/` folder.
-
-First, concatenate the bin data into a single file to then use to generate an index for the read mapper.
-
-!!! terminal-2 "Concatenate bin nucleotide FASTA files"
+!!! terminal-2 "Running `CoverM` to get per-sample coverage of each bin as a whole"
 
     ```bash
-    cat dastool_bins/*.fna > dastool_bins.fna
-    ```
-
-Now build the index for `Bowtie2` using the concatenated bin data. We will also make a new directory `bin_coverage/` to store the index and read mapping output into.
-
-!!! terminal-2 "Build `Bowtie2` index"
-
-    ```bash
-    mkdir -p bin_coverage/
-
-    # Load Bowtie2
+    # Load CoverM
     module purge
-    module load Bowtie2/2.5.4-GCC-12.3.0
+    module load CoverM/0.7.0-GCC-12.3.0
 
-    # Build Bowtie2 index
-    bowtie2-build dastool_bins.fna bin_coverage/bw_bins
+    # Run CoverM
+    coverm genome --min-covered-fraction 0 \
+        --methods mean variance covered_fraction relative_abundance \
+        --genome-fasta-directory dastool_bins \
+        --bam-files ../5.binning/*.bam \
+        --output-file coverm_mags.tsv
     ```
 
-Map the quality-filtered reads (from `../3.assembly/`) to the index using `Bowtie2`, and sort and convert to `.bam` format via `samtools`.
+The coverage table will be generated as coverm_mags.tsv. The key columns of interest are the `sampleX Mean` (coverage), `sampleX Covered Fraction`,  and `sampleX Relative Abundance (%)`. For a full explanation of all available statistical methods cf. [https://github.com/wwood/CoverM#calculation-methods](https://github.com/wwood/CoverM#calculation-methods)
 
-!!! terminal-2 "Create script named `mapping_dastool_bins.sl`"
+If we were interested in the individual per-contig coverages (and not their per-MAG averages), we would use `CoverM` as follows:
+
+!!! terminal-2 "Running `CoverM` to get per-contig coverages"
 
     ```bash
-    nano mapping_dastool_bins.sl
-    ```
-
-!!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
-
-!!! terminal "code"
-
-    ```bash linenums="1"
-    #!/bin/bash -e
-    
-    #SBATCH --account       nesi02659
-    #SBATCH --job-name      mapping_dastool_bins
-    #SBATCH --partition     milan
-    #SBATCH --time          00:05:00
-    #SBATCH --mem           1GB
-    #SBATCH --cpus-per-task 10
-    #SBATCH --error         %x_%j.err
-    #SBATCH --output        %x_%j.out
-    
-    # Load modules
+    # Load CoverM
     module purge
-    module load Bowtie2/2.5.4-GCC-12.3.0 SAMtools/1.19-GCC-12.3.0
-    
-    # Working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
-    
-    # Run Bowtie2
-    for i in {1..4}; do
-        bowtie2 --minins 200 --maxins 800 --threads $SLURM_CPUS_PER_TASK --sensitive \
-                -x bin_coverage/bw_bins \
-                -1 ../3.assembly/sample${i}_R1.fastq.gz \
-                -2 ../3.assembly/sample${i}_R2.fastq.gz \
-                -S bin_coverage/sample${i}.sam
-        samtools sort -@ $SLURM_CPUS_PER_TASK -o bin_coverage/sample${i}.bam bin_coverage/sample${i}.sam
-    done
+    module load CoverM/0.7.0-GCC-12.3.0
+
+    # Run CoverM
+    coverm contig \
+        --methods mean variance \
+        --bam-files ../5.binning/*.bam \
+        --output-file coverm_contigs.tsv
     ```
-
-!!! terminal-2 "Submit the script"
-
-    ```bash
-    sbatch mapping_dastool_bins.sl
-    ```
-
-Finally, generate the per-sample coverage table for each contig in each bin via `MetaBAT`'s `jgi_summarize_bam_contig_depths`.
-
-!!! terminal-2 "Obtain coverage values"
-
-    ```bash 
-    # Load MetaBAT
-    module load MetaBAT/2.15-GCC-11.3.0
-
-    # Calculate coverage table
-    jgi_summarize_bam_contig_depths --outputDepth bins_cov_table.txt bin_coverage/sample*.bam
-    ```
-
-The coverage table will be generated as `bins_cov_table.txt`. As before, the key columns of interest are the `contigName`, and each `sample[1-n].bam` column.
-
-!!! note "Note"
-
-    Here we are generating a per-sample table of coverage values for **each contig** within each bin. To get per-sample coverage of **each bin** as a whole, we will need to generate average coverage values based on all contigs contained within each bin. We will do this in `R` during our data visualisation exercises on day 4 of the workshop, leveraging the fact that we added bin IDs to the sequence headers.*
-
-
-
-### Normalise coverage values
-
-Having generated per-sample coverage values, it is usually necessary to also normalise these values across samples of differing sequencing depth. In this case, the mock metagenome data we have been working with are already of equal depth, and so this is an unnecessary step for the purposes of this workshop. 
-
-For an example of one way in which the `cov_table.txt` output generated by `jgi_summarize_bam_contig_depths` above could then be normalised based on average library size, see the [Normalise per-sample coverage Appendix](https://genomicsaotearoa.github.io/metagenomics_summer_school/resources/3_APPENDIX_ex11_Normalise_coverage_example/).
-
 
 ---

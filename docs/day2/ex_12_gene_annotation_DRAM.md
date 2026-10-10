@@ -33,7 +33,7 @@ Beyond annotation, `DRAM` aims to be a data compiler. For that reason, output fi
 
 ### `DRAM` input files
 
-For these exercises, we have copied the relevant input files into the folder `10.gene_annotation_and_coverage/DRAM_input_files/`. `gtdbtk.bac120.summary.tsv` was taken from the earlier `8.prokaryotic_taxonomy/gtdbtk_out/` outputs, and `checkm.txt` from running `CheckM` on the bins in `5.binning/dastool_out/dastool_bins`.
+For these exercises, we have copied the relevant input files into the folder `10.gene_annotation_and_coverage/DRAM_input_files/`. `gtdbtk.bac120.summary.tsv` was taken from the earlier `8.prokaryotic_taxonomy/gtdbtk_out/` outputs, and `checkm.tsv` from running `CheckM` on the bins in `5.binning/dastool_out/dastool_bins`.
 
 !!! terminal-2 "Navigate to working directory"
 
