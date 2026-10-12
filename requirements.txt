@@ -3,6 +3,7 @@ mergedeep
 mkdocs-material
 cairosvg
 pillow
+pymdown-extensions
 
 #requirements for intergration
 mkdocs-material
