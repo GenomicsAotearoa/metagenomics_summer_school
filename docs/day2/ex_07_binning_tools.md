@@ -207,7 +207,6 @@ Note also that we are specifying a minimum contig size of 2,000 bp, which is the
     nano metadecoder_clustering.sl
     ```
 
-
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
 
 !!! terminal "code"

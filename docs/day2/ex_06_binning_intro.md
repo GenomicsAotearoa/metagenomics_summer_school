@@ -201,6 +201,10 @@ Sorting the mapping information is an important prerequisite for performing cert
 
 If you have a large number of files to process, it might be worth using a slurm array to distribute your individual mapping jobs across many separate nodes. An example script for how to perform this is given below. We do not need to use an array for read mapping in this workshop, but we will revisit array jobs in further lessons.
 
+!!! note "Array jobs"
+
+    Slurm array jobs automatically create a variable `SLURM_ARRAY_TASK_ID` for that job, which contains the array task number (i.e. between 1 and 4 in the case above). We use this to run the command on the sample that matches this array task ID. I.e. array job 3 will run the commands on "sample3" (`sample${SLURM_ARRAY_TASK_ID}` is read in as `sample3`).
+    
 Open a new script using nano:
 
 !!! terminal-2 "Create script named `spades_mapping_array.sl`"

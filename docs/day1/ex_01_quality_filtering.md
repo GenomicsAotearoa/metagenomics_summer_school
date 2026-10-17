@@ -119,7 +119,7 @@ In this workshop, there are only few `fastq` files to work with. However, for an
 !!! terminal "code"
 
     ```bash
-    module load MultiQC/1.13-gimkl-2022a-Python-3.10.5
+    module load MultiQC/1.24.1-foss-2023a-Python-3.11.6
 
     multiqc ./
     ```
@@ -133,19 +133,55 @@ In the command above, MultiQC is directed to look for relevant files in the curr
 
 There are a multitude of programs which can be used to quality trim sequence data and remove adapter sequence. For this exercise we are going to use `trimmomatic`, but this should in no way be interpreted as an endorsement of `trimmomatic` over equivalent tools like `BBMap`, `sickle`, `cutadapt` or any other.
 
-!!! terminal-2 "For a first run with `trimmomatic`, type the following commands into your console:"
+!!! terminal-2 "Create a new script to submit as a slurm job"
 
     ```bash
+    nano trimming.sl
+    ```
+
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
+
+!!! terminal "code"
+
+    ```bash linenums="1"
+    #!/bin/bash -e
+
+    #SBATCH --account       nesi02659
+    #SBATCH --job-name      trimming
+    #SBATCH --time          00:05:00
+    #SBATCH --partition     milan
+    #SBATCH --mem           2GB
+    #SBATCH --cpus-per-task 2
+    #SBATCH --error         %x_%j.err
+    #SBATCH --output        %x_%j.out
+
+    # Load modules
+    module purge
     module load Trimmomatic/0.39-Java-1.8.0_144
 
+    # Working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc
+
     # Run Trimmomatic
-    trimmomatic PE -threads 4 -phred33 \
+    trimmomatic PE -threads 2 -phred33 \
                    mock_R1.adapter_decay.fastq.gz mock_R2.adapter_decay.fastq.gz \
                    mock_R1.qc.fastq.gz mock_s1.qc.fastq.gz mock_R2.qc.fastq.gz mock_s2.qc.fastq.gz \
                    ILLUMINACLIP:NexteraPE-PE.fa:1:25:7 SLIDINGWINDOW:4:30 MINLEN:80
     ```
 
-There is a lot going on in this command, so here is a breakdown of the parameters in the command above
+Save your script by pressing <kbd>Ctrl</kbd> + <kbd>o</kbd> then <kbd>Enter</kbd> ; exit the editor by pressing <kbd>Ctrl</kbd> + <kbd>x</kbd> .
+
+!!! terminal-2 "Submit the script as a slurm job"
+
+    ```bash
+    sbatch trimming.sl
+    ```
+
+??? tip "Monitoring job progress"
+
+    We can monitor our job progress using `squeue --me` or `sacct <job_id>`. This will be covered in detail as part of the main content when we [evaluate assemblies](./ex_04_assembly_evaluation.md#evaluating-the-resource-consumption-of-various-assemblies). 
+
+There is a lot going on in the `trimmomatic` command, so here is a breakdown of the parameters in the command above
 
 !!! info ""
 
@@ -162,7 +198,7 @@ There is a lot going on in this command, so here is a breakdown of the parameter
     |`SLIDINGWINDOW:4:30`|*positional*|Quality filtering command. Analyse each sequence in a 4 base pair sliding window and then truncate if the average quality drops below Q30|
     |`MINLEN:80`|*positional*|Length filtering command. Discard sequences that are shorter than 80 base pairs after trimming|
 
-!!! circle-check "Terminal output"
+!!! circle-check "Output found in *trimming_xxxxxxx.err*"
 
     ```
     TrimmomaticPE: Started with arguments:
@@ -286,35 +322,8 @@ This ensures that reads that would normally map to these sections of the human g
 
 ### The masked human reference genome
 
-The masked reference genome is available via [Google drive](https://drive.google.com/file/d/0B3llHR93L14wd0pSSnFULUlhcUk/edit?usp=sharing) and [Zenodo](https://zenodo.org/record/1208052). For this workshop, we have provided you with the file within the `2.fastqc/BBMask_human_reference/` directory.
+A masked reference genome was created by the author of BBMap and is available via  [Zenodo](https://zenodo.org/record/1208052). For this workshop, we have provided you with the file within the `2.fastqc/BBMask_human_reference/` directory.
 
-??? note "Downloading your own copy of the masked genome"
-
-    We can use `gdown` to download this file from Google drive via the command line.
-
-    To install `gdown`, we can use `pip`. 
-
-    !!! terminal-2 "Install `gdown`"
-    
-        ```bash
-        # Install gdown (for downloading from google drive)
-        module purge
-        module load Python/3.10.5-gimkl-2022a
-        pip install --user gdown
-        ```
-
-    Next, download the reference. It will also be necessary to first add your local `bin` location to the `PATH` variable via the `export PATH=...` command, as this is where `gdown` is located (modify `<your_username>` before running the code below).
-
-    !!! terminal-2 "Download reference"
-
-        ```bash
-        mkdir BBMask_human_reference/
-        cd BBMask_human_reference/
-
-        export PATH="/home/<your_username>/.local/bin:$PATH"
-
-        gdown https://drive.google.com/uc?id=0B3llHR93L14wd0pSSnFULUlhcUk
-        ```
 
 ### Indexing the reference genome and read mapping with `BBMap`
 
@@ -340,9 +349,9 @@ Create a new script named `host_filt_bbmap_index.sl` using `nano`:
     #SBATCH --account       nesi02659
     #SBATCH --job-name      host_filt_bbmap_index
     #SBATCH --partition     milan
-    #SBATCH --time          00:20:00
-    #SBATCH --mem           32GB
-    #SBATCH --cpus-per-task 12
+    #SBATCH --time          00:10:00
+    #SBATCH --mem           20GB
+    #SBATCH --cpus-per-task 4
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
     
@@ -354,10 +363,17 @@ Create a new script named `host_filt_bbmap_index.sl` using `nano`:
     module load BBMap/39.01-GCC-11.3.0
     
     # Build indexed reference file via BBMap
-    bbmap.sh ref=hg19_main_mask_ribo_animal_allplant_allfungus.fa.gz
+    bbmap.sh -Xmx18g usejni=true \
+             ref=hg19_main_mask_ribo_animal_allplant_allfungus.fa.gz
     ```
 
-Save your script by pressing <kbd>Ctrl</kbd> + <kbd>o</kbd> , then exit the editor by pressing <kbd>Ctrl</kbd> + <kbd>x</kbd> .
+!!! abstract "`BBMap` parameters"
+
+    | Parameter | Description |
+    | :--- | :--- |
+    | `-Xmx18g` | Set maximum memory: `#SBATCH --mem` minus a small overhead |
+    | `usejni=true` | Speed up execution by using natively compiled code |
+
 
 Submit your newly created script to the scheduler as follows:
 
@@ -367,7 +383,7 @@ Submit your newly created script to the scheduler as follows:
     sbatch host_filt_bbmap_index.sl
     ```
 
-Finally, map the reads to the reference via `BBMap`. Here we will submit the job as a slurm array, with one array job per sample. 
+Finally, map the reads to the reference via `BBMap`.
 
 Again, we will create a script using `nano`: 
 
@@ -385,26 +401,25 @@ Again, we will create a script using `nano`:
     #SBATCH --account       nesi02659
     #SBATCH --job-name      host_filt_bbmap_map
     #SBATCH --partition     milan
-    #SBATCH --time          01:00:00
-    #SBATCH --mem           27GB
-    #SBATCH --cpus-per-task 20
+    #SBATCH --time          00:10:00
+    #SBATCH --mem           20GB
+    #SBATCH --cpus-per-task 8
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
 
     # Set up working directories
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/
-    mkdir -p host_filtered_reads/
 
     # Load BBMap module
     module purge
     module load BBMap/39.01-GCC-11.3.0
 
     # Run bbmap
-    bbmap.sh -Xmx27g -t=12 usejni=t \
-      minid=0.95 maxindel=3 bwr=0.16 bw=12 quickmatch fast minhits=2 qtrim=rl trimq=10 untrim \
+    bbmap.sh -Xmx18g usejni=true \
       in1=human_microb_reads.R1.fastq.gz \
       in2=human_microb_reads.R2.fastq.gz \
       path=BBMask_human_reference/ \
+      minid=0.95 maxindel=3 bwr=0.16 bw=12 quickmatch fast=true minhits=2 qtrim=rl trimq=10 untrim=true \
       outu1=host_filt_R1.fastq \
       outu2=host_filt_R2.fastq
     ```
@@ -413,12 +428,12 @@ Again, we will create a script using `nano`:
 
     | Parameter | Description |
     | :--- | :--- |
-    | `-Xmx27g` | Set maximum memory allocation to match `#SBATCH --mem`) |
-    | `-t` | Set number of threads (CPUs) to match `#SBATCH --cpus-per-task` |
-    | All flags in line 22 | Recommended parameters found within [this thread](http://seqanswers.com/forums/showthread.php?t=42552) about processing data to remove host reads |
+    | `-Xmx26g` | Set maximum memory: `#SBATCH --mem` minus a small overhead |
+    | `usejni=true` | Speed up execution by using natively compiled code |
     | `in1` / `in2` | Input paired-end reads 1 and 2 stored in `3.assembly/`, each of which are "samples". These are the same files we will use in further lessons |
     | `path` | The parent directory where `ref/` (our indexed and masked reference) exists |
-    | `outu1` / `outu2` | Reads that *were not mapped* to our masked reference written to `host_filtered_reads/` |
+    | All flags in line 25 | Recommended parameters found within [this thread](http://seqanswers.com/forums/showthread.php?t=42552) about processing data to remove host reads |
+    | `outu1` / `outu2` | Reads that *were not mapped* to our masked reference |
     
 We'll submit the mapping script:
 
@@ -428,14 +443,6 @@ We'll submit the mapping script:
     sbatch host_filt_bbmap_map.sl
     ```
 
-??? tip "Monitoring job progress"
-
-    We can monitor our job progress using `squeue --me` or `sacct <job_id>`. This will be covered in detail as part of the main content when we [evaluate assemblies](./ex_04_assembly_evaluation.md#evaluating-the-resource-consumption-of-various-assemblies). 
-
-!!! note "Array jobs"
-
-    Slurm array jobs automatically create a variable `SLURM_ARRAY_TASK_ID` for that job, which contains the array task number (i.e. between 1 and 4 in the case above). We use this to run the command on the sample that matches this array task ID. I.e. array job 3 will run the commands on "sample3" (`sample${SLURM_ARRAY_TASK_ID}` is read in as `sample3`).
-
-The filtered reads are now available in `host_filtered_reads/` for downstream use.
+The filtered reads are now available in the files *host_filt_R1.fastq* and *host_filt_R2.fastq* for downstream use.
 
 ---

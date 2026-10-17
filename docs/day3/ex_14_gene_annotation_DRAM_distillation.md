@@ -42,7 +42,7 @@ If we inspect the head of the annotation file we will see the following
 
 For each gene annotated, `DRAM` provides a summary rank (from A to E), representing the confidence of the annotation based on reciprocal best hits (RBH). The following figure briefly explains how this summary rank is calculated:
 
-![image](../figures/ex14_DRAM_annotation_rank.png){width="495"}
+![image](../figures/ex14_DRAM_annotation_rank.png){.center width="495"}
 
 ---
 
