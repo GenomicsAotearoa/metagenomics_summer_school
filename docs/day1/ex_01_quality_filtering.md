@@ -133,6 +133,9 @@ In the command above, MultiQC is directed to look for relevant files in the curr
 
 There are a multitude of programs which can be used to quality trim sequence data and remove adapter sequence. For this exercise we are going to use `trimmomatic`, but this should in no way be interpreted as an endorsement of `trimmomatic` over equivalent tools like `BBMap`, `sickle`, `cutadapt` or any other.
 
+We will run `trimmomatic` via a dedicated "slurm" job submitted to NeSI as there are occasional issues when used from the JupyterLab Terminal. We will discuss "slurm" jobs in greater detail in the next section ([using slurm](./ex_02_assembling_contigs.md#preparing-an-assembly-job-for-slurm)).
+
+
 !!! terminal-2 "Create a new script to submit as a slurm job"
 
     ```bash
@@ -179,7 +182,8 @@ Save your script by pressing <kbd>Ctrl</kbd> + <kbd>o</kbd> then <kbd>Enter</kbd
 
 ??? tip "Monitoring job progress"
 
-    We can monitor our job progress using `squeue --me` or `sacct <job_id>`. This will be covered in detail as part of the main content when we [evaluate assemblies](./ex_04_assembly_evaluation.md#evaluating-the-resource-consumption-of-various-assemblies). 
+    We can monitor our job progress using `squeue --me` or `sacct <job_id>`. This will be covered in more detail later in [monitoring job progress](./ex_02_assembling_contigs/#monitoring-job-progress)
+    and [evaluate assemblies](./ex_04_assembly_evaluation.md#evaluating-the-resource-consumption-of-various-assemblies). 
 
 There is a lot going on in the `trimmomatic` command, so here is a breakdown of the parameters in the command above
 
@@ -327,7 +331,8 @@ A masked reference genome was created by the author of BBMap and is available vi
 
 ### Indexing the reference genome and read mapping with `BBMap`
 
-We will cover more about read mapping in [later exercises](https://genomicsaotearoa.github.io/metagenomics_summer_school/day2/ex_06_binning_intro/). For now, it is important to know that it is first necessary to build an index of the reference using the read mapping tool of choice. Here, we will first build a `BBMap` index, and then use `BBMap` to map the reads to that index, ultimately retaining only those reads that do *not* map to the index.
+We will cover more about read mapping in [later exercises](
+/metagenomics_summer_school/day2/ex_06_binning_intro/#obtain-coverage-profiles-for-assembled-contigs-via-read-mapping). For now, it is important to know that it is first necessary to build an index of the reference using the read mapping tool of choice. Here, we will first build a `BBMap` index, and then use `BBMap` to map the reads to that index, ultimately retaining only those reads that do *not* map to the index.
 
 Build index reference via `BBMap`. We will do this by submitting the job via slurm. 
 
@@ -432,7 +437,7 @@ Again, we will create a script using `nano`:
     | `usejni=true` | Speed up execution by using natively compiled code |
     | `in1` / `in2` | Input paired-end reads 1 and 2 stored in `3.assembly/`, each of which are "samples". These are the same files we will use in further lessons |
     | `path` | The parent directory where `ref/` (our indexed and masked reference) exists |
-    | All flags in line 25 | Recommended parameters found within [this thread](http://seqanswers.com/forums/showthread.php?t=42552) about processing data to remove host reads |
+    | All flags in line 24 | Recommended parameters found within [this thread](http://seqanswers.com/forums/showthread.php?t=42552) about processing data to remove host reads |
     | `outu1` / `outu2` | Reads that *were not mapped* to our masked reference |
     
 We'll submit the mapping script:

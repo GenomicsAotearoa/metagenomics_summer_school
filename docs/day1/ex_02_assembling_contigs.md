@@ -94,7 +94,7 @@ All work for this exercise will occur in the `3.assembly/` directory.
 
 At a glance, you could provide any of the following data types to `SPAdes` and have it perform an assembly:
 
-1. Illumina paired-end sequencing data, either as standard library or Mate Pairs
+1. Illumina paired-end sequencing data
 2. Sanger sequences
 3. PacBio reads
 4. Oxford Nanopore reads
@@ -148,19 +148,19 @@ The first command lets us specify the *k*-mers ourselves, or we are letting `SPA
 !!! terminal "code"
 
     ```bash
-    spades.py -t 20 ...
+    spades.py --threads 20 ...
     ```
 
 If no thread count is specified by the user, `SPAdes` will assemble with 16 threads.
 
 ### Setting a memory limit
 
-By far, the worst feature of `SPAdes` is the high memory requirement for performing an assembly (see our Bonus material on assembling with `IDBA-UD` instead). In the absence of monitoring, `SPAdes` will request more and more memory as it proceeds. If this requires more memory than is available on your computer, your system will start to store memory to disk space. This is an extremely slow operation and can render your computer effectively unusable. In managed environments such as NeSI a memory limit is imposed upon all running jobs, but if you are not using such a system you are advised to set a memory limit when executing `SPAdes`:
+By far, the worst feature of `SPAdes` is the high memory requirement for performing an assembly (see our Bonus material on assembling with `IDBA-UD` instead). In the absence of monitoring, `SPAdes` will request more and more memory as it proceeds. If this requires more memory than is available on your computer, your system will start to store memory to disk space. This is an extremely slow operation and can render your computer effectively unusable. As the default memory limit is only 250GB you also need to provide a specific limit when running a job on NeSI with more allocated memory. In any case, if `SPAdes` exceeds the default or set memory limit during its run, it will just terminate. It will **not** try to stay under the limit.
 
 !!! terminal "code"
 
     ```bash
-    spades.py -m 400GB ...
+    spades.py --memory 400GB ...
     ```
 
 No such parameter exists in `IDBA-UD`, but it requires far less RAM than `SPAdes`, so you are less likely to need it.
@@ -169,7 +169,7 @@ No such parameter exists in `IDBA-UD`, but it requires far less RAM than `SPAdes
 
 ## Preparing an assembly job for slurm
 
-NeSI does not allow users to execute large jobs interactively on the terminal. Instead, the node that we have logged in to (*lander02*) has only a small fraction of the computing resources that NeSI houses. The *lander* node is used to write small command scripts, which are then deployed to the large compute nodes by a system called **slurm**. The ins and outs of working in slurm are well beyond the scope of this workshop (and may not be relevant if your institution uses a different resource allocation system). In this workshop, we will therefore only be showing you how to write minimal slurm scripts sufficient to achieve our goals. By the end of the workshop, you should have built up a small collection of slurm scripts for performing the necessary stages of our workflow and with experience you will be able to modify these to suit your own needs.
+NeSI does not allow users to execute large jobs interactively on the terminal. Instead, the node that we have logged into has only a small fraction of the computing resources that NeSI houses. It is used to write small command scripts, which are then deployed to the large compute nodes by a system called **slurm**. The ins and outs of working in slurm are well beyond the scope of this workshop (and may not be relevant if your institution uses a different resource allocation system). In this workshop, we will therefore only be showing you how to write minimal slurm scripts sufficient to achieve our goals. By the end of the workshop, you should have built up a small collection of slurm scripts for performing the necessary stages of our workflow and with experience you will be able to modify these to suit your own needs.
 
 ### Submitting a `SPAdes` job to NeSI using slurm
 
@@ -209,12 +209,15 @@ Into this file, either write or copy/paste the following commands:
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly
     
     # Run SPAdes
-    spades.py --meta -k 33,55,77,99,121 -t $SLURM_CPUS_PER_TASK \
-              -1 for_spades_R1.fq.gz -2 for_spades_R2.fq.gz \
+    spades.py --threads $SLURM_CPUS_PER_TASK \
+              --memory $((SLURM_MEM_PER_NODE/1024)) \
+              --meta -k 33,55,77,99,121 \
+              -1 for_spades_R1.fq.gz \
+              -2 for_spades_R2.fq.gz \
               -o spades_assembly/
     ```
 
-To save your file, use <kbd>Ctrl</kbd> + <kbd>O</kbd> to save the file, then <kbd>Ctrl</kbd> + <kbd>X</kbd> to exit `nano`. Going through those lines one by one:
+Save your script by pressing <kbd>Ctrl</kbd> + <kbd>o</kbd> then <kbd>Enter</kbd> ; exit the editor by pressing <kbd>Ctrl</kbd> + <kbd>x</kbd> . Going through those lines one by one:
 
 ??? abstract "Slurm parameters and their functions"
 
@@ -239,14 +242,13 @@ The `module load` command needs to be invoked within your slurm script. It is al
 
     |Parameter|Description|
     |:---|:---|
+    |`--threads`|Number of threads (see [above](#specifying-the-number-of-threads)). Here, we use a special slurm environment variable: `$SLURM_CPUS_PER_TASK` to tell the programme to use the same number of threads allocated for this job via `--cpus-per-task`.|
+    |`--memory`|Memory limit (see [above](#setting-a-memory-limit)). Here, we use the special slurm environment variable `$SLURM_MEM_PER_NODE`. As this value is given in MB and `SPAdes` expects GB, we have to devide by 1024. | 
     |`--meta`|Activate metagenome assembly mode. Default is to assemble your metagenome using single genome assembly assumptions|
     |`-k`|*k*-mer sizes for assembly. These choices will provide the output we will use in the **Binning** session, but feel free to experiment with these to see if you can improve the assembly|
-    |`-t`|Number of threads (see [above](#specifying-the-number-of-threads)). Here, we use a special slurm environment variable: `$SLURM_CPUS_PER_TASK` to tell the programme to use the same number of threads allocated for this job via `--cpus-per-task`.| 
     |`-1`|Forward reads, matched to their reverse partners|
     |`-2`|Reverse reads, matched to their forward partners|
     |`-o`|Output directory for all files|
-
-We don't explicitly set memory for this job, simply for the sake of keeping the command uncluttered. The default memory limit of `SPAdes` (250 GB) is much higher than the 10 GB we have allowed our job here. If the memory cap was violated then both slurm and `SPAdes` will terminate the assembly. We did specify the number of threads at the value of 12, which is specified by the special slurm variable `$SLURM_CPUS_PER_TASK`.
 
 It is a good idea to match your number of threads request in the slurm script with what you intend to use with `SPAdes` because your project usage is calculated based off what you request in your slurm scripts rather than what you actually use. Requesting many unused threads simply drives your project down the priority queue. By contrast, requesting fewer threads than you attempt to use in the program (i.e., request 10 in slurm, set thread count to 30 in `SPAdes`) will result in reduced performance, as your `SPAdes` job will divide up jobs as though it has 30 threads, but only 10 will be provided. This is discussed [in this blog post](https://www.codeguru.com/cpp/sample_chapter/article.php/c13533/Why-Too-Many-Threads-Hurts-Performance-and-What-to-do-About-It.htm).
 
@@ -273,22 +275,20 @@ You can view the status of your current jobs using the command
 !!! circle-check "Terminal output"
 
     ```
-    JOBID         USER     ACCOUNT   NAME        CPUS MIN_MEM PARTITI START_TIME     TIME_LEFT STATE    NODELIST(REASON)    
-    31491555      jboe440  nesi02659 spawner-jupy   2      4G infill  2022-11-23T1     7:44:17 RUNNING  wbl001              
-    31491999      jboe440  nesi02659 spades_assem  12     10G large   2022-11-23T1       30:00 PENDING  wbn069  
+		 JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+	   9996013     milan spades_a    drost PD       0:00      1 (Priority)
     ```
 
-We can see here that the job has not yet begun, as NeSI is waiting for resources to come available. At this stage the `START_TIME` is an estimation of when the resources are expected to become available. When they do, the output will change to
+We can see here that the job has not yet begun (status `ST` is `PD` = pending and run `TIME` is zero), as NeSI is waiting for resources to come available. When they do, the output will change to
 
 !!! circle-check "Terminal output"
 
     ```
-    JOBID         USER     ACCOUNT   NAME        CPUS MIN_MEM PARTITI START_TIME     TIME_LEFT STATE    NODELIST(REASON)    
-    31491555      jboe440  nesi02659 spawner-jupy   2      4G infill  2022-11-23T1     7:44:15 RUNNING  wbl001              
-    31491999      jboe440  nesi02659 spades_assem  12     10G large   2022-11-23T1       29:58 RUNNING  wbn069          
+		 JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+	   9996013     milan spades_a    drost  R       0:16      1 mc064
     ```
 
-Which allows us to track how far into our run we are, and see the remaining time for the job. The `START_TIME` column now reports the time the job actually began.
+Which allows us to track how far into our run we are.
 
 
 
