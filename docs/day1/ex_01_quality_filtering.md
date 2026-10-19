@@ -142,6 +142,12 @@ We will run `trimmomatic` via a dedicated "slurm" job submitted to NeSI as there
     nano trimming.sl
     ```
 
+??? tip "Creating text/script files in JupyterLab"
+
+    When interactively logged into a JupyterLab session, you can also create a new 
+    file from JupyterLab's file browser. Make sure that you are in the correct folder
+    and right-mouse-click anywhere in the file view, then select "New File" and a filename. Also change the file extension (default is ".txt") to ".sh" or ".sl" for (slurm) scripts. Double-click on the new file and edit it within JupyterLab.
+
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
 
 !!! terminal "code"

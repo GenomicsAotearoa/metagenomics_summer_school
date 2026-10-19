@@ -41,7 +41,7 @@ By contrast, what does `IDBA-UD` accept?
     ```bash
     # Load module
     module purge
-    module load IDBA-UD/1.1.3-GCC-11.3.0
+    module load IDBA-UD/1.1.3-gimkl-2018b
 
     # Check parameters
     idba_ud --help
@@ -189,8 +189,10 @@ Paste or type in the following:
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly
     
     # Run IDBA-UD
-    idba_ud --num_threads $SLURM_CPUS_PER_TASK --mink 33 --maxk 99 --step 22 \
-            -r for_idba.fna -o idbaud_assembly/
+    idba_ud --num_threads $SLURM_CPUS_PER_TASK \
+            --mink 33 --maxk 99 --step 22 \
+            --read for_idba.fna \
+            --out idbaud_assembly/
     ```
 
 !!! terminal-2 "Submit the script as a slurm job"
@@ -218,3 +220,19 @@ When your job starts running, files with suffixes `.err` and `.out` will be crea
 |**SPAdes** (unfiltered)|72.3 kbp|108 |
 |**IDBA-UD** (filtered)|103.9 kbp|82 |
 |**IDBA-UD** (unfiltered)|96.6 kbp|88 |
+
+---
+
+## Examining the effect of changing assembly parameters
+
+Make variants of your `IDBA-UD` assembly script and change some parameters. Some potential options include
+
+1. Change the minimum/maximum *k*-mer sizes, or the *k*-mer step size
+1. Change the alignment similarity parameter
+1. Adjust the prefix length for the *k*-mer sub-table 
+
+Submit two or three jobs per variation.
+
+!!! warning "Outputs per variant job"
+
+    For all variations of your assemblies, please remember to modify `--out` argument from `--out idbaud_assembly/` in your slurm scripts to another name (e.g. `--out idbaud_assembly_var_kmer/`)

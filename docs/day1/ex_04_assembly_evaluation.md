@@ -25,29 +25,35 @@ Check to see if your assembly jobs have completed. If you have multiple jobs run
 !!! circle-check "Terminal output"
 
     ```
-    JOBID         USER     ACCOUNT   NAME        CPUS MIN_MEM PARTITI START_TIME     TIME_LEFT STATE    NODELIST(REASON)    
-    39035482      jboe440  nesi02659 spawner-jupy   2      4G interac 2023-08-31T1     7:47:42 RUNNING  wbn004      
+         JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+      10014267     milan spades_a    drost  R      56:00      1 mc094
     ```
 
-If there are no jobs besides your Jupyter session listed, either everything running has completed or failed. To get a list of all jobs we have run in the last day, we can use the `sacct` command. By default this will report all jobs for the day but we can add a parameter to tell the command to report all jobs run since the date we are specifying.
+If there are no jobs listed, either everything running has completed or failed. To get a list of all jobs we have run in the last day, we can use the `sacct` command. By default this will report all jobs for the day but we can add a parameter to tell the command to report all jobs run since the date we are specifying.
 
 !!! terminal-2 "Check progress for jobs started on specific date"
 
     ```bash
-    sacct -S 2023-08-12
+    sacct -S 2026-10-16
     ```
 
 !!! circle-check "Terminal output"
 
     ```
-    JobID           JobName          Alloc     Elapsed     TotalCPU  ReqMem   MaxRSS State      
-    --------------- ---------------- ----- ----------- ------------ ------- -------- ---------- 
-    38483216        spawner-jupyter+     2    07:45:01     00:00:00      4G          NODE_FAIL  
-    38483216.batch  batch                2    07:45:01     00:00:00                  CANCELLED  
-    38483216.extern extern               2    07:45:01     00:00:00                  CANCELLED  
-    38485254        spades_assembly     12    00:14:38     01:56:40     10G          COMPLETED  
-    38485254.batch  batch               12    00:14:38     01:56:40         7227872K COMPLETED  
-    38485254.extern extern              12    00:14:38     00:00:00                0 COMPLETED
+    JobID           JobName  Partition    Account  AllocCPUS      State ExitCode 
+    ------------ ---------- ---------- ---------- ---------- ---------- -------- 
+    9996006      spades_as+      milan  nesi02659         24     FAILED    255:0 
+    9996006.bat+      batch             nesi02659         24     FAILED    255:0 
+    9996006.ext+     extern             nesi02659         24  COMPLETED      0:0 
+    9996013      spades_as+      milan  nesi02659         24    TIMEOUT      0:0 
+    9996013.bat+      batch             nesi02659         24  CANCELLED     0:15 
+    9996013.ext+     extern             nesi02659         24  COMPLETED      0:0 
+    9996014      spades_as+      milan  nesi02659         24 CANCELLED+      0:0 
+    9996014.bat+      batch             nesi02659         24  CANCELLED     0:15 
+    9996014.ext+     extern             nesi02659         24  COMPLETED      0:0 
+    10014267     spades_as+      milan  nesi02659         32    RUNNING      0:0 
+    10014267.ba+      batch             nesi02659         32    RUNNING      0:0 
+    10014267.ex+     extern             nesi02659         32    RUNNING      0:0 
     ```
 
 Each job has been broken up into several lines, but the main ones to keep an eye on are the base `JobID` values. 
@@ -61,24 +67,21 @@ We can see here the time elapsed for each job, and the number of CPU hours used 
 !!! terminal-2 "Check job resource use"
 
     ```bash
-    nn_seff 38485254
+    nn_seff 9996013
     ```
 
 !!! circle-check "Terminal output"
 
     ```
-    Cluster: mahuika
-    Job ID: 38485254
-    State: COMPLETED
-    Cores: 6
-    Tasks: 1
-    Nodes: 1
-    Job Wall-time:   48.8%  00:14:38 of 00:30:00 time limit
-    CPU Efficiency: 132.9%  01:56:40 of 01:27:48 core-walltime
-    Mem Efficiency:  68.9%  6.89 GB of 10.00 GB0
+    Job ID: 9996013
+    State: TIMEOUT
+    Cores: 12
+    Job Wall-time:        101%  00:30:12 of 00:30:00 time limit
+    Avg CPU Utilisation:   16%  00:59:33 of 06:02:24 core-walltime
+    Peak Mem Utilisation:  38%  3.75 GB of 10.00 GB
     ```
 
-Here we see some of the same information, but we also get some information regarding how well our job used the resources we allocated to it. You can see here that my CPU and memory usage was somewhat efficient but had high memory efficiency. In the future, I can request less time and retain the same RAM and still had the job run to completion.
+Here we see some of the same information, but we also get some information regarding how well our job used the resources we allocated to it. You can see here that my CPU and memory usage was inefficient yet the job ran out of time. In the future, I can request more time and fewer CPUs (cores). As the job did not finish I still don't know the typical memory requirement of this task.
 
 CPU efficiency is harder to interpret as it can be impacted by the behaviour of the program. For example, mapping tools like `bowtie` and `BBMap` can more or less use all of their threads, all of the time and achieve nearly 100% efficiency. More complicated processes, like those performed in `SPAdes` go through periods of multi-thread processing and periods of single-thread processing, drawing the average efficiency down.
 
