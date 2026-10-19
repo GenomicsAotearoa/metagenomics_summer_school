@@ -188,7 +188,7 @@ Save your script by pressing <kbd>Ctrl</kbd> + <kbd>o</kbd> then <kbd>Enter</kbd
 
 ??? tip "Monitoring job progress"
 
-    We can monitor our job progress using `squeue --me` or `sacct <job_id>`. This will be covered in more detail later in [monitoring job progress](./ex_02_assembling_contigs/#monitoring-job-progress)
+    We can monitor our job progress using `squeue --me` or `sacct <job_id>`. This will be covered in more detail later in [monitoring job progress](./ex_02_assembling_contigs.md#monitoring-job-progress)
     and [evaluate assemblies](./ex_04_assembly_evaluation.md#evaluating-the-resource-consumption-of-various-assemblies). 
 
 There is a lot going on in the `trimmomatic` command, so here is a breakdown of the parameters in the command above
@@ -338,7 +338,7 @@ A masked reference genome was created by the author of BBMap and is available vi
 ### Indexing the reference genome and read mapping with `BBMap`
 
 We will cover more about read mapping in [later exercises](
-/metagenomics_summer_school/day2/ex_06_binning_intro/#obtain-coverage-profiles-for-assembled-contigs-via-read-mapping). For now, it is important to know that it is first necessary to build an index of the reference using the read mapping tool of choice. Here, we will first build a `BBMap` index, and then use `BBMap` to map the reads to that index, ultimately retaining only those reads that do *not* map to the index.
+../day2/ex_06_binning_intro.md#obtain-coverage-profiles-for-assembled-contigs-via-read-mapping). For now, it is important to know that it is first necessary to build an index of the reference using the read mapping tool of choice. Here, we will first build a `BBMap` index, and then use `BBMap` to map the reads to that index, ultimately retaining only those reads that do *not* map to the index.
 
 Build index reference via `BBMap`. We will do this by submitting the job via slurm. 
 

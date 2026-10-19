@@ -8,33 +8,9 @@ All work for this exercise will occur in the `3.assembly/` directory.
 
 ---
 
-## The standard input files for `SPAdes` and `IDBA-UD`
+## The standard input files for `IDBA-UD`
 
-Although they both make use of the same types of data, both `SPAdes` and `IDBA-UD` have their own preferences for how sequence data is provided to them. To begin, we will look at the types of data accepted by `SPAdes`:
-
-!!! terminal-2 "Navigate to working directory"
-
-    ```bash
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly
-    ```
-
-!!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
-
-
-
-
-Awkwardly, while `SPAdes` accepts multiple input libraries (i.e. samples) in a single assembly, this behaviour does not work with the `-meta` flag enabled, which is needed in our example to activate metagenome assembly mode. We therefore need to concatenate our four individual samples together ready for sequencing.
-
-!!! terminal-2 "Concatenate samples by read direction"
-
-    ```bash
-    cat sample1_R1.fastq.gz sample2_R1.fastq.gz sample3_R1.fastq.gz sample4_R1.fastq.gz > for_spades_R1.fq.gz
-    cat sample1_R2.fastq.gz sample2_R2.fastq.gz sample3_R2.fastq.gz sample4_R2.fastq.gz > for_spades_R2.fq.gz
-    ```
-
-Note that these FASTQ files are compressed, yet we can concatenate them together with the `cat` command regardless. This is a nice feature of `.gz` files that is handy to remember.
-
-By contrast, what does `IDBA-UD` accept?
+Although they both make use of the same types of data, `IDBA-UD` has a different preference from `SPAdes` for how sequence data is provided. So what does `IDBA-UD` accept?
 
 !!! terminal-2 "Load `IDBA-UD` and check parameters"
 
@@ -109,7 +85,7 @@ Fortunately, the `IDBA` set of tools comes with some helper scripts to achieve j
 !!! terminal-2 "Decompress, interleave, and then concatenate sequence files"
 
     ```bash
-    module load pigz/2.7
+    module load pigz
 
     for i in sample1 sample2 sample3 sample4;
     do
@@ -138,7 +114,7 @@ Unlike `SPAdes`, we do not have fine-scale control over the *k*-mer sizes used i
 
 ### Specifying the number of threads
 
-This is simple in either assembler:
+This is simply:
 
 !!! terminal "code"
 
@@ -147,7 +123,7 @@ This is simple in either assembler:
     idba_ud --num_threads 20 ...
     ```
 
-The only thing to keep in mind is that these tools have different default behaviour. If no thread count is specified by the user, `SPAdes` will assemble with 16 threads. `IDBA-UD` will use all available threads, which can be problematic if you are using a shared compute environment that does not use a resource management system like slurm.
+If no thread count is specified by the user `IDBA-UD` will use all available threads, which can be problematic if you are using a shared compute environment that does not use a resource management system like slurm.
 
 ### Setting a memory limit
 
@@ -200,26 +176,6 @@ Paste or type in the following:
     ```bash
     sbatch idbaud_assembly.sl
     ```
-
-When your job starts running, files with suffixes `.err` and `.out` will be created in the directory from where you submitted your job. These files will have have your job name and job identification number as file names.
-
----
-
-!!! terminal "code"
-
-    ```bash
-    stats.sh in=spades_assembly/spades_assembly.fna
-
-    stats.sh in=idbaud_assembly/idbaud_assembly.m1000.fna
-    stats.sh in=idbaud_assembly/idbaud_assembly.fna
-    ```
-
-|Assembly|N50 (contig)|L50 (contig)|
-|:---|:---:|:---:|
-|**SPAdes** (filtered)|72.9 kbp|107 |
-|**SPAdes** (unfiltered)|72.3 kbp|108 |
-|**IDBA-UD** (filtered)|103.9 kbp|82 |
-|**IDBA-UD** (unfiltered)|96.6 kbp|88 |
 
 ---
 
