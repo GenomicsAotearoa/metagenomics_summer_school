@@ -196,7 +196,7 @@ Into this file, either write or copy/paste the following commands:
     #SBATCH --job-name      spades_assembly
     #SBATCH --partition     milan
     #SBATCH --time          00:30:00
-    #SBATCH --mem           10G
+    #SBATCH --mem           8G
     #SBATCH --cpus-per-task 12
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
@@ -211,6 +211,7 @@ Into this file, either write or copy/paste the following commands:
     # Run SPAdes
     spades.py --threads $SLURM_CPUS_PER_TASK \
               --memory $((SLURM_MEM_PER_NODE/1024)) \
+              --tmp-dir "$TMPDIR" \
               --meta -k 33,55,77,99,121 \
               -1 for_spades_R1.fq.gz \
               -2 for_spades_R2.fq.gz \

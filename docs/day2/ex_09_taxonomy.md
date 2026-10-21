@@ -51,13 +51,13 @@ Create a new script
     #SBATCH --partition     milan
     #SBATCH --time          01:00:00
     #SBATCH --mem           140GB
-    #SBATCH --cpus-per-task 24
+    #SBATCH --cpus-per-task 4
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
     
     # Load modules
     module purge
-    module load GTDB-Tk/2.4.0-foss-2023a-Python-3.11.6
+    module load GTDB-Tk/2.7.1-foss-2023a-Python-3.11.6
     
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.prokaryotic_taxonomy
@@ -65,7 +65,6 @@ Create a new script
     # Run GTDB-Tk
     gtdbtk classify_wf -x fna --cpus $SLURM_CPUS_PER_TASK \
                        --keep_intermediates \
-                       --skip_ani_screen \
                        --genome_dir dastool_bins/ \
                        --out_dir gtdbtk_out/
     ```
@@ -87,12 +86,13 @@ As usual, lets look at the parameters here
 |`--genome_dir`|Input directory containing MAGs as individual FASTA files|
 |`--out_dir`|Output directory to write the final set of files|
 
-Before submitting your job, think carefully about which set of MAGs you want to classify. You could either use the raw `DAS_Tool` outputs in the `../6.bin_refinement/dastool_out/_DASTool_bins/` folder, the renamed set of bins in the `../6.bin_refinement/example_data_unchopped/` folder (as we have here), the set of curated bins in the `filtered_bins/` folder, or your own set of refined bins. Whichever set you choose, make sure you select the correct input folder and extension setting as it may differ from the example here.
+
+Before submitting your job, think carefully about which set of MAGs you want to classify. You could either use the `DAS_Tool` output from `../5.binning/dastool_out/_DASTool_bins/` which we have copied to `8.prokaryotic_taxonomy/dastool_bins/` or your own set of bins. Whichever set you choose, make sure you select the correct input folder and extension setting as it may differ from the example here.
 
 When the task completes, you will have a number of output files provided. The main ones to look for are `gtdbtk.bac120.summary.tsv` and `gtdbtk.arch122.summary.tsv` which report the taxonomies for your MAGs, split at the domain level. These file are only written if MAGs that fall into the domain were found in your data set, so for this exercise we do not expect to see the `gtdbtk.arch122.summary.tsv` file.
 
 If you are interested in performing more detailed phylogenetic analysis of the data, the filtered multiple sequence alignment (MSA) for the data are provided in the `gtdbtk.bac120.msa.fasta` and `gtdbtk.arch122.msa.fasta` files.
 
-Have a look at your resulting taxonomy. The classification of your MAGs will be informative when addressing your research goal for this workshop.
+Have a look at your resulting taxonomy.
 
 ---

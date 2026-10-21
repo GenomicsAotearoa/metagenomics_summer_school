@@ -152,7 +152,7 @@ Paste or type in the following:
     #SBATCH --job-name      idbaud_assembly
     #SBATCH --partition     milan
     #SBATCH --time          00:20:00
-    #SBATCH --mem           4GB
+    #SBATCH --mem           6GB
     #SBATCH --cpus-per-task 12
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
