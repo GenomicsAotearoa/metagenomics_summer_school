@@ -46,14 +46,15 @@ Create a new script
     ```bash linenums="1"
     #!/bin/bash -e
     
-    #SBATCH --account       nesi02659
-    #SBATCH --job-name      gtdbtk
-    #SBATCH --partition     milan
-    #SBATCH --time          01:00:00
-    #SBATCH --mem           140GB
-    #SBATCH --cpus-per-task 4
-    #SBATCH --error         %x_%j.err
-    #SBATCH --output        %x_%j.out
+    #SBATCH --account           nesi02659
+    #SBATCH --job-name          gtdbtk
+    #SBATCH --partition         milan
+    #SBATCH --time              01:00:00
+    #SBATCH --mem               140GB
+    #SBATCH --cpus-per-task     2
+    #SBATCH --threads-per-core  2
+    #SBATCH --error             %x_%j.err
+    #SBATCH --output            %x_%j.out
     
     # Load modules
     module purge
