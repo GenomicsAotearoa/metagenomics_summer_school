@@ -78,6 +78,15 @@ Here we see some of the same information, but we also get some information regar
 
 CPU efficiency is harder to interpret as it can be impacted by the behaviour of the program. For example, mapping tools like `bowtie` and `BBMap` can more or less use all of their threads, all of the time and achieve nearly 100% efficiency. More complicated processes, like those performed in `SPAdes` go through periods of multi-thread processing and periods of single-thread processing, drawing the average efficiency down.
 
+!!! warning "Interpretation of `Peak Mem` and `MaxRSS`"
+
+    `nn_seff` reports the `MaxRSS` memory used. This is, however, not necessarily
+    all the memory a task requires: It does not include file caching and temporary
+    files stored in RAM ( `/tmp` and by default `$TMPDIR` reside in RAM). Cf.
+    [TMPDIR](https://docs.nesi.org.nz/Batch_Computing/Temporary_Directories/#tmpdir) and
+    [MaxRSS](https://docs.nesi.org.nz/Software/Profiling_and_Debugging/Finding_Job_Efficiency/#memory).
+    For example, `SPAdes` always needs several GB more than `MaxRSS`/`Peak Mem` is actually showing.
+
 ---
 
 ## Evaluating the assemblies using `BBMap`

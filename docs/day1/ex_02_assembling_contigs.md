@@ -196,10 +196,13 @@ Into this file, either write or copy/paste the following commands:
     #SBATCH --job-name      spades_assembly
     #SBATCH --partition     milan
     #SBATCH --time          00:30:00
-    #SBATCH --mem           8G
+    #SBATCH --mem           10G
     #SBATCH --cpus-per-task 12
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
+    
+    # Performance fix required for OnDemand (e.g. JupyterLab)
+    OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
     
     # Load modules
     module purge
@@ -244,6 +247,7 @@ The `module load` command needs to be invoked within your slurm script. It is al
     |Parameter|Description|
     |:---|:---|
     |`--threads`|Number of threads (see [above](#specifying-the-number-of-threads)). Here, we use a special slurm environment variable: `$SLURM_CPUS_PER_TASK` to tell the programme to use the same number of threads allocated for this job via `--cpus-per-task`.|
+    |`--tmp-dir`| Improve performance by using RAM for temporary files |
     |`--memory`|Memory limit (see [above](#setting-a-memory-limit)). Here, we use the special slurm environment variable `$SLURM_MEM_PER_NODE`. As this value is given in MB and `SPAdes` expects GB, we have to devide by 1024. | 
     |`--meta`|Activate metagenome assembly mode. Default is to assemble your metagenome using single genome assembly assumptions|
     |`-k`|*k*-mer sizes for assembly. These choices will provide the output we will use in the **Binning** session, but feel free to experiment with these to see if you can improve the assembly|
