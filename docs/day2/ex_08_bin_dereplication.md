@@ -220,7 +220,7 @@ Create a new script
     #SBATCH --job-name      CheckM
     #SBATCH --partition     milan
     #SBATCH --time          00:20:00
-    #SBATCH --mem           50GB
+    #SBATCH --mem           40GB
     #SBATCH --cpus-per-task 10
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
