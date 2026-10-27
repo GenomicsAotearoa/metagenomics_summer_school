@@ -155,8 +155,8 @@ This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we wan
     #SBATCH --job-name      maxbin_clustering
     #SBATCH --time          00:05:00
     #SBATCH --partition     milan
-    #SBATCH --mem           10GB
-    #SBATCH --cpus-per-task 10
+    #SBATCH --mem           4GB
+    #SBATCH --cpus-per-task 4
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
     

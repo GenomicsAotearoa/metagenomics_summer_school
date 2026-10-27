@@ -150,9 +150,6 @@ nav:
     - 'day3/ex_20_data_presentation_gene_synteny.md'
   - 'Resources':
     - 'resources/1_APPENDIX_ex16c_data_presentation_Ordination.md'
-    - 'resources/2_APPENDIX_ex9_Generating_input_files_for_VizBin.md'
-    - 'resources/3_APPENDIX_ex11_Normalise_coverage_example.md'
-    - 'resources/4_APPENDIX_ex11_viral_taxonomy_prediction_via_vContact2.md'
     - 'resources/taxonomic-classification.md'
     - 'resources/7_command_line_shortcuts.md'
   - 'Supplementary':

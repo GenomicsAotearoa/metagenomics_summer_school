@@ -2,8 +2,8 @@
 
 !!! info "Objectives"
 
-    * [Building a heatmap of MAG coverage per sample](#part-1---building-a-heatmap-of-mag-coverage-per-sample)
-    * [Building a heatmap of viral contigs per sample](#part-2---building-a-heatmap-of-viral-contigs-per-sample)
+    * [Building a heatmap of MAG coverage per sample](#part-1-building-a-heatmap-of-mag-coverage-per-sample)
+    * [Building a heatmap of viral contigs per sample](#part-2-building-a-heatmap-of-viral-contigs-per-sample)
 
 ---
 
@@ -11,7 +11,7 @@
 
 !!! quote ""
 
-    One of the first questions we often ask when studying the ecology of a system is: What are the pattens of abundance and distribution of taxa across the different samples? In the previous [coverage calculation](../day3/ex_12_gene_annotation_DRAM.md) exercises we generated per-sample coverage tables by mapping the quality-filtered unassembled reads back to the refined bins and the viral contigs to then generate coverage profiles for each. 
+    One of the first questions we often ask when studying the ecology of a system is: What are the pattens of abundance and distribution of taxa across the different samples? In the previous [coverage calculation](../day3/ex_16_bin_coverage_mapping.md) exercises we mapped the quality-filtered unassembled reads back to the refined bins and generated coverage profiles for each. 
 
     As a reminder:
 
@@ -23,15 +23,11 @@
 
     In addition to this, a simple mapping file has also been created (`11.data_presentation/coverage/mapping_file.txt`). This is a tab-delimited file listing each sample ID in the first column, and the sample "Group" in the second column (*Group_A*, *Group_B*, and *Group_C*). This grouping might represent, for example, three different sampling sites that we want to compare between. If you had other data (such as environmental measures, community diversity measures, etc.) that you wish to incorporate in other downstream analyses (such an fitting environmental variables to an ordination, or correlation analyses) you could also add new columns to this file and load them at the same time.
 
-!!! note "Note"
-
-    As discussed in the [coverage and taxonomy exercises](../day3/ex_09_taxonomy.md), it is usually necessary to normalise coverage values across samples based on equal sequencing depth. This isn't necessary with the mock metagenome data we're working with, but if you include this step in your own work you would read the **normalised** coverage tables into the steps outlined below.*
-
 ---
 
 ## Part 1 - Building a heatmap of MAG coverage per sample
 
-To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and make sure you are working within RStudio with the required packages installed (see the [data presentation intro](../day4/ex_17_data_presentation_intro.md) for more information).
+To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and make sure you are working within RStudio with the required packages installed (see the [data presentation intro](../day3/ex_17_data_presentation_intro.md) for more information).
 
 ### 1.1 Prepare environment
 

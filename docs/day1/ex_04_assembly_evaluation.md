@@ -80,8 +80,8 @@ CPU efficiency is harder to interpret as it can be impacted by the behaviour of 
 
 !!! warning "Interpretation of `Peak Mem` and `MaxRSS`"
 
-    `nn_seff` reports the `MaxRSS` memory used. This is, however, not necessarily
-    all the memory a task requires: It does not include file caching and temporary
+    `nn_seff` reports the `MaxRSS` memory used. This is, however, not all the
+    memory used by a task: It does not include file caching and temporary
     files stored in RAM ( `/tmp` and by default `$TMPDIR` reside in RAM). Cf.
     [TMPDIR](https://docs.nesi.org.nz/Batch_Computing/Temporary_Directories/#tmpdir) and
     [MaxRSS](https://docs.nesi.org.nz/Software/Profiling_and_Debugging/Finding_Job_Efficiency/#memory).
@@ -135,7 +135,7 @@ These steps will take place in the `4.evaluation/` folder, which contains copies
     === "`IDBA-UD`"
 
         ```
-        idbaud_assembly/idbaud_assembly.fna:5056
+        idbaud_assembly/idbaud_assembly.fna:5057
         idbaud_assembly/idbaud_assembly.m1000.fna:1996
         ```
 
@@ -230,4 +230,4 @@ But what we can highlight here is that the statistics for the `SPAdes` assembly,
 |**SPAdes** (filtered)|72.9 kbp|107 |
 |**SPAdes** (unfiltered)|72.3 kbp|108 |
 |**IDBA-UD** (filtered)|103.9 kbp|82 |
-|**IDBA-UD** (unfiltered)|96.6 kbp|88 |
+|**IDBA-UD** (unfiltered)|96.7 kbp|88 |

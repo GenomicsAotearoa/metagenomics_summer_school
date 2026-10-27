@@ -2,7 +2,7 @@
 
 !!! info "Objectives"
 
-    * [Become familiar with the standard input files for `SPAdes` ](#the-standard-input-files-for-spades-and-idba-ud)
+    * [Become familiar with the standard input files for `SPAdes` ](#the-standard-input-files-for-spades)
     * [Understand the basic parameters that should be modified when using this assembler](#basic-assembly-parameters)
     * [Prepare an assembly job to run under slurm](#preparing-an-assembly-job-for-slurm)
 

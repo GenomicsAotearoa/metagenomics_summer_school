@@ -12,7 +12,7 @@
 
 We do not want to create bins from overly short contigs as these have little biological meaning. Contigs below 1,000 bp tend to be too short for robust gene annotation and they can introduce a significant degree of noise in the clustering algorithms used for binning. We therefore filter out short contigs for binning.
 
-We have already done this in the [previous exercise](../day1/ex_04_assembly_evaluation.md) so we could either use the existing filtering at 1,000 bp in length, or move to something stricter. Most binning tools have a default cut-off for minimum contig size - `MetaBAT` uses a default minimum of 2,500 bp, and recommends at least 1,500 bp. By contrast, `MaxBin` sets the minimum length at 1,000 bp.
+We have already done this in the [previous exercise](../day1/ex_04_assembly_evaluation.md) so we could either use the existing filtering at 1,000 bp in length, or move to something stricter. Most binning tools have a default cut-off for minimum contig size - `MetaBAT` uses a default minimum of 2,500 bp and recommends at least 1,500 bp, `MaxBin` sets the minimum length at 1,000 bp, and `MetaDecoder` has a default minimum of 2,500 bp and requires a minimum length of at least 2,000 bp.
 
 ---
 
