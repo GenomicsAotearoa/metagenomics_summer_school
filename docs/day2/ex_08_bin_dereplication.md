@@ -221,7 +221,7 @@ Create a new script
     #SBATCH --partition     milan
     #SBATCH --time          00:20:00
     #SBATCH --mem           40GB
-    #SBATCH --cpus-per-task 10
+    #SBATCH --cpus-per-task 8
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
     

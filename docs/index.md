@@ -65,14 +65,6 @@
 <br>
 
 
-!!! example "Appendices"
-
-    |Appendix ID                                         |                        | 
-    |:---------------------------------------------------|:---------------------------------------|
-    |[Appendix 1](#){ .md-button    } | [Text](./resources/file.md) |
-
-<br>
-
 !!! comment-dots "Post-workshop survey"
     
     Thank you for attending Metagenomics Summer School 2026! We would like your feedback on how we have done and what we can improve on. You can provide feedback [here ADD LINK]().

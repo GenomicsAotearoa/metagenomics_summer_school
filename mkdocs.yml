@@ -149,7 +149,6 @@ nav:
     - 'day3/ex_19_data_presentation_KEGG_pathways.md'
     - 'day3/ex_20_data_presentation_gene_synteny.md'
   - 'Resources':
-    - 'resources/1_APPENDIX_ex16c_data_presentation_Ordination.md'
     - 'resources/taxonomic-classification.md'
     - 'resources/7_command_line_shortcuts.md'
   - 'Supplementary':

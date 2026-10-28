@@ -2,8 +2,7 @@
 
 !!! info "Objectives"
 
-    * [Building a heatmap of MAG coverage per sample](#part-1-building-a-heatmap-of-mag-coverage-per-sample)
-    * [Building a heatmap of viral contigs per sample](#part-2-building-a-heatmap-of-viral-contigs-per-sample)
+    * [Building a heatmap of MAG coverage per sample](#building-a-heatmap-of-mag-coverage-per-sample)
 
 ---
 
@@ -25,11 +24,11 @@
 
 ---
 
-## Part 1 - Building a heatmap of MAG coverage per sample
+## Building a heatmap of MAG coverage per sample
 
 To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and make sure you are working within RStudio with the required packages installed (see the [data presentation intro](../day3/ex_17_data_presentation_intro.md) for more information).
 
-### 1.1 Prepare environment
+### 1. Prepare environment
 
 First, set the working directory and load the required libraries.
 
@@ -70,9 +69,9 @@ Import all relevant data as follows:
     metadata <- read_tsv("mapping_file.txt") # Metadata/mapping file of environmental parameters
     ```
 
-### 1.2 Wrangle data
+### 2. Wrangle data
 
-After importing the data tables, we need to subset the tables to only relevant columns. As noted during the [coverage](../day3/ex_12_gene_annotation_DRAM.md) exercises, it is important to remember that we currently have a table of coverage values for all *contigs* contained within each MAG. Since we're aiming to present coverage for each *MAG*, we need to reduce these contig coverages into a single mean coverage value per MAG per sample.
+After importing the data tables, we need to subset the tables to only relevant columns. As noted during the [coverage](../day2/ex_12_gene_annotation_DRAM.md) exercises, it is important to remember that we currently have a table of coverage values for all *contigs* contained within each MAG. Since we're aiming to present coverage for each *MAG*, we need to reduce these contig coverages into a single mean coverage value per MAG per sample.
 
 In the following code, we first `select()` columns of interest (i.e. the contig ID and sample coverages). We then remove the `.bam` suffix using the `rename_with()` function. Given that we require mean coverages per MAG, we create a column of MAG/bin IDs (via `mutate`) by extracting the relevant text from the contig ID using `str_replace()`. Finally, we group the data by the bin ID (via `group_by()`) then use a combination of `summarise()` and `across()` to obtain a mean of coverage values per bin per sample. Here, `summarise()` calculates the `mean` based on grouping variables set by `group_by()`, and this is done `across()` columns that have the column header/name which `contains("sample")`.
 
@@ -194,7 +193,7 @@ Very often, coverage data generated using metagenomic methods can be sparse and/
     MAG_cov_log2 <- log2(MAG_cov + 1)
     ```
 
-### 1.3 Order the heatmap
+### 3. Order the heatmap
 
 We then need to prepare some form of ordering for our heatmap. This is usually presented in the form of a dendrogram based on results from hierarchical clustering. To do this, we first need to generate two dissimilarity/distance matrices based on transformed coverage values:
 
@@ -249,7 +248,7 @@ Here, we calculate [Bray-Curtis dissimilarity](https://en.wikipedia.org/wiki/Bra
     dev.off()
     ```
 
-### 1.4 Set colour palettes
+### 4. Set colour palettes
 
 The penultimate step before building our heatmap is to set the colours that will be used to represent annotations and the cell/tile values. In this case, annotations are sample groups as designated in the metadata (a.k.a. mapping) file and MAG taxonomy. In the code below, we will set 3 palettes:
 
@@ -319,7 +318,7 @@ The penultimate step before building our heatmap is to set the colours that will
     cell_colour <- colorRampPalette(c("white", "black"), space = "Lab")(2^8)
     ```
 
-### 1.5 Build heatmap
+### 5. Build heatmap
 
 !!! r-project "code"
 
@@ -382,191 +381,4 @@ Here, we arrange our columns based Bray-Curtis dissimilarities between samples. 
 
     As observed in the above plot, the positioning and arrangement of the colour key and legends relative to the main heatmap may not be ideal. Often times, it is desirable to manually arrange or resize elements of a figure (legends, keys, text). This is usually done by exporting the figure in a format capable of preseving vectors (e.g. SVG or PDF) and then post-processing them in vector graphics software such as Adobe Illustrator or Inkscape.
 
----
 
-## Part 2 - Building a heatmap of viral contigs per sample
-
-We can run through the same process for the viral contigs. Many of the steps are as outlined above, so we will work through these a bit quicker and with less commentary along the way. However, we will highlight a handful of differences compared to the commands for the MAGs above, for example:  steps for selecting and/or formatting the taxonomy; importing the quality output from `CheckV`; and the (optional) addition of filtering out low quality contigs.
-
-### 2.1 Prepare environment
-
-This has already been done above. We will immediately begin wrangling the data.
-
-### 2.2 Wrangle data
-
-To start, we need to identify viral contigs of at least medium quality. THis will be used as a filtering vector.
-
-!!! r-project "code"
-
-    ```R linenums="1"
-    ## 1. Clean up viral taxonomy annotation quality ----
-    virus_quality <- checkv_summary %>%
-      mutate(
-        checkv_quality = factor(
-          checkv_quality,
-          levels = c(
-            "Not-determined",
-            "Low-quality",
-            "Medium-quality",
-            "High-quality",
-            "Complete"
-          ))
-      ) %>%
-      select(contig_id, checkv_quality)
-
-    ## Subset good quality predictions
-    virus_hq <- virus_quality %>%
-      filter(!(checkv_quality %in% c("Not-determined", "Low-quality"))) %>%
-      pull(contig_id)
-
-    virus_taxonomy_hq <- vContact2_out %>%
-      filter(Genome %in% virus_hq) %>%
-      mutate(
-        Order_VC_predicted = as.factor(Order_VC_predicted)
-      )
-    ```
-
-We then obtain the coverage matrix and transform the values to enhance visualisation.
-
-!!! r-project "code"
-
-    ```R linenums="1"
-    ## 2. Obtain viral contig coverage matrix ----
-    ## Unlike MAGs, we do not need to average coverage values.
-    ## However, we do need to filter out annotations of lesser quality.
-    ## We find 15 contigs that needs to be kept
-    virus_cov_matrix <- virus_cov %>%
-      select(contigName, ends_with(".bam")) %>%
-      rename_with(
-        .fn = function(name) str_remove(name, ".bam"),
-        .cols = everything()
-      ) %>%
-      filter(contigName %in% virus_hq) %>%
-      column_to_rownames("contigName") %>%
-      as.matrix()
-
-    ## 3. Log2 transform coverage matrix ----
-    virus_cov_matrix_log2 <- log2(virus_cov_matrix + 1)
-    ```
-
-### 2.3 Order the heatmap
-
-!!! r-project "code"
-
-    ```R linenums="1"
-    # Perform hierarchical clustering (viral contigs) ----
-    ## Dissimilarities between samples
-    virus_sample_dist <- vegdist(t(virus_cov_matrix_log2))
-    virus_sample_hclust <- hclust(virus_sample_dist, "average")
-
-    plot(
-      virus_sample_hclust,
-      main = "Bray-Curtis dissimilarities between samples\n(virus)",
-      xlab = "Sample",
-      ylab = "Height",
-      sub = "Method: average linkage",
-      hang = -1
-    )
-
-    ## Dissimilarities between viruses
-    virus_dist <- vegdist(virus_cov_matrix_log2)
-    virus_hclust <- hclust(virus_dist, "average")
-
-    plot(
-      virus_hclust,
-      main = "Bray-Curtis dissimilarities between viruses",
-      xlab = "Viral contigs",
-      ylab = "Height",
-      sub = "Method: average linkage",
-      hang = -1,
-      cex = 0.75
-    )
-    ```
-
-![image](../figures/day4_coverage.05.cov_hmp.hclust.vir_sample.png)
-![image](../figures/day4_coverage.06.cov_hmp.hclust.vir.png)
-
-### 2.4 Set colour palettes
-
-For colours based on sample group, we will retain the colours set as above. Here, we will only set a new palette (Tableau 10) for viruses based on the predicted taxonomy.
-
-!!! r-project "code"
-
-    ```R linenums="1"
-    # Prepare grouping variables and colour palettes ----
-    # Check palette colours
-    scales::show_col(
-      palette.colors(
-        palette = "Tableau 10"
-      )
-    )
-    ```
-
-<center>
-![image](../figures/day4_coverage.07.show_col.Tableau10.png)
-</center>
-
-!!! r-project "code"
-
-    ```R linenums="1"
-    ## Set colours for viral orders
-    virus_order_colour <- data.frame(
-      "virus_order" = levels(virus_taxonomy_hq$Order_VC_predicted),
-      "colour" = palette.colors(
-        n = length(levels(virus_taxonomy_hq$Order_VC_predicted)),
-        palette = "Tableau 10"
-      )
-    )
-    
-    ## Set colours for viruses
-    virus_colour <- virus_taxonomy_hq %>%
-      select(Genome, Order_VC_predicted) %>%
-      left_join(virus_order_colour, by = c("Order_VC_predicted" = "virus_order"))
-    ```
-
-### 2.5 Build heatmap
-
-!!! r-project "code"
-
-    ```R linenums="1"
-    heatmap.2(
-      x = virus_cov_matrix_log2,
-      Colv = as.dendrogram(virus_sample_hclust),
-      Rowv = as.dendrogram(virus_hclust),
-      margins = c(30, 20),
-      RowSideColors = virus_colour$colour,
-      ColSideColors = sample_colour$colour,
-      scale = "none",
-      col = cell_colour,
-      trace = "none",
-      keysize = 1,
-      density.info = "none"
-    )
-    ## Legends
-    legend(
-      x = "bottomleft",
-      legend = virus_order_colour$virus_order,
-      col = virus_order_colour$colour,
-      lty = 1,
-      lwd = 6,
-      ncol = 1,
-      bty = "n",
-      title = "Y-axis key: Virus taxonomy"
-    )
-    legend(
-      x = "bottomright",
-      legend = group_colour$Group,
-      col = group_colour$colour,
-      lty = 1,
-      lwd = 6,
-      ncol = 1,
-      bty = "n",
-      title = "X-axis key: Sample group"
-    )
-    ```
-
-<center>
-![image](../figures/day4_coverage.08.heatmap.vir.png)
-</center>
-
----
