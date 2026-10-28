@@ -278,9 +278,9 @@ When your job completes, we will download the summary file and examine it.
         #SBATCH --account       nesi02659
         #SBATCH --job-name      CheckM2
         #SBATCH --partition     milan
-        #SBATCH --time          00:20:00
-        #SBATCH --mem           50GB
-        #SBATCH --cpus-per-task 10
+        #SBATCH --time          00:10:00
+        #SBATCH --mem           10GB
+        #SBATCH --cpus-per-task 8
         #SBATCH --error         %x_%j.err
         #SBATCH --output        %x_%j.out
 
