@@ -1,0 +1,44 @@
+LABELS
+#In colored strip datasets, each ID is associated to a color box/strip and can have an optional label. Color can be specified in hexadecimal, RGB or RGBA notation. When using RGB or RGBA notation, you cannot use COMMA as the dataset separator
+
+#lines starting with a hash are comments and ignored during parsing
+
+#=================================================================#
+#                    MANDATORY SETTINGS                           #
+#=================================================================#
+#select the separator which is used to delimit the data below (TAB,SPACE or COMMA).This separator must be used throughout this file (except in the SEPARATOR line, which uses space).
+
+SEPARATOR TAB
+#SEPARATOR COMMA
+#SEPARATOR SPACE
+
+#label is used in the legend table (can be changed later)
+
+DATASET_LABEL	Collection date
+
+#dataset color (can be changed later)
+COLOR	#000000
+
+
+#=================================================================#
+#       Actual data follows after the "DATA" keyword              #
+#=================================================================#
+DATA
+
+bin_0	Arcobacter nitrofigilis
+bin_1	Nautilia profundicola
+bin_2	Prochlorococcus sp.
+bin_3	Kuenenia stuttgartiensis A
+bin_4	Desulfovibrio desulfuricans
+bin_5	Nitrosomonas europaea
+bin_6	Staphylococcus aureus
+bin_7	Pseudomonas aeruginosa
+bin_8	Vibrio cholerae
+bin_9	Nitrobacter winogradskyi
+
+#Examples:
+#assign a red colored strip to leaf 9606, with label 'Human' (label is displayed in the mouseover popups)
+#9606 #ff0000 Human
+
+#assign a green, semi-transparent (alpha 0.5) strip to an internal node, without any label. If 'Show internal values' is set to 'No', this will only be displayed if the node is collapsed.
+#9606|5664 rgba(0,255,0,0.5)

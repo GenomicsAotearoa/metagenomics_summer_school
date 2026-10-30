@@ -1,0 +1,91 @@
+DATASET_BINARY						
+#In colored strip datasets, each ID is associated to a color box/strip and can have an optional label. Color can be specified in hexadecimal, RGB or RGBA notation. When using RGB or RGBA notation, you cannot use COMMA as the dataset separator"""						
+						
+#lines starting with a hash are comments and ignored during parsing						
+						
+#=================================================================#						
+#                    MANDATORY SETTINGS                           #						
+#=================================================================#						
+#select the separator which is used to delimit the data below (TAB,SPACE or COMMA).This separator must be used throughout this file (except in the SEPARATOR line, which uses space)."""						
+						
+SEPARATOR TAB						
+#SEPARATOR COMMA						
+#SEPARATOR SPACE						
+						
+#label is used in the legend table (can be changed later)						
+						
+DATASET_LABEL	Possible risks					
+						
+#field labels						
+FIELD_LABELS	Healthcare associated infections	Intestinal infection
+						
+#dataset color (can be changed later)						
+COLOR	#ff0000					
+						
+#=================================================================#						
+#                    OPTIONAL SETTINGS                            #						
+#=================================================================#						
+						
+#If COLOR_BRANCHES is set to 1, branches of the tree will be colored according to the colors of the strips above the leaves."""						
+#When all children of a node have the same color, it will be colored the same, ie. the color will propagate inwards towards the root."""						
+COLOR_BRANCHES	0					
+						
+#each dataset can have a legend, which is defined below"""						
+#for each row in the legend, there should be one shape, color and label"""						
+#shape should be a number between 1 and 5:						
+#1: square						
+#2: circle						
+#3: star						
+#4: right pointing triangle						
+#5: left pointing triangle						
+						
+#An example dataset with 4 columns (circle, left triangle, right triangle and rectangle):"""						
+FIELD_SHAPES	1	2
+FIELD_LABELS	Healthcare associated infections	Intestinal infection
+FIELD_COLORS	#3690c0	#ffd92f
+						
+LEGEND_TITLE	Possible risks						
+LEGEND_SHAPES	1	2
+LEGEND_COLORS	#3690c0	#ffd92f
+LEGEND_LABELS	Healthcare associated infections	Intestinal infection
+						
+#SHOW_LABELS	Healthcare associated infections	Intestinal infection
+						
+#=================================================================#						
+#     all other optional settings can be set or changed later     #						
+#           in the web interface (under 'Datasets' tab)           #						
+#=================================================================#						
+						
+#width of the colored strip						
+#STRIP_WIDTH 25						
+						
+#left margin, used to increase/decrease the spacing to the next dataset. Can be negative, causing datasets to overlap."""						
+#MARGIN 0						
+						
+#border width; if set above 0, a border of specified width (in pixels) will be drawn around the color strip"""						
+#BORDER_WIDTH 0						
+						
+#border color; used when BORDER_WIDTH is above 0						
+#BORDER_COLOR #0000ff						
+						
+#always show internal values; if set, values associated to internal nodes will be displayed even if these nodes are not collapsed. It could cause overlapping in the dataset display."""						
+#SHOW_INTERNAL 0						
+						
+						
+#Internal tree nodes can be specified using IDs directly, or using the 'last common ancestor' method described in iTOL help pages"""						
+						
+#=================================================================#						
+#       Actual data follows after the """"DATA"""" keyword              #						
+#=================================================================#						
+DATA
+
+bin_0	-1	-1
+bin_1	-1	-1
+bin_2	-1	-1
+bin_3	-1	-1
+bin_4	-1	-1
+bin_5	-1	-1
+bin_6	1	-1
+bin_7	1	-1
+bin_8	-1	1
+bin_9	-1	-1				
