@@ -23,7 +23,7 @@ There are many software tools to predict gene sequences and in this workshop we 
     1. Quick and unsupervised execution, with minimal resource requirements
     1. Ability to handle gaps, scaffolds, and partial genes 
     1. Identification of translation initiation sites 
-    1. Multiple output formats, including either straight *fastA* files or the DNA sequence and protein translation for genes, as well as detailed summary statistics for each gene (e.g. contig length, gene length, GC content, GC skew, RBS motifs used, and start and stop codon usage)
+    1. Multiple output formats, including either straight *FASTA* files or the DNA sequence and protein translation for genes, as well as detailed summary statistics for each gene (e.g. contig length, gene length, GC content, GC skew, RBS motifs used, and start and stop codon usage)
 
 `prodigal` is not the best tool to use for the following cases:
 
@@ -168,11 +168,11 @@ Once `prodigal` has completed, let's check one of the output files:
 !!! circle-check "Terminal output"
 
     ```
-    >bin_0_NODE_6_length_607162_cov_1.000759_1 # 2 # 667 # -1 # ID=1_1;partial=10;start_type=ATG;rbs_motif=AGGAG;rbs_spacer=5-10bp;gc_cont=0.321
-    MIKSNGILFTGKKFVMGAVVSALLATSGIAADYTLKFSHVVSPNTPKGKAADFFAKRLEE
-    LSGGKIDVQVYPSSQLYNDSAVLKALRLDSVQMAAPSFSKFGKIVPQLALFNLPFLFKDI
-    DQLHRVQDGPVGEKLKSLVTAKGFVALNFWDNGFKQLSSSKEPLLMPKDAEGQKFRIMSS
-    KVLEAQFKAVGANPQMMPFSEVYSGLQQGVIDAAENPFSNIY
+    >NODE_6_length_504202_cov_0.997738_1 # 3 # 4040 # 1 # ID=1_1;partial=10;start_type=Edge;rbs_motif=None;rbs_spacer=None;gc_cont=0.324
+    DGTITYTPDANYNGKDTITVTTKDDDGATVTKTSAITVTSDDLVLQPTADIIDSSDTGVS
+    NNDNITSDNTPTIRGVTENGAIVTITDKDGNVVGSTIADENGNYSITTSELPDGTQDLKI
+    TATDKAGNSGTETQTITVDTAASDTDKLEITDIVDANGDYSYVTMKGTGAEAGNTISIYD
+    EDGIKVATTTVQEDGTWSADISNFAGTPVNDNEFFKATETDLAGNETAQTDSTHYWHGDF
     ```
 
 There are a few thing to unpack here. First lets look at the first line (the header) of the FASTA file:
@@ -180,18 +180,18 @@ There are a few thing to unpack here. First lets look at the first line (the hea
 !!! terminal-2 "Sequence header"
 
     ```
-    >bin_0_NODE_6_length_607162_cov_1.000759_1 # 2 # 667 # -1 # ID=1_1;partial=10;start_type=ATG;rbs_motif=AGGAG;rbs_spacer=5-10bp;gc_cont=0.321
-    |                                        |   |   |     |    |      |
-    A                                        B   C   D     E    F      G
+    >NODE_6_length_504202_cov_0.997738_1 # 3 # 4040 # 1 # ID=1_1;partial=10;start_type=Edge;rbs_motif=None;rbs_spacer=None;gc_cont=0.324
+    |                                  |   |   |      |   |      |
+    A                                  B   C   D      E   F      G
     ```
 
 | Section | Example text | Description |
 | :--- | :--- | :--- |
-| A | `>bin_0_NODE_6_length_607162_cov_1.000759` | Contig ID |
+| A | `>NODE_6_length_504202_cov_0.997738` | Contig ID |
 | B | `_1` | Gene suffix for the contig |
-| C | `2` | Start position relative to contig |
-| D | `667` | Stop position relative to contig |
-| E | `-1` | Orientation |
+| C | `3` | Start position relative to contig |
+| D | `4040` | Stop position relative to contig |
+| E | `1` | Orientation |
 | F | `ID=1_1` | Unique gene ID |
 | G | `partial=10` | Completeness of gene boundaries (0 = complete; 1 = partial) |
 
@@ -266,7 +266,7 @@ To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits 
     #SBATCH --partition     milan
     #SBATCH --time          00:05:00
     #SBATCH --mem           1GB
-    #SBATCH --cpus-per-task 4
+    #SBATCH --cpus-per-task 2
     #SBATCH --array         0-9
     #SBATCH --error         %x_%A_%a.err
     #SBATCH --output        %x_%A_%a.out
@@ -287,8 +287,9 @@ To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits 
     
     # Run Metaxa2
     for ribosome_type in ssu lsu; do
-      metaxa2 --cpu $SLURM_CPUS_PER_TASK -g ${ribosome_type} --mode genome \
-              -i ${bin_file} -o ribosomes/${pred_file}.${ribosome_type}
+      metaxa2 --cpu $SLURM_CPUS_PER_TASK --mode genome \
+              -g ${ribosome_type} -i ${bin_file} \
+              -o ribosomes/${pred_file}.${ribosome_type}
     done
     ```
 
