@@ -111,9 +111,9 @@ To run this exercise we first need to set up a slurm job. We will use the result
     #SBATCH --account       nesi02659
     #SBATCH --job-name      annotate_DRAM
     #SBATCH --partition     milan
-    #SBATCH --time          5:00:00
-    #SBATCH --mem           30Gb
-    #SBATCH --cpus-per-task 24
+    #SBATCH --time          4:00:00
+    #SBATCH --mem           16Gb
+    #SBATCH --cpus-per-task 4
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
 
@@ -125,10 +125,11 @@ To run this exercise we first need to set up a slurm job. We will use the result
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
 
     # Run DRAM
-    DRAM.py annotate -i 'dastool_bins/*.fna' \
+    DRAM.py annotate --threads $SLURM_CPUS_PER_TASK \
+                     --input_fasta 'dastool_bins/*.fna' \
                      --checkm_quality DRAM_input_files/checkm.txt \
                      --gtdb_taxonomy DRAM_input_files/gtdbtk.bac120.summary.tsv \
-                     -o dram_annotations --threads $SLURM_CPUS_PER_TASK
+                     --output_dir dram_annotations
     ```
 
 !!! terminal-2 "Submit the job"
@@ -137,7 +138,7 @@ To run this exercise we first need to set up a slurm job. We will use the result
     sbatch annotate_dram.sl
     ```
 
-The program will take 4-4.5 hours to run, so we will submit the jobs and inspect the results tomorrow morning.
+The program will take 2-3 hours to run, so we will submit the jobs and inspect the results tomorrow morning.
 
 ---
 
