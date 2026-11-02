@@ -12,7 +12,7 @@ In this exercise, we will generate KEGG a pathways map from genome annotations t
 
 The key package used here is [pathview](https://academic.oup.com/bioinformatics/article/29/14/1830/232698), available from `Bioconductor` (for installation on your local version of `RStudio`, see the previous [intro to data presentation](../day3/ex_17_data_presentation_intro.md) section). `pathview` is mainly used in transcriptomic analyses but can be adapted for any downstream analyses that utilise the KEGG database. For this exercise, we are interested in visualising the prevalence of genes that we have annotated in a pathway of interest.
 
-To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and open `RStudio`.
+To get started, if you're not already, log back in to [OnDemand](https://ondemand.nesi.org.nz/public) and open `RStudio`.
 
 ### 1. Prepare environment
 
@@ -48,13 +48,13 @@ For this exercise, we will use KEGG Orthologies generated via `DRAM`. We'll star
 !!! r-project "code"
 
     ```R linenums="1"
-    dram <- read_tsv("dram_annotations.tsv")
+    dram = read_tsv("dram_annotations.tsv")
 
-    KEGG_annotations <- dram %>%
-      # Subset relevant data
-      select(fasta, scaffold, gene_position, ko_id) %>%
-      # Create a gene_id that matches what is in the bin FASTA files
-      mutate(gene_id = paste0(scaffold, "_", gene_position))
+    KEGG_annotations = dram |>
+        # Subset relevant data
+        select(fasta, scaffold, gene_position, ko_id) |>
+        # Create a gene_id that matches what is in the bin FASTA files
+        mutate(gene_id = paste0(scaffold, "_", gene_position))
     ```
 
 ### 3. Summarise KO per bin
@@ -68,12 +68,12 @@ Here, we are interested in the available KO in each bin. Thus, we can summarise 
 !!! r-project "code"
 
     ```R linenums="1"
-    KO_bins <- KEGG_annotations %>%
-      # Tally by bin (as column fasta) and KO
-      group_by(fasta, ko_id) %>%
-      tally(name = "hits") %>%
-      # Remove rows without valid annotations
-      drop_na()
+    KO_bins = KEGG_annotations |>
+        # Tally by bin (as column fasta) and KO
+        group_by(fasta, ko_id) |>
+        tally(name = "hits") |>
+        # Remove rows without valid annotations
+        drop_na()
     ```
 
 ### 4. Identify pathway maps of interest
@@ -99,7 +99,7 @@ Before moving on, we must first identify the pathway map ID of our pathway of in
 
     ```r
     # We find the map ID is 00020 and assign it to an object.
-    tca_map_id <- "00020"
+    tca_map_id = "00020"
     ```
 
 ### 5. Reshaping the data for input into pathview
@@ -109,15 +109,15 @@ Before moving on, we must first identify the pathway map ID of our pathway of in
 !!! r-project "code"
 
     ```R linenums="1"
-    KO_matrix <- KO_bins %>%
-      # Create a wide format table
-      pivot_wider(names_from = "fasta", 
+    KO_matrix = KO_bins |>
+        # Create a wide format table
+        pivot_wider(names_from = "fasta", 
                   values_from = "hits", 
-                  values_fill = NA) %>%
-      # KO numbers become our rownames
-      column_to_rownames("ko_id") %>%
-      # Coercion to matrix
-      as.matrix()
+                  values_fill = NA) |>
+        # KO numbers become our rownames
+        column_to_rownames("ko_id") |>
+        # Coercion to matrix
+        as.matrix()
     ```
 
 If you click on `KO_matrix` in the Environment pane, you can see that it is now a matrix of counts per KO per bin. Bins that do not possess a particular KO number is given NA. Do not worry about that as `pathview` can deal with that.
@@ -129,11 +129,11 @@ Now we can generate images of the KEGG pathway maps using the matrix we just mad
 !!! r-project "code"
 
     ```R linenums="1"
-    pv_bin_0 <- pathview(
-      gene.data = KO_matrix[, "bin_0"],
-      pathway.id = tca_map_id,
-      species = "ko",
-      out.suffix = "pv_bin_0"
+    pv_bin_0 = pathview(
+        gene.data = KO_matrix[, "bin_0"],
+        pathway.id = tca_map_id,
+        species = "ko",
+        out.suffix = "pv_bin_0"
     )
     ```
 
@@ -141,9 +141,7 @@ There is no plot output for this command as it automatically writes the results 
 
 Lets take a look at our first output.
 
-<center>
-![image](../figures/day4_keggmap.ko00020.pv_bin_0.png)
-</center>
+![image](../figures/day3_keggmap.ko00020.pv_bin_0.png){.center}
 
 Boxes highlighted in red means that our MAG has this gene. However, the colour scale is a little strange seeing as there cannot be negative gene annotation hits (its either NA or larger than 0). Also, we know that there are definitely bins with more than 1 of some KO, but the colour highlights do not show that. Lets tweak the code further and perhaps pick better colours. For the latter, we will use the `viridis` colour package that is good for showing a gradient.
 
@@ -151,81 +149,79 @@ Boxes highlighted in red means that our MAG has this gene. However, the colour s
 
     ```R linenums="1"
     # Set colours
-    path_colours <- viridis(n = 3, begin = 0.65, end = 1, direction = 1)
+    path_colours = viridis(n = 3, begin = 0.65, end = 1, direction = 1)
 
     # For more information on the viridis package: 
     # vignette("intro-to-viridis")
 
     # Plot pathway
-    pv_bin_0.2 <- pathview(
-      gene.data = KO_matrix[, "bin_0"],
-      pathway.id = tca_map_id,
-      species = "ko",
-      # Lets make an arbitrary assumption that 5 copies is a lot
-      limit = list(
+    pv_bin_0.2 = pathview(
+        gene.data = KO_matrix[, "bin_0"],
+        pathway.id = tca_map_id,
+        species = "ko",
+        # Lets make an arbitrary assumption that 5 copies is a lot
+        limit = list(
         gene = c(1, 5),
         cpd = c(1, 5)
-      ),
-      bins = list(
+        ),
+        bins = list(
         gene = 4,
         cpd = 4
-      ),
-      # We are plotting number of hits, so specify TRUE for this
-      # If plotting, say, gene/transcript abundance, set this to FALSE
-      discrete = list(
+        ),
+        # We are plotting number of hits, so specify TRUE for this
+        # If plotting, say, gene/transcript abundance, set this to FALSE
+        discrete = list(
         gene = TRUE,
         cpd = TRUE
-      ),
-      # Tally colours
-      low = path_colours[1],
-      mid = path_colours[2],
-      high = path_colours[3],
-      out.suffix = "pv_bin_0.2"
+        ),
+        # Tally colours
+        low = path_colours[1],
+        mid = path_colours[2],
+        high = path_colours[3],
+        out.suffix = "pv_bin_0.2"
     )
     ```
 
-<center>
-![image](../figures/day4_keggmap.ko00020.pv_bin_0.2.png)
-</center>
+![image](../figures/day3_keggmap.ko00020.pv_bin_0.2.png){.center}
 
 This plot looks much better. We can see that some genes do have more hits than others. Now, lets propagate this using `map(...)` based on our bin IDs.
 
 !!! r-project "code"
 
     ```R linenums="1"
-    bin_ids <- colnames(KO_matrix)
+    bin_ids = colnames(KO_matrix)
 
-    pv_bin_all <- map(bin_ids, function(bin) {
-      # Get column with correct bin ID
-      bin_data <- KO_matrix[, bin]
-      # Prepare output suffix
-      out.suffix = paste0("TCA.", bin)
-      # Plot
-      pathview(
+    pv_bin_all = map(bin_ids, function(bin) {
+        # Get column with correct bin ID
+        bin_data = KO_matrix[, bin]
+        # Prepare output suffix
+        out.suffix = paste0("TCA.", bin)
+        # Plot
+        pathview(
         gene.data = bin_data,
         pathway.id = tca_map_id,
         species = "ko",
         # Lets make an arbitrary assumption that 5 copies is a lot
         limit = list(
-          gene = c(1, 5),
-          cpd = c(1, 5)
+            gene = c(1, 5),
+            cpd = c(1, 5)
         ),
         bins = list(
-          gene = 4,
-          cpd = 4
+            gene = 4,
+            cpd = 4
         ),
         # We are plotting number of hits, so specify TRUE for this
         # If plotting, say, gene/transcript abundance, set this to FALSE
         discrete = list(
-          gene = TRUE,
-          cpd = TRUE
+            gene = TRUE,
+            cpd = TRUE
         ),
         # Tally colours
         low = path_colours[1],
         mid = path_colours[2],
         high = path_colours[3],
         out.suffix = out.suffix
-      )
+        )
     })
     ```
 
@@ -233,43 +229,43 @@ This plot looks much better. We can see that some genes do have more hits than o
     
     === "Bin 0"
 
-        ![image](../figures/day4_keggmap.ko00020.TCA.bin_0.png)
+        ![image](../figures/day3_keggmap.ko00020.TCA.bin_0.png)
 
     === "Bin 1"
 
-        ![image](../figures/day4_keggmap.ko00020.TCA.bin_1.png)
+        ![image](../figures/day3_keggmap.ko00020.TCA.bin_1.png)
 
     === "Bin 2"
 
-        ![image](../figures/day4_keggmap.ko00020.TCA.bin_2.png)
+        ![image](../figures/day3_keggmap.ko00020.TCA.bin_2.png)
 
     === "Bin 3"
 
-        ![image](../figures/day4_keggmap.ko00020.TCA.bin_3.png)
+        ![image](../figures/day3_keggmap.ko00020.TCA.bin_3.png)
         
     === "Bin 4"
 
-        ![image](../figures/day4_keggmap.ko00020.TCA.bin_4.png)
+        ![image](../figures/day3_keggmap.ko00020.TCA.bin_4.png)
 
     === "Bin 5"
 
-        ![image](../figures/day4_keggmap.ko00020.TCA.bin_5.png)
+        ![image](../figures/day3_keggmap.ko00020.TCA.bin_5.png)
 
     === "Bin 6"
 
-        ![image](../figures/day4_keggmap.ko00020.TCA.bin_6.png)
+        ![image](../figures/day3_keggmap.ko00020.TCA.bin_6.png)
 
     === "Bin 7"
 
-        ![image](../figures/day4_keggmap.ko00020.TCA.bin_7.png)
+        ![image](../figures/day3_keggmap.ko00020.TCA.bin_7.png)
 
     === "Bin 8"
 
-        ![image](../figures/day4_keggmap.ko00020.TCA.bin_8.png)
+        ![image](../figures/day3_keggmap.ko00020.TCA.bin_8.png)
 
     === "Bin 9"
 
-        ![image](../figures/day4_keggmap.ko00020.TCA.bin_9.png)
+        ![image](../figures/day3_keggmap.ko00020.TCA.bin_9.png)
 
 Based on the plots, it seems that not all bins have a complete TCA cycle.
 

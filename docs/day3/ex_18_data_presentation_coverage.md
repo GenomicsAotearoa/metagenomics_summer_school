@@ -198,8 +198,8 @@ Here, we calculate [Bray-Curtis dissimilarity](https://en.wikipedia.org/wiki/Bra
     ```R linenums="1"
     # Perform hierarchical clustering ----
     ## Dissimilarities between samples
-    sample_dist <- vegdist(t(MAG_cov_log2), method = "bray")
-    sample_hclust <- hclust(sample_dist, "average")
+    sample_dist = vegdist(t(MAG_cov_log2), method = "bray")
+    sample_hclust = hclust(sample_dist, "average")
 
     plot(
       sample_hclust,
@@ -211,8 +211,8 @@ Here, we calculate [Bray-Curtis dissimilarity](https://en.wikipedia.org/wiki/Bra
     )
 
     ## Dissimilarities between MAGs
-    MAG_dist <- vegdist(MAG_cov_log2)
-    MAG_hclust <- hclust(MAG_dist, "average")
+    MAG_dist = vegdist(MAG_cov_log2)
+    MAG_hclust = hclust(MAG_dist, "average")
 
     plot(
       MAG_hclust,
