@@ -10,23 +10,23 @@
 
 !!! quote ""
 
-    One of the first questions we often ask when studying the ecology of a system is: What are the pattens of abundance and distribution of taxa across the different samples? In the previous [coverage calculation](../day3/ex_16_bin_coverage_mapping.md) exercises we mapped the quality-filtered unassembled reads back to the refined bins and generated coverage profiles for each. 
+    One of the first questions we often ask when studying the ecology of a system is: What are the pattens of abundance and distribution of taxa across the different samples? In the previous [coverage calculation](../day3/ex_16_bin_coverage_mapping.md) exercises we mapped the quality-filtered unassembled reads back to the bins and generated coverage profiles for each. 
 
     As a reminder:
 
     > Genomes in higher abundance in a sample will contribute more genomic sequence to the metagenome, and so the average depth of sequencing coverage for each of the different genomes provides a proxy for abundance in each sample.
 
-    A simple way to present this information is via a heatmap. In this exercise we will build a clustered heatmap of these coverage profiles in `R`. Since we also have tables of taxonomy assignments (via `gtdb-tk` for MAGs) and/or predictions (via `vContact2` for viral contigs), we will also use these to add taxonomy information to the plot.
+    A simple way to present this information is via a heatmap. In this exercise we will build a clustered heatmap of these coverage profiles in `R`. Since we also have tables of taxonomy assignments (via `gtdb-tk` for MAGs), we will also use these to add taxonomy information to the plot.
 
     The coverage and taxonomy tables generated in earlier exercises have been copied to `11.data_presentation/coverage/` for use in these exercises.
 
-    In addition to this, a simple mapping file has also been created (`11.data_presentation/coverage/mapping_file.txt`). This is a tab-delimited file listing each sample ID in the first column, and the sample "Group" in the second column (*Group_A*, *Group_B*, and *Group_C*). This grouping might represent, for example, three different sampling sites that we want to compare between. If you had other data (such as environmental measures, community diversity measures, etc.) that you wish to incorporate in other downstream analyses (such an fitting environmental variables to an ordination, or correlation analyses) you could also add new columns to this file and load them at the same time.
+    In addition to this, a simple mapping file has also been created (`11.data_presentation/coverage/mapping_file.tsv`). This is a tab-delimited file listing each sample ID in the first column, and the sample "Group" in the second column (*Group_A*, *Group_B*, and *Group_C*). This grouping might represent, for example, three different sampling sites that we want to compare between. If you had other data (such as environmental measures, community diversity measures, etc.) that you wish to incorporate in other downstream analyses (such an fitting environmental variables to an ordination, or correlation analyses) you could also add new columns to this file and load them at the same time.
 
 ---
 
 ## Building a heatmap of MAG coverage per sample
 
-To get started, if you're not already, log back in to NeSI's [Jupyter hub](https://jupyter.nesi.org.nz/hub/login) and make sure you are working within RStudio with the required packages installed (see the [data presentation intro](../day3/ex_17_data_presentation_intro.md) for more information).
+To get started, if you're not already, log back in to NeSI's [OnDemand](https://ondemand.nesi.org.nz/public) and make sure you are working within RStudio with the required packages installed (see the [data presentation intro](../day3/ex_17_data_presentation_intro.md) for more information).
 
 ### 1. Prepare environment
 
@@ -60,45 +60,34 @@ Import all relevant data as follows:
 !!! r-project "code"
 
     ```R linenums="1"
-    # Read files ----
-    contig_cov <- read_tsv("bin_cov_table.txt") # Bin contig coverage table
-    gtdbtk_out <- read_tsv("gtdbtk.bac120.summary.tsv") # Prokaryotic taxonomy from GTDB-Tk
-    virus_cov <- read_tsv("viruses_cov_table.txt") # Viral contig coverage table
-    checkv_summary <- read_tsv("checkv_quality_summary.tsv") # Viral contig quality from CheckV
-    vContact2_out <- read_tsv("tax_predict_table.tsv") # Viral taxonomy from vContact2
-    metadata <- read_tsv("mapping_file.txt") # Metadata/mapping file of environmental parameters
+        # Read files ----
+        MAG_cov = read_tsv("coverm_mags.tsv") # Bin contig coverage table
+        gtdbtk_out = read_tsv("gtdbtk.bac120.summary.tsv") # Prokaryotic taxonomy from GTDB-Tk
+        metadata = read_tsv("mapping_file.tsv") # Metadata/mapping file of environmental parameters
     ```
 
 ### 2. Wrangle data
 
-After importing the data tables, we need to subset the tables to only relevant columns. As noted during the [coverage](../day2/ex_12_gene_annotation_DRAM.md) exercises, it is important to remember that we currently have a table of coverage values for all *contigs* contained within each MAG. Since we're aiming to present coverage for each *MAG*, we need to reduce these contig coverages into a single mean coverage value per MAG per sample.
-
-In the following code, we first `select()` columns of interest (i.e. the contig ID and sample coverages). We then remove the `.bam` suffix using the `rename_with()` function. Given that we require mean coverages per MAG, we create a column of MAG/bin IDs (via `mutate`) by extracting the relevant text from the contig ID using `str_replace()`. Finally, we group the data by the bin ID (via `group_by()`) then use a combination of `summarise()` and `across()` to obtain a mean of coverage values per bin per sample. Here, `summarise()` calculates the `mean` based on grouping variables set by `group_by()`, and this is done `across()` columns that have the column header/name which `contains("sample")`.
+After importing the data tables, we need to subset the tables to only relevant columns and rows. Let's first have a look at the current table:
 
 !!! r-project "code"
 
     ```R linenums="1"
-    ## 1. Obtain average coverage per MAG per sample ----
-    MAG_cov <- contig_cov %>%
-      # Pick relevant columns
-      select(contigName, contigLen, ends_with(".bam")) %>%
-      # Remove ".bam" from sample columns
-      rename_with(
-        .fn = function(sample_name) str_remove(sample_name, ".bam"),
-        .cols = ends_with(".bam")
-      ) %>%
-      # Add bin ID to data
-      mutate(
-        binID = str_replace(contigName, "(.*)_NODE_.*", "\\1")
-      ) %>%
-      # Designate "binID" as a grouping factor
-      group_by(binID) %>%
-      # Calculate average coverage per sample per bin
-      summarise(
-        across(
-          contains("sample"), function(coverage) weighted.mean(coverage, contigLen)
-        )
-      )
+    MAG_cov
+    ```
+
+In the following code, we first `filter_out()` the "unmapped" row, then we order all rows with respect to the first column by using `arrange()`. Then we `select()` columns of interest (i.e. Genomes and sample coverages) and rename the first column to "binID". Finally, we shorten the name of the other columns  using `rename_with()`.
+
+!!! r-project "code"
+
+    ```R linenums="1"
+    ## 1. Clean up coverage table ----
+    MAG_cov = MAG_cov |>
+        filter_out( Genome == "unmapped" ) |>
+        arrange(Genome) |>
+        select( binID = Genome, ends_with("Mean") ) |>
+        rename_with( function(x) strtrim(x,7), .cols=starts_with("sample") )
+    MAG_cov
     ```
 
 Next, we would also like to append the lowest identified taxonomy to each MAG. But before that, we will need to tidy up the taxonomy table to make it more readable.
@@ -109,15 +98,15 @@ In the following code, we first `select()` the `user_genome` (which is equivalen
 
     ```R linenums="1"
     ## 2. Clean up taxonomy table ----
-    bin_taxonomy <- gtdbtk_out %>%
+    bin_taxonomy = gtdbtk_out |>
       # Select relevant columns
-      select(user_genome, classification) %>%
+      select(user_genome, classification) |>
       # Split taxonomic classifications into individual columns
       separate(
         col = classification,
         into = c("domain", "phylum", "class", "order", "family", "genus", "species"),
         sep = ';'
-      ) %>%
+      ) |>
       mutate(
         # Remove "d__" from all taxonomy columns
         across(
@@ -128,6 +117,7 @@ In the following code, we first `select()` the `user_genome` (which is equivalen
         # If species is empty, fill with genus
         species = if_else(species == "", genus, species)
       )
+    bin_taxonomy
     ```
 
 After obtaining a tidy taxonomy table, we append the species annotations to the bin IDs as follows:
@@ -140,13 +130,14 @@ After obtaining a tidy taxonomy table, we append the species annotations to the 
 
     ```R linenums="1"
     ## 3. Add species to bin ID ----
-    MAG_cov <- MAG_cov %>%
+    MAG_cov = MAG_cov |>
       left_join(
         select(bin_taxonomy, user_genome, species),
         by = c("binID" = "user_genome")
-      ) %>%
-      unite(col = "binID", c(binID, species), sep = "_") %>%
+      ) |>
+      unite(col = "binID", c(binID, species), sep = "_") |>
       column_to_rownames("binID")
+    MAG_cov
     ```
 
 ??? note "Too much data?"
@@ -159,10 +150,10 @@ After obtaining a tidy taxonomy table, we append the species annotations to the 
     
         ```R linenums="1"
         # Create a vector of top 10 MAGs
-        top10 <- sort(rowSums(MAG_cov), decreasing = TRUE)[1:10]
+        top10 = sort(rowSums(MAG_cov), decreasing = TRUE)[1:10]
 
         # Retain only top 10 MAGs
-        MAG_cov_top10 <- MAG_cov[rownames(MAG_cov) %in% names(top10), ]
+        MAG_cov_top10 = MAG_cov[rownames(MAG_cov) %in% names(top10), ]
         ```
 
     Perhaps you want to filter MAGs based on their prevalence across your sampling regime? Assuming you would like to retain MAGs that are present in at least 50% of your samples:
@@ -171,13 +162,13 @@ After obtaining a tidy taxonomy table, we append the species annotations to the 
 
         ```R linenums="1"
         # Create a presence/absence matrix
-        MAG_prevalence <- ifelse(MAG_cov > 0, 1, 0)
+        MAG_prevalence = ifelse(MAG_cov > 0, 1, 0)
 
         # Create a logical vector that fulfill criteria
-        top_prev <- rowSums(MAG_prevalence) > (0.5 * ncol(MAG_prevalence))
+        top_prev = rowSums(MAG_prevalence) > (0.5 * ncol(MAG_prevalence))
 
         # Retain only MAGs in coverage table that fulfill criteria
-        MAG_cov_top_prev <- MAG_cov[top_prev, ]
+        MAG_cov_top_prev = MAG_cov[top_prev, ]
         ```
 
 Very often, coverage data generated using metagenomic methods can be sparse and/or have values that differ by large orders of magnitude. This can hamper effective visualisation of the data. To remedy this, we can perform numeric transformations that can enhance visualisation of relative differences between values. Here, we will use a logarithm (base 2) transform with 1 added as a pseudo-count (because $\log 0$ is undefined).
@@ -190,7 +181,7 @@ Very often, coverage data generated using metagenomic methods can be sparse and/
 
     ```R
     ## 4. Transform coverage data ----
-    MAG_cov_log2 <- log2(MAG_cov + 1)
+    MAG_cov_log2 = log2(MAG_cov + 1)
     ```
 
 ### 3. Order the heatmap
@@ -234,8 +225,8 @@ Here, we calculate [Bray-Curtis dissimilarity](https://en.wikipedia.org/wiki/Bra
     )
     ```
 
-![image](../figures/day4_coverage.01.cov_hmp.hclust.MAG_sample.png)
-![image](../figures/day4_coverage.02.cov_hmp.hclust.MAG.png)
+![image](../figures/day3_coverage.01.BrayCurtis_sample.png)
+![image](../figures/day3_coverage.02.BrayCurtis_MAG.png)
 
 !!! note "Exporting figures"
     To export figures you have made, navigate your mouse pointer to the bottom right pane, then click on 'Export' on the second toolbar of the pane. You can export your figure as an image (e.g. TIFF, JPEG, PNG, BMP), a vector image (i.e. PDF, SVG) or PostScript (EPS). 
@@ -275,47 +266,47 @@ The penultimate step before building our heatmap is to set the colours that will
         )
         ```
 
-    ![image](../figures/day4_coverage.03.show_col.Okabe-Ito.png)
+    ![image](../figures/day3_coverage.03.show_col.Okabe-Ito.png)
 
 !!! r-project "code"
 
     ```R linenums="1"
     # Set colour palette ----
     ## Prepare sample groups and colour
-    metadata <- metadata %>%
+    metadata = metadata |>
       mutate(
         Group = as.factor(Group)
       )
 
-    group_colour <- data.frame(
+    group_colour = data.frame(
       Group = levels(metadata$Group),
       colour = palette.colors(
         n = length(levels(metadata$Group)),
         palette = "Okabe-Ito")
     )
 
-    sample_colour <- left_join(metadata, group_colour)
+    sample_colour = left_join(metadata, group_colour)
 
     ## Prepare MAG colours based on taxonomic class
     ## Remember that the new labels (bin ID) are 'binID_species'
-    bin_phylum <- bin_taxonomy %>%
-      select(user_genome, species, phylum) %>%
-      unite(col = "binID", user_genome, species, sep = "_") %>%
+    bin_phylum <- bin_taxonomy |>
+      select(user_genome, species, phylum) |>
+      unite(col = "binID", user_genome, species, sep = "_") |>
       mutate(
         phylum = as.factor(phylum)
       )
 
-    phylum_colour <- data.frame(
+    phylum_colour = data.frame(
       phylum = levels(bin_phylum$phylum),
       colour = palette.colors(
         n = length(levels(bin_phylum$phylum)),
         palette = "R4")
     )
 
-    MAG_colour <- left_join(bin_phylum, phylum_colour)
+    MAG_colour = left_join(bin_phylum, phylum_colour)
 
     ## Set a grayscale for cell colours
-    cell_colour <- colorRampPalette(c("white", "black"), space = "Lab")(2^8)
+    cell_colour = colorRampPalette(c("white", "black"), space = "Lab")(2^8)
     ```
 
 ### 5. Build heatmap
@@ -333,7 +324,7 @@ The penultimate step before building our heatmap is to set the colours that will
         scale = "none", # Do not scale values provided
         col = cell_colour, # Colour shading based on values
         trace = "none", 
-        density.info = "none"
+        density.info = "none",
     )
     ## Legend for MAG phyla
     legend(
@@ -359,9 +350,7 @@ The penultimate step before building our heatmap is to set the colours that will
     )
     ```
 
-<center>
-![image](../figures/day4_coverage.04.heatmap.MAG.png)
-</center>
+![image](../figures/day3_coverage.04.heatmap.MAG.png){.center width="418"}
 
 !!! vial-virus "Results at a glance"
 
@@ -369,11 +358,11 @@ The penultimate step before building our heatmap is to set the colours that will
     
     * 4 MAGs belong to the phylum Pseudomonadota
     * Sample 4 belonging to Group C is somewhat of an outlier, with only 3 MAGs recovered from this sample
-    * `bin_9`, a Nitrobacter, is only found in sample 4
+    * `bin_6`, a Nitrobacter, is only found in sample 4
     * Presumably, sample 4 has a high abundance of nitrogen cycling MAGs
     * Samples from Groups A and B recovered the same bins
 
-You can and should experiment with different paramters and arguments within the `heatmap.2` function. A good starting point is `cex = ...` which controls "character expansion" (i.e. text size). Here, we use the `...SideColors` argument to annotate MAG phylum and sample grouping. We also use `legend` to provide additional information on what those colours represent. Read the help page for `heatmap.2()` by typing `?heatmap.2` into the console. The help manual will appear on the bottom right pane.
+You can and should experiment with different paramters and arguments within the `heatmap.2` function. A good starting point is `cexRow = ...` / `cexCol = ...` which controls "character expansion" (i.e. text size for rows or columns). Here, we use the `...SideColors` argument to annotate MAG phylum and sample grouping. We also use `legend` to provide additional information on what those colours represent. Read the help page for `heatmap.2()` by typing `?heatmap.2` into the console. The help manual will appear on the bottom right pane.
 
 Here, we arrange our columns based Bray-Curtis dissimilarities between samples. However, you may want to enforce or preserve some form of sample order (samples from the same transect, chronological/topological order, etc.). You can do this by setting `Colv = FALSE`.
 
