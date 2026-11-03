@@ -37,7 +37,7 @@ In an open RStudio session, set your working directory to `11.data_presentation/
     library(KEGGREST)
 
     # Import annotations
-    dram <- read_tsv("dram_annotations.tsv")
+    dram = read_tsv("dram_annotations.tsv")
     ```
 
 In order to be able to assimilate sulfate, prokaryotic genomes need to encode for the following KEGG orthologies which encode for an ATP-dependent thiosulfate/sulfate uptake system:
@@ -52,11 +52,11 @@ We'll subset the annotation file to obtain relevant rows and columns. In addtion
 !!! r-project "code"
 
     ```R linenums="1"
-    genes_of_interest <- c("K02048", "K23163", "K02046", "K02047", "K02045")
+    genes_of_interest = c("K02048", "K23163", "K02046", "K02047", "K02045")
 
-    sulfate_assimilation <- dram %>%
-      filter(ko_id %in% genes_of_interest) %>%
-      select(fasta, scaffold, gene_position, ko_id, strandedness, start_position, end_position)
+    sulfate_assimilation = dram |>
+        filter(ko_id %in% genes_of_interest) |>
+        select(fasta, scaffold, gene_position, ko_id, strandedness, start_position, end_position)
     ```
 
 ### 2. Check contiguity of genes
@@ -66,10 +66,10 @@ We need to check that the genes are contiguous (all on the same contig) and sequ
 !!! r-project "code"
 
     ```R linenums="1"
-    sulfate_assimilation %>%
-      group_by(fasta) %>%
-      distinct(scaffold) %>%
-      tally(name = "n_contigs")
+    sulfate_assimilation |>
+        group_by(fasta) |>
+        distinct(scaffold) |>
+        tally(name = "n_contigs")
     ```
 
 !!! circle-check "Console output"
@@ -78,20 +78,20 @@ We need to check that the genes are contiguous (all on the same contig) and sequ
     # A tibble: 4 × 2
       fasta n_contigs
       <chr>     <int>
-    1 bin_5         1
-    2 bin_7         2
-    3 bin_8         1
-    4 bin_9         1
+    1 bin_4         1
+    2 bin_5         2
+    3 bin_6         1
+    4 bin_8         1
     ```
 
-We find that `bin_7` is discontiguous. We need to identify how the genes of interest are distributed across the 2 contigs.
+We find that `bin_5` is discontiguous. We need to identify how the genes of interest are distributed across the 2 contigs.
 
 !!! r-project "code"
 
     ```R linenums="1"
-    sulfate_assimilation %>%
-      group_by(fasta, scaffold) %>%
-      tally(name = "n_genes")
+    sulfate_assimilation |>
+        group_by(fasta, scaffold) |>
+        tally(name = "n_genes")
     ```
 
 !!! circle-check "Console output"
@@ -101,11 +101,11 @@ We find that `bin_7` is discontiguous. We need to identify how the genes of inte
     # Groups:   fasta [4]
       fasta scaffold                                 n_genes
       <chr> <chr>                                      <int>
-    1 bin_5 bin_5_NODE_55_length_158395_cov_1.135272       4
-    2 bin_7 bin_7_NODE_54_length_158668_cov_0.373555       1
-    3 bin_7 bin_7_NODE_96_length_91726_cov_0.379302        4
-    4 bin_8 bin_8_NODE_12_length_355954_cov_0.516970       3
-    5 bin_9 bin_9_NODE_62_length_149231_cov_0.651774       4
+    1 bin_4 NODE_55_length_158395_cov_1.135272       4
+    2 bin_5 NODE_54_length_158668_cov_0.373555       1
+    3 bin_5 NODE_96_length_91726_cov_0.379302        4
+    4 bin_6 NODE_62_length_149231_cov_0.651774       4
+    5 bin_8 NODE_12_length_355954_cov_0.516970       3
     ```
 
 Let's also check which gene is not contiguous.
@@ -113,9 +113,9 @@ Let's also check which gene is not contiguous.
 !!! r-project "code"
 
     ```R linenums="1"
-    sulfate_assimilation %>%
-      filter(fasta == "bin_7") %>%
-      select(scaffold, gene_position, ko_id)
+    sulfate_assimilation |>
+        filter(fasta == "bin_5") |>
+        select(scaffold, gene_position, ko_id)
     ```
 
 !!! circle-check "Console output"
@@ -124,11 +124,11 @@ Let's also check which gene is not contiguous.
     # A tibble: 5 × 3
       scaffold                                 gene_position ko_id 
       <chr>                                            <dbl> <chr> 
-    1 bin_7_NODE_54_length_158668_cov_0.373555           136 K02048
-    2 bin_7_NODE_96_length_91726_cov_0.379302             18 K02045
-    3 bin_7_NODE_96_length_91726_cov_0.379302             19 K02047
-    4 bin_7_NODE_96_length_91726_cov_0.379302             20 K02046
-    5 bin_7_NODE_96_length_91726_cov_0.379302             21 K23163
+    1 NODE_54_length_158668_cov_0.373555           136 K02048
+    2 NODE_96_length_91726_cov_0.379302             18 K02045
+    3 NODE_96_length_91726_cov_0.379302             19 K02047
+    4 NODE_96_length_91726_cov_0.379302             20 K02046
+    5 NODE_96_length_91726_cov_0.379302             21 K23163
     ```
 
 Looks like there is a an operon that consists of *sbp* and *cysAUW*, then a discontiguous *cysP*. 
@@ -138,60 +138,60 @@ We also need to check for gaps between genes of interest.
 !!! r-project "code"
 
     ```R
-    select(sulfate_assimilation, scaffold, gene_position)
+    select(sulfate_assimilation, fasta, scaffold, gene_position)
     ```
 
 !!! circle-check "Console output"
 
     ```
-    # A tibble: 16 × 2
-       scaffold                                 gene_position
-       <chr>                                            <dbl>
-     1 bin_5_NODE_55_length_158395_cov_1.135272           128
-     2 bin_5_NODE_55_length_158395_cov_1.135272           132
-     3 bin_5_NODE_55_length_158395_cov_1.135272           133
-     4 bin_5_NODE_55_length_158395_cov_1.135272           134
-     5 bin_7_NODE_54_length_158668_cov_0.373555           136
-     6 bin_7_NODE_96_length_91726_cov_0.379302             18
-     7 bin_7_NODE_96_length_91726_cov_0.379302             19
-     8 bin_7_NODE_96_length_91726_cov_0.379302             20
-     9 bin_7_NODE_96_length_91726_cov_0.379302             21
-    10 bin_8_NODE_12_length_355954_cov_0.516970           148
-    11 bin_8_NODE_12_length_355954_cov_0.516970           149
-    12 bin_8_NODE_12_length_355954_cov_0.516970           150
-    13 bin_9_NODE_62_length_149231_cov_0.651774            55
-    14 bin_9_NODE_62_length_149231_cov_0.651774            56
-    15 bin_9_NODE_62_length_149231_cov_0.651774            57
-    16 bin_9_NODE_62_length_149231_cov_0.651774            58
+    # A tibble: 16 × 3
+       fasta scaffold                           gene_position
+       <chr> <chr>                                      <dbl>
+     1 bin_4 NODE_55_length_158395_cov_1.135272           128
+     2 bin_4 NODE_55_length_158395_cov_1.135272           132
+     3 bin_4 NODE_55_length_158395_cov_1.135272           133
+     4 bin_4 NODE_55_length_158395_cov_1.135272           134
+     5 bin_5 NODE_54_length_158668_cov_0.373555           136
+     6 bin_5 NODE_96_length_91726_cov_0.379302             18
+     7 bin_5 NODE_96_length_91726_cov_0.379302             19
+     8 bin_5 NODE_96_length_91726_cov_0.379302             20
+     9 bin_5 NODE_96_length_91726_cov_0.379302             21
+    10 bin_6 NODE_62_length_149231_cov_0.651774            55
+    11 bin_6 NODE_62_length_149231_cov_0.651774            56
+    12 bin_6 NODE_62_length_149231_cov_0.651774            57
+    13 bin_6 NODE_62_length_149231_cov_0.651774            58
+    14 bin_8 NODE_12_length_355954_cov_0.516970           148
+    15 bin_8 NODE_12_length_355954_cov_0.516970           149
+    16 bin_8 NODE_12_length_355954_cov_0.516970           150
     ```
 
-Here, we can see there is a gap in bin_5 where we need to fill 3 genes.
+Here, we can see there is a gap in bin_4 where we need to fill 3 genes.
 
 ### 3. Subset relevant genes and positions
 
 Based on the explorations above, we need to:
 
-* Add genes 129-131 for scaffold `bin_5_NODE_55_length_158395_cov_1.135272`
-* Remove `bin_7_NODE_54_length_158668_cov_0.373555`
+* Add genes 129-131 for scaffold `bin_4 NODE_55_length_158395_cov_1.135272`
+* Remove `bin_5 NODE_54_length_158668_cov_0.373555`
 
 !!! r-project "code"
 
     ```R linenums="1"
-    # Add genes to bridge genes of interest for bin_5
-    bin_5_additions <- dram %>%
-      filter(scaffold == "bin_5_NODE_55_length_158395_cov_1.135272" & gene_position %in% 129:131) %>%
-      select(fasta, scaffold, gene_position, ko_id, strandedness, start_position, end_position)
+    # Add genes to bridge genes of interest for bin_4
+    bin_4_additions = dram |>
+        filter(fasta == "bin_4" & scaffold == "NODE_55_length_158395_cov_1.135272" & gene_position %in% 129:131) |>
+        select(fasta, scaffold, gene_position, ko_id, strandedness, start_position, end_position)
 
-    # Remove extra scaffold from bin_7
-    sulfate_assimilation <- sulfate_assimilation %>%
-      group_by(scaffold) %>%
-      # Our discontiguous scaffold only has one entry
-      filter(n() > 1)
+    # Remove extra scaffold from bin_5
+    sulfate_assimilation = sulfate_assimilation |>
+        group_by(scaffold) |>
+        # Our discontiguous scaffold only has one entry
+        filter(n() > 1)
 
     # Combine both tables
-    sulfate_assimilation_coords <- bind_rows(sulfate_assimilation, bin_5_additions) %>%
-      arrange(scaffold, gene_position) %>%
-      mutate(gene_id = paste0(scaffold, "_", gene_position))
+    sulfate_assimilation_coords = bind_rows(sulfate_assimilation, bin_4_additions) |>
+        arrange(scaffold, gene_position) |>
+        mutate(gene_id = paste0(scaffold, "_", gene_position))
     ```
 
 We will write out the results for processing in `bash`.
@@ -200,13 +200,13 @@ We will write out the results for processing in `bash`.
 
     ```R linenums="1"
     walk(
-      unique(sulfate_assimilation_coords$fasta),
-      function(bin) {
-        write_tsv(
-          filter(sulfate_assimilation_coords, fasta == bin),
-          paste0(bin, ".goi.tsv")
-        )
-      }
+        unique(sulfate_assimilation_coords$fasta),
+        function(bin) {
+            write_tsv(
+                filter(sulfate_assimilation_coords, fasta == bin),
+                paste0(bin, ".goi.tsv")
+            )
+        }
     )
     ```
 
@@ -222,12 +222,12 @@ We'll use the previously generated table information to extract the scaffolds (u
 
     ```bash linenums="1"
     module purge
-    module load seqtk/1.4-GCC-11.3.0
+    module load seqtk/1.5-GCC-12.3.0
 
     for i in *.goi.tsv; do
-      bin=$(basename ${i} .goi.tsv)
-      cut -f 2 ${i} | sed '1d' > tmp.scaffolds
-      seqtk subseq dastool_bins/${bin}.fna tmp.scaffolds > ${bin}.goi.fna
+        bin=$(basename ${i} .goi.tsv)
+        cut -f 2 ${i} | sed '1d' > tmp.scaffolds
+        seqtk subseq dastool_bins/${bin}.fna tmp.scaffolds > ${bin}.goi.fna
     done
     ```
 
@@ -239,7 +239,7 @@ With our scaffolds ready, we can now perform pairwise comparisons between them. 
 
     ```bash linenums="1"
     module purge
-    module load BLAST/2.16.0-GCC-12.3.0
+    module load BLAST/2.17.0-GCC-15.2.0
 
     bin_array=($(ls *.goi.fna | sed -e 's/.goi.fna//g'))
 
@@ -247,17 +247,16 @@ With our scaffolds ready, we can now perform pairwise comparisons between them. 
     max_i=$(( ${#bin_array[@]}-1 ))
 
     while [ $i -lt $max_i ]; do
-      qbin=${bin_array[$i]} # Current bin as query
-      sbin=${bin_array[$(($i+1))]} # Next bin as subject 
+        qbin=${bin_array[$i]}         # Current bin as query
+        sbin=${bin_array[$(($i+1))]}  # Next bin as subject
 
-      printf "Comparing %s against %s\n" ${qbin} ${sbin}
+        printf "Comparing %s against %s\n" ${qbin} ${sbin}
 
-      tblastx -query ${qbin}.goi.fna \
-              -subject ${sbin}.goi.fna \
-              -out blast_${qbin}_${sbin}.txt \
-              -outfmt "7 std ppos frames"
-              
-      ((i++)) # Increment i after each comparison
+        tblastx -query ${qbin}.goi.fna \
+                -subject ${sbin}.goi.fna \
+                -out blast_${qbin}_${sbin}.txt \
+                -outfmt "7 std ppos frames"
+        ((i++))                       # Increment i after each comparison
     done
     ```
 
@@ -276,16 +275,16 @@ We first need to import all the relevant per bin files.
 
     ```R linenums="1"
     # Gene coordinates
-    goi_files <- list.files(pattern = ".*.goi.tsv")
-    goi <- map(goi_files, function(x) read_tsv(x)) %>%
-      setNames(nm = str_remove(goi_files, "\\..*"))
+    goi_files = list.files(pattern = ".*.goi.tsv")
+    goi = map(goi_files, function(x) read_tsv(x)) |>
+        setNames(nm = str_remove(goi_files, "\\..*"))
 
     # BLAST results
-    blast_files <- list.files(pattern = "blast.*")
-    blast <- map(blast_files, function(x) {
-      read_comparison_from_blast(x)
-    }) %>%
-      setNames(nm = str_remove(blast_files, ".txt"))
+    blast_files = list.files(pattern = "blast.*")
+    blast = map(blast_files, function(x) {
+        read_comparison_from_blast(x)
+    }) |>
+        setNames(nm = str_remove(blast_files, ".txt"))
     ```
 
 We will also create a data frame that has relevant information about the gene. In this case, we are using the gene symbol.
@@ -293,13 +292,13 @@ We will also create a data frame that has relevant information about the gene. I
 !!! r-project "code"
 
     ```R linenums="1"
-    ko <- unique(bind_rows(goi)$ko_id)
-    kegg_records <- keggGet(ko[!is.na(ko)])
-    ko_annot <- map(kegg_records, function(entry) {
+    ko = unique(bind_rows(goi)$ko_id)
+    kegg_records = keggGet(ko[!is.na(ko)])
+    ko_annot = map(kegg_records, function(entry) {
         data.frame("ko_id" = entry[["ENTRY"]], 
                    "gene_symbol" = entry[["SYMBOL"]])
-      }) %>%
-      bind_rows()
+        }) |>
+        bind_rows()
     ```
 
 We then create tracks of DNA segments and annotations that can be parsed by `genoPlotR`.
@@ -308,22 +307,22 @@ We then create tracks of DNA segments and annotations that can be parsed by `gen
 
     ```R linenums="1"
     # DNA segments
-    ds_list <- map(goi, function(x) {
-      coords <- x %>%
-        select(gene_id, start_position, end_position, strandedness)
-      colnames(coords) <- c("name", "start", "end", "strand")
-      dna_seg(coords)
+    ds_list = map(goi, function(x) {
+        coords = x |>
+            select(gene_id, start_position, end_position, strandedness)
+        colnames(coords) = c("name", "start", "end", "strand")
+        dna_seg(coords)
     })
 
     # Annotations that include gene symbols
-    annot_list <- map(goi, function(x) {
-      data <- left_join(x, ko_annot, by = "ko_id") %>%
-        select(gene_id, start_position, end_position, strandedness, ko_id, gene_symbol)
-      annotation(
-        x1 = data$start_position,
-        x2 = data$end_position,
-        text = ifelse(is.na(data$gene_symbol), "", data$gene_symbol)
-      )
+    annot_list = map(goi, function(x) {
+        data = left_join(x, ko_annot, by = "ko_id") |>
+            select(gene_id, start_position, end_position, strandedness, ko_id, gene_symbol)
+        annotation(
+            x1 = data$start_position,
+            x2 = data$end_position,
+            text = ifelse(is.na(data$gene_symbol), "", data$gene_symbol)
+        )
     })
     ```
 
@@ -333,16 +332,16 @@ Finally, we can plot!
 
     ```R linenums="1"
     plot_gene_map(
-      dna_segs = ds_list,
-      comparisons = blast,
-      annotations = annot_list,
-      dna_seg_labels = names(ds_list),
-      dna_seg_scale = TRUE,
-      gene_type = "arrows"
+        dna_segs = ds_list,
+        comparisons = blast,
+        annotations = annot_list,
+        dna_seg_labels = names(ds_list),
+        dna_seg_scale = TRUE,
+        gene_type = "arrows"
     )
     ```
 
-![image](../figures/day4_synteny.01.synteny_all.png)
+![image](../figures/day3_synteny.01.synteny_all.png)
 
 Seems a little messy, let's clean it up a little by only keeping those with the best matches (i.e., minimum E-value).
 
@@ -367,6 +366,6 @@ Seems a little messy, let's clean it up a little by only keeping those with the 
     )
     ```
 
-![image](../figures/day4_synteny.03.synteny_final.png)
+![image](../figures/day3_synteny.03.synteny_final.png)
 
 Much better! To further improve the plot, you might want to rearrange the tBLASTx comparisons and perhaps add additional information to the un-annotated genes based on hits to other databases (e.g., Pfam, TIGRFam, UniProt, etc.).
