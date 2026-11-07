@@ -35,7 +35,7 @@ We will write a single slurm script to run all necessary commands, then analyse 
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      checkm_drep
-    #SBATCH --partition     milan
+    #SBATCH --partition     milan
     #SBATCH --time          40:00
     #SBATCH --mem           40GB
     #SBATCH --cpus-per-task 10

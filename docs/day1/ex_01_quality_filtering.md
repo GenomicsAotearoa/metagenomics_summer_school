@@ -411,7 +411,7 @@ Again, we will create a script using `nano`:
 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      host_filt_bbmap_map
-    #SBATCH --partition     milan
+    #SBATCH --partition     milan
     #SBATCH --time          00:10:00
     #SBATCH --mem           20GB
     #SBATCH --cpus-per-task 8
