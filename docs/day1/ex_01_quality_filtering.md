@@ -22,12 +22,12 @@
 
 ### Loading `FastQC`
 
-These exercises will take place in the `2.fastqc/` directory. First, navigate to this directory. Copy the command below into your terminal (logged in to NeSI), replacing `<YOUR FOLDER>`, and then running the command.
+These exercises will take place in the `1.fastqc/` directory. First, navigate to this directory. Copy the command below into your terminal (logged in to NeSI), replacing `<YOUR FOLDER>`, and then running the command.
 
 !!! terminal-2 "Navigate to our working directory"
 
     ```bash
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/1.fastqc/
     ```
 
 !!! terminal-2 "To activate `FastQC` on NeSI, you need to first load the module using the command"
@@ -53,7 +53,7 @@ Fortunately, if you're currently using the terminal within `Jupyter hub` for tod
 
 * Click on the directory icon in the top left to open the directory navigator pane (if not already open).
 * The default viewed location will be the overall project that you have logged in to (in this case, the 'Genomics Aotearoa Virtual Lab Training Access (nesi02659)' project). 
-* Click through `MGSS_U`, into your directory, and then into the `2.fastqc/` directory. 
+* Click through `MGSS_U`, into your directory, and then into the `1.fastqc/` directory. 
 * Double click on the output `...fastqc.html` files to open them in the a new tab within the `Jupyter hub`.
 
 Examples of the output files are also available for download [here](../resources/fastqc_results.zip).
@@ -332,7 +332,7 @@ This ensures that reads that would normally map to these sections of the human g
 
 ### The masked human reference genome
 
-A masked reference genome was created by the author of BBMap and is available via  [Zenodo](https://zenodo.org/record/1208052). For this workshop, we have provided you with the file within the `2.fastqc/BBMask_human_reference/` directory.
+A masked reference genome was created by the author of BBMap and is available via  [Zenodo](https://zenodo.org/record/1208052). For this workshop, we have provided you with the file within the `1.fastqc/BBMask_human_reference/` directory.
 
 
 ### Indexing the reference genome and read mapping with `BBMap`
@@ -367,7 +367,7 @@ Create a new script named `host_filt_bbmap_index.sl` using `nano`:
     #SBATCH --output        %x_%j.out
     
     # Working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/BBMask_human_reference/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/1.fastqc/BBMask_human_reference/
     
     # Load BBMap module
     module purge
@@ -419,7 +419,7 @@ Again, we will create a script using `nano`:
     #SBATCH --output        %x_%j.out
 
     # Set up working directories
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/1.fastqc/
 
     # Load BBMap module
     module purge
@@ -441,7 +441,7 @@ Again, we will create a script using `nano`:
     | :--- | :--- |
     | `-Xmx26g` | Set maximum memory: `#SBATCH --mem` minus a small overhead |
     | `usejni=true` | Speed up execution by using natively compiled code |
-    | `in1` / `in2` | Input paired-end reads 1 and 2 stored in `3.assembly/`, each of which are "samples". These are the same files we will use in further lessons |
+    | `in1` / `in2` | Input paired-end reads 1 and 2 stored in `2.assembly/`, each of which are "samples". These are the same files we will use in further lessons |
     | `path` | The parent directory where `ref/` (our indexed and masked reference) exists |
     | All flags in line 24 | Recommended parameters found within [this thread](http://seqanswers.com/forums/showthread.php?t=42552) about processing data to remove host reads |
     | `outu1` / `outu2` | Reads that *were not mapped* to our masked reference |

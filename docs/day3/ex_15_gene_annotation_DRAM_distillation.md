@@ -9,7 +9,7 @@
 
 ## Overview of `DRAM.py annotate` output
 
-The submitted jobs from the previous session should now be completed. If we examine the output directory `10.gene_annotation_and_coverage/dram_annotations/` we will see the following files:
+The submitted jobs from the previous session should now be completed. If we examine the output directory `7.gene_annotation/dram_annotations/` we will see the following files:
 
 |File name | Description|
 |:--- | :--- | 
@@ -25,7 +25,7 @@ If we inspect the head of the annotation file we will see the following
 !!! terminal "code"
 
     ```bash
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_annotation/
 
     head -n 5 dram_annotations/annotations.tsv 
     ```
@@ -59,7 +59,7 @@ For the viral annotations, we will also include the parameters `--remove_transpo
     module purge
     module load DRAM/1.3.5-Miniconda3
     
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_annotation/
     
     # Prokaryote annotations
     DRAM.py distill --input_file dram_annotations/annotations.tsv \

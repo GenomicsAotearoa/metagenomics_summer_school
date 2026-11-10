@@ -1,4 +1,4 @@
-# Bin coverage 1: Dereplication
+# BONUS: Bin dereplication across assemblies
 
 !!! info "Objectives"
 
@@ -48,7 +48,7 @@ We will write a single slurm script to run all necessary commands, then analyse 
     module load drep/3.7.1-foss-2026-Python-3.14.4
 
     # Working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/12.drep_example/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/bonus.drep_example/
 
     # Step 1
     checkm lineage_wf --threads $SLURM_CPUS_PER_TASK \

@@ -95,7 +95,7 @@ Evaluating the quality of a raw metagenomic assembly is quite a tricky process. 
 
 A few quick checks I recommend are to see how many contigs or scaffolds your data were assembled into, and then see how many contigs or scaffolds you have above a certain minimum length threshold. We will use `seqmagick` for performing the length filtering, and then just count sequence numbers using `grep`.
 
-These steps will take place in the `4.evaluation/` folder, which contains copies of our `SPAdes` assemblies, as well as assemblies created with `IDBA-UD`, which is covered in the [bonus material](./ex_05_assembly_idba-ud.md).
+These steps will take place in the `3.assembly_evaluation/` folder, which contains copies of our `SPAdes` and `IDBA-UD` assemblies.
 
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
 
@@ -107,7 +107,7 @@ These steps will take place in the `4.evaluation/` folder, which contains copies
     module load seqmagick/0.8.4-gimkl-2020a-Python-3.8.2
 
     # Navigate to working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.evaluation/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly_evaluation/
 
     # Filter assemblies and check number of contigs
     seqmagick convert --min-length 1000 \
@@ -139,23 +139,10 @@ These steps will take place in the `4.evaluation/` folder, which contains copies
         idbaud_assembly/idbaud_assembly.m1000.fna:1996
         ```
 
-If you have your own assemblies and you want to try inspect them in the same way, try that now. Note that the file names will be slightly different to the files provided above. If you followed the exact commands in the previous exercise, you can use the following commands.
-
-!!! terminal "code"
-
-    ```bash
-    seqmagick convert \
-        --min-length 1000 \
-        ../3.assembly/my_spades_assembly/scaffolds.fasta my_spades_assembly.m1000.fna
-
-    seqmagick convert \
-        --min-length 1000 \
-        ../3.assembly/my_idbaud_assembly/scaffold.fa my_idbaud_assembly.m1000.fna
-    ```
-
 !!! note "Choice of software: sequence file manipulation"
 
     The tool `seqtk` is also available on NeSI and performs many of the same functions as `seqmagick`. My choice of `seqmagick` is mostly cosmetic as the parameter names are more explicit so it's easier to understand what's happening in a command when I look back at my log files. Regardless of which tool you prefer, we strongly recommend getting familiar with either `seqtk` or `seqmagick` as both perform a lot of common FASTA and FASTQ file manipulations.
+
 
 As we can see here, the `SPAdes` assembly has completed with fewer contigs assembled than the `IDBA-UD`, both in terms of total contigs assembled and contigs above the 1,000 bp size. This doesn't tell us a lot though - has `SPAdes` managed to assemble fewer reads, or has it managed to assemble the sequences into longer (and hence fewer) contigs? We can check this by looking at the N50/L50 (see more information about this statistic [here](https://www.molecularecologist.com/2017/03/29/whats-n50/)) of the assembly using the `stats.sh` tool that comes with `BBMap`.
 

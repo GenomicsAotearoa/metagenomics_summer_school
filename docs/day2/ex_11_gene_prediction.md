@@ -42,7 +42,7 @@ To get started, move into the exercise directory.
 !!! terminal-2 "Navigate to working directory"
 
     ```bash
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.gene_prediction/
     ```
 
 ### Examine the `prodigal` parameters
@@ -141,8 +141,8 @@ We will now run `prodigal` over the 10 bins in *single* mode using an array.
     mkdir -p predictions/
 
     # Variables
-    bin_file=dastool_bins/bin_${SLURM_ARRAY_TASK_ID}.fna
-    pred_file=$(basename ${bin_file} .fna)
+    bin_file=dastool_bins/bin_${SLURM_ARRAY_TASK_ID}.fa
+    pred_file=$(basename ${bin_file} .fa)
 
     # Run prodigal
     prodigal -i ${bin_file} -p single \
@@ -282,8 +282,8 @@ To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits 
     mkdir -p ribosomes/
     
     # Variables
-    bin_file=dastool_bins/bin_${SLURM_ARRAY_TASK_ID}.fna
-    pred_file=$(basename ${bin_file} .fna)
+    bin_file=dastool_bins/bin_${SLURM_ARRAY_TASK_ID}.fa
+    pred_file=$(basename ${bin_file} .fa)
     
     # Run Metaxa2
     for ribosome_type in ssu lsu; do

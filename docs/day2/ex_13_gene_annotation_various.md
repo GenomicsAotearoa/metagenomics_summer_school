@@ -25,7 +25,7 @@ The original tool for performing this kind of analysis was the `BLAST` tool. Whi
 
 An alternate method for attributing function to query sequences is to consider them as a collection of independently functioning protein folding domains. This is the approach used in the [HMMER](http://hmmer.org/) software, and the *Pfam*, *TIGRfam*, and *PANTHER* databases. In these analyses, the database consists not of individual sequences, but of Hidden Markov models built from a collection of proteins that share a common domain. These profiles build out a statistical map of the amino acid transitions (from position to position), variations (differences at a position), and insertions/deletions between positions in the domain across the different observations in the training database and apply these maps to the query data.
 
-These exercises will take place in the `10.gene_annotation_and_coverage/` folder. 
+These exercises will take place in the `7.gene_annotation/` folder. 
 
 !!! terminal-2 "Navigate to working directory"
 
@@ -41,7 +41,7 @@ For this exercise we are going to use `DIAMOND` for performing our annotation. W
 
 For this exercise we have created a diamond-compatible database from the 2024 release of the *UniProt* database.
 
-For input files, the `predictions/` results from the previous gene prediction exercise have been copied over to `10.gene_annotation_and_coverage/predictions/`.
+For input files, the `predictions/` results from the previous gene prediction exercise have been copied over to `7.gene_annotation/predictions/`.
 
 In general, `diamond` takes a pair of input files - the protein coding sequences we wish to annotate and the database we will use for this purpose. There are a few parameters that need to be tweaked for obtaining a useful output file, however.
 
@@ -94,10 +94,10 @@ Now, lets set up a slurm job to annotate each of our MAGs.
 
 Create a new script
 
-!!! terminal-2 "Create script named `annotate_uniprot.sl`"
+!!! terminal-2 "Create script named `uniprot_annotation.sl`"
 
     ```bash
-    nano annotate_uniprot.sl
+    nano uniprot_annotation.sl
     ```
 
 !!! warning "Remember to update <YOUR FOLDER> to your own folder"
@@ -108,7 +108,7 @@ Create a new script
     #!/bin/bash -e
 
     #SBATCH --account       nesi02659
-    #SBATCH --job-name      annotate_uniprot
+    #SBATCH --job-name      uniprot_annotation
     #SBATCH --partition     milan
     #SBATCH --time          01:00:00
     #SBATCH --mem           20GB
@@ -127,7 +127,7 @@ Create a new script
     # Variables
     prot_file=predictions/bin_${SLURM_ARRAY_TASK_ID}.genes.no_metadata.faa
     out_file=$(basename ${prot_file} .faa)
-    db=/nesi/nobackup/nesi02659/MGSS_2024/resources/databases/uniprot.20240724.dmnd
+    db=/nesi/nobackup/nesi02659/MGSS_2026/resources/databases/uniprot.20240724.dmnd
 
     # Run DIAMOND
     diamond blastp --threads $SLURM_CPUS_PER_TASK --max-target-seqs 5 --evalue 0.001 \
@@ -138,7 +138,7 @@ Create a new script
 !!! terminal-2 "Submit the script"
 
     ```bash
-    sbatch annotate_uniprot.sl
+    sbatch uniprot_annotation.sl
     ```
 
 ---
@@ -190,10 +190,10 @@ As we did with `diamond`, we will also have to modify some parameters to get the
 
 We are now going to submit another slurm job to annotate our MAGs using the [Pfam database](https://www.ebi.ac.uk/interpro/download/Pfam/). Pfam used to have a standalone website, but it has recently been integrated into InterPro maintained by the European Bioinformatics Institute (see [announcement](https://xfam.wordpress.com/2022/08/04/pfam-website-decommission/)). Matching sequences to a `Pfam` entry allows us to transfer the functional information from an experimentally characterised sequence to uncharacterised sequences in the same entry. `Pfam` then provides comprehensive annotation for each entry.
 
-!!! terminal-2 "Create script named `annotate_pfam.sl`"
+!!! terminal-2 "Create script named `pfam_annotation.sl`"
 
     ```bash
-    nano annotate_pfam.sl
+    nano pfam_annotation.sl
     ```
 
 !!! warning "Remember to update <YOUR FOLDER> to your own folder"
@@ -204,7 +204,7 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
     #!/bin/bash -e
     
     #SBATCH --account       nesi02659
-    #SBATCH --job-name      annotate_pfam
+    #SBATCH --job-name      pfam_annotation
     #SBATCH --partition     milan
     #SBATCH --time          00:20:00
     #SBATCH --mem           5GB
@@ -223,7 +223,7 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
     # Variables
     prot_file=predictions/bin_${SLURM_ARRAY_TASK_ID}.genes.no_metadata.faa
     out_file=$(basename ${prot_file} .faa)
-    db=/nesi/nobackup/nesi02659/MGSS_2024/resources/databases/Pfam-A.hmm
+    db=/nesi/nobackup/nesi02659/MGSS_2026/resources/databases/Pfam-A.hmm
     
     # Run HMMER
     hmmsearch --tblout gene_annotations/${out_file}.pfam.txt -E 0.001 \
@@ -234,7 +234,7 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
 !!! terminal-2 "Submit the script"
 
     ```bash
-    sbatch annotate_pfam.sl
+    sbatch pfam_annotation.sl
     ```
 
 ---

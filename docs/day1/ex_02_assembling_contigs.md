@@ -8,7 +8,7 @@
 
 ![image](../theme_images/genome_assembly.png){.center width="450"}
 
-All work for this exercise will occur in the `3.assembly/` directory.
+All work for this exercise will occur in the `2.assembly/` directory.
 
 ---
 

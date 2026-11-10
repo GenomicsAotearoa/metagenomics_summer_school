@@ -1,4 +1,4 @@
-# Gene synteny
+# Data Presentation: Gene synteny
 
 !!! info "Objectives"
 
@@ -10,18 +10,18 @@
 
 When investigating the evolution of genomes, we sometimes want to consider not only the presence/absence of genes in a genome, but also how they are arranged (e.g. in an operon). For this exercise, we are going to visualise several sulfur assimilation genes from our MAGs and compare their arrangements.
 
-This exercise involves the use of commands in `bash` and `R`. Before starting, make sure you have an active terminal, then navigate to the directory `11.data_presentation/gene_synteny/`. Here, you'll find a copy of the annotations that came from DRAM (`dram_annotations.tsv`) and a directory of dereplicated bins in `dastool_bins/`. 
+This exercise involves the use of commands in `bash` and `R`. Before starting, make sure you have an active terminal, then navigate to the directory `8.data_presentation/gene_synteny/`. Here, you'll find a copy of the annotations that came from DRAM (`dram_annotations.tsv`) and a directory of dereplicated bins in `dastool_bins/`. 
 
 
 ### 1. Obtain contigs containing genes of interest (R)
 
-In an open RStudio session, set your working directory to `11.data_presentation/gene_synteny/` and then load the required libraries and annotation file.
+In an open RStudio session, set your working directory to `8.data_presentation/gene_synteny/` and then load the required libraries and annotation file.
 
 !!! r-project "code"
 
     ```R linenums="1"
     # Working directory
-    setwd("/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/gene_synteny/")
+    setwd("/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.data_presentation/gene_synteny/")
 
     # Tidyverse packages
     library(dplyr)
@@ -214,7 +214,7 @@ We will write out the results for processing in `bash`.
 
 Now, we need to return to the terminal. 
 
-!!! warning "Check that you're in `11.data_presentation/gene_synteny/`"
+!!! warning "Check that you're in `8.data_presentation/gene_synteny/`"
 
 We'll use the previously generated table information to extract the scaffolds (using `seqtk`) we need from bin files.
 
@@ -227,7 +227,7 @@ We'll use the previously generated table information to extract the scaffolds (u
     for i in *.goi.tsv; do
         bin=$(basename ${i} .goi.tsv)
         cut -f 2 ${i} | sed '1d' > tmp.scaffolds
-        seqtk subseq dastool_bins/${bin}.fna tmp.scaffolds > ${bin}.goi.fna
+        seqtk subseq dastool_bins/${bin}.fa tmp.scaffolds > ${bin}.goi.fna
     done
     ```
 

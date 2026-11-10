@@ -1,10 +1,12 @@
-# BONUS: Assembling contigs with IDBA-UD
+# Assembly II: Assemblling with IDBA-UD
 
+!!! info "Objectives"
 
+    * [Become familiar with the standard input files for `IDBA-UD`](#the-standard-input-files-for-idba-ud)
+    * [Understand the basic parameters that should be modified when using this assembler](#basic-assembly-parameters)
+    * [Prepare an assembly job to run under slurm](#submitting-an-idba-ud-job-to-nesi-using-slurm)
 
-
-
-All work for this exercise will occur in the `3.assembly/` directory.
+All work for this exercise will occur in the `2.assembly/` directory.
 
 ---
 
@@ -98,8 +100,10 @@ Fortunately, the `IDBA` set of tools comes with some helper scripts to achieve j
 
 ---
 
+## Basic assembly parameters
 
-## Setting the *k*-mer size
+
+### Setting the *k*-mer size
 
 
 For `IDBA-UD`, we can select the *k*-mer size using
@@ -133,7 +137,7 @@ No such parameter exists in `IDBA-UD`, but it requires far less RAM than `SPAdes
 
    
 
-### Submitting an `IDBA-UD` job to NeSI using slurm
+## Submitting an `IDBA-UD` job to NeSI using slurm
 
 !!! terminal-2 "Create a new slurm script using `nano` to run an equivalent assembly with `IDBA-UD`"
 
@@ -177,18 +181,3 @@ Paste or type in the following:
     sbatch idbaud_assembly.sl
     ```
 
----
-
-## Examining the effect of changing assembly parameters
-
-Make variants of your `IDBA-UD` assembly script and change some parameters. Some potential options include
-
-1. Change the minimum/maximum *k*-mer sizes, or the *k*-mer step size
-1. Change the alignment similarity parameter
-1. Adjust the prefix length for the *k*-mer sub-table 
-
-Submit two or three jobs per variation.
-
-!!! warning "Outputs per variant job"
-
-    For all variations of your assemblies, please remember to modify `--out` argument from `--out idbaud_assembly/` in your slurm scripts to another name (e.g. `--out idbaud_assembly_var_kmer/`)

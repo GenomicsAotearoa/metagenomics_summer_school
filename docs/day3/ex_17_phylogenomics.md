@@ -1,4 +1,4 @@
-# Phylogenomics
+# Data Presentation: Phylogenomics
 
 !!! info "Objectives"
 
@@ -54,7 +54,7 @@ How would we know if the placement of branches are correct in our inferred trees
 
 ## Building a phylogenetic tree
 
-The exercises for this section is performed in the `8.prokaryotic_taxonomy/` directory. Here, we will build a bootstrapped ML tree using `FastTree2` with an MSA provided by `GTDB-Tk` of our MAGs.
+The exercises for this section is performed in the `8.data_presentation/` directory. Here, we will build a bootstrapped ML tree using `FastTree2` with an MSA provided by `GTDB-Tk` of our MAGs. Indeed, the MSA was co-created during our ["Assigning taxonomy to prokaryotic bins"](../day2/ex_10_taxonomy.md) exercise and has been copied from `8.prokaryotic_taxonomy/gtdbtk_out/align/gtdbtk.bac120.user_msa.fasta.gz` to `8.data_presentation/phylogenetic/` for convenience.
 
 We begin by loading the required modules:
 
@@ -71,10 +71,10 @@ Then, we prepare the input file based on our GTDB-Tk outputs:
 
     ```bash
     # Make sure you're in the right place!
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.prokaryotic_taxonomy
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.data_presentation
     
     # Copy MSA produced by GTDB-Tk
-    cp gtdbtk_out/align/gtdbtk.bac120.user_msa.fasta.gz .
+    cp phylogenetic/gtdbtk.bac120.user_msa.fasta.gz .
 
     # Decompress file
     gzip -d gtdbtk.bac120.user_msa.fasta.gz

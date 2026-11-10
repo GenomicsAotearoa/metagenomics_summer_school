@@ -4,7 +4,6 @@
 
     - [Bin dereplication using `DAS_Tool` - Creating input tables](#bin-dereplication-using-das_tool-creating-input-tables)
     - [Bin dereplication using `DAS_Tool`](#bin-dereplication-using-das_tool)
-    - [Evaluating bins using `CheckM`](#evaluating-bins-using-checkm)
     - [Dereplicating bins across multiple assemblies](#dereplicating-bins-across-multiple-assemblies)
 
 ---
@@ -15,7 +14,7 @@ As we discussed in the previous exercise, we have now generated three sets of bi
 
 `DAS_Tool` is a program designed to analyse the bins in each of our binning sets and determine where these equivalent triplets exist and return the 'best' one. `DAS_Tool` does not use the actual bins, but a set of text files that link contigs to their corresponding bins in each of the bin sets. We can produce these files using `bash`.
 
-For this exercise, we will continue working in the `5.binning/` directory.
+For this exercise, we will continue working in the `4.binning/` directory.
 
 ### Create contig/bin tables - `MetaBAT`
 
@@ -34,12 +33,13 @@ This can be done with a bit of `bash` scripting. There's quite a bit going on he
 !!! terminal-2 "Navigate to working directory"
 
     ```bash
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.binning/
     ```
 
 !!! terminal-2 "Create `metabat_refs.tsv`"
 
     ```bash linenums='1'
+    > metabat_refs.tsv
     for bin_path in metabat/*.fa; do
         bin_name=$(basename ${bin_path} .fa)
         grep ">" ${bin_path} | sed 's/>//g' | sed "s/$/\t${bin_name}/g" >> metabat_refs.tsv
@@ -67,7 +67,15 @@ You can check the contents of this file using `less` or `head`:
 We will now walk through the content of the "Create `metabat_refs.tsv`" code block above, breaking apart each individual step.
 
 
-!!! terminal-2 "Line 1: Initiate a `for` loop"
+!!! terminal-2 "Line 1: Create/ensure empty output file"
+
+    ```bash
+    > metabat_refs.tsv
+    ```
+
+We don't want to append to the contents of a potentially existing file: As literately nothing is on the left side of the redirection operator `>`, an empty file is created or the content of an existing one deleted.
+
+!!! terminal-2 "Line 2: Initiate a `for` loop"
 
     ```bash
     for bin_path in metabat/*.fa; do
@@ -75,7 +83,7 @@ We will now walk through the content of the "Create `metabat_refs.tsv`" code blo
 
 This is the initial loop, returning each file in the `metabat/` folder that ends with the file extension *.fa*.
 
-!!! terminal-2 "Line 2: Remove path prefix"
+!!! terminal-2 "Line 3: Remove path prefix"
 
     ```bash
         bin_name=$(basename ${bin_path} .fa)
@@ -83,10 +91,11 @@ This is the initial loop, returning each file in the `metabat/` folder that ends
 
 As we have previously seen, the `basename` command removes the path information from the input variable `bin_path` (i.e. - `metabat/metabat.1.fa` becomes `metabat.1.fa`) and assigns it to a new variable, `bin_name`. As an optional additional parameter, we can pass extra pieces of text to be removed from the variable, in this case the *.fa* extension.
 
-!!! terminal-2 "Line 4: Subset information to create and update `metabat_refs.tsv`"
+!!! terminal-2 "Line 4-5: Subset information to create and update `metabat_refs.tsv`"
 
     ```bash
         grep ">" ${bin_path} | sed 's/>//g' | sed "s/$/\t${bin_name}/g" >> metabat_refs.tsv
+        done
     ```
 
 We will break this line down step-by-step:
@@ -105,6 +114,7 @@ The process for creating the `MaxBin` and `MetaDecoder` tables is basically the 
 !!! terminal-2 "Create `maxbin_refs.tsv`"
 
     ```bash linenums="1"
+    > maxbin_refs.tsv
     for bin_path in maxbin/*.fa; do
         bin_name=$(basename ${bin_path} .fa)
         grep ">" ${bin_path} | sed 's/>//g' | sed "s/$/\t${bin_name}/g" >> maxbin_refs.tsv
@@ -114,6 +124,7 @@ The process for creating the `MaxBin` and `MetaDecoder` tables is basically the 
 !!! terminal-2 "Create `mdecoder_refs.tsv`"
 
     ```bash linenums="1"
+    > mdecoder_refs.tsv
     for bin_path in metadecoder/*.fa; do
         bin_name=$(basename ${bin_path} .fa)
         grep ">" ${bin_path} | sed 's/>//g' | sed "s/$/\t${bin_name}/g" >> mdecoder_refs.tsv
@@ -176,126 +187,6 @@ As usual, we will break down the parameters:
 |`--outputbasename`|Output directory for all files|
 
 When `DAS_Tool` has completed, we will have a final set of bins located in the folder path `dastool_out/_DASTool_bins`. Have a look at the output and see which bins made it to the final selection. Did a single binning tool pick the best bins, or are the results a split between `MetaBAT`, `MaxBin` and `MetaDecoder`?
-
----
-
-## Evaluating bins using `CheckM`
-
-Now that we have our dereplicated set of bins, it is a good idea to determine estimates of their completeness (how much of the genome was recovered) and contamination (how many contigs we believe have been incorrectly assigned to the bin). For organisms that lack a reference genome there is no **_definitive_** way to do this, but the tool `CheckM` provides a robust estimate for these statistics by searching each of your bins for a number of highly conserved, single copy genes. The number of markers depends on whether or not you are working with bacterial (120 markers) or archaeal (122 markers) genomes, but `CheckM` is able to determine which set is more appropriate for each of your bins as it runs.
-
-There are several characteristics of the `CheckM` marker set worth noting:
-
-**Highly conserved, single copy markers**
-
-The marker sets used in `CheckM` were chosen because they are present in at least 95% of bacterial/archaeal genomes, and are single copy in ≥97% genomes tested. This means that if a gene is missing from a genome, it is likely due to incompleteness in either the original assembly or the binning approach. Similarly, if a marker is observed more than once in a bin it is likely the result of over-clustering of the data.
-
-**Genes are considered as co-located clusters**
-
-Rather than test the raw presence/absence of genes in the marker sets, the genes are organised into operon-like structures where genes known to be co-located are placed together. This is advantageous for two reasons
-
-1. These co-located groups are distributed around the prokaryotic genome, so estimates are not biased by lucky/unlucky recovery of a gene hotspot
-1. `CheckM` can account for how complete each individual gene cluster is, rather than just whether or not genes are present
-
-**Lineage-specific duplications and losses can be identified**
-
-As part of determining the correct marker set to use for each bin (bacterial or archaeal), `CheckM` uses a set of 43 conserved prokaryotic markers to insert each bin into a guide tree to estimate the phylogeny of the bin. There are several lineages which are known to have lost particular markers, or to have acquired a additional copies, and if `CheckM` places a bin into one of these lineages it can adjust its completeness/contamination estimates accordingly.
-
-We will need to run `CheckM` under a slurm script. This is because the tree placement process requires a large amount of memory to perform, independently of the size of your data set. A basic script for submitting a `CheckM` job would be as follows:
-
-Create a new script
-
-!!! terminal-2 "Create script named `checkm.sl`"
-    
-    ```bash
-    nano checkm.sl
-    ```
-
-!!! warning "Remember to update `<YOUR FOLDER>` to your own folder."
-
-!!! terminal "code"
-
-    ```bash linenums="1"
-    #!/bin/bash -e
-    #SBATCH --account       nesi02659
-    #SBATCH --job-name      CheckM
-    #SBATCH --partition     milan
-    #SBATCH --time          00:20:00
-    #SBATCH --mem           40GB
-    #SBATCH --cpus-per-task 8
-    #SBATCH --error         %x_%j.err
-    #SBATCH --output        %x_%j.out
-    
-    # Load modules
-    module purge
-    module load CheckM/1.2.5-foss-2026-Python-3.14.4
-    
-    # Working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
-    
-    # Run CheckM
-    checkm lineage_wf --threads $SLURM_CPUS_PER_TASK \
-                      --pplacer_threads $SLURM_CPUS_PER_TASK \
-                      --extension fa  --tab_table \
-                      --file checkm.tsv \
-                      dastool_out/_DASTool_bins/ checkm_out/
-    ```
-
-!!! terminal-2 "Submit the script as a slurm job"
-
-    ```bash
-    sbatch checkm.sl
-    ```
-
-The breakdown of parameters is as follows
-
-|<div style="width:200px">Parameter</div>|Function|
-|:---|:---|
-|`lineage_wf`|Specifies with mode of `CheckM` to run. This is the most common to use, but several others exist|
-|`--threads`|Number of threads to use for the initial marker gene detection and clustering|
-|`--pplacer_threads`|Number of threads to use when inserting bins into the guide tree|
-|`--extension`|The *FASTA* file extension to look for in the input folder. Default is *.fna*|
-|`--tab_table`|If this parameter is present, a summary table will be written for the `CheckM` run|
-|`--file`|The name of the output file for the summary|
-|`dastool/_DASTool_bins/`|The location of the bins to test|
-|`checkm_out/`|The location to write intermediate and output files|
-
-!!! tip "Increasing `--pplacer_threads`"
-
-    Increasing this parameter results in a *linear* increase in memory requirement - seting it to 10 means that `CheckM` will need about 10 times more memory than with a single thread
-
-When your job completes, we will download the summary file and examine it.
-
-!!! note "CheckM2"
-
-    An independent update to CheckM was made in late 2022 in the form of a new software [CheckM2](https://github.com/chklovski/CheckM2) (see [publication](https://doi.org/10.1038/s41592-023-01940-w)). It uses machine learning to estimate completeness and contamination. Computationally, it uses less resources than CheckM and can be used on putative genomes with reduced genomes or unusual biology. Keep in mind that because both software use different methods for assessing genome completeness, the output statistics will be different (see [discussion here for a case example](https://github.com/chklovski/CheckM2/issues/32)) and it does not estimate strain heterogeneity.
-    
-    If you would like to try it out, here's a script analogous to that we ran using CheckM:
-
-    !!! terminal "code"
-
-        ```bash linenums="1"
-        #!/bin/bash -e
-        #SBATCH --account       nesi02659
-        #SBATCH --job-name      CheckM2
-        #SBATCH --partition     milan
-        #SBATCH --time          00:10:00
-        #SBATCH --mem           10GB
-        #SBATCH --cpus-per-task 8
-        #SBATCH --error         %x_%j.err
-        #SBATCH --output        %x_%j.out
-
-        # Load modules
-        module purge
-        module load CheckM2/1.0.1-Miniconda3
-
-        # Working directory
-        cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
-
-        checkm2 predict --threads $SLURM_CPUS_PER_TASK \
-                        --extension .fa \
-                        --input dastool_out/_DASTool_bins/ \
-                        --output-directory checkm2_out/
-        ```
 
 ---
 

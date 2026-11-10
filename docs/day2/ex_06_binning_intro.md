@@ -20,11 +20,11 @@ We have already done this in the [previous exercise](../day1/ex_04_assembly_eval
 
 Binning is done using a combination of information encoded in the ***composition*** and ***coverage*** of the assembled contigs. ***Composition*** refers to *k*-mer (usually tetranucleotide) frequency profiles of the contigs, which are generally conserved within a genome. By contrast, ***coverage*** is a reflection of the abundance of the contigs in the assembly. Organisms which are more abundant will contribute more genomic material to the metagenome, and hence their DNA will be, on average, more abundant in the sample. When binning, we can look for pieces of DNA which are not assembled together, but have similar ***composition*** and occur at approximately equal abundances in the sample to identify contigs which likely originate in the same genome.
 
-The composition of the contigs is calculated by the binning tool at run time, but to obtain coverage information we must map our unassembled reads from each sample against the assembly to generate the differential abundance profiles for each contig. This is achieved using `bowtie2` to map the reads against the assembly, then `samtools` to sort and compress the resulting file.
+The composition of the contigs is calculated by the binning tool at run time, but to obtain coverage information we must map our unassembled reads from each sample against the assembly to generate the (differential) abundance profiles for each contig. This is achieved using `bowtie2` to map the reads against the assembly, then `samtools` to sort and compress the resulting file.
 
 ### Create a mapping index
 
-Before we can map reads, we need to create a `bowtie2` index file from the assembly, for use in read mapping. Navigate into the `5.binning/` folder to begin.
+Before we can map reads, we need to create a `bowtie2` index file from the assembly, for use in read mapping. Navigate into the `4.binning/` folder to begin.
 
 !!! terminal "code"
 
@@ -34,7 +34,7 @@ Before we can map reads, we need to create a `bowtie2` index file from the assem
     module load Bowtie2/2.5.4-GCC-12.3.0
 
     # Navigate to working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.binning/
 
     # Build index
     bowtie2-build spades_assembly/spades_assembly.m1000.fna spades_assembly/bw_spades
@@ -93,7 +93,7 @@ Open a new script using nano:
     module load Bowtie2/2.5.4-GCC-12.3.0 SAMtools/1.23.1-GCC-12.3.0
 
     # Working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.binning/
 
     # Step 1
     for i in sample1 sample2 sample3 sample4; do
@@ -102,8 +102,8 @@ Open a new script using nano:
       bowtie2 --threads $SLURM_CPUS_PER_TASK  --sensitive \
               --minins 200  --maxins 800 \
               -x spades_assembly/bw_spades \
-              -1 ../3.assembly/${i}_R1.fastq.gz \
-              -2 ../3.assembly/${i}_R2.fastq.gz \
+              -1 ../2.assembly/${i}_R1.fastq.gz \
+              -2 ../2.assembly/${i}_R2.fastq.gz \
               -S ${i}.sam
 
       # Step 3
@@ -235,7 +235,7 @@ Open a new script using nano:
     module load Bowtie2/2.5.4-GCC-12.3.0 SAMtools/1.23.1-GCC-12.3.0
 
     # Working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.binning/
 
     # Load the sample names into a bash array
     samples=(sample1 sample2 sample3 sample4)
@@ -245,8 +245,8 @@ Open a new script using nano:
     bowtie2 --threads $SLURM_CPUS_PER_TASK  --sensitive \
             --minins 200  --maxins 800 \
             -x spades_assembly/bw_spades \
-            -1 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R1.fastq.gz \
-            -2 ../3.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R2.fastq.gz \
+            -1 ../2.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R1.fastq.gz \
+            -2 ../2.assembly/${samples[ $SLURM_ARRAY_TASK_ID ]}_R2.fastq.gz \
             -S ${samples[ $SLURM_ARRAY_TASK_ID ]}_a.sam
 
     samtools sort --threads $SLURM_CPUS_PER_TASK \

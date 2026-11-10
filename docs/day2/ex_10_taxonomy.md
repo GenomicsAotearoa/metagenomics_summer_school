@@ -1,8 +1,8 @@
-# Assigning taxonomy to refined prokaryotic bins
+# Assigning taxonomy to prokaryotic bins
 
 !!! info "Objectives"
 
-    * [Assigning taxonomy to the refined bins](#assigning-taxonomy-to-the-dereplicated-bins)
+    * [Assigning taxonomy to the bins](#assigning-taxonomy-to-the-dereplicated-bins)
 
 ---
 
@@ -10,12 +10,14 @@
 
 It is always valuable to know the taxonomy of our binned MAGs, so that we can link them to the wider scientific literature. In order to do this, there are a few different options available to us:
 
+1. Identify a core set of genes in the MAG, and use these to compute a species phylogeny
 1. Extract 16S rRNA gene sequences from the MAGs and classify them
 1. Annotate each gene in the MAG and take the consensus taxonomy
 1. Use a profiling tool like `Kraken`, which matches pieces of DNA to a reference database using *k*-mer searches
-1. Identify a core set of genes in the MAG, and use these to compute a species phylogeny
 
-For this exercise, we will use the last option in the list, making use of the `GTDB-TK` software (available on [github](https://github.com/Ecogenomics/GTDBTk)) to automatically identify a set of highly conserved, single copy marker genes which are diagnostic of the bacterial (120 markers) and archaeal (122 markers) lineages. Briefly, `GTDB-TK` will perform the following steps on a set of bins.
+For this exercise, we will use the first option in the list with the `GTDB-Tk` software, and will use the second option to extract ribosomal RNA genes with `MeTaxa2` towards the [end of the “Gene prediction”](ex_11_gene_prediction.md#predicting-rna-features-and-non-coding-regions) task.
+
+GTDB-TK software (available on [github](https://github.com/Ecogenomics/GTDBTk)) is used to automatically identify a set of highly conserved, single copy marker genes which are diagnostic of the bacterial (120 markers) and archaeal (122 markers) lineages. Briefly, `GTDB-TK` will perform the following steps on a set of bins.
 
 !!! quote ""
     1. Attempt to identify a set of 120 bacterial marker genes, and 122 archaeal marker genes in each MAG.
@@ -29,7 +31,7 @@ For this exercise, we will use the last option in the list, making use of the `G
 
 This can all be achieved in a single command, although it must be performed through a slurm script due to the high memory requirements of the process.
 
-For the following exercises, we will be working in `8.prokaryotic_taxonomy/`.
+For the following exercises, we will be working in `5.bin_quality_and_taxonomy/`.
 
 Create a new script
 
@@ -49,7 +51,7 @@ Create a new script
     #SBATCH --account           nesi02659
     #SBATCH --job-name          gtdbtk
     #SBATCH --partition         milan
-    #SBATCH --time              01:00:00
+    #SBATCH --time              03:00:00
     #SBATCH --mem               140GB
     #SBATCH --cpus-per-task     2
     #SBATCH --threads-per-core  2
@@ -64,8 +66,9 @@ Create a new script
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.prokaryotic_taxonomy
     
     # Run GTDB-Tk
-    gtdbtk classify_wf -x fna --cpus $SLURM_CPUS_PER_TASK \
+    gtdbtk classify_wf -x fa --cpus $SLURM_CPUS_PER_TASK \
                        --keep_intermediates \
+                       --place_species \
                        --genome_dir dastool_bins/ \
                        --out_dir gtdbtk_out/
     ```
@@ -81,14 +84,14 @@ As usual, lets look at the parameters here
 |<div style="width:200px">Parameter</div>|Description|
 |:---|:---|
 |`classify_wf`|Specifies the sub-workflow from `GTDB-TK` that we wish to use|
-|`-x`|Specify the file extension for MAGs within our input directory.<br>Default is *.fna*, but it's always good practice to specify it anyway|
+|`-x`|Specify the file extension for MAGs within our input directory.<br>Default is *.fna*. It's always good practice to explicitly specify.|
 |`--cpus`|Number of threads/CPUs to use when finding marker genes, and performing tree insertion operations|
 |`--keep_intermediates`|Keep intermediate outputs|
 |`--genome_dir`|Input directory containing MAGs as individual FASTA files|
 |`--out_dir`|Output directory to write the final set of files|
 
 
-Before submitting your job, think carefully about which set of MAGs you want to classify. You could either use the `DAS_Tool` output from `../5.binning/dastool_out/_DASTool_bins/` which we have copied to `8.prokaryotic_taxonomy/dastool_bins/` or your own set of bins. Whichever set you choose, make sure you select the correct input folder and extension setting as it may differ from the example here.
+Before submitting your job, think carefully about which set of MAGs you want to classify. You could either use the `DAS_Tool` output from `../4.binning/dastool_out/_DASTool_bins/` which we have copied to `5.bin_quality_and_taxonomy/dastool_bins/` or your own set of bins. Whichever set you choose, make sure you select the correct input folder and extension setting as it may differ from the example here.
 
 When the task completes, you will have a number of output files provided. The main ones to look for are `gtdbtk.bac120.summary.tsv` and `gtdbtk.arch122.summary.tsv` which report the taxonomies for your MAGs, split at the domain level. These file are only written if MAGs that fall into the domain were found in your data set, so for this exercise we do not expect to see the `gtdbtk.arch122.summary.tsv` file.
 

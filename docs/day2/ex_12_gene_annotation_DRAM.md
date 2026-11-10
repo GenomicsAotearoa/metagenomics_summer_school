@@ -33,12 +33,12 @@ Beyond annotation, `DRAM` aims to be a data compiler. For that reason, output fi
 
 ### `DRAM` input files
 
-For these exercises, we have copied the relevant input files into the folder `10.gene_annotation_and_coverage/DRAM_input_files/`. `gtdbtk.bac120.summary.tsv` was taken from the earlier `8.prokaryotic_taxonomy/gtdbtk_out/` outputs, and `checkm.tsv` from running `CheckM` on the bins in `5.binning/dastool_out/dastool_bins`.
+For these exercises, we have copied the relevant input files into the folder `7.gene_annotation/DRAM_input_files/`. `gtdbtk.bac120.summary.tsv` was taken from the earlier `5.bin_quality_and_taxonomy/gtdbtk_out/` outputs, and `checkm.tsv` from running `CheckM` on the bins in `5.bin_quality_and_taxonomy/dastool_bins/`.
 
 !!! terminal-2 "Navigate to working directory"
 
     ```bash
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_annotation/
     ```
 
 Along with our filtered bins, the `CheckM` output file (`checkm.txt`) and `GTDB-Tk` summary output `gtdbtk.bac120.summary.tsv` are used as inputs as is.
@@ -95,10 +95,10 @@ To look at some of the arguments in each command, type the following:
 
 To run this exercise we first need to set up a slurm job. We will use the results for tomorrow's distillation step. 
 
-!!! terminal-2 "Create script named `annotate_dram.sl`"
+!!! terminal-2 "Create script named `DRAM_annotation.sl`"
 
     ```bash
-    nano annotate_dram.sl
+    nano DRAM_annotation.sl
     ```
 
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
@@ -109,7 +109,7 @@ To run this exercise we first need to set up a slurm job. We will use the result
     #!/bin/bash -e
 
     #SBATCH --account       nesi02659
-    #SBATCH --job-name      annotate_DRAM
+    #SBATCH --job-name      DRAM_annotation
     #SBATCH --partition     milan
     #SBATCH --time          4:00:00
     #SBATCH --mem           16Gb
@@ -126,7 +126,7 @@ To run this exercise we first need to set up a slurm job. We will use the result
 
     # Run DRAM
     DRAM.py annotate --threads $SLURM_CPUS_PER_TASK \
-                     --input_fasta 'dastool_bins/*.fna' \
+                     --input_fasta 'dastool_bins/*.fa' \
                      --checkm_quality DRAM_input_files/checkm.txt \
                      --gtdb_taxonomy DRAM_input_files/gtdbtk.bac120.summary.tsv \
                      --output_dir dram_annotations
@@ -135,7 +135,7 @@ To run this exercise we first need to set up a slurm job. We will use the result
 !!! terminal-2 "Submit the job"
 
     ```bash
-    sbatch annotate_dram.sl
+    sbatch DRAM_annotation.sl
     ```
 
 The program will take 2-3 hours to run, so we will submit the jobs and inspect the results tomorrow morning.

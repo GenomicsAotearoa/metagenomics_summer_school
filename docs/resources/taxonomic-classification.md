@@ -34,7 +34,7 @@ For this workshop, we will use PhyloFlash to obtain sequences and abundances of 
     module load USEARCH/11.0.667-i86linux32
 
     # Navigate to working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.evaluation/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly_evaluation/
 
     # Set conda variables
     source $(conda info --base)/etc/profile.d/conda.sh
@@ -45,7 +45,7 @@ For this workshop, we will use PhyloFlash to obtain sequences and abundances of 
     source activate phyloflash
 
     # Run PhyloFlash per sample pair
-    for r1 in ../3.assembly/sample*_R1.fastq.gz; do
+    for r1 in ../2.assembly/sample*_R1.fastq.gz; do
         phyloFlash.pl -lib $(basename $r1 _R1.fastq.gz) \
                       -read1 ${r1} -read2 ${r1/R1/R2} \
                       -everything \
@@ -163,7 +163,7 @@ As `Kraken2` classifications are *k*-mer based, we can also classify reads. This
         Bracken/2.7-GCC-11.3.0
 
     # Navigate to working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.evaluation/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly_evaluation/
 
     # Point to database
     K2DB=/nesi/project/nesi02659/MGSS_2024/resources/databases/k2_standard_20240605
@@ -172,7 +172,7 @@ As `Kraken2` classifications are *k*-mer based, we can also classify reads. This
     mkdir -p read_classification/
 
     # Run Kraken2 and Bracken
-    for r1 in ../3.assembly/sample?_R1.fastq.gz; do
+    for r1 in ../2.assembly/sample?_R1.fastq.gz; do
       # Output basename
       outbase=read_classification/$(basename ${r1} _R1.fastq.gz)
       # Taxonomic classification of reads

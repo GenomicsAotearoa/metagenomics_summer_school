@@ -1,4 +1,4 @@
-# KEGG pathway maps
+# Data Presentation: KEGG pathway maps
 
 !!! info "Objectives"
 
@@ -10,7 +10,7 @@
 
 In this exercise, we will generate KEGG a pathways map from genome annotations to visualize potential pathways present in our assembled, binned genome sequences.
 
-The key package used here is [pathview](https://academic.oup.com/bioinformatics/article/29/14/1830/232698), available from `Bioconductor` (for installation on your local version of `RStudio`, see the previous [intro to data presentation](../day3/ex_17_data_presentation_intro.md) section). `pathview` is mainly used in transcriptomic analyses but can be adapted for any downstream analyses that utilise the KEGG database. For this exercise, we are interested in visualising the prevalence of genes that we have annotated in a pathway of interest.
+The key package used here is [pathview](https://academic.oup.com/bioinformatics/article/29/14/1830/232698), available from `Bioconductor` (for installation on your local version of `RStudio`, see the [previous section](../day3/ex_18_data_presentation_coverage.md#overview-rrstudio-and-using-r-in-the-jupyter-environment)). `pathview` is mainly used in transcriptomic analyses but can be adapted for any downstream analyses that utilise the KEGG database. For this exercise, we are interested in visualising the prevalence of genes that we have annotated in a pathway of interest.
 
 To get started, if you're not already, log back in to [OnDemand](https://ondemand.nesi.org.nz/public) and open `RStudio`.
 
@@ -22,7 +22,7 @@ Set the working directory, load the required packages, and import data.
 
     ```R linenums="1"
     # Set working directories ----
-    setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/11.data_presentation/kegg_map')
+    setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.data_presentation/kegg_map')
 
     # Load libraries ----
     # Tidyverse packages

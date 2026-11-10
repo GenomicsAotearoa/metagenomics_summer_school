@@ -25,7 +25,7 @@ In our own workflow, we often use the tools `MetaBAT` and `MaxBin` for binning, 
 
 ## `MetaBAT`
 
-`MetaBAT` binning occurs in two steps. First, the *bam* files from the last exercise are parsed into a tab-delimited table of the average coverage depth and variance per sample mapped. Binning is then performed using this table.
+`MetaBAT` binning occurs in two steps. First, the *bam* files from the last exercise are parsed into a tab-delimited table (*tsv* file) of the average coverage depth and variance per sample mapped. Binning is then performed using this table.
 
 The *.bam* files can be passed in via either a user-defined order, or using wildcards.
 
@@ -34,7 +34,7 @@ The *.bam* files can be passed in via either a user-defined order, or using wild
 !!! terminal-2 "Navigate to working directory"
 
     ```bash
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.binning/
     ```
 
 !!! terminal "code"
@@ -50,6 +50,8 @@ The *.bam* files can be passed in via either a user-defined order, or using wild
     jgi_summarize_bam_contig_depths --outputDepth metabat.tsv sample?.bam
     ```
 
+Both manual and wildcard commands in the code block above give the same result, although the order samples are processed in may vary.
+
 ??? tip "Bash wildcards"
 
     The question mark `?` is also a Bash wildcard. The difference between `?` and `*` is that:
@@ -59,11 +61,10 @@ The *.bam* files can be passed in via either a user-defined order, or using wild
 
     The reason we use a `?` here instead is because if you did the SPAdes contig mapping with the `for` loop AND with the array, you will capture each sample twice (i.e., `sample1.bam` and `sample1_a.bam`) with the asterisk `*`. For this exercise, we really want each sample file to be counted only once.
 
-Both give the same result, although the sample order may vary.
+??? tip "*tsv* files"
 
-??? tip ".tsv files"
-
-    Tab separated value files with the extension `.tsv` will be displayed in tabular layout by Jupyter when opening the file from the Jupyter file browser and can also easily be loaded into Excel or LibreOffice Calc.
+    Tab separated value files with the extension `.tsv` will be displayed in tabular layout by Jupyter when opening the file from the Jupyter file browser and can also easily be loaded into Excel or LibreOffice Calc.   
+    In this case, the file reports the average coverage of contigs per sample mapped and the respective variance.
 
 
 We can then pass the table `metabat.tsv` into the `MetaBAT` binning tool.
@@ -165,7 +166,7 @@ This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we wan
     module load MaxBin/2.2.7-GCC-11.3.0-Perl-5.34.1
     
     # Working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.binning/
     
     # Output directory
     mkdir -p maxbin/
@@ -229,7 +230,7 @@ Note also that we are specifying a minimum contig size of 2,000 bp, which is the
     source /nesi/project/nesi02659/MGSS_2026/resources/tools/MetaDecoder_v1.2.2_python3.11-venv/bin/activate
     
     # Working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.binning/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.binning/
     
     # I/O
     src="spades_assembly/spades_assembly.m1000.fna"
@@ -240,7 +241,7 @@ Note also that we are specifying a minimum contig size of 2,000 bp, which is the
 
     # Run MetaDecoder pipeline
     metadecoder coverage --threads $SLURM_CPUS_PER_TASK \
-            --bam *.bam \
+            --bam sample?.bam \
             --output "mdecoder.tsv"
 
     metadecoder seed --threads $SLURM_CPUS_PER_TASK \
