@@ -47,7 +47,7 @@ In order to be able to assimilate sulfate, prokaryotic genomes need to encode fo
 * K02047 (*cysW*)
 * K02048 (*cysP*) or K23163 (*sbp*)
 
-We'll subset the annotation file to obtain relevant rows and columns. In addtion to the bin and KO information, we require the gene position relative to the contig, strandedness, and the start and end position of the gene. 
+We'll subset the annotation file to obtain relevant rows and columns. In addition to the bin and KO information, we require the gene position relative to the contig, strandedness, and the start and end position of the gene. 
 
 !!! r-project "code"
 

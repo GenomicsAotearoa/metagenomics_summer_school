@@ -90,7 +90,7 @@ The breakdown of parameters is as follows
 
 !!! tip "Increasing `--pplacer_threads`"
 
-    Increasing this parameter results in a *linear* increase in memory requirement - seting it to 10 means that `CheckM` will need about 10 times more memory than with a single thread
+    Increasing this parameter results in a *linear* increase in memory requirement - setting it to 10 means that `CheckM` will need about 10 times more memory than with a single thread
 
 When your job completes, we will download the summary file and examine it.
 

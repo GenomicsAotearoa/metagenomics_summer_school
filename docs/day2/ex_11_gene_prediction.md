@@ -203,7 +203,7 @@ The last option that is important to check is the *partial* parameter. This is r
 
 ### Strip metadata
 
-While this header information can be very informative, its presence in the FASTA files can lead to some downstream issues. The FASTA file format specifies that the sequence name for each entry runs from the '>' character to the first space, and everything after the space is metadata. Some bioinformatic programs are aware of this convention and will strip the metadata when producing their outputs, but some tools do not do this. It's really easy to end up in situations where your gene names are failing to match between analyses because of this inconsistency, so we recommend creating new FASTA files with the metadata removed to preempt this problem.
+While this header information can be very informative, its presence in the FASTA files can lead to some downstream issues. The FASTA file format specifies that the sequence name for each entry runs from the '>' character to the first space, and everything after the space is metadata. Some bioinformatics programs are aware of this convention and will strip the metadata when producing their outputs, but some tools do not do this. It's really easy to end up in situations where your gene names are failing to match between analyses because of this inconsistency, so we recommend creating new FASTA files with the metadata removed to preempt this problem.
 
 !!! terminal "code"
 
@@ -306,7 +306,7 @@ The only other parameter that can be helpful is the `-t` flag to indicate taxa t
 1. Bacteria
 1. Archaea
 1. Chloroplast
-1. Mitochondira
+1. Mitochondria
 1. Eukaryote
 
 It is usually worth letting it search for all options as detecting multiple rRNAs from different lineages can be a good sign of binning contamination. However, if you want to restrict the search or provide a custom training set this can be set with the `-t` flag.

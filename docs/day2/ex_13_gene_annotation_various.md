@@ -147,9 +147,9 @@ Create a new script
 
 The standard software for performing HMM-profiling annotation is [HMMER](http://hmmer.org/). Compared to `BLAST`, `FASTA`, and other sequence alignment and database search tools based on older scoring methodology, `HMMER` aims to be significantly more accurate and more able to detect remote homologs because of the strength of its underlying mathematical models. In the past, this strength came at significant computational expense, but in the new `HMMER3` project, `HMMER` is now essentially as fast as `BLAST`. 
 
-`HMMER` will search one or more profiles against a sequence database for sequence hommologs, and for making sequence alignments, implementing profile hidden Markov models. In this exercise, we will perform a search using `hmmsearch`. For each profile in *hmmfile*, `HMMER` uses that query profile to search the target database of sequences indicated in *seqdb*, and output ranked lists of the sequences with the most significant matches to the profile. `hmmsearch` accepts any *FASTA* file as target database input. It also accepts EMBL/UniProtKB text format, and Genbank format. It will automatically determine what format your file is in so you don’t have to specify it.
+`HMMER` will search one or more profiles against a sequence database for sequence homologs, and for making sequence alignments, implementing profile hidden Markov models. In this exercise, we will perform a search using `hmmsearch`. For each profile in *hmmfile*, `HMMER` uses that query profile to search the target database of sequences indicated in *seqdb*, and output ranked lists of the sequences with the most significant matches to the profile. `hmmsearch` accepts any *FASTA* file as target database input. It also accepts EMBL/UniProtKB text format, and Genbank format. It will automatically determine what format your file is in so you don’t have to specify it.
 
-As we did with `diamond`, we will also have to modify some parameters to get the desired ouotput. 
+As we did with `diamond`, we will also have to modify some parameters to get the desired output. 
 
 !!! terminal "code"
 
@@ -307,7 +307,7 @@ The output of the script above are directories per bin that contain 5 files:
 
 ## Evaluating the quality of gene assignment
 
-Determining how trustworthy a gene annotation is can be a very tricky process. How similar do protein sequences need to be to perform the same function? The answer is surprisingly low. A bioinformatic analysis performed in 1999 identified that proteins with as little as 20 - 35% sequence identity can still share the same function ([Rost, 1999](https://doi.org/10.1093/protein/12.2.85)), but this is not a universal occurrence. When evaluating annotations, consider the following questions:
+Determining how trustworthy a gene annotation is can be a very tricky process. How similar do protein sequences need to be to perform the same function? The answer is surprisingly low. A bioinformatics analysis performed in 1999 identified that proteins with as little as 20 - 35% sequence identity can still share the same function ([Rost, 1999](https://doi.org/10.1093/protein/12.2.85)), but this is not a universal occurrence. When evaluating annotations, consider the following questions:
 
 !!! quote ""
     1. What is the amino acid identity along the aligned region?
@@ -318,7 +318,7 @@ Determining how trustworthy a gene annotation is can be a very tricky process. H
     1. Does the gene sit on a long contig that is core to the MAG, or is it a short contig carrying only a single gene?
     1. If we are uncertain of a particular annotation, does the predicted gene occur in an operon? If so, are the other genes present in the annotation?
 
-We must also remain aware of the potential for incorrectly annotated genes in the annotation database and that proteins can perform multiple functions (and may therefore be attributed multiple, inconsistent annotations). Furthermore, it is also important to consider exactly which part of the target gene the alignment is happening across. There are several catalytic centers of enzymes, such as the Fe-S cofactor, which are shared across many different proteins, and if your annotation is only spanning one of these regions then it may simply be the case that you are identifying a generic electron accepting or donating domain.
+We must also remain aware of the potential for incorrectly annotated genes in the annotation database and that proteins can perform multiple functions (and may therefore be attributed multiple, inconsistent annotations). Furthermore, it is also important to consider exactly which part of the target gene the alignment is happening across. There are several catalytic centres of enzymes, such as the Fe-S cofactor, which are shared across many different proteins, and if your annotation is only spanning one of these regions then it may simply be the case that you are identifying a generic electron accepting or donating domain.
 
 ---
 
@@ -326,7 +326,7 @@ We must also remain aware of the potential for incorrectly annotated genes in th
 
 Another way to determine if an annotation 'belongs' in the MAG of interest is to consider the predicted taxonomy of the query gene with that of the MAG itself. For example, if you detect a *Desulfovibrio*-like *dsrA* sequence in a bin that has been classified as belonging to the genus *Desulfovibrio* then it is probably a safe bet that the annotation is correct.
 
-However, when comparing taxonomic assignments, it is important to be aware of the differing taxonomic schemas that are circulating in the microbiological and bioinformatic literature and to know how to reconcile their differences. Similar to how the 16S rRNA gene taxonomies provided by *SILVA*, *Greengenes*, and *RDP* taxonomies all differ in some aspects, there are multiple competing taxonomies in protein databases.
+However, when comparing taxonomic assignments, it is important to be aware of the differing taxonomic schemata that are circulating in the microbiological and bioinformatics literature and to know how to reconcile their differences. Similar to how the 16S rRNA gene taxonomies provided by *SILVA*, *Greengenes*, and *RDP* taxonomies all differ in some aspects, there are multiple competing taxonomies in protein databases.
 
 This problem exists despite the existence of a formal [Code](https://www.microbiologyresearch.org/content/journal/ijsem/10.1099/ijsem.0.000778) for the naming of bacteria and archaea, because 
 

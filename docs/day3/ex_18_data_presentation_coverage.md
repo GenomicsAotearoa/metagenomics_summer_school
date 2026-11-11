@@ -93,7 +93,7 @@ To start, open a new file to start writing code in.
 
 !!! quote ""
 
-    One of the first questions we often ask when studying the ecology of a system is: What are the pattens of abundance and distribution of taxa across the different samples? In the previous [coverage calculation](../day3/ex_16_bin_coverage_mapping.md) exercises we mapped the quality-filtered unassembled reads back to the bins and generated coverage profiles for each. 
+    One of the first questions we often ask when studying the ecology of a system is: What are the patterns of abundance and distribution of taxa across the different samples? In the previous [coverage calculation](../day3/ex_16_bin_coverage_mapping.md) exercises we mapped the quality-filtered unassembled reads back to the bins and generated coverage profiles for each. 
 
     As a reminder:
 
@@ -204,7 +204,7 @@ In the following code, we first `select()` the `user_genome` (which is equivalen
 After obtaining a tidy taxonomy table, we append the species annotations to the bin IDs as follows:
 
 1. `left_join()` a subset of the columns (`user_genome`, `species`) from `bin_taxonomy` generated above based on bin IDs. Bin IDs is `binID` in `MAG_cov` and in `user_genome` in `bin_taxonomy`, so we must specifically tell `left_join()` which columns to join `by`.
-2. We `unite()` the columns `binID` and `species` as 1 column and place an underscore `_` betwee the strings.
+2. We `unite()` the columns `binID` and `species` as 1 column and place an underscore `_` between the strings.
 3. We then convert the `binID` column into `rownames` for the `data.frame` in preparation for the other steps.
 
 !!! r-project "code"
@@ -223,7 +223,7 @@ After obtaining a tidy taxonomy table, we append the species annotations to the 
 
 ??? note "Too much data?"
 
-    In your own work, if you have too many MAGs, it can be difficult to present them concisely in a heatmap. Thus, you may want to only retain MAGs that fulfill some criteria. 
+    In your own work, if you have too many MAGs, it can be difficult to present them concisely in a heatmap. Thus, you may want to only retain MAGs that fulfil some criteria. 
     
     For example, you may only be interested in the top 10 MAGs based on coverage:
 
@@ -443,12 +443,12 @@ The penultimate step before building our heatmap is to set the colours that will
     * Presumably, sample 4 has a high abundance of nitrogen cycling MAGs
     * Samples from Groups A and B recovered the same bins
 
-You can and should experiment with different paramters and arguments within the `heatmap.2` function. A good starting point is `cexRow = ...` / `cexCol = ...` which controls "character expansion" (i.e. text size for rows or columns). Here, we use the `...SideColors` argument to annotate MAG phylum and sample grouping. We also use `legend` to provide additional information on what those colours represent. Read the help page for `heatmap.2()` by typing `?heatmap.2` into the console. The help manual will appear on the bottom right pane.
+You can and should experiment with different parameters and arguments within the `heatmap.2` function. A good starting point is `cexRow = ...` / `cexCol = ...` which controls "character expansion" (i.e. text size for rows or columns). Here, we use the `...SideColors` argument to annotate MAG phylum and sample grouping. We also use `legend` to provide additional information on what those colours represent. Read the help page for `heatmap.2()` by typing `?heatmap.2` into the console. The help manual will appear on the bottom right pane.
 
 Here, we arrange our columns based Bray-Curtis dissimilarities between samples. However, you may want to enforce or preserve some form of sample order (samples from the same transect, chronological/topological order, etc.). You can do this by setting `Colv = FALSE`.
 
 !!! note "Arranging figure elements"
 
-    As observed in the above plot, the positioning and arrangement of the colour key and legends relative to the main heatmap may not be ideal. Often times, it is desirable to manually arrange or resize elements of a figure (legends, keys, text). This is usually done by exporting the figure in a format capable of preseving vectors (e.g. SVG or PDF) and then post-processing them in vector graphics software such as Adobe Illustrator or Inkscape.
+    As observed in the above plot, the positioning and arrangement of the colour key and legends relative to the main heatmap may not be ideal. Often times, it is desirable to manually arrange or resize elements of a figure (legends, keys, text). This is usually done by exporting the figure in a format capable of preserving vectors (e.g. SVG or PDF) and then post-processing them in vector graphics software such as Adobe Illustrator or Inkscape.
 
 

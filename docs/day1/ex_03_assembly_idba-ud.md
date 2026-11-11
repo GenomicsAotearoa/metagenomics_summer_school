@@ -42,7 +42,7 @@ Although they both make use of the same types of data, `IDBA-UD` has a different
           --inner_step arg (=5)              inner increment of k-mer
           --prefix arg (=3)                  prefix length used to build sub k-mer table
           --min_count arg (=2)               minimum multiplicity for filtering k-mer when building the graph
-          --min_support arg (=1)             minimum supoort in each iteration
+          --min_support arg (=1)             minimum support in each iteration
           --num_threads arg (=0)             number of threads
           --seed_kmer arg (=30)              seed kmer size for alignment
           --min_contig arg (=200)            minimum size of contig

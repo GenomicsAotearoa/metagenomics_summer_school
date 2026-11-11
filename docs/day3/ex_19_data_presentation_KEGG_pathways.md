@@ -8,7 +8,7 @@
 
 ## Build a KEGG pathway map using *R*
 
-In this exercise, we will generate KEGG a pathways map from genome annotations to visualize potential pathways present in our assembled, binned genome sequences.
+In this exercise, we will generate KEGG a pathways map from genome annotations to visualise potential pathways present in our assembled, binned genome sequences.
 
 The key package used here is [pathview](https://academic.oup.com/bioinformatics/article/29/14/1830/232698), available from `Bioconductor` (for installation on your local version of `RStudio`, see the [previous section](../day3/ex_18_data_presentation_coverage.md#overview-rrstudio-and-using-r-in-the-jupyter-environment)). `pathview` is mainly used in transcriptomic analyses but can be adapted for any downstream analyses that utilise the KEGG database. For this exercise, we are interested in visualising the prevalence of genes that we have annotated in a pathway of interest.
 
@@ -124,7 +124,7 @@ If you click on `KO_matrix` in the Environment pane, you can see that it is now 
 
 ### 6. Creating pathway map of genes related to TCA cycle
 
-Now we can generate images of the KEGG pathway maps using the matrix we just made. For this section, we will try to find genes invovled in the TCA cycle.
+Now we can generate images of the KEGG pathway maps using the matrix we just made. For this section, we will try to find genes involved in the TCA cycle.
 
 !!! r-project "code"
 

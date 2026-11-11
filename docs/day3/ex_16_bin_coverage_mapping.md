@@ -3,7 +3,7 @@
 
 ## Calculating per-sample coverage stats for prokaryotic bins
 
-One of the first questions we often ask when studying the ecology of a system is: What are the pattens of abundance and distribution of taxa across the different samples? With bins of metagenome-assembled genome (MAG) data, we can investigate this by mapping the quality-filtered unassembled reads back to the refined bins to then generate coverage profiles. Genomes in higher abundance in a sample will contribute more genomic sequence to the metagenome, and so the average depth of sequencing coverage for each of the different genomes provides a proxy for abundance in each sample. 
+One of the first questions we often ask when studying the ecology of a system is: What are the patterns of abundance and distribution of taxa across the different samples? With bins of metagenome-assembled genome (MAG) data, we can investigate this by mapping the quality-filtered unassembled reads back to the refined bins to then generate coverage profiles. Genomes in higher abundance in a sample will contribute more genomic sequence to the metagenome, and so the average depth of sequencing coverage for each of the different genomes provides a proxy for abundance in each sample. 
 
 We can do this using the tool `CoverM`. This exercise will take place in the `7.gene_annotation/` folder which contains our results on the mock metagenome data. `CoverM` will retrieve the per-contig coverages from the *.bam* files calculated earlier and calculate a mean coverage for each MAG (`dastool_bins`). 
 

@@ -3,7 +3,7 @@
 !!! info "Objectives"
 
     * [Overview of `DRAM.py annotate` output](#overview-of-drampy-annotate-output)
-    * [`DRAM` distillation step and visualization of results](#dram-distillation-of-the-results)
+    * [`DRAM` distillation step and visualisation of results](#dram-distillation-of-the-results)
 
 ---
 

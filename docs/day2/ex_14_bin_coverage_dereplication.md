@@ -16,7 +16,7 @@ Before we begin to use `dRep`, it is important to understand the workflow that i
 1. Clusters of genomes sharing greater than 90% ANI are grouped together and ANI is calculated using a more sensitive method
 1. Where groups of genomes sharing >99% ANI are found, the best (determined by completeness and contamination statistics) is picked as a representative of the cluster
 
-When run on its own, `dRep` would automatically try to run `CheckM` in the background. However, there are two parameters in `CheckM` which speed up the workflow through multithreading, but `dRep` only has access to one of them.
+When run on its own, `dRep` would automatically try to run `CheckM` in the background. However, there are two parameters in `CheckM` which speed up the workflow through multi-threading, but `dRep` only has access to one of them.
 
 Therefore, when working on NeSI we run `CheckM` on our data set first, and then pass the results directly into `dRep`, avoiding the need for `dRep` to try to call `CheckM`.
 

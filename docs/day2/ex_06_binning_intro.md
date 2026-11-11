@@ -61,7 +61,7 @@ Generally speaking, we don't need to know the names of the index files, as they 
 
 ### Mapping the reads
 
-We will create a slurm script to perform the mapping steps, as these benefit greatly from the multithreaded capacity of NeSI and we will use a *for loop* to iterate over each set of reads to simplify our script.
+We will create a slurm script to perform the mapping steps, as these benefit greatly from the multi-threaded capacity of NeSI and we will use a *for loop* to iterate over each set of reads to simplify our script.
 
 The full script is provided here, and we will discuss it below.
 
