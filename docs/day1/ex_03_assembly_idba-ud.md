@@ -1,4 +1,4 @@
-# Assembly II: Assemblling with IDBA-UD
+# Assembly II: Assembling with IDBA-UD
 
 !!! info "Objectives"
 
