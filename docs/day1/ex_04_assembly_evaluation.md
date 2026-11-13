@@ -97,6 +97,14 @@ A few quick checks I recommend are to see how many contigs or scaffolds your dat
 
 These steps will take place in the `2.assembly_evaluation/` folder, which contains copies of our `SPAdes` and `IDBA-UD` assemblies.
 
+!!! terminal "code"
+
+    ```bash
+    # Navigate to working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.assembly_evaluation/
+    ```
+
+
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
 
 !!! terminal "code"
@@ -106,21 +114,18 @@ These steps will take place in the `2.assembly_evaluation/` folder, which contai
     module purge
     module load seqmagick/0.8.4-gimkl-2020a-Python-3.8.2
 
-    # Navigate to working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.assembly_evaluation/
-
     # Filter assemblies and check number of contigs
     seqmagick convert --min-length 1000 \
-                      spades_assembly/spades_assembly.fna \
-                      spades_assembly/spades_assembly.m1000.fna
-    grep -c '>' spades_assembly/spades_assembly.fna \
-                spades_assembly/spades_assembly.m1000.fna
+                      spades_assembly/spades_assembly.fa \
+                      spades_assembly/spades_assembly.m1000.fa
+    grep -c '>' spades_assembly/spades_assembly.fa \
+                spades_assembly/spades_assembly.m1000.fa
 
     seqmagick convert --min-length 1000 \
-                      idbaud_assembly/idbaud_assembly.fna \
-                      idbaud_assembly/idbaud_assembly.m1000.fna
-    grep -c '>' idbaud_assembly/idbaud_assembly.fna \
-                idbaud_assembly/idbaud_assembly.m1000.fna
+                      idbaud_assembly/idbaud_assembly.fa \
+                      idbaud_assembly/idbaud_assembly.m1000.fa
+    grep -c '>' idbaud_assembly/idbaud_assembly.fa \
+                idbaud_assembly/idbaud_assembly.m1000.fa
     ```
 
 !!! circle-check "Terminal output"
@@ -128,15 +133,15 @@ These steps will take place in the `2.assembly_evaluation/` folder, which contai
     === "`SPAdes`"
 
         ```
-        spades_assembly/spades_assembly.fna:1327
-        spades_assembly/spades_assembly.m1000.fna:934
+        spades_assembly/spades_assembly.fa:1327
+        spades_assembly/spades_assembly.m1000.fa:934
         ```
 
     === "`IDBA-UD`"
 
         ```
-        idbaud_assembly/idbaud_assembly.fna:5057
-        idbaud_assembly/idbaud_assembly.m1000.fna:1996
+        idbaud_assembly/idbaud_assembly.fa:5057
+        idbaud_assembly/idbaud_assembly.m1000.fa:1996
         ```
 
 !!! note "Choice of software: sequence file manipulation"
@@ -154,7 +159,7 @@ As we can see here, the `SPAdes` assembly has completed with fewer contigs assem
     module load BBMap/39.01-GCC-11.3.0
 
     # Generate statistics for filtered SPAdes assembly
-    stats.sh in=spades_assembly/spades_assembly.m1000.fna
+    stats.sh in=spades_assembly/spades_assembly.m1000.fa
     ```
 
 This gives quite a verbose output:
@@ -205,11 +210,11 @@ But what we can highlight here is that the statistics for the `SPAdes` assembly,
 !!! terminal "code"
 
     ```bash
-    stats.sh in=spades_assembly/spades_assembly.m1000.fna
-    stats.sh in=spades_assembly/spades_assembly.fna
+    stats.sh in=spades_assembly/spades_assembly.m1000.fa
+    stats.sh in=spades_assembly/spades_assembly.fa
 
-    stats.sh in=idbaud_assembly/idbaud_assembly.m1000.fna
-    stats.sh in=idbaud_assembly/idbaud_assembly.fna
+    stats.sh in=idbaud_assembly/idbaud_assembly.m1000.fa
+    stats.sh in=idbaud_assembly/idbaud_assembly.fa
     ```
 
 |Assembly|N50 (contig)|L50 (contig)|

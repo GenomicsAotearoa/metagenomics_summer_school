@@ -159,7 +159,7 @@ We will run `trimmomatic` via a dedicated "slurm" job submitted to NeSI as there
     #SBATCH --job-name      trimming
     #SBATCH --time          00:05:00
     #SBATCH --partition     milan
-    #SBATCH --mem           2GB
+    #SBATCH --mem           3GB
     #SBATCH --cpus-per-task 2
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
@@ -360,8 +360,8 @@ Create a new script named `host_filt_bbmap_index.sl` using `nano`:
     #SBATCH --account       nesi02659
     #SBATCH --job-name      host_filt_bbmap_index
     #SBATCH --partition     milan
-    #SBATCH --time          00:10:00
-    #SBATCH --mem           20GB
+    #SBATCH --time          00:15:00
+    #SBATCH --mem           24GB
     #SBATCH --cpus-per-task 4
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
@@ -412,7 +412,7 @@ Again, we will create a script using `nano`:
     #SBATCH --account       nesi02659
     #SBATCH --job-name      host_filt_bbmap_map
     #SBATCH --partition     milan
-    #SBATCH --time          00:10:00
+    #SBATCH --time          00:05:00
     #SBATCH --mem           20GB
     #SBATCH --cpus-per-task 8
     #SBATCH --error         %x_%j.err

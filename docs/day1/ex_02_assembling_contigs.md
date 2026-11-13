@@ -201,7 +201,7 @@ Into this file, either write or copy/paste the following commands:
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
     
-    # Performance fix required for OnDemand (e.g. JupyterLab)
+    # Performance fix required when submitted from OnDemand (e.g. JupyterLab)
     OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
     
     # Load modules
