@@ -95,7 +95,7 @@ Evaluating the quality of a raw metagenomic assembly is quite a tricky process. 
 
 A few quick checks I recommend are to see how many contigs or scaffolds your data were assembled into, and then see how many contigs or scaffolds you have above a certain minimum length threshold. We will use `seqmagick` for performing the length filtering, and then just count sequence numbers using `grep`.
 
-These steps will take place in the `3.assembly_evaluation/` folder, which contains copies of our `SPAdes` and `IDBA-UD` assemblies.
+These steps will take place in the `2.assembly_evaluation/` folder, which contains copies of our `SPAdes` and `IDBA-UD` assemblies.
 
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
 
@@ -107,7 +107,7 @@ These steps will take place in the `3.assembly_evaluation/` folder, which contai
     module load seqmagick/0.8.4-gimkl-2020a-Python-3.8.2
 
     # Navigate to working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly_evaluation/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.assembly_evaluation/
 
     # Filter assemblies and check number of contigs
     seqmagick convert --min-length 1000 \

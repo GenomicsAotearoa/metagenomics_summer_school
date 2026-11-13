@@ -19,7 +19,7 @@ All work for this exercise will occur in the `2.assembly/` directory.
 !!! terminal-2 "Navigate to working directory"
 
     ```bash
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.assembly
     ```
 
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
@@ -209,7 +209,7 @@ Into this file, either write or copy/paste the following commands:
     module load SPAdes/4.0.0-foss-2023a-Python-3.11.6
     
     # Working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.assembly
     
     # Run SPAdes
     spades.py --threads $SLURM_CPUS_PER_TASK \

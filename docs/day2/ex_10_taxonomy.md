@@ -63,7 +63,7 @@ Create a new script
     module load GTDB-Tk/2.7.1-foss-2023a-Python-3.11.6
     
     # Working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.prokaryotic_taxonomy
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.bin_quality_and_taxonomy
     
     # Run GTDB-Tk
     gtdbtk classify_wf -x fa --cpus $SLURM_CPUS_PER_TASK \

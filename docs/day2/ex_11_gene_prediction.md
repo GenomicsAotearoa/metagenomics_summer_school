@@ -135,7 +135,7 @@ We will now run `prodigal` over the 10 bins in *single* mode using an array.
     module load prodigal/2.6.3-GCCcore-7.4.0
 
     # Working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.gene_prediction
 
     # Output directory
     mkdir -p predictions/
@@ -276,7 +276,7 @@ To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits 
     module load Metaxa2/2.2.3-gimkl-2022a
     
     # Working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/9.gene_prediction
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.gene_prediction
     
     # Output directory
     mkdir -p ribosomes/

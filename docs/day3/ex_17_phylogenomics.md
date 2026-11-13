@@ -54,7 +54,7 @@ How would we know if the placement of branches are correct in our inferred trees
 
 ## Building a phylogenetic tree
 
-The exercises for this section is performed in the `8.data_presentation/` directory. Here, we will build a bootstrapped ML tree using `FastTree2` with an MSA provided by `GTDB-Tk` of our MAGs. Indeed, the MSA was co-created during our ["Assigning taxonomy to prokaryotic bins"](../day2/ex_10_taxonomy.md) exercise and has been copied from `8.prokaryotic_taxonomy/gtdbtk_out/align/gtdbtk.bac120.user_msa.fasta.gz` to `8.data_presentation/phylogenetic/` for convenience.
+The exercises for this section is performed in the `8.data_presentation/` directory. Here, we will build a bootstrapped ML tree using `FastTree2` with an MSA provided by `GTDB-Tk` of our MAGs. Indeed, the MSA was co-created during our ["Assigning taxonomy to prokaryotic bins"](../day2/ex_10_taxonomy.md) exercise and has been copied from `5.bin_quality_and_taxonomy/gtdbtk_out/align/gtdbtk.bac120.user_msa.fasta.gz` to `8.data_presentation/phylogenetic/` for convenience.
 
 We begin by loading the required modules:
 

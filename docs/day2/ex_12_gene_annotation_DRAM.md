@@ -122,7 +122,7 @@ To run this exercise we first need to set up a slurm job. We will use the result
     module load DRAM/1.3.5-Miniconda3
 
     # Working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_annotation
 
     # Run DRAM
     DRAM.py annotate --threads $SLURM_CPUS_PER_TASK \

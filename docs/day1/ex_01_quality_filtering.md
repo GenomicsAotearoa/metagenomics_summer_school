@@ -169,7 +169,7 @@ We will run `trimmomatic` via a dedicated "slurm" job submitted to NeSI as there
     module load Trimmomatic/0.39-Java-1.8.0_144
 
     # Working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.fastqc
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/1.fastqc
 
     # Run Trimmomatic
     trimmomatic PE -threads 2 -phred33 \

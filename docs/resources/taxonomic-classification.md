@@ -34,7 +34,7 @@ For this workshop, we will use PhyloFlash to obtain sequences and abundances of 
     module load USEARCH/11.0.667-i86linux32
 
     # Navigate to working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly_evaluation/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.assembly_evaluation/
 
     # Set conda variables
     source $(conda info --base)/etc/profile.d/conda.sh
@@ -120,7 +120,7 @@ Most, if not all, of the time, we never know the taxonomic composition of our me
     # Point to database
     K2DB=/nesi/project/nesi02659/MGSS_2024/resources/databases/k2_standard_20240605
 
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.evaluation
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly_evaluation
 
     # Run Kraken2
     kraken2 --threads $SLURM_CPUS_PER_TASK \
@@ -163,7 +163,7 @@ As `Kraken2` classifications are *k*-mer based, we can also classify reads. This
         Bracken/2.7-GCC-11.3.0
 
     # Navigate to working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly_evaluation/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.assembly_evaluation/
 
     # Point to database
     K2DB=/nesi/project/nesi02659/MGSS_2024/resources/databases/k2_standard_20240605

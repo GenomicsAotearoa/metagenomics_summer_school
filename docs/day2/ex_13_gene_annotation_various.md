@@ -30,7 +30,7 @@ These exercises will take place in the `7.gene_annotation/` folder.
 !!! terminal-2 "Navigate to working directory"
 
     ```
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_annotation
     ```
 
 ---
@@ -122,7 +122,7 @@ Create a new script
     module load DIAMOND/2.1.6-GCC-11.3.0
 
     # Working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_annotation
 
     # Variables
     prot_file=predictions/bin_${SLURM_ARRAY_TASK_ID}.genes.no_metadata.faa
@@ -218,7 +218,7 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
     module load HMMER/3.3.2-GCC-11.3.0
     
     # Working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_annotation
     
     # Variables
     prot_file=predictions/bin_${SLURM_ARRAY_TASK_ID}.genes.no_metadata.faa
@@ -275,7 +275,7 @@ In addition to putative function, we can also predict whether a protein is secre
     module load SignalP/6.0g-gimkl-2022a-Python-3.10.5
 
     # Working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/10.gene_annotation_and_coverage
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_annotation
 
     # Array variables
     files=(predictions/*.faa)
