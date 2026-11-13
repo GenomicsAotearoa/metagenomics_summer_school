@@ -26,6 +26,16 @@ The composition of the contigs is calculated by the binning tool at run time, bu
 
 Before we can map reads, we need to create a `bowtie2` index file from the assembly, for use in read mapping. Navigate into the `4.binning/` folder to begin.
 
+
+!!! terminal "code"
+
+    ```bash
+    # Navigate to working directory
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.binning/
+    ```
+
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
+
 !!! terminal "code"
 
     ```bash
@@ -33,11 +43,8 @@ Before we can map reads, we need to create a `bowtie2` index file from the assem
     module purge
     module load Bowtie2/2.5.4-GCC-12.3.0
 
-    # Navigate to working directory
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.binning/
-
     # Build index
-    bowtie2-build spades_assembly/spades_assembly.m1000.fna spades_assembly/bw_spades
+    bowtie2-build spades_assembly/spades_assembly.m1000.fa spades_assembly/bw_spades
     ```
 
 If you look inside the `spades_assembly/` folder you will now see the following:
@@ -51,7 +58,7 @@ If you look inside the `spades_assembly/` folder you will now see the following:
 !!! circle-check "Terminal output"
 
     ```
-    bw_spades.1.bt2  bw_spades.3.bt2  bw_spades.rev.1.bt2  spades_assembly.m1000.fna
+    bw_spades.1.bt2  bw_spades.3.bt2  bw_spades.rev.1.bt2  spades_assembly.m1000.fa
     bw_spades.2.bt2  bw_spades.4.bt2  bw_spades.rev.2.bt2
     ```
 
@@ -223,8 +230,8 @@ Open a new script using nano:
     #SBATCH --account       nesi02659
     #SBATCH --job-name      spades_mapping_array
     #SBATCH --partition     milan
-    #SBATCH --time          00:20:00
-    #SBATCH --mem           20GB
+    #SBATCH --time          00:02:00
+    #SBATCH --mem           1GB
     #SBATCH --array         0-3
     #SBATCH --cpus-per-task 10
     #SBATCH --error         %x_%A_%a.err
