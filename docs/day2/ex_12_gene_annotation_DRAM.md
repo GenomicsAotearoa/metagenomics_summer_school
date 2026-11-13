@@ -41,7 +41,7 @@ For these exercises, we have copied the relevant input files into the folder `7.
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_annotation/
     ```
 
-Along with our filtered bins, the `CheckM` output file (`checkm.txt`) and `GTDB-Tk` summary output `gtdbtk.bac120.summary.tsv` are used as inputs as is.
+Along with our filtered bins, the `CheckM` output file (`checkm.tsv`) and `GTDB-Tk` summary output `gtdbtk.bac120.summary.tsv` are used as inputs as is.
 
 ### `DRAM` annotation
 
@@ -127,7 +127,7 @@ To run this exercise we first need to set up a slurm job. We will use the result
     # Run DRAM
     DRAM.py annotate --threads $SLURM_CPUS_PER_TASK \
                      --input_fasta 'dastool_bins/*.fa' \
-                     --checkm_quality DRAM_input_files/checkm.txt \
+                     --checkm_quality DRAM_input_files/checkm.tsv \
                      --gtdb_taxonomy DRAM_input_files/gtdbtk.bac120.summary.tsv \
                      --output_dir dram_annotations
     ```

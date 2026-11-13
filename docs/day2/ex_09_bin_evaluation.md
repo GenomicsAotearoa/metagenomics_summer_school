@@ -67,6 +67,9 @@ Create a new script
                       --extension fa  --tab_table \
                       --file checkm.tsv \
                       dastool_bins/ checkm_out/
+    
+    # Create 2nd table with extended information
+    checkm qa --tab_table -o 2 -f checkm_ext.tsv ./checkm_out/lineage.ms ./checkm_out/
     ```
 
 !!! terminal-2 "Submit the script as a slurm job"

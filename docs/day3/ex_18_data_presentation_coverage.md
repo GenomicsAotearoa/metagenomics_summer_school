@@ -116,6 +116,9 @@ First, set the working directory and load the required libraries.
 !!! r-project "code"
 
     ```R linenums="1"
+    # Larger plots in JupyterLab
+    options(repr.plot.width=8,repr.plot.height=8)
+    
     # Set working directory ----
     setwd('/nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.data_presentation/coverage')
 
@@ -141,10 +144,10 @@ Import all relevant data as follows:
 !!! r-project "code"
 
     ```R linenums="1"
-        # Read files ----
-        MAG_cov = read_tsv("coverm_mags.tsv") # Bin contig coverage table
-        gtdbtk_out = read_tsv("gtdbtk.bac120.summary.tsv") # Prokaryotic taxonomy from GTDB-Tk
-        metadata = read_tsv("mapping_file.tsv") # Metadata/mapping file of environmental parameters
+	# Read files ----
+	MAG_cov = read_tsv("coverm_mags.tsv") # Bin contig coverage table
+	gtdbtk_out = read_tsv("gtdbtk.bac120.summary.tsv") # Prokaryotic taxonomy from GTDB-Tk
+	metadata = read_tsv("mapping_file.tsv") # Metadata/mapping file of environmental parameters
     ```
 
 ### 2. Wrangle data

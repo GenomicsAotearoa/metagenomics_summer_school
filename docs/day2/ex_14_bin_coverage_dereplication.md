@@ -53,12 +53,12 @@ We will write a single slurm script to run all necessary commands, then analyse 
     # Step 1
     checkm lineage_wf --threads $SLURM_CPUS_PER_TASK \
                       --pplacer_threads $SLURM_CPUS_PER_TASK \
-                      --tab_table --file checkm.txt \
+                      --tab_table --file checkm.tsv \
                       -x fa input_bins/ checkm_out/
 
     # Step 2
     echo "genome,completeness,contamination" > dRep.genomeInfo
-    cut -f1,12,13 checkm.txt \
+    cut -f1,12,13 checkm.tsv \
       | sed 's/\t/.fa\t/' \
       | sed 's/\t/,/g' \
       | tail -n+2 >> dRep.genomeInfo
@@ -91,7 +91,7 @@ This line creates the header row for the `dRep` file, which we are calling `dRep
 !!! terminal "code"
 
     ```bash
-    cut -f1,12,13 checkm.txt | sed 's/\t/.fa\t/' | sed 's/\t/,/g' | tail -n+2 >> dRep.genomeInfo
+    cut -f1,12,13 checkm.tsv | sed 's/\t/.fa\t/' | sed 's/\t/,/g' | tail -n+2 >> dRep.genomeInfo
     ```
 
 This line cuts the columns 1, 12, and 13 from the `CheckM` output table, which correspond to the MAG name and completeness/contamination estimates. We then redirect these columns using the `|` character and use them as input in a `sed` command. Because `CheckM` reports our MAG names without their FASTA file extension, but `dRep` requires the extension to be present in the MAG name, we add the trailing `.fa` with our `sed` command. This also gives us an opportunity to replace the tab-delimiting character from the `CheckM` output with the comma character that `dRep` uses for marking columns in the table. We then pass the output into a second `sed` command to replace the tab between columns 12 and 13 with a comma.
