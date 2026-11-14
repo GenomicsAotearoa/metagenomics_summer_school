@@ -159,7 +159,7 @@ We are now ready to run `DAS_Tool`. This can be done from the command line, as i
              --search_engine diamond \
              --bins metabat_refs.tsv,maxbin_refs.tsv,mdecoder_refs.tsv \
              --labels MetaBAT,MaxBin,MetaDecoder \
-             --contigs spades_assembly/spades_assembly.m1000.fna \
+             --contigs spades_assembly/spades_assembly.m1000.fa \
              --outputbasename dastool_out/
     ```
 
