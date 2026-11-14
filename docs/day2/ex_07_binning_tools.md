@@ -63,7 +63,7 @@ Both manual and wildcard commands in the code block above give the same result, 
 
 ??? tip "*tsv* files"
 
-    Tab separated value files with the extension `.tsv` will be displayed in tabular layout by Jupyter when opening the file from the Jupyter file browser and can also easily be loaded into Excel or LibreOffice Calc.   
+    Tab separated value files with the extension `.tsv` will be displayed in tabular layout by JupyterLab when opening the file from the Jupyter file browser and can also easily be loaded into Excel or LibreOffice Calc.   
     In this case, the file reports the average coverage of contigs per sample mapped and the respective variance.
 
 
@@ -76,7 +76,7 @@ Before we proceed, note that when you run `MetaBAT` on NeSI you will see the tex
     ```bash
     metabat2 --numThreads 2 --seed 13 \
              --minContig 1500 \
-             --inFile spades_assembly/spades_assembly.m1000.fna \
+             --inFile spades_assembly/spades_assembly.m1000.fa \
              --abdFile metabat.tsv \
              --outFile metabat/metabat
     ```
@@ -109,7 +109,7 @@ The problem with this is that on Linux systems, prefixing a file or folder name 
 
 Like `MetaBAT`, `MaxBin` requires a text representation of the coverage information for binning. Luckily, we can be sneaky here and just reformat the `metabat.tsv` file into the format expected by `MaxBin`. We use `cut` to select only the columns of interest, which are the *contigName* and coverage columns, but not the *contigLen*, *totalAvgDepth*, or variance columns.
 
-We can inspect the `metabat.tsv` file with `head` or `less` to identify the correct column indices for `cut`.
+We can inspect the `metabat.tsv` file with `head` or `less` to identify the correct column indices for `cut`. (Using JupyterLab, we could also open the file directly from the file explorer.)
 
 !!! terminal "code"
 
@@ -173,7 +173,7 @@ This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we wan
     
     # Run MaxBin
     run_MaxBin.pl -thread $SLURM_CPUS_PER_TASK -min_contig_length 1500 \
-                  -contig spades_assembly/spades_assembly.m1000.fna \
+                  -contig spades_assembly/spades_assembly.m1000.fa \
                   -abund maxbin.tsv \
                   -out maxbin/maxbin
     
@@ -233,7 +233,7 @@ Note also that we are specifying a minimum contig size of 2,000 bp, which is the
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.binning/
     
     # I/O
-    src="spades_assembly/spades_assembly.m1000.fna"
+    src="spades_assembly/spades_assembly.m1000.fa"
     dstdir="metadecoder"
 
     # Create destination dir
