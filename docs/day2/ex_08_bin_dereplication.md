@@ -48,7 +48,7 @@ This can be done with a bit of `bash` scripting. There's quite a bit going on he
 
 You can check the contents of this file using `less` or `head`:
 
-!!! terminal-2 "Inspect `metabat_association.txt`"
+!!! terminal-2 "Inspect `metabat_refs.tsv`"
 
     ```bash
     head -n 5 metabat_refs.tsv

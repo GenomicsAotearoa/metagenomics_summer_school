@@ -14,7 +14,7 @@ At this stage we have recovered a number of high quality genomes or population g
 
 How we predict genes in the metagenomic data varies depending on what features we are trying to detect. Most often, we are interested in putatively protein coding regions and open reading frames. For features that are functional but not not translated, such as ribosomal RNA and tRNA sequences we need to use alternative tools. When considering protein coding sequences, we avoid the use of the term 'open reading frame' (ORF). The nature of a fragmented assembly is that you may encounter a partial gene on the start or end of a contig that is a function gene, but lacks the start or stop codon due to issues with assembly or sequencing depth.
 
-There are many software tools to predict gene sequences and in this workshop we will start with the tool `prodigal` (PROkaryotic Dynamic Programming Genefinding ALgorithm). `prodigal` has gone on to become one of the most popular microbial gene prediction algorithms as in incorporates modelling algorithms to profile the coding sequences within your genome and better identify the more cryptic (or partial) genes.
+There are many software tools to predict genes and in this workshop we will start with the tool `prodigal` (PROkaryotic Dynamic Programming Genefinding ALgorithm). `prodigal` has gone on to become one of the most popular microbial gene prediction algorithms as in incorporates modelling algorithms to profile the coding sequences within your genome and better identify the more cryptic (or partial) genes. `prodigal` outputs both the nucleotide and amino acid coding sequences predicted.
 
 `prodigal` is excellent for the following use cases:
 
@@ -44,6 +44,9 @@ To get started, move into the exercise directory.
     ```bash
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/6.gene_prediction/
     ```
+
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder."
+
 
 ### Examine the `prodigal` parameters
 
@@ -231,11 +234,11 @@ While this header information can be very informative, its presence in the FASTA
 !!! circle-check "Terminal output"
 
     ```
-    >bin_0_NODE_6_length_607162_cov_1.000759_1
-    MIKSNGILFTGKKFVMGAVVSALLATSGIAADYTLKFSHVVSPNTPKGKAADFFAKRLEE
-    LSGGKIDVQVYPSSQLYNDSAVLKALRLDSVQMAAPSFSKFGKIVPQLALFNLPFLFKDI
-    DQLHRVQDGPVGEKLKSLVTAKGFVALNFWDNGFKQLSSSKEPLLMPKDAEGQKFRIMSS
-    KVLEAQFKAVGANPQMMPFSEVYSGLQQGVIDAAENPFSNIY
+    >NODE_6_length_504202_cov_0.997738_1
+    DGTITYTPDANYNGKDTITVTTKDDDGATVTKTSAITVTSDDLVLQPTADIIDSSDTGVS
+    NNDNITSDNTPTIRGVTENGAIVTITDKDGNVVGSTIADENGNYSITTSELPDGTQDLKI
+    TATDKAGNSGTETQTITVDTAASDTDKLEITDIVDANGDYSYVTMKGTGAEAGNTISIYD
+    EDGIKVATTTVQEDGTWSADISNFAGTPVNDNEFFKATETDLAGNETAQTDSTHYWHGDF
     ```
 
 ---
@@ -244,7 +247,7 @@ While this header information can be very informative, its presence in the FASTA
 
 ### Predict rRNA sequences
 
-While they will not be covered in great detail here, there are a few other prediction tools that are useful when working with metagenomic data. The first of these is `MeTaxa2`, which can be used to predict ribosomal RNA sequences in a genome. Detection of these is a handy way to link your MAGs to the scientific literature and taxonomy, although recovery of ribosomal sequences like the 16S rRNA subunit is often not successful.
+While they will not be covered in great detail here, there are a few other prediction tools that are useful when working with metagenomic data. On of them is `MeTaxa2`, which can be used to predict ribosomal RNA sequences in a genome. Detection of these is a handy way to link your MAGs to the scientific literature and taxonomy, although recovery of ribosomal sequences like the 16S rRNA subunit is often not successful.
 
 To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits in our data, use the following commands.
 
@@ -316,5 +319,7 @@ It is usually worth letting it search for all options as detecting multiple rRNA
 The [MIMAG](https://www.ncbi.nlm.nih.gov/pubmed/28787424) standard specifies that in order to reach particular quality criteria, a MAG must contain a certain number or tRNA sequences. We can search a MAG or genome for these using `Aragorn` ([link here](https://www.trna.se/)).
 
 ![image](../figures/ex11_aragorn-2024.png)
+
+As this online tool requires the upload of a local file you have to download your contig or scaffold *FASTA* file first. This option is available from the right-click context menu in the JupyterLab file explorer. Choose, e.g., `dastool_bins/bin_0.fa`.
 
 ---

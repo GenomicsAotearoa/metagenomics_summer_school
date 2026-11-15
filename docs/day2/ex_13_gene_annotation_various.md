@@ -33,6 +33,8 @@ These exercises will take place in the `7.gene_annotation/` folder.
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_annotation
     ```
 
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder."
+
 ---
 
 ## Annotating MAGs against the *UniProt* database with `DIAMOND`
@@ -49,7 +51,7 @@ In general, `diamond` takes a pair of input files - the protein coding sequences
 
     ```bash
     module purge
-    module load DIAMOND/2.1.6-GCC-11.3.0
+    module load DIAMOND/2.2.8-GCC-15.2.0
 
     diamond help
     ```
@@ -57,7 +59,7 @@ In general, `diamond` takes a pair of input files - the protein coding sequences
 !!! circle-check "Terminal output"
 
     ```
-    diamond v2.0.15.153 (C) Max Planck Society for the Advancement of Science
+    diamond v2.2.8.188 (C) Max Planck Society for the Advancement of Science, Benjamin J. Buchfink, University of Tuebingen
     Documentation, support and updates available at http://www.diamondsearch.org
     Please cite: http://dx.doi.org/10.1038/s41592-021-01101-x Nature Methods (2021)
 
@@ -65,14 +67,33 @@ In general, `diamond` takes a pair of input files - the protein coding sequences
 
     Commands:
     ...
-    blastp  Align amino acid query sequences against a protein reference database
+    blastp                   Align amino acid query sequences against a protein reference
     ...
 
-    General options:
-    --threads (-p)         number of CPU threads
-    --db (-d)              database file
-    --out (-o)             output file
-    --outfmt (-f)          output format
+    Possible [OPTIONS] for COMMAND can be seen with syntax: diamond COMMAND
+
+    Online documentation at http://www.diamondsearch.org
+    ```
+
+!!! terminal "code"
+
+    ```bash
+    diamond blastp
+    ```
+
+!!! circle-check "Terminal output"
+
+    ```
+    ...
+    ...
+    Options:
+    --threads                number of CPU threads
+    ...
+    --db                     database file
+    --out                    output file
+    --header                 Use header lines in tabular output format (0/simple/verbose).
+    ...
+    --outfmt                 output format
     ...
     ```
 
@@ -82,17 +103,7 @@ Awkwardly, `DIAMOND` does not provide the headers for what the columns in the ou
 
 From here we can view important statistics for each query/target pairing such as the number of identical residues between sequences and the aligned length between query and target.
 
-Before we begin, we need to create an directory for outputs.
-
-!!! terminal "code"
-
-    ```bash
-    mkdir -p gene_annotations
-    ```
-
-Now, lets set up a slurm job to annotate each of our MAGs. 
-
-Create a new script
+Lets set up a slurm job to annotate each of our MAGs. Create a new script:
 
 !!! terminal-2 "Create script named `uniprot_annotation.sl`"
 
@@ -111,18 +122,22 @@ Create a new script
     #SBATCH --job-name      uniprot_annotation
     #SBATCH --partition     milan
     #SBATCH --time          01:00:00
-    #SBATCH --mem           20GB
-    #SBATCH --cpus-per-task 20
+    #SBATCH --mem           10GB
+    #SBATCH --cpus-per-task 6
     #SBATCH --array         0-9
     #SBATCH --error         %x_%A_%a.err
     #SBATCH --output        %x_%A_%a.out
 
     # Load modules
     module purge
-    module load DIAMOND/2.1.6-GCC-11.3.0
+    module load DIAMOND/2.2.8-GCC-15.2.0
 
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_annotation
+
+    # Output directory
+    mkdir -p gene_annotations
+
 
     # Variables
     prot_file=predictions/bin_${SLURM_ARRAY_TASK_ID}.genes.no_metadata.faa
@@ -130,9 +145,11 @@ Create a new script
     db=/nesi/nobackup/nesi02659/MGSS_2026/resources/databases/uniprot.20240724.dmnd
 
     # Run DIAMOND
-    diamond blastp --threads $SLURM_CPUS_PER_TASK --max-target-seqs 5 --evalue 0.001 \
-                   --db $db --query ${prot_file} --outfmt 6 \
-                   --out gene_annotations/${out_file}.uniprot.txt
+    diamond blastp --threads $SLURM_CPUS_PER_TASK \
+                   --max-target-seqs 5 --evalue 0.001 \
+                   --db $db --query ${prot_file} \
+                   --outfmt 6 --header simple \
+                   --out gene_annotations/${out_file}.uniprot.tsv
     ```
 
 !!! terminal-2 "Submit the script"
@@ -154,7 +171,8 @@ As we did with `diamond`, we will also have to modify some parameters to get the
 !!! terminal "code"
 
     ```bash
-    module load HMMER/3.3.2-GCC-11.3.0
+    module purge
+    module load HMMER/3.4-GCC-15.2.0
 
     hmmsearch -h
     ```
@@ -162,30 +180,30 @@ As we did with `diamond`, we will also have to modify some parameters to get the
 ??? abstract "`hmmsearch -h`" 
 
     ```
-    hmmsearch :: search profile(s) against a sequence database
-    HMMER 3.3.2 (Nov 2020); http://hmmer.org/
-    Copyright (C) 2020 Howard Hughes Medical Institute.
-    Freely distributed under the BSD open source license.
-    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # hmmsearch :: search profile(s) against a sequence database
+    # HMMER 3.4 (Aug 2023); http://hmmer.org/
+    # Copyright (C) 2023 Howard Hughes Medical Institute.
+    # Freely distributed under the BSD open source license.
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     Usage: hmmsearch [options] <hmmfile> <seqdb>
 
     Basic options:
-     -h : show brief help on version and usage
+      -h : show brief help on version and usage
 
     Options directing output:
     ...
-    --tblout <f>     : save parseable table of per-sequence hits to file <f>
-    ....
+      --tblout <f>     : save parseable table of per-sequence hits to file <f>
+    ...
 
     Options controlling reporting thresholds:
-    ...
-    -E <x>     : report sequences <= this E-value threshold in output  [10.0]  (x>0)
+      -E <x>     : report sequences <= this E-value threshold in output  [10.0]  (x>0)
     ...
 
     Other expert options:
     ...
-    --cpu <n>     : number of parallel CPU workers to use for multithreads
+      --seed <n>    : set RNG seed to <n> (if 0: one-time arbitrary seed)  [42]
     ...
+      --cpu <n>     : number of parallel CPU workers to use for multithreads  [2]
     ```
 
 We are now going to submit another slurm job to annotate our MAGs using the [Pfam database](https://www.ebi.ac.uk/interpro/download/Pfam/). Pfam used to have a standalone website, but it has recently been integrated into InterPro maintained by the European Bioinformatics Institute (see [announcement](https://xfam.wordpress.com/2022/08/04/pfam-website-decommission/)). Matching sequences to a `Pfam` entry allows us to transfer the functional information from an experimentally characterised sequence to uncharacterised sequences in the same entry. `Pfam` then provides comprehensive annotation for each entry.
@@ -206,16 +224,16 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
     #SBATCH --account       nesi02659
     #SBATCH --job-name      pfam_annotation
     #SBATCH --partition     milan
-    #SBATCH --time          00:20:00
-    #SBATCH --mem           5GB
-    #SBATCH --cpus-per-task 10
+    #SBATCH --time          00:10:00
+    #SBATCH --mem           1GB
+    #SBATCH --cpus-per-task 2
     #SBATCH --array         0-9
     #SBATCH --error         %x_%A_%a.err
     #SBATCH --output        %x_%A_%a.out
     
     # Load modules
     module purge
-    module load HMMER/3.3.2-GCC-11.3.0
+    module load HMMER/3.4-GCC-15.2.0
     
     # Working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_annotation
@@ -226,8 +244,8 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
     db=/nesi/nobackup/nesi02659/MGSS_2026/resources/databases/Pfam-A.hmm
     
     # Run HMMER
-    hmmsearch --tblout gene_annotations/${out_file}.pfam.txt -E 0.001 \
-              --cpu $SLURM_CPUS_PER_TASK \
+    hmmsearch --cpu $SLURM_CPUS_PER_TASK -E 0.001 \
+              --tblout gene_annotations/${out_file}.pfam.txt \
               ${db} ${prot_file}
     ```
 
@@ -249,13 +267,13 @@ In addition to putative function, we can also predict whether a protein is secre
 
     In terms of computational capability to detect signal peptides, there is nothing like SignalP6. It is free for academic use and other models can be requested from the developers. If you are not running this on NeSI, you will need to acquire your own license.
 
-!!! terminal-code "code"
+!!! terminal
 
     ```bash
-    nano annotate_signal_peptide.sl
+    nano signal_peptide.sl
     ```
 
-!!! terminal-code "code"
+!!! terminal "code"
 
     ```bash linenums="1"
     #!/bin/bash -e
@@ -263,9 +281,9 @@ In addition to putative function, we can also predict whether a protein is secre
     #SBATCH --account       nesi02659
     #SBATCH --job-name      signal_peptide
     #SBATCH --partition     milan
-    #SBATCH --time          00:30:00
+    #SBATCH --time          00:20:00
     #SBATCH --mem           10GB
-    #SBATCH --cpus-per-task 24
+    #SBATCH --cpus-per-task 12
     #SBATCH --error         %x_%A_%a.err
     #SBATCH --output        %x_%A_%a.out
     #SBATCH --array         0-9
@@ -280,17 +298,14 @@ In addition to putative function, we can also predict whether a protein is secre
     # Array variables
     files=(predictions/*.faa)
     bin=${files[$SLURM_ARRAY_TASK_ID]}
-    prefix=$(basename ${bin} genes.no_metadata.faa)
+    prefix=$(basename ${bin} .genes.no_metadata.faa)
 
     # Run SignalP
-    signalp6 --fastafile ${bin} --output_dir signal_peptides/${prefix} \
-             --format none --organism other --bsize 50 \
-             --write_procs $SLURM_CPUS_PER_TASK
+    signalp6 --write_procs $SLURM_CPUS_PER_TASK  --bsize 50 \
+             --format none --organism other \
+             --fastafile ${bin} \
+             --output_dir signal_peptides/${prefix}
     ```
-
-!!! warning "`SignalP` will probably `TIMEOUT`"
-
-    The above script will almost, inevitably, time out before completing every MAG. However, that is not critical for our purposes today. We simply need at least one of the array jobs to complete (several will) for us to explore the output.
 
 The output of the script above are directories per bin that contain 5 files:
 

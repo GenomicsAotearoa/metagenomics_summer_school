@@ -41,6 +41,8 @@ For these exercises, we have copied the relevant input files into the folder `7.
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_annotation/
     ```
 
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder."
+
 Along with our filtered bins, the `CheckM` output file (`checkm.tsv`) and `GTDB-Tk` summary output `gtdbtk.bac120.summary.tsv` are used as inputs as is.
 
 ### `DRAM` annotation
@@ -113,7 +115,7 @@ To run this exercise we first need to set up a slurm job. We will use the result
     #SBATCH --partition     milan
     #SBATCH --time          4:00:00
     #SBATCH --mem           16Gb
-    #SBATCH --cpus-per-task 4
+    #SBATCH --cpus-per-task 3
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
 

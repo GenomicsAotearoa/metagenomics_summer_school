@@ -64,12 +64,12 @@ Create a new script
     # Run CheckM
     checkm lineage_wf --threads $SLURM_CPUS_PER_TASK \
                       --pplacer_threads $SLURM_CPUS_PER_TASK \
-                      --extension fa  --tab_table \
-                      --file checkm.tsv \
+                      --extension fa \
                       dastool_bins/ checkm_out/
     
-    # Create 2nd table with extended information
-    checkm qa --tab_table -o 2 -f checkm_ext.tsv ./checkm_out/lineage.ms ./checkm_out/
+    # Create table with extended information
+    checkm qa --out_format 2 --tab_table --file checkm.tsv \
+              ./checkm_out/lineage.ms ./checkm_out/
     ```
 
 !!! terminal-2 "Submit the script as a slurm job"
@@ -86,10 +86,13 @@ The breakdown of parameters is as follows
 |`--threads`|Number of threads to use for the initial marker gene detection and clustering|
 |`--pplacer_threads`|Number of threads to use when inserting bins into the guide tree|
 |`--extension`|The *FASTA* file extension to look for in the input folder. Default is *.fna*|
-|`--tab_table`|If this parameter is present, a summary table will be written for the `CheckM` run|
-|`--file`|The name of the output file for the summary|
 |`dastool/_DASTool_bins/`|The location of the bins to test|
-|`checkm_out/`|The location to write intermediate and output files|
+|`checkm_out/`|Location of output files|
+|`qa`|Another mode of `CheckM` that assesses the results of `lineage_wf` in various table formats|
+|`--out_format`|Our desired output: `2` = extended summary of bin quality|
+|`--tab_table`|Format table as tab-separated values|
+|`--file`|Print results to this file instead of the console|
+|`./checkm_out/lineage.ms/`|Location of marker file produced by `lineage_wf`|
 
 !!! tip "Increasing `--pplacer_threads`"
 
@@ -99,7 +102,7 @@ When your job completes, we will download the summary file and examine it.
 
 !!! note "CheckM2"
 
-    An independent update to CheckM was made in late 2022 in the form of a new software [CheckM2](https://github.com/chklovski/CheckM2) (see [publication](https://doi.org/10.1038/s41592-023-01940-w)). It uses machine learning to estimate completeness and contamination. Computationally, it uses less resources than CheckM and can be used on putative genomes with reduced genomes or unusual biology. Keep in mind that because both software use different methods for assessing genome completeness, the output statistics will be different (see [discussion here for a case example](https://github.com/chklovski/CheckM2/issues/32)) and it does not estimate strain heterogeneity.
+    In 2022 an alternative version of `CheckM` was released: [CheckM2](https://github.com/chklovski/CheckM2) (see [publication](https://doi.org/10.1038/s41592-023-01940-w)). It uses machine learning to estimate completeness and contamination. Computationally, it uses less resources than CheckM and can be used on putative genomes with reduced genomes or unusual biology. Keep in mind that because both software use different methods for assessing genome completeness, the output statistics will be different (see [discussion here for a case example](https://github.com/chklovski/CheckM2/issues/32)) and it does not estimate strain heterogeneity.
     
     If you would like to try it out, here's a script analogous to that we ran using CheckM:
 
