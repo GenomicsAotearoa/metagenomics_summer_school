@@ -55,7 +55,7 @@ In default annotation mode, `DRAM` only requires as input the directory containi
 
 We will start by glancing at some of the options for `DRAM`.
 
-!!! terminal "code"
+!!! terminal
 
     ```bash
     module purge
@@ -84,7 +84,7 @@ We will start by glancing at some of the options for `DRAM`.
 
 To look at some of the arguments in each command, type the following:
 
-!!! terminal "code"
+!!! terminal
 
     ```bash
     # DRAM.py <command> --help
@@ -105,7 +105,7 @@ To run this exercise we first need to set up a slurm job. We will use the result
 
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
 
-!!! terminal "code"
+!!! terminal-code "slurm script"
 
     ```bash linenums="1"
     #!/bin/bash -e

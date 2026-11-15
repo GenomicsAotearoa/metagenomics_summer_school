@@ -22,12 +22,15 @@ The submitted jobs from the previous session should now be completed. If we exam
 
 If we inspect the head of the annotation file we will see the following
 
-!!! terminal "code"
+!!! terminal-2 "Navigate to working directory"
 
     ```bash
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_annotation/
+    ```
 
-    head -n 5 dram_annotations/annotations.tsv 
+!!! terminal
+    ```bash
+    head -n 5 dram_annotations/annotations.tsv
     ```
 
 !!! circle-check "Terminal output"
@@ -53,7 +56,7 @@ After the annotation is finished, we will summarise and visualise these annotati
 
 For the viral annotations, we will also include the parameters `--remove_transposons` ("Do not consider genes on scaffolds with transposons as potential AMGs") and `--remove_fs` ("Do not consider genes near ends of scaffolds as potential AMGs") to filter out some potential false positives for auxiliary metabolic gene identification.
 
-!!! terminal "code"
+!!! terminal
 
     ```bash linenums="1"
     module purge

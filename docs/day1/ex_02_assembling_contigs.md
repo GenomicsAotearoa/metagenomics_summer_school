@@ -130,7 +130,7 @@ Generally speaking, assemblers are developed in a way where they run with defaul
 
 Depending on which assembler you are using, the commands for choosing the *k*-mer sizes for the assembly vary slightly, but they are recognisable between programs. In `SPAdes`, you can set the *k*-mer size using either
 
-!!! terminal "code"
+!!! terminal
 
     ```bash
     spades.py -k 21,33,55,77,99,121 ...
@@ -145,7 +145,7 @@ The first command lets us specify the *k*-mers ourselves, or we are letting `SPA
 
 
 
-!!! terminal "code"
+!!! terminal
 
     ```bash
     spades.py --threads 20 ...
@@ -157,7 +157,7 @@ If no thread count is specified by the user, `SPAdes` will assemble with 16 thre
 
 By far, the worst feature of `SPAdes` is the high memory requirement for performing an assembly (see our Bonus material on assembling with `IDBA-UD` instead). In the absence of monitoring, `SPAdes` will request more and more memory as it proceeds. If this requires more memory than is available on your computer, your system will start to store memory to disk space. This is an extremely slow operation and can render your computer effectively unusable. As the default memory limit is only 250GB you also need to provide a specific limit when running a job on NeSI with more allocated memory. In any case, if `SPAdes` exceeds the default or set memory limit during its run, it will just terminate. It will **not** try to stay under the limit.
 
-!!! terminal "code"
+!!! terminal
 
     ```bash
     spades.py --memory 400GB ...
@@ -187,7 +187,7 @@ Into this file, either write or copy/paste the following commands:
     
     Paste or type in the following. Remember to update `<YOUR FOLDER>` to your own directory.
 
-!!! terminal "code"
+!!! terminal-code "slurm script"
 
     ```bash linenums="1"
     #!/bin/bash -e
@@ -271,7 +271,7 @@ You will receive a message telling you the job identifier for your assembly. Rec
 
 You can view the status of your current jobs using the command
 
-!!! terminal "code"
+!!! terminal
 
     ```bash
     squeue --me

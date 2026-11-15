@@ -47,7 +47,7 @@ For input files, the `predictions/` results from the previous gene prediction ex
 
 In general, `diamond` takes a pair of input files - the protein coding sequences we wish to annotate and the database we will use for this purpose. There are a few parameters that need to be tweaked for obtaining a useful output file, however.
 
-!!! terminal "code"
+!!! terminal
 
     ```bash
     module purge
@@ -75,7 +75,7 @@ In general, `diamond` takes a pair of input files - the protein coding sequences
     Online documentation at http://www.diamondsearch.org
     ```
 
-!!! terminal "code"
+!!! terminal
 
     ```bash
     diamond blastp
@@ -113,7 +113,7 @@ Lets set up a slurm job to annotate each of our MAGs. Create a new script:
 
 !!! warning "Remember to update <YOUR FOLDER> to your own folder"
 
-!!! terminal "code"
+!!! terminal-code "slurm script"
 
     ```bash linenums="1"
     #!/bin/bash -e
@@ -168,7 +168,7 @@ The standard software for performing HMM-profiling annotation is [HMMER](http://
 
 As we did with `diamond`, we will also have to modify some parameters to get the desired output. 
 
-!!! terminal "code"
+!!! terminal
 
     ```bash
     module purge
@@ -216,7 +216,7 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
 
 !!! warning "Remember to update <YOUR FOLDER> to your own folder"
 
-!!! terminal "code"
+!!! terminal-code "slurm script"
 
     ```bash linenums="1"
     #!/bin/bash -e
@@ -267,13 +267,13 @@ In addition to putative function, we can also predict whether a protein is secre
 
     In terms of computational capability to detect signal peptides, there is nothing like SignalP6. It is free for academic use and other models can be requested from the developers. If you are not running this on NeSI, you will need to acquire your own license.
 
-!!! terminal
+!!! terminal-2 "Create script named `signal_peptide.sl`"
 
     ```bash
     nano signal_peptide.sl
     ```
 
-!!! terminal "code"
+!!! terminal-code "slurm script"
 
     ```bash linenums="1"
     #!/bin/bash -e

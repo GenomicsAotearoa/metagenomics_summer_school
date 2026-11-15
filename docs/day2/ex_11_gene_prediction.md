@@ -52,9 +52,9 @@ To get started, move into the exercise directory.
 
 Before we start running `prodigal`, we will take a quick look at the parameters.
 
-!!! terminal "code"
+!!! terminal
 
-    ```bash
+    ```bash linenums="1"
     module purge
     module load prodigal/2.6.3-GCCcore-7.4.0
 
@@ -118,7 +118,7 @@ We will now run `prodigal` over the 10 bins in *single* mode using an array.
 
 !!! warning "Remember to update <YOUR FOLDER> to your own folder"
 
-!!! terminal "code"
+!!! terminal-code "slurm script"
 
     ```bash linenums="1"
     #!/bin/bash -e
@@ -162,7 +162,7 @@ We will now run `prodigal` over the 10 bins in *single* mode using an array.
 
 Once `prodigal` has completed, let's check one of the output files:
 
-!!! terminal "code"
+!!! terminal
 
     ```bash
     head -n 5 predictions/bin_0.genes.faa
@@ -208,7 +208,7 @@ The last option that is important to check is the *partial* parameter. This is r
 
 While this header information can be very informative, its presence in the FASTA files can lead to some downstream issues. The FASTA file format specifies that the sequence name for each entry runs from the '>' character to the first space, and everything after the space is metadata. Some bioinformatics programs are aware of this convention and will strip the metadata when producing their outputs, but some tools do not do this. It's really easy to end up in situations where your gene names are failing to match between analyses because of this inconsistency, so we recommend creating new FASTA files with the metadata removed to preempt this problem.
 
-!!! terminal "code"
+!!! terminal
 
     ```bash linenums="1"
     for pred_file in predictions/*.fna;
@@ -225,7 +225,7 @@ While this header information can be very informative, its presence in the FASTA
     * `-f` argument is how we specify which columns to keep. It can be used to specify a range as well
     * `-d-` **delimiter** : `cut` uses tab as a default field delimiter but can also work with other delimiter by using `-d` option
 
-!!! terminal "code"
+!!! terminal
 
     ```bash
     head -n 5 predictions/bin_0.genes.no_metadata.faa
@@ -259,7 +259,7 @@ To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits 
 
 !!! warning "Remember to update <YOUR FOLDER> to your own folder"
 
-!!! terminal "code"
+!!! terminal-code "slurm script"
 
     ```bash linenums="1"
     #!/bin/bash -e

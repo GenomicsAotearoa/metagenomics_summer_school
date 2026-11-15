@@ -27,18 +27,17 @@ The composition of the contigs is calculated by the binning tool at run time, bu
 Before we can map reads, we need to create a `bowtie2` index file from the assembly, for use in read mapping. Navigate into the `4.binning/` folder to begin.
 
 
-!!! terminal "code"
+!!! terminal-2 "Navigate to working directory"
 
     ```bash
-    # Navigate to working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.binning/
     ```
 
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
 
-!!! terminal "code"
+!!! terminal
 
-    ```bash
+    ```bash linenums="1"
     # Load modules
     module purge
     module load Bowtie2/2.5.4-GCC-12.3.0
@@ -49,7 +48,7 @@ Before we can map reads, we need to create a `bowtie2` index file from the assem
 
 If you look inside the `spades_assembly/` folder you will now see the following:
 
-!!! terminal "code"
+!!! terminal
 
     ```bash
     ls spades_assembly/
@@ -82,7 +81,7 @@ Open a new script using nano:
 
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder."
 
-!!! terminal "code"
+!!! terminal-code "slurm script"
 
     ```bash linenums="1"
     #!/bin/bash -e
@@ -222,7 +221,7 @@ Open a new script using nano:
 
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder."
 
-!!! terminal "code"
+!!! terminal-code "slurm script"
 
     ```bash linenums="1"
     #!/bin/bash -e

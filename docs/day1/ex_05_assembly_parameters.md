@@ -15,7 +15,7 @@ For this exercise, there is no real structure. Make a few copies of your initial
 
 Make a few copies of your `SPAdes` slurm script like so;
 
-!!! terminal "code"
+!!! terminal
 
     ```bash
     cp spades_assembly.sl spades_assembly_var1.sl

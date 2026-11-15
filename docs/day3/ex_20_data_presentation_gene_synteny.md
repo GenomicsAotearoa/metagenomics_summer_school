@@ -10,7 +10,17 @@
 
 When investigating the evolution of genomes, we sometimes want to consider not only the presence/absence of genes in a genome, but also how they are arranged (e.g. in an operon). For this exercise, we are going to visualise several sulfur assimilation genes from our MAGs and compare their arrangements.
 
-This exercise involves the use of commands in `bash` and `R`. Before starting, make sure you have an active terminal, then navigate to the directory `8.data_presentation/gene_synteny/`. Here, you'll find a copy of the annotations that came from DRAM (`dram_annotations.tsv`) and a directory of dereplicated bins in `dastool_bins/`. 
+This exercise involves the use of commands in `bash` and `R`. Before starting, make sure you have an active terminal, then navigate to the directory `8.data_presentation/gene_synteny/`. 
+
+!!! terminal-2 "Navigate to working directory"
+
+    ```
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.data_presentation/gene_synteny
+    ```
+
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder."
+
+Here, you'll find a copy of the annotations that came from DRAM (`dram_annotations.tsv`) and a directory of dereplicated bins in `dastool_bins/`. 
 
 
 ### 1. Obtain contigs containing genes of interest (R)
@@ -218,7 +228,7 @@ Now, we need to return to the terminal.
 
 We'll use the previously generated table information to extract the scaffolds (using `seqtk`) we need from bin files.
 
-!!! terminal "code"
+!!! terminal
 
     ```bash linenums="1"
     module purge
@@ -235,7 +245,7 @@ We'll use the previously generated table information to extract the scaffolds (u
 
 With our scaffolds ready, we can now perform pairwise comparisons between them. You can choose to generate complete combinations for comparisons. Here, we will only compare between bins sequentially. As we are using the `-subject` flag, the comparisons are single-threaded (we cannot change this).
 
-!!! terminal "code"
+!!! terminal
 
     ```bash linenums="1"
     module purge

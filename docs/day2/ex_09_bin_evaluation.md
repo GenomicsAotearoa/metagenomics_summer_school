@@ -29,6 +29,14 @@ As part of determining the correct marker set to use for each bin (bacterial or 
 
 For the following exercises, we will be working in `5.bin_quality_and_taxonomy/`. Our results from the previous section (`../4.binning/dastool_out/_DASTool_bins/`) have been copied to `5.bin_quality_and_taxonomy/dastool_bins/`.
 
+!!! terminal-2 "Navigate to working directory"
+
+    ```
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.bin_quality_and_taxonomy
+    ```
+
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder."
+
 We will need to run `CheckM` under a slurm script. This is because the tree placement process requires a large amount of memory to perform, independently of the size of your data set. A basic script for submitting a `CheckM` job would be as follows:
 
 Create a new script
@@ -41,7 +49,7 @@ Create a new script
 
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder."
 
-!!! terminal "code"
+!!! terminal-code "slurm script"
 
     ```bash linenums="1"
     #!/bin/bash -e
@@ -106,7 +114,7 @@ When your job completes, we will download the summary file and examine it.
     
     If you would like to try it out, here's a script analogous to that we ran using CheckM:
 
-    !!! terminal "code"
+    !!! terminal-code "slurm script"
 
         ```bash linenums="1"
         #!/bin/bash -e

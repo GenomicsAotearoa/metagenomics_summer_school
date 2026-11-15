@@ -10,13 +10,13 @@ For this workshop, we will use PhyloFlash to obtain sequences and abundances of 
 
     A quirk of PhyloFlash is that all outputs will be placed in the current running directory. The only punctuation allowed is "-" and "_". Make sure to name your "LIB" sensibly so you can track which library you're working with.
 
-!!! terminal "code"
+!!! terminal-2 "Create script named `phyloflash.sl`"
 
-    ```bash linenums="1"
+    ```bash
     nano phyloflash.sl
     ```
 
-!!! terminal "code"
+!!! terminal-code "slurm script"
 
     ```bash linenums="1"
     #!/bin/bash -e
@@ -68,7 +68,7 @@ A successful run of PhyloFlash (lines 24-29) would have generated the following 
 
 The reconstructed 16S rRNA sequences are stored in the per-sample archive. We will extract them to explore the data files inside.
 
-!!! terminal "code"
+!!! terminal
 
     ```sh
     for pf in *phyloFlash.tar.gz; do
@@ -94,13 +94,13 @@ The `allsamples_compare.ntu_table.tsv` is especially useful if you intend to per
 Most, if not all, of the time, we never know the taxonomic composition of our metagenomic reads *a priori*. For some environments, we can make good guesses (e.g., *Prochlorococcus* in marine samples, members of the Actinobacteriota in soil samples, various Bacteroidota in the gut microbiome, etc.). Here, we can use `Kraken2`, a k-mer based taxonomic classifier to help us interrogate the taxonomic composition of our samples. This is helpful if there are targets we might be looking for (e.g. working hypotheses, well characterised microbiome). Furthermore, we can estimate the abundance of the classified taxa using `Bracken`.
 
 <!--
-!!! terminal "code"
+!!! terminal-2 "Create script named `kraken2.sl`"
 
-    ```bash linenums="1"
+    ```bash
     nano kraken2.sl
     ```
 
-!!! terminal "code"
+!!! terminal-code "slurm script"
 
     ```bash linenums="1"
     #!/bin/bash -e
@@ -137,13 +137,13 @@ Most, if not all, of the time, we never know the taxonomic composition of our me
 As `Kraken2` classifications are *k*-mer based, we can also classify reads. This can be helpful if trying to filter out reads that may belong to taxonomic classifications that you're not interested in. When using reads for classification, we can also estimate the abundance of reads that belong to those taxa using Bracken.
 -->
 
-!!! terminal "code"
+!!! terminal-2 "Create script named `kraken2_bracken.sl`"
 
     ```bash
     nano kraken2_bracken.sl
     ```
 
-!!! terminal "code"
+!!! terminal-code "slurm script"
 
     ```bash linenums="1"
     #!/bin/bash -e

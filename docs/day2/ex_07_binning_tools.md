@@ -37,9 +37,9 @@ The *.bam* files can be passed in via either a user-defined order, or using wild
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/4.binning/
     ```
 
-!!! terminal "code"
+!!! terminal
 
-    ```bash
+    ```bash linenums="1"
     module purge
     module load MetaBAT/2.17-GCC-12.3.0
 
@@ -73,7 +73,7 @@ Before we proceed, note that when you run `MetaBAT` on NeSI you will see the tex
 
 !!! terminal-2 "Run MetaBAT"
 
-    ```bash
+    ```bash linenums="1"
     metabat2 --numThreads 2 --seed 13 \
              --minContig 1500 \
              --inFile spades_assembly/spades_assembly.m1000.fa \
@@ -111,7 +111,7 @@ Like `MetaBAT`, `MaxBin` requires a text representation of the coverage informat
 
 We can inspect the `metabat.tsv` file with `head` or `less` to identify the correct column indices for `cut`. (Using JupyterLab, we could also open the file directly from the file explorer.)
 
-!!! terminal "code"
+!!! terminal
 
     ```bash
     less metabat.tsv
@@ -139,7 +139,7 @@ Generally speaking, this pattern of first, fourth, then [n + 2]<sup>th</sup> sho
 
 This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we want to direct the output files into a folder, we must create that folder in advance.
 
-!!! terminal-2 "Create a new script to submit as a slurm job"
+!!! terminal-2 "Create script named `maxbin_clustering.sl`"
 
     ```bash
     nano maxbin_clustering.sl
@@ -147,7 +147,7 @@ This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we wan
 
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
 
-!!! terminal "code"
+!!! terminal-code "slurm script"
 
     ```bash linenums="1"
     #!/bin/bash -e
@@ -202,7 +202,7 @@ Note that in order to get fully reproducible results with `MetaDecoder` the `--r
 
 Note also that we are specifying a minimum contig size of 2,000 bp, which is the lower limit allowed for `MetaDecoder`, the default value would have been 2,500 bp.
 
-!!! terminal-2 "Create a new script to submit as a slurm job"
+!!! terminal-2 "Create script named `metadecoder_clustering.sl`"
 
     ```bash
     nano metadecoder_clustering.sl
@@ -210,7 +210,7 @@ Note also that we are specifying a minimum contig size of 2,000 bp, which is the
 
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
 
-!!! terminal "code"
+!!! terminal-code "slurm script"
 
     ```bash linenums="1"
     #!/bin/bash -e

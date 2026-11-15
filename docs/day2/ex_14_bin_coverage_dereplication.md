@@ -26,9 +26,17 @@ Therefore, when working on NeSI we run `CheckM` on our data set first, and then 
 
 For this exercise, we will be working with a different set of MAGs to the mock community, as there is not enough strain-level variation in the mock metagenome for `dRep` to actually remove any MAGs.
 
+!!! terminal-2 "Navigate to working directory"
+
+    ```
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/bonus.drep_example
+    ```
+
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder."
+
 We will write a single slurm script to run all necessary commands, then analyse the content.
 
-!!! terminal "code"
+!!! terminal-code "slurm script"
 
     ```bash linenums="1"
     #!/bin/bash -e
@@ -80,7 +88,7 @@ This should look familiar to you. Here we are simply loading `CheckM`, then runn
 
 When running `dRep`, we have the option to either let `dRep` execute `CheckM` in the background, or we can pass a comma-separated file of the MAG name and its statistics. Unfortunately, `dRep` does not take the `CheckM` output itself, so we must use some shell commands to reformat the data. To achieve this, we use the following steps:
 
-!!! terminal "code"
+!!! terminal
 
     ```bash
     echo "genome,completeness,contamination" > dRep.genomeInfo
@@ -88,7 +96,7 @@ When running `dRep`, we have the option to either let `dRep` execute `CheckM` in
 
 This line creates the header row for the `dRep` file, which we are calling `dRep.genomeInfo`.
 
-!!! terminal "code"
+!!! terminal
 
     ```bash
     cut -f1,12,13 checkm.tsv | sed 's/\t/.fa\t/' | sed 's/\t/,/g' | tail -n+2 >> dRep.genomeInfo

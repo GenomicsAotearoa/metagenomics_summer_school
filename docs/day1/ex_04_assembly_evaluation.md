@@ -97,19 +97,17 @@ A few quick checks I recommend are to see how many contigs or scaffolds your dat
 
 These steps will take place in the `2.assembly_evaluation/` folder, which contains copies of our `SPAdes` and `IDBA-UD` assemblies.
 
-!!! terminal "code"
+!!! terminal-2 "Navigate to working directory"
 
     ```bash
-    # Navigate to working directory
     cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.assembly_evaluation/
     ```
 
-
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
 
-!!! terminal "code"
+!!! terminal
 
-    ```bash
+    ```bash linenums="1"
     # Load seqmagick
     module purge
     module load seqmagick/0.8.4-gimkl-2020a-Python-3.8.2
@@ -151,9 +149,9 @@ These steps will take place in the `2.assembly_evaluation/` folder, which contai
 
 As we can see here, the `SPAdes` assembly has completed with fewer contigs assembled than the `IDBA-UD`, both in terms of total contigs assembled and contigs above the 1,000 bp size. This doesn't tell us a lot though - has `SPAdes` managed to assemble fewer reads, or has it managed to assemble the sequences into longer (and hence fewer) contigs? We can check this by looking at the N50/L50 (see more information about this statistic [here](https://www.molecularecologist.com/2017/03/29/whats-n50/)) of the assembly using the `stats.sh` tool that comes with `BBMap`.
 
-!!! terminal "code"
+!!! terminal
 
-    ```bash
+    ```bash linenums="1"
     # Load BBMap module
     module purge
     module load BBMap/39.01-GCC-11.3.0
@@ -207,9 +205,9 @@ This gives quite a verbose output:
 
 But what we can highlight here is that the statistics for the `SPAdes` assembly, with short contigs removed, yielded an N50 of 72.5 kbp at the contig level. We will now compute those same statistics from the other assembly options.
 
-!!! terminal "code"
+!!! terminal
 
-    ```bash
+    ```bash linenums="1"
     stats.sh in=spades_assembly/spades_assembly.m1000.fa
     stats.sh in=spades_assembly/spades_assembly.fa
 

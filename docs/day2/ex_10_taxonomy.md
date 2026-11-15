@@ -33,6 +33,15 @@ This can all be achieved in a single command, although it must be performed thro
 
 For the following exercises, we will be working in `5.bin_quality_and_taxonomy/`.
 
+!!! terminal-2 "Navigate to working directory"
+
+    ```
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.bin_quality_and_taxonom
+    ```
+
+!!! warning "Remember to update `<YOUR FOLDER>` to your own folder."
+
+
 Create a new script
 
 !!! terminal-2 "Create script named `gtdbtk.sl`"
@@ -43,7 +52,7 @@ Create a new script
 
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder"
 
-!!! terminal "code"
+!!! terminal-code "slurm script"
 
     ```bash linenums="1"
     #!/bin/bash -e

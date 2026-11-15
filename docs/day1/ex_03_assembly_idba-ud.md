@@ -108,7 +108,7 @@ Fortunately, the `IDBA` set of tools comes with some helper scripts to achieve j
 
 For `IDBA-UD`, we can select the *k*-mer size using
 
-!!! terminal "code"
+!!! terminal
 
     ```bash
     idba_ud --mink 21 --maxk 121 --step 22
@@ -120,7 +120,7 @@ Unlike `SPAdes`, we do not have fine-scale control over the *k*-mer sizes used i
 
 This is simply:
 
-!!! terminal "code"
+!!! terminal
 
     ```bash
 
@@ -147,7 +147,7 @@ No such parameter exists in `IDBA-UD`, but it requires far less RAM than `SPAdes
 
 Paste or type in the following:
 
-!!! terminal "code"
+!!! terminal-code "slurm script"
 
     ```bash linenums="1"
     #!/bin/bash -e
