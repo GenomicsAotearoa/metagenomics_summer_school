@@ -36,6 +36,14 @@ For this exercise, we will be working with a different set of MAGs to the mock c
 
 We will write a single slurm script to run all necessary commands, then analyse the content.
 
+!!! terminal-2 "Create script named `checkm_drep.sl`"
+
+    ```bash
+    nano checkm_drep.sl
+    ```
+
+!!! warning "Remember to update <YOUR FOLDER> to your own folder"
+
 !!! terminal-code "slurm script"
 
     ```bash linenums="1"
