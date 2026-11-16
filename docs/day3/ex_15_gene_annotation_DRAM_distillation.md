@@ -65,8 +65,6 @@ For the viral annotations, we will also include the parameters `--remove_transpo
     module purge
     module load DRAM/1.3.5-Miniconda3
     
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/7.gene_annotation/
-    
     # Prokaryote annotations
     DRAM.py distill --input_file dram_annotations/annotations.tsv \
                     --output_dir dram_distillation \
