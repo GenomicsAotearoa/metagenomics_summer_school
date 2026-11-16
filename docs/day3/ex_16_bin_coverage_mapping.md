@@ -28,7 +28,7 @@ We can do this using the tool `CoverM`. This exercise will take place in the `7.
         --methods mean variance covered_fraction relative_abundance \
         --genome-fasta-directory dastool_bins \
         --genome-fasta-extension fa \
-        --bam-files ../4.binning/*.bam \
+        --bam-files ../4.binning/sample?.bam \
         --output-file coverm_mags.tsv
     ```
 
@@ -46,7 +46,7 @@ If we were interested in the individual per-contig coverages (and not their per-
     # Run CoverM
     coverm contig \
         --methods mean variance \
-        --bam-files ../4.binning/*.bam \
+        --bam-files ../4.binning/sample?.bam \
         --output-file coverm_contigs.tsv
     ```
 

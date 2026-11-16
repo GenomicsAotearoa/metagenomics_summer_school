@@ -80,13 +80,3 @@
 !!! note "Slides for workshop"
 
     You can find a copy of the slides presented during the workshop, with published figures removed, in the [slides/](https://github.com/GenomicsAotearoa/metagenomics_summer_school/tree/master/slides) folder.
-
-<br>
-
-!!! desktop-download-24 "Snapshots of results to download"
-
-    If you are having trouble downloading files using `scp`, we are providing exemplar output files, which you can download through your browser, [here](https://github.com/GenomicsAotearoa/metagenomics_summer_school/tree/master/docs/resources), or via the following links: 
-    
-    * [FastQC results](./resources/fastqc_results.zip)
-    * [Gene annotation tables](./resources/example_annotation_tables.zip)
-    * [DRAM output files](./resources/dram_distillation.zip)

@@ -78,9 +78,6 @@ Then, we prepare the input file based on our GTDB-Tk outputs:
 !!! terminal
 
     ```bash
-    # Make sure you're in the right place!
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/8.data_presentation
-    
     # Copy MSA produced by GTDB-Tk
     cp phylogenetic/gtdbtk.bac120.user_msa.fasta.gz .
 
@@ -107,8 +104,9 @@ We can inspect what the output looks like:
     ??? success "Output"
 
         ```
-        (bin_3:0.67071,(bin_2:0.72960,bin_6:0.50416)0.940:0.06864,((bin_0:0.37758,bin_1:0.30061)1.000:0.49407,(bin_4:0.63792,(bin_9:0.58897,(bin_5:0.37075,(bin_7:0.25166,bin_8:0.26745)1.000:0.12499)1.000:0.18677)1.000:0.08332)0.929:0.05225)0.996:0.06772);
+        (bin_7:0.25124,(bin_0:0.16407,bin_1:0.13811)1.000:0.24575,((bin_6:0.27037,(bin_4:0.12989,(bin_5:0.09563,bin_8:0.10531)1.000:0.07396)1.000:0.11794)1.000:0.04925,(bin_3:0.32732,(bin_2:0.33844,bin_9:0.24676)0.999:0.04416)0.999:0.03896)0.942:0.03478);
         ```
+
 
 ## Visualising the tree
 
@@ -122,33 +120,21 @@ We will use [iTOL](https://itol.embl.de/) (Interactive Tree Of Life) to visualis
 
 On your web browser, navigate to [iTOL](https://itol.embl.de/).
 
-![itol main page](../figures/day3_iToLMainPage.PNG)
+![itol main page](../figures/day3_iToLMainPage.PNG){width="440"}
 
-Click on the Upload button on the top left.
+Click on the `Upload` button at the top.
 
-![itol upload page](../figures/day3_iToLUpload.PNG)
+![itol upload page](../figures/day3_iToLUpload.PNG){width="697"}
 
 **Add tree information**
 
 As we are working with a small tree, we can go back to the Jupyter terminal to copy the contents of `bin.tree` into the 'Tree text' area.
 
-!!! terminal
-
-    ```bash
-    cat bin.tree
-    ```
-
-    ??? success "Content of `bin.tree`"
-
-        ```
-        ((bin_0.filtered:0.39270,bin_1.filtered:0.27312)1.000:0.53352,(bin_7.filtered:0.73278,(bin_2.filtered:0.51665,bin_6.filtered:0.66105)0.930:0.06144)1.000:0.07298,(bin_4.filtered:0.62639,(bin_8.filtered:0.57815,(bin_3.filtered:0.36294,(bin_5.filtered:0.24898,bin_9.filtered:0.28774)1.000:0.11846)1.000:0.19589)1.000:0.07212)0.970:0.05113);
-        ```
-
 We can also name our tree.
 
 Once we are done, click Upload.
 
-![itol tree info](../figures/day3_iToLTreeInfo.PNG)
+![itol tree info](../figures/day3_iToLTreeInfo.PNG){width="682"}
 
 **Annotate tree**
 
@@ -158,7 +144,7 @@ We can also add additional information to highlight some or all of the tips. iTO
 - [Add colour to highlight relevant taxa](../resources/Color.txt)
 - [Add shapes to highlight risk-associated taxa](../resources/Risks.txt)
 
-After downloading the files, simply drag and drop them into the iTOL page and it will annotate the tips accordingly.
+After downloading the files (right-mouse-button -> `Save Link As...`), simply drag and drop them into the iTOL page and it will annotate the tips accordingly.
 
 ![itol tree annotated](../figures/day3_iToLTreeAnnotation.PNG)
 
