@@ -313,7 +313,10 @@ Here, we calculate [Bray-Curtis dissimilarity](https://en.wikipedia.org/wiki/Bra
 ![image](../figures/day3_coverage.02.BrayCurtis_MAG.png)
 
 !!! note "Exporting figures"
-    To export figures you have made, navigate your mouse pointer to the bottom right pane, then click on 'Export' on the second toolbar of the pane. You can export your figure as an image (e.g. TIFF, JPEG, PNG, BMP), a vector image (i.e. PDF, SVG) or PostScript (EPS). 
+    
+    From a JupyterLab Notebook, hold `Shift` and `right-click` on the figure, then choose `Save Image As...`.
+    
+    To export figures you have made from RStudio, navigate your mouse pointer to the bottom right pane, then click on 'Export' on the second toolbar of the pane. You can export your figure as an image (e.g. TIFF, JPEG, PNG, BMP), a vector image (i.e. PDF, SVG) or PostScript (EPS). 
     
     If you would like to do this via code, you can wrap the plot code in between functions for graphic devices (i.e. `png()`, `jpeg()`, `tiff()`, `bmp()`, `pdf()`, and `postscript()`) and `dev.off()`. The following is an example:
 
@@ -434,7 +437,7 @@ The penultimate step before building our heatmap is to set the colours that will
     )
     ```
 
-![image](../figures/day3_coverage.04.heatmap.MAG.png){.center width="418"}
+![image](../figures/day3_coverage.04.heatmap.MAG.png){.center width="421"}
 
 !!! vial-virus "Results at a glance"
 

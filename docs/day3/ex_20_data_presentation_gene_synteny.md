@@ -222,7 +222,7 @@ We will write out the results for processing in `bash`.
 
 ### 4. Subset relevant scaffolds from bin sequences
 
-Now, we need to return to the terminal. 
+!!! warning "Now, we need to change to the terminal!"
 
 !!! warning "Check that you're in `8.data_presentation/gene_synteny/`"
 
@@ -278,6 +278,8 @@ With our scaffolds ready, we can now perform pairwise comparisons between them. 
 Now we have all the necessary files. We will return to the RStudio session for plotting.
 
 ### 6. Plot gene synteny
+
+!!! warning "Now, we need to return to the R Notebook!"
 
 We first need to import all the relevant per bin files.
 
@@ -358,21 +360,21 @@ Seems a little messy, let's clean it up a little by only keeping those with the 
 !!! r-project "code"
 
     ```R linenums="1"
-    filt_blast <- map(blast, function(x) {
-      group_by(x, name1, name2) %>%
-        filter(e_value == min(e_value)) %>%
-        ungroup() %>%
-        as.comparison()
+    filt_blast = map(blast, function(x) {
+        group_by(x, name1, name2) |>
+            filter(e_value == min(e_value)) |>
+            ungroup() |>
+            as.comparison()
     })
 
     # Re-plot
     plot_gene_map(
-      dna_segs = ds_list,
-      comparisons = filt_blast,
-      annotations = annot_list,
-      dna_seg_labels = names(ds_list),
-      dna_seg_scale = TRUE,
-      gene_type = "arrows"
+        dna_segs = ds_list,
+        comparisons = filt_blast,
+        annotations = annot_list,
+        dna_seg_labels = names(ds_list),
+        dna_seg_scale = TRUE,
+        gene_type = "arrows"
     )
     ```
 
