@@ -29,12 +29,12 @@ bin_0	Arcobacter nitrofigilis
 bin_1	Nautilia profundicola
 bin_2	Prochlorococcus sp.
 bin_3	Kuenenia stuttgartiensis A
-bin_4	Desulfovibrio desulfuricans
-bin_5	Nitrosomonas europaea
-bin_6	Staphylococcus aureus
-bin_7	Pseudomonas aeruginosa
+bin_4	Nitrosomonas europaea
+bin_5	Pseudomonas aeruginosa
+bin_6	Nitrobacter winogradskyi
+bin_7	Desulfovibrio desulfuricans
 bin_8	Vibrio cholerae
-bin_9	Nitrobacter winogradskyi
+bin_9	Staphylococcus aureus
 
 #Examples:
 #assign a red colored strip to leaf 9606, with label 'Human' (label is displayed in the mouseover popups)

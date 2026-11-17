@@ -64,11 +64,11 @@ bin_1	label	clade	#000000	1	italic
 bin_2	label	clade	#000000	1	italic
 bin_3	label	clade	#000000	1	italic
 bin_4	label	clade	#000000	1	italic
-bin_5	label	clade	#000000	1	italic
-bin_6	label	clade	#e69138	1	italic
-bin_7	label	clade	#674ea7	1	italic
+bin_5	label	clade	#674ea7	1	italic
+bin_6	label	clade	#000000	1	italic
+bin_7	label	clade	#000000	1	italic
 bin_8	label	clade	#990000	1	italic
-bin_9	label	clade	#000000	1	italic
+bin_9	label	clade	#e69138	1	italic
 
 #Examples
 
