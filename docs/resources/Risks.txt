@@ -1,83 +1,131 @@
-DATASET_BINARY						
-#In colored strip datasets, each ID is associated to a color box/strip and can have an optional label. Color can be specified in hexadecimal, RGB or RGBA notation. When using RGB or RGBA notation, you cannot use COMMA as the dataset separator"""						
-						
-#lines starting with a hash are comments and ignored during parsing						
-						
-#=================================================================#						
-#                    MANDATORY SETTINGS                           #						
-#=================================================================#						
-#select the separator which is used to delimit the data below (TAB,SPACE or COMMA).This separator must be used throughout this file (except in the SEPARATOR line, which uses space)."""						
-						
-SEPARATOR TAB						
-#SEPARATOR COMMA						
-#SEPARATOR SPACE						
-						
-#label is used in the legend table (can be changed later)						
-						
-DATASET_LABEL	Possible risks					
-						
-#field labels						
-FIELD_LABELS	Healthcare associated infections	Intestinal infection
-						
-#dataset color (can be changed later)						
-COLOR	#ff0000					
-						
-#=================================================================#						
-#                    OPTIONAL SETTINGS                            #						
-#=================================================================#						
-						
-#If COLOR_BRANCHES is set to 1, branches of the tree will be colored according to the colors of the strips above the leaves."""						
-#When all children of a node have the same color, it will be colored the same, ie. the color will propagate inwards towards the root."""						
-COLOR_BRANCHES	0					
-						
-#each dataset can have a legend, which is defined below"""						
-#for each row in the legend, there should be one shape, color and label"""						
-#shape should be a number between 1 and 5:						
-#1: square						
-#2: circle						
-#3: star						
-#4: right pointing triangle						
-#5: left pointing triangle						
-						
-#An example dataset with 4 columns (circle, left triangle, right triangle and rectangle):"""						
+DATASET_BINARY
+#Binary datasets are visualized as filled or empty symbols, depending on the value associated with a node (0 or 1).
+#Each node can have multiple associated values, and each value will be represented by a symbol (defined in FIELD_SHAPES) with corresponding color and label (from FIELD_COLORS and FIELD_LABELS).
+#Possible values (defined under DATA below) for each node are 1 (filled shapes), 0 (empty shapes) and -1 (completely omitted).
+
+#lines starting with a hash are comments and ignored during parsing
+
+#=================================================================#
+#                    MANDATORY SETTINGS                           #
+#=================================================================#
+#select the separator which is used to delimit the data below (TAB,SPACE or COMMA).This separator must be used throughout this file.
+SEPARATOR TAB
+#SEPARATOR SPACE
+#SEPARATOR COMMA
+
+#label is used in the legend table (can be changed later)
+DATASET_LABEL	Possible risks
+
+#dataset color (can be changed later)
+COLOR	#ff0000
+
+#shapes for each field column; possible choices are
+#1: rectangle 
+#2: circle
+#3: star
+#4: right pointing triangle
+#5: left pointing triangle
+#6: checkmark
+
 FIELD_SHAPES	1	2
+
+#field labels
 FIELD_LABELS	Healthcare associated infections	Intestinal infection
+
+#=================================================================#
+#                    OPTIONAL SETTINGS                            #
+#=================================================================#
+
+#define colors for each individual field column (if not defined all symbols will use the main dataset color, defined in COLOR above)
 FIELD_COLORS	#3690c0	#ffd92f
-						
-LEGEND_TITLE	Possible risks						
+
+
+#=================================================================#
+#     all other optional settings can be set or changed later     #
+#           in the web interface (under 'Datasets' tab)           #
+#=================================================================#
+
+#Each dataset can have a legend, which is defined using LEGEND_XXX fields below
+#For each row in the legend, there should be one shape, color and label.
+#Optionally, you can define an exact legend position using LEGEND_POSITION_X and LEGEND_POSITION_Y. To use automatic legend positioning, do NOT define these values
+#Optionally, shape scaling can be present (LEGEND_SHAPE_SCALES). For each shape, you can define a scaling factor between 0 and 1.
+#To order legend entries horizontally instead of vertically, set LEGEND_HORIZONTAL to 1
+#Shape should be a number between 1 and 12, or any protein domain shape definition.
+#1: square
+#2: circle
+#3: star
+#4: right pointing triangle
+#5: left pointing triangle
+#6: checkmark
+#7: solid line
+#8: dashed line
+#9: dotted line
+#10:arrow left
+#11:arrow right
+#12:bidirectional arrow
+
+LEGEND_TITLE	Possible risks
+#LEGEND_SCALE,1
+#LEGEND_POSITION_X,100
+#LEGEND_POSITION_Y,100
+#LEGEND_HORIZONTAL,0
 LEGEND_SHAPES	1	2
 LEGEND_COLORS	#3690c0	#ffd92f
 LEGEND_LABELS	Healthcare associated infections	Intestinal infection
-						
-#SHOW_LABELS	Healthcare associated infections	Intestinal infection
-						
-#=================================================================#						
-#     all other optional settings can be set or changed later     #						
-#           in the web interface (under 'Datasets' tab)           #						
-#=================================================================#						
-						
-#width of the colored strip						
-#STRIP_WIDTH 25						
-						
-#left margin, used to increase/decrease the spacing to the next dataset. Can be negative, causing datasets to overlap."""						
-#MARGIN 0						
-						
-#border width; if set above 0, a border of specified width (in pixels) will be drawn around the color strip"""						
-#BORDER_WIDTH 0						
-						
-#border color; used when BORDER_WIDTH is above 0						
-#BORDER_COLOR #0000ff						
-						
-#always show internal values; if set, values associated to internal nodes will be displayed even if these nodes are not collapsed. It could cause overlapping in the dataset display."""						
-#SHOW_INTERNAL 0						
-						
-						
-#Internal tree nodes can be specified using IDs directly, or using the 'last common ancestor' method described in iTOL help pages"""						
-						
-#=================================================================#						
-#       Actual data follows after the """"DATA"""" keyword              #						
-#=================================================================#						
+#LEGEND_SHAPE_SCALES,1,1,0.5
+
+#always show internal values; if set, values associated to internal nodes will be displayed even if these nodes are not collapsed. It could cause overlapping in the dataset display.
+#SHOW_INTERNAL,0
+
+#show dashed lines between leaf labels and the dataset
+#DASHED_LINES,1
+
+#left margin, used to increase/decrease the spacing to the next dataset. Can be negative, causing datasets to overlap.
+MARGIN	10
+#align symbols to the end of each leaf label (individual dataset field will not be aligned to each other)
+ALIGN_TO_LABELS	1
+
+#symbol height factor; Default symbol height will be slightly less than the available space between leaves, but you can set a multiplication factor here to increase/decrease it (values from 0 to 1 will decrease it, values above 1 will increase it)
+#HEIGHT_FACTOR,1
+
+#increase/decrease the spacing between individual levels, when there is more than one binary level defined 
+SYMBOL_SPACING	-30
+
+#vertical and horizontal grids can be displayed connecting the shapes
+HORIZONTAL_GRID	0
+VERTICAL_GRID	0
+
+#set the style for the grid lines
+#GRID_COLOR,#0000ff
+#GRID_WIDTH,0.6
+
+#display or hide the text labels above each field column
+#SHOW_LABELS,1
+
+#text label size factor
+#SIZE_FACTOR,1
+
+#text label rotation
+#LABEL_ROTATION,0
+
+#text label shift in pixels (positive or negative)
+#LABEL_SHIFT,0
+
+#align fields labels to the tree circle; only applies in circular display mode
+#LABEL_ALIGN_TO_TREE,0
+
+#An example dataset with 4 columns (circle, left triangle, right triangle and rectangle):
+#FIELD_SHAPES,2,4,5,1
+#FIELD_LABELS,f1,f2,f3,f4
+#FIELD_COLORS,#ff0000,#00ff00,#ffff00,#0000ff
+
+#Internal tree nodes can be specified using IDs directly, or using the 'last common ancestor' method described in iTOL help pages
+#=================================================================#
+#       Actual data follows after the "DATA" keyword              #
+#=================================================================#
 DATA
+#node 9606 will have a filled circle, outline of a left triangle, nothing in the 3rd column and an rectangle outline in column 4
+#9606,1,0,-1,0
 
 bin_0	-1	-1
 bin_1	-1	-1
