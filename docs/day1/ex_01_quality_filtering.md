@@ -2,6 +2,7 @@
 
 !!! info "Objectives"
 
+    * [Access to NeSI, JupyterLab Notebook](#access-to-nesi-jupyterlab-notebook)
     * [Visualising raw reads with `FastQC`](#visualising-raw-reads)
     * [Read trimming and adapter removal with `trimmomatic`](#read-trimming-and-adapter-removal-with-trimmomatic)
     * [Diagnosing poor libraries](#diagnosing-poor-libraries)
@@ -9,6 +10,29 @@
     * [Filtering out host DNA with `BBMap`](#filtering-out-host-dna)
 
 ![image](../theme_images/qc_image.png){.center width="350"}
+
+---
+
+## Access to NeSI, JupyterLab Notebook
+
+If you haven't done so yet, follow the [guide for initial user setup on NeSI](../resources/sisg-setup-guide.md).
+
+Go to [NeSI OnDemand](https://ondemand.nesi.org.nz/) and select **Applications >> Jupyter Lab**. Then make following selections:
+
+> Cluster = slurm HPC   
+> JupyterLab module = 2026.7.0-foss-2026-4.6.0   
+
+Click **Launch** and wait for your session starting up. Then click **Connect to Jupyter**. 
+
+In the `Launcher` window, scroll down to `Other` and click on `Terminal`. Commands run from this terminal will use the same resources (2 cores, 4 GB RAM) as provided for the whole JupyterLab session. Now run the script that sets up the per-user starter files:
+
+!!! terminal-2 "Initial setup of per-user course materials"
+
+    ```bash
+    source /nesi/project/nesi02659/MGSS_2026/setup.sh 
+    ```
+
+In the file explorer on the left `MGSS_2026` will appear soon. Double-click on it to get to the course materials. Double-click `1.fastqc` to enter the directory for the first exercise.
 
 ---
 
