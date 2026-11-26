@@ -95,12 +95,12 @@ Evaluating the quality of a raw metagenomic assembly is quite a tricky process. 
 
 A few quick checks I recommend are to see how many contigs or scaffolds your data were assembled into, and then see how many contigs or scaffolds you have above a certain minimum length threshold. We will use `seqmagick` for performing the length filtering, and then just count sequence numbers using `grep`.
 
-These steps will take place in the `2.assembly_evaluation/` folder, which contains copies of our `SPAdes` and `IDBA-UD` assemblies.
+These steps will take place in the `3.assembly_evaluation/` folder, which contains copies of our `SPAdes` and `IDBA-UD` assemblies.
 
 !!! terminal-2 "Navigate to working directory"
 
     ```bash
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/2.assembly_evaluation/
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/3.assembly_evaluation/
     ```
 
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder"

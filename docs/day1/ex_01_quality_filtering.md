@@ -226,7 +226,7 @@ After Trimmomatic has completed, run FastQC again to check how well your reads h
 
 ### Working with the `ILLUMINACLIP` command
 
-Adapter trimming in `Trimmomatic` is called via the `ILLUMINACLIP` command, which can be used to pass a FASTA file of adapter and barcode sequences to be found and removed from your data. For further information about the `ILLUMINACLIP` command, please refer to the `trimmomatic` [manual](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf) for a detailed description.
+Adapter trimming in `Trimmomatic` is called via the `ILLUMINACLIP` command, which can be used to pass a FASTA file of adapter and barcode sequences to be found and removed from your data. For further information about the `ILLUMINACLIP` command, please refer to the `trimmomatic` [website](https://github.com/usadellab/Trimmomatic#trimmomatic) for a detailed description.
 
 There is always some subjectivity in how sensitive you want your adapter (and barcode) searching to be. If the settings are too strict you might end up discarding real sequence data that only partially overlaps with the Illumina adapters. If your settings are not strict enough then you might leave partial adapters in the sequence. For short inserts (DNA fragments), the sequencing process can read through into the adapter on the other side (3'), thus **adapters need to be removed *prior* to quality-based trimming** as the chance of hitting adapters (thus, removing them) is highest when the sequence is longer.
 

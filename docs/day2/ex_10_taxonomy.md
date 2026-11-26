@@ -36,7 +36,7 @@ For the following exercises, we will be working in `5.bin_quality_and_taxonomy/`
 !!! terminal-2 "Navigate to working directory"
 
     ```
-    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.bin_quality_and_taxonom
+    cd /nesi/nobackup/nesi02659/MGSS_U/<YOUR FOLDER>/5.bin_quality_and_taxonomy
     ```
 
 !!! warning "Remember to update `<YOUR FOLDER>` to your own folder."
