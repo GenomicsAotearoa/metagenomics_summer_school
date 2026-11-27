@@ -10,3 +10,4 @@ mkdocs-material
 mkdocs-awesome-pages-plugin
 mkdocs-glightbox
 markdown-grid-tables
+mkdocs-open-in-new-tab

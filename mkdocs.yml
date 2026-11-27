@@ -112,13 +112,14 @@ extra_javascript:
   - javascripts/mathjax.js
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
-
 plugins: 
   - glightbox:
       effect: zoom
       zoomable: true
   - search:
       lang: en
+  - open-in-new-tab:
+      add_icon: true
 
 extra_css:
   - stylesheets/extra.css
