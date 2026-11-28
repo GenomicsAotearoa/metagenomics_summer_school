@@ -122,7 +122,7 @@ Lets set up a slurm job to annotate each of our MAGs. Create a new script:
     #SBATCH --job-name      uniprot_annotation
     #SBATCH --partition     milan
     #SBATCH --reservation   MPI_mc062
-    #SBATCH --time          01:00:00
+    #SBATCH --time          00:50:00
     #SBATCH --mem           10GB
     #SBATCH --cpus-per-task 6
     #SBATCH --array         0-9

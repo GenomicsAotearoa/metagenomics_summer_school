@@ -384,7 +384,7 @@ Build index reference via `BBMap`. We will do this by submitting the job via slu
     #SBATCH --partition     milan
     #SBATCH --reservation   MPI_mc062
     #SBATCH --time          00:15:00
-    #SBATCH --mem           24GB
+    #SBATCH --mem           26GB
     #SBATCH --cpus-per-task 4
     #SBATCH --error         %x_%j.err
     #SBATCH --output        %x_%j.out
@@ -397,7 +397,7 @@ Build index reference via `BBMap`. We will do this by submitting the job via slu
     module load BBMap/39.01-GCC-11.3.0
     
     # Build indexed reference file via BBMap
-    bbmap.sh -Xmx18g usejni=true \
+    bbmap.sh -Xmx24g usejni=true \
              ref=hg19_main_mask_ribo_animal_allplant_allfungus.fa.gz
     ```
 
@@ -463,7 +463,7 @@ Finally, map the reads to the reference via `BBMap`.
     | :--- | :--- |
     | `-Xmx26g` | Set maximum memory: `#SBATCH --mem` minus a small overhead |
     | `usejni=true` | Speed up execution by using natively compiled code |
-    | `in1` / `in2` | Input paired-end reads 1 and 2 stored in `2.assembly/`, each of which are "samples". These are the same files we will use in further lessons |
+    | `in1` / `in2` | Input paired-end reads R1 and R2 |
     | `path` | The parent directory where `ref/` (our indexed and masked reference) exists |
     | All flags in line 24 | Recommended parameters found within [this thread](http://seqanswers.com/forums/showthread.php?t=42552) about processing data to remove host reads |
     | `outu1` / `outu2` | Reads that *were not mapped* to our masked reference |
