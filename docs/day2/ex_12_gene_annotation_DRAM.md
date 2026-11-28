@@ -113,6 +113,7 @@ To run this exercise we first need to set up a slurm job. We will use the result
     #SBATCH --account       nesi02659
     #SBATCH --job-name      DRAM_annotation
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --time          4:00:00
     #SBATCH --mem           16Gb
     #SBATCH --cpus-per-task 3

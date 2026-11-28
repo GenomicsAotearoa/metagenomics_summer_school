@@ -24,7 +24,7 @@ Go to [NeSI OnDemand](https://ondemand.nesi.org.nz/) and select **Applications >
 
 Click **Launch** and wait for your session starting up. Then click **Connect to Jupyter**. 
 
-In the `Launcher` window, scroll down to `Other` and click on `Terminal`. Commands run from this terminal will use the same resources (2 cores, 4 GB RAM) as provided for the whole JupyterLab session. Now run the script that sets up the per-user starter files:
+In the `Launcher` window, scroll down to `Other` and click on `Terminal`. Commands run from this terminal will use the same resources (2 cores, 4 GB RAM) as provided for the whole JupyterLab session. Now run the script that sets up the per-user starter files; it will also create a symlink (kind of shortcut) in your home directory pointing to the starter files:
 
 !!! terminal-2 "Initial setup of per-user course materials"
 
@@ -32,7 +32,7 @@ In the `Launcher` window, scroll down to `Other` and click on `Terminal`. Comman
     source /nesi/project/nesi02659/MGSS_2026/setup.sh 
     ```
 
-In the file explorer on the left `MGSS_2026` will appear soon. Double-click on it to get to the course materials. Double-click `1.fastqc` to enter the directory for the first exercise.
+In the file explorer on the left the `MGSS_2026` symlink will appear soon. Double-click on it to get to the course materials. Double-click `1.fastqc` to enter the directory for the first exercise. From the terminal, you can also use this link to get to your starter files fast via `cd ~/MGSS_2026`.
 
 ---
 
@@ -182,6 +182,7 @@ We will run `trimmomatic` via a dedicated "slurm" job submitted to NeSI as there
     #SBATCH --job-name      trimming
     #SBATCH --time          00:05:00
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --mem           3GB
     #SBATCH --cpus-per-task 2
     #SBATCH --error         %x_%j.err
@@ -381,6 +382,7 @@ Build index reference via `BBMap`. We will do this by submitting the job via slu
     #SBATCH --account       nesi02659
     #SBATCH --job-name      host_filt_bbmap_index
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --time          00:15:00
     #SBATCH --mem           24GB
     #SBATCH --cpus-per-task 4
@@ -431,6 +433,7 @@ Finally, map the reads to the reference via `BBMap`.
     #SBATCH --account       nesi02659
     #SBATCH --job-name      host_filt_bbmap_map
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --time          00:05:00
     #SBATCH --mem           20GB
     #SBATCH --cpus-per-task 8

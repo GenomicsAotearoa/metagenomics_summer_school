@@ -23,6 +23,7 @@ For this workshop, we will use PhyloFlash to obtain sequences and abundances of 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      phyloflash
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --time          15:00
     #SBATCH --mem           16G
     #SBATCH --cpus-per-task 12
@@ -107,6 +108,7 @@ Most, if not all, of the time, we never know the taxonomic composition of our me
     #SBATCH --account       nesi02659
     #SBATCH --job-name      kraken2
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --time          10:00
     #SBATCH --mem           80G
     #SBATCH --cpus-per-task 20
@@ -150,6 +152,7 @@ As `Kraken2` classifications are *k*-mer based, we can also classify reads. This
     #SBATCH --account       nesi02659
     #SBATCH --job-name      kraken2_bracken
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --time          30:00
     #SBATCH --mem           80G
     #SBATCH --cpus-per-task 20

@@ -121,6 +121,7 @@ Lets set up a slurm job to annotate each of our MAGs. Create a new script:
     #SBATCH --account       nesi02659
     #SBATCH --job-name      uniprot_annotation
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --time          01:00:00
     #SBATCH --mem           10GB
     #SBATCH --cpus-per-task 6
@@ -224,6 +225,7 @@ We are now going to submit another slurm job to annotate our MAGs using the [Pfa
     #SBATCH --account       nesi02659
     #SBATCH --job-name      pfam_annotation
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --time          00:10:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 2
@@ -281,6 +283,7 @@ In addition to putative function, we can also predict whether a protein is secre
     #SBATCH --account       nesi02659
     #SBATCH --job-name      signal_peptide
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --time          00:20:00
     #SBATCH --mem           10GB
     #SBATCH --cpus-per-task 12

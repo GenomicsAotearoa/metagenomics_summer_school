@@ -155,6 +155,7 @@ Paste or type in the following:
     #SBATCH --account       nesi02659
     #SBATCH --job-name      idbaud_assembly
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --time          00:20:00
     #SBATCH --mem           6GB
     #SBATCH --cpus-per-task 12

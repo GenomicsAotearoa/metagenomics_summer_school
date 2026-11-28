@@ -89,6 +89,7 @@ Open a new script using nano:
     #SBATCH --account       nesi02659
     #SBATCH --job-name      spades_mapping
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --time          00:05:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 10
@@ -229,6 +230,7 @@ Open a new script using nano:
     #SBATCH --account       nesi02659
     #SBATCH --job-name      spades_mapping_array
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --time          00:02:00
     #SBATCH --mem           1GB
     #SBATCH --array         0-3

@@ -56,6 +56,7 @@ Create a new script
     #SBATCH --account       nesi02659
     #SBATCH --job-name      CheckM
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --time          00:20:00
     #SBATCH --mem           40GB
     #SBATCH --cpus-per-task 8
@@ -121,6 +122,7 @@ When your job completes, we will download the summary file and examine it.
         #SBATCH --account       nesi02659
         #SBATCH --job-name      CheckM2
         #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
         #SBATCH --time          00:10:00
         #SBATCH --mem           10GB
         #SBATCH --cpus-per-task 8

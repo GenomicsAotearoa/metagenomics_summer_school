@@ -126,6 +126,7 @@ We will now run `prodigal` over the 10 bins in *single* mode using an array.
     #SBATCH --account       nesi02659
     #SBATCH --job-name      prodigal
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --time          00:10:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 1
@@ -267,6 +268,7 @@ To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits 
     #SBATCH --account       nesi02659
     #SBATCH --job-name      metaxa2
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --time          00:05:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 2

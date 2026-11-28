@@ -60,6 +60,7 @@ Create a new script
     #SBATCH --account           nesi02659
     #SBATCH --job-name          gtdbtk
     #SBATCH --partition         milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --time              03:00:00
     #SBATCH --mem               140GB
     #SBATCH --cpus-per-task     2

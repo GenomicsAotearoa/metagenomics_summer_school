@@ -156,6 +156,7 @@ This table is then passed to `MaxBin`. Unlike the case with `MetaBAT`, if we wan
     #SBATCH --job-name      maxbin_clustering
     #SBATCH --time          00:05:00
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --mem           4GB
     #SBATCH --cpus-per-task 4
     #SBATCH --error         %x_%j.err
@@ -219,6 +220,7 @@ Note also that we are specifying a minimum contig size of 2,000 bp, which is the
     #SBATCH --job-name      metadecoder_clustering
     #SBATCH --time          00:05:00
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --mem           2GB
     #SBATCH --cpus-per-task 4
     #SBATCH --error         %x_%j.err

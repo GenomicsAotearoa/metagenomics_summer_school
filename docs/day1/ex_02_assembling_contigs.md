@@ -195,6 +195,7 @@ Into this file, either write or copy/paste the following commands:
     #SBATCH --account       nesi02659
     #SBATCH --job-name      spades_assembly
     #SBATCH --partition     milan
+    #SBATCH --reservation   MPI_mc062
     #SBATCH --time          00:30:00
     #SBATCH --mem           10G
     #SBATCH --cpus-per-task 12
