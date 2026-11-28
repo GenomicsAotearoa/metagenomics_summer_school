@@ -130,7 +130,6 @@ We will now run `prodigal` over the 10 bins in *single* mode using an array.
     #SBATCH --time          00:10:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 1
-    #SBATCH --array         0-9
     #SBATCH --error         %x_%A_%a.err
     #SBATCH --output        %x_%A_%a.out
 
@@ -144,15 +143,15 @@ We will now run `prodigal` over the 10 bins in *single* mode using an array.
     # Output directory
     mkdir -p predictions/
 
-    # Variables
-    bin_file=dastool_bins/bin_${SLURM_ARRAY_TASK_ID}.fa
-    pred_file=$(basename ${bin_file} .fa)
-
-    # Run prodigal
-    prodigal -i ${bin_file} -p single \
-             -d predictions/${pred_file}.genes.fna \
-             -a predictions/${pred_file}.genes.faa \
-             -o predictions/${pred_file}.genes.gbk
+    # Loop over bins
+    for b in dastool_bins/bin_*.fa ; do
+        pred_file=$(basename ${b} .fa)
+        # Run prodigal
+        prodigal -i ${b} -p single \
+                 -d predictions/${pred_file}.genes.fna \
+                 -a predictions/${pred_file}.genes.faa \
+                 -o predictions/${pred_file}.genes.gbk
+    done
     ```
 
 !!! terminal-2 "Submit the script"
@@ -269,10 +268,9 @@ To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits 
     #SBATCH --job-name      metaxa2
     #SBATCH --partition     milan
     #SBATCH --reservation   MPI_mc062
-    #SBATCH --time          00:05:00
+    #SBATCH --time          00:10:00
     #SBATCH --mem           1GB
     #SBATCH --cpus-per-task 2
-    #SBATCH --array         0-9
     #SBATCH --error         %x_%A_%a.err
     #SBATCH --output        %x_%A_%a.out
     
@@ -286,15 +284,15 @@ To attempt to find the small (16S, SSU) and large (28S, LSU) ribosomal subunits 
     # Output directory
     mkdir -p ribosomes/
     
-    # Variables
-    bin_file=dastool_bins/bin_${SLURM_ARRAY_TASK_ID}.fa
-    pred_file=$(basename ${bin_file} .fa)
-    
-    # Run Metaxa2
-    for ribosome_type in ssu lsu; do
-      metaxa2 --cpu $SLURM_CPUS_PER_TASK --mode genome \
-              -g ${ribosome_type} -i ${bin_file} \
-              -o ribosomes/${pred_file}.${ribosome_type}
+    # Loop over bins
+    for b in dastool_bins/bin_*.fa ; do
+        pred_file=$(basename ${b} .fa)
+        # Run Metaxa2
+        for ribosome_type in ssu lsu ; do
+          metaxa2 --cpu $SLURM_CPUS_PER_TASK --mode genome \
+                  -g ${ribosome_type} -i ${b} \
+                  -o ribosomes/${pred_file}.${ribosome_type}
+        done
     done
     ```
 
